@@ -1,0 +1,70 @@
+ANTEPROYECTO COMPLETO REESCRITO
+
+Título tentativo
+Análisis bioinformático protein-centric basado en Gene Ontology de la reprogramación funcional proteica en cáncer colorrectal y sus implicaciones clínicas mediante inteligencia artificial explicable.
+
+1. Planteamiento del problema
+El cáncer colorrectal (CCR) continúa siendo una de las neoplasias malignas con mayor carga de mortalidad y discapacidad. Aunque su caracterización genómica y transcriptómica ha avanzado notablemente, persiste una brecha crítica entre dichas alteraciones moleculares y la maquinaria funcional que realmente ejecuta los procesos celulares. La proteómica permite observar el fenotipo tumoral activo y ofrece una lectura más cercana al comportamiento biológico real del tumor, pero sigue siendo subutilizada como marco central para biomarcadores funcionales, módulos biológicos y vulnerabilidades terapéuticas.
+
+La revisión de literatura obtenida mediante SciSpace confirma que gran parte de los estudios usan Gene Ontology de manera descriptiva y posterior al análisis diferencial, sin convertirlo en un eje analítico central. Además, aunque existen trabajos con aprendizaje automático en proteómica de CCR, la mayoría prioriza paneles de biomarcadores sin integrarlos de manera robusta con procesos funcionales, módulos proteína-proceso y niveles de evidencia clínica. Este vacío abre la oportunidad para una tesis que organice la proteómica pública de CCR en un marco reproducible, funcional e interpretable.
+
+2. Pregunta de investigación
+¿Qué procesos biológicos diferencialmente representados a nivel proteico en cáncer colorrectal pueden identificarse mediante una estrategia bioinformática protein-centric basada en Gene Ontology, y cómo puede la inteligencia artificial explicable contribuir a priorizar biomarcadores funcionales y módulos proteína-proceso con relevancia clínica y traslacional?
+
+3. Hipótesis
+La integración reproducible de datasets públicos de proteómica de cáncer colorrectal con una estrategia protein-centric basada en Gene Ontology y métodos de inteligencia artificial explicable permitirá identificar proteínas, procesos y módulos funcionales con mayor valor clínico y traslacional que los biomarcadores aislados evaluados de forma exclusivamente descriptiva.
+
+4. Objetivo general
+Identificar y caracterizar proteínas, procesos biológicos y módulos funcionales diferencialmente representados en cáncer colorrectal mediante integración de datasets públicos de proteómica, análisis protein-centric basado en Gene Ontology e inteligencia artificial explicable, con el fin de priorizar biomarcadores funcionales y generar hipótesis traslacionales con potencial relevancia clínica.
+
+5. Objetivos específicos
+5.1 Integrar y armonizar datasets públicos de proteómica de cáncer colorrectal provenientes de repositorios como CPTAC/PDC, PRIDE/ProteomeXchange y estudios de proteómica plasmática.
+5.2 Estandarizar identificadores proteicos, metadatos clínicos y criterios de inclusión para construir una cohorte computacional reproducible.
+5.3 Realizar control de calidad, imputación y normalización de matrices proteómicas.
+5.4 Identificar proteínas diferencialmente expresadas entre comparaciones clínicamente relevantes como tumor vs normal, plasma CRC vs control, y comparaciones avanzadas por estadio, subtipo, metástasis o respuesta terapéutica cuando la metadata lo permita.
+5.5 Aplicar Gene Ontology como marco central de interpretación funcional mediante ORA, GSEA o PSEA-Quant, complementado con reducción semántica para obtener ejes biológicos no redundantes.
+5.6 Construir redes y módulos proteína-proceso para identificar proteínas hub, procesos centrales y firmas funcionales coherentes.
+5.7 Emplear inteligencia artificial explicable para priorizar biomarcadores y módulos funcionales asociados con desenlaces o estratos clínicos.
+5.8 Clasificar los hallazgos según nivel de evidencia (validado, exploratorio o sujeto a validación futura) y generar hipótesis traslacionales relevantes para cáncer colorrectal y potencialmente pertinentes para contextos latinoamericanos.
+
+6. Justificación
+Esta tesis es pertinente por cuatro razones. Primero, desplaza el foco desde listados descriptivos de proteínas hacia una comprensión funcional del CCR. Segundo, aprovecha datasets públicos de alta calidad, lo que reduce costos y aumenta reproducibilidad. Tercero, incorpora IA explicable en vez de modelos opacos, favoreciendo transparencia e interpretación. Cuarto, añade valor regional al discutir EOCRC y la necesidad de marcos funcionales potencialmente aplicables a poblaciones latinoamericanas y colombianas, donde el CCR de inicio temprano representa una preocupación creciente.
+
+7. Estado del arte sintetizado
+La literatura reciente confirma que la proteogenómica del CCR ha identificado subtipos proteómicos independientes de clasificaciones genómicas tradicionales. Se destacan firmas de hipoxia, metabolismo, remodelación de matriz extracelular, EMT, inmunoevasión, reparación de DNA y vulnerabilidades metabólicas. Asimismo, estudios recientes muestran que la IA explicable puede priorizar biomarcadores proteicos y que plataformas como organoides permiten validar hipótesis de drug repurposing. Sin embargo, persiste una ausencia de marcos protein-centric de GO realmente integrados al pipeline y una falta de estrategias que clasifiquen los hallazgos por grado de evidencia clínica.
+
+8. Metodología
+8.1 Tipo de estudio: observacional, analítico, retrospectivo y bioinformático.
+8.2 Fuentes de datos: CPTAC colon cancer como dataset primario; PRIDE como validación externa; plasma proteomics 2024 como capa clínica; dataset metastásico/iProx como expansión avanzada; CRCDB/EOCRC como contexto.
+8.3 Procesamiento: armonización de identificadores, filtros de calidad, manejo de valores faltantes, transformación log2, imputación, normalización y corrección de batch cuando sea necesaria.
+8.4 Análisis diferencial: comparación entre grupos clínicamente relevantes con ajuste por múltiples pruebas.
+8.5 Análisis funcional: ORA / GSEA / PSEA-Quant, seguido de reducción semántica y priorización por relevancia clínica.
+8.6 Redes y módulos: uso de redes proteína-proteína y proteína-proceso para identificar hubs y módulos funcionales.
+8.7 IA explicable: Random Forest, LASSO, XGBoost/LightGBM y explicabilidad mediante SHAP/LIME cuando sea viable.
+8.8 Validación: replicación cruzada en datasets externos, validación de consistencia funcional en literatura, y clasificación de hallazgos como validados o exploratorios.
+
+9. Resultados esperados
+- Cohorte computacional armonizada de datasets públicos de proteómica de CCR.
+- Proteínas diferencialmente expresadas robustas.
+- Procesos GO no redundantes y priorizados.
+- Módulos funcionales proteína-proceso.
+- Proteínas hub y paneles de biomarcadores funcionales.
+- Ranking explicable de proteínas y módulos con valor potencial clínico.
+- Hipótesis traslacionales orientadas a validación futura en cohortes, organoides o contextos experimentales.
+
+10. Alcance
+El proyecto no pretende validar clínicamente biomarcadores ni proponer terapias de aplicación inmediata. Su alcance es computacional y traslacional, centrado en generar una base robusta, reproducible e interpretable para validación futura.
+
+11. Limitaciones
+- heterogeneidad de plataformas proteómicas y batch effects,
+- metadata clínica incompleta,
+- sesgo de anotación en GO,
+- dependencia de datasets públicos no latinoamericanos,
+- ausencia de validación experimental directa.
+
+12. Cronograma de alto nivel
+Meses 1–2: revisión, refinamiento metodológico y datasets.
+Meses 3–4: armonización, QC, imputación y normalización.
+Meses 5–7: diferencial, GO, reducción semántica y módulos.
+Meses 8–9: IA explicable y priorización clínica.
+Meses 10–12: escritura, discusión, consolidación del manuscrito y defensa.

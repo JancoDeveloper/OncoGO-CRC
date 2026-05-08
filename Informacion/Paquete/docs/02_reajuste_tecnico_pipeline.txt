@@ -1,0 +1,60 @@
+REAJUSTE TÉCNICO DEL PIPELINE
+
+1. Cambios conceptuales principales
+- GO deja de ser una etapa descriptiva final y pasa a ser un componente central del pipeline.
+- Se agrega una capa explícita de reducción semántica para evitar redundancia de términos GO.
+- La interpretación final debe clasificar hallazgos por nivel de evidencia: validado, hypothesis-generating o validación futura.
+- La ejecución se organiza por capas: núcleo, validación externa, capa clínica y expansión avanzada.
+
+2. Pipeline reajustado
+Fase A. Integración y armonización
+- registrar datasets
+- armonizar IDs proteicos
+- unificar metadata
+
+Fase B. Calidad y normalización
+- filtros de missingness
+- transformación log2
+- imputación
+- normalización
+- batch correction si aplica
+
+Fase C. Estadística diferencial
+- tumor vs normal
+- plasma CRC vs healthy
+- comparaciones avanzadas opcionales: estadio, MSI, subtipo, metástasis, terapia
+
+Fase D. Gene Ontology protein-centric
+- ORA / GSEA / PSEA-Quant
+- enriquecimiento BP, MF y CC
+- reducción semántica
+- scoring de relevancia funcional
+
+Fase E. Redes y módulos
+- redes proteína-proteína
+- redes proteína-proceso
+- hubs
+- módulos coherentes
+
+Fase F. IA explicable
+- LASSO
+- Random Forest
+- XGBoost/LightGBM si el tamaño de datos lo permite
+- SHAP/LIME para interpretación
+
+Fase G. Traducción clínica
+- ranking de biomarcadores
+- evidencia bibliográfica
+- clasificación por nivel de validación
+- hipótesis traslacionales
+
+3. MVP recomendado
+Solo con:
+- CPTAC Colon Cancer
+- PRIDE tejido
+- plasma proteomics 2024
+
+4. Expansiones posteriores
+- iProx / CRLM
+- CRCDB / EOCRC context
+- PDOs / drug repurposing como validación futura

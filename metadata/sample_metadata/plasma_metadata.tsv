@@ -1,0 +1,5 @@
+sample_id	condition	batch
+PLASMA-CRC-01	crc	b1
+PLASMA-CRC-02	crc	b1
+PLASMA-HC-01	healthy	b1
+PLASMA-HC-02	healthy	b1

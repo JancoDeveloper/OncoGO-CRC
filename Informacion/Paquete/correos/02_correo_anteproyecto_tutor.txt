@@ -1,0 +1,16 @@
+Asunto: Anteproyecto reescrito y reajustado según revisión de literatura
+
+Hola,
+
+Comparto una versión completamente reescrita del anteproyecto de tesis. La nueva versión incorpora los hallazgos de la revisión de literatura obtenida en SciSpace y reorganiza el trabajo alrededor de cinco ejes principales:
+1. CPTAC como dataset núcleo,
+2. PRIDE como validación externa,
+3. plasma proteomics 2024 como capa clínica,
+4. Gene Ontology protein-centric como marco central,
+5. IA explicable para priorización de biomarcadores y módulos funcionales.
+
+El documento también delimita con mayor claridad el alcance, la novedad, los riesgos y la proyección de validación futura. El objetivo es que la tesis quede mejor alineada con el estado del arte y más defendible metodológicamente.
+
+Quedo atento a observaciones sobre la pregunta de investigación, la hipótesis, el nivel de ambición del proyecto y la estructura propuesta.
+
+Saludos.

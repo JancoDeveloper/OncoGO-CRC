@@ -1,0 +1,68 @@
+COMANDOS POR FASE
+
+A. Preparación del entorno (Ubuntu/macOS)
+conda env create -f environment.yml
+conda activate crc-proteomics-go-ai
+
+B. Registro de datasets
+python -m src.01_download_data
+
+Resultado esperado:
+data/raw/manifest.tsv
+
+C. Armonización de IDs
+python -m src.02_harmonize_ids
+
+Resultados esperados:
+data/interim/cptac_harmonized.tsv
+data/interim/plasma_harmonized.tsv
+data/interim/pharmacoproteomics_harmonized.tsv
+
+D. QC, imputación y normalización
+python -m src.03_qc_normalize
+
+Resultados esperados:
+data/processed/cptac_normalized.tsv
+data/processed/plasma_normalized.tsv
+data/processed/pharmacoproteomics_normalized.tsv
+
+E. Análisis diferencial
+python -m src.04_differential_analysis
+
+Resultados esperados:
+results/differential/*_diff.tsv
+results/figures/*_volcano.png
+
+F. Enriquecimiento GO
+python -m src.05_go_enrichment
+
+Resultados esperados:
+results/go/*_go.tsv
+
+G. Reducción semántica (si no está automatizada)
+Aplicar manualmente con la herramienta seleccionada (por ejemplo REVIGO o equivalente) sobre los resultados GO.
+Guardar la versión reducida para documentación y análisis.
+
+H. Redes y módulos
+python -m src.06_network_modules
+
+Resultados esperados:
+results/networks/*_hub_proteins.tsv
+
+I. IA/ML
+python -m src.07_ml_prioritization
+
+Resultados esperados:
+results/ml/*_model_metrics.tsv
+
+J. Traducción clínica
+python -m src.08_clinical_translation
+
+Resultados esperados:
+results/clinical_translation/*_translation_ranked.tsv
+
+K. Reporte final
+python -m src.09_generate_report
+
+Resultados esperados:
+reports/executive_summary/results_summary.md

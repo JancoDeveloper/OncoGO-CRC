@@ -1,0 +1,103 @@
+INSTRUCCIONES DE RECONSTRUCCIÓN TOTAL DEL PROYECTO
+
+1. Crear carpeta raíz
+Nombre sugerido:
+crc_proteomics_go_ai
+
+2. Crear árbol de carpetas
+- config/
+- data/raw/cptac/
+- data/raw/pride/
+- data/raw/plasma/
+- data/raw/crcdb/
+- data/raw/pharmacoproteomics/
+- data/interim/
+- data/processed/
+- metadata/sample_metadata/
+- metadata/protein_id_maps/
+- metadata/clinical_labels/
+- metadata/gene_ontology/
+- src/
+- src/utils/
+- docs/
+- notebooks/
+- results/
+- reports/
+
+3. Crear archivos de configuración
+- README.md
+- requirements.txt
+- environment.yml
+- mkdocs.yml
+- config/config.yaml
+- config/datasets.yaml
+- config/comparisons.yaml
+
+4. Crear plantillas de metadatos
+- cptac_metadata.tsv
+- plasma_metadata.tsv
+- pride_merged_metadata.tsv
+- crcdb_metadata.tsv
+- pharmacoproteomics_metadata.tsv
+- protein_mapping_master.tsv
+
+5. Crear scripts fuente
+- settings.py
+- utils/io.py
+- utils/ids.py
+- utils/qc.py
+- utils/stats.py
+- utils/plots.py
+- utils/go_utils.py
+- utils/network_utils.py
+- utils/ml_utils.py
+- utils/translation_utils.py
+- utils/report_utils.py
+- 01_download_data.py
+- 02_harmonize_ids.py
+- 03_qc_normalize.py
+- 04_differential_analysis.py
+- 05_go_enrichment.py
+- 06_network_modules.py
+- 07_ml_prioritization.py
+- 08_clinical_translation.py
+- 09_generate_report.py
+
+6. Preparar entorno
+En Ubuntu o macOS con Conda:
+conda env create -f environment.yml
+conda activate crc-proteomics-go-ai
+
+7. Completar datasets y metadatos
+- descargar CPTAC / PDC
+- descargar PRIDE tejido
+- descargar plasma proteomics 2024
+- renombrar matrices según datasets.yaml
+- asegurar que sample_id coincida entre matrices y metadata
+
+8. Ejecutar pipeline
+python -m src.01_download_data
+python -m src.02_harmonize_ids
+python -m src.03_qc_normalize
+python -m src.04_differential_analysis
+python -m src.05_go_enrichment
+[aplicar reducción semántica]
+python -m src.06_network_modules
+python -m src.07_ml_prioritization
+python -m src.08_clinical_translation
+python -m src.09_generate_report
+
+9. Desplegar documentación
+pip install mkdocs mkdocs-material
+mkdocs serve
+mkdocs build
+
+10. Verificación final
+Comprobar existencia de:
+- data/processed/*_normalized.tsv
+- results/differential/*_diff.tsv
+- results/go/*_go.tsv
+- results/networks/*_hub_proteins.tsv
+- results/ml/*_model_metrics.tsv
+- results/clinical_translation/*_translation_ranked.tsv
+- reports/executive_summary/results_summary.md

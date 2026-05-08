@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+.env
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Data & results (keep structure via .gitkeep where needed)
+data/raw/**/*.tsv
+data/raw/**/*.csv
+data/raw/**/*.txt
+!data/raw/**/.gitkeep
+data/interim/*.tsv
+data/processed/*.tsv
+results/**/*
+!results/**/.gitkeep
+reports/**/*.md
+!reports/**/.gitkeep
+
+# MkDocs
+site/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Demo exception: allow tiny demo outputs if committed — user may gitignore
+# Uncomment to ignore all demo-generated files:
+# data/**/demo_*

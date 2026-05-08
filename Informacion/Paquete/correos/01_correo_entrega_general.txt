@@ -1,0 +1,17 @@
+Asunto: Entrega de reajuste metodológico y técnico del proyecto de tesis
+
+Hola,
+
+Comparto una versión reajustada del proyecto de tesis basada en el resultado amplio de la revisión generada en SciSpace. El reajuste redefine el proyecto como una tesis de proteómica funcional protein-centric en cáncer colorrectal, con Gene Ontology como marco analítico central, módulos proteína-proceso e inteligencia artificial explicable para priorización de biomarcadores e hipótesis traslacionales.
+
+En el material enviado se incluyen:
+- anteproyecto completo reescrito,
+- reajuste metodológico y técnico del pipeline,
+- priorización de datasets,
+- instrucciones de reconstrucción del proyecto,
+- guía de ejecución y despliegue en Ubuntu y macOS,
+- textos adicionales para correo y discusión con colaboradores.
+
+Quedo atento a comentarios sobre el enfoque metodológico, la viabilidad del alcance para maestría y la pertinencia clínica/traslacional.
+
+Saludos.

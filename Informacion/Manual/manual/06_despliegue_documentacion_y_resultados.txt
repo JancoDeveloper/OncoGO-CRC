@@ -1,0 +1,31 @@
+DESPLIEGUE DE DOCUMENTACIÓN Y RESULTADOS
+
+1. Objetivo del despliegue
+El proyecto puede documentarse localmente o publicarse como sitio estático usando MkDocs. Esto permite presentar resultados, metodología, diagramas, datasets y reportes de manera navegable.
+
+2. Instalación
+pip install mkdocs mkdocs-material
+
+3. Despliegue local
+mkdocs serve
+
+Abrir luego:
+http://127.0.0.1:8000
+
+4. Generación de sitio estático
+mkdocs build
+
+Esto genera la carpeta site/
+
+5. Qué publicar
+- resumen ejecutivo
+- estado del arte sintetizado
+- metodología
+- configuraciones
+- guías de datasets
+- resultados esperados
+- reportes automáticos
+- diagramas
+
+6. Entornos
+Ubuntu y macOS comparten la misma lógica de despliegue, siempre que Python, pip y MkDocs estén correctamente instalados dentro del ambiente del proyecto.

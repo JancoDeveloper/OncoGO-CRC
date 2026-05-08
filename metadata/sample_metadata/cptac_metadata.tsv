@@ -1,0 +1,5 @@
+sample_id	condition	stage_bin	msi_status	batch
+CPTAC-01	tumor	early	MSS	b1
+CPTAC-02	normal	early	MSS	b1
+CPTAC-03	tumor	advanced	MSS	b1
+CPTAC-04	normal	early	MSS	b2

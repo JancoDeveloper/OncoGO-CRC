@@ -1,0 +1,44 @@
+TROUBLESHOOTING Y VALIDACIÓN
+
+1. Error: el script no encuentra el archivo de entrada
+Verificar:
+- ruta exacta
+- nombre exacto
+- extensión correcta
+- directorio esperado en datasets.yaml
+
+2. Error: sample_id no coincide
+Verificar:
+- nombres de columnas en la matriz
+- columna sample_id en metadata
+- espacios extra
+- guiones, puntos o mayúsculas/minúsculas inconsistentes
+
+3. Error: muy pocos proteins significativos en GO
+Posibles causas:
+- umbral diferencial demasiado estricto
+- pocos samples
+- metadata mal clasificada
+- armonización incompleta
+
+4. Error: problemas de batch effects
+Revisar:
+- origen de datasets
+- distribución por cohorte
+- necesidad de aplicar ComBat o corrección equivalente
+
+5. Error: sobreajuste en ML
+Mitigación:
+- reducir número de features
+- usar validación cruzada
+- priorizar interpretabilidad sobre complejidad
+- no sobredimensionar el valor clínico del modelo
+
+6. Validación mínima obligatoria
+- verificar que existan matrices armonizadas
+- verificar que existan matrices normalizadas
+- verificar que se generen tablas diferenciales
+- verificar que GO produzca resultados consistentes
+- verificar que hubs y módulos existan
+- verificar que ML produzca métricas razonables
+- verificar que la traducción clínica clasifique hallazgos por evidencia

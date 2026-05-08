@@ -1,0 +1,36 @@
+ARCHIVOS CLAVE PARA RECREAR
+
+Configuración:
+- config/config.yaml
+- config/datasets.yaml
+- config/comparisons.yaml
+
+Metadatos:
+- metadata/sample_metadata/cptac_metadata.tsv
+- metadata/sample_metadata/plasma_metadata.tsv
+- metadata/sample_metadata/pride_merged_metadata.tsv
+- metadata/sample_metadata/crcdb_metadata.tsv
+- metadata/sample_metadata/pharmacoproteomics_metadata.tsv
+- metadata/protein_id_maps/protein_mapping_master.tsv
+
+Código:
+- src/settings.py
+- src/utils/io.py
+- src/utils/ids.py
+- src/utils/qc.py
+- src/utils/stats.py
+- src/utils/plots.py
+- src/utils/go_utils.py
+- src/utils/network_utils.py
+- src/utils/ml_utils.py
+- src/utils/translation_utils.py
+- src/utils/report_utils.py
+- src/01_download_data.py
+- src/02_harmonize_ids.py
+- src/03_qc_normalize.py
+- src/04_differential_analysis.py
+- src/05_go_enrichment.py
+- src/06_network_modules.py
+- src/07_ml_prioritization.py
+- src/08_clinical_translation.py
+- src/09_generate_report.py

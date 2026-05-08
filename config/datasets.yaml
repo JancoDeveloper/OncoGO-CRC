@@ -1,0 +1,46 @@
+# Registro lógico de datasets públicos (CPTAC, PRIDE, plasma, etc.)
+# Las rutas son relativas a la raíz del repositorio.
+# MVP recomendado: cptac_colorectal, pride_crc_meta, plasma_crc_2024.
+
+datasets:
+  cptac_colorectal:
+    label: "CPTAC Colon Adenocarcinoma (PDC/CPTAC)"
+    role: primary
+    matrix_path: data/raw/cptac/cptac_crc_matrix.tsv
+    sample_metadata: metadata/sample_metadata/cptac_metadata.tsv
+    id_column: sample_id
+    protein_column: protein_id
+
+  pride_crc_meta:
+    label: "PRIDE — tejido CRC (meta-análisis / estudios fusionados)"
+    role: external_validation
+    matrix_path: data/raw/pride/pride_crc_matrix.tsv
+    sample_metadata: metadata/sample_metadata/pride_merged_metadata.tsv
+    id_column: sample_id
+    protein_column: protein_id
+
+  plasma_crc_2024:
+    label: "Plasma proteomics CRC vs control (capa clínica)"
+    role: clinical_layer
+    matrix_path: data/raw/plasma/plasma_crc_matrix.tsv
+    sample_metadata: metadata/sample_metadata/plasma_metadata.tsv
+    id_column: sample_id
+    protein_column: protein_id
+
+  crcdb_context:
+    label: "CRCDB / contexto EOCRC (opcional)"
+    role: contextual
+    matrix_path: data/raw/crcdb/crcdb_matrix.tsv
+    sample_metadata: metadata/sample_metadata/crcdb_metadata.tsv
+    id_column: sample_id
+    protein_column: protein_id
+
+  pharmacoproteomics:
+    label: "Farmacoproteómica / PDOs (opcional)"
+    role: expansion
+    matrix_path: data/raw/pharmacoproteomics/pharmacoproteomics_matrix.tsv
+    sample_metadata: metadata/sample_metadata/pharmacoproteomics_metadata.tsv
+    id_column: sample_id
+    protein_column: protein_id
+
+protein_id_map: metadata/protein_id_maps/protein_mapping_master.tsv

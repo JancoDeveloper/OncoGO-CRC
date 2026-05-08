@@ -1,0 +1,33 @@
+CONFIGURACIONES RECOMENDADAS
+
+1. config.yaml
+Sugerencias principales:
+- primary_dataset: cptac_colorectal
+- batch_correction: combat
+- go.semantic_reduction: true
+- translation.evidence_tiers: [validated, hypothesis_generating, future_validation]
+
+2. datasets.yaml
+Orden recomendado:
+- cptac_colorectal = enabled
+- pride_crc_meta = enabled
+- plasma_crc_2024 = enabled
+- crcdb_context = optional
+- pharmacoproteomics_crc = optional
+
+3. comparisons.yaml
+Activar en el MVP:
+- cptac_tumor_vs_normal
+- plasma_crc_vs_healthy
+
+Comparaciones avanzadas si hay metadatos suficientes:
+- cptac_primary_vs_metastatic
+- cptac_stage_advanced_vs_early
+- cptac_msi_vs_mss
+- plasma_responder_vs_nonresponder
+- metastatic_vs_primary
+
+4. Convención de nombres
+- Las matrices deben quedar con el nombre exacto esperado en datasets.yaml.
+- Los sample_id de metadata deben coincidir exactamente con los nombres de columna de las matrices.
+- El mapping maestro debe usar UniProt como referencia primaria cuando sea posible.

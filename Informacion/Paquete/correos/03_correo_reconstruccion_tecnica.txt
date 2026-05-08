@@ -1,0 +1,19 @@
+Asunto: Instrucciones para reconstruir nuevamente el proyecto
+
+Hola,
+
+Comparto a continuación el resumen de reconstrucción técnica del proyecto:
+
+1. Crear la carpeta raíz `crc_proteomics_go_ai`.
+2. Reconstruir la estructura de carpetas (`config`, `data`, `metadata`, `src`, `results`, etc.).
+3. Crear los archivos de configuración (`config.yaml`, `datasets.yaml`, `comparisons.yaml`).
+4. Crear plantillas de metadata y el mapping maestro de proteínas.
+5. Crear los scripts fuente del pipeline (`01` a `09` y utilidades en `src/utils`).
+6. Preparar el ambiente con Conda.
+7. Descargar datasets y renombrarlos según la guía.
+8. Ejecutar el pipeline en orden.
+9. Desplegar la documentación con MkDocs si se desea publicar el reporte.
+
+El material enviado incluye una guía más completa y un checklist operativo para evitar errores de reconstrucción.
+
+Saludos.

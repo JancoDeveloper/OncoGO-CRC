@@ -1,0 +1,23 @@
+site_name: OncoGO-CRC
+site_description: Documentación del pipeline proteómico protein-centric para tesis.
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: teal
+nav:
+  - Inicio: index.md
+  - Pipeline: pipeline.md
+  - Configuración: configuracion.md
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+
+docs_dir: docs

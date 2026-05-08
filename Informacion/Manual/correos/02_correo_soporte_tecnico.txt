@@ -1,0 +1,16 @@
+Asunto: Soporte técnico para reconstrucción, ejecución y despliegue
+
+Hola,
+
+Comparto un resumen técnico del flujo recomendado para levantar el proyecto nuevamente:
+
+1. Reconstruir la estructura del proyecto.
+2. Crear los archivos de configuración y metadatos.
+3. Preparar el entorno con Conda.
+4. Descargar y renombrar datasets según la configuración.
+5. Ejecutar el pipeline por fases, validando cada salida antes de continuar.
+6. Desplegar la documentación y los resultados con MkDocs.
+
+El manual operativo adjunto/textual incluye además una sección de troubleshooting para resolver problemas frecuentes con rutas, IDs, metadatos, batch effects y sobreajuste en modelos de ML.
+
+Saludos.

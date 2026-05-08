@@ -1,0 +1,34 @@
+crc_proteomics_go_ai/
+├── README.md
+├── requirements.txt
+├── environment.yml
+├── mkdocs.yml
+├── config/
+│   ├── config.yaml
+│   ├── datasets.yaml
+│   └── comparisons.yaml
+├── data/
+│   ├── raw/
+│   ├── interim/
+│   └── processed/
+├── metadata/
+│   ├── sample_metadata/
+│   ├── protein_id_maps/
+│   ├── clinical_labels/
+│   └── gene_ontology/
+├── src/
+│   ├── settings.py
+│   ├── utils/
+│   ├── 01_download_data.py
+│   ├── 02_harmonize_ids.py
+│   ├── 03_qc_normalize.py
+│   ├── 04_differential_analysis.py
+│   ├── 05_go_enrichment.py
+│   ├── 06_network_modules.py
+│   ├── 07_ml_prioritization.py
+│   ├── 08_clinical_translation.py
+│   └── 09_generate_report.py
+├── docs/
+├── notebooks/
+├── results/
+└── reports/

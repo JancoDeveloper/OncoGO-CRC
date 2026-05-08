@@ -1,0 +1,76 @@
+EJECUCIÓN Y DESPLIEGUE EN MAC Y UBUNTU
+
+A. UBUNTU
+1. Instalar Miniconda
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+bash miniconda.sh
+source ~/.bashrc
+
+2. Entrar al proyecto
+cd crc_proteomics_go_ai
+
+3. Crear ambiente
+conda env create -f environment.yml
+conda activate crc-proteomics-go-ai
+
+4. Verificar dependencias
+python --version
+pip show pandas
+pip show scikit-learn
+pip show gseapy
+pip show networkx
+
+5. Ejecutar pipeline
+python -m src.01_download_data
+python -m src.02_harmonize_ids
+python -m src.03_qc_normalize
+python -m src.04_differential_analysis
+python -m src.05_go_enrichment
+python -m src.06_network_modules
+python -m src.07_ml_prioritization
+python -m src.08_clinical_translation
+python -m src.09_generate_report
+
+B. macOS
+1. Instalar Homebrew (si no existe)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+2. Instalar Conda (Miniconda o Mambaforge)
+
+3. Entrar al proyecto
+cd crc_proteomics_go_ai
+
+4. Crear ambiente
+conda env create -f environment.yml
+conda activate crc-proteomics-go-ai
+
+5. Verificar dependencias
+python --version
+pip show pandas
+pip show scikit-learn
+pip show gseapy
+pip show networkx
+
+6. Ejecutar pipeline
+python -m src.01_download_data
+python -m src.02_harmonize_ids
+python -m src.03_qc_normalize
+python -m src.04_differential_analysis
+python -m src.05_go_enrichment
+python -m src.06_network_modules
+python -m src.07_ml_prioritization
+python -m src.08_clinical_translation
+python -m src.09_generate_report
+
+C. Despliegue de documentación
+Instalar:
+pip install mkdocs mkdocs-material
+
+Correr localmente:
+mkdocs serve
+
+Generar sitio estático:
+mkdocs build
+
+Abrir localmente:
+http://127.0.0.1:8000

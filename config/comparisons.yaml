@@ -1,0 +1,34 @@
+# Comparaciones estadísticas (grupo A vs grupo B) enlazadas a columnas de metadata.
+# condition_column: nombre de columna en el TSV de muestras.
+# group_a / group_b: valores discretos de esa columna.
+
+comparisons:
+  cptac_tumor_vs_normal:
+    dataset: cptac_colorectal
+    label: "Tumor vs tejido adyacente normal (CPTAC)"
+    condition_column: condition
+    group_a: tumor
+    group_b: normal
+
+  plasma_crc_vs_healthy:
+    dataset: plasma_crc_2024
+    label: "Plasma CRC vs control sano"
+    condition_column: condition
+    group_a: crc
+    group_b: healthy
+
+  cptac_stage_advanced_vs_early:
+    dataset: cptac_colorectal
+    label: "Estadio avanzado vs temprano (si stage está disponible)"
+    condition_column: stage_bin
+    group_a: advanced
+    group_b: early
+    optional: true
+
+  cptac_msi_vs_mss:
+    dataset: cptac_colorectal
+    label: "MSI vs MSS"
+    condition_column: msi_status
+    group_a: MSI
+    group_b: MSS
+    optional: true

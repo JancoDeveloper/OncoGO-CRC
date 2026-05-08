@@ -1,0 +1,28 @@
+Asunto: Ejecución del pipeline y despliegue en Ubuntu/macOS
+
+Hola,
+
+Comparto una guía práctica de ejecución y despliegue del pipeline.
+
+En ambos sistemas (Ubuntu y macOS) la lógica es la misma:
+1. instalar Conda,
+2. crear el entorno con `environment.yml`,
+3. activar el ambiente,
+4. verificar dependencias,
+5. ejecutar los scripts del pipeline en orden,
+6. desplegar la documentación con MkDocs si se requiere.
+
+El flujo estándar de ejecución es:
+- 01_download_data
+- 02_harmonize_ids
+- 03_qc_normalize
+- 04_differential_analysis
+- 05_go_enrichment
+- 06_network_modules
+- 07_ml_prioritization
+- 08_clinical_translation
+- 09_generate_report
+
+También se incluye una sección sobre generación del sitio documental con `mkdocs serve` y `mkdocs build`.
+
+Saludos.

@@ -1,0 +1,36 @@
+CHECKLIST OPERATIVO
+
+Antes de correr:
+[ ] entorno Conda activo
+[ ] estructura de carpetas creada
+[ ] config.yaml, datasets.yaml y comparisons.yaml presentes
+[ ] metadatos creados
+[ ] mapping maestro creado
+[ ] datasets renombrados correctamente
+[ ] sample_id coincidente entre matrices y metadata
+
+Después de armonización:
+[ ] existen archivos *_harmonized.tsv
+[ ] se resolvieron duplicados proteicos
+
+Después de QC:
+[ ] existen archivos *_normalized.tsv
+[ ] no hay errores de imputación
+[ ] distribución razonable de datos
+
+Después de diferencial:
+[ ] existen archivos *_diff.tsv
+[ ] volcanos generados
+
+Después de GO:
+[ ] existen archivos *_go.tsv
+[ ] se aplicó reducción semántica
+
+Después de redes y ML:
+[ ] existen hubs y módulos
+[ ] existen model_metrics
+[ ] existe ranking traslacional
+
+Después del despliegue:
+[ ] mkdocs serve funciona
+[ ] mkdocs build genera carpeta site/

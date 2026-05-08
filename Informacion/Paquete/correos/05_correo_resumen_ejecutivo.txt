@@ -1,0 +1,9 @@
+Asunto: Resumen ejecutivo del reajuste del proyecto de tesis
+
+Hola,
+
+El proyecto fue reajustado con base en la revisión de literatura de SciSpace para fortalecerse como una tesis de proteómica funcional protein-centric en cáncer colorrectal. El ajuste principal consiste en convertir Gene Ontology en un eje central del análisis, integrar datasets públicos más robustos, aplicar reducción semántica, identificar módulos funcionales y priorizar biomarcadores mediante IA explicable.
+
+En términos prácticos, el proyecto se concentrará en un MVP con CPTAC, PRIDE y plasma 2024, dejando metástasis, EOCRC contextual y organoides como capas de expansión o validación futura.
+
+Saludos.

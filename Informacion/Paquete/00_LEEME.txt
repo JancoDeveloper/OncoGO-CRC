@@ -1,0 +1,24 @@
+PAQUETE REAJUSTADO SCISPACE V2 - CORREO SEGURO
+
+Este paquete contiene:
+1. Un anteproyecto completo reescrito con base en la revisión de SciSpace.
+2. Un reajuste técnico del pipeline y de las configuraciones.
+3. Instrucciones completas para reconstrucción, ejecución y despliegue.
+4. Textos listos para enviar por correo electrónico.
+5. Diagramas de apoyo para explicar el proyecto.
+
+Contenido principal:
+- docs/01_anteproyecto_completo_reescrito.txt
+- docs/02_reajuste_tecnico_pipeline.txt
+- docs/03_configuraciones_reajustadas.txt
+- docs/04_instrucciones_reconstruccion_total.txt
+- docs/05_ejecucion_y_despliegue_mac_ubuntu.txt
+- docs/06_checklist_operativo.txt
+- correos/01_correo_entrega_general.txt
+- correos/02_correo_anteproyecto_tutor.txt
+- correos/03_correo_reconstruccion_tecnica.txt
+- correos/04_correo_ejecucion_y_despliegue.txt
+- correos/05_correo_resumen_ejecutivo.txt
+- reconstruccion/01_arbol_proyecto.txt
+- reconstruccion/02_archivos_clave_para_recrear.txt
+- diagramas/*.png

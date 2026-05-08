@@ -1,0 +1,53 @@
+MANUAL OPERATIVO DEFINITIVO DEL PROYECTO
+
+0. Objetivo de este manual
+Este manual describe cómo reconstruir, configurar, ejecutar y desplegar el proyecto de tesis reajustado con base en la revisión de SciSpace. Está pensado para que una persona pueda reconstruir el entorno de trabajo en un sistema autorizado sin necesidad de recibir archivos ejecutables directamente.
+
+1. Objetivo técnico del proyecto
+El proyecto implementa un pipeline bioinformático reproducible para cáncer colorrectal basado en:
+- integración de datasets públicos de proteómica,
+- armonización de identificadores y metadatos,
+- análisis diferencial,
+- interpretación functional protein-centric con Gene Ontology,
+- reducción semántica de GO,
+- construcción de módulos proteína-proceso,
+- priorización de biomarcadores mediante IA explicable,
+- y traducción clínica de los hallazgos.
+
+2. Datasets priorizados
+Núcleo del MVP:
+- CPTAC Colon Cancer
+- PRIDE / ProteomeXchange (cohortes de tejido)
+- Plasma proteomics 2024
+
+Capas avanzadas:
+- dataset metastásico / iProx / CRLM
+- CRCDB / EOCRC como contexto
+- organoides / drug repurposing como validación futura
+
+3. Estructura del proyecto
+La estructura mínima sugerida es:
+- config/
+- data/raw/
+- data/interim/
+- data/processed/
+- metadata/sample_metadata/
+- metadata/protein_id_maps/
+- metadata/clinical_labels/
+- src/
+- src/utils/
+- docs/
+- results/
+- reports/
+
+4. Principio de ejecución
+El proyecto debe ejecutarse por fases. No se recomienda intentar correr todo sin verificar resultados intermedios.
+
+Fases:
+Fase A. Preparación del entorno.
+Fase B. Reconstrucción de la estructura y archivos.
+Fase C. Descarga, renombrado y metadatos.
+Fase D. Pipeline núcleo.
+Fase E. GO, redes y semantic reduction.
+Fase F. IA explicable y ranking traslacional.
+Fase G. Reportes y despliegue documental.

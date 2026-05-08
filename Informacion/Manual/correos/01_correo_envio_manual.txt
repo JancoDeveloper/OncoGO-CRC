@@ -1,0 +1,17 @@
+Asunto: Manual operativo definitivo del pipeline reajustado
+
+Hola,
+
+Comparto una versión operativa y segura para correo del manual definitivo del proyecto reajustado. Este material resume cómo reconstruir, configurar, ejecutar y desplegar el pipeline de la tesis, ya alineado con la revisión de SciSpace.
+
+El manual está organizado en:
+- reconstrucción paso a paso,
+- comandos por fase,
+- configuraciones recomendadas,
+- troubleshooting y validación,
+- despliegue documental con MkDocs,
+- y soporte para Ubuntu y macOS.
+
+La intención es que el proyecto pueda volver a levantarse en un entorno autorizado incluso cuando no sea posible transferir directamente código ejecutable.
+
+Saludos.

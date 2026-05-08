@@ -1,0 +1,58 @@
+# OncoGO-CRC — configuración global del pipeline
+# Ver GUIA_CONFIGURACION.md en la raíz para el significado de cada bloque.
+
+project:
+  name: OncoGO-CRC
+  seed: 42
+  primary_dataset: cptac_colorectal
+
+paths:
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  results_dir: results
+  metadata_dir: metadata
+  reports_dir: reports
+
+preprocessing:
+  missing_threshold_protein: 0.30
+  missing_threshold_sample: 0.25
+  log2_transform: true
+  imputation_method: knn
+  knn_neighbors: 5
+  normalize_method: zscore_protein
+  batch_correction: none
+
+differential:
+  alpha: 0.05
+  fdr_method: fdr_bh
+
+go:
+  fdr_threshold: 0.05
+  ontologies: [BP, MF, CC]
+  semantic_reduction: true
+  min_genes_per_term: 5
+  max_genes_per_term: 500
+
+network:
+  correlation_threshold: 0.6
+  min_degree_for_hub: 8
+
+ml:
+  test_size: 0.25
+  models: [lasso, random_forest]
+  random_forest_n_estimators: 200
+  use_shap: false
+
+translation:
+  evidence_tiers:
+    - validated
+    - hypothesis_generating
+    - future_validation
+
+demo:
+  enabled: false
+  n_proteins: 120
+  n_samples_tumor: 24
+  n_samples_normal: 24
+  n_shifted_proteins: 25

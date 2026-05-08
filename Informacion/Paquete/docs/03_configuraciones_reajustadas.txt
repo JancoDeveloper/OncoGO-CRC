@@ -1,0 +1,57 @@
+CONFIGURACIONES REAJUSTADAS (TEXTO DE REFERENCIA)
+
+Ajustes sugeridos para config.yaml
+---------------------------------
+project:
+  name: crc_proteomics_go_ai
+  seed: 42
+  primary_dataset: cptac_colorectal
+
+data:
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  results_dir: results
+  metadata_dir: metadata
+
+preprocessing:
+  missing_threshold_protein: 0.30
+  missing_threshold_sample: 0.25
+  log2_transform: true
+  imputation_method: knn
+  normalize_method: zscore
+  batch_correction: combat
+
+go:
+  fdr_threshold: 0.05
+  ontology: [BP, MF, CC]
+  semantic_reduction: true
+  semantic_tool: revigo_or_equivalent
+
+translation:
+  evidence_tiers:
+    - validated
+    - hypothesis_generating
+    - future_validation
+
+Ajustes sugeridos para datasets.yaml
+-----------------------------------
+1. cptac_colorectal como dataset principal
+2. pride_crc_meta como validación externa
+3. plasma_crc_2024 como capa clínica
+4. metastatic_crc_optional como expansión avanzada
+5. crcdb_context como soporte contextual
+
+Ajustes sugeridos para comparisons.yaml
+--------------------------------------
+Comparaciones núcleo:
+- cptac_tumor_vs_normal
+- plasma_crc_vs_healthy
+
+Comparaciones avanzadas si hay metadata:
+- cptac_stage_advanced_vs_early
+- cptac_msi_vs_mss
+- cptac_subtype_vs_subtype
+- cptac_primary_vs_metastatic
+- plasma_responder_vs_nonresponder
+- metastatic_vs_primary

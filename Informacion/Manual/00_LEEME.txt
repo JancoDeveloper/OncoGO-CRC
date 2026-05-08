@@ -1,0 +1,16 @@
+MANUAL OPERATIVO DEFINITIVO - VERSIÓN SEGURA PARA CORREO
+
+Este paquete contiene una versión textual, operativa y segura para correo del proyecto de tesis reajustado.
+
+Contenido:
+- manual/01_manual_operativo_definitivo.txt
+- manual/02_reconstruccion_paso_a_paso.txt
+- manual/03_comandos_por_fase.txt
+- manual/04_configuraciones_recomendadas.txt
+- manual/05_troubleshooting_y_validacion.txt
+- manual/06_despliegue_documentacion_y_resultados.txt
+- correos/01_correo_envio_manual.txt
+- correos/02_correo_soporte_tecnico.txt
+- diagramas/flujo_manual_operativo.png
+
+Todos los archivos están en texto plano o imagen, para facilitar el envío por correo y la reconstrucción manual en otro entorno.

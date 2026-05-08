@@ -1,0 +1,86 @@
+RECONSTRUCCIÓN PASO A PASO
+
+1. Crear carpeta raíz
+Nombre sugerido:
+crc_proteomics_go_ai
+
+2. Crear subcarpetas
+config/
+data/raw/cptac/
+data/raw/pride/
+data/raw/plasma/
+data/raw/crcdb/
+data/raw/pharmacoproteomics/
+data/interim/
+data/processed/
+metadata/sample_metadata/
+metadata/protein_id_maps/
+metadata/clinical_labels/
+metadata/gene_ontology/
+src/
+src/utils/
+docs/
+results/
+reports/
+
+3. Crear archivos mínimos
+- README.md
+- requirements.txt
+- environment.yml
+- mkdocs.yml
+- config/config.yaml
+- config/datasets.yaml
+- config/comparisons.yaml
+- metadata/sample_metadata/*.tsv
+- metadata/protein_id_maps/protein_mapping_master.tsv
+- src/settings.py
+- src/utils/io.py
+- src/utils/ids.py
+- src/utils/qc.py
+- src/utils/stats.py
+- src/utils/plots.py
+- src/utils/go_utils.py
+- src/utils/network_utils.py
+- src/utils/ml_utils.py
+- src/utils/translation_utils.py
+- src/utils/report_utils.py
+- src/01_download_data.py
+- src/02_harmonize_ids.py
+- src/03_qc_normalize.py
+- src/04_differential_analysis.py
+- src/05_go_enrichment.py
+- src/06_network_modules.py
+- src/07_ml_prioritization.py
+- src/08_clinical_translation.py
+- src/09_generate_report.py
+
+4. Crear ambiente
+Ejecutar en la raíz del proyecto:
+conda env create -f environment.yml
+conda activate crc-proteomics-go-ai
+
+5. Validar entorno
+python --version
+pip show pandas
+pip show scikit-learn
+pip show gseapy
+pip show networkx
+
+6. Completar metadatos
+Crear o completar:
+- cptac_metadata.tsv
+- plasma_metadata.tsv
+- pride_merged_metadata.tsv
+- crcdb_metadata.tsv
+- pharmacoproteomics_metadata.tsv
+- protein_mapping_master.tsv
+
+7. Descargar datasets y renombrar
+- CPTAC -> data/raw/cptac/protein_abundance.tsv
+- PRIDE -> data/raw/pride/pride_merged.tsv
+- plasma -> data/raw/plasma/plasma_abundance.tsv
+- crcdb -> data/raw/crcdb/crcdb_context_matrix.tsv (si se usa)
+- farmacoproteomics -> data/raw/pharmacoproteomics/pharmacoproteomics_abundance.tsv
+
+8. Verificar consistencia
+Asegurar que los nombres de columnas de muestra coincidan exactamente con los valores sample_id de cada metadata.

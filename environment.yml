@@ -1,0 +1,19 @@
+name: oncogo-crc
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - pyyaml
+  - matplotlib
+  - seaborn
+  - networkx
+  - statsmodels
+  - tqdm
+  - pip:
+    - -e ".[explain,docs]"
