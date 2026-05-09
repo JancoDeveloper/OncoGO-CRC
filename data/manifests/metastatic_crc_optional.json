@@ -1,0 +1,12 @@
+{
+  "provider": "px",
+  "status": "partial",
+  "n_files": 0,
+  "n_metadata_records": 0,
+  "warnings": [],
+  "errors": [],
+  "matrix_status": "ok",
+  "metadata_status": "ok",
+  "matrix_url": "https://proteomecentral.proteomexchange.org/cgi/",
+  "metadata_url": "https://proteomecentral.proteomexchange.org/cgi/"
+}

@@ -1,0 +1,14 @@
+{
+  "provider": "manual",
+  "status": "manual_pending",
+  "n_files": 0,
+  "n_metadata_records": 0,
+  "warnings": [
+    "Provider manual: sin descarga autom\u00e1tica configurada."
+  ],
+  "errors": [],
+  "matrix_status": "skipped_no_url",
+  "metadata_status": "skipped_no_url",
+  "matrix_url": null,
+  "metadata_url": null
+}

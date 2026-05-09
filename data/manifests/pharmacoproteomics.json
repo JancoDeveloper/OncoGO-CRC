@@ -1,0 +1,14 @@
+{
+  "provider": "pride",
+  "status": "failed",
+  "n_files": 0,
+  "n_metadata_records": 0,
+  "warnings": [],
+  "errors": [
+    "HTTP Error 404: Not Found"
+  ],
+  "matrix_status": "skipped_no_url",
+  "metadata_status": "skipped_no_url",
+  "matrix_url": null,
+  "metadata_url": null
+}

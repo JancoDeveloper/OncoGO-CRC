@@ -9,7 +9,7 @@ En este repositorio las etapas no son `src.01_*.py` (no son importables en Pytho
 
 ```bash
 oncogo-crc run --stage <etapa>
-# etapas: download | harmonize | qc | differential | go | network | ml | clinical | report
+# etapas: download_real | download | validate_inputs | harmonize | qc | differential | go | network | ml | clinical | report | stability | publish_results
 ```
 
 Equivalencia con la nomenclatura “01–09” del paquete `Informacion/`: ver [DOCUMENTACION_TESIS.md](DOCUMENTACION_TESIS.md#equivalencia-con-scripts-01_-).

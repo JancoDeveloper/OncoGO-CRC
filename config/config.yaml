@@ -14,6 +14,67 @@ paths:
   metadata_dir: metadata
   reports_dir: reports
 
+download_real:
+  enabled: true
+  output_dir: data/raw
+  manifests_dir: data/manifests
+  audit_dir: results/validation
+  timeout_s: 60
+  timeout_seconds: 60
+  retries: 3
+  overwrite: false
+  checksum_validation: false
+  prefer_processed_over_raw: true
+  allow_partial_success: true
+  fail_on_validation_error: false
+  auth:
+    pdc_token_env: PDC_TOKEN
+    pride_token_env: PRIDE_TOKEN
+    iprox_token_env: IPROX_TOKEN
+
+clinical_filters:
+  enable_stratified_filters: true
+  enforce_matching_after_filter: true
+  age_bins:
+    mode: custom
+    bins:
+      - name: young
+        min: 0
+        max: 49
+      - name: older
+        min: 50
+        max: 200
+  stage_mapping:
+    early: ["stage i", "stage ia", "stage ib", "stage ii", "stage iia", "stage iib", "stage iic"]
+    advanced: ["stage iii", "stage iiia", "stage iiib", "stage iiic", "stage iv", "stage iva", "stage ivb", "stage ivc"]
+  min_samples_per_group:
+    differential: 5
+    go: 5
+    ml: 15
+
+validation:
+  require_matrix: true
+  require_metadata: true
+  require_protein_id_first_column: true
+  require_condition_column: true
+  require_exact_sample_match: true
+  warn_on_missing_clinical_vars: true
+  required_core_vars: [sample_id, condition]
+  recommended_clinical_vars: [sex, age, age_bin, stage, stage_bin, msi_status, metastatic_status, treatment_response]
+
+web_publish:
+  enabled: true
+  web_reports_dir: reports/web
+  runs_dir: reports/runs
+  latest_run_alias: latest
+  site_title: OncoGO-CRC
+  include_dataset_status: true
+  include_clinical_coverage: true
+  include_base_results: true
+  include_stratified_results: true
+  include_stability: true
+  include_limitations: true
+
 preprocessing:
   missing_threshold_protein: 0.30
   missing_threshold_sample: 0.25

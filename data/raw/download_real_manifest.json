@@ -1,0 +1,56 @@
+[
+  {
+    "dataset": "cptac_colorectal",
+    "matrix_path": "data/raw/cptac/cptac_crc_matrix.tsv",
+    "metadata_path": "metadata/sample_metadata/cptac_metadata.tsv",
+    "matrix_status": "ok",
+    "metadata_status": "ok",
+    "matrix_autodiscovered": true,
+    "metadata_autodiscovered": true,
+    "matrix_detail": "already_exists",
+    "matrix_url": "https://fonts.gstatic.com",
+    "metadata_detail": "already_exists",
+    "metadata_url": "https://fonts.gstatic.com"
+  },
+  {
+    "dataset": "pride_crc_meta",
+    "matrix_path": "data/raw/pride/pride_crc_matrix.tsv",
+    "metadata_path": "metadata/sample_metadata/pride_merged_metadata.tsv",
+    "matrix_status": "skipped_no_url",
+    "metadata_status": "skipped_no_url"
+  },
+  {
+    "dataset": "plasma_crc_2024",
+    "matrix_path": "data/raw/plasma/plasma_crc_matrix.tsv",
+    "metadata_path": "metadata/sample_metadata/plasma_metadata.tsv",
+    "matrix_status": "ok",
+    "metadata_status": "ok",
+    "matrix_autodiscovered": true,
+    "metadata_autodiscovered": true,
+    "matrix_detail": "already_exists",
+    "matrix_url": "https://proteomecentral.proteomexchange.org/cgi/",
+    "metadata_detail": "already_exists",
+    "metadata_url": "https://proteomecentral.proteomexchange.org/cgi/"
+  },
+  {
+    "dataset": "crcdb_context",
+    "matrix_path": "data/raw/crcdb/crcdb_matrix.tsv",
+    "metadata_path": "metadata/sample_metadata/crcdb_metadata.tsv",
+    "matrix_status": "skipped_dataset_disabled",
+    "metadata_status": "skipped_dataset_disabled"
+  },
+  {
+    "dataset": "pharmacoproteomics",
+    "matrix_path": "data/raw/pharmacoproteomics/pharmacoproteomics_matrix.tsv",
+    "metadata_path": "metadata/sample_metadata/pharmacoproteomics_metadata.tsv",
+    "matrix_status": "skipped_dataset_disabled",
+    "metadata_status": "skipped_dataset_disabled"
+  },
+  {
+    "dataset": "metastatic_crc_optional",
+    "matrix_path": "data/raw/metastatic/metastatic_crc_matrix.tsv",
+    "metadata_path": "metadata/sample_metadata/metastatic_crc_metadata.tsv",
+    "matrix_status": "skipped_dataset_disabled",
+    "metadata_status": "skipped_dataset_disabled"
+  }
+]

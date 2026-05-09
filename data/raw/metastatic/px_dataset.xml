@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProteomeXchangeDataset id="PXD021238" formatVersion="1.4.0" xsi:noNamespaceSchemaLocation="proteomeXchange-1.4.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <CvList>
+        <Cv fullName="PSI-MS" uri="https://raw.githubusercontent.com/HUPO-PSI/psi-ms-CV/master/psi-ms.obo" id="MS"/>
+        <Cv fullName="PSI-MOD" uri="https://raw.githubusercontent.com/MICommunity/psidev/master/psi/mod/data/PSI-MOD.obo" id="MOD"/>
+        <Cv fullName="UNIMOD" uri="http://www.unimod.org/obo/unimod.obo" id="UNIMOD"/>
+    </CvList>
+    <DatasetSummary announceDate="2020-10-19" hostingRepository="PRIDE" title="Quantitative proteomics reveals dual effects of calcium on radicle protrusion in soybean">
+        <Description>To better elucidate the mechanisms of calcium-mediated germination of soybean seed, morphological analysis was performed in seed imbibed with different concentrations of CaCl2. Based on morphological results, radicle of germinating seed imbibed with 5 and 50 mM CaCl2 was collected for proteomic analysis.</Description>
+        <ReviewLevel>
+            <cvParam cvRef="MS" accession="MS:1002854" name="Peer-reviewed dataset"/>
+        </ReviewLevel>
+        <RepositorySupport>
+            <cvParam cvRef="MS" accession="MS:1002857" name="Unsupported dataset by repository"/>
+        </RepositorySupport>
+    </DatasetSummary>
+    <DatasetIdentifierList>
+        <DatasetIdentifier>
+            <cvParam cvRef="MS" accession="MS:1001919" name="ProteomeXchange accession number" value="PXD021238"/>
+        </DatasetIdentifier>
+    </DatasetIdentifierList>
+    <DatasetOriginList>
+        <DatasetOrigin>
+            <cvParam cvRef="MS" accession="MS:1002868" name="Original data"/>
+        </DatasetOrigin>
+    </DatasetOriginList>
+    <SpeciesList>
+        <Species>
+            <cvParam cvRef="MS" accession="MS:1001469" name="taxonomy: scientific name" value="Glycine max"/>
+            <cvParam cvRef="MS" accession="MS:1001467" name="taxonomy: NCBI TaxID" value="3847"/>
+        </Species>
+    </SpeciesList>
+    <InstrumentList>
+        <Instrument id="Instrument_1">
+            <cvParam cvRef="MS" accession="MS:1000449" name="LTQ Orbitrap"/>
+        </Instrument>
+    </InstrumentList>
+    <ModificationList>
+        <cvParam cvRef="MOD" accession="MOD:00394" name="acetylated residue"/>
+        <cvParam cvRef="MOD" accession="MOD:00425" name="monohydroxylated residue"/>
+        <cvParam cvRef="MOD" accession="MOD:00397" name="iodoacetamide derivatized residue"/>
+    </ModificationList>
+    <ContactList>
+        <Contact id="project_submitter">
+            <cvParam cvRef="MS" accession="MS:1000586" name="contact name" value="Xin WANG"/>
+            <cvParam cvRef="MS" accession="MS:1000589" name="contact email" value="020350286@163.com"/>
+            <cvParam cvRef="MS" accession="MS:1000590" name="contact affiliation" value="China Agricultural University"/>
+            <cvParam cvRef="MS" accession="MS:1002037" name="dataset submitter"/>
+        </Contact>
+        <Contact id="project_lab_head">
+            <cvParam cvRef="MS" accession="MS:1002332" name="lab head"/>
+            <cvParam cvRef="MS" accession="MS:1000586" name="contact name" value="Shun-Li Zhou"/>
+            <cvParam cvRef="MS" accession="MS:1000589" name="contact email" value="zhoushl@cau.edu.cn"/>
+            <cvParam cvRef="MS" accession="MS:1000590" name="contact affiliation" value="College of Agronomy and Biotechnology, China Agricultural University, Beijing, China"/>
+        </Contact>
+    </ContactList>
+    <PublicationList>
+        <Publication id="PMID33017647">
+            <cvParam cvRef="MS" accession="MS:1000879" name="PubMed identifier" value="33017647"/>
+            <cvParam cvRef="MS" accession="MS:1002866" name="Reference" value="Wang X, Hu H, Li F, Yang B, Komatsu S, Zhou S. Quantitative proteomics reveals dual effects of calcium on radicle protrusion in soybean. J Proteomics. 2020 230:103999"/>
+        </Publication>
+    </PublicationList>
+    <KeywordList>
+        <cvParam cvRef="MS" accession="MS:1001925" name="submitter keyword" value="soybean; calcium; germination; radicle; proteomics"/>
+    </KeywordList>
+    <FullDatasetLinkList>
+        <FullDatasetLink>
+            <cvParam cvRef="MS" accession="MS:1002852" name="Dataset FTP location" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238"/>
+        </FullDatasetLink>
+        <FullDatasetLink>
+            <cvParam cvRef="MS" accession="MS:1001930" name="PRIDE project URI" value="http://www.ebi.ac.uk/pride/archive/projects/PXD021238"/>
+        </FullDatasetLink>
+    </FullDatasetLinkList>
+    <DatasetFileList>
+        <DatasetFile id="FILE_40" name="search.xls">
+            <cvParam cvRef="MS" accession="MS:1002849" name="Search engine output file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/search.xls"/>
+        </DatasetFile>
+        <DatasetFile id="FILE_50" name="R1 50mM.raw">
+            <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/R1 50mM.raw"/>
+        </DatasetFile>
+        <DatasetFile id="FILE_51" name="R1 5mM.raw">
+            <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/R1 5mM.raw"/>
+        </DatasetFile>
+        <DatasetFile id="FILE_52" name="R1 CK.raw">
+            <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/R1 CK.raw"/>
+        </DatasetFile>
+        <DatasetFile id="FILE_53" name="R2 50mM.raw">
+            <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/R2 50mM.raw"/>
+        </DatasetFile>
+        <DatasetFile id="FILE_54" name="R2 5mM.raw">
+            <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/R2 5mM.raw"/>
+        </DatasetFile>
+        <DatasetFile id="FILE_55" name="R2 CK.raw">
+            <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/R2 CK.raw"/>
+        </DatasetFile>
+        <DatasetFile id="FILE_56" name="R3 50mM.raw">
+            <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/R3 50mM.raw"/>
+        </DatasetFile>
+        <DatasetFile id="FILE_57" name="R3 5mM.raw">
+            <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/R3 5mM.raw"/>
+        </DatasetFile>
+        <DatasetFile id="FILE_58" name="R3 CK.raw">
+            <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021238/R3 CK.raw"/>
+        </DatasetFile>
+    </DatasetFileList>
+    <RepositoryRecordList>
+        <RepositoryRecord name="Quantitative proteomics reveals dual effects of calcium on radicle protrusion in soybean" label="PRIDE project" recordID="PXD021238" repositoryID="PRIDE" uri="http://www.ebi.ac.uk/pride/archive/projects/PXD021238"/>
+    </RepositoryRecordList>
+</ProteomeXchangeDataset>

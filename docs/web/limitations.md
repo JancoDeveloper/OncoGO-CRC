@@ -1,0 +1,3 @@
+# Limitaciones
+
+En construcción automática.

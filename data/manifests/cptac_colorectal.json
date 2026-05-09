@@ -1,0 +1,14 @@
+{
+  "provider": "pdc",
+  "status": "failed",
+  "n_files": 0,
+  "n_metadata_records": 0,
+  "warnings": [],
+  "errors": [
+    "HTTP Error 400: Bad Request"
+  ],
+  "matrix_status": "ok",
+  "metadata_status": "ok",
+  "matrix_url": "https://fonts.gstatic.com",
+  "metadata_url": "https://fonts.gstatic.com"
+}

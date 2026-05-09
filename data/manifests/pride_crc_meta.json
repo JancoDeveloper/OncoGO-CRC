@@ -1,0 +1,12 @@
+{
+  "provider": "pride",
+  "status": "partial",
+  "n_files": 291,
+  "n_metadata_records": 4,
+  "warnings": [],
+  "errors": [],
+  "matrix_status": "skipped_no_url",
+  "metadata_status": "skipped_no_url",
+  "matrix_url": null,
+  "metadata_url": null
+}

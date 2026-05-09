@@ -17,6 +17,13 @@ comparisons:
     group_a: crc
     group_b: healthy
 
+  pride_validation_tumor_vs_normal:
+    dataset: pride_crc_meta
+    label: "PRIDE validación externa: tumor vs normal"
+    condition_column: condition
+    group_a: tumor
+    group_b: normal
+
   cptac_stage_advanced_vs_early:
     dataset: cptac_colorectal
     label: "Estadio avanzado vs temprano (si stage está disponible)"
@@ -31,4 +38,20 @@ comparisons:
     condition_column: msi_status
     group_a: MSI
     group_b: MSS
+    optional: true
+
+  cptac_primary_vs_metastatic:
+    dataset: cptac_colorectal
+    label: "CPTAC primario vs metastásico (si metadata disponible)"
+    condition_column: metastatic_status
+    group_a: metastatic
+    group_b: primary
+    optional: true
+
+  plasma_responder_vs_nonresponder:
+    dataset: plasma_crc_2024
+    label: "Plasma respondedor vs no respondedor (si metadata disponible)"
+    condition_column: treatment_response
+    group_a: responder
+    group_b: nonresponder
     optional: true

@@ -7,7 +7,7 @@ name = "oncogo-crc"
 version = "0.1.0"
 description = "Pipeline protein-centric GO + ML explicable para proteómica de cáncer colorrectal (tesis OncoGO-CRC)."
 readme = "README.md"
-requires-python = ">=3.10,<3.14"
+requires-python = ">=3.10,<3.15"
 license = { text = "MIT" }
 authors = [{ name = "OncoGO-CRC" }]
 keywords = ["proteomics", "colorectal-cancer", "gene-ontology", "bioinformatics", "explainable-ai"]

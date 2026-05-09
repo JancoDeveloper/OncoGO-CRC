@@ -11,6 +11,14 @@ nav:
   - Inicio: index.md
   - Pipeline: pipeline.md
   - Configuración: configuracion.md
+  - Proyecto Web:
+      - Estado: web/index.md
+      - Datasets: web/datasets.md
+      - Cobertura clínica: web/clinical_coverage.md
+      - Resultados base: web/results_base.md
+      - Resultados estratificados: web/results_stratified.md
+      - Estabilidad: web/stability.md
+      - Limitaciones: web/limitations.md
 plugins:
   - search
 

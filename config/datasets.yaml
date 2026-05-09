@@ -1,46 +1,172 @@
 # Registro lógico de datasets públicos (CPTAC, PRIDE, plasma, etc.)
 # Las rutas son relativas a la raíz del repositorio.
-# MVP recomendado: cptac_colorectal, pride_crc_meta, plasma_crc_2024.
+# MVP núcleo obligatorio: cptac_colorectal + pride_crc_meta + plasma_crc_2024
+# MVP extendido opcional: crcdb_context + pharmacoproteomics + metastatic_crc_optional
 
 datasets:
   cptac_colorectal:
     label: "CPTAC Colon Adenocarcinoma (PDC/CPTAC)"
     role: primary
+    mvp_tier: core_required
     matrix_path: data/raw/cptac/cptac_crc_matrix.tsv
     sample_metadata: metadata/sample_metadata/cptac_metadata.tsv
     id_column: sample_id
     protein_column: protein_id
+    # Preconfigurado para descarga real (completar `matrix_url`/`metadata_url` finales).
+    download_real:
+      enabled: true
+      provider: pdc
+      source_catalog_url: "https://pdc.cancer.gov/pdc/beta/graphql"
+      study_submitter_id: "Colon Cancer"
+      project_submitter_id: "CPTAC-2"
+      file_selection:
+        prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx"]
+        include_keywords: ["protein", "abundance", "quant", "clinical", "metadata", "sample"]
+        exclude_keywords: ["raw", ".mzml", ".raw", ".wiff", ".d", ".mgf", "readme", "description", "note"]
+      matrix_url: ""
+      metadata_url: ""
+      headers: {}
+      query_params: {}
+      overwrite: false
+      timeout_s: 120
+      retries: 3
+    requires_token: false
 
   pride_crc_meta:
     label: "PRIDE — tejido CRC (meta-análisis / estudios fusionados)"
     role: external_validation
+    mvp_tier: core_required
     matrix_path: data/raw/pride/pride_crc_matrix.tsv
     sample_metadata: metadata/sample_metadata/pride_merged_metadata.tsv
     id_column: sample_id
     protein_column: protein_id
+    download_real:
+      enabled: true
+      provider: pride
+      source_catalog_url: "https://www.ebi.ac.uk/pride/ws/archive/v2/projects"
+      accessions: ["PXD034575", "PXD018304", "PXD031705", "PXD019103"]
+      source_project_url: "https://www.ebi.ac.uk/pride/archive/projects/PXD034575"
+      file_selection:
+        prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx", ".tsv.gz"]
+        include_keywords: ["protein", "abundance", "intensity", "quant", "matrix", "report", "mztab", "clinical", "metadata", "sample", "perseus", "maxquant"]
+        exclude_keywords: ["raw", ".mzml", ".wiff", ".d", ".mgf", "readme", "description", "note", "fasta", "xml"]
+        min_size_kb: 10
+      matrix_url: ""
+      metadata_url: ""
+      headers: {}
+      query_params: {}
+      overwrite: false
+      timeout_s: 180
+      retries: 5
+    requires_token: false
 
   plasma_crc_2024:
     label: "Plasma proteomics CRC vs control (capa clínica)"
     role: clinical_layer
+    mvp_tier: core_required
     matrix_path: data/raw/plasma/plasma_crc_matrix.tsv
     sample_metadata: metadata/sample_metadata/plasma_metadata.tsv
     id_column: sample_id
     protein_column: protein_id
+    download_real:
+      enabled: true
+      provider: publication_supplement
+      accession: "PXD047207"
+      host_repository: "iProX"
+      source_catalog_url: "https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD047207&test=no"
+      fallback_project_uri: "https://www.iprox.org/page/project.html?id=IPX0005221000"
+      file_selection:
+        prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx"]
+        include_keywords: ["plasma", "protein", "matrix", "metadata", "clinical", "supplementary", "sample"]
+        exclude_keywords: ["raw", ".mzml", ".wiff", ".d", ".mgf", "readme", "description", "note"]
+      matrix_url: ""
+      metadata_url: ""
+      headers: {}
+      query_params: {}
+      overwrite: false
+      timeout_s: 120
+      retries: 3
+    requires_token: false
 
   crcdb_context:
+    enabled: false
     label: "CRCDB / contexto EOCRC (opcional)"
     role: contextual
+    mvp_tier: extended_optional
     matrix_path: data/raw/crcdb/crcdb_matrix.tsv
     sample_metadata: metadata/sample_metadata/crcdb_metadata.tsv
     id_column: sample_id
     protein_column: protein_id
+    download_real:
+      enabled: true
+      provider: manual
+      remote_source:
+        description: "CRCDB public annotations"
+        homepage: "https://crcdb.org"
+        access_mode: "manual-curated"
+      source_catalog_url: "https://crcdb.org"
+      matrix_url: ""
+      metadata_url: ""
+      headers: {}
+      query_params: {}
+      overwrite: false
+      timeout_s: 120
+      retries: 3
+    status_policy: context_only
 
   pharmacoproteomics:
+    enabled: false
     label: "Farmacoproteómica / PDOs (opcional)"
     role: expansion
+    mvp_tier: extended_optional
     matrix_path: data/raw/pharmacoproteomics/pharmacoproteomics_matrix.tsv
     sample_metadata: metadata/sample_metadata/pharmacoproteomics_metadata.tsv
     id_column: sample_id
     protein_column: protein_id
+    download_real:
+      enabled: true
+      provider: pride
+      source_catalog_url: "https://www.ebi.ac.uk/pride/ws/archive/v2/projects"
+      accessions: ["PXD019234"]
+      file_selection:
+        prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx"]
+        include_keywords: ["drug", "treatment", "response", "protein", "abundance", "metadata", "sample"]
+        exclude_keywords: ["raw", ".mzml", ".wiff", ".d", ".mgf", "readme", "description", "note"]
+      matrix_url: ""
+      metadata_url: ""
+      headers: {}
+      query_params: {}
+      overwrite: false
+      timeout_s: 120
+      retries: 3
+    requires_token: false
+
+  metastatic_crc_optional:
+    enabled: false
+    label: "Metastatic CRC (iProx / CRLM / cohortes afines) — opcional"
+    role: expansion_metastasis
+    mvp_tier: extended_optional
+    matrix_path: data/raw/metastatic/metastatic_crc_matrix.tsv
+    sample_metadata: metadata/sample_metadata/metastatic_crc_metadata.tsv
+    id_column: sample_id
+    protein_column: protein_id
+    download_real:
+      enabled: true
+      provider: px
+      accession: "PXD021238"
+      host_repository: "PRIDE"
+      source_catalog_url: "https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD021238&test=no"
+      file_selection:
+        prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx"]
+        include_keywords: ["metastasis", "liver", "protein", "abundance", "metadata", "sample"]
+        exclude_keywords: ["raw", ".mzml", ".wiff", ".d", ".mgf", "readme", "description", "note"]
+      matrix_url: ""
+      metadata_url: ""
+      headers: {}
+      query_params: {}
+      overwrite: false
+      timeout_s: 120
+      retries: 3
+    requires_token: false
 
 protein_id_map: metadata/protein_id_maps/protein_mapping_master.tsv

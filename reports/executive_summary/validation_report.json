@@ -1,0 +1,125 @@
+{
+  "files": {
+    "metadata/protein_id_maps/protein_mapping_master.tsv": {
+      "exists": true,
+      "size": 222
+    },
+    "metadata/gene_ontology/go_gene_long.tsv": {
+      "exists": true,
+      "size": 371
+    },
+    "config/config.yaml": {
+      "exists": true,
+      "size": 1137
+    },
+    "config/datasets.yaml": {
+      "exists": true,
+      "size": 2285
+    },
+    "config/comparisons.yaml": {
+      "exists": true,
+      "size": 1624
+    }
+  },
+  "datasets": {
+    "cptac_colorectal": {
+      "matrix_exists": true,
+      "metadata_exists": true,
+      "matrix_path": "data/raw/cptac/cptac_crc_matrix.tsv",
+      "metadata_path": "metadata/sample_metadata/cptac_metadata.tsv",
+      "first_col_protein_id": true,
+      "metadata_has_sample_id": true,
+      "metadata_has_condition": true,
+      "n_matrix_samples": 48,
+      "n_metadata_samples": 48,
+      "matrix_not_in_metadata_count": 0,
+      "metadata_not_in_matrix_count": 0,
+      "matrix_not_in_metadata_examples": [],
+      "metadata_not_in_matrix_examples": [],
+      "status": "ok"
+    },
+    "pride_crc_meta": {
+      "matrix_exists": true,
+      "metadata_exists": true,
+      "matrix_path": "data/raw/pride/pride_crc_matrix.tsv",
+      "metadata_path": "metadata/sample_metadata/pride_merged_metadata.tsv",
+      "first_col_protein_id": true,
+      "metadata_has_sample_id": true,
+      "metadata_has_condition": true,
+      "n_matrix_samples": 2,
+      "n_metadata_samples": 2,
+      "matrix_not_in_metadata_count": 0,
+      "metadata_not_in_matrix_count": 0,
+      "matrix_not_in_metadata_examples": [],
+      "metadata_not_in_matrix_examples": [],
+      "status": "ok"
+    },
+    "plasma_crc_2024": {
+      "matrix_exists": true,
+      "metadata_exists": true,
+      "matrix_path": "data/raw/plasma/plasma_crc_matrix.tsv",
+      "metadata_path": "metadata/sample_metadata/plasma_metadata.tsv",
+      "first_col_protein_id": true,
+      "metadata_has_sample_id": true,
+      "metadata_has_condition": true,
+      "n_matrix_samples": 36,
+      "n_metadata_samples": 36,
+      "matrix_not_in_metadata_count": 0,
+      "metadata_not_in_matrix_count": 0,
+      "matrix_not_in_metadata_examples": [],
+      "metadata_not_in_matrix_examples": [],
+      "status": "ok"
+    },
+    "crcdb_context": {
+      "matrix_exists": true,
+      "metadata_exists": true,
+      "matrix_path": "data/raw/crcdb/crcdb_matrix.tsv",
+      "metadata_path": "metadata/sample_metadata/crcdb_metadata.tsv",
+      "first_col_protein_id": true,
+      "metadata_has_sample_id": true,
+      "metadata_has_condition": true,
+      "n_matrix_samples": 2,
+      "n_metadata_samples": 2,
+      "matrix_not_in_metadata_count": 0,
+      "metadata_not_in_matrix_count": 0,
+      "matrix_not_in_metadata_examples": [],
+      "metadata_not_in_matrix_examples": [],
+      "status": "ok"
+    },
+    "pharmacoproteomics": {
+      "matrix_exists": true,
+      "metadata_exists": true,
+      "matrix_path": "data/raw/pharmacoproteomics/pharmacoproteomics_matrix.tsv",
+      "metadata_path": "metadata/sample_metadata/pharmacoproteomics_metadata.tsv",
+      "first_col_protein_id": true,
+      "metadata_has_sample_id": true,
+      "metadata_has_condition": true,
+      "n_matrix_samples": 2,
+      "n_metadata_samples": 2,
+      "matrix_not_in_metadata_count": 0,
+      "metadata_not_in_matrix_count": 0,
+      "matrix_not_in_metadata_examples": [],
+      "metadata_not_in_matrix_examples": [],
+      "status": "ok"
+    },
+    "metastatic_crc_optional": {
+      "matrix_exists": true,
+      "metadata_exists": true,
+      "matrix_path": "data/raw/metastatic/metastatic_crc_matrix.tsv",
+      "metadata_path": "metadata/sample_metadata/metastatic_crc_metadata.tsv",
+      "first_col_protein_id": true,
+      "metadata_has_sample_id": true,
+      "metadata_has_condition": true,
+      "n_matrix_samples": 2,
+      "n_metadata_samples": 2,
+      "matrix_not_in_metadata_count": 0,
+      "metadata_not_in_matrix_count": 0,
+      "matrix_not_in_metadata_examples": [],
+      "metadata_not_in_matrix_examples": [],
+      "status": "ok"
+    }
+  },
+  "global": {
+    "all_checks_passed": true
+  }
+}

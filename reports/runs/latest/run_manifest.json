@@ -1,0 +1,332 @@
+{
+  "datasets": {
+    "cptac_colorectal": {
+      "provider": "pdc",
+      "status": "failed",
+      "n_files": 0,
+      "n_metadata_records": 0,
+      "warnings": [],
+      "errors": [
+        "HTTP Error 400: Bad Request"
+      ],
+      "matrix_status": "ok",
+      "metadata_status": "ok",
+      "matrix_url": "https://fonts.gstatic.com",
+      "metadata_url": "https://designsystem.cancer.gov/example-site/styles/main.d27d18bf0c3e09230b80.css"
+    },
+    "pride_crc_meta": {
+      "provider": "pride",
+      "status": "failed",
+      "n_files": 0,
+      "n_metadata_records": 0,
+      "warnings": [],
+      "errors": [
+        "'list' object has no attribute 'get'"
+      ],
+      "matrix_status": "skipped_no_url",
+      "metadata_status": "skipped_no_url",
+      "matrix_url": null,
+      "metadata_url": null
+    },
+    "plasma_crc_2024": {
+      "provider": "px",
+      "status": "partial",
+      "n_files": 1,
+      "n_metadata_records": 0,
+      "warnings": [],
+      "errors": [],
+      "matrix_status": "ok",
+      "metadata_status": "ok",
+      "matrix_url": "https://proteomecentral.proteomexchange.org/css/isb.css",
+      "metadata_url": "https://proteomecentral.proteomexchange.org/css/isb.css"
+    },
+    "crcdb_context": {
+      "provider": "manual",
+      "status": "manual_pending",
+      "n_files": 0,
+      "n_metadata_records": 0,
+      "warnings": [
+        "Provider manual: sin descarga autom\u00e1tica configurada."
+      ],
+      "errors": [],
+      "matrix_status": "skipped_no_url",
+      "metadata_status": "skipped_no_url",
+      "matrix_url": null,
+      "metadata_url": null
+    },
+    "pharmacoproteomics": {
+      "provider": "pride",
+      "status": "failed",
+      "n_files": 0,
+      "n_metadata_records": 0,
+      "warnings": [],
+      "errors": [
+        "HTTP Error 404: Not Found"
+      ],
+      "matrix_status": "skipped_no_url",
+      "metadata_status": "skipped_no_url",
+      "matrix_url": null,
+      "metadata_url": null
+    },
+    "metastatic_crc_optional": {
+      "provider": "px",
+      "status": "partial",
+      "n_files": 0,
+      "n_metadata_records": 0,
+      "warnings": [],
+      "errors": [],
+      "matrix_status": "ok",
+      "metadata_status": "ok",
+      "matrix_url": "https://proteomecentral.proteomexchange.org/css/isb.css",
+      "metadata_url": "https://proteomecentral.proteomexchange.org/css/isb.css"
+    }
+  },
+  "validation": {
+    "datasets": {
+      "cptac_colorectal": {
+        "matrix": {
+          "exists": true,
+          "first_column_ok": true,
+          "duplicate_protein_id": false,
+          "duplicate_sample_id": false,
+          "n_rows": 120,
+          "n_samples": 48,
+          "errors": []
+        },
+        "metadata": {
+          "exists": true,
+          "sample_id_ok": true,
+          "condition_ok": true,
+          "n_rows": 48,
+          "missing_recommended_vars": [
+            "sex",
+            "age",
+            "age_bin",
+            "stage",
+            "metastatic_status",
+            "treatment_response"
+          ],
+          "coverage": {
+            "stage_bin": 1.0,
+            "msi_status": 1.0
+          },
+          "errors": []
+        },
+        "matching": {
+          "exact_match": true,
+          "matrix_only_samples": [],
+          "metadata_only_samples": []
+        }
+      },
+      "pride_crc_meta": {
+        "matrix": {
+          "exists": true,
+          "first_column_ok": true,
+          "duplicate_protein_id": false,
+          "duplicate_sample_id": false,
+          "n_rows": 10,
+          "n_samples": 2,
+          "errors": []
+        },
+        "metadata": {
+          "exists": true,
+          "sample_id_ok": true,
+          "condition_ok": true,
+          "n_rows": 2,
+          "missing_recommended_vars": [
+            "sex",
+            "age",
+            "age_bin",
+            "stage",
+            "stage_bin",
+            "msi_status",
+            "metastatic_status",
+            "treatment_response"
+          ],
+          "coverage": {},
+          "errors": []
+        },
+        "matching": {
+          "exact_match": true,
+          "matrix_only_samples": [],
+          "metadata_only_samples": []
+        }
+      },
+      "plasma_crc_2024": {
+        "matrix": {
+          "exists": true,
+          "first_column_ok": true,
+          "duplicate_protein_id": false,
+          "duplicate_sample_id": false,
+          "n_rows": 40,
+          "n_samples": 36,
+          "errors": []
+        },
+        "metadata": {
+          "exists": true,
+          "sample_id_ok": true,
+          "condition_ok": true,
+          "n_rows": 36,
+          "missing_recommended_vars": [
+            "sex",
+            "age",
+            "age_bin",
+            "stage",
+            "stage_bin",
+            "msi_status",
+            "metastatic_status",
+            "treatment_response"
+          ],
+          "coverage": {},
+          "errors": []
+        },
+        "matching": {
+          "exact_match": true,
+          "matrix_only_samples": [],
+          "metadata_only_samples": []
+        }
+      },
+      "crcdb_context": {
+        "matrix": {
+          "exists": true,
+          "first_column_ok": true,
+          "duplicate_protein_id": false,
+          "duplicate_sample_id": false,
+          "n_rows": 10,
+          "n_samples": 2,
+          "errors": []
+        },
+        "metadata": {
+          "exists": true,
+          "sample_id_ok": true,
+          "condition_ok": true,
+          "n_rows": 2,
+          "missing_recommended_vars": [
+            "sex",
+            "age",
+            "age_bin",
+            "stage",
+            "stage_bin",
+            "msi_status",
+            "metastatic_status",
+            "treatment_response"
+          ],
+          "coverage": {},
+          "errors": []
+        },
+        "matching": {
+          "exact_match": true,
+          "matrix_only_samples": [],
+          "metadata_only_samples": []
+        }
+      },
+      "pharmacoproteomics": {
+        "matrix": {
+          "exists": true,
+          "first_column_ok": true,
+          "duplicate_protein_id": false,
+          "duplicate_sample_id": false,
+          "n_rows": 10,
+          "n_samples": 2,
+          "errors": []
+        },
+        "metadata": {
+          "exists": true,
+          "sample_id_ok": true,
+          "condition_ok": true,
+          "n_rows": 2,
+          "missing_recommended_vars": [
+            "sex",
+            "age",
+            "age_bin",
+            "stage",
+            "stage_bin",
+            "msi_status",
+            "metastatic_status",
+            "treatment_response"
+          ],
+          "coverage": {},
+          "errors": []
+        },
+        "matching": {
+          "exact_match": true,
+          "matrix_only_samples": [],
+          "metadata_only_samples": []
+        }
+      },
+      "metastatic_crc_optional": {
+        "matrix": {
+          "exists": true,
+          "first_column_ok": true,
+          "duplicate_protein_id": false,
+          "duplicate_sample_id": false,
+          "n_rows": 10,
+          "n_samples": 2,
+          "errors": []
+        },
+        "metadata": {
+          "exists": true,
+          "sample_id_ok": true,
+          "condition_ok": true,
+          "n_rows": 2,
+          "missing_recommended_vars": [
+            "sex",
+            "age",
+            "age_bin",
+            "stage",
+            "stage_bin",
+            "msi_status",
+            "treatment_response"
+          ],
+          "coverage": {
+            "metastatic_status": 1.0
+          },
+          "errors": []
+        },
+        "matching": {
+          "exact_match": true,
+          "matrix_only_samples": [],
+          "metadata_only_samples": []
+        }
+      }
+    }
+  },
+  "stability": [
+    {
+      "dataset": "cptac_colorectal",
+      "core_comparison": "cptac_tumor_vs_normal",
+      "stratified_comparison": "cptac_stage_advanced_vs_early",
+      "n_sig_core": 19,
+      "n_sig_stratified": 0,
+      "n_intersection": 0,
+      "jaccard": 0.0
+    },
+    {
+      "dataset": "cptac_colorectal",
+      "core_comparison": "cptac_tumor_vs_normal",
+      "stratified_comparison": "cptac_msi_vs_mss",
+      "n_sig_core": 19,
+      "n_sig_stratified": 0,
+      "n_intersection": 0,
+      "jaccard": 0.0
+    },
+    {
+      "dataset": "cptac_colorectal",
+      "core_comparison": "cptac_tumor_vs_normal",
+      "stratified_comparison": "cptac_primary_vs_metastatic",
+      "n_sig_core": 19,
+      "n_sig_stratified": 0,
+      "n_intersection": 0,
+      "jaccard": 0.0
+    },
+    {
+      "dataset": "plasma_crc_2024",
+      "core_comparison": "plasma_crc_vs_healthy",
+      "stratified_comparison": "plasma_responder_vs_nonresponder",
+      "n_sig_core": 1,
+      "n_sig_stratified": 0,
+      "n_intersection": 0,
+      "jaccard": 0.0
+    }
+  ]
+}
