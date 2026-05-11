@@ -101,7 +101,7 @@ def run(settings: Settings) -> None:
             rows.append(
                 {
                     "dataset": key,
-                    "matrix_path": str(p.relative_to(settings.root)),
+                    "matrix_path": settings.relative_to_project(p),
                     "status": "demo_synthetic",
                 }
             )
@@ -117,7 +117,7 @@ def run(settings: Settings) -> None:
         status = "missing"
         if p.exists():
             status = "present"
-        rows.append({"dataset": key, "matrix_path": str(p.relative_to(settings.root)), "status": status})
+        rows.append({"dataset": key, "matrix_path": settings.relative_to_project(p), "status": status})
     _write_manifest(settings, rows)
     missing = [r for r in rows if r["status"] == "missing"]
     if missing:

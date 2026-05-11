@@ -7,6 +7,10 @@ project:
   primary_dataset: cptac_colorectal
 
 paths:
+  # Directorio base opcional (ruta absoluta recomendada) para datasets, artefactos y salidas
+  # pesadas: todo lo que en el repo cae bajo data/, results/ y reports/ se lee y escribe aquí.
+  # Prioridad: flag CLI --data-workspace > variable ONCOGO_CRC_DATA_WORKSPACE > esta clave.
+  data_workspace: ""
   raw_dir: data/raw
   interim_dir: data/interim
   processed_dir: data/processed

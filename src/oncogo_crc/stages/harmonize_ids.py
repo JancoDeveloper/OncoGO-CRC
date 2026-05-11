@@ -18,4 +18,4 @@ def run(settings: Settings) -> None:
         out = harmonize_protein_table(expr, mapping, protein_col=protein_col)
         out_path = interim / f"{key}_harmonized.tsv"
         write_tsv(out, out_path)
-        print(f"[harmonize] {key} -> {out_path.relative_to(settings.root)}")
+        print(f"[harmonize] {key} -> {settings.relative_to_project(out_path)}")

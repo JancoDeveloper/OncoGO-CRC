@@ -9,5 +9,5 @@ def run(settings: Settings) -> None:
     if not bool(web_cfg.get("enabled", True)):
         print("[publish_results] deshabilitado en config.yaml (web_publish.enabled=false).")
         return
-    out = build_web_pages(settings.root, settings.config)
-    print(f"[publish_results] web -> {out.relative_to(settings.root)}")
+    out = build_web_pages(settings)
+    print(f"[publish_results] web -> {settings.relative_to_project(out)}")

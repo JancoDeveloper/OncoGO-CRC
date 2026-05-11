@@ -9,7 +9,8 @@ Este documento explica **qué edita el usuario** y **qué efecto tiene** cada bl
 | `project.name` | Nombre legible del proyecto (aparece en informes). |
 | `project.seed` | Semilla global para operaciones estocásticas (ML, demo). |
 | `project.primary_dataset` | Clave en `datasets.yaml` usada para red, ML y traslación núcleo. |
-| `paths.*` | Directorios de datos, resultados e informes (rutas relativas al repo). |
+| `paths.*` | Directorios de datos, resultados e informes (rutas relativas al árbol de trabajo; ver abajo). |
+| `paths.data_workspace` | Directorio base opcional (ruta absoluta recomendada) donde residen `data/`, `results/` y `reports/` cuando el disco del repo es pequeño. Vacío = todo bajo la raíz del repo. |
 | `preprocessing.missing_threshold_*` | Umbral máximo de NA por proteína / muestra antes de excluir. |
 | `preprocessing.log2_transform` | Aplicar transformación log2 antes de imputación. |
 | `preprocessing.imputation_method` | En esta versión: `knn` (vecinos en `knn_neighbors`). |
@@ -25,6 +26,27 @@ Este documento explica **qué edita el usuario** y **qué efecto tiene** cada bl
 | `ml.*` | Fracción de test, hiperparámetros de Random Forest y banderas de explicabilidad extendida. |
 | `translation.evidence_tiers` | Nombres de los tres niveles de evidencia traslacional. |
 | `demo.*` | Parámetros del generador sintético (`--demo`). |
+
+### Almacenamiento en otro disco
+
+<span id="data-workspace"></span>
+
+Configuración YAML: `paths.data_workspace`. Si el volumen donde clonaste el repo no tiene espacio para matrices, intermedios y resultados, define un directorio externo con la **misma estructura lógica** que bajo el repo (`data/raw`, `data/interim`, `data/processed`, `data/manifests`, `data/versions`, `results`, `reports`, etc.). El pipeline creará subcarpetas al escribir.
+
+**Prioridad** (la primera no vacía gana): argumento CLI `--data-workspace` → variable de entorno `ONCOGO_CRC_DATA_WORKSPACE` → `paths.data_workspace` en `config.yaml`.
+
+**Qué no se mueve:** `config/`, `metadata/`, `docs/`, `src/` y el código siguen en la raíz del repositorio (`--root`). Solo se redirigen rutas que en el diseño actual caen bajo `data/`, `results/` o `reports/`.
+
+Ejemplos:
+
+```bash
+export ONCOGO_CRC_DATA_WORKSPACE=/mnt/datadisk/oncogo_crc_workspace
+oncogo-crc run --stage all
+```
+
+```bash
+oncogo-crc run --data-workspace /mnt/datadisk/oncogo_crc_workspace --stage all
+```
 
 ## `config/datasets.yaml`
 
@@ -57,4 +79,8 @@ Cada comparación define:
 
 ## Variables de entorno
 
-No son obligatorias. El proyecto resuelve rutas relativas al directorio que contiene `config/config.yaml` (normalmente la raíz del repo).
+No son obligatorias salvo tokens para proveedores remotos (p. ej. `PDC_TOKEN`). El proyecto resuelve rutas relativas al directorio que contiene `config/config.yaml` (normalmente la raíz del repo).
+
+| Variable | Uso |
+|----------|-----|
+| `ONCOGO_CRC_DATA_WORKSPACE` | Ruta absoluta (o relativa al repo) del directorio de trabajo pesado; equivale a `paths.data_workspace` y puede anularse con `--data-workspace` en la CLI. |

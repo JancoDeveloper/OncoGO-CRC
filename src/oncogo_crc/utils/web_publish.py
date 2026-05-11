@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from oncogo_crc.settings import Settings
+
 
 def _read_json(path: Path) -> dict[str, Any]:
     if not path.exists():
@@ -19,22 +21,23 @@ def _write(path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8")
 
 
-def build_web_pages(project_root: Path, global_cfg: dict[str, Any]) -> Path:
+def build_web_pages(settings: Settings) -> Path:
+    global_cfg = settings.config
     web_cfg = global_cfg.get("web_publish", {})
-    web_dir = project_root / web_cfg.get("web_reports_dir", "reports/web")
-    docs_web_dir = project_root / "docs" / "web"
-    runs_dir = project_root / web_cfg.get("runs_dir", "reports/runs")
+    web_dir = settings.resolve(str(web_cfg.get("web_reports_dir", "reports/web")))
+    docs_web_dir = settings.root / "docs" / "web"
+    runs_dir = settings.resolve(str(web_cfg.get("runs_dir", "reports/runs")))
     latest = web_cfg.get("latest_run_alias", "latest")
     latest_dir = runs_dir / latest
     latest_dir.mkdir(parents=True, exist_ok=True)
 
-    summary = _read_json(project_root / "data" / "manifests" / "_summary.json")
+    summary = _read_json(settings.resolve("data/manifests/_summary.json"))
     if not summary:
-        summary = _read_json(project_root / "data" / "raw" / "download_real_manifest.json")
+        summary = _read_json(settings.resolve("data/raw/download_real_manifest.json"))
         if isinstance(summary, list):
             summary = {"datasets": {row.get("dataset", f"dataset_{i}"): row for i, row in enumerate(summary)}}
-    validation = _read_json(project_root / "results" / "validation" / "input_validation_report.json")
-    stability_json = _read_json(project_root / "results" / "stability" / "stability_summary.json")
+    validation = _read_json(settings.resolve("results/validation/input_validation_report.json"))
+    stability_json = _read_json(settings.resolve("results/stability/stability_summary.json"))
 
     run_manifest = {
         "datasets": summary.get("datasets", {}),

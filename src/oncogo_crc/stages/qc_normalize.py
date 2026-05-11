@@ -36,4 +36,4 @@ def run(settings: Settings) -> None:
         out = pd.concat([df[meta].reset_index(drop=True), mat.reset_index(drop=True)], axis=1)
         out_path = proc / f"{key}_normalized.tsv"
         write_tsv(out, out_path)
-        print(f"[qc] {key} -> {out_path.relative_to(settings.root)}")
+        print(f"[qc] {key} -> {settings.relative_to_project(out_path)}")

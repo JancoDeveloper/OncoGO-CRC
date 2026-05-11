@@ -48,4 +48,4 @@ def run(settings: Settings) -> None:
         out_tsv = res_dir / f"{comp_key}_diff.tsv"
         write_tsv(diff, out_tsv)
         volcano_plot(diff, fig_dir / f"{comp_key}_volcano.png")
-        print(f"[differential] {comp_key} -> {out_tsv.relative_to(settings.root)}")
+        print(f"[differential] {comp_key} -> {settings.relative_to_project(out_tsv)}")

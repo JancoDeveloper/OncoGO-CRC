@@ -632,4 +632,4 @@ def run(settings: Settings) -> None:
         json.dumps(rows, indent=2), encoding="utf-8"
     )
     (manifests_dir / "_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
-    print(f"[download_real] manifest -> {out.relative_to(settings.root)}")
+    print(f"[download_real] manifest -> {settings.relative_to_project(out)}")

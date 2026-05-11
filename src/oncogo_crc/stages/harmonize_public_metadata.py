@@ -30,7 +30,7 @@ def run(settings: Settings) -> None:
         study = str(cpt.get("pdc_study_submitter_id") or dr.get("pdc_study_submitter_id") or "PDC000116").strip()
         m_path = settings.resolve(d["matrix_path"])
         meta_path = settings.resolve(d["sample_metadata"])
-        print(f"[harmonize_public_metadata] CPTAC PDC {study} -> {meta_path.relative_to(settings.root)}")
+        print(f"[harmonize_public_metadata] CPTAC PDC {study} -> {settings.relative_to_project(meta_path)}")
         info = harmonize_cptac_colon_pdc(
             matrix_path=m_path,
             metadata_out=meta_path,
@@ -45,7 +45,7 @@ def run(settings: Settings) -> None:
         d = ds_all["pride_crc_meta"]
         m_path = settings.resolve(d["matrix_path"])
         meta_path = settings.resolve(d["sample_metadata"])
-        print(f"[harmonize_public_metadata] PRIDE MaxQuant LFQ -> {m_path.name} + {meta_path.relative_to(settings.root)}")
+        print(f"[harmonize_public_metadata] PRIDE MaxQuant LFQ -> {m_path.name} + {settings.relative_to_project(meta_path)}")
         info = harmonize_pride_maxquant_lfq(matrix_path=m_path, metadata_out=meta_path)
         print(f"  proteins={info['n_proteins']} lfq_columns={info['n_lfq_samples']}")
 
@@ -54,7 +54,7 @@ def run(settings: Settings) -> None:
         d = ds_all["plasma_crc_2024"]
         m_path = settings.resolve(d["matrix_path"])
         meta_path = settings.resolve(d["sample_metadata"])
-        print(f"[harmonize_public_metadata] plasma DIA -> {m_path.name} + {meta_path.relative_to(settings.root)}")
+        print(f"[harmonize_public_metadata] plasma DIA -> {m_path.name} + {settings.relative_to_project(meta_path)}")
         info = harmonize_plasma_dia_pq500(matrix_path=m_path, metadata_out=meta_path)
         print(
             f"  peptides={info['n_peptides']} ratio_cols={info['n_ratio_columns']} "

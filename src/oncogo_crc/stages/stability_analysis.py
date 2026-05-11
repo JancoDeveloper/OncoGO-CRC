@@ -72,4 +72,4 @@ def run(settings: Settings) -> None:
             ]
         ).to_csv(tsv, sep="\t", index=False)
         js.write_text("[]", encoding="utf-8")
-    print(f"[stability] -> {tsv.relative_to(settings.root)}")
+    print(f"[stability] -> {settings.relative_to_project(tsv)}")

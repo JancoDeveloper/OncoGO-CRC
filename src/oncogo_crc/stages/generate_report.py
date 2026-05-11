@@ -16,7 +16,6 @@ def _preview_md(path: Path, n: int = 8) -> str:
 
 def run(settings: Settings) -> None:
     """Genera el informe Markdown consolidado para la tesis / comité."""
-    root = settings.root
     res = settings.resolve(settings.config["paths"]["results_dir"])
     primary = settings.config.get("project", {}).get("primary_dataset", "cptac_colorectal")
 
@@ -33,4 +32,4 @@ def run(settings: Settings) -> None:
     }
     out = settings.resolve(settings.config["paths"]["reports_dir"]) / "executive_summary" / "results_summary.md"
     write_executive_summary(out, sections=sections)
-    print(f"[report] {out.relative_to(root)}")
+    print(f"[report] {settings.relative_to_project(out)}")

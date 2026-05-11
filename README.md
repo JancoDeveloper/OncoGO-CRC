@@ -39,6 +39,12 @@ Con `--demo` se generan matrices sintéticas tipo CPTAC/plasma, metadatos cohere
 oncogo-crc run --stage all
 ```
 
+Si el disco del repo es pequeño, redirija `data/`, `results/` y `reports/` a otro volumen (misma jerarquía de carpetas). Prioridad: `--data-workspace` → `ONCOGO_CRC_DATA_WORKSPACE` → `paths.data_workspace` en `config/config.yaml`. Detalle en [GUIA_CONFIGURACION.md — almacenamiento externo](GUIA_CONFIGURACION.md#data-workspace).
+
+```bash
+oncogo-crc run --data-workspace /ruta/al/volumen/grande --stage all
+```
+
 Equivalente shell: `bash scripts/run_pipeline.sh`.
 
 ## Equivalencia con la reconstrucción original

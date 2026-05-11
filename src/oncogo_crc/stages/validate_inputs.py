@@ -53,4 +53,4 @@ def run(settings: Settings) -> None:
             bad.append("remote_sources_invalid_url")
         if bad:
             raise RuntimeError(f"validate_inputs failed for datasets: {', '.join(bad)}")
-    print(f"[validate_inputs] report -> {out_dir.relative_to(settings.root)}")
+    print(f"[validate_inputs] report -> {settings.relative_to_project(out_dir)}")
