@@ -1,8 +1,8 @@
 {
   "dataset_name": "pride_crc_meta",
   "provider": "pride",
-  "n_files": 291,
-  "n_metadata_records": 4,
+  "n_files": 60,
+  "n_metadata_records": 1,
   "selected_matrix_candidate": {
     "name": "Cohort1_proteinGroups.txt",
     "url": "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2024/01/PXD034575/Cohort1_proteinGroups.txt",
@@ -16,9 +16,9 @@
     }
   },
   "selected_metadata_candidate": {
-    "name": "Cohort1_proteinGroups.txt",
-    "url": "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2024/01/PXD034575/Cohort1_proteinGroups.txt",
-    "size": 69272674,
+    "name": "Cohort1_identifiedProteinGroups",
+    "url": "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2024/01/PXD034575/Cohort1_identifiedProteinGroups",
+    "size": 26984200,
     "file_type": {
       "@type": "CvParam",
       "cvLabel": "PRIDE",

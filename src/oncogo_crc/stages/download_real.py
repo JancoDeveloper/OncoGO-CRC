@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -15,9 +16,21 @@ from oncogo_crc.settings import Settings
 from oncogo_crc.utils.clinical_metadata import harmonize_clinical_metadata
 from oncogo_crc.utils.providers.iprox_adapter import IProXAdapter
 from oncogo_crc.utils.providers.manual_adapter import ManualAdapter
+from oncogo_crc.utils.providers.base import ProviderDatasetBundle
 from oncogo_crc.utils.providers.pdc_adapter import PDCAdapter
 from oncogo_crc.utils.providers.pride_adapter import PRIDEAdapter
 from oncogo_crc.utils.providers.px_adapter import PXAdapter
+from oncogo_crc.utils.provider_file_selection import pick_best_files
+
+
+def _sha256_file(path: Path) -> str | None:
+    if not path.exists():
+        return None
+    h = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def _build_url(base_url: str, query_params: dict[str, Any] | None) -> str:
@@ -101,41 +114,116 @@ def _score_url(url: str, *, kind: str) -> float:
     return score
 
 
-def _autodiscover_pride_urls(accession: str, *, timeout_s: int) -> tuple[str | None, str | None]:
-    # API pública PRIDE v2: lista de archivos del proyecto.
-    api = f"https://www.ebi.ac.uk/pride/ws/archive/v2/projects/{accession}/files?page=0&pageSize=1000"
-    data = _fetch_json(api, timeout_s=timeout_s)
+def _is_useful_data_url(url: str | None) -> bool:
+    if not url:
+        return False
+    u = str(url).strip().lower()
+    if not u.startswith(("http://", "https://", "ftp://")):
+        return False
+    bad_tokens = [
+        ".css",
+        ".js",
+        ".svg",
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".gif",
+        ".html",
+        ".htm",
+        "fonts.gstatic",
+        "/cgi/",
+        "view=datasets",
+    ]
+    if any(tok in u for tok in bad_tokens):
+        return False
+    parsed = urllib.parse.urlparse(u)
+    path = parsed.path or ""
+    if path in {"", "/"}:
+        return False
+    good_ext = [".tsv", ".txt", ".csv", ".xlsx", ".xls", ".tsv.gz", ".zip", ".gz", ".mztab"]
+    if any(path.endswith(ext) for ext in good_ext):
+        return True
+    if "amazonaws.com" in (parsed.netloc or "").lower():
+        return any(ext in u for ext in [".tsv", ".txt", ".csv", ".gz", ".zip"])
+    return any(k in path for k in ["/download/", "/files/"])
+
+
+def _file_row_download_url(f: dict[str, Any]) -> str | None:
+    direct = f.get("downloadLink") or f.get("publicLink")
+    if isinstance(direct, str) and direct.startswith(("http://", "https://", "ftp://")):
+        return direct
+    for loc in f.get("publicFileLocations", []) or []:
+        if isinstance(loc, str) and loc.startswith(("http://", "https://", "ftp://")):
+            return loc
+        if isinstance(loc, dict):
+            for k in ("value", "url", "name"):
+                v = loc.get(k)
+                if isinstance(v, str) and v.startswith(("http://", "https://", "ftp://")):
+                    return v
+    return None
+
+
+def _autodiscover_pride_urls(
+    accession: str,
+    *,
+    timeout_s: int,
+    file_selection: dict[str, Any],
+) -> tuple[str | None, str | None]:
+    """Elige matriz y metadata (p. ej. SDRF) usando nombre de archivo + URL, no solo la URL."""
+    page = 0
+    page_size = 500
     files: list[dict[str, Any]] = []
-    if isinstance(data, dict):
-        emb = data.get("_embedded")
-        if isinstance(emb, dict):
-            files = list(emb.get("files") or [])
-    elif isinstance(data, list):
-        files = data
+    while True:
+        api = (
+            f"https://www.ebi.ac.uk/pride/ws/archive/v2/projects/{accession}/files"
+            f"?page={page}&pageSize={page_size}"
+        )
+        data = _fetch_json(api, timeout_s=timeout_s)
+        chunk: list[dict[str, Any]] = []
+        if isinstance(data, dict):
+            emb = data.get("_embedded")
+            if isinstance(emb, dict):
+                chunk = list(emb.get("files") or [])
+        elif isinstance(data, list):
+            chunk = data
+        if not chunk:
+            break
+        files.extend(chunk)
+        if len(chunk) < page_size:
+            break
+        page += 1
 
-    candidate_urls: list[str] = []
+    candidates: list[dict[str, Any]] = []
     for f in files:
-        # Campos usuales en PRIDE responses:
-        direct = f.get("downloadLink")
-        if isinstance(direct, str) and direct:
-            candidate_urls.append(direct)
-        for loc in f.get("publicFileLocations", []) or []:
-            if isinstance(loc, str):
-                candidate_urls.append(loc)
-            elif isinstance(loc, dict):
-                # Algunos payloads usan value/name/url.
-                for k in ("value", "url", "name"):
-                    v = loc.get(k)
-                    if isinstance(v, str) and v.startswith(("http://", "https://", "ftp://")):
-                        candidate_urls.append(v)
+        name = str(f.get("fileName") or f.get("name") or "")
+        url = _file_row_download_url(f)
+        if not url or not _is_useful_data_url(url):
+            continue
+        size = f.get("fileSize") or f.get("fileSizeBytes")
+        try:
+            isize = int(size) if size is not None else None
+        except (TypeError, ValueError):
+            isize = None
+        candidates.append(
+            {
+                "name": name,
+                "url": url,
+                "size": isize,
+                "file_type": f.get("fileCategory"),
+            }
+        )
 
-    candidate_urls = list(dict.fromkeys(candidate_urls))
-    if not candidate_urls:
+    if not candidates:
         return None, None
 
-    matrix = max(candidate_urls, key=lambda u: _score_url(u, kind="matrix"), default=None)
-    metadata = max(candidate_urls, key=lambda u: _score_url(u, kind="metadata"), default=None)
-    return matrix, metadata
+    selected = pick_best_files(candidates, file_selection)
+    mat = selected.get("matrix") or {}
+    meta = selected.get("metadata") or {}
+    matrix_url = mat.get("url") if mat else None
+    metadata_url = meta.get("url") if meta else None
+    if metadata_url and matrix_url and metadata_url == matrix_url:
+        metadata_url = None
+    return matrix_url, metadata_url
 
 
 def _autodiscover_from_catalog_page(catalog_url: str, *, timeout_s: int) -> tuple[str | None, str | None]:
@@ -143,9 +231,68 @@ def _autodiscover_from_catalog_page(catalog_url: str, *, timeout_s: int) -> tupl
     links = _extract_links_from_html(html, catalog_url)
     if not links:
         return None, None
-    matrix = max(links, key=lambda u: _score_url(u, kind="matrix"), default=None)
-    metadata = max(links, key=lambda u: _score_url(u, kind="metadata"), default=None)
+    filtered = [u for u in links if _is_useful_data_url(u)]
+    if not filtered:
+        return None, None
+    matrix = max(filtered, key=lambda u: _score_url(u, kind="matrix"), default=None)
+    metadata = max(filtered, key=lambda u: _score_url(u, kind="metadata"), default=None)
     return matrix, metadata
+
+
+def _maybe_gunzip_file_inplace(path: Path) -> None:
+    """Si el archivo es gzip (aunque la extensión sea .tsv), descomprimir in-place."""
+    if not path.exists() or path.stat().st_size < 3:
+        return
+    head = path.read_bytes()[:3]
+    if head[:2] != b"\x1f\x8b":
+        return
+    import gzip
+
+    data = gzip.decompress(path.read_bytes())
+    path.write_bytes(data)
+
+
+def _ensure_tsv_from_excel_if_needed(path: Path) -> None:
+    """Si el archivo descargado es Excel pero la ruta destino es análisis TSV, convertir."""
+    if not path.exists() or path.stat().st_size == 0:
+        return
+    try:
+        pd.read_csv(path, sep="\t", nrows=2)
+        return
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        df = pd.read_excel(path, engine="openpyxl")
+    except Exception:  # noqa: BLE001
+        return
+    df.to_csv(path, sep="\t", index=False)
+
+
+def _harmonize_protein_id_column(matrix_path: Path, *, protein_column: str) -> bool:
+    """
+    CPTAC/PDC exporta la primera columna como `Gene`; el pipeline espera `protein_id`.
+    """
+    if protein_column != "protein_id" or not matrix_path.exists():
+        return False
+    suf = matrix_path.suffix.lower()
+    if suf not in {".tsv", ".txt", ""}:
+        return False
+    try:
+        peek = pd.read_csv(matrix_path, sep="\t", nrows=0)
+    except Exception:  # noqa: BLE001
+        return False
+    if len(peek.columns) == 0:
+        return False
+    first = str(peek.columns[0])
+    if first == "protein_id":
+        return False
+    aliases = {"Gene", "gene", "Gene Symbol", "gene_symbol"}
+    if first not in aliases:
+        return False
+    df = pd.read_csv(matrix_path, sep="\t", low_memory=False)
+    df.rename(columns={first: "protein_id"}, inplace=True)
+    df.to_csv(matrix_path, sep="\t", index=False)
+    return True
 
 
 def _normalize_table_if_needed(out_path: Path) -> str:
@@ -220,6 +367,8 @@ def _run_provider_inventory(
     dataset_name: str,
     ds_cfg: dict[str, Any],
     global_cfg: dict[str, Any],
+    *,
+    precomputed: ProviderDatasetBundle | None = None,
 ) -> dict[str, Any]:
     provider_name = str(ds_cfg.get("provider") or ds_cfg.get("download_real", {}).get("provider") or "").strip().lower()
     provider_name = PROVIDER_ALIASES.get(provider_name, provider_name)
@@ -228,9 +377,14 @@ def _run_provider_inventory(
     adapter_cls = PROVIDER_REGISTRY[provider_name]
     output_dir = settings.resolve(ds_cfg["matrix_path"]).parent
     try:
-        adapter = adapter_cls(dataset_name, ds_cfg, global_cfg)
-        bundle = adapter.materialize_dataset(output_dir)
-        if bundle.metadata_records:
+        if precomputed is not None and precomputed.provider == provider_name:
+            bundle = precomputed
+        else:
+            adapter = adapter_cls(dataset_name, ds_cfg, global_cfg)
+            bundle = adapter.materialize_dataset(output_dir)
+        # PDC: la metadata analítica (p. ej. tumor vs normal) debe venir del archivo clinical
+        # descargado o curada manualmente; casesPerStudy queda solo en provider_manifest.json.
+        if bundle.metadata_records and bundle.provider != "pdc":
             md = pd.DataFrame(bundle.metadata_records)
             if "sample_id" in md.columns and md["sample_id"].notna().any():
                 md = harmonize_clinical_metadata(md, settings.config)
@@ -315,8 +469,20 @@ def run(settings: Settings) -> None:
             continue
         matrix_url = spec.get("matrix_url")
         metadata_url = spec.get("metadata_url")
-        provider = str(spec.get("provider", "")).strip().lower()
+        if isinstance(matrix_url, str) and not matrix_url.strip():
+            matrix_url = None
+        if isinstance(metadata_url, str) and not metadata_url.strip():
+            metadata_url = None
+
+        provider_top = str(ds.get("provider") or "").strip().lower()
+        provider_raw = str(spec.get("provider") or provider_top or "").strip().lower()
+        provider_resolved = PROVIDER_ALIASES.get(provider_raw, provider_raw)
+
         source_accession = str(spec.get("source_accession", "")).strip()
+        if not source_accession:
+            accs = spec.get("accessions") or []
+            if isinstance(accs, list) and accs:
+                source_accession = str(accs[0]).strip()
         source_catalog_url = str(spec.get("source_catalog_url", "")).strip()
         headers = _resolve_env_recursive(spec.get("headers") or {})
         qparams = _resolve_env_recursive(spec.get("query_params") or {})
@@ -335,13 +501,42 @@ def run(settings: Settings) -> None:
             "metadata_status": "skipped_no_url",
         }
 
+        precomputed_bundle: ProviderDatasetBundle | None = None
+        if provider_resolved == "pdc" and (not matrix_url or not metadata_url):
+            try:
+                adapter = PDCAdapter(key, ds, settings.config)
+                precomputed_bundle = adapter.materialize_dataset(m_path.parent)
+                man = precomputed_bundle.manifest
+                if not matrix_url and man.get("resolved_matrix_url"):
+                    matrix_url = man["resolved_matrix_url"]
+                    row["matrix_autodiscovered"] = True
+                if not metadata_url and man.get("resolved_metadata_url"):
+                    metadata_url = man["resolved_metadata_url"]
+                    row["metadata_autodiscovered"] = True
+            except Exception as exc:  # noqa: BLE001
+                row["pdc_resolution_error"] = str(exc)
+
         # Autodiscovery cuando no hay URL directa definida.
         if not matrix_url or not metadata_url:
             try:
                 auto_matrix = auto_metadata = None
-                if provider == "pride" and source_accession:
-                    auto_matrix, auto_metadata = _autodiscover_pride_urls(source_accession, timeout_s=timeout_s)
-                elif source_catalog_url:
+                if provider_resolved == "pride":
+                    acc_list = list(spec.get("accessions") or [])
+                    if not acc_list and source_accession:
+                        acc_list = [source_accession]
+                    for acc in acc_list:
+                        if not acc:
+                            continue
+                        am, ad = _autodiscover_pride_urls(
+                            str(acc).strip(),
+                            timeout_s=timeout_s,
+                            file_selection=spec.get("file_selection", {}) or {},
+                        )
+                        if am or ad:
+                            auto_matrix, auto_metadata = am, ad
+                            row["pride_accession_used"] = str(acc).strip()
+                            break
+                elif source_catalog_url and provider_resolved not in {"pdc", "pride"}:
                     auto_matrix, auto_metadata = _autodiscover_from_catalog_page(
                         source_catalog_url, timeout_s=timeout_s
                     )
@@ -356,34 +551,59 @@ def run(settings: Settings) -> None:
 
         if matrix_url:
             url = _build_url(str(matrix_url), qparams)
-            ok, status = _download_with_retries(
-                url=url,
-                out_path=m_path,
-                timeout_s=timeout_s,
-                retries=retries,
-                headers=headers,
-                overwrite=overwrite,
-            )
-            row["matrix_status"] = "ok" if ok else "error"
-            row["matrix_detail"] = status
+            if not _is_useful_data_url(url):
+                row["matrix_status"] = "error_invalid_url"
+                row["matrix_detail"] = "url_not_useful_for_data"
+            else:
+                ok, status = _download_with_retries(
+                    url=url,
+                    out_path=m_path,
+                    timeout_s=timeout_s,
+                    retries=retries,
+                    headers=headers,
+                    overwrite=overwrite,
+                )
+                row["matrix_status"] = "ok" if ok else "error"
+                row["matrix_detail"] = status
+                if ok:
+                    _maybe_gunzip_file_inplace(m_path)
+                    _ensure_tsv_from_excel_if_needed(m_path)
             row["matrix_url"] = url
+        if m_path.exists():
+            _harmonize_protein_id_column(m_path, protein_column=str(ds.get("protein_column", "protein_id")))
+            if row.get("matrix_status") == "ok":
+                row["matrix_sha256"] = _sha256_file(m_path)
 
         if metadata_url:
             url = _build_url(str(metadata_url), qparams)
-            ok, status = _download_with_retries(
-                url=url,
-                out_path=md_path,
-                timeout_s=timeout_s,
-                retries=retries,
-                headers=headers,
-                overwrite=overwrite,
-            )
-            row["metadata_status"] = "ok" if ok else "error"
-            row["metadata_detail"] = status
+            if not _is_useful_data_url(url):
+                row["metadata_status"] = "error_invalid_url"
+                row["metadata_detail"] = "url_not_useful_for_data"
+            else:
+                ok, status = _download_with_retries(
+                    url=url,
+                    out_path=md_path,
+                    timeout_s=timeout_s,
+                    retries=retries,
+                    headers=headers,
+                    overwrite=overwrite,
+                )
+                row["metadata_status"] = "ok" if ok else "error"
+                row["metadata_detail"] = status
+                if ok:
+                    _maybe_gunzip_file_inplace(md_path)
+                    _ensure_tsv_from_excel_if_needed(md_path)
+                    row["metadata_sha256"] = _sha256_file(md_path)
             row["metadata_url"] = url
 
         rows.append(row)
-        provider_summary = _run_provider_inventory(settings, key, ds, settings.config)
+        provider_summary = _run_provider_inventory(
+            settings,
+            key,
+            ds,
+            settings.config,
+            precomputed=precomputed_bundle if provider_resolved == "pdc" else None,
+        )
         summary["datasets"][key] = {
             "provider": provider_summary.get("provider", spec.get("provider")),
             "status": provider_summary.get("status", "unknown"),
@@ -395,6 +615,8 @@ def run(settings: Settings) -> None:
             "metadata_status": row.get("metadata_status"),
             "matrix_url": row.get("matrix_url"),
             "metadata_url": row.get("metadata_url"),
+            "matrix_sha256": row.get("matrix_sha256"),
+            "metadata_sha256": row.get("metadata_sha256"),
         }
         (manifests_dir / f"{key}.json").write_text(
             json.dumps(summary["datasets"][key], indent=2),

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import urllib.parse
 from pathlib import Path
 from typing import Any
 
@@ -20,7 +21,7 @@ def validate_matrix(matrix_path: Path) -> dict[str, Any]:
     if not matrix_path.exists():
         result["errors"].append("matrix_missing")
         return result
-    df = pd.read_csv(matrix_path, sep="\t")
+    df = pd.read_csv(matrix_path, sep="\t", low_memory=False)
     result["n_rows"] = int(df.shape[0])
     result["n_samples"] = int(max(df.shape[1] - 1, 0))
     if len(df.columns) > 0 and df.columns[0] == "protein_id":
@@ -50,7 +51,7 @@ def validate_metadata(metadata_path: Path, recommended_vars: list[str]) -> dict[
     if not metadata_path.exists():
         result["errors"].append("metadata_missing")
         return result
-    df = pd.read_csv(metadata_path, sep="\t")
+    df = pd.read_csv(metadata_path, sep="\t", low_memory=False)
     result["n_rows"] = int(df.shape[0])
     if "sample_id" in df.columns:
         result["sample_id_ok"] = True
@@ -72,8 +73,8 @@ def validate_sample_matching(matrix_path: Path, metadata_path: Path) -> dict[str
     out: dict[str, Any] = {"exact_match": False, "matrix_only_samples": [], "metadata_only_samples": []}
     if not (matrix_path.exists() and metadata_path.exists()):
         return out
-    mdf = pd.read_csv(matrix_path, sep="\t", nrows=0)
-    cdf = pd.read_csv(metadata_path, sep="\t")
+    mdf = pd.read_csv(matrix_path, sep="\t", nrows=0, low_memory=False)
+    cdf = pd.read_csv(metadata_path, sep="\t", low_memory=False)
     matrix_samples = set(map(str, mdf.columns[1:]))
     meta_samples = set(map(str, cdf["sample_id"].astype(str).tolist())) if "sample_id" in cdf.columns else set()
     out["matrix_only_samples"] = sorted(list(matrix_samples - meta_samples))
@@ -124,8 +125,8 @@ def validate_dataset_intent(
         out["reasons"].append("matrix_or_metadata_missing")
         return out
 
-    mdf = pd.read_csv(matrix_path, sep="\t", nrows=0)
-    cdf = pd.read_csv(metadata_path, sep="\t")
+    mdf = pd.read_csv(matrix_path, sep="\t", nrows=0, low_memory=False)
+    cdf = pd.read_csv(metadata_path, sep="\t", low_memory=False)
     matrix_samples = set(map(str, mdf.columns[1:]))
 
     comparisons = (comparisons_cfg or {}).get("comparisons", {})
@@ -185,15 +186,19 @@ def validate_remote_sources(manifest_json_path: Path) -> dict[str, Any]:
             return False
         if ul.startswith("file://"):
             return False
-        if not ul.startswith(("http://", "https://")):
+        if not ul.startswith(("http://", "https://", "ftp://")):
             return False
-        bad = [".css", ".js", ".svg", ".png", ".jpg", ".jpeg", ".gif", "fonts.gstatic", "/cgi/"]
+        bad = [".css", ".js", ".svg", ".png", ".jpg", ".jpeg", ".gif", "fonts.gstatic", "/cgi/", "view=datasets"]
         if any(b in ul for b in bad):
             return False
+        parsed = urllib.parse.urlparse(ul)
+        path = parsed.path or ""
+        if path in {"", "/"}:
+            return False
         good_ext = [".tsv", ".txt", ".csv", ".xlsx", ".xls", ".zip", ".gz"]
-        if any(ul.endswith(ext) for ext in good_ext):
+        if any(path.endswith(ext) for ext in good_ext):
             return True
-        return "download" in ul or "file" in ul or "dataset" in ul
+        return "/download/" in path or "/files/" in path
 
     for ds, row in datasets.items():
         matrix_url = str((row or {}).get("matrix_url") or "")
@@ -211,8 +216,8 @@ def validate_remote_sources(manifest_json_path: Path) -> dict[str, Any]:
         out["datasets"][ds] = {
             "matrix_url": matrix_url,
             "metadata_url": metadata_url,
-            "matrix_remote_http": matrix_url.startswith(("http://", "https://")) or matrix_url == "",
-            "metadata_remote_http": metadata_url.startswith(("http://", "https://")) or metadata_url == "",
+            "matrix_remote_http": matrix_url.startswith(("http://", "https://", "ftp://")) or matrix_url == "",
+            "metadata_remote_http": metadata_url.startswith(("http://", "https://", "ftp://")) or metadata_url == "",
             "has_file_scheme": has_file,
             "matrix_status": matrix_status,
             "metadata_status": metadata_status,

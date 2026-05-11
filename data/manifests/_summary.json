@@ -2,41 +2,47 @@
   "datasets": {
     "cptac_colorectal": {
       "provider": "pdc",
-      "status": "failed",
-      "n_files": 0,
+      "status": "partial",
+      "n_files": 1080,
       "n_metadata_records": 0,
-      "warnings": [],
-      "errors": [
-        "HTTP Error 400: Bad Request"
+      "warnings": [
+        "Las URLs firmadas PDC caducan; re-ejecutar download_real antes del an\u00e1lisis final y documentar pdc_study_id."
       ],
+      "errors": [],
       "matrix_status": "ok",
       "metadata_status": "ok",
-      "matrix_url": "https://fonts.gstatic.com",
-      "metadata_url": "https://fonts.gstatic.com"
+      "matrix_url": "https://d3iwtkuvwz4jtf.cloudfront.net/studies/116/report/CPTAC2_Colon_Prospective_Collection_PNNL_Proteome.tmt10.tsv?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kM2l3dGt1dnd6NGp0Zi5jbG91ZGZyb250Lm5ldC9zdHVkaWVzLzExNi9yZXBvcnQvQ1BUQUMyX0NvbG9uX1Byb3NwZWN0aXZlX0NvbGxlY3Rpb25fUE5OTF9Qcm90ZW9tZS50bXQxMC50c3YiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NzkxMTk0MTd9fX1dfQ__&Key-Pair-Id=APKAIXDMVIARW22I7ILQ&Signature=YYZfFxuWSTATpujkk6MHXcf4y2MQulvaI1bN-7NppNEtoHoMIR~-QWPJm-n4n31QzXBPEavEQ5D9obRUMDn7HTbOeWxhVIbtHIURlm~O~XFjF6CPfP7i-NsGBg6Ha5uvZzS~S082iyR0iADuOWnhkKH~4EPDg0~Ld56jIN87WcDYi0UNkaNDBHtbUZEnTLdfeXKm9tLk5vZQl2CDyfBm66bdR7c0gkAiJXdfuJDTnPiN52UpIa8zGclLb8hZcchR9f3fWhhpb856FMAew0WkpD0vRJE69rnRbi9xp2JXQjaVvew9MBg-uafW921IBqZCbLBy1v2ltEsSGtLTLQiCCQ__",
+      "metadata_url": "https://d3iwtkuvwz4jtf.cloudfront.net/studies/109/protocol/CPTAC_Colon_Cancer_Prospective_Collection_Clinical_Data_S037-r2.xlsx?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kM2l3dGt1dnd6NGp0Zi5jbG91ZGZyb250Lm5ldC9zdHVkaWVzLzEwOS9wcm90b2NvbC9DUFRBQ19Db2xvbl9DYW5jZXJfUHJvc3BlY3RpdmVfQ29sbGVjdGlvbl9DbGluaWNhbF9EYXRhX1MwMzctcjIueGxzeCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3OTExOTQxN319fV19&Key-Pair-Id=APKAIXDMVIARW22I7ILQ&Signature=Pgf~wTYk3PRKDebp7FwppHjoQxAWWkboQwxdh0WcK5oyarmN1X7015xmrOu6vN8Ej~43KzSLCqM6z5gFeMsgXnOTJl8AxPmjt9THBfn9qZnxlzO2ThfevhLNb9Z7k9IIjx8XcE2fYUpByZgggI6-p~zoN~yL23NE3H9A7PYa0kdMyO9gN9VmIZbkaMHc6AlEls2M3dOpJ~bLqgHhcFykQpq8iQy4yjXd1jbwM-7BYlOJKARrSAAc06Pv~QBj5h1w4MEz0Es6C18fJ4Xccah~NJ9jCBXTiDXeLPHPYEWZwEsFZLbsyHQxyQwpUy5xa~lsi711BYUnY5QdEx3mJAqJKA__",
+      "matrix_sha256": "a1272baf3bb84218b60d48e971f576f3b5aee6f3fdce4c25a46ad85a352117d1",
+      "metadata_sha256": "c0f1d5d72a3d8713e3c2bfc6d1a9391dc529158be87a74bb7dfb28980bc6454c"
     },
     "pride_crc_meta": {
       "provider": "pride",
       "status": "partial",
-      "n_files": 291,
-      "n_metadata_records": 4,
-      "warnings": [],
-      "errors": [],
-      "matrix_status": "skipped_no_url",
-      "metadata_status": "skipped_no_url",
-      "matrix_url": null,
-      "metadata_url": null
-    },
-    "plasma_crc_2024": {
-      "provider": "px",
-      "status": "partial",
-      "n_files": 1,
-      "n_metadata_records": 0,
+      "n_files": 60,
+      "n_metadata_records": 1,
       "warnings": [],
       "errors": [],
       "matrix_status": "ok",
-      "metadata_status": "ok",
-      "matrix_url": "https://proteomecentral.proteomexchange.org/cgi/",
-      "metadata_url": "https://proteomecentral.proteomexchange.org/cgi/"
+      "metadata_status": "skipped_no_url",
+      "matrix_url": "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2024/01/PXD034575/Cohort1_proteinGroups.txt",
+      "metadata_url": null,
+      "matrix_sha256": "a5baca5a3d3d41884a5217df7778b930f580e8b03630875e409ce14a242fd1bc",
+      "metadata_sha256": null
+    },
+    "plasma_crc_2024": {
+      "provider": "pride",
+      "status": "partial",
+      "n_files": 4,
+      "n_metadata_records": 1,
+      "warnings": [],
+      "errors": [],
+      "matrix_status": "ok",
+      "metadata_status": "skipped_no_url",
+      "matrix_url": "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2023/04/PXD036594/exported_area_ratio_and_dotproduct.xlsx",
+      "metadata_url": null,
+      "matrix_sha256": "3b22de249414803030a1f6b07560c81859e103b8a3f6dfcf4580666dbcf956af",
+      "metadata_sha256": null
     }
   }
 }

@@ -14,6 +14,16 @@ paths:
   metadata_dir: metadata
   reports_dir: reports
 
+harmonize_public_metadata:
+  enabled: true
+  cptac:
+    enabled: true
+    pdc_study_submitter_id: "PDC000116"
+  pride:
+    enabled: true
+  plasma:
+    enabled: true
+
 download_real:
   enabled: true
   output_dir: data/raw

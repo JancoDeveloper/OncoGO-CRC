@@ -4,7 +4,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from oncogo_crc.pipeline.registry import STAGE_ORDER, STAGES
+from oncogo_crc.pipeline.registry import EXCLUDED_FROM_ALL, STAGE_ORDER, STAGES
 from oncogo_crc.settings import load_settings
 
 
@@ -20,7 +20,7 @@ def main(argv: list[str] | None = None) -> int:
         "--stage",
         choices=STAGE_ORDER + ["all"],
         default="all",
-        help="Etapa concreta o `all` en orden (download→…→report).",
+        help="Etapa concreta o `all` en orden (download→…→report). `ingest_cptac` no forma parte de `all`.",
     )
     runp.add_argument(
         "--demo",
@@ -35,7 +35,10 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     settings = load_settings(args.root, demo=args.demo)
-    order = STAGE_ORDER if args.stage == "all" else [args.stage]
+    if args.stage == "all":
+        order = [s for s in STAGE_ORDER if s not in EXCLUDED_FROM_ALL]
+    else:
+        order = [args.stage]
     for name in order:
         print(f"\n=== [{name}] ===")
         STAGES[name](settings)

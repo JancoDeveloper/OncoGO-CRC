@@ -10,6 +10,7 @@ seaborn>=0.13
 networkx>=3.1
 statsmodels>=0.14
 tqdm>=4.66
+openpyxl>=3.1
 
 # Opcional: enriquecimiento con Enrichr / prerank (requiere red)
 # gseapy>=1.0

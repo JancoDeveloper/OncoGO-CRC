@@ -12,17 +12,38 @@ datasets:
     sample_metadata: metadata/sample_metadata/cptac_metadata.tsv
     id_column: sample_id
     protein_column: protein_id
-    # Preconfigurado para descarga real (completar `matrix_url`/`metadata_url` finales).
+    # Fuente primaria PDC: estudio portal PDC000116 (Prospective Colon PNNL proteome, tumor/normal emparejado).
+    # Alternativa rápida (sin URLs firmadas): `oncogo-crc run --stage ingest_cptac` tras `pip install 'oncogo-crc[ingest]'`.
     download_real:
       enabled: true
       provider: pdc
-      source_catalog_url: "https://pdc.cancer.gov/pdc/beta/graphql"
-      study_submitter_id: "Colon Cancer"
-      project_submitter_id: "CPTAC-2"
+      pdc_study_submitter_id: "PDC000116"
+      study_submitter_id: ""
+      project_submitter_id: ""
       file_selection:
         prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx"]
-        include_keywords: ["protein", "abundance", "quant", "clinical", "metadata", "sample"]
-        exclude_keywords: ["raw", ".mzml", ".raw", ".wiff", ".d", ".mgf", "readme", "description", "note"]
+        # tmt10/proteome/colon solo refuerzan matriz en código (pick_best_files); no duplicar aquí para no sesgar metadata.
+        # No incluir "sample" aquí: refuerza archivos tipo *.sample.txt como si fueran matriz.
+        include_keywords: ["protein", "abundance", "quant", "harmonized", "ratio", "prot", "clinical", "metadata", "biospecimen"]
+        exclude_keywords:
+          - "raw"
+          - ".mzml"
+          - ".raw"
+          - ".wiff"
+          - ".d"
+          - ".mgf"
+          - "readme"
+          - "phospho"
+          - "peptide"
+          - "masic"
+          - "msgf"
+          - "supplementary_data_tcga"
+          - "sample_proteinid"
+          - ".tar.gz"
+          - ".tar"
+          - "mzid"
+          - "pep.xml"
+          - "mzml"
       matrix_url: ""
       metadata_url: ""
       headers: {}
@@ -44,11 +65,11 @@ datasets:
       enabled: true
       provider: pride
       source_catalog_url: "https://www.ebi.ac.uk/pride/ws/archive/v2/projects"
-      accessions: ["PXD034575", "PXD018304", "PXD031705", "PXD019103"]
+      accessions: ["PXD034575"]
       source_project_url: "https://www.ebi.ac.uk/pride/archive/projects/PXD034575"
       file_selection:
         prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx", ".tsv.gz"]
-        include_keywords: ["protein", "abundance", "intensity", "quant", "matrix", "report", "mztab", "clinical", "metadata", "sample", "perseus", "maxquant"]
+        include_keywords: ["protein", "abundance", "intensity", "quant", "matrix", "report", "mztab", "clinical", "metadata", "sample", "perseus", "maxquant", "sdrf", "experimental"]
         exclude_keywords: ["raw", ".mzml", ".wiff", ".d", ".mgf", "readme", "description", "note", "fasta", "xml"]
         min_size_kb: 10
       matrix_url: ""
@@ -62,6 +83,9 @@ datasets:
 
   plasma_crc_2024:
     label: "Plasma proteomics CRC vs control (capa clínica)"
+    # PXD036594: matriz publicada es DIA a nivel péptido (columnas Protein Name / Peptide Sequence + runs).
+    # PRIDE solo lista .xlsx + .zip de instrumento; no hay metadata tabular descargable vía API → curar
+    # metadata/sample_metadata/plasma_metadata.tsv (sample_id, condition) desde el suplemento del artículo o iProX.
     role: clinical_layer
     mvp_tier: core_required
     matrix_path: data/raw/plasma/plasma_crc_matrix.tsv
@@ -70,15 +94,16 @@ datasets:
     protein_column: protein_id
     download_real:
       enabled: true
-      provider: publication_supplement
-      accession: "PXD047207"
+      provider: pride
+      # PXD047207 no lista archivos en PRIDE Archive v2; PXD036594 (DIA plasma CRC) tiene matriz procesada (.xlsx).
+      accessions: ["PXD036594"]
       host_repository: "iProX"
-      source_catalog_url: "https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD047207&test=no"
+      source_catalog_url: ""
       fallback_project_uri: "https://www.iprox.org/page/project.html?id=IPX0005221000"
       file_selection:
         prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx"]
         include_keywords: ["plasma", "protein", "matrix", "metadata", "clinical", "supplementary", "sample"]
-        exclude_keywords: ["raw", ".mzml", ".wiff", ".d", ".mgf", "readme", "description", "note"]
+        exclude_keywords: ["raw", ".mzml", ".wiff", ".d", ".mgf", "readme", "description", "note", ".zip", "prm", "skyline", "dia.zip"]
       matrix_url: ""
       metadata_url: ""
       headers: {}

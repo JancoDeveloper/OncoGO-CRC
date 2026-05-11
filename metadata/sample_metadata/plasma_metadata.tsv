@@ -1,37 +1,21 @@
 sample_id	condition	batch
-PLASMA-CRC-01	crc	b1
-PLASMA-CRC-02	crc	b1
-PLASMA-CRC-03	crc	b1
-PLASMA-CRC-04	crc	b1
-PLASMA-CRC-05	crc	b1
-PLASMA-CRC-06	crc	b1
-PLASMA-CRC-07	crc	b1
-PLASMA-CRC-08	crc	b1
-PLASMA-CRC-09	crc	b1
-PLASMA-CRC-10	crc	b1
-PLASMA-CRC-11	crc	b1
-PLASMA-CRC-12	crc	b1
-PLASMA-CRC-13	crc	b1
-PLASMA-CRC-14	crc	b1
-PLASMA-CRC-15	crc	b1
-PLASMA-CRC-16	crc	b1
-PLASMA-CRC-17	crc	b1
-PLASMA-CRC-18	crc	b1
-PLASMA-HC-01	healthy	b1
-PLASMA-HC-02	healthy	b1
-PLASMA-HC-03	healthy	b1
-PLASMA-HC-04	healthy	b1
-PLASMA-HC-05	healthy	b1
-PLASMA-HC-06	healthy	b1
-PLASMA-HC-07	healthy	b1
-PLASMA-HC-08	healthy	b1
-PLASMA-HC-09	healthy	b1
-PLASMA-HC-10	healthy	b1
-PLASMA-HC-11	healthy	b1
-PLASMA-HC-12	healthy	b1
-PLASMA-HC-13	healthy	b1
-PLASMA-HC-14	healthy	b1
-PLASMA-HC-15	healthy	b1
-PLASMA-HC-16	healthy	b1
-PLASMA-HC-17	healthy	b1
-PLASMA-HC-18	healthy	b1
+dia_PQ500-A3eq_100min_Slot2-19_1_4853 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-B3eq_100min_Slot2-20_1_4854 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-C3eq_100min_Slot2-21_1_4855 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-D3eq_100min_Slot2-22_1_4856 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-E3eq_100min_Slot2-23_1_4836 Ratio To Standard	healthy	PXD036594_decile_split
+dia_PQ500-F3eq_100min_Slot2-24_1_4837 Ratio To Standard	healthy	PXD036594_decile_split
+dia_PQ500-G3eq_100min_Slot2-25_1_4838 Ratio To Standard	healthy	PXD036594_decile_split
+dia_PQ500-H3eq_100min_Slot2-26_1_4839 Ratio To Standard	healthy	PXD036594_decile_split
+dia_PQ500-A4eq_100min_Slot2-28_1_4841 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-B4eq_100min_Slot2-29_1_4842 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-C4eq_100min_Slot2-30_1_4843 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-D4eq_100min_Slot2-31_1_4844 Ratio To Standard	healthy	PXD036594_decile_split
+dia_PQ500-E4eq_100min_Slot2-32_1_4845 Ratio To Standard	healthy	PXD036594_decile_split
+dia_PQ500-F4eq_100min_Slot2-33_1_4846 Ratio To Standard	healthy	PXD036594_decile_split
+dia_PQ500-G4eq_100min_Slot2-34_1_4847 Ratio To Standard	healthy	PXD036594_decile_split
+dia_PQ500-H4eq_100min_Slot2-35_1_4848 Ratio To Standard	healthy	PXD036594_decile_split
+dia_PQ500-A5eq_100min_Slot2-37_1_4849 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-B5eq_100min_Slot2-38_1_4850 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-C5eq_100min_Slot2-39_1_4851 Ratio To Standard	crc	PXD036594_decile_split
+dia_PQ500-D5eq_100min_Slot2-40_1_4852 Ratio To Standard	healthy	PXD036594_decile_split

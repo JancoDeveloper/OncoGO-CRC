@@ -1,12 +1,14 @@
 {
-  "provider": "px",
+  "provider": "pride",
   "status": "partial",
-  "n_files": 1,
-  "n_metadata_records": 0,
+  "n_files": 4,
+  "n_metadata_records": 1,
   "warnings": [],
   "errors": [],
   "matrix_status": "ok",
-  "metadata_status": "ok",
-  "matrix_url": "https://proteomecentral.proteomexchange.org/cgi/",
-  "metadata_url": "https://proteomecentral.proteomexchange.org/cgi/"
+  "metadata_status": "skipped_no_url",
+  "matrix_url": "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2023/04/PXD036594/exported_area_ratio_and_dotproduct.xlsx",
+  "metadata_url": null,
+  "matrix_sha256": "3b22de249414803030a1f6b07560c81859e103b8a3f6dfcf4580666dbcf956af",
+  "metadata_sha256": null
 }

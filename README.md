@@ -57,14 +57,24 @@ También soporta placeholders de entorno en headers/query, por ejemplo:
 
 ```bash
 # 1) habilitar en config/config.yaml: download_real.enabled: true
-# 2) definir matrix_url / metadata_url por dataset en config/datasets.yaml
+# 2) CPTAC primario: PDC000116 vía GraphQL en config/datasets.yaml (`pdc_study_submitter_id`), o bien:
+#    pip install 'oncogo-crc[ingest]' && oncogo-crc run --stage ingest_cptac
+# 3) PRIDE / plasma: accesiones PXD en datasets.yaml (sin URLs landing).
 oncogo-crc run --stage download_real
+oncogo-crc run --stage harmonize_public_metadata
+oncogo-crc run --stage version_inputs
 oncogo-crc run --stage download
 ```
+
+Tras `download_real`, **`harmonize_public_metadata`** (ver `harmonize_public_metadata` en `config/config.yaml`) cruza el mapping TMT10 + biospecimen PDC para CPTAC, recorta la matriz PRIDE a columnas LFQ con `protein_id`, y normaliza plasma DIA (incluida metadata provisional 10+10 si hay 20 runs; revisar en tesis).
+
+`ingest_cptac` no se ejecuta con `--stage all`; convócalo explícitamente si quieres la vía rápida `cptac.Colon()` (documenta versión en `data/raw/cptac/cptac_ingest_provenance.json`).
 
 La traza de esta etapa queda en:
 - `data/raw/download_real_manifest.tsv`
 - `data/raw/download_real_manifest.json`
+- `data/versions/matrix_versions.tsv`
+- `reports/executive_summary/matrix_inventory.md`
 
 ## Validación y publicación web
 
