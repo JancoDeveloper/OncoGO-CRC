@@ -517,7 +517,10 @@ def run(settings: Settings) -> None:
                 row["pdc_resolution_error"] = str(exc)
 
         # Autodiscovery cuando no hay URL directa definida.
-        if not matrix_url or not metadata_url:
+        meta_auto = bool(spec.get("metadata_autodiscovery", True))
+        need_matrix_url = not matrix_url
+        need_metadata_url = not metadata_url and meta_auto
+        if need_matrix_url or need_metadata_url:
             try:
                 auto_matrix = auto_metadata = None
                 if provider_resolved == "pride":
@@ -540,10 +543,10 @@ def run(settings: Settings) -> None:
                     auto_matrix, auto_metadata = _autodiscover_from_catalog_page(
                         source_catalog_url, timeout_s=timeout_s
                     )
-                if not matrix_url and auto_matrix:
+                if need_matrix_url and auto_matrix:
                     matrix_url = auto_matrix
                     row["matrix_autodiscovered"] = True
-                if not metadata_url and auto_metadata:
+                if need_metadata_url and auto_metadata:
                     metadata_url = auto_metadata
                     row["metadata_autodiscovered"] = True
             except Exception as exc:  # noqa: BLE001
@@ -568,6 +571,17 @@ def run(settings: Settings) -> None:
                 if ok:
                     _maybe_gunzip_file_inplace(m_path)
                     _ensure_tsv_from_excel_if_needed(m_path)
+                    if bool(spec.get("dia_nn_postprocess_to_wide", False)):
+                        try:
+                            from oncogo_crc.utils.dia_nn_plasma import postprocess_dia_nn_plasma_download
+
+                            postprocess_dia_nn_plasma_download(m_path, md_path)
+                            row["matrix_detail"] = (row.get("matrix_detail") or "") + ";dia_nn_pivoted_wide"
+                            if md_path.exists():
+                                row["metadata_status"] = "ok_generated"
+                        except Exception as exc:  # noqa: BLE001
+                            row["matrix_status"] = "error"
+                            row["matrix_detail"] = f"dia_nn_postprocess_failed:{exc}"
             row["matrix_url"] = url
         if m_path.exists():
             _harmonize_protein_id_column(m_path, protein_column=str(ds.get("protein_column", "protein_id")))
@@ -595,6 +609,14 @@ def run(settings: Settings) -> None:
                     _ensure_tsv_from_excel_if_needed(md_path)
                     row["metadata_sha256"] = _sha256_file(md_path)
             row["metadata_url"] = url
+
+        if (
+            not metadata_url
+            and md_path.exists()
+            and row.get("metadata_status") == "skipped_no_url"
+            and not bool(spec.get("metadata_autodiscovery", True))
+        ):
+            row["metadata_status"] = "ok_local"
 
         rows.append(row)
         provider_summary = _run_provider_inventory(

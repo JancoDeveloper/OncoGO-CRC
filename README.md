@@ -39,7 +39,7 @@ Con `--demo` se generan matrices sintéticas tipo CPTAC/plasma, metadatos cohere
 oncogo-crc run --stage all
 ```
 
-Si el disco del repo es pequeño, redirija `data/`, `results/` y `reports/` a otro volumen (misma jerarquía de carpetas). Prioridad: `--data-workspace` → `ONCOGO_CRC_DATA_WORKSPACE` → `paths.data_workspace` en `config/config.yaml`. Detalle en [GUIA_CONFIGURACION.md — almacenamiento externo](GUIA_CONFIGURACION.md#data-workspace).
+Si el disco del repo es pequeño, redirija `data/`, `results/`, `reports/`, `metadata/` y la salida `docs/web` a otro volumen (misma jerarquía de carpetas). Prioridad: `--data-workspace` → `ONCOGO_CRC_DATA_WORKSPACE` → `paths.data_workspace` en `config/config.yaml`. Detalle en [GUIA_CONFIGURACION.md — almacenamiento externo](GUIA_CONFIGURACION.md#data-workspace).
 
 ```bash
 oncogo-crc run --data-workspace /ruta/al/volumen/grande --stage all
@@ -72,7 +72,11 @@ oncogo-crc run --stage version_inputs
 oncogo-crc run --stage download
 ```
 
-Tras `download_real`, **`harmonize_public_metadata`** (ver `harmonize_public_metadata` en `config/config.yaml`) cruza el mapping TMT10 + biospecimen PDC para CPTAC, recorta la matriz PRIDE a columnas LFQ con `protein_id`, y normaliza plasma DIA (incluida metadata provisional 10+10 si hay 20 runs; revisar en tesis).
+Tras `download_real`, **`harmonize_public_metadata`** cruza el mapping TMT10 + biospecimen PDC para CPTAC, recorta la matriz PRIDE a columnas LFQ con `protein_id`, y solo aplica el harmonizador péptido/ratios DIA si la capa líquida incluye **PXD036594**. La capa `plasma_crc_2024` declara **PXD015163** (cohorte plasma Kopylov 2020) y descarga la matriz DIA-NN de **PXD055218** con pivote automático a ancho + `plasma_metadata.tsv` (CP\_* = crc, Normal\_* = healthy); ver comentarios en `config/datasets.yaml`.
+
+La etapa **ML** puede usar **SHAP** (`TreeExplainer` sobre el Random Forest) y **validación cruzada** ROC-AUC 5-fold (`config.yaml` → `ml.use_shap`, `ml.cv_folds`; SHAP requiere `pip install -e ".[explain]"`).
+
+Para reproducibilidad CPTAC ∩ PRIDE: `python3 scripts/differential_overlap_cptac_pride.py` (tras `--stage differential`).
 
 `ingest_cptac` no se ejecuta con `--stage all`; convócalo explícitamente si quieres la vía rápida `cptac.Colon()` (documenta versión en `data/raw/cptac/cptac_ingest_provenance.json`).
 
@@ -93,8 +97,10 @@ mkdocs build
 Salidas principales:
 - `results/validation/input_validation_report.json`
 - `results/validation/input_validation_report.tsv`
-- `reports/web/*.md`
-- `docs/web/*.md` (fuente para MkDocs)
+- `reports/web/*.md` y copia en `docs/web/*.md` (MkDocs), incluyendo **`thesis_synthesis.md`** (guía de síntesis), **`results_base.md`** (tablas de proteínas, GO, ML) e **`results_inventory.md`**
+- `reports/executive_summary/results_summary.md` (Markdown con extractos + **resumen cuantitativo** FDR)
+- Prompt para redactar conclusiones con un LLM: **`docs/PROMPT_SINTESIS_TESIS.md`**
+- Integración con enriquecimiento visual tipo **ProteinsLanguage**: guía **`INTEGRACION_PROTEINSLANGUAGE.md`** y script **`scripts/export_protein_context_bundle.py`**
 
 ## Sitio MkDocs
 

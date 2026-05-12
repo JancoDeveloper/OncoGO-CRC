@@ -1,0 +1,66 @@
+# Capas de contexto clínico / molecular para interpretación traslacional (tesis).
+# Referencia principal (Colombia / Latinoamérica, 2026): García-Foncillas et al.,
+# «Biología molecular del cáncer colorrectal», Rev. colomb. hematol. oncol. 13(1S):281-309.
+# https://doi.org/10.51643/22562915.853 — https://revista.acho.info/index.php/acho/article/view/853
+
+literature:
+  primary_review:
+    short: "García-Foncillas et al., 2026 (ACHO)"
+    doi: "10.51643/22562915.853"
+    url: "https://revista.acho.info/index.php/acho/article/view/853"
+
+# Coincidencia por símbolo de gen (HGNC) en la tabla de traslación (post-armonización gen-centric).
+evidence_tiers:
+  tier1_validated_clinical:
+    label: "Nivel 1 — biomarcadores terapéuticos / diagnósticos habituales"
+    gene_symbols:
+      - KRAS
+      - NRAS
+      - BRAF
+      - PIK3CA
+      - ERBB2
+      - MLH1
+      - MSH2
+      - MSH6
+      - PMS2
+      - POLE
+      - POLD1
+  tier2_emerging:
+    label: "Nivel 2 — evidencia fuerte / guías recientes"
+    gene_symbols:
+      - NTRK1
+      - NTRK2
+      - NTRK3
+      - RET
+      - ALK
+      - FGFR1
+      - MET
+  tier3_pathway_anchor:
+    label: "Nivel 3 — anclas de vía (contexto CMS / pronóstico)"
+    gene_symbols:
+      - TGFB1
+      - TGFBR1
+      - SMAD4
+      - CTNNB1
+      - APC
+      - MYC
+      - VIM
+      - FN1
+      - ZEB1
+      - TWIST1
+
+# Relación discursiva CMS ↔ genes (transcriptómico clásico; aquí solo etiqueta proteómica).
+cms_pathway_hints:
+  CMS1_MSI_immune:
+    gene_symbols: [MLH1, MSH2, MSH6, PMS2, PDCD1, CD274, CTLA4]
+  CMS2_canonical_WNT:
+    gene_symbols: [CTNNB1, APC, MYC, AXIN1, AXIN2, TCF7L2]
+  CMS3_metabolic:
+    gene_symbols: [KRAS, PIK3CA, LDHA, PKM, FASN, SHMT1]
+  CMS4_mesenchymal_ECM:
+    gene_symbols: [TGFB1, TGFBR1, VIM, FN1, COL1A1, COL3A1, COL5A3, LAMC1, AHNAK2]
+
+hallmarks_liquid_biopsy_context:
+  MAPK_EGFR_axis:
+    note: "Eje MAPK/EGFR citado en biopsia líquida / resistencia; señal plasmática suele ser más débil que en tejido."
+    gene_symbols: [KRAS, NRAS, BRAF, EGFR, MAPK1, MAPK3, PIK3CA]

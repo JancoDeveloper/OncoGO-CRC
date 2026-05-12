@@ -89,7 +89,7 @@ Cada etapa escribe artefactos versionables o ignorados por Git según `.gitignor
 
 ### Fase H — `clinical`
 
-- **Ciencia**: ranking traslacional y niveles `validated | hypothesis_generating | future_validation`.
+- **Ciencia**: ranking traslacional y niveles `tier_A_cuantitativo_fuerte | tier_B_cuantitativo_moderado | tier_C_hipotesis | tier_D_exploratorio` (cuantitativos) más columnas literarias (`literature_evidence_tier`, `cms_pathway_hints`) desde `metadata/clinical_layers/crc_context_layers.yaml`.
 - **Código**: `utils/translation_utils.py`, etapa `clinical_translation.py`.
 - **Salida**: `results/clinical_translation/<primary>_translation_ranked.tsv`.
 

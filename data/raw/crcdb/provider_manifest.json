@@ -1,5 +1,0 @@
-{
-  "dataset_name": "crcdb_context",
-  "provider": "manual",
-  "note": "Dataset configurado en modo manual; completar matrix_url/metadata_url o carga local."
-}

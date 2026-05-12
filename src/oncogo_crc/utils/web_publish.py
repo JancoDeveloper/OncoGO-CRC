@@ -1,10 +1,18 @@
 from __future__ import annotations
 
 import json
+import shutil
 from pathlib import Path
 from typing import Any
 
 from oncogo_crc.settings import Settings
+from oncogo_crc.utils.thesis_web_digest import (
+    build_limitations_markdown,
+    build_results_base_markdown,
+    build_results_inventory_markdown,
+    build_thesis_synthesis_markdown,
+    build_web_index_markdown,
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -25,7 +33,7 @@ def build_web_pages(settings: Settings) -> Path:
     global_cfg = settings.config
     web_cfg = global_cfg.get("web_publish", {})
     web_dir = settings.resolve(str(web_cfg.get("web_reports_dir", "reports/web")))
-    docs_web_dir = settings.root / "docs" / "web"
+    docs_web_dir = settings.resolve("docs/web")
     runs_dir = settings.resolve(str(web_cfg.get("runs_dir", "reports/runs")))
     latest = web_cfg.get("latest_run_alias", "latest")
     latest_dir = runs_dir / latest
@@ -46,19 +54,7 @@ def build_web_pages(settings: Settings) -> Path:
     }
     (latest_dir / "run_manifest.json").write_text(json.dumps(run_manifest, indent=2), encoding="utf-8")
 
-    index_md = """# OncoGO-CRC
-
-## Estado general
-
-Este sitio resume el avance reproducible del pipeline:
-
-- estado de datasets
-- cobertura clínica
-- resultados base
-- resultados estratificados
-- estabilidad entre estratos
-- limitaciones metodológicas
-"""
+    index_md = build_web_index_markdown(settings)
     datasets_md = "# Datasets\n\n"
     for ds, payload in summary.get("datasets", {}).items():
         datasets_md += f"## {ds}\n"
@@ -100,12 +96,22 @@ Este sitio resume el avance reproducible del pipeline:
         "index.md": index_md,
         "datasets.md": datasets_md,
         "clinical_coverage.md": coverage_md,
-        "results_base.md": "# Resultados base\n\nEn construcción automática desde outputs de pipeline.\n",
-        "results_stratified.md": "# Resultados estratificados\n\nEn construcción automática desde comparaciones stratified.\n",
+        "thesis_synthesis.md": build_thesis_synthesis_markdown(settings),
+        "results_base.md": build_results_base_markdown(settings),
+        "results_inventory.md": build_results_inventory_markdown(settings),
+        "results_stratified.md": "# Resultados estratificados\n\n"
+        "Comparaciones con `optional: true` en `config/comparisons.yaml`: "
+        "si hay estratos y muestras suficientes, sus salidas aparecerán bajo `results/` con el prefijo de comparación.\n",
         "stability.md": stability_md,
-        "limitations.md": "# Limitaciones\n\nEn construcción automática.\n",
+        "limitations.md": build_limitations_markdown(settings),
     }
     for name, content in pages.items():
         _write(web_dir / name, content)
         _write(docs_web_dir / name, content)
+    # MkDocs lee `docs/` bajo la raíz del repo; si el workspace es externo, espejamos docs/web.
+    if settings.data_workspace is not None:
+        repo_docs_web = settings.root / "docs" / "web"
+        repo_docs_web.mkdir(parents=True, exist_ok=True)
+        for name in pages:
+            shutil.copy2(docs_web_dir / name, repo_docs_web / name)
     return web_dir

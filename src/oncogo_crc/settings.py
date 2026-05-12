@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import shutil
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -44,10 +45,48 @@ def _coalesce_data_workspace(
     return None
 
 
+def _seed_workspace_metadata_from_repo(repo_root: Path, workspace: Path) -> None:
+    """Copia al workspace solo archivos de metadata que aún no existen allí.
+
+    Evita sobrescribir tablas regeneradas (p. ej. harmonize_public_metadata) y
+    resuelve el caso típico: mapas GO y protein_id_maps siguen versionados en el repo.
+    """
+    src = repo_root / "metadata"
+    dst = workspace / "metadata"
+    if not src.is_dir():
+        return
+    copied = 0
+    for sub in ("protein_id_maps", "gene_ontology", "sample_metadata", "clinical_layers"):
+        sdir = src / sub
+        if not sdir.is_dir():
+            continue
+        for p in sdir.rglob("*"):
+            if not p.is_file():
+                continue
+            rel = p.relative_to(sdir)
+            out = dst / sub / rel
+            if out.exists():
+                continue
+            out.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(p, out)
+            copied += 1
+    if copied:
+        print(
+            f"[settings] {copied} archivo(s) de metadata del repo copiados al workspace "
+            f"(solo rutas que faltaban bajo {dst})."
+        )
+
+
 def _is_workspace_relative(rel: str) -> bool:
-    """Rutas pesadas (datasets, procesados, informes) bajo data/, results/ o reports/."""
+    """Rutas pesadas y metadata: data/, results/, reports/, metadata/, y docs/web (MkDocs)."""
     norm = rel.replace("\\", "/").lstrip("/")
-    return norm.startswith("data/") or norm.startswith("results/") or norm.startswith("reports/")
+    return (
+        norm.startswith("data/")
+        or norm.startswith("results/")
+        or norm.startswith("reports/")
+        or norm.startswith("metadata/")
+        or norm.startswith("docs/web")
+    )
 
 
 @dataclass
@@ -121,4 +160,6 @@ def load_settings(
     demo_flag = bool(demo or cfg.get("demo", {}).get("enabled", False))
     yaml_paths = cfg.get("paths", {}) if isinstance(cfg.get("paths"), dict) else {}
     dw = _coalesce_data_workspace(base, yaml_paths, cli_value=data_workspace)
+    if dw is not None:
+        _seed_workspace_metadata_from_repo(base, dw)
     return Settings(root=base, config=cfg, datasets=dsets, comparisons=comps, demo=demo_flag, data_workspace=dw)

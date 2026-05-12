@@ -7,10 +7,10 @@ project:
   primary_dataset: cptac_colorectal
 
 paths:
-  # Directorio base opcional (ruta absoluta recomendada) para datasets, artefactos y salidas
-  # pesadas: todo lo que en el repo cae bajo data/, results/ y reports/ se lee y escribe aquí.
-  # Prioridad: flag CLI --data-workspace > variable ONCOGO_CRC_DATA_WORKSPACE > esta clave.
-  data_workspace: ""
+  # Directorio base opcional (ruta absoluta recomendada): data/, results/, reports/, metadata/
+  # y la salida generada docs/web se leen y escriben aquí. En otro equipo deja "" o usa
+  # ONCOGO_CRC_DATA_WORKSPACE. Prioridad: CLI --data-workspace > env > esta clave.
+  data_workspace: "/Volumes/JANCODATA/OncoGO-CRC"
   raw_dir: data/raw
   interim_dir: data/interim
   processed_dir: data/processed
@@ -23,6 +23,8 @@ harmonize_public_metadata:
   cptac:
     enabled: true
     pdc_study_submitter_id: "PDC000116"
+    # Opcional: TSV con columnas participant_id, cms_subtype (CMS1–CMS4) para comparaciones CMS4 vs resto.
+    cms_subtype_supplement_tsv: ""
   pride:
     enabled: true
   plasma:
@@ -74,7 +76,7 @@ validation:
   require_exact_sample_match: true
   warn_on_missing_clinical_vars: true
   required_core_vars: [sample_id, condition]
-  recommended_clinical_vars: [sex, age, age_bin, stage, stage_bin, msi_status, metastatic_status, treatment_response]
+  recommended_clinical_vars: [sex, age, age_bin, stage, stage_bin, msi_status, tumor_site, cms_subtype, cms_subtype_bin, metastatic_status, treatment_response]
 
 web_publish:
   enabled: true
@@ -108,6 +110,15 @@ go:
   semantic_reduction: true
   min_genes_per_term: 5
   max_genes_per_term: 500
+  # Si casi todo el proteoma es “significativo”, ORA pierde especificidad. 0 = sin tope (usa todas).
+  ora_foreground_max_genes: 800
+
+# KEGG vía Enrichr (gseapy); desactivado por defecto (requiere red + pip install -e ".[go-remote]").
+kegg_enrichment:
+  enabled: false
+  comparison: cptac_tumor_vs_normal
+  enrichr_library: KEGG_2021_Human
+  min_genes: 10
 
 network:
   correlation_threshold: 0.6
@@ -117,13 +128,21 @@ ml:
   test_size: 0.25
   models: [lasso, random_forest]
   random_forest_n_estimators: 200
-  use_shap: false
+  # SHAP (TreeExplainer sobre RF): requiere pip install -e ".[explain]"; si falta shap, la etapa sigue sin él.
+  use_shap: true
+  shap_background_max: 256
+  # 0 = solo hold-out; 5 = ROC-AUC en StratifiedKFold sobre todo el conjunto etiquetado (media ± std en métricas).
+  cv_folds: 5
 
 translation:
+  # Cuatro niveles cuantitativos internos (percentiles de evidence_score); ver también capas literarias en context_layers_path.
   evidence_tiers:
-    - validated
-    - hypothesis_generating
-    - future_validation
+    - tier_A_cuantitativo_fuerte
+    - tier_B_cuantitativo_moderado
+    - tier_C_hipotesis
+    - tier_D_exploratorio
+  # Genes CMS / biomarcadores / biopsia líquida (García-Foncillas et al. 2026, ACHO) para columnas en traslación clínica.
+  context_layers_path: metadata/clinical_layers/crc_context_layers.yaml
 
 demo:
   enabled: false

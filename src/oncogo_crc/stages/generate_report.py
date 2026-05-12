@@ -5,6 +5,7 @@ from pathlib import Path
 from oncogo_crc.settings import Settings
 from oncogo_crc.utils.io import read_tsv
 from oncogo_crc.utils.report_utils import write_executive_summary
+from oncogo_crc.utils.thesis_web_digest import build_quantitative_bullets
 
 
 def _preview_md(path: Path, n: int = 8) -> str:
@@ -24,6 +25,7 @@ def run(settings: Settings) -> None:
             "OncoGO-CRC integra proteómica pública de CCR con Gene Ontology como eje interpretativo "
             "y priorización mediante modelos interpretables."
         ),
+        "Resumen cuantitativo (FDR)": build_quantitative_bullets(settings),
         "Diferencial (extracto)": _preview_md(res / "differential" / "cptac_tumor_vs_normal_diff.tsv"),
         "GO (extracto)": _preview_md(res / "go" / "cptac_tumor_vs_normal_go.tsv"),
         "Red (hubs)": _preview_md(res / "networks" / f"{primary}_hub_proteins.tsv"),

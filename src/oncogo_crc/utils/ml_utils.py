@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import SGDClassifier
 from sklearn.metrics import accuracy_score, roc_auc_score
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedKFold, cross_val_score, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -17,6 +17,9 @@ def train_prioritization_models(
     test_size: float = 0.25,
     seed: int = 42,
     rf_n_estimators: int = 200,
+    use_shap: bool = False,
+    shap_background_max: int = 256,
+    cv_folds: int = 0,
 ) -> tuple[dict[str, dict], pd.DataFrame]:
     """
     X: muestras × proteínas (filas = muestras).
@@ -56,6 +59,24 @@ def train_prioritization_models(
     clf = RandomForestClassifier(
         n_estimators=rf_n_estimators, random_state=seed, class_weight="balanced_subsample"
     )
+    if cv_folds and cv_folds >= 2:
+        skf = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=seed)
+        aucs = cross_val_score(
+            RandomForestClassifier(
+                n_estimators=rf_n_estimators,
+                random_state=seed,
+                class_weight="balanced_subsample",
+            ),
+            X.values,
+            y,
+            cv=skf,
+            scoring="roc_auc",
+        )
+        metrics["random_forest_cv"] = {
+            "roc_auc_mean": float(np.mean(aucs)),
+            "roc_auc_std": float(np.std(aucs)),
+            "n_folds": int(cv_folds),
+        }
     clf.fit(X_train, y_train)
     pred_rf = clf.predict(X_test)
     proba = clf.predict_proba(X_test)[:, 1]
@@ -68,5 +89,34 @@ def train_prioritization_models(
     imp = pd.Series(clf.feature_importances_, index=feature_names, name="rf_importance")
     coef = pd.Series(np.abs(coefs), index=feature_names, name="l1_abs_coef")
     out = pd.concat([imp, coef], axis=1).fillna(0.0)
-    out["combined_score"] = out["rf_importance"].rank(pct=True) * 0.55 + out["l1_abs_coef"].rank(pct=True) * 0.45
+    if use_shap:
+        try:
+            import shap  # type: ignore[import-untyped]
+        except ImportError as e:
+            raise ImportError(
+                "ml.use_shap=true requiere el paquete 'shap'. Instala: pip install -e \".[explain]\""
+            ) from e
+        rng = np.random.default_rng(seed)
+        n_tr = len(X_train)
+        k = min(int(shap_background_max), n_tr)
+        idx = rng.choice(n_tr, size=k, replace=False) if n_tr > k else np.arange(n_tr)
+        bg = X_train[idx]
+        explainer = shap.TreeExplainer(clf)
+        sv = explainer.shap_values(bg)
+        if isinstance(sv, list):
+            shv = sv[1]
+        else:
+            shv = sv
+        if shv.ndim == 3:
+            shv = shv[:, :, 1]
+        mean_abs = np.abs(shv).mean(axis=0)
+        out["shap_mean_abs"] = mean_abs
+    if "shap_mean_abs" in out.columns:
+        out["combined_score"] = (
+            out["rf_importance"].rank(pct=True) * 0.40
+            + out["l1_abs_coef"].rank(pct=True) * 0.30
+            + out["shap_mean_abs"].rank(pct=True) * 0.30
+        )
+    else:
+        out["combined_score"] = out["rf_importance"].rank(pct=True) * 0.55 + out["l1_abs_coef"].rank(pct=True) * 0.45
     return metrics, out.sort_values("combined_score", ascending=False)

@@ -16,6 +16,8 @@ from typing import Any
 
 import pandas as pd
 
+from oncogo_crc.utils.clinical_metadata import bin_age, normalize_msi, normalize_sex
+
 PDC_GRAPHQL_ENDPOINT = "https://pdc.cancer.gov/graphql"
 
 
@@ -89,6 +91,15 @@ def _pathology_to_condition(status: str) -> str:
     return "unknown"
 
 
+def _first_clinical_col(df: pd.DataFrame, candidates: list[str]) -> str | None:
+    lower = {str(c).strip().lower(): c for c in df.columns}
+    for cand in candidates:
+        k = str(cand).strip().lower()
+        if k in lower:
+            return lower[k]
+    return None
+
+
 def _stage_to_bin(stage_val: Any, early_tokens: list[str], adv_tokens: list[str]) -> str:
     if pd.isna(stage_val):
         return ""
@@ -140,9 +151,58 @@ def harmonize_cptac_colon_pdc(
     clin_df["_stage_bin"] = clin_df["Tumor Stage (Pathological)"].map(
         lambda x: _stage_to_bin(x, early_tokens, adv_tokens)
     )
+    age_col = _first_clinical_col(
+        clin_df,
+        ["Diagnosis Age", "Age at Initial Pathologic Diagnosis", "Age At Diagnosis", "Age at Diagnosis"],
+    )
+    dtb_col = _first_clinical_col(clin_df, ["days_to_birth", "Days to Birth"])
+    if age_col:
+        clin_df["_age_raw"] = pd.to_numeric(clin_df[age_col], errors="coerce")
+    elif dtb_col:
+        clin_df["_age_raw"] = (-pd.to_numeric(clin_df[dtb_col], errors="coerce") / 365.25).round()
+    else:
+        clin_df["_age_raw"] = float("nan")
+    msi_col = _first_clinical_col(
+        clin_df,
+        ["MSI status", "MSI Status", "Microsatellite Instability", "MSI"],
+    )
+    if msi_col:
+        clin_df["_msi_raw"] = clin_df[msi_col].astype(str)
+    else:
+        clin_df["_msi_raw"] = ""
+    sex_col = _first_clinical_col(clin_df, ["Gender", "Sex"])
+    if sex_col:
+        clin_df["_sex_raw"] = clin_df[sex_col].astype(str)
+    else:
+        clin_df["_sex_raw"] = ""
+    site_col = _first_clinical_col(
+        clin_df,
+        ["Tumor Primary Site", "Primary Site", "Neoplasm Disease Site", "Site of Resection or Biopsy"],
+    )
+    if site_col:
+        clin_df["_tumor_site"] = clin_df[site_col].astype(str)
+    else:
+        clin_df["_tumor_site"] = ""
+
     clin_agg = clin_df.sort_values("Participant ID").groupby("Participant ID", as_index=False).first()
-    clin_small = clin_agg[["Participant ID", "_stage_bin"]].rename(
-        columns={"Participant ID": "participant_id", "_stage_bin": "stage_bin"}
+    clin_small = clin_agg[
+        [
+            "Participant ID",
+            "_stage_bin",
+            "_age_raw",
+            "_msi_raw",
+            "_sex_raw",
+            "_tumor_site",
+        ]
+    ].rename(
+        columns={
+            "Participant ID": "participant_id",
+            "_stage_bin": "stage_bin",
+            "_age_raw": "age",
+            "_msi_raw": "msi_status",
+            "_sex_raw": "gender",
+            "_tumor_site": "tumor_site",
+        }
     )
 
     mdf = pd.read_csv(matrix_path, sep="\t", nrows=0, low_memory=False)
@@ -169,24 +229,71 @@ def harmonize_cptac_colon_pdc(
             cond = str(b.iloc[0]["condition"])
             pid = str(b.iloc[0]["participant_id"]).strip()
         st_bin = ""
-        if pid:
-            cmatch = clin_small[clin_small["participant_id"] == pid]
-            if not cmatch.empty:
-                st_bin = str(cmatch.iloc[0]["stage_bin"] or "")
+        age_v: Any = float("nan")
+        msi_v, gend, site_v = "", "", ""
         mm = long_map[long_map["specimen_label"] == slab]
         map_pid = str(mm.iloc[0]["participant_id"]) if not mm.empty else pid
+        lid = str(map_pid or pid).strip()
+        if lid:
+            cmatch = clin_small[clin_small["participant_id"] == lid]
+            if not cmatch.empty:
+                st_bin = str(cmatch.iloc[0]["stage_bin"] or "")
+                age_v = cmatch.iloc[0]["age"]
+                msi_v = str(cmatch.iloc[0]["msi_status"] or "")
+                gend = str(cmatch.iloc[0]["gender"] or "")
+                site_v = str(cmatch.iloc[0]["tumor_site"] or "")
         out_rows.append(
             {
                 "sample_id": col,
                 "condition": cond,
                 "participant_id": map_pid or pid,
                 "stage_bin": st_bin,
-                "msi_status": "",
+                "age": age_v,
+                "gender": gend,
+                "msi_status": msi_v,
+                "tumor_site": site_v,
                 "batch": "pdc_tmt10",
             }
         )
 
     out = pd.DataFrame(out_rows)
+    bins_cfg = clinical_cfg.get("age_bins", {}).get("bins", []) if isinstance(clinical_cfg, dict) else []
+    out["sex"] = out["gender"].map(normalize_sex) if "gender" in out.columns else "unknown"
+    out["msi_status"] = out["msi_status"].map(normalize_msi) if "msi_status" in out.columns else "unknown"
+    out["age_bin"] = out["age"].map(lambda x: bin_age(x, bins_cfg))
+    sup = ""
+    if isinstance(clinical_cfg, dict):
+        sup = str(clinical_cfg.get("cms_subtype_supplement_tsv") or "").strip()
+    if sup:
+        sup_path = Path(sup)
+        if sup_path.is_file():
+            cms = pd.read_csv(sup_path, sep="\t")
+            if "participant_id" in cms.columns and "cms_subtype" in cms.columns:
+                out = out.merge(
+                    cms[["participant_id", "cms_subtype"]].drop_duplicates("participant_id"),
+                    on="participant_id",
+                    how="left",
+                )
+    # Columnas estándar para validación / comparaciones opcionales (EOCRC, MSI, CMS).
+    if "cms_subtype" in out.columns:
+        def _cms_bin(v: Any) -> str:
+            if v is None or (isinstance(v, float) and pd.isna(v)):
+                return ""
+            s = str(v).strip().upper()
+            if s in {"CMS4", "4"}:
+                return "CMS4"
+            if s in {"CMS1", "CMS2", "CMS3", "1", "2", "3"}:
+                return "nonCMS4"
+            if s.startswith("CMS"):
+                return "nonCMS4"
+            return ""
+
+        out["cms_subtype_bin"] = out["cms_subtype"].map(_cms_bin)
+    else:
+        out["cms_subtype_bin"] = ""
+    for col in ("metastatic_status", "treatment_response", "stage"):
+        if col not in out.columns:
+            out[col] = "unknown"
     metadata_out.parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(metadata_out, sep="\t", index=False)
 

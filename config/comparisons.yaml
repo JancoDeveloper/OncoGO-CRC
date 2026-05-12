@@ -48,6 +48,22 @@ comparisons:
     group_b: primary
     optional: true
 
+  cptac_eocrc_vs_lorc:
+    dataset: cptac_colorectal
+    label: "EOCRC vs LOCRC (age_bin young vs older; contexto epidemiológico CO)"
+    condition_column: age_bin
+    group_a: young
+    group_b: older
+    optional: true
+
+  cptac_cms4_vs_rest:
+    dataset: cptac_colorectal
+    label: "CMS4 vs otros CMS (requiere cms_subtype_supplement_tsv + columna cms_subtype_bin)"
+    condition_column: cms_subtype_bin
+    group_a: CMS4
+    group_b: nonCMS4
+    optional: true
+
   plasma_responder_vs_nonresponder:
     dataset: plasma_crc_2024
     label: "Plasma respondedor vs no respondedor (si metadata disponible)"

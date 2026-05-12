@@ -1,12 +1,10 @@
-# OncoGO-CRC
+# Proyecto web — OncoGO-CRC
 
-## Estado general
+Navegación sugerida para **revisión de tesis**:
 
-Este sitio resume el avance reproducible del pipeline:
+1. [**Síntesis para tesis**](thesis_synthesis.md) — qué demuestra el pipeline y qué redactar aparte.
+2. [**Resultados base**](results_base.md) — tablas de **proteínas**, **GO** y extractos ML/red/traslación.
+3. [**Inventario**](results_inventory.md) — lista de archivos generados.
+4. [Datasets](datasets.md) · [Cobertura clínica](clinical_coverage.md) · [Estabilidad](stability.md) · [Limitaciones](limitations.md)
 
-- estado de datasets
-- cobertura clínica
-- resultados base
-- resultados estratificados
-- estabilidad entre estratos
-- limitaciones metodológicas
+Prompt para redacción interpretativa con LLM: [`docs/PROMPT_SINTESIS_TESIS.md`](../PROMPT_SINTESIS_TESIS.md).

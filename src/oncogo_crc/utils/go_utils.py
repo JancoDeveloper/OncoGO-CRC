@@ -28,13 +28,15 @@ def ora_fisher(
     term_to_genes: dict[str, set[str]],
     *,
     fdr_threshold: float = 0.05,
+    min_genes_in_term: int = 5,
 ) -> pd.DataFrame:
     rows = []
     sig = significant_genes & universe_genes
     unsig = universe_genes - sig
+    min_t = max(3, int(min_genes_in_term))
     for term, genes in term_to_genes.items():
         in_term = genes & universe_genes
-        if len(in_term) < 3:
+        if len(in_term) < min_t:
             continue
         a = len(sig & genes)
         b = len(sig - genes)

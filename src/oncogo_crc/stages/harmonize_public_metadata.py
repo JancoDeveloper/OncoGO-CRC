@@ -19,7 +19,11 @@ def run(settings: Settings) -> None:
         return
 
     token = os.environ.get(settings.config.get("download_real", {}).get("auth", {}).get("pdc_token_env", "PDC_TOKEN") or "PDC_TOKEN")
-    clinical_cfg = settings.config.get("clinical_filters", {}) or {}
+    clinical_cfg = dict(settings.config.get("clinical_filters", {}) or {})
+    cpt_h = cfg.get("cptac") or {}
+    cms_sup = str(cpt_h.get("cms_subtype_supplement_tsv", "") or "").strip()
+    if cms_sup:
+        clinical_cfg["cms_subtype_supplement_tsv"] = str(settings.resolve(cms_sup))
 
     ds_all = settings.datasets.get("datasets", {})
 
@@ -54,9 +58,29 @@ def run(settings: Settings) -> None:
         d = ds_all["plasma_crc_2024"]
         m_path = settings.resolve(d["matrix_path"])
         meta_path = settings.resolve(d["sample_metadata"])
-        print(f"[harmonize_public_metadata] plasma DIA -> {m_path.name} + {settings.relative_to_project(meta_path)}")
-        info = harmonize_plasma_dia_pq500(matrix_path=m_path, metadata_out=meta_path)
-        print(
-            f"  peptides={info['n_peptides']} ratio_cols={info['n_ratio_columns']} "
-            f"run_prefixes={info['n_run_prefixes']}"
-        )
+        accs = (d.get("download_real") or {}).get("accessions") or []
+        accs_s = {str(a).strip() for a in accs}
+        use_peptide_dia = "PXD036594" in accs_s
+        if use_peptide_dia:
+            print(f"[harmonize_public_metadata] plasma DIA (PXD036594) -> {m_path.name} + {settings.relative_to_project(meta_path)}")
+            info = harmonize_plasma_dia_pq500(matrix_path=m_path, metadata_out=meta_path)
+            print(
+                f"  peptides={info['n_peptides']} ratio_cols={info['n_ratio_columns']} "
+                f"run_prefixes={info['n_run_prefixes']}"
+            )
+        else:
+            rel_meta = settings.relative_to_project(meta_path)
+            if meta_path.exists() and meta_path.stat().st_size > 50:
+                tail = (
+                    f"Metadata ya presente ({rel_meta}); no se aplica harmonizador péptido/ratios "
+                    "(típico tras DIA-NN + PXD015163 en config)."
+                )
+            else:
+                tail = (
+                    f"Curar {rel_meta} desde PRIDE SDRF o el artículo (condition: crc|healthy o equivalente)."
+                )
+            print(
+                "[harmonize_public_metadata] plasma: se omite harmonización péptido/ratios (solo PXD036594). "
+                f"Accession(es) actual: {sorted(accs_s) or '—'}. "
+                + tail
+            )

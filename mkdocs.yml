@@ -13,12 +13,15 @@ nav:
   - Configuración: configuracion.md
   - Proyecto Web:
       - Estado: web/index.md
+      - Síntesis para tesis: web/thesis_synthesis.md
       - Datasets: web/datasets.md
       - Cobertura clínica: web/clinical_coverage.md
       - Resultados base: web/results_base.md
+      - Inventario resultados: web/results_inventory.md
       - Resultados estratificados: web/results_stratified.md
       - Estabilidad: web/stability.md
       - Limitaciones: web/limitations.md
+  - Tesis (prompt LLM): PROMPT_SINTESIS_TESIS.md
 plugins:
   - search
 

@@ -33,7 +33,7 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         default=None,
         help=(
-            "Directorio con más espacio para data/, results/ y reports/ "
+            "Directorio con más espacio: data/, results/, reports/, metadata/ y docs/web "
             "(alternativa: ONCOGO_CRC_DATA_WORKSPACE o paths.data_workspace en config.yaml)."
         ),
     )

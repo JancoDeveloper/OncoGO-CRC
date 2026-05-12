@@ -40,13 +40,31 @@ def run(settings: Settings) -> None:
         print("[ml] se requieren clases tumor y normal en metadata; omitiendo.")
         return
     ml_cfg = settings.config.get("ml", {})
-    metrics, scores = train_prioritization_models(
-        X,
-        y,
-        test_size=float(ml_cfg.get("test_size", 0.25)),
-        seed=int(settings.config.get("project", {}).get("seed", 42)),
-        rf_n_estimators=int(ml_cfg.get("random_forest_n_estimators", 200)),
-    )
+    seed = int(settings.config.get("project", {}).get("seed", 42))
+    use_shap = bool(ml_cfg.get("use_shap", False))
+    cv_folds = int(ml_cfg.get("cv_folds", 0) or 0)
+    shap_bg = int(ml_cfg.get("shap_background_max", 256) or 256)
+
+    def _train(with_shap: bool) -> tuple[dict, pd.DataFrame]:
+        return train_prioritization_models(
+            X,
+            y,
+            test_size=float(ml_cfg.get("test_size", 0.25)),
+            seed=seed,
+            rf_n_estimators=int(ml_cfg.get("random_forest_n_estimators", 200)),
+            use_shap=with_shap,
+            shap_background_max=shap_bg,
+            cv_folds=cv_folds,
+        )
+
+    try:
+        metrics, scores = _train(use_shap)
+    except ImportError as e:
+        if use_shap and "shap" in str(e).lower():
+            print(f"[ml] SHAP no disponible ({e}); ejecutando sin SHAP. Instala: pip install -e \".[explain]\"")
+            metrics, scores = _train(False)
+        else:
+            raise
     out_dir = settings.resolve(settings.config["paths"]["results_dir"]) / "ml"
     ranking = scores.reset_index()
     ranking = ranking.rename(columns={ranking.columns[0]: "protein_id"})
@@ -54,4 +72,10 @@ def run(settings: Settings) -> None:
     (out_dir / f"{primary}_model_metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
     metrics_flat = [{"model": k, **v} for k, v in metrics.items()]
     write_tsv(pd.DataFrame(metrics_flat), out_dir / f"{primary}_model_metrics.tsv")
-    print(f"[ml] métricas y ranking -> results/ml/{primary}_*")
+    extra = []
+    if "shap_mean_abs" in ranking.columns:
+        extra.append("SHAP")
+    if any(m.get("model") == "random_forest_cv" for m in metrics_flat):
+        extra.append("CV")
+    suf = f" ({', '.join(extra)})" if extra else ""
+    print(f"[ml] métricas y ranking{suf} -> results/ml/{primary}_*")
