@@ -27,8 +27,21 @@ def filter_missingness(
 
 
 def log2_transform(mat: pd.DataFrame, *, offset: float = 1e-6) -> pd.DataFrame:
+    """log2 con offset (legado). Preferir :func:`log2_transform_masked` para intensidades no positivas."""
     x = mat.astype(float)
     return np.log2(x + offset)
+
+
+def log2_transform_masked(mat: pd.DataFrame) -> tuple[pd.DataFrame, int]:
+    """``log2(x)`` solo donde ``x > 0``; valores no positivos → NaN (antes de imputación KNN).
+
+    Devuelve ``(matriz_log2, n_celdas_enmascaradas)``.
+    """
+    x = mat.astype(float)
+    n_bad = int((x <= 0).sum().sum())
+    safe = x.where(x > 0)
+    out = np.log2(safe)
+    return out, n_bad
 
 
 def knn_impute(mat: pd.DataFrame, n_neighbors: int = 5) -> pd.DataFrame:

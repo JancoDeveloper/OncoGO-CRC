@@ -90,6 +90,24 @@ def _demo_synthetic(settings: Settings) -> None:
     ]
     write_tsv(pd.DataFrame(plasma_meta), settings.resolve("data/interim/_demo_plasma_crc_2024_samples.tsv"))
 
+    # PRIDE tejido (demo): mismos protein_id que CPTAC para alinear genes tras harmonize → transfer ML CPTAC→PRIDE.
+    nt_p, nn_p = 16, 16
+    pride_t = [f"PRIDE-T-{i:02d}" for i in range(1, nt_p + 1)]
+    pride_n = [f"PRIDE-N-{i:02d}" for i in range(1, nn_p + 1)]
+    base_pr = rng.lognormal(mean=1.0, sigma=0.48, size=(n_prot, nt_p + nn_p))
+    mat_pr = pd.DataFrame(base_pr, index=proteins, columns=pride_t + pride_n)
+    for i in range(n_shift):
+        mat_pr.iloc[i, :nt_p] *= rng.uniform(1.25, 1.85)
+    expr_pr = mat_pr.reset_index()
+    expr_pr = expr_pr.rename(columns={expr_pr.columns[0]: "protein_id"})
+    pride_matrix = settings.resolve(settings.datasets["datasets"]["pride_crc_meta"]["matrix_path"])
+    pride_matrix.parent.mkdir(parents=True, exist_ok=True)
+    write_tsv(expr_pr, pride_matrix)
+    pride_meta = [{"sample_id": s, "condition": "tumor", "batch": "pride_demo"} for s in pride_t] + [
+        {"sample_id": s, "condition": "normal", "batch": "pride_demo"} for s in pride_n
+    ]
+    write_tsv(pd.DataFrame(pride_meta), settings.resolve("data/interim/_demo_pride_crc_meta_samples.tsv"))
+
 
 def run(settings: Settings) -> None:
     """Registra datasets: en producción valida rutas; en `--demo` genera datos sintéticos reproducibles."""
@@ -98,6 +116,15 @@ def run(settings: Settings) -> None:
         _demo_synthetic(settings)
         for key, ds in settings.datasets["datasets"].items():
             p = settings.resolve(ds["matrix_path"])
+            if ds.get("enabled") is False:
+                rows.append(
+                    {
+                        "dataset": key,
+                        "matrix_path": settings.relative_to_project(p),
+                        "status": "disabled",
+                    }
+                )
+                continue
             rows.append(
                 {
                     "dataset": key,
@@ -114,6 +141,9 @@ def run(settings: Settings) -> None:
 
     for key, ds in settings.datasets["datasets"].items():
         p = settings.resolve(ds["matrix_path"])
+        if ds.get("enabled") is False:
+            rows.append({"dataset": key, "matrix_path": settings.relative_to_project(p), "status": "disabled"})
+            continue
         status = "missing"
         if p.exists():
             status = "present"

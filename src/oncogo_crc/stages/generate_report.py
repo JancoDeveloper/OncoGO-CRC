@@ -22,12 +22,16 @@ def run(settings: Settings) -> None:
 
     sections = {
         "Contexto": (
-            "OncoGO-CRC integra proteómica pública de CCR con Gene Ontology como eje interpretativo "
-            "y priorización mediante modelos interpretables."
+            "OncoGO-CRC integra proteómica pública de CCR con Gene Ontology (ORA + GSEA pre-ranked), "
+            "firma multi-cohorte CPTAC∩PRIDE y priorización mediante modelos interpretables."
         ),
         "Resumen cuantitativo (FDR)": build_quantitative_bullets(settings),
         "Diferencial (extracto)": _preview_md(res / "differential" / "cptac_tumor_vs_normal_diff.tsv"),
-        "GO (extracto)": _preview_md(res / "go" / "cptac_tumor_vs_normal_go.tsv"),
+        "GSEA (extracto)": _preview_md(res / "gsea" / "cptac_tumor_vs_normal_gsea_go.tsv"),
+        "GO ORA (extracto)": _preview_md(res / "go" / "cptac_tumor_vs_normal_go.tsv"),
+        "Reproducibilidad CPTAC∩PRIDE": _preview_md(
+            res / "reproducibility" / "cptac_pride_differential_overlap_summary.tsv"
+        ),
         "Red (hubs)": _preview_md(res / "networks" / f"{primary}_hub_proteins.tsv"),
         "ML (ranking)": _preview_md(res / "ml" / f"{primary}_feature_ranking.tsv"),
         "Traslación": _preview_md(res / "clinical_translation" / f"{primary}_translation_ranked.tsv"),

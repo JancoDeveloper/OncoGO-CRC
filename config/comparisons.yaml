@@ -9,6 +9,8 @@ comparisons:
     condition_column: condition
     group_a: tumor
     group_b: normal
+    # Si existe ``participant_id`` (o la columna en ``differential.paired_column``) con pares 1 tumor + 1 normal, se usa t-test pareado.
+    paired_by: participant_id
 
   plasma_crc_vs_healthy:
     dataset: plasma_crc_2024

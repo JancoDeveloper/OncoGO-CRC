@@ -2,6 +2,8 @@
 """
 Intersección de proteínas diferenciales CPTAC vs PRIDE (reproducibilidad multi-cohorte).
 
+Usa el mismo **puente UniProt** que la etapa `cohort_overlap` (mapa gene_symbol ↔ uniprot_accession).
+
 Lee por defecto:
   results/differential/cptac_tumor_vs_normal_diff.tsv
   results/differential/pride_validation_tumor_vs_normal_diff.tsv
@@ -18,9 +20,16 @@ from pathlib import Path
 
 import pandas as pd
 
+from oncogo_crc.settings import load_settings
+from oncogo_crc.utils.reproducibility_overlap import (
+    cptac_pride_overlap_tables,
+    load_gene_uniprot_from_settings_map,
+)
+
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Intersección CPTAC ∩ PRIDE en tablas diferenciales.")
+    ap.add_argument("--root", type=Path, default=None, help="Raíz del repo (para resolver mapa maestro)")
     ap.add_argument(
         "--cptac",
         type=Path,
@@ -34,16 +43,21 @@ def main() -> None:
         help="TSV diferencial PRIDE",
     )
     ap.add_argument(
+        "--map",
+        type=Path,
+        default=None,
+        help="TSV mapa gene_symbol,uniprot_accession (default: desde settings / metadata)",
+    )
+    ap.add_argument(
         "--out-dir",
         type=Path,
         default=Path("results/reproducibility"),
         help="Directorio de salida",
     )
     ap.add_argument(
-        "--alpha",
-        type=float,
-        default=0.05,
-        help="Umbral padj para contar significativos (si existe columna padj)",
+        "--lenient",
+        action="store_true",
+        help="Incluir genes con mapeo UniProt ambiguo (por defecto: mapa estricto como cohort_overlap).",
     )
     args = ap.parse_args()
 
@@ -56,51 +70,19 @@ def main() -> None:
     if "protein_id" not in c.columns or "protein_id" not in p.columns:
         raise SystemExit("Ambos TSV deben tener columna protein_id.")
 
-    def _suffix(df: pd.DataFrame, tag: str) -> pd.DataFrame:
-        skip = {"protein_id", "gene_symbol", "uniprot_accession"}
-        cols = [x for x in df.columns if x not in skip]
-        return df[["protein_id"] + cols].rename(columns={col: f"{col}_{tag}" for col in cols})
+    if args.map is not None:
+        gene_to_uni = load_gene_uniprot_from_settings_map(args.map, exclude_ambiguous=not args.lenient)
+    else:
+        settings = load_settings(args.root)
+        gene_to_uni = load_gene_uniprot_from_settings_map(
+            settings.protein_id_map_path(), exclude_ambiguous=not args.lenient
+        )
 
-    merged = _suffix(c, "cptac").merge(_suffix(p, "pride"), on="protein_id", how="outer", indicator=True)
+    merged, summary = cptac_pride_overlap_tables(c, p, gene_to_uni=gene_to_uni, alpha=args.alpha)
     args.out_dir.mkdir(parents=True, exist_ok=True)
     out_merged = args.out_dir / "cptac_pride_differential_overlap.tsv"
-    merged.to_csv(out_merged, sep="\t", index=False)
-
-    def _sig(df: pd.DataFrame, prefix: str) -> pd.Series:
-        col = f"padj_{prefix}"
-        if col not in merged.columns:
-            return pd.Series(False, index=merged.index)
-        return merged[col].astype(float) < args.alpha
-
-    in_both = merged["_merge"] == "both"
-    sig_c = _sig(merged, "cptac")
-    sig_p = _sig(merged, "pride")
-    summary = pd.DataFrame(
-        [
-            {
-                "metric": "n_proteins_cptac",
-                "value": int(c["protein_id"].nunique()),
-            },
-            {
-                "metric": "n_proteins_pride",
-                "value": int(p["protein_id"].nunique()),
-            },
-            {"metric": "n_intersection_union", "value": int(in_both.sum())},
-            {
-                "metric": f"n_both_significant_padj_lt_{args.alpha}",
-                "value": int((in_both & sig_c & sig_p).sum()),
-            },
-            {
-                "metric": "n_cptac_sig_only",
-                "value": int((in_both & sig_c & ~sig_p).sum()),
-            },
-            {
-                "metric": "n_pride_sig_only",
-                "value": int((in_both & ~sig_c & sig_p).sum()),
-            },
-        ]
-    )
     sum_path = args.out_dir / "cptac_pride_differential_overlap_summary.tsv"
+    merged.to_csv(out_merged, sep="\t", index=False)
     summary.to_csv(sum_path, sep="\t", index=False)
     print(f"[overlap] detalle -> {out_merged}")
     print(f"[overlap] resumen -> {sum_path}")

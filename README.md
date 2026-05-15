@@ -45,7 +45,7 @@ Si el disco del repo es pequeño, redirija `data/`, `results/`, `reports/`, `met
 oncogo-crc run --data-workspace /ruta/al/volumen/grande --stage all
 ```
 
-Equivalente shell: `bash scripts/run_pipeline.sh`.
+Equivalente shell: `bash scripts/run_pipeline.sh` (respeta `ONCOGO_CRC_DATA_WORKSPACE` si está exportada antes de llamar al script).
 
 ## Equivalencia con la reconstrucción original
 
@@ -76,7 +76,7 @@ Tras `download_real`, **`harmonize_public_metadata`** cruza el mapping TMT10 + b
 
 La etapa **ML** puede usar **SHAP** (`TreeExplainer` sobre el Random Forest) y **validación cruzada** ROC-AUC 5-fold (`config.yaml` → `ml.use_shap`, `ml.cv_folds`; SHAP requiere `pip install -e ".[explain]"`).
 
-Para reproducibilidad CPTAC ∩ PRIDE: `python3 scripts/differential_overlap_cptac_pride.py` (tras `--stage differential`).
+Para reproducibilidad CPTAC ∩ PRIDE: etapa `cohort_overlap` (tras `differential`) o el script `python3 scripts/differential_overlap_cptac_pride.py`.
 
 `ingest_cptac` no se ejecuta con `--stage all`; convócalo explícitamente si quieres la vía rápida `cptac.Colon()` (documenta versión en `data/raw/cptac/cptac_ingest_provenance.json`).
 

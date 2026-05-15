@@ -45,18 +45,40 @@ def _coalesce_data_workspace(
     return None
 
 
-def _seed_workspace_metadata_from_repo(repo_root: Path, workspace: Path) -> None:
-    """Copia al workspace solo archivos de metadata que aún no existen allí.
+def _copy_metadata_file_if_needed(src: Path, dst: Path, *, refresh_if_repo_newer: bool) -> str:
+    """Copia un archivo de metadata al workspace. Devuelve ``new``, ``updated`` o vacío."""
+    if not src.is_file():
+        return ""
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    if not dst.exists():
+        shutil.copy2(src, dst)
+        return "new"
+    if refresh_if_repo_newer:
+        try:
+            if src.stat().st_mtime > dst.stat().st_mtime:
+                shutil.copy2(src, dst)
+                return "updated"
+        except OSError:
+            return ""
+    return ""
 
-    Evita sobrescribir tablas regeneradas (p. ej. harmonize_public_metadata) y
-    resuelve el caso típico: mapas GO y protein_id_maps siguen versionados en el repo.
+
+def _seed_workspace_metadata_from_repo(repo_root: Path, workspace: Path) -> None:
+    """Prepara ``<workspace>/metadata/`` para una corrida completa.
+
+    - **``protein_id_maps``**, **``gene_ontology``** y **``tcga_auxiliary``** (plantillas): se copian si faltan
+      o si la copia del **repositorio es más reciente** (p. ej. tras ``git pull`` o regenerar el bulk UniProt).
+    - **``sample_metadata``** y **``clinical_layers``**: solo si **faltan** en el workspace (no se pisan
+      curaciones ni harmonizaciones ya escritas allí).
     """
     src = repo_root / "metadata"
     dst = workspace / "metadata"
     if not src.is_dir():
         return
-    copied = 0
-    for sub in ("protein_id_maps", "gene_ontology", "sample_metadata", "clinical_layers"):
+    n_new = 0
+    n_updated = 0
+    refresh_subs = {"protein_id_maps", "gene_ontology", "tcga_auxiliary"}
+    for sub in refresh_subs:
         sdir = src / sub
         if not sdir.is_dir():
             continue
@@ -65,16 +87,28 @@ def _seed_workspace_metadata_from_repo(repo_root: Path, workspace: Path) -> None
                 continue
             rel = p.relative_to(sdir)
             out = dst / sub / rel
-            if out.exists():
+            tag = _copy_metadata_file_if_needed(p, out, refresh_if_repo_newer=True)
+            if tag == "new":
+                n_new += 1
+            elif tag == "updated":
+                n_updated += 1
+    for sub in ("sample_metadata", "clinical_layers"):
+        sdir = src / sub
+        if not sdir.is_dir():
+            continue
+        for p in sdir.rglob("*"):
+            if not p.is_file():
                 continue
-            out.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(p, out)
-            copied += 1
-    if copied:
-        print(
-            f"[settings] {copied} archivo(s) de metadata del repo copiados al workspace "
-            f"(solo rutas que faltaban bajo {dst})."
-        )
+            rel = p.relative_to(sdir)
+            out = dst / sub / rel
+            tag = _copy_metadata_file_if_needed(p, out, refresh_if_repo_newer=False)
+            if tag == "new":
+                n_new += 1
+    if n_new or n_updated:
+        parts = [f"{n_new} nuevo(s)"] if n_new else []
+        if n_updated:
+            parts.append(f"{n_updated} actualizado(s) desde repo (mtime)")
+        print(f"[settings] metadata → workspace ({dst}): {', '.join(parts)}.")
 
 
 def _is_workspace_relative(rel: str) -> bool:
@@ -146,6 +180,15 @@ class Settings:
         ds = self.datasets["datasets"][dataset_key]
         return self.resolve(ds["sample_metadata"])
 
+    def processed_matrix_path(self, dataset_key: str, kind: str) -> Path:
+        """``kind`` ∈ ``log2norm`` (diferencial, GO, GSEA, overlap) | ``zscore`` (ML, red, clustering)."""
+        proc = self.resolve(self.config["paths"]["processed_dir"])
+        if kind == "log2norm":
+            return proc / f"{dataset_key}_log2norm.tsv"
+        if kind == "zscore":
+            return proc / f"{dataset_key}_zscore.tsv"
+        raise ValueError(f"processed_matrix_path: kind desconocido {kind!r} (use log2norm o zscore)")
+
 
 def load_settings(
     root: Path | None = None,
@@ -162,4 +205,8 @@ def load_settings(
     dw = _coalesce_data_workspace(base, yaml_paths, cli_value=data_workspace)
     if dw is not None:
         _seed_workspace_metadata_from_repo(base, dw)
+        print(
+            f"[settings] data_workspace={dw} — descargas y artefactos pesados bajo "
+            "`data/`, `results/`, `reports/`, `metadata/`, `docs/web` (config y código siguen en el repo)."
+        )
     return Settings(root=base, config=cfg, datasets=dsets, comparisons=comps, demo=demo_flag, data_workspace=dw)

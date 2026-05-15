@@ -55,6 +55,26 @@ def _annotate_context_layers(base: pd.DataFrame, layers: dict[str, Any] | None) 
     return base
 
 
+def _annotate_functional_modules(base: pd.DataFrame, layers: dict[str, Any] | None) -> pd.DataFrame:
+    base = base.copy()
+    base["functional_module_hints"] = ""
+    if not layers:
+        return base
+    fm = layers.get("functional_modules") or {}
+    gene_col = "gene_lookup"
+    tags: list[str] = []
+    for _, row in base.iterrows():
+        gu = str(row[gene_col]).strip().upper()
+        hits = [
+            short
+            for short, spec in fm.items()
+            if gu in {str(x).strip().upper() for x in (spec or {}).get("gene_symbols", []) or []}
+        ]
+        tags.append(";".join(hits))
+    base["functional_module_hints"] = tags
+    return base
+
+
 def build_translation_table(
     diff: pd.DataFrame,
     hubs: pd.DataFrame | None,
@@ -116,4 +136,16 @@ def build_translation_table(
     base["evidence_tier"] = base.apply(tier, axis=1)
     layers = _load_context_layers(context_layers_path)
     base = _annotate_context_layers(base, layers)
-    return base.sort_values("evidence_score", ascending=False)
+    base = _annotate_functional_modules(base, layers)
+    lit = (base["literature_evidence_tier"].astype(str).str.len() > 0).astype(float)
+    cms = (base["cms_pathway_hints"].astype(str).str.len() > 0).astype(float)
+    fm = (base["functional_module_hints"].astype(str).str.len() > 0).astype(float)
+    mapk = base["mapk_liquid_biomarker_context"].astype(float)
+    z_fc = np.abs(base["log2fc"]).rank(pct=True)
+    z_p = base["neglog10_padj"].rank(pct=True)
+    z_deg = base["degree"].rank(pct=True)
+    z_ml = base["combined_score"].rank(pct=True)
+    base["translational_priority_score"] = (
+        0.22 * z_fc + 0.22 * z_p + 0.12 * z_deg + 0.14 * z_ml + 0.15 * lit + 0.07 * cms + 0.05 * fm + 0.03 * mapk
+    ).clip(0, 1)
+    return base.sort_values(["translational_priority_score", "evidence_score"], ascending=[False, False])

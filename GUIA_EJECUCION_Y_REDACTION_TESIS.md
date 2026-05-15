@@ -12,6 +12,8 @@ oncogo-crc run --stage <etapa>
 # etapas: download_real | download | validate_inputs | harmonize | qc | differential | go | network | ml | clinical | report | stability | publish_results
 ```
 
+Volumen externo: `export ONCOGO_CRC_DATA_WORKSPACE=/ruta/absoluta` (o `--data-workspace …`) para que descargas y artefactos bajo `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` queden fuera del clon; ver [GUIA_CONFIGURACION.md](GUIA_CONFIGURACION.md#data-workspace).
+
 Equivalencia con la nomenclatura “01–09” del paquete `Informacion/`: ver [DOCUMENTACION_TESIS.md](DOCUMENTACION_TESIS.md#equivalencia-con-scripts-01_-).
 
 ---

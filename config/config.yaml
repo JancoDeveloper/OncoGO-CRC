@@ -18,6 +18,11 @@ paths:
   metadata_dir: metadata
   reports_dir: reports
 
+# Mapas suplementarios (gene_symbol/uniprot) concatenados al maestro; el maestro gana en conflicto de protein_id.
+mapping:
+  supplementary_map_paths:
+    - metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv
+
 harmonize_public_metadata:
   enabled: true
   cptac:
@@ -99,10 +104,21 @@ preprocessing:
   knn_neighbors: 5
   normalize_method: zscore_protein
   batch_correction: none
+  # Si true, escribe además ``*_normalized.tsv`` idéntico a ``*_zscore.tsv`` (compatibilidad con scripts antiguos).
+  write_legacy_normalized_alias: true
+  # PCA rápido (2 componentes) sobre muestras en ``results/qc/``; NaN→0 solo para este cálculo.
+  write_qc_pca: true
 
 differential:
   alpha: 0.05
   fdr_method: fdr_bh
+  # Efecto mínimo en ``log2fc`` (matriz **log2norm**; Δ de medias en escala log2).
+  min_abs_log2fc: 0
+  # Ejecuta comparaciones optional:true si la columna existe y hay ≥ N muestras por grupo.
+  auto_run_optional_comparisons: true
+  optional_comparison_min_n_per_group: 3
+  # Columna de metadata para contraste pareado (tumor/normal del mismo participante) cuando ``comparisons.*.paired_by`` no la fija.
+  paired_column: participant_id
 
 go:
   fdr_threshold: 0.05
@@ -112,10 +128,41 @@ go:
   max_genes_per_term: 500
   # Si casi todo el proteoma es “significativo”, ORA pierde especificidad. 0 = sin tope (usa todas).
   ora_foreground_max_genes: 800
+  # Filtro extra solo para el foreground de ORA (además de FDR). 0 = desactivado.
+  ora_min_abs_log2fc: 0
 
-# KEGG vía Enrichr (gseapy); desactivado por defecto (requiere red + pip install -e ".[go-remote]").
+# GSEA pre-ranked offline (mismo go_gene_long.tsv que ORA); ranking continuo (t_stat o sign×−log10 p).
+gsea:
+  enabled: true
+  fdr_threshold: 0.25
+  min_size: 15
+  max_size: 500
+  permutations: 200
+  # Varios rankings (publicación): el primero también se escribe como <comp>_gsea_go.tsv
+  ranking_metrics: [t_stat, signed_neglog10_p]
+  ontologies: [BP, MF, CC]
+  seed: 42
+  clear_stale_outputs_before_run: true
+
+# Intersección firma CPTAC ∩ PRIDE (results/reproducibility/).
+reproducibility:
+  cptac_pride_overlap:
+    enabled: true
+    cptac_comparison: cptac_tumor_vs_normal
+    pride_comparison: pride_validation_tumor_vs_normal
+    padj_alpha: 0.05
+
+# Bundle JSON para ProteinsLanguage / STRING / AlphaFold (results/export/).
+export_bundle:
+  enabled: true
+  primary_comparison: cptac_tumor_vs_normal
+  diff_top: 300
+  # UniProt REST + caché data/interim/uniprot_lookup_cache.json; 0 = sin red.
+  uniprot_top_n: 0
+
+# KEGG vía Enrichr (gseapy); requiere red + `pip install -e ".[go-remote]"` (gseapy).
 kegg_enrichment:
-  enabled: false
+  enabled: true
   comparison: cptac_tumor_vs_normal
   enrichr_library: KEGG_2021_Human
   min_genes: 10
@@ -126,13 +173,47 @@ network:
 
 ml:
   test_size: 0.25
-  models: [lasso, random_forest]
+  # lasso = SGD log-loss L1; elastic_net = SGD elasticnet; random_forest
+  models: [lasso, elastic_net, random_forest]
   random_forest_n_estimators: 200
+  linear_alpha: 0.02
   # SHAP (TreeExplainer sobre RF): requiere pip install -e ".[explain]"; si falta shap, la etapa sigue sin él.
   use_shap: true
   shap_background_max: 256
   # 0 = solo hold-out; 5 = ROC-AUC en StratifiedKFold sobre todo el conjunto etiquetado (media ± std en métricas).
   cv_folds: 5
+  # Nested CV: pliegue externo = estimación de generalización; interno = selección de hiperparámetros (menos optimista que un solo split).
+  nested_cv:
+    enabled: true
+    # Solo RF en nested CV (mucho más rápido que L1+EN+RF). Para los tres: only_rf: false y sin `models`.
+    only_rf: true
+    # Lista opcional que sobrescribe only_rf, p.ej. [random_forest] o [l1, rf] (alias: l1, elastic_net, rf).
+    models: []
+    outer_splits: 5
+    inner_splits: 3
+    # Árboles solo en nested (por defecto = random_forest_n_estimators; bajar acelera el grid).
+    rf_n_estimators: 120
+    linear_alpha_grid: [0.005, 0.02, 0.08]
+    rf_max_depth_grid: [null, 12, 20]
+    rf_min_samples_leaf_grid: [1, 2]
+  external_transfer:
+    enabled: true
+    train_dataset: cptac_colorectal
+    test_dataset: pride_crc_meta
+    # Calibración (Platt o isotónica) con CV solo sobre CPTAC antes de evaluar en PRIDE.
+    calibration_method: sigmoid
+    calibration_cv: 3
+  feature_stability_bootstrap_n: 50
+  bootstrap_top_k: 30
+
+# Matriz de evidencia in silico + tablas opcionales TCGA/supervivencia (después de `clinical`).
+external_evidence:
+  enabled: true
+  primary_comparison: cptac_tumor_vs_normal
+  merge_translation: true
+  # Rutas a TSV propios (vacío = omitir TCGA/Cox). Columnas: ver plantillas en metadata/tcga_auxiliary/*_template.tsv
+  tcga_rnaseq_log2fc_tsv: ""
+  survival_gene_cox_tsv: ""
 
 translation:
   # Cuatro niveles cuantitativos internos (percentiles de evidence_score); ver también capas literarias en context_layers_path.

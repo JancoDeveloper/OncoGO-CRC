@@ -6,6 +6,7 @@ from pathlib import Path
 
 from oncogo_crc.pipeline.registry import EXCLUDED_FROM_ALL, STAGE_ORDER, STAGES
 from oncogo_crc.settings import load_settings
+from oncogo_crc.utils import run_manifest
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -48,9 +49,13 @@ def main(argv: list[str] | None = None) -> int:
         order = [s for s in STAGE_ORDER if s not in EXCLUDED_FROM_ALL]
     else:
         order = [args.stage]
-    for name in order:
-        print(f"\n=== [{name}] ===")
-        STAGES[name](settings)
+    run_manifest.init_run(settings, stage_order=order)
+    try:
+        for name in order:
+            print(f"\n=== [{name}] ===")
+            STAGES[name](settings)
+    finally:
+        run_manifest.finalize_run(settings)
     return 0
 
 

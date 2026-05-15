@@ -14,8 +14,7 @@ def run(settings: Settings) -> None:
         print("[clinical] sin resultado diferencial núcleo; omitiendo.")
         return
     diff = read_tsv(diff_path)
-    proc = settings.resolve(settings.config["paths"]["processed_dir"])
-    mat_path = proc / f"{primary}_normalized.tsv"
+    mat_path = settings.processed_matrix_path(primary, "zscore")
     if mat_path.exists():
         mat = read_tsv(mat_path)
         if "gene_symbol" in mat.columns and "protein_id" in mat.columns:

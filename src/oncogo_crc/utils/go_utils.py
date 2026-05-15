@@ -12,13 +12,61 @@ def load_go_long(path) -> pd.DataFrame:
     return pd.read_csv(path, sep="\t")
 
 
+def demo_like_go_fraction(go_long: pd.DataFrame) -> float:
+    """Fracción de filas con símbolo tipo GENE001 (típico de datos demo sintéticos)."""
+    if go_long is None or go_long.empty or "gene_symbol" not in go_long.columns:
+        return 0.0
+    s = go_long["gene_symbol"].astype(str)
+    return float(s.str.match(r"^GENE\d{3,}$", na=False).mean())
+
+
+def contains_demo_like_gene_ids(go_long: pd.DataFrame) -> bool:
+    if go_long is None or go_long.empty or "gene_symbol" not in go_long.columns:
+        return False
+    return bool(go_long["gene_symbol"].astype(str).str.match(r"^GENE\d{3,}$", na=False).any())
+
+
+def assert_go_annotation_not_synthetic(go_long: pd.DataFrame, *, demo: bool) -> None:
+    """Fuera de ``--demo``, aborta si la anotación GO contiene símbolos sintéticos GENE###."""
+    if demo or go_long is None or go_long.empty:
+        return
+    if contains_demo_like_gene_ids(go_long):
+        raise RuntimeError(
+            "go_gene_long.tsv contiene símbolos sintéticos tipo GENE001 (modo demo). "
+            "Sustituye metadata/gene_ontology/go_gene_long.tsv por anotación GO humana real "
+            "(p. ej. GOA/UniProt) o ejecuta con --demo."
+        )
+
+
+def expression_protein_to_gene_map(expr: pd.DataFrame) -> dict[str, str]:
+    """Mapea protein_id de matriz normalizada a gene_symbol para GO/GSEA (fallback: mismo id)."""
+    m: dict[str, str] = {}
+    for _, row in expr.iterrows():
+        pid = str(row["protein_id"]).strip()
+        gs = row["gene_symbol"] if "gene_symbol" in row.index else None
+        if gs is None or (isinstance(gs, float) and pd.isna(gs)) or str(gs).strip() == "":
+            m[pid] = pid
+        else:
+            m[pid] = str(gs).strip()
+    return m
+
+
+def gene_symbol_set_from_strings(raw: set[str]) -> set[str]:
+    out: set[str] = set()
+    for x in raw:
+        s = str(x).strip()
+        if s and s.lower() != "nan":
+            out.add(s)
+    return out
+
+
 def _build_term_genes(go_long: pd.DataFrame, namespaces: Iterable[str] | None) -> dict[str, set[str]]:
     dfg = go_long.copy()
     if namespaces is not None:
         dfg = dfg[dfg["namespace"].isin(list(namespaces))]
     term_to_genes: dict[str, set[str]] = defaultdict(set)
     for _, r in dfg.iterrows():
-        term_to_genes[str(r["go_id"])].add(str(r["gene_symbol"]))
+        term_to_genes[str(r["go_id"])].add(str(r["gene_symbol"]).strip())
     return dict(term_to_genes)
 
 

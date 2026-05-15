@@ -6,7 +6,9 @@ from pathlib import Path
 from typing import Any
 
 from oncogo_crc.settings import Settings
+from oncogo_crc.utils.run_manifest import load_doc as load_pipeline_run_manifest
 from oncogo_crc.utils.thesis_web_digest import (
+    build_external_evidence_markdown,
     build_limitations_markdown,
     build_results_base_markdown,
     build_results_inventory_markdown,
@@ -47,18 +49,25 @@ def build_web_pages(settings: Settings) -> Path:
     validation = _read_json(settings.resolve("results/validation/input_validation_report.json"))
     stability_json = _read_json(settings.resolve("results/stability/stability_summary.json"))
 
-    run_manifest = {
+    pipeline_run = load_pipeline_run_manifest(settings)
+    run_manifest_doc = {
         "datasets": summary.get("datasets", {}),
         "validation": {"datasets": validation.get("datasets", {})},
         "stability": stability_json,
+        "pipeline_run": pipeline_run,
     }
-    (latest_dir / "run_manifest.json").write_text(json.dumps(run_manifest, indent=2), encoding="utf-8")
+    (latest_dir / "run_manifest.json").write_text(json.dumps(run_manifest_doc, indent=2), encoding="utf-8")
 
     index_md = build_web_index_markdown(settings)
     datasets_md = "# Datasets\n\n"
     for ds, payload in summary.get("datasets", {}).items():
         datasets_md += f"## {ds}\n"
-        datasets_md += f"- status: {payload.get('status', payload.get('matrix_status', 'unknown'))}\n"
+        raw_status = payload.get("status", payload.get("matrix_status", "unknown"))
+        display_status = raw_status
+        if ds in settings.datasets.get("datasets", {}) and settings.processed_matrix_path(ds, "log2norm").exists():
+            if str(raw_status).lower() in ("failed", "error", "download_failed", "partial"):
+                display_status = f"{raw_status} (override: matriz log2norm local presente)"
+        datasets_md += f"- status: {display_status}\n"
         if "provider" in payload:
             datasets_md += f"- provider: {payload.get('provider')}\n"
         if "n_files" in payload:
@@ -104,6 +113,7 @@ def build_web_pages(settings: Settings) -> Path:
         "si hay estratos y muestras suficientes, sus salidas aparecerán bajo `results/` con el prefijo de comparación.\n",
         "stability.md": stability_md,
         "limitations.md": build_limitations_markdown(settings),
+        "external_evidence.md": build_external_evidence_markdown(settings),
     }
     for name, content in pages.items():
         _write(web_dir / name, content)
@@ -111,7 +121,8 @@ def build_web_pages(settings: Settings) -> Path:
     # MkDocs lee `docs/` bajo la raíz del repo; si el workspace es externo, espejamos docs/web.
     if settings.data_workspace is not None:
         repo_docs_web = settings.root / "docs" / "web"
-        repo_docs_web.mkdir(parents=True, exist_ok=True)
-        for name in pages:
-            shutil.copy2(docs_web_dir / name, repo_docs_web / name)
+        if docs_web_dir.resolve() != repo_docs_web.resolve():
+            repo_docs_web.mkdir(parents=True, exist_ok=True)
+            for name in pages:
+                shutil.copy2(docs_web_dir / name, repo_docs_web / name)
     return web_dir

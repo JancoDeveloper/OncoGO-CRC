@@ -16,9 +16,11 @@ def run(settings: Settings) -> None:
     try:
         import gseapy as gp  # type: ignore[import-untyped]
     except ImportError as e:
-        raise ImportError(
-            "KEGG requiere gseapy. Instala: pip install -e \".[go-remote]\""
-        ) from e
+        print(
+            "[kegg] omitido: falta gseapy. Instala con: pip install -e \".[go-remote]\" "
+            f"({e!r})."
+        )
+        return
 
     primary = settings.config.get("project", {}).get("primary_dataset", "cptac_colorectal")
     alpha = float(settings.config.get("differential", {}).get("alpha", 0.05))

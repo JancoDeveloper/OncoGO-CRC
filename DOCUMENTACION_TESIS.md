@@ -42,6 +42,8 @@ flowchart LR
 
 Cada etapa escribe artefactos versionables o ignorados por Git según `.gitignore` (los datos masivos y resultados intermedios no deben saturar el repositorio; el **modo `--demo`** permite validar la lógica sin archivos externos).
 
+**Workspace externo (`paths.data_workspace` / `ONCOGO_CRC_DATA_WORKSPACE` / `--data-workspace`):** las rutas `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` pueden resolverse en un segundo volumen. Al iniciar la CLI se sincronizan mapas y GO desde el clon hacia ese `metadata/` cuando el repo es más reciente; las descargas (`download_real`) y el resto del pipeline escriben allí. Detalle operativo: [GUIA_CONFIGURACION.md](GUIA_CONFIGURACION.md#data-workspace) y [docs/proceso_datos_y_pipeline.md](docs/proceso_datos_y_pipeline.md).
+
 ## 3. Descripción de etapas (mapeo tesis ↔ código)
 
 ### Fase A — `download`
@@ -83,15 +85,21 @@ Cada etapa escribe artefactos versionables o ignorados por Git según `.gitignor
 
 ### Fase G — `ml`
 
-- **Ciencia**: priorización explicable (LASSO-like + bosque aleatorio en el texto de referencia).
-- **Código**: `utils/ml_utils.py` (modelo lineal disperso **SGD + L1** + RandomForest), etapa `ml_prioritization.py`.
-- **Salida**: `results/ml/<primary>_feature_ranking.tsv`, `*_model_metrics.tsv/json`.
+- **Ciencia**: priorización explicable (L1 / Elastic Net SGD + Random Forest), **nested CV** para estimación menos optimista que un único hold-out, **transferencia CPTAC→PRIDE** alineada por gen, y bootstrap opcional de estabilidad de coeficientes L1.
+- **Código**: `utils/ml_utils.py`, etapa `ml_prioritization.py`.
+- **Salida**: `results/ml/<primary>_feature_ranking.tsv`, `*_model_metrics.tsv/json`, `*_nested_cv_per_fold.tsv`, `*_nested_cv_summary.tsv/json` (opcional `only_rf` o lista `models`), `*_train_*_test_transfer.json` (métricas sin calibrar y con **calibración probabilística** opcional `sigmoid`/`isotonic` solo sobre CPTAC), opcional `*_feature_stability_bootstrap.tsv`.
 
 ### Fase H — `clinical`
 
 - **Ciencia**: ranking traslacional y niveles `tier_A_cuantitativo_fuerte | tier_B_cuantitativo_moderado | tier_C_hipotesis | tier_D_exploratorio` (cuantitativos) más columnas literarias (`literature_evidence_tier`, `cms_pathway_hints`) desde `metadata/clinical_layers/crc_context_layers.yaml`.
 - **Código**: `utils/translation_utils.py`, etapa `clinical_translation.py`.
 - **Salida**: `results/clinical_translation/<primary>_translation_ranked.tsv`.
+
+### Fase H-bis — `external_evidence`
+
+- **Ciencia**: matriz de evidencia (tiers CMS/módulos MAPK desde YAML), concordancia direccional con **RNA-seq de referencia** (TSV opcional tipo TCGA) y fusión con **Cox por gen** (TSV opcional de supervivencia exportada externamente).
+- **Código**: `stages/external_evidence.py`.
+- **Salida**: `results/external_evidence/evidence_matrix.tsv`, `tcga_rnaseq_concordance.tsv`, `survival_gene_cox_merged.tsv`, `external_evidence_summary.json`.
 
 ### Fase I — `report`
 
@@ -113,6 +121,7 @@ El paquete de reconstrucción sugería comandos `python -m src.01_download_data`
 | `06_network_modules` | `oncogo-crc run --stage network` |
 | `07_ml_prioritization` | `oncogo-crc run --stage ml` |
 | `08_clinical_translation` | `oncogo-crc run --stage clinical` |
+| `08b_external_evidence` | `oncogo-crc run --stage external_evidence` |
 | `09_generate_report` | `oncogo-crc run --stage report` |
 
 También puede usarse `python -m oncogo_crc run ...` (equivale a la CLI).
@@ -127,8 +136,9 @@ Tomado de `Informacion/Paquete/docs/06_checklist_operativo.txt`, con nombres act
 | Diferencial | `results/differential/*_diff.tsv` y volcanos |
 | GO | `results/go/*_go.tsv` (+ `*_go_reduced.tsv` si aplica) |
 | Red | `results/networks/*_hub_proteins.tsv` |
-| ML | `results/ml/*_model_metrics.tsv` |
+| ML | `results/ml/*_model_metrics.tsv` (+ nested CV / transfer si config) |
 | Traslación | `results/clinical_translation/*_translation_ranked.tsv` |
+| Evidencia externa | `results/external_evidence/evidence_matrix.tsv` |
 | Informe | `reports/executive_summary/results_summary.md` |
 
 ## 6. Limitaciones explícitas (para discusión de tesis)

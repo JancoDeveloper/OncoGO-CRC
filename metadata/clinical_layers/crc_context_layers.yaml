@@ -64,3 +64,17 @@ hallmarks_liquid_biopsy_context:
   MAPK_EGFR_axis:
     note: "Eje MAPK/EGFR citado en biopsia líquida / resistencia; señal plasmática suele ser más débil que en tejido."
     gene_symbols: [KRAS, NRAS, BRAF, EGFR, MAPK1, MAPK3, PIK3CA]
+
+# Módulos funcionales transversales (tesis: procesos consistentes entre cohortes).
+# Genera columna functional_module_hints en clinical_translation.
+functional_modules:
+  EMT_ECM_invasion:
+    gene_symbols: [VIM, FN1, TWIST1, SNAI1, ZEB1, ACTA2, MMP2, MMP9, COL1A1, COL3A1]
+  metabolism_lipid_glycolytic:
+    gene_symbols: [FASN, SCD, LDHA, PKM, HK2, PFKL, ACLY, ACACA]
+  DNA_repair_damage_response:
+    gene_symbols: [MLH1, MSH2, MSH6, PMS2, BRCA1, BRCA2, ATM, ATR, PARP1]
+  angiogenesis_hypoxia:
+    gene_symbols: [VEGFA, VEGFC, FLT1, KDR, HIF1A, EPAS1, LDHA]
+  antigen_presentation_immune:
+    gene_symbols: [HLA-A, HLA-B, HLA-C, B2M, TAP1, TAP2, PSMB8, PSMB9, CD274, PDCD1]

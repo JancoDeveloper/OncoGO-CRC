@@ -17,6 +17,12 @@ def run(settings: Settings) -> None:
     if not bool(cfg.get("enabled", True)):
         print("[harmonize_public_metadata] deshabilitado en config.yaml.")
         return
+    if settings.demo:
+        print(
+            "[harmonize_public_metadata] modo demo: se omite unión PDC/PRIDE (las muestras sintéticas "
+            "vienen de `download` → `_demo_*_samples.tsv`)."
+        )
+        return
 
     token = os.environ.get(settings.config.get("download_real", {}).get("auth", {}).get("pdc_token_env", "PDC_TOKEN") or "PDC_TOKEN")
     clinical_cfg = dict(settings.config.get("clinical_filters", {}) or {})

@@ -1,11 +1,11 @@
-protein_id	gene_symbol	uniprot_accession
-P0001	TP53	P04637
-P0002	EGFR	P00533
-P0003	KRAS	P01116
-P0004	APC	P25054
-P0005	MYC	P01106
-P0006	PTEN	P60484
-P0007	PIK3CA	P42336
-P0008	CDH1	P12830
-P0009	VIM	P08670
-P0010	COL1A1	P02452
+protein_id	gene_symbol	uniprot_accession	uniprot_base	ensembl_gene_id	alias_symbols	reviewed_status	mapping_source	is_ambiguous
+P0001	TP53	P04637	P04637		TP53;P53	reviewed	manual_seed	false
+P0002	EGFR	P00533	P00533		EGFR	reviewed	manual_seed	false
+P0003	KRAS	P01116	P01116		KRAS	reviewed	manual_seed	false
+P0004	APC	P25054	P25054		APC	reviewed	manual_seed	false
+P0005	MYC	P01106	P01106		MYC	reviewed	manual_seed	false
+P0006	PTEN	P60484	P60484		PTEN	reviewed	manual_seed	false
+P0007	PIK3CA	P42336	P42336		PIK3CA	reviewed	manual_seed	false
+P0008	CDH1	P12830	P12830		CDH1	reviewed	manual_seed	false
+P0009	VIM	P08670	P08670		VIM	reviewed	manual_seed	false
+P0010	COL1A1	P02452	P02452		COL1A1	reviewed	manual_seed	false

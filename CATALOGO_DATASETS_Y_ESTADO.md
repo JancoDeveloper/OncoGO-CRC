@@ -74,6 +74,8 @@ Esto alimenta:
 
 ## Archivos de evidencia
 
+Las rutas siguientes son **relativas al árbol de trabajo del pipeline**: si usas `paths.data_workspace` / `ONCOGO_CRC_DATA_WORKSPACE`, todo lo que empiece por `data/`, `results/` o `reports/` reside bajo ese volumen (no en el clon). El manifiesto agregado de la web (`reports/runs/latest/run_manifest.json`) mezcla el resumen de descarga con `pipeline_run` leído de `results/run_manifest.json` en el mismo volumen.
+
 - `data/raw/download_real_manifest.tsv`
 - `data/manifests/_summary.json`
 - `results/validation/input_validation_report.json`

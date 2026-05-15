@@ -9,10 +9,9 @@ from oncogo_crc.utils.network_utils import correlation_network, hub_proteins
 def run(settings: Settings) -> None:
     """Red proteína–proteína por correlación y detección de hubs."""
     primary = settings.config.get("project", {}).get("primary_dataset", "cptac_colorectal")
-    proc = settings.resolve(settings.config["paths"]["processed_dir"])
-    mat_path = proc / f"{primary}_normalized.tsv"
+    mat_path = settings.processed_matrix_path(primary, "zscore")
     if not mat_path.exists():
-        print("[network] sin matriz normalizada primaria; omitiendo.")
+        print("[network] sin matriz z-score primaria; omitiendo.")
         return
     df = read_tsv(mat_path)
     meta = {"protein_id", "gene_symbol", "uniprot_accession"}
