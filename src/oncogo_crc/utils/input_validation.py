@@ -61,11 +61,14 @@ def validate_metadata(metadata_path: Path, recommended_vars: list[str]) -> dict[
         result["condition_ok"] = True
     else:
         result["errors"].append("metadata_missing_condition")
+    sentinel_missing = {"", "unknown", "nan", "none", "na", "n/a"}
     for var in recommended_vars:
         if var not in df.columns:
             result["missing_recommended_vars"].append(var)
         else:
-            result["coverage"][var] = float(df[var].notna().sum() / max(len(df), 1))
+            col = df[var]
+            informative = col.notna() & ~col.astype(str).str.strip().str.lower().isin(sentinel_missing)
+            result["coverage"][var] = float(int(informative.sum()) / max(len(df), 1))
     return result
 
 

@@ -63,6 +63,17 @@ def _load_gene_flags_from_layers(layers: dict[str, Any]) -> dict[str, set[str]]:
     return out
 
 
+def _purge_stale_external_evidence_outputs(out_dir: Path) -> None:
+    """Borra TSVs de TCGA/Cox previos: si la corrida actual no los regenera, no deben mostrarse."""
+    for name in ("tcga_rnaseq_concordance.tsv", "survival_gene_cox_merged.tsv"):
+        p = out_dir / name
+        if p.exists():
+            try:
+                p.unlink()
+            except OSError:
+                pass
+
+
 def run(settings: Settings) -> None:
     cfg = settings.config.get("external_evidence") or {}
     if not bool(cfg.get("enabled", False)):
@@ -72,6 +83,7 @@ def run(settings: Settings) -> None:
     res = settings.resolve(settings.config["paths"]["results_dir"])
     out_dir = res / "external_evidence"
     out_dir.mkdir(parents=True, exist_ok=True)
+    _purge_stale_external_evidence_outputs(out_dir)
 
     diff_path = res / "differential" / f"{comp}_diff.tsv"
     if not diff_path.exists():

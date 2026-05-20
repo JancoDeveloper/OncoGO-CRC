@@ -28,8 +28,10 @@ harmonize_public_metadata:
   cptac:
     enabled: true
     pdc_study_submitter_id: "PDC000116"
-    # Opcional: TSV con columnas participant_id, cms_subtype (CMS1–CMS4) para comparaciones CMS4 vs resto.
-    cms_subtype_supplement_tsv: ""
+    # TSV con columnas participant_id, cms_subtype (CMS1–CMS4) para comparaciones CMS4 vs resto.
+    # Por defecto apunta al predictor proteómico simplificado (scripts/predict_cms_from_proteome.py).
+    # Recomendado para tesis: reemplazar con Vasaikar 2019 Cell, Supp. Table S1 (CPTAC2 prospective colon).
+    cms_subtype_supplement_tsv: metadata/clinical_layers/cptac_cms_predicted.tsv
   pride:
     enabled: true
   plasma:
@@ -81,7 +83,7 @@ validation:
   require_exact_sample_match: true
   warn_on_missing_clinical_vars: true
   required_core_vars: [sample_id, condition]
-  recommended_clinical_vars: [sex, age, age_bin, stage, stage_bin, msi_status, tumor_site, cms_subtype, cms_subtype_bin, metastatic_status, treatment_response]
+  recommended_clinical_vars: [sex, age, age_bin, stage, stage_bin, stage_group, msi_status, ethnicity, race, hispanic_latino_bin, country, geographic_region_bin, enrollment_site, tumor_site, cms_subtype, cms_subtype_bin, metastatic_status, treatment_response]
 
 web_publish:
   enabled: true
@@ -211,9 +213,12 @@ external_evidence:
   enabled: true
   primary_comparison: cptac_tumor_vs_normal
   merge_translation: true
-  # Rutas a TSV propios (vacío = omitir TCGA/Cox). Columnas: ver plantillas en metadata/tcga_auxiliary/*_template.tsv
-  tcga_rnaseq_log2fc_tsv: ""
-  survival_gene_cox_tsv: ""
+  # TSV de concordancia transcriptómica (TCGA COAD+READ desde UCSC Xena).
+  # Genera con: ``python scripts/fetch_tcga_coadread_log2fc.py``
+  tcga_rnaseq_log2fc_tsv: metadata/tcga_auxiliary/tcga_coadread_log2fc.tsv
+  # Cox HR por gen (TCGA COAD+READ OS, lifelines).
+  # Genera con: ``python scripts/fetch_tcga_coadread_survival.py``
+  survival_gene_cox_tsv: metadata/tcga_auxiliary/tcga_coadread_cox_os.tsv
 
 translation:
   # Cuatro niveles cuantitativos internos (percentiles de evidence_score); ver también capas literarias en context_layers_path.

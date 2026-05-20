@@ -16,7 +16,12 @@ from typing import Any
 
 import pandas as pd
 
-from oncogo_crc.utils.clinical_metadata import bin_age, normalize_msi, normalize_sex
+from oncogo_crc.utils.clinical_metadata import (
+    bin_age,
+    harmonize_clinical_metadata,
+    normalize_msi,
+    normalize_sex,
+)
 
 PDC_GRAPHQL_ENDPOINT = "https://pdc.cancer.gov/graphql"
 
@@ -92,30 +97,57 @@ def _pathology_to_condition(status: str) -> str:
 
 
 def _first_clinical_col(df: pd.DataFrame, candidates: list[str]) -> str | None:
-    lower = {str(c).strip().lower(): c for c in df.columns}
+    """Match column con prioridad: exacto → tokenizado → contiene-todos-los-tokens.
+
+    El Excel clínico de PDC para CPTAC varía ligeramente entre estudios y versiones
+    (``S037-r2``, ``S037-r3``, ``CPTAC3``). Necesitamos un matcher tolerante a:
+
+    - whitespace inconsistente (incluye non-breaking space U+00A0)
+    - mayúsculas/minúsculas
+    - guiones bajos vs espacios
+    - paréntesis aclaratorios al final (p. ej. ``Diagnosis Age (Years)``)
+    - sufijos descriptivos extra (p. ej. ``MSI Type per BAT26``)
+    """
+    def _norm(s: str) -> str:
+        s = str(s).replace("\u00a0", " ").replace("_", " ").strip().lower()
+        # quita paréntesis y su contenido al final, y comprime espacios
+        s = re.sub(r"\([^)]*\)\s*$", "", s)
+        s = re.sub(r"\s+", " ", s).strip()
+        return s
+
+    norm_to_orig: dict[str, str] = {_norm(c): str(c) for c in df.columns}
+
+    # 1) Match exacto tras normalización
     for cand in candidates:
-        k = str(cand).strip().lower()
-        if k in lower:
-            return lower[k]
+        k = _norm(cand)
+        if k in norm_to_orig:
+            return norm_to_orig[k]
+
+    # 2) Match por tokens (cada token del candidato presente en la columna)
+    for cand in candidates:
+        toks = [t for t in _norm(cand).split() if t]
+        if not toks:
+            continue
+        for norm_col, orig in norm_to_orig.items():
+            if all(t in norm_col.split() for t in toks):
+                return orig
+
+    # 3) Fallback: la columna contiene todas las subcadenas
+    for cand in candidates:
+        toks = [t for t in _norm(cand).split() if t]
+        if not toks:
+            continue
+        for norm_col, orig in norm_to_orig.items():
+            if all(t in norm_col for t in toks):
+                return orig
+
     return None
 
 
 def _stage_to_bin(stage_val: Any, early_tokens: list[str], adv_tokens: list[str]) -> str:
-    if pd.isna(stage_val):
-        return ""
-    s = str(stage_val).strip().lower()
-    for t in sorted((str(x).lower() for x in adv_tokens if x), key=len, reverse=True):
-        if t and t in s:
-            return "advanced"
-    for t in sorted((str(x).lower() for x in early_tokens if x), key=len, reverse=True):
-        if t and t in s:
-            return "early"
-    if "stage" in s:
-        if any(x in s for x in [" iii", " iv", "iiib", "iiic", "iva", "ivb"]):
-            return "advanced"
-        if any(x in s for x in ["stage iia", "stage iib", "stage iic", "stage ia", "stage ib"]):
-            return "early"
-    return ""
+    from oncogo_crc.utils.clinical_metadata import bin_stage_pathological
+
+    return bin_stage_pathological(stage_val, {"early": early_tokens, "advanced": adv_tokens})
 
 
 def harmonize_cptac_colon_pdc(
@@ -126,6 +158,32 @@ def harmonize_cptac_colon_pdc(
     clinical_cfg: dict[str, Any],
     token: str | None,
 ) -> dict[str, Any]:
+    # Fallar antes de PDC si la matriz local no tiene columnas TMT (ahorra red y evita metadata vacía).
+    mdf0 = pd.read_csv(matrix_path, sep="\t", nrows=0, low_memory=False)
+    sample_cols0 = [c for c in mdf0.columns if c != "protein_id"]
+
+    def _specimen_from_matrix_col_early(col: str) -> str | None:
+        c = str(col)
+        for suf in (" Unshared Log Ratio", " Log Ratio", "_Unshared_Log_Ratio", "_Log_Ratio", ".Unshared.Log.Ratio", ".Log.Ratio"):
+            if c.endswith(suf):
+                return c[: -len(suf)]
+        return None
+
+    tmt0 = [c for c in sample_cols0 if _specimen_from_matrix_col_early(c)]
+    if not tmt0:
+        rel = matrix_path
+        try:
+            rel = matrix_path.resolve()
+        except OSError:
+            pass
+        raise ValueError(
+            "CPTAC harmonize: la matriz no tiene columnas de muestra TMT reconocibles "
+            "(sufijos `… Log Ratio` / `… Unshared Log Ratio`). "
+            f"Columnas de muestra halladas: {len(sample_cols0)}. "
+            "Si solo existe `protein_id`, reemplaza el archivo por la matriz PDC completa o configura "
+            f"la descarga correcta. Archivo: `{rel}`."
+        )
+
     files = _pdc_list_files(pdc_study_submitter_id, token)
     map_bytes = _pdc_download_named_file(files, "TMT10_Label_to_Sample_Mapping_File_COprospective")
     bio_bytes = _pdc_download_named_file(files, "Biospecimens")
@@ -148,13 +206,60 @@ def harmonize_cptac_colon_pdc(
     adv_tokens = list(sm.get("advanced", []) or [])
 
     clin_df = clin_df.copy()
-    clin_df["_stage_bin"] = clin_df["Tumor Stage (Pathological)"].map(
-        lambda x: _stage_to_bin(x, early_tokens, adv_tokens)
+    # Detectar columna de stage (puede ser "Tumor Stage (Pathological)", "Pathological Stage", etc.)
+    stage_col = _first_clinical_col(
+        clin_df,
+        [
+            "Tumor Stage (Pathological)",
+            "Pathological Stage",
+            "tumor_stage_pathological",
+            "ajcc_pathologic_tumor_stage",
+            "Tumor Stage Pathological",
+            "Tumor Stage",
+        ],
     )
+    if stage_col:
+        clin_df["_stage_raw"] = clin_df[stage_col].astype(str)
+        clin_df["_stage_bin"] = clin_df[stage_col].map(
+            lambda x: _stage_to_bin(x, early_tokens, adv_tokens)
+        )
+    else:
+        clin_df["_stage_raw"] = ""
+        clin_df["_stage_bin"] = ""
+
     age_col = _first_clinical_col(
         clin_df,
-        ["Diagnosis Age", "Age at Initial Pathologic Diagnosis", "Age At Diagnosis", "Age at Diagnosis"],
+        [
+            "Diagnosis Age",
+            "Age at Initial Pathologic Diagnosis",
+            "Age At Diagnosis",
+            "Age at Diagnosis",
+            "Age (Years)",
+            "age_at_diagnosis",
+            "Age at Index",
+            "Patient Age",
+        ],
     )
+    # Evitar "Age in Months…" como edad en años (EOCRC / age_bin).
+    if age_col:
+        ac_norm = str(age_col).replace("\u00a0", " ").strip().lower()
+        if "month" in ac_norm and "year" not in ac_norm:
+            age_col = _first_clinical_col(
+                clin_df,
+                [
+                    "Age at Diagnosis (Years)",
+                    "Age at Diagnosis in Years",
+                    "Age at Initial Pathologic Diagnosis",
+                    "Diagnosis Age",
+                    "Age in Years",
+                ],
+            )
+            if not age_col:
+                print(
+                    "  ⚠ La columna de edad detectada parece estar en **meses**; "
+                    "no hay alternativa en años — age/age_bin pueden quedar vacíos."
+                )
+                age_col = None
     dtb_col = _first_clinical_col(clin_df, ["days_to_birth", "Days to Birth"])
     if age_col:
         clin_df["_age_raw"] = pd.to_numeric(clin_df[age_col], errors="coerce")
@@ -162,46 +267,158 @@ def harmonize_cptac_colon_pdc(
         clin_df["_age_raw"] = (-pd.to_numeric(clin_df[dtb_col], errors="coerce") / 365.25).round()
     else:
         clin_df["_age_raw"] = float("nan")
+
     msi_col = _first_clinical_col(
         clin_df,
-        ["MSI status", "MSI Status", "Microsatellite Instability", "MSI"],
+        [
+            # PDC / CPTAC2 colon prospective S037 usa "MSI Type" (no "MSI Status")
+            "MSI Type",
+            "MSI status",
+            "MSI Status",
+            "MSI Subtype",
+            "MSI Classification",
+            "Microsatellite Instability Status",
+            "Microsatellite Instability",
+            "MSS/MSI",
+            "MSI per BAT26",
+            "MSI",
+        ],
     )
     if msi_col:
         clin_df["_msi_raw"] = clin_df[msi_col].astype(str)
     else:
         clin_df["_msi_raw"] = ""
+
     sex_col = _first_clinical_col(clin_df, ["Gender", "Sex"])
     if sex_col:
         clin_df["_sex_raw"] = clin_df[sex_col].astype(str)
     else:
         clin_df["_sex_raw"] = ""
+
     site_col = _first_clinical_col(
         clin_df,
-        ["Tumor Primary Site", "Primary Site", "Neoplasm Disease Site", "Site of Resection or Biopsy"],
+        [
+            "Tumor Primary Site",
+            "Tumor Anatomic Site",
+            "Anatomical Location",
+            "Primary Site",
+            "Neoplasm Disease Site",
+            "Site of Resection or Biopsy",
+        ],
     )
     if site_col:
         clin_df["_tumor_site"] = clin_df[site_col].astype(str)
     else:
         clin_df["_tumor_site"] = ""
 
+    ethnicity_col = _first_clinical_col(
+        clin_df,
+        [
+            "Ethnicity",
+            "ethnicity",
+            "Ethnic Group",
+            "Ethnic Background",
+            "demographics_ethnicity",
+        ],
+    )
+    if ethnicity_col:
+        clin_df["_ethnicity_raw"] = clin_df[ethnicity_col].astype(str)
+    else:
+        clin_df["_ethnicity_raw"] = ""
+
+    race_col = _first_clinical_col(
+        clin_df,
+        ["Race", "race", "Race Category", "demographics_race"],
+    )
+    if race_col:
+        clin_df["_race_raw"] = clin_df[race_col].astype(str)
+    else:
+        clin_df["_race_raw"] = ""
+
+    country_col = _first_clinical_col(
+        clin_df,
+        [
+            "Country",
+            "Country of Origin",
+            "Country of Residence",
+            "country",
+            "Country at Enrollment",
+            "Nation",
+        ],
+    )
+    if country_col:
+        clin_df["_country_raw"] = clin_df[country_col].astype(str)
+    else:
+        clin_df["_country_raw"] = ""
+
+    # No incluir "Site" suelto: coincide con "Primary Site of Disease" por token "site" y rompe el merge.
+    enroll_col = _first_clinical_col(
+        clin_df,
+        [
+            "Enrollment Site",
+            "Treating Institution",
+            "Institution",
+            "Study Site",
+            "Biospecimen Source Site",
+            "Site of Enrollment",
+        ],
+    )
+    if enroll_col:
+        clin_df["_enrollment_site"] = clin_df[enroll_col].astype(str)
+    else:
+        clin_df["_enrollment_site"] = ""
+
+    # Log explícito de qué columnas detectó/no detectó para trazabilidad del run.
+    print(
+        "[harmonize_public_metadata] CPTAC clinical columns detected: "
+        f"stage={stage_col!r} age={age_col or dtb_col!r} msi={msi_col!r} "
+        f"sex={sex_col!r} site={site_col!r} ethnicity={ethnicity_col!r} "
+        f"race={race_col!r} country={country_col!r} enrollment={enroll_col!r}"
+    )
+    if not stage_col:
+        print("  ⚠ stage no detectado — revisa columnas del Excel clínico.")
+    if not (age_col or dtb_col):
+        print("  ⚠ age no detectado — comparación EOCRC/LORC quedará omitida.")
+    if not msi_col:
+        print("  ⚠ MSI no detectado — comparación MSI vs MSS quedará omitida.")
+    if not ethnicity_col:
+        print(
+            "  ⚠ ethnicity no detectado — estrato hispano/latino y comparación opcional quedarán en unknown."
+        )
+    if not country_col and not enroll_col:
+        print(
+            "  ⚠ país/sitio de enrolamiento no detectados — geographic_region_bin quedará unknown "
+            "(típico en CPTAC US si el Excel no trae país)."
+        )
+
     clin_agg = clin_df.sort_values("Participant ID").groupby("Participant ID", as_index=False).first()
     clin_small = clin_agg[
         [
             "Participant ID",
+            "_stage_raw",
             "_stage_bin",
             "_age_raw",
             "_msi_raw",
             "_sex_raw",
             "_tumor_site",
+            "_ethnicity_raw",
+            "_race_raw",
+            "_country_raw",
+            "_enrollment_site",
         ]
     ].rename(
         columns={
             "Participant ID": "participant_id",
+            "_stage_raw": "stage",
             "_stage_bin": "stage_bin",
             "_age_raw": "age",
             "_msi_raw": "msi_status",
             "_sex_raw": "gender",
             "_tumor_site": "tumor_site",
+            "_ethnicity_raw": "ethnicity",
+            "_race_raw": "race",
+            "_country_raw": "country",
+            "_enrollment_site": "enrollment_site",
         }
     )
 
@@ -212,6 +429,10 @@ def harmonize_cptac_colon_pdc(
         c = str(col)
         # Orden: el sufijo más largo primero (evita que "... Unshared Log Ratio" coincida con "... Log Ratio").
         for suf in (" Unshared Log Ratio", " Log Ratio"):
+            if c.endswith(suf):
+                return c[: -len(suf)]
+        # Algunas exportaciones PDC usan sufijos compactos o guiones bajos.
+        for suf in ("_Unshared_Log_Ratio", "_Log_Ratio", ".Unshared.Log.Ratio", ".Log.Ratio"):
             if c.endswith(suf):
                 return c[: -len(suf)]
         return None
@@ -228,38 +449,54 @@ def harmonize_cptac_colon_pdc(
         else:
             cond = str(b.iloc[0]["condition"])
             pid = str(b.iloc[0]["participant_id"]).strip()
+        st_raw = ""
         st_bin = ""
         age_v: Any = float("nan")
         msi_v, gend, site_v = "", "", ""
+        eth_v, race_v, country_v, enroll_v = "", "", "", ""
         mm = long_map[long_map["specimen_label"] == slab]
         map_pid = str(mm.iloc[0]["participant_id"]) if not mm.empty else pid
         lid = str(map_pid or pid).strip()
         if lid:
             cmatch = clin_small[clin_small["participant_id"] == lid]
             if not cmatch.empty:
+                st_raw = str(cmatch.iloc[0]["stage"] or "")
                 st_bin = str(cmatch.iloc[0]["stage_bin"] or "")
                 age_v = cmatch.iloc[0]["age"]
                 msi_v = str(cmatch.iloc[0]["msi_status"] or "")
                 gend = str(cmatch.iloc[0]["gender"] or "")
                 site_v = str(cmatch.iloc[0]["tumor_site"] or "")
+                eth_v = str(cmatch.iloc[0].get("ethnicity", "") or "")
+                race_v = str(cmatch.iloc[0].get("race", "") or "")
+                country_v = str(cmatch.iloc[0].get("country", "") or "")
+                enroll_v = str(cmatch.iloc[0].get("enrollment_site", "") or "")
         out_rows.append(
             {
                 "sample_id": col,
                 "condition": cond,
                 "participant_id": map_pid or pid,
+                "stage": st_raw,
                 "stage_bin": st_bin,
                 "age": age_v,
                 "gender": gend,
                 "msi_status": msi_v,
                 "tumor_site": site_v,
+                "ethnicity": eth_v,
+                "race": race_v,
+                "country": country_v,
+                "enrollment_site": enroll_v,
                 "batch": "pdc_tmt10",
             }
         )
 
     out = pd.DataFrame(out_rows)
+    global_cfg = {"clinical_filters": clinical_cfg} if isinstance(clinical_cfg, dict) else {}
+    out = harmonize_clinical_metadata(out, global_cfg)
     bins_cfg = clinical_cfg.get("age_bins", {}).get("bins", []) if isinstance(clinical_cfg, dict) else []
-    out["sex"] = out["gender"].map(normalize_sex) if "gender" in out.columns else "unknown"
-    out["msi_status"] = out["msi_status"].map(normalize_msi) if "msi_status" in out.columns else "unknown"
+    if "sex" not in out.columns:
+        out["sex"] = out["gender"].map(normalize_sex) if "gender" in out.columns else "unknown"
+    if "msi_status" in out.columns:
+        out["msi_status"] = out["msi_status"].map(normalize_msi)
     out["age_bin"] = out["age"].map(lambda x: bin_age(x, bins_cfg))
     sup = ""
     if isinstance(clinical_cfg, dict):
@@ -321,7 +558,9 @@ def harmonize_pride_maxquant_lfq(
     df = pd.read_csv(matrix_path, sep="\t", low_memory=False)
     df.columns = [str(c).replace("\ufeff", "").strip() for c in df.columns]
     first_col = str(df.columns[0])
-    lfq_re = re.compile(r"^LFQ intensity CRC\d+[MNP]$")
+    lfq_re = re.compile(r"^LFQ intensity CRC\d+[MNP]$", re.IGNORECASE)
+    # Matrices ya anchas (demo, post-proceso download, o export interno) PRIDE-T-* / PRIDE-N-*.
+    pride_wide_re = re.compile(r"^PRIDE-[TN]-\d+$", re.IGNORECASE)
 
     def _first_protein_id(cell: Any) -> str:
         s = "" if pd.isna(cell) else str(cell).strip()
@@ -340,12 +579,27 @@ def harmonize_pride_maxquant_lfq(
     elif first_col == "protein_id":
         lfq_cols = [c for c in df.columns if isinstance(c, str) and lfq_re.match(c)]
         if not lfq_cols:
-            raise ValueError(
-                "PRIDE harmonize: matriz ya tiene protein_id pero no columnas LFQ; "
-                "vuelve a ejecutar download_real para PXD034575."
-            )
-        out_df = df[["protein_id"] + lfq_cols].copy()
-        out_df.to_csv(matrix_path, sep="\t", index=False)
+            wide_cols = [c for c in df.columns if isinstance(c, str) and pride_wide_re.match(c)]
+            if wide_cols:
+                print(
+                    "[harmonize_public_metadata] PRIDE: matriz ya ancha (PRIDE-T-/PRIDE-N-); "
+                    "se genera metadata sin requerir MaxQuant LFQ."
+                )
+                lfq_cols = wide_cols
+            else:
+                raise ValueError(
+                    "PRIDE harmonize: la matriz tiene `protein_id` pero no columnas "
+                    "`LFQ intensity CRC##[MNP]` (MaxQuant) ni `PRIDE-T-##` / `PRIDE-N-##`. "
+                    "Borra `data/raw/pride/pride_crc_matrix.tsv` y ejecuta de nuevo "
+                    "`oncogo-crc run --stage download_real` para PXD034575, o restaura el TSV "
+                    "proteinGroups.txt original."
+                )
+        if not lfq_re.match(lfq_cols[0]):
+            # Ya está en formato final; no reescribir matriz.
+            out_df = df[["protein_id"] + lfq_cols].copy()
+        else:
+            out_df = df[["protein_id"] + lfq_cols].copy()
+            out_df.to_csv(matrix_path, sep="\t", index=False)
     else:
         raise ValueError(
             f"PRIDE harmonize: primera columna debe ser 'Protein IDs' o 'protein_id', hallada {first_col!r}"
@@ -353,7 +607,9 @@ def harmonize_pride_maxquant_lfq(
 
     meta_rows: list[dict[str, str]] = []
     for col in lfq_cols:
-        if col.endswith("M"):
+        if pride_wide_re.match(col):
+            cond = "tumor" if str(col).upper().startswith("PRIDE-T") else "normal"
+        elif col.endswith("M"):
             cond = "tumor"
         elif col.endswith("N"):
             cond = "normal"

@@ -203,9 +203,34 @@ def run(settings: Settings) -> None:
             print(
                 f"[ml] transfer genes (pre-intersección): train_cols={n_tr_feat}, test_cols={n_te_feat}"
             )
+            sample_train = sorted(map(str, Xtr.columns))[:20]
+            sample_test = sorted(map(str, Xte.columns))[:20]
             Xtr_a, Xte_a, genes = align_two_cohort_matrices(Xtr, Xte)
             print(
                 f"[ml] transfer genes (post-intersección canónica): common={len(genes)}"
+            )
+            intersect_rows = []
+            tr_cols = {str(c).strip().upper() for c in Xtr.columns}
+            te_cols = {str(c).strip().upper() for c in Xte.columns}
+            common_upper = set(genes)
+            for c in sorted(tr_cols | te_cols):
+                intersect_rows.append(
+                    {
+                        "feature": c,
+                        "in_train": c in tr_cols,
+                        "in_test": c in te_cols,
+                        "retained": c in common_upper,
+                    }
+                )
+            pd.DataFrame(intersect_rows).to_csv(
+                out_dir / f"{train_ds}_{test_ds}_feature_intersection.tsv",
+                sep="\t",
+                index=False,
+            )
+            print(
+                f"[ml] transfer feature_intersection (n_train={len(tr_cols)}, n_test={len(te_cols)}, "
+                f"common={len(common_upper)}) -> {train_ds}_{test_ds}_feature_intersection.tsv "
+                f"| train sample: {sample_train[:5]} | test sample: {sample_test[:5]}"
             )
             lt = sm_tr.set_index("sample_id")["condition"]
             lte = sm_te.set_index("sample_id")["condition"]

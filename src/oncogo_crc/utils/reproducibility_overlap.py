@@ -32,16 +32,46 @@ def uniprot_base(raw: str) -> str | None:
 
 
 def gene_to_uniprot_dict(mapping: pd.DataFrame) -> dict[str, str]:
+    """Construye diccionario gen_HGNC → UniProt canónico.
+
+    Estrategia:
+    - **Símbolo primario** (`gene_symbol`) tiene prioridad absoluta.
+    - **Aliases** del campo `alias_symbols` (``;``-delimitados; viene del bulk REST) se añaden
+      SOLO si no chocan con un símbolo primario ya mapeado a otro UniProt — evita que un
+      alias ambiguo borre un mapping canónico (p. ej. ``MARCH1`` alias de varios genes).
+    """
     out: dict[str, str] = {}
+    primary_seen: set[str] = set()
     if mapping is None or mapping.empty:
         return out
     if "gene_symbol" not in mapping.columns or "uniprot_accession" not in mapping.columns:
         return out
+
+    # Pasada 1: símbolos primarios
     for _, r in mapping.iterrows():
         g = str(r.get("gene_symbol", "")).strip().upper()
         u = uniprot_base(str(r.get("uniprot_accession", "")))
         if g and u and g != "NAN":
             out[g] = u
+            primary_seen.add(g)
+
+    # Pasada 2: aliases (solo si no entran en conflicto con primary)
+    if "alias_symbols" in mapping.columns:
+        for _, r in mapping.iterrows():
+            u = uniprot_base(str(r.get("uniprot_accession", "")))
+            if not u:
+                continue
+            raw_aliases = str(r.get("alias_symbols", "")).strip()
+            if not raw_aliases or raw_aliases.upper() == "NAN":
+                continue
+            for tok in raw_aliases.replace(",", ";").split(";"):
+                a = tok.strip().upper()
+                if not a or a == "NAN" or a in primary_seen:
+                    continue
+                # Si otro alias ya lo asignó a un UniProt distinto, dejarlo (no perdemos ambigüedad).
+                if a in out and out[a] != u:
+                    continue
+                out[a] = u
     return out
 
 
@@ -64,7 +94,12 @@ def ambiguous_gene_symbols(mapping: pd.DataFrame) -> set[str]:
 
 
 def uniprot_to_gene_dict(mapping: pd.DataFrame) -> dict[str, str]:
-    """Primera aparición de cada accesión UniProt canónica → símbolo HGNC (para matrices PRIDE en UniProt)."""
+    """Mapa UniProt canónico (base, sin sufijo isoforma) → símbolo HGNC.
+
+    Para matrices PRIDE que vienen con accesiones UniProt en `protein_id`, este dict
+    permite resolver gene_symbol. Las isoformas (P12345-2) también se indexan apuntando
+    al mismo gen del accession base, para no perder filas.
+    """
     out: dict[str, str] = {}
     if mapping is None or mapping.empty:
         return out
@@ -72,13 +107,29 @@ def uniprot_to_gene_dict(mapping: pd.DataFrame) -> dict[str, str]:
         return out
     for _, r in mapping.iterrows():
         g = str(r.get("gene_symbol", "")).strip().upper()
-        u = uniprot_base(str(r.get("uniprot_accession", "")))
-        if g and u and g != "NAN" and u not in out:
+        raw_acc = str(r.get("uniprot_accession", ""))
+        u = uniprot_base(raw_acc)
+        if not (g and u and g != "NAN"):
+            continue
+        if u not in out:
             out[u] = g
+        # también registrar la accesión con isoforma original (si trae sufijo -N)
+        raw = raw_acc.strip().split(";")[0].strip().upper()
+        if raw and raw != u and raw not in out:
+            out[raw] = g
     return out
 
 
-def join_key_cptac(pid: str, gene_to_uni: dict[str, str]) -> str | None:
+def join_key_canonical(pid: str, gene_to_uni: dict[str, str]) -> str | None:
+    """Clave UniProt canónica para una fila proteómica.
+
+    Estrategia uniforme (CPTAC, PRIDE, plasma post-harmonize) — antes existían dos funciones
+    desalineadas que producían disjuncion artificial cuando harmonize resolvía UniProt→gen en PRIDE:
+
+    1. Si ``pid`` es un símbolo HGNC presente en ``gene_to_uni``, devolver el UniProt mapeado.
+    2. En caso contrario, intentar parsear ``pid`` como accession UniProt (``uniprot_base``).
+    3. Devolver ``None`` si nada resuelve (no se cruza esa fila — evita producto cartesiano).
+    """
     s = str(pid).strip()
     if not s or s.upper() == "NAN":
         return None
@@ -88,8 +139,13 @@ def join_key_cptac(pid: str, gene_to_uni: dict[str, str]) -> str | None:
     return uniprot_base(s)
 
 
-def join_key_pride(pid: str) -> str | None:
-    return uniprot_base(str(pid).strip())
+# Aliases retrocompatibles para código (o tests) que importen los nombres antiguos.
+def join_key_cptac(pid: str, gene_to_uni: dict[str, str]) -> str | None:
+    return join_key_canonical(pid, gene_to_uni)
+
+
+def join_key_pride(pid: str, gene_to_uni: dict[str, str] | None = None) -> str | None:
+    return join_key_canonical(pid, gene_to_uni or {})
 
 
 def cptac_pride_overlap_tables(
@@ -102,8 +158,8 @@ def cptac_pride_overlap_tables(
     """Devuelve (merged_wide, summary_metrics)."""
     c = c.copy()
     p = p.copy()
-    c["_join_uni"] = c["protein_id"].map(lambda x: join_key_cptac(str(x), gene_to_uni))
-    p["_join_uni"] = p["protein_id"].map(lambda x: join_key_pride(str(x)))
+    c["_join_uni"] = c["protein_id"].map(lambda x: join_key_canonical(str(x), gene_to_uni))
+    p["_join_uni"] = p["protein_id"].map(lambda x: join_key_canonical(str(x), gene_to_uni))
 
     def _suffix(df: pd.DataFrame, tag: str) -> pd.DataFrame:
         skip = {"protein_id", "gene_symbol", "uniprot_accession", "_join_uni"}

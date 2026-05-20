@@ -66,6 +66,14 @@ comparisons:
     group_b: nonCMS4
     optional: true
 
+  cptac_hispanic_latino_vs_non:
+    dataset: cptac_colorectal
+    label: "Hispano/latino vs no hispano/latino (etnicidad NIH; contexto US — ver clinical_demographics.md)"
+    condition_column: hispanic_latino_bin
+    group_a: hispanic_latino
+    group_b: non_hispanic_latino
+    optional: true
+
   plasma_responder_vs_nonresponder:
     dataset: plasma_crc_2024
     label: "Plasma respondedor vs no respondedor (si metadata disponible)"

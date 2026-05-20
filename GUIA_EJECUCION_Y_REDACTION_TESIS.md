@@ -14,6 +14,27 @@ oncogo-crc run --stage <etapa>
 
 Volumen externo: `export ONCOGO_CRC_DATA_WORKSPACE=/ruta/absoluta` (o `--data-workspace …`) para que descargas y artefactos bajo `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` queden fuera del clon; ver [GUIA_CONFIGURACION.md](GUIA_CONFIGURACION.md#data-workspace).
 
+### Pack de evidencia externa (TCGA + CMS + UniProt bulk) — recomendado antes de la corrida real
+
+Antes de la primera corrida real (no demo), generar de una vez los TSV auxiliares que potencian la firma núcleo, las comparaciones opcionales y la concordancia externa:
+
+```bash
+export ONCOGO_CRC_DATA_WORKSPACE=/Volumes/JANCODATA/OncoGO-CRC
+bash scripts/refresh_evidence_pack.sh           # ~10-20 min total (incluye lifelines pip install)
+# o más rápido (sin Cox por gen):
+SKIP_SURVIVAL=1 bash scripts/refresh_evidence_pack.sh
+# Cox restringido a genes de la matriz proteómica (recomendado):
+COX_ONLY_PROTEIN_GENES=1 bash scripts/refresh_evidence_pack.sh
+```
+
+Genera/refresca:
+- `metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv` — ~20 k genes + aliases (incrementa el dict gen→UniProt de ~20 k a ~42 k entradas, recuperando símbolos legacy como `HER2`, `PDL1`, `P53`).
+- `metadata/tcga_auxiliary/tcga_coadread_log2fc.tsv` — TCGA COAD+READ tumor vs normal (Xena HiSeqV2, ~20 k genes).
+- `metadata/tcga_auxiliary/tcga_coadread_cox_os.tsv` — Cox HR por gen sobre supervivencia global (TCGA), opcional.
+- `metadata/clinical_layers/cptac_cms_predicted.tsv` — Asignación CMS por firma proteómica simplificada (Guinney 2015). **Substituible** con Vasaikar 2019 Cell, Supp. Table S1 (ver `scripts/predict_cms_from_proteome.py`).
+
+El `config/config.yaml` ya apunta a estas rutas en `external_evidence.*` y `harmonize_public_metadata.cptac.cms_subtype_supplement_tsv`. Si están presentes, el pipeline los integra automáticamente; si no, las secciones correspondientes se omiten con `skipped_no_path` (no se publican plantillas).
+
 Equivalencia con la nomenclatura “01–09” del paquete `Informacion/`: ver [DOCUMENTACION_TESIS.md](DOCUMENTACION_TESIS.md#equivalencia-con-scripts-01_-).
 
 ---
@@ -56,7 +77,17 @@ Equivalencia con la nomenclatura “01–09” del paquete `Informacion/`: ver [
 - [ ] Los **nombres de archivo** coinciden con `config/datasets.yaml` (si usas otros nombres, actualiza el YAML).
 - [ ] Datasets opcionales (CRCDB, farmacoproteómica, metástasis) están marcados como **fase avanzada** y no bloquean el MVP si aún no hay matrices.
 
-### Fase 2 — Metadatos
+### Fase 2 — Metadatos (estadio, etnia, geografía)
+
+Tras `harmonize_public_metadata`, el TSV de CPTAC incluye —cuando el Excel clínico PDC las trae— `stage`, `stage_bin`, `stage_group`, `ethnicity`, `race`, `hispanic_latino_bin`, `country`, `geographic_region_bin` y `enrollment_site`.
+
+- **Estadio:** comparación `cptac_stage_advanced_vs_early` (automática si hay cobertura).
+- **Hispano/latino:** categoría NIH (`hispanic_latino_bin`); comparación opcional `cptac_hispanic_latino_vs_non`. **No equivale** a «paciente colombiano» — ver página generada `clinical_demographics.md`.
+- **Geografía:** `geographic_region_bin` infiere `latin_america` / `united_states` / `other` desde país o sitio; en CPTAC US suele faltar país → muchos `unknown`.
+
+Resumen tabular: `results/clinical/demographics_summary.json` y sitio MkDocs → **Demografía (estadio, etnia, geografía)**.
+
+### Fase 2b — Metadatos (checklist clásico)
 
 - [ ] `metadata/sample_metadata/cptac_metadata.tsv` existe y está completo para el MVP.
 - [ ] `metadata/sample_metadata/pride_merged_metadata.tsv` existe y está completo (cuando uses PRIDE).

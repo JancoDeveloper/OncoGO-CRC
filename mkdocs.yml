@@ -15,14 +15,19 @@ nav:
   - Proyecto Web:
       - Estado: web/index.md
       - Síntesis para tesis: web/thesis_synthesis.md
+      - Interpretación biológica: web/interpretacion_biologica.md
+      - Figuras: web/figuras.md
+      - Glosario: web/glosario.md
       - Datasets: web/datasets.md
       - Cobertura clínica: web/clinical_coverage.md
+      - Demografía (estadio, etnia, geografía): web/clinical_demographics.md
       - Resultados base: web/results_base.md
       - Evidencia externa (TCGA/Cox): web/external_evidence.md
       - Inventario resultados: web/results_inventory.md
       - Resultados estratificados: web/results_stratified.md
       - Estabilidad: web/stability.md
       - Limitaciones: web/limitations.md
+  - Resultados y limitaciones (tesis): RESULTADOS_Y_LIMITACIONES_TESIS.md
   - Tesis (prompt LLM): PROMPT_SINTESIS_TESIS.md
 plugins:
   - search

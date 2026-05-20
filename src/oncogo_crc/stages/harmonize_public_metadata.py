@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 
 from oncogo_crc.settings import Settings
+from oncogo_crc.utils.clinical_demographics import write_demographics_artifacts
 from oncogo_crc.utils.public_metadata_harmonize import (
     harmonize_cptac_colon_pdc,
     harmonize_plasma_dia_pq500,
@@ -86,7 +87,17 @@ def run(settings: Settings) -> None:
                     f"Curar {rel_meta} desde PRIDE SDRF o el artículo (condition: crc|healthy o equivalente)."
                 )
             print(
-                "[harmonize_public_metadata] plasma: se omite harmonización péptido/ratios (solo PXD036594). "
-                f"Accession(es) actual: {sorted(accs_s) or '—'}. "
+                "[harmonize_public_metadata] plasma: harmonizador péptido/ratios sólo aplica a PXD036594 "
+                "(Skyline ratios). "
+                f"Accession(es) declarada(s) en datasets.yaml: {sorted(accs_s) or '—'}. "
                 + tail
             )
+
+    try:
+        demo_path = write_demographics_artifacts(settings)
+        print(
+            f"[harmonize_public_metadata] resumen demografía/clínica -> "
+            f"{settings.relative_to_project(demo_path)}"
+        )
+    except OSError as exc:
+        print(f"[harmonize_public_metadata] resumen demografía omitido: {exc}")

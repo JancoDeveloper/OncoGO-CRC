@@ -1,12 +1,17 @@
 # Proyecto web — OncoGO-CRC
 
-> **Workspace de datos:** `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` apuntan a `/Volumes/JANCODATA/OncoGO-CRC` (el clon conserva `config/`, `src/` y el resto de `docs/`). Trazabilidad de corrida: `results/run_manifest.json`.
+Sitio generado automáticamente por `oncogo-crc run --stage publish_results` a partir de los TSV bajo `results/`. Las páginas se reescriben en cada corrida; los hashes y `run_id` para trazabilidad están en `results/run_manifest.json`.
 
-Navegación sugerida para **revisión de tesis**:
+## Lectura recomendada (orden para tesis)
 
-1. [**Síntesis para tesis**](thesis_synthesis.md) — qué demuestra el pipeline y qué redactar aparte.
-2. [**Resultados base**](results_base.md) — proteínas, **ORA**, **GSEA**, firma CPTAC∩PRIDE, ML, red, traslación, **export bundle**.
-3. [**Inventario**](results_inventory.md) — lista de archivos generados.
-4. [Datasets](datasets.md) · [Cobertura clínica](clinical_coverage.md) · [Evidencia externa](external_evidence.md) · [Estabilidad](stability.md) · [Limitaciones](limitations.md)
+1. [**Síntesis para tesis**](thesis_synthesis.md) — qué demuestra el pipeline y qué redactar aparte (narrativa).
+2. [**Interpretación biológica**](interpretacion_biologica.md) — módulos funcionales detectados por comparación (OXPHOS, mitorribosoma, proteasoma, ECM/CMS4, fase aguda…) con contexto CRC.
+3. [**Figuras**](figuras.md) — volcanos etiquetados, ORA/GSEA top, scatter CPTAC↔PRIDE, PCA, heatmaps, AUC nested CV y transferencia.
+4. [**Resultados base**](results_base.md) — tablas cuantitativas: proteínas, ORA, GSEA, firma CPTAC∩PRIDE, ML, red, traslación, export bundle.
+5. [**Glosario**](glosario.md) — definiciones operativas: padj/FDR, NES, leading edge, nested CV, transferencia, calibración, TPS, etc.
 
-Prompt para redacción interpretativa con LLM: [`docs/PROMPT_SINTESIS_TESIS.md`](../PROMPT_SINTESIS_TESIS.md).
+## Referencia secundaria
+
+- [Datasets](datasets.md) · [Cobertura clínica](clinical_coverage.md) · [Evidencia externa](external_evidence.md) · [Estabilidad](stability.md) · [Inventario](results_inventory.md) · [Limitaciones](limitations.md)
+- Documento de limitaciones honestas y plan de validación: [`docs/RESULTADOS_Y_LIMITACIONES_TESIS.md`](../RESULTADOS_Y_LIMITACIONES_TESIS.md)
+- Prompt para redacción interpretativa con LLM: [`docs/PROMPT_SINTESIS_TESIS.md`](../PROMPT_SINTESIS_TESIS.md)

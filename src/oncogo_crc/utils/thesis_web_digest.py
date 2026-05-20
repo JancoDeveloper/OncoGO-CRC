@@ -684,8 +684,30 @@ def build_results_inventory_markdown(settings: Settings) -> str:
     return "".join(lines)
 
 
+def _external_evidence_status(summary: dict) -> dict[str, bool]:
+    """Devuelve flags: ¿debe renderizarse tcga / cox como resultado real?"""
+    def _ok(block: dict | None) -> bool:
+        if not isinstance(block, dict):
+            return False
+        st = str(block.get("status", "")).lower()
+        if st in ("skipped_no_path", "file_not_found", "missing_log2fc_column",
+                  "missing_cox_hr_or_p_columns", "insufficient_overlap_or_na"):
+            return False
+        return bool(block.get("n_matched_genes") or block.get("n_matched"))
+
+    return {
+        "tcga_ok": _ok(summary.get("tcga_rnaseq")),
+        "cox_ok": _ok(summary.get("survival_cox")),
+    }
+
+
 def build_external_evidence_markdown(settings: Settings) -> str:
-    """Documenta matriz de evidencia, concordancia RNA-seq y Cox opcional."""
+    """Documenta matriz de evidencia, concordancia RNA-seq y Cox opcional.
+
+    Solo incrusta extractos cuando ``external_evidence_summary.json`` reporta una unión real;
+    si la etapa estuvo ``skipped_no_path`` / sin archivo / sin solapamiento, declara explícitamente
+    que no hay evidencia externa cargada (evita publicar plantillas o TSVs antiguos).
+    """
     res = settings.resolve(settings.config["paths"]["results_dir"])
     ex = res / "external_evidence"
     parts: list[str] = [
@@ -702,10 +724,15 @@ def build_external_evidence_markdown(settings: Settings) -> str:
         "3. **`survival_gene_cox_merged.tsv`** (si config apunta a `gene_symbol`, `cox_hr`, `cox_p`): unión con el diferencial.\n",
         "4. **`external_evidence_summary.json`** + **`external_evidence_summary.tsv`**: métricas agregadas (Spearman signo, n matched, …).\n\n",
     ]
-    summ = ex / "external_evidence_summary.json"
-    if summ.exists():
+    summ_path = ex / "external_evidence_summary.json"
+    summary: dict = {}
+    if summ_path.exists():
+        try:
+            summary = json.loads(summ_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            summary = {}
         parts.append("## Resumen de la última corrida\n\n")
-        txt = summ.read_text(encoding="utf-8")
+        txt = summ_path.read_text(encoding="utf-8")
         if len(txt) > 12000:
             parts.append(f"```json\n{txt[:12000]}\n…\n```\n\n")
         else:
@@ -715,18 +742,36 @@ def build_external_evidence_markdown(settings: Settings) -> str:
             "_Sin salidas todavía._ Activa `external_evidence.enabled: true` en `config.yaml` y ejecuta el pipeline "
             "después de `differential` y `clinical`.\n\n"
         )
+
+    flags = _external_evidence_status(summary)
     em = ex / "evidence_matrix.tsv"
     if em.exists():
-        parts.append("## Extracto — matriz de evidencia\n\n")
+        parts.append("## Extracto — matriz de evidencia (capas YAML internas)\n\n")
         parts.append(_df_to_md_table(read_tsv(em).head(12), max_rows=12))
+
     tc = ex / "tcga_rnaseq_concordance.tsv"
-    if tc.exists():
+    if flags["tcga_ok"] and tc.exists():
         parts.append("\n## Extracto — concordancia proteómica vs RNA-seq de referencia\n\n")
         parts.append(_df_to_md_table(read_tsv(tc).head(12), max_rows=12))
+    else:
+        parts.append(
+            "\n## Concordancia RNA-seq externa (TCGA u otro)\n\n"
+            "_No cargada en esta corrida._ Para activarla, fija `external_evidence.tcga_rnaseq_log2fc_tsv` "
+            "(formato: columnas `gene_symbol`, `log2fc_rnaseq` o alias). "
+            "Mientras tanto, **no se publican extractos**: cualquier `tcga_rnaseq_concordance.tsv` previo "
+            "se borra al inicio de la etapa para no arrastrar plantillas.\n\n"
+        )
+
     sv = ex / "survival_gene_cox_merged.tsv"
-    if sv.exists():
+    if flags["cox_ok"] and sv.exists():
         parts.append("\n## Extracto — Cox externo fusionado\n\n")
         parts.append(_df_to_md_table(read_tsv(sv).head(12), max_rows=12))
+    else:
+        parts.append(
+            "\n## Supervivencia externa (Cox por gen)\n\n"
+            "_No cargada en esta corrida._ Fija `external_evidence.survival_gene_cox_tsv` con columnas "
+            "`gene_symbol`, `cox_hr`, `cox_p` (export GEPIA / cBioPortal). Sin TSV real, no se renderiza tabla.\n\n"
+        )
     parts.append(
         "\n---\n\n**Cómo preparar las tablas de referencia:** coloca TSV bajo `metadata/tcga_auxiliary/` "
         "(o ruta absoluta) y fija `external_evidence.tcga_rnaseq_log2fc_tsv` / `survival_gene_cox_tsv`. "
@@ -741,12 +786,26 @@ def build_web_index_markdown(settings: Settings) -> str:
     return (
         "# Proyecto web — OncoGO-CRC\n\n"
         f"{_workspace_doc_note(settings)}"
-        "Navegación sugerida para **revisión de tesis**:\n\n"
-        "1. [**Síntesis para tesis**](thesis_synthesis.md) — qué demuestra el pipeline y qué redactar aparte.\n"
-        "2. [**Resultados base**](results_base.md) — proteínas, **ORA**, **GSEA**, firma CPTAC∩PRIDE, ML, red, traslación, **export bundle**.\n"
-        "3. [**Inventario**](results_inventory.md) — lista de archivos generados.\n"
-        "4. [Datasets](datasets.md) · [Cobertura clínica](clinical_coverage.md) · [Evidencia externa](external_evidence.md) · "
-        "[Estabilidad](stability.md) · [Limitaciones](limitations.md)\n\n"
-        "Prompt para redacción interpretativa con LLM: "
-        "[`docs/PROMPT_SINTESIS_TESIS.md`](../PROMPT_SINTESIS_TESIS.md).\n"
+        "Sitio generado automáticamente por `oncogo-crc run --stage publish_results` a partir de los "
+        "TSV bajo `results/`. Las páginas se reescriben en cada corrida; los hashes y `run_id` para "
+        "trazabilidad están en `results/run_manifest.json`.\n\n"
+        "## Lectura recomendada (orden para tesis)\n\n"
+        "1. [**Síntesis para tesis**](thesis_synthesis.md) — qué demuestra el pipeline y qué redactar aparte (narrativa).\n"
+        "2. [**Interpretación biológica**](interpretacion_biologica.md) — módulos funcionales detectados "
+        "por comparación (OXPHOS, mitorribosoma, proteasoma, ECM/CMS4, fase aguda…) con contexto CRC.\n"
+        "3. [**Figuras**](figuras.md) — volcanos etiquetados, ORA/GSEA top, scatter CPTAC↔PRIDE, "
+        "PCA, heatmaps, AUC nested CV y transferencia.\n"
+        "4. [**Resultados base**](results_base.md) — tablas cuantitativas: proteínas, ORA, GSEA, "
+        "firma CPTAC∩PRIDE, ML, red, traslación, export bundle.\n"
+        "5. [**Glosario**](glosario.md) — definiciones operativas: padj/FDR, NES, leading edge, "
+        "nested CV, transferencia, calibración, TPS, etc.\n\n"
+        "## Referencia secundaria\n\n"
+        "- [Datasets](datasets.md) · [Cobertura clínica](clinical_coverage.md) · "
+        "[Demografía (estadio, etnia)](clinical_demographics.md) · "
+        "[Evidencia externa](external_evidence.md) · [Estabilidad](stability.md) · "
+        "[Inventario](results_inventory.md) · [Limitaciones](limitations.md)\n"
+        "- Documento de limitaciones honestas y plan de validación: "
+        "[`docs/RESULTADOS_Y_LIMITACIONES_TESIS.md`](../RESULTADOS_Y_LIMITACIONES_TESIS.md)\n"
+        "- Prompt para redacción interpretativa con LLM: "
+        "[`docs/PROMPT_SINTESIS_TESIS.md`](../PROMPT_SINTESIS_TESIS.md)\n"
     )

@@ -64,6 +64,22 @@ Los datasets son **entradas lógicas** definidas en [`config/datasets.yaml`](../
 
 **Gene Ontology offline** (`metadata/gene_ontology/go_gene_long.tsv`): anotación gen→GO para **ORA** y **GSEA** sin API obligatoria.
 
+Para regenerar la anotación humana real desde el **GOA del Gene Ontology Consortium** (`goa_human.gaf.gz` oficial, ~14 MiB, ~334k anotaciones, ~38 800 genes únicos, ~17 900 términos):
+
+```bash
+python scripts/fetch_go_human_annotation.py --out metadata/gene_ontology/go_gene_long.tsv --include-iea
+```
+
+Sin `--include-iea` se obtiene un subconjunto de evidencia manualmente curada (~80k filas). Esta es la fuente correcta para análisis publicables; el `go_gene_long.tsv` con solo un puñado de genes (modo demo) producirá `n_terms_post_filter = 0` y GSEA omitirá todas las comparaciones.
+
+**Auditoría cuantitativa de GO/GSEA por comparación.** Cada comparación deja un audit JSON en `results/go/<comp>_go_input_audit.json` y `results/gsea/<comp>_gsea_input_<metric>.json` con campos:
+
+- `n_ranked_genes_total`, `n_ranked_genes_with_go` (o `_with_go_annotation`), `n_unique_go_terms_pre_filter`, `n_unique_go_terms_post_filter_min_size`,
+- `sample_universe_genes`, `sample_universe_genes_in_go`, `top_universe_genes_missing_from_go`, `top_missing_genes_from_go`,
+- `min_size` / `max_size` aplicados, `contains_demo_gene_ids`.
+
+Si tras correr el pipeline `n_ranked_genes_with_go` es bajo (< 30% del universo), revisar el `go_annotation_path` registrado y regenerar GOA.
+
 ---
 
 ## 3. Orden real de etapas (`oncogo-crc run --stage all`)
@@ -92,6 +108,12 @@ La lista oficial es `STAGE_ORDER` en [`src/oncogo_crc/pipeline/registry.py`](../
 | 18 | **`report`** | Resumen ejecutivo Markdown en `reports/executive_summary/`. |
 | 19 | **`stability`** | Comparación núcleo vs estratos opcionales si hay salidas → `results/stability/`. |
 | 20 | **`publish_results`** | Regenera `reports/web/*.md` y espejo bajo `docs/web/` para MkDocs. |
+
+### Errores frecuentes en `harmonize_public_metadata`
+
+- **CPTAC: `ValueError` sobre columnas TMT / `… Log Ratio`:** la matriz en `data/raw/cptac/cptac_crc_matrix.tsv` debe tener **una columna por canal TMT** con sufijos ` … Log Ratio` o ` … Unshared Log Ratio` (nombres de muestra PDC). Si el archivo solo tiene `protein_id` (p. ej. stub tras un `--demo` o copia incompleta), no hay muestras que cruzar con el Excel clínico: sustituye el TSV por la descarga completa desde PDC o configura `download_real.matrix_url` con el enlace firmado correcto.
+- **PRIDE PXD034575: matriz con `protein_id` pero sin `LFQ intensity CRC…`:** el harmonizador acepta también matrices **ya anchas** con columnas `PRIDE-T-##` (tumor) y `PRIDE-N-##` (normal), típicas del post-proceso interno o de matrices curadas. Si no coincide ningún patrón, borra `data/raw/pride/pride_crc_matrix.tsv` y vuelve a ejecutar `download_real` para obtener de nuevo el `proteinGroups.txt` de MaxQuant.
+- **Edad en meses en el Excel PDC:** si la única columna numérica parecida a edad es *Age in Months…*, se ignora para `age` en años y se intenta `days_to_birth` u otras columnas; si no hay ninguna, `age_bin` quedará vacío (EOCRC omitido).
 
 ---
 

@@ -200,6 +200,8 @@ def run(settings: Settings) -> None:
             write_tsv(rnk.rename(columns={"gene": "gene_symbol", "score": "rank_metric"}), rank_path)
             demo_ids = bool(rnk["gene"].astype(str).str.match(r"^GENE\d{3,}$", na=False).any())
             sample_genes = rnk["gene"].astype(str).head(15).tolist()
+            ranked_in_go = sorted(set(rnk["gene"].astype(str).str.upper()) & all_term_genes)
+            ranked_missing_go = sorted(set(rnk["gene"].astype(str).str.upper()) - all_term_genes)
             audit = {
                 "comparison_id": comp_key,
                 "ranking_metric": ranking_metric,
@@ -209,10 +211,14 @@ def run(settings: Settings) -> None:
                 "matrix_log2norm": str(settings.relative_to_project(mat_path)),
                 "go_annotation_path": str(settings.relative_to_project(go_path)),
                 "n_ranked_genes": int(len(rnk)),
+                "n_ranked_genes_total": int(len(rnk)),
+                "n_ranked_genes_with_go": int(len(ranked_in_go)),
                 "n_genes_universe_from_matrix": len(universe),
                 "n_genes_universe_intersect_go_annotation": len(genes_annotated_in_universe),
                 "n_genes_in_go": len(genes_annotated_in_universe),
+                "n_terms_pre_filter": n_terms_before,
                 "n_terms_before_filter": n_terms_before,
+                "n_terms_post_filter": n_terms_after,
                 "n_terms_after_filter": n_terms_after,
                 "n_gene_sets_passing_size_filter": len(gsets),
                 "min_size": min_size,
@@ -220,6 +226,9 @@ def run(settings: Settings) -> None:
                 "demo_like_go_row_fraction": round(demo_frac, 4),
                 "contains_demo_gene_ids": demo_ids,
                 "sample_ranked_genes": sample_genes,
+                "sample_ranked_genes_with_go": ranked_in_go[:20],
+                "top_missing_genes_from_go": ranked_missing_go[:20],
+                "n_ranked_genes_missing_from_go": int(len(ranked_missing_go)),
             }
             (out_dir / f"{comp_key}_gsea_input_{safe_tag}.json").write_text(
                 json.dumps(audit, indent=2), encoding="utf-8"

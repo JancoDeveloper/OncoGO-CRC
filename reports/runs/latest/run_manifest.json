@@ -865,5 +865,113 @@
       "n_intersection": 0,
       "jaccard": 0.0
     }
-  ]
+  ],
+  "pipeline_run": {
+    "run_id": "20260520T013713Z_1a3fd5497f",
+    "started_at": "2026-05-20T01:37:13Z",
+    "finished_at": null,
+    "demo": true,
+    "stage_order": [
+      "download_real",
+      "download",
+      "harmonize_public_metadata",
+      "validate_inputs",
+      "version_inputs",
+      "harmonize",
+      "qc",
+      "differential",
+      "cohort_overlap",
+      "gsea",
+      "go",
+      "kegg",
+      "network",
+      "ml",
+      "clinical",
+      "external_evidence",
+      "export_bundle",
+      "report",
+      "stability",
+      "publish_results"
+    ],
+    "stages": {
+      "gsea": {
+        "executed": true,
+        "comparisons": {
+          "cptac_tumor_vs_normal": {
+            "status": "ok",
+            "n_terms_before_filter": 14,
+            "n_terms_after_filter": 14,
+            "n_genes_universe": 120,
+            "n_genes_in_go_universe": 120,
+            "outputs": [
+              "results/gsea/cptac_tumor_vs_normal_gsea_go.tsv"
+            ],
+            "sha256_main_output": "9c469338a4372aeb9a2f99a36293e814a4b681d8615c1fe3424c35e492af2e72"
+          },
+          "plasma_crc_vs_healthy": {
+            "status": "skipped_no_sets",
+            "n_terms_before_filter": 14,
+            "n_terms_after_filter": 0,
+            "n_genes_universe": 40,
+            "n_genes_in_go_universe": 40
+          },
+          "pride_validation_tumor_vs_normal": {
+            "status": "ok",
+            "n_terms_before_filter": 14,
+            "n_terms_after_filter": 14,
+            "n_genes_universe": 120,
+            "n_genes_in_go_universe": 120,
+            "outputs": [
+              "results/gsea/pride_validation_tumor_vs_normal_gsea_go.tsv"
+            ],
+            "sha256_main_output": "a40f665264a0c03199d3d517f389e8e84e2b56e811ea2b03f2e036aab3941050"
+          },
+          "cptac_stage_advanced_vs_early": {
+            "status": "ok",
+            "n_terms_before_filter": 14,
+            "n_terms_after_filter": 14,
+            "n_genes_universe": 120,
+            "n_genes_in_go_universe": 120,
+            "outputs": [
+              "results/gsea/cptac_stage_advanced_vs_early_gsea_go.tsv"
+            ],
+            "sha256_main_output": "9c469338a4372aeb9a2f99a36293e814a4b681d8615c1fe3424c35e492af2e72"
+          },
+          "cptac_msi_vs_mss": {
+            "status": "skipped",
+            "reason": "missing_differential"
+          },
+          "cptac_primary_vs_metastatic": {
+            "status": "skipped",
+            "reason": "missing_differential"
+          },
+          "cptac_eocrc_vs_lorc": {
+            "status": "skipped",
+            "reason": "missing_differential"
+          },
+          "cptac_cms4_vs_rest": {
+            "status": "skipped",
+            "reason": "missing_differential"
+          },
+          "plasma_responder_vs_nonresponder": {
+            "status": "skipped",
+            "reason": "missing_differential"
+          }
+        }
+      },
+      "go": {
+        "executed": true,
+        "comparisons_written": 4
+      },
+      "ml_transfer": {
+        "executed": true,
+        "n_genes_aligned": 120,
+        "n_genes_train_pre_align": 120,
+        "n_genes_test_pre_align": 120,
+        "train_dataset": "cptac_colorectal",
+        "test_dataset": "pride_crc_meta"
+      }
+    },
+    "notes": []
+  }
 }

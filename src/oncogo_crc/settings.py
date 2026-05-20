@@ -46,21 +46,36 @@ def _coalesce_data_workspace(
 
 
 def _copy_metadata_file_if_needed(src: Path, dst: Path, *, refresh_if_repo_newer: bool) -> str:
-    """Copia un archivo de metadata al workspace. Devuelve ``new``, ``updated`` o vacío."""
+    """Copia un archivo de metadata al workspace. Devuelve ``new``, ``updated`` o vacío.
+
+    Si el destino no es escribible (volumen externo no montado, sin permisos), retorna sin error.
+    """
     if not src.is_file():
         return ""
-    dst.parent.mkdir(parents=True, exist_ok=True)
-    if not dst.exists():
-        shutil.copy2(src, dst)
-        return "new"
-    if refresh_if_repo_newer:
-        try:
+    try:
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        if not dst.exists():
+            shutil.copy2(src, dst)
+            return "new"
+        if refresh_if_repo_newer:
             if src.stat().st_mtime > dst.stat().st_mtime:
                 shutil.copy2(src, dst)
                 return "updated"
-        except OSError:
-            return ""
+    except (OSError, PermissionError):
+        return ""
     return ""
+
+
+def _workspace_writable(workspace: Path) -> bool:
+    """¿Podemos escribir en el workspace ahora mismo? (volumen montado y con permisos)."""
+    try:
+        workspace.mkdir(parents=True, exist_ok=True)
+        probe = workspace / ".oncogo_write_probe"
+        probe.write_text("ok", encoding="utf-8")
+        probe.unlink(missing_ok=True)
+        return True
+    except (OSError, PermissionError):
+        return False
 
 
 def _seed_workspace_metadata_from_repo(repo_root: Path, workspace: Path) -> None:
@@ -203,10 +218,27 @@ def load_settings(
     demo_flag = bool(demo or cfg.get("demo", {}).get("enabled", False))
     yaml_paths = cfg.get("paths", {}) if isinstance(cfg.get("paths"), dict) else {}
     dw = _coalesce_data_workspace(base, yaml_paths, cli_value=data_workspace)
-    if dw is not None:
-        _seed_workspace_metadata_from_repo(base, dw)
+    if dw is not None and demo_flag:
+        # Salvaguarda crítica: el modo demo escribe matrices sintéticas (GENE001…) y sobrescribiría
+        # resultados reales acumulados en el workspace. Forzar fallback al repo evita pisar el sitio
+        # publicado y los TSV de corridas reales.
         print(
-            f"[settings] data_workspace={dw} — descargas y artefactos pesados bajo "
-            "`data/`, `results/`, `reports/`, `metadata/`, `docs/web` (config y código siguen en el repo)."
+            f"[settings] data_workspace={dw} ignorado porque --demo está activo. "
+            "El modo demo siempre usa rutas relativas al repositorio para no contaminar el workspace "
+            "con artefactos sintéticos."
         )
+        dw = None
+    if dw is not None:
+        if _workspace_writable(dw):
+            _seed_workspace_metadata_from_repo(base, dw)
+            print(
+                f"[settings] data_workspace={dw} — descargas y artefactos pesados bajo "
+                "`data/`, `results/`, `reports/`, `metadata/`, `docs/web` (config y código siguen en el repo)."
+            )
+        else:
+            print(
+                f"[settings] data_workspace={dw} configurado pero NO accesible (volumen sin montar o sin permisos). "
+                "Fallback: rutas relativas al repositorio. Conecta el volumen o ajusta `paths.data_workspace` para usarlo."
+            )
+            dw = None
     return Settings(root=base, config=cfg, datasets=dsets, comparisons=comps, demo=demo_flag, data_workspace=dw)

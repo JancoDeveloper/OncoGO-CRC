@@ -40,11 +40,16 @@ def normalized_matrix_to_samples_x_genes(
     if utg:
 
         def _row_gene(r: pd.Series) -> str:
+            # Si gene_symbol viene "tal cual" pero es un UniProt accession (caso PRIDE post-harmonize
+            # cuando el mapa no tenía protein_id=UniProt), traducir a símbolo HGNC primero.
             if "gene_symbol" in df.columns:
                 g = r.get("gene_symbol")
                 if g is not None and pd.notna(g):
                     s = str(g).strip().upper()
                     if s and s != "NAN":
+                        ub_g = uniprot_base(s)
+                        if ub_g and ub_g in utg:
+                            return utg[ub_g]
                         return s
             pid_raw = str(r.get("protein_id", ""))
             pid = pid_raw.strip().upper()
@@ -561,12 +566,13 @@ def train_prioritization_models(
     }
 
     coefs = pipe_sparse.named_steps["model"].coef_.ravel()
-    imp = pd.Series(clf.feature_importances_, index=feature_names, name="rf_importance")
-    coef = pd.Series(np.abs(coefs), index=feature_names, name="l1_abs_coef")
-    out = pd.concat([imp, coef], axis=1).fillna(0.0)
+    score_series: list[pd.Series] = [
+        pd.Series(clf.feature_importances_, index=feature_names, name="rf_importance"),
+        pd.Series(np.abs(coefs), index=feature_names, name="l1_abs_coef"),
+    ]
     if include_elastic_net:
         en_coef = np.abs(pipe_en.named_steps["model"].coef_.ravel())
-        out["elasticnet_abs_coef"] = en_coef
+        score_series.append(pd.Series(en_coef, index=feature_names, name="elasticnet_abs_coef"))
     if use_shap:
         try:
             import shap  # type: ignore[import-untyped]
@@ -588,29 +594,31 @@ def train_prioritization_models(
         if shv.ndim == 3:
             shv = shv[:, :, 1]
         mean_abs = np.abs(shv).mean(axis=0)
-        out["shap_mean_abs"] = mean_abs
+        score_series.append(pd.Series(mean_abs, index=feature_names, name="shap_mean_abs"))
+    out = pd.concat(score_series, axis=1).fillna(0.0)
     if "shap_mean_abs" in out.columns:
         if include_elastic_net and "elasticnet_abs_coef" in out.columns:
-            out["combined_score"] = (
+            combined = (
                 out["rf_importance"].rank(pct=True) * 0.30
                 + out["l1_abs_coef"].rank(pct=True) * 0.15
                 + out["elasticnet_abs_coef"].rank(pct=True) * 0.15
                 + out["shap_mean_abs"].rank(pct=True) * 0.40
             )
         else:
-            out["combined_score"] = (
+            combined = (
                 out["rf_importance"].rank(pct=True) * 0.40
                 + out["l1_abs_coef"].rank(pct=True) * 0.30
                 + out["shap_mean_abs"].rank(pct=True) * 0.30
             )
     elif include_elastic_net and "elasticnet_abs_coef" in out.columns:
-        out["combined_score"] = (
+        combined = (
             out["rf_importance"].rank(pct=True) * 0.45
             + out["l1_abs_coef"].rank(pct=True) * 0.30
             + out["elasticnet_abs_coef"].rank(pct=True) * 0.25
         )
     else:
-        out["combined_score"] = (
+        combined = (
             out["rf_importance"].rank(pct=True) * 0.55 + out["l1_abs_coef"].rank(pct=True) * 0.45
         )
+    out = out.assign(combined_score=combined)
     return metrics, out.sort_values("combined_score", ascending=False)

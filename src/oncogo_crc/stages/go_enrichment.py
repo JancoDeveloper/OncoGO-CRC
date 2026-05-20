@@ -96,6 +96,11 @@ def run(settings: Settings) -> None:
 
         min_t = max(3, int(go_cfg.get("min_genes_per_term", 5)))
         n_terms_ok = sum(1 for _t, gs in term2g.items() if len(gs & universe) >= min_t)
+        ranked_genes_total = list(universe)
+        sample_universe = sorted(ranked_genes_total)[:20]
+        sample_universe_in_go = sorted(genes_annotated_in_universe)[:20]
+        missing_from_go = sorted(universe - all_term_genes)
+        top_missing = missing_from_go[:20]
         audit = {
             "comparison_id": comp_key,
             "diff_path": str(settings.relative_to_project(diff_path)),
@@ -104,9 +109,18 @@ def run(settings: Settings) -> None:
             "go_annotation_path": str(settings.relative_to_project(go_path)),
             "n_genes_universe_from_matrix": len(universe),
             "n_genes_universe_intersect_go_annotation": len(genes_annotated_in_universe),
+            "n_ranked_genes_total": int(len(universe)),
+            "n_ranked_genes_with_go_annotation": len(genes_annotated_in_universe),
+            "n_unique_go_terms_pre_filter": int(len(term2g)),
+            "n_unique_go_terms_post_filter_min_size": int(n_terms_ok),
+            "go_min_term_size": int(min_t),
             "n_genes_foreground_ora": len(sig_genes),
             "n_go_terms_passing_size_filter": int(n_terms_ok),
             "demo_like_go_row_fraction": round(demo_frac, 4),
+            "sample_universe_genes": sample_universe,
+            "sample_universe_genes_in_go": sample_universe_in_go,
+            "top_universe_genes_missing_from_go": top_missing,
+            "n_universe_genes_missing_from_go": int(len(missing_from_go)),
         }
         (out_dir / f"{comp_key}_go_input_audit.json").write_text(json.dumps(audit, indent=2), encoding="utf-8")
         print(f"[go] {comp_key} -> results/go/{comp_key}_go.tsv")

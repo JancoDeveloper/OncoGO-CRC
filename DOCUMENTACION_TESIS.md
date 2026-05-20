@@ -42,7 +42,9 @@ flowchart LR
 
 Cada etapa escribe artefactos versionables o ignorados por Git según `.gitignore` (los datos masivos y resultados intermedios no deben saturar el repositorio; el **modo `--demo`** permite validar la lógica sin archivos externos).
 
-**Workspace externo (`paths.data_workspace` / `ONCOGO_CRC_DATA_WORKSPACE` / `--data-workspace`):** las rutas `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` pueden resolverse en un segundo volumen. Al iniciar la CLI se sincronizan mapas y GO desde el clon hacia ese `metadata/` cuando el repo es más reciente; las descargas (`download_real`) y el resto del pipeline escriben allí. Detalle operativo: [GUIA_CONFIGURACION.md](GUIA_CONFIGURACION.md#data-workspace) y [docs/proceso_datos_y_pipeline.md](docs/proceso_datos_y_pipeline.md).
+**Workspace externo (`paths.data_workspace` / `ONCOGO_CRC_DATA_WORKSPACE` / `--data-workspace`):** las rutas `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` pueden resolverse en un segundo volumen. Al iniciar la CLI se sincronizan mapas y GO desde el clon hacia ese `metadata/` cuando el repo es más reciente; las descargas (`download_real`) y el resto del pipeline escriben allí. Si el volumen no está montado en una corrida concreta, la CLI **cae limpiamente a rutas relativas al repo** con un aviso (sin romper el pipeline). Detalle operativo: [GUIA_CONFIGURACION.md](GUIA_CONFIGURACION.md#data-workspace) y [docs/proceso_datos_y_pipeline.md](docs/proceso_datos_y_pipeline.md).
+
+**Resultados actuales, limitaciones y plan de validación final:** consultar [`docs/RESULTADOS_Y_LIMITACIONES_TESIS.md`](docs/RESULTADOS_Y_LIMITACIONES_TESIS.md) — incluye lo que ya se puede afirmar con `run_id` reproducible, lo que queda como trabajo en progreso (GO/GSEA significancia, transferencia ML CPTAC→PRIDE, evidencia externa TCGA/Cox) y cómo redactar cada bloque sin sobre-interpretar.
 
 ## 3. Descripción de etapas (mapeo tesis ↔ código)
 

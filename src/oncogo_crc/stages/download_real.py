@@ -4,9 +4,11 @@ import hashlib
 import json
 import os
 import re
+import socket
 import time
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 from pathlib import Path
 from typing import Any
 
@@ -318,6 +320,20 @@ def _normalize_table_if_needed(out_path: Path) -> str:
     return "already_tsv_like"
 
 
+def _fetch_url_bytes(url: str, headers: dict[str, str] | None, timeout_s: int) -> bytes:
+    """Lectura completa con timeout fuerte; usado dentro de un thread vigilado."""
+    req = urllib.request.Request(url=url, headers=headers or {})
+    old_default = socket.getdefaulttimeout()
+    # Para FTP, urllib NO siempre pasa el timeout al socket de control; default global asegura
+    # que cualquier read/recv pendiente respete el wall-clock.
+    socket.setdefaulttimeout(timeout_s)
+    try:
+        with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+            return resp.read()
+    finally:
+        socket.setdefaulttimeout(old_default)
+
+
 def _download_with_retries(
     *,
     url: str,
@@ -331,12 +347,21 @@ def _download_with_retries(
         return True, "already_exists"
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    req = urllib.request.Request(url=url, headers=headers or {})
+    # Wall-clock máximo por intento: 2× timeout efectivo del socket (cubre FTP control hangs).
+    wallclock_s = max(int(timeout_s) * 2, int(timeout_s) + 30)
     last_err = ""
     for attempt in range(1, retries + 1):
         try:
-            with urllib.request.urlopen(req, timeout=timeout_s) as resp:
-                payload = resp.read()
+            with ThreadPoolExecutor(max_workers=1, thread_name_prefix="oncogo-dl") as ex:
+                fut = ex.submit(_fetch_url_bytes, url, headers, timeout_s)
+                try:
+                    payload = fut.result(timeout=wallclock_s)
+                except FuturesTimeoutError:
+                    fut.cancel()
+                    last_err = f"wallclock_timeout_{wallclock_s}s"
+                    if attempt < retries:
+                        time.sleep(min(2**attempt, 8))
+                    continue
             out_path.write_bytes(payload)
             norm = _normalize_table_if_needed(out_path)
             return True, f"downloaded_attempt_{attempt};{norm}"
@@ -437,6 +462,9 @@ def run(settings: Settings) -> None:
     default_timeout = int(dl_cfg.get("timeout_s", 60))
     default_retries = int(dl_cfg.get("retries", 3))
     default_overwrite = bool(dl_cfg.get("overwrite", False))
+    # Wall-clock por dataset (override por dataset.download_real.dataset_wallclock_s);
+    # cubre todo el bloque matrix+metadata+provider para evitar que un solo accession bloquee la corrida.
+    default_dataset_wallclock = int(dl_cfg.get("dataset_wallclock_s", 900))
 
     rows: list[dict[str, Any]] = []
     summary: dict[str, Any] = {"datasets": {}}
@@ -558,6 +586,7 @@ def run(settings: Settings) -> None:
                 row["matrix_status"] = "error_invalid_url"
                 row["matrix_detail"] = "url_not_useful_for_data"
             else:
+                print(f"[download_real] {key}: matrix GET {url}")
                 ok, status = _download_with_retries(
                     url=url,
                     out_path=m_path,
@@ -594,6 +623,7 @@ def run(settings: Settings) -> None:
                 row["metadata_status"] = "error_invalid_url"
                 row["metadata_detail"] = "url_not_useful_for_data"
             else:
+                print(f"[download_real] {key}: metadata GET {url}")
                 ok, status = _download_with_retries(
                     url=url,
                     out_path=md_path,

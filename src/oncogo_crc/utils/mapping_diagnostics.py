@@ -38,13 +38,36 @@ def mapping_file_stats(mapping: pd.DataFrame) -> dict[str, int | float]:
 
 
 def harmonized_matrix_stats(harmonized: pd.DataFrame) -> dict[str, int | float]:
-    """Cobertura de columnas de ID en una matriz ya harmonizada (interim)."""
+    """Cobertura de columnas de ID en una matriz ya harmonizada (interim).
+
+    Métricas:
+    - ``n_proteins_harmonized``: filas totales tras harmonize.
+    - ``n_nonempty_gene_symbol_harmonized``: filas con ``gene_symbol`` no vacío/NaN.
+    - ``n_resolved_gene_symbol_harmonized``: filas con ``gene_symbol`` **distinto** del ``protein_id``
+      (es decir, donde el merge con el mapa aportó información nueva). Mide cuán útil fue el mapa.
+    - ``n_uniprot_like_gene_symbol_harmonized``: filas donde el ``gene_symbol`` parece un accession UniProt
+      (heurística de longitud/forma) → indica filas que no se resolvieron a HGNC (fallback a UniProt).
+    - ``n_nonempty_uniprot_harmonized``: filas con columna ``uniprot_accession`` con base resolvable.
+    """
+    from oncogo_crc.utils.ids import _is_uniprot_accession
+
     out: dict[str, int | float] = {"n_proteins_harmonized": int(len(harmonized))}
     if "gene_symbol" in harmonized.columns:
         gs = harmonized["gene_symbol"].astype(str).str.strip()
-        out["n_nonempty_gene_symbol_harmonized"] = int(((gs != "") & (gs.str.upper() != "NAN")).sum())
+        nonempty = (gs != "") & (gs.str.upper() != "NAN")
+        out["n_nonempty_gene_symbol_harmonized"] = int(nonempty.sum())
+        if "protein_id" in harmonized.columns:
+            pid = harmonized["protein_id"].astype(str).str.strip()
+            out["n_resolved_gene_symbol_harmonized"] = int((nonempty & (gs != pid)).sum())
+        else:
+            out["n_resolved_gene_symbol_harmonized"] = int(nonempty.sum())
+        out["n_uniprot_like_gene_symbol_harmonized"] = int(
+            (nonempty & gs.map(_is_uniprot_accession)).sum()
+        )
     else:
         out["n_nonempty_gene_symbol_harmonized"] = 0
+        out["n_resolved_gene_symbol_harmonized"] = 0
+        out["n_uniprot_like_gene_symbol_harmonized"] = 0
     if "uniprot_accession" in harmonized.columns:
         ub = harmonized["uniprot_accession"].map(lambda x: uniprot_base(str(x)))
         out["n_nonempty_uniprot_harmonized"] = int(ub.notna().sum())

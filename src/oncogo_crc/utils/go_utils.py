@@ -9,7 +9,8 @@ from statsmodels.stats.multitest import multipletests
 
 
 def load_go_long(path) -> pd.DataFrame:
-    return pd.read_csv(path, sep="\t")
+    df = pd.read_csv(path, sep="\t")
+    return _normalize_go_long_symbols(df)
 
 
 def demo_like_go_fraction(go_long: pd.DataFrame) -> float:
@@ -39,24 +40,33 @@ def assert_go_annotation_not_synthetic(go_long: pd.DataFrame, *, demo: bool) -> 
 
 
 def expression_protein_to_gene_map(expr: pd.DataFrame) -> dict[str, str]:
-    """Mapea protein_id de matriz normalizada a gene_symbol para GO/GSEA (fallback: mismo id)."""
+    """Mapea protein_id de matriz normalizada a gene_symbol (HGNC en MAYÚSCULAS; fallback: protein_id)."""
     m: dict[str, str] = {}
     for _, row in expr.iterrows():
         pid = str(row["protein_id"]).strip()
         gs = row["gene_symbol"] if "gene_symbol" in row.index else None
         if gs is None or (isinstance(gs, float) and pd.isna(gs)) or str(gs).strip() == "":
-            m[pid] = pid
+            m[pid] = pid.upper()
         else:
-            m[pid] = str(gs).strip()
+            m[pid] = str(gs).strip().upper()
     return m
 
 
 def gene_symbol_set_from_strings(raw: set[str]) -> set[str]:
+    """Conjunto de símbolos HGNC normalizados a mayúsculas (GOA usa uppercase)."""
     out: set[str] = set()
     for x in raw:
-        s = str(x).strip()
-        if s and s.lower() != "nan":
+        s = str(x).strip().upper()
+        if s and s != "NAN":
             out.add(s)
+    return out
+
+
+def _normalize_go_long_symbols(go_long: pd.DataFrame) -> pd.DataFrame:
+    if go_long is None or go_long.empty or "gene_symbol" not in go_long.columns:
+        return go_long
+    out = go_long.copy()
+    out["gene_symbol"] = out["gene_symbol"].astype(str).str.strip().str.upper()
     return out
 
 
