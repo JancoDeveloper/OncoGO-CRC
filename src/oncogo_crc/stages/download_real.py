@@ -35,6 +35,37 @@ def _sha256_file(path: Path) -> str | None:
     return h.hexdigest()
 
 
+def _matrix_has_tmt_style_samples(path: Path, *, protein_col: str = "protein_id") -> bool:
+    """Heurística: matriz CPTAC/PDC TMT10 con muchas columnas `… Log Ratio` / `… Unshared Log Ratio`.
+
+    Evita que ``overwrite: false`` deje un **stub** (solo ``protein_id`` o pocas columnas) y
+    ``download_real`` marque ``matrix=ok`` sin haber descargado nada útil.
+    """
+    if not path.exists() or path.stat().st_size < 10_000:
+        return False
+    try:
+        hdr = pd.read_csv(path, sep="\t", nrows=0, low_memory=False)
+    except Exception:  # noqa: BLE001
+        return False
+    cols = [
+        c
+        for c in hdr.columns
+        if str(c) != protein_col and str(c).strip().lower() not in {"gene", "gene_name"}
+    ]
+    if len(cols) < 16:
+        return False
+    suf = (
+        " Log Ratio",
+        " Unshared Log Ratio",
+        "_Log_Ratio",
+        "_Unshared_Log_Ratio",
+        ".Log.Ratio",
+        ".Unshared.Log.Ratio",
+    )
+    hits = sum(1 for c in cols if str(c).endswith(suf))
+    return hits >= 8
+
+
 def _build_url(base_url: str, query_params: dict[str, Any] | None) -> str:
     if not query_params:
         return base_url
@@ -587,13 +618,27 @@ def run(settings: Settings) -> None:
                 row["matrix_detail"] = "url_not_useful_for_data"
             else:
                 print(f"[download_real] {key}: matrix GET {url}")
+                matrix_overwrite = overwrite
+                if (
+                    provider_resolved == "pdc"
+                    and m_path.exists()
+                    and not overwrite
+                    and not _matrix_has_tmt_style_samples(m_path)
+                ):
+                    matrix_overwrite = True
+                    row["matrix_redownload_forced"] = True
+                    print(
+                        f"[download_real] {key}: matriz local no parece TMT10 PDC válida "
+                        f"({m_path.name}, {m_path.stat().st_size} bytes) — forzando re-descarga "
+                        "(stub o archivo incompleto; overwrite seguía en false)."
+                    )
                 ok, status = _download_with_retries(
                     url=url,
                     out_path=m_path,
                     timeout_s=timeout_s,
                     retries=retries,
                     headers=headers,
-                    overwrite=overwrite,
+                    overwrite=matrix_overwrite,
                 )
                 row["matrix_status"] = "ok" if ok else "error"
                 row["matrix_detail"] = status
