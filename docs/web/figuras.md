@@ -10,6 +10,8 @@ Para definiciones técnicas (volcano, NES, AUC, padj…) ver [Glosario](glosario
 
 ## Volcanos (proteínas diferenciales)
 
+![cptac_hispanic_latino_vs_non__volcano](figures/cptac_hispanic_latino_vs_non_volcano_labeled.png)
+
 ![cptac_stage_advanced_vs_early__volcano](figures/cptac_stage_advanced_vs_early_volcano_labeled.png)
 
 ![cptac_tumor_vs_normal__volcano](figures/cptac_tumor_vs_normal_volcano_labeled.png)
@@ -20,6 +22,8 @@ Para definiciones técnicas (volcano, NES, AUC, padj…) ver [Glosario](glosario
 
 ## ORA — top términos GO
 
+![cptac_hispanic_latino_vs_non__ora](figures/cptac_hispanic_latino_vs_non_ora_top_go.png)
+
 ![cptac_stage_advanced_vs_early__ora](figures/cptac_stage_advanced_vs_early_ora_top_go.png)
 
 ![cptac_tumor_vs_normal__ora](figures/cptac_tumor_vs_normal_ora_top_go.png)
@@ -27,6 +31,22 @@ Para definiciones técnicas (volcano, NES, AUC, padj…) ver [Glosario](glosario
 ![plasma_crc_vs_healthy__ora](figures/plasma_crc_vs_healthy_ora_top_go.png)
 
 ![pride_validation_tumor_vs_normal__ora](figures/pride_validation_tumor_vs_normal_ora_top_go.png)
+
+## GSEA — top NES (up/down)
+
+![cptac_hispanic_latino_vs_non__gsea_nes](figures/cptac_hispanic_latino_vs_non_gsea_top_nes.png)
+
+![cptac_stage_advanced_vs_early__gsea_nes](figures/cptac_stage_advanced_vs_early_gsea_top_nes.png)
+
+![cptac_tumor_vs_normal__gsea_nes](figures/cptac_tumor_vs_normal_gsea_top_nes.png)
+
+![plasma_crc_vs_healthy__gsea_nes](figures/plasma_crc_vs_healthy_gsea_top_nes.png)
+
+![pride_validation_tumor_vs_normal__gsea_nes](figures/pride_validation_tumor_vs_normal_gsea_top_nes.png)
+
+## Reproducibilidad multi-cohorte
+
+![cohort_overlap](figures/cohort_overlap_scatter.png)
 
 ## PCA por dataset
 

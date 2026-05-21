@@ -1,5 +1,7 @@
 # Síntesis para tesis
 
+> **Workspace de datos:** `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` apuntan a `/Volumes/JANCODATA/OncoGO-CRC` (el clon conserva `config/`, `src/` y el resto de `docs/`). Trazabilidad de corrida: `results/run_manifest.json`.
+
 ## Qué hace este pipeline (en una frase)
 
 Integra matrices proteómicas públicas (CPTAC, validación PRIDE, plasma), normaliza e imputa, contrasta grupos (tumor vs normal y comparaciones opcionales MSI/EOCRC si hay datos), interpreta con **ORA + GSEA pre-ranked** sobre Gene Ontology offline (mismo `go_gene_long.tsv`), cuantifica **firma núcleo CPTAC ∩ PRIDE**, resume redes, prioriza con ML explicable y exporta un **bundle** listo para capas contextuales (STRING, UniProt, AlphaFold, ProteinsLanguage).
@@ -40,26 +42,31 @@ La etapa **`external_evidence`** (tras `clinical`) escribe **`results/external_e
 
 ## Qué está **demostrado** aquí (evidencia cuantitativa)
 
-- **Tumor vs tejido adyacente normal (CPTAC)** (`cptac_tumor_vs_normal`): **19** proteínas con FDR por debajo de **0.05** (de **120** filas en el contraste).
+- **Tumor vs tejido adyacente normal (CPTAC)** (`cptac_tumor_vs_normal`): **5031** proteínas con FDR por debajo de **0.05** (de **6237** filas en el contraste).
+  - GO (ORA, universo = proteínas detectadas en la matriz): **34** términos (FDR término < **0.05**).
+  - GSEA (GO offline, ranking continuo; métrica principal `t_stat`): **446** términos con FDR < **0.25**.
+  - GSEA (métrica `signed_neglog10_p`): **353** términos con FDR < **0.25** (`results/gsea/cptac_tumor_vs_normal_gsea_go_signed_neglog10_p.tsv`).
+- **Plasma CRC vs control sano** (`plasma_crc_vs_healthy`): **119** proteínas con FDR por debajo de **0.05** (de **517** filas en el contraste).
+  - GO (ORA, universo = proteínas detectadas en la matriz): **11** términos (FDR término < **0.05**).
+  - GSEA (GO offline, ranking continuo; métrica principal `t_stat`): **16** términos con FDR < **0.25**.
+  - GSEA (métrica `signed_neglog10_p`): **10** términos con FDR < **0.25** (`results/gsea/plasma_crc_vs_healthy_gsea_go_signed_neglog10_p.tsv`).
+- **PRIDE validación externa: tumor vs normal** (`pride_validation_tumor_vs_normal`): **1951** proteínas con FDR por debajo de **0.05** (de **6782** filas en el contraste).
   - GO (ORA, universo = proteínas detectadas en la matriz): **0** términos (FDR término < **0.05**).
-  - GSEA (GO offline, ranking continuo; métrica principal `t_stat`): **0** términos con FDR < **0.25**.
-  - GSEA (métrica `signed_neglog10_p`): **0** términos con FDR < **0.25** (`results/gsea/cptac_tumor_vs_normal_gsea_go_signed_neglog10_p.tsv`).
-- **Plasma CRC vs control sano** (`plasma_crc_vs_healthy`): **1** proteínas con FDR por debajo de **0.05** (de **40** filas en el contraste).
-  - GO (ORA, universo = proteínas detectadas en la matriz): **0** términos (FDR término < **0.05**).
-  - GSEA: sin tabla (etapa `gsea` o `pip install -e ".[go-remote]"` si falta gseapy).
-- **PRIDE validación externa: tumor vs normal** (`pride_validation_tumor_vs_normal`): **10** proteínas con FDR por debajo de **0.05** (de **120** filas en el contraste).
-  - GO (ORA, universo = proteínas detectadas en la matriz): **0** términos (FDR término < **0.05**).
-  - GSEA (GO offline, ranking continuo; métrica principal `t_stat`): **0** términos con FDR < **0.25**.
-  - GSEA (métrica `signed_neglog10_p`): **0** términos con FDR < **0.25** (`results/gsea/pride_validation_tumor_vs_normal_gsea_go_signed_neglog10_p.tsv`).
+  - GSEA (GO offline, ranking continuo; métrica principal `t_stat`): **31** términos con FDR < **0.25**.
+  - GSEA (métrica `signed_neglog10_p`): **19** términos con FDR < **0.25** (`results/gsea/pride_validation_tumor_vs_normal_gsea_go_signed_neglog10_p.tsv`).
 
 **Comparaciones opcionales** (solo si `differential.auto_run_optional_comparisons` y datos):
 
-- **Estadio avanzado vs temprano (si stage está disponible)** (`cptac_stage_advanced_vs_early`): **19** proteínas con FDR por debajo de **0.05** (de **120** filas en el contraste).
+- **Estadio avanzado vs temprano (si stage está disponible)** (`cptac_stage_advanced_vs_early`): **24** proteínas con FDR por debajo de **0.05** (de **6237** filas en el contraste).
   - GO (ORA, universo = proteínas detectadas en la matriz): **0** términos (FDR término < **0.05**).
-  - GSEA (GO offline, ranking continuo; métrica principal `t_stat`): **0** términos con FDR < **0.25**.
-  - GSEA (métrica `signed_neglog10_p`): **0** términos con FDR < **0.25** (`results/gsea/cptac_stage_advanced_vs_early_gsea_go_signed_neglog10_p.tsv`).
+  - GSEA (GO offline, ranking continuo; métrica principal `t_stat`): **7** términos con FDR < **0.25**.
+  - GSEA (métrica `signed_neglog10_p`): **7** términos con FDR < **0.25** (`results/gsea/cptac_stage_advanced_vs_early_gsea_go_signed_neglog10_p.tsv`).
+- **Hispano/latino vs no hispano/latino (etnicidad NIH; contexto US — ver clinical_demographics.md)** (`cptac_hispanic_latino_vs_non`): **33** proteínas con FDR por debajo de **0.05** (de **6237** filas en el contraste).
+  - GO (ORA, universo = proteínas detectadas en la matriz): **0** términos (FDR término < **0.05**).
+  - GSEA (GO offline, ranking continuo; métrica principal `t_stat`): **32** términos con FDR < **0.25**.
+  - GSEA (métrica `signed_neglog10_p`): **37** términos con FDR < **0.25** (`results/gsea/cptac_hispanic_latino_vs_non_gsea_go_signed_neglog10_p.tsv`).
 
-**Firma núcleo CPTAC ∩ PRIDE** (clave común **UniProt** vía mapa `gene_symbol`↔`uniprot_accession`; filas con UniProt en ambas cohortes: **0.0**; doble significativo `padj`: **0.0**). Cruce ingenuo por el mismo texto en `protein_id` suele ser **120.0** (CPTAC=genes, PRIDE=UniProt). Tablas: `results/reproducibility/cptac_pride_differential_overlap.tsv` y `..._summary.tsv`.
+**Firma núcleo CPTAC ∩ PRIDE** (clave común **UniProt** vía mapa `gene_symbol`↔`uniprot_accession`; filas con UniProt en ambas cohortes: **1993.0**; doble significativo `padj`: **432.0**). Cruce ingenuo por el mismo texto en `protein_id` suele ser **1993.0** (CPTAC=genes, PRIDE=UniProt). Correlación Pearson log2FC CPTAC–PRIDE (UniProt común): **0.104**; mismo signo: **56%**. Tablas: `results/reproducibility/cptac_pride_differential_overlap.tsv` y `..._summary.tsv`.
 
 ---
 

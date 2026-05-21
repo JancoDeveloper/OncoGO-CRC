@@ -1,5 +1,7 @@
 # Proyecto web — OncoGO-CRC
 
+> **Workspace de datos:** `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` apuntan a `/Volumes/JANCODATA/OncoGO-CRC` (el clon conserva `config/`, `src/` y el resto de `docs/`). Trazabilidad de corrida: `results/run_manifest.json`.
+
 Sitio generado automáticamente por `oncogo-crc run --stage publish_results` a partir de los TSV bajo `results/`. Las páginas se reescriben en cada corrida; los hashes y `run_id` para trazabilidad están en `results/run_manifest.json`.
 
 ## Lectura recomendada (orden para tesis)
@@ -12,6 +14,6 @@ Sitio generado automáticamente por `oncogo-crc run --stage publish_results` a p
 
 ## Referencia secundaria
 
-- [Datasets](datasets.md) · [Cobertura clínica](clinical_coverage.md) · [Evidencia externa](external_evidence.md) · [Estabilidad](stability.md) · [Inventario](results_inventory.md) · [Limitaciones](limitations.md)
+- [Datasets](datasets.md) · [Cobertura clínica](clinical_coverage.md) · [Demografía (estadio, etnia)](clinical_demographics.md) · [Evidencia externa](external_evidence.md) · [Estabilidad](stability.md) · [Inventario](results_inventory.md) · [Limitaciones](limitations.md)
 - Documento de limitaciones honestas y plan de validación: [`docs/RESULTADOS_Y_LIMITACIONES_TESIS.md`](../RESULTADOS_Y_LIMITACIONES_TESIS.md)
 - Prompt para redacción interpretativa con LLM: [`docs/PROMPT_SINTESIS_TESIS.md`](../PROMPT_SINTESIS_TESIS.md)

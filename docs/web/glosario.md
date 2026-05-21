@@ -92,3 +92,19 @@ Carpeta externa (típicamente disco USB/SSD) donde residen `data/`, `results/`, 
 
 Manifest que se reinicializa al inicio de cada `oncogo-crc run`. Contiene `run_id`, timestamp, lista de etapas ejecutadas/omitidas, hashes SHA-256 de outputs clave y razones de skip. El publicador web (`publish_results`) **lee este manifest** y se niega a publicar resultados de etapas no ejecutadas en la corrida actual — evita publicar artefactos viejos como nuevos.
 
+## stage_bin (temprano vs avanzado)
+
+Agrupación binaria del estadio patológico AJCC: **early** (I–II) vs **advanced** (III–IV), derivada del texto de `stage` con tokens configurables en `clinical_filters.stage_mapping`. Alimenta la comparación `cptac_stage_advanced_vs_early`.
+
+## stage_group (I–IV)
+
+Grupo AJCC romano extraído automáticamente del campo `stage` (p. ej. «Stage IIIA» → `III`). Permite tabular estadios sin perder granularidad del Excel clínico PDC.
+
+## hispanic_latino_bin
+
+Estrato derivado de `ethnicity` según categorías NIH: `hispanic_latino`, `non_hispanic_latino` o `unknown`. **No** identifica nacionalidad colombiana ni residencia en Latinoamérica; en CPTAC refleja autodeclaración en cohortes reclutadas principalmente en EE.UU. Ver [Demografía clínica](clinical_demographics.md).
+
+## geographic_region_bin
+
+Región inferida desde `country` y, si falta, desde `enrollment_site`: `latin_america`, `united_states`, `other` o `unknown`. Útil para transparencia; en muchos estudios CPTAC el país no está informado y la variable queda mayoritariamente `unknown`.
+

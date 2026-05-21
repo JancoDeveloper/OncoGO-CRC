@@ -1,2 +1,21 @@
 # Datasets
 
+## cptac_colorectal
+- status: partial (override: matriz log2norm local presente)
+- provider: pdc
+- n_files: 1080
+- matrix_url: https://d3iwtkuvwz4jtf.cloudfront.net/studies/116/report/CPTAC2_Colon_Prospective_Collection_PNNL_Proteome.tmt10.tsv?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kM2l3dGt1dnd6NGp0Zi5jbG91ZGZyb250Lm5ldC9zdHVkaWVzLzExNi9yZXBvcnQvQ1BUQUMyX0NvbG9uX1Byb3NwZWN0aXZlX0NvbGxlY3Rpb25fUE5OTF9Qcm90ZW9tZS50bXQxMC50c3YiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3Nzk4Nzg0NTh9fX1dfQ__&Key-Pair-Id=APKAIXDMVIARW22I7ILQ&Signature=cm07upVonhzkwozQqAWEzD2a5mVbhk0F23okoGAD7zx-htDsVm1djcJicFhbj8YYssUDtD8THcLevw5TS09M9PD-98StlGf78pIHxJG6e~P4h7pHDYdmZ7ZH~TzllA5EgcicJmj4moIzz6B0QfKEhdL78WdO7Gbh0V~z-h65c~SQY7-tP~kuO9zSlpnfnKWcXU9YehqXc1XFhYVSSn1dunp8bc9byU9-Fe~DbI90aSok1YSOhB1PgLLzTKCXaxepgPyrNdDfwqpu5McQMBSqEKkW46hBHtkoaabaLP3uoJsNf6Dr1R254feN53LRikO72-lV5lMOXU4P4tIRHgGKnA__
+- metadata_url: https://d3iwtkuvwz4jtf.cloudfront.net/studies/109/protocol/CPTAC_Colon_Cancer_Prospective_Collection_Clinical_Data_S037-r2.xlsx?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kM2l3dGt1dnd6NGp0Zi5jbG91ZGZyb250Lm5ldC9zdHVkaWVzLzEwOS9wcm90b2NvbC9DUFRBQ19Db2xvbl9DYW5jZXJfUHJvc3BlY3RpdmVfQ29sbGVjdGlvbl9DbGluaWNhbF9EYXRhX1MwMzctcjIueGxzeCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3OTg3ODQ1OX19fV19&Key-Pair-Id=APKAIXDMVIARW22I7ILQ&Signature=fcTHMFSTJVtMnt63OIQg71HJb4XBk6HHfDmWWJjO8BUT8IKHLxRCaxA3wUBAihfbOTDz1NvO1RuTmqKgU1INhB1VkLEGsZBKZ35J5~Hzfytv6fsQZd4PN9sndnay9RSZxqZXUx0Gc5UUykdh98wQ7EnfJ4-akx8riGcMu7PwyME4~jbvKGOEDZOQz97752-YCzuCkxLkLeIdrHKFYOPpXGlHFy-iMaWkIwyFfIbhECRXFKTD3rVk-1I9Pr-lgq9dT028r63LTvrYzg2rv0oxi4-yucgLfl~7DOgmV69IbZsl395SkHXwkmTFz~VxumzK7-uIgdW9xl6Zc9l2ceWb1Q__
+
+## pride_crc_meta
+- status: partial (override: matriz log2norm local presente)
+- provider: pride
+- n_files: 60
+- matrix_url: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2024/01/PXD034575/Cohort1_proteinGroups.txt
+
+## plasma_crc_2024
+- status: partial (override: matriz log2norm local presente)
+- provider: pride
+- n_files: 100
+- matrix_url: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD055218/DIA-NN_report.tsv
+

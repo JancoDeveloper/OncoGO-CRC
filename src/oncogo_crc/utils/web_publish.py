@@ -233,7 +233,7 @@ def _generate_web_figures(
         _write_both("clinical_coverage", "clinical_coverage.png",
                     lambda p: plot_clinical_coverage(cov_dict, p))
 
-    demo_json = settings.results_dir() / "clinical" / "demographics_summary.json"
+    demo_json = settings.resolve(settings.config["paths"]["results_dir"]) / "clinical" / "demographics_summary.json"
     if demo_json.is_file():
         summary_demo = json.loads(demo_json.read_text(encoding="utf-8"))
         _write_both(

@@ -1,8 +1,25 @@
 # Cobertura clínica
 
+Fracción de muestras con valor **informativo** por variable (≠ vacío / unknown). Para **conteos y distribución** (estadio, hispano/latino, región geográfica), ver [Demografía y contexto clínico](clinical_demographics.md).
+
 ## cptac_colorectal
-- stage_bin: 13.64%
-- msi_status: 0.00%
+- `age`: 0.00%
+- `age_bin`: 0.00%
+- `cms_subtype_bin`: 0.00%
+- `country`: 0.00%
+- `enrollment_site`: 0.00%
+- `ethnicity`: 99.49%
+- `geographic_region_bin`: 0.00%
+- `hispanic_latino_bin`: 98.48%
+- `metastatic_status`: 0.00%
+- `msi_status`: 0.00%
+- `race`: 99.49%
+- `sex`: 99.49%
+- `stage`: 99.49%
+- `stage_bin`: 89.39%
+- `stage_group`: 99.49%
+- `treatment_response`: 0.00%
+- `tumor_site`: 99.49%
 
 ## pride_crc_meta
 - Sin cobertura clínica consolidada todavía.

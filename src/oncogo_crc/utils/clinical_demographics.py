@@ -92,9 +92,13 @@ def build_all_demographics_summaries(settings: Settings) -> dict[str, Any]:
     return summaries
 
 
+def _clinical_out_dir(settings: Settings) -> Path:
+    return settings.resolve(settings.config["paths"]["results_dir"]) / "clinical"
+
+
 def write_demographics_artifacts(settings: Settings, out_dir: Path | None = None) -> Path:
     """Escribe ``demographics_summary.json`` y ``demographics_counts.tsv`` bajo results/clinical/."""
-    out_dir = out_dir or (settings.results_dir() / "clinical")
+    out_dir = out_dir or _clinical_out_dir(settings)
     out_dir.mkdir(parents=True, exist_ok=True)
     summary = build_all_demographics_summaries(settings)
 
@@ -133,7 +137,7 @@ def _limitations_note() -> str:
 
 def render_clinical_demographics_markdown(settings: Settings) -> str:
     """Página MkDocs con tablas de conteo y advertencias metodológicas."""
-    summary_path = settings.results_dir() / "clinical" / "demographics_summary.json"
+    summary_path = _clinical_out_dir(settings) / "demographics_summary.json"
     if summary_path.is_file():
         summary = json.loads(summary_path.read_text(encoding="utf-8"))
     else:
