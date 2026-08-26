@@ -9,6 +9,10 @@ theme:
       accent: teal
 nav:
   - Inicio: index.md
+  - Fundamentos y herramientas:
+      - Justificación (por qué / qué hace / qué busca): JUSTIFICACION_Y_PROYECTO.md
+      - Herramientas y técnicas (catálogo): HERRAMIENTAS_Y_TECNICAS.md
+  - Tutorial (ejecución end-to-end): TUTORIAL_EJECUCION.md
   - Pipeline: pipeline.md
   - Proceso y datos (detallado): proceso_datos_y_pipeline.md
   - Configuración: configuracion.md
@@ -27,6 +31,11 @@ nav:
       - Resultados estratificados: web/results_stratified.md
       - Estabilidad: web/stability.md
       - Limitaciones: web/limitations.md
+  - Diseño y Arquitectura 2.0:
+      - Arquitectura y diagramas: ARQUITECTURA_ONCOGO_2.0.md
+      - Diseño técnico (3 capas): DISENO_TECNICO_ONCOGO_2.0.md
+      - App web Nivel 2 y Capa C: APP_WEB_NIVEL2.md
+      - Prompt bibliografía v2: PROMPT_SCISPACE_BIBLIOGRAFIA_V2.md
   - Resultados y limitaciones (tesis): RESULTADOS_Y_LIMITACIONES_TESIS.md
   - Tesis (prompt LLM): PROMPT_SINTESIS_TESIS.md
 plugins:
@@ -34,7 +43,11 @@ plugins:
 
 markdown_extensions:
   - admonition
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - toc:
       permalink: true
 

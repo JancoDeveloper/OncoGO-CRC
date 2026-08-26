@@ -220,6 +220,30 @@ external_evidence:
   # Genera con: ``python scripts/fetch_tcga_coadread_survival.py``
   survival_gene_cox_tsv: metadata/tcga_auxiliary/tcga_coadread_cox_os.tsv
 
+# Capa C — priorización por evidencia convergente (results/prioritization/).
+# Proveedores externos = snapshots locales pluggables en metadata/evidence/ (ver README allí).
+# La evidencia ausente NO penaliza el score (diseño no-promisorio: hipótesis, no dianas validadas).
+prioritization:
+  enabled: true
+  primary_comparison: cptac_tumor_vs_normal
+  alpha: 0.05
+  # significant | all | topfc (fallback a |log2fc| si no hay significativas).
+  candidate_source: significant
+  max_candidates: 500
+  evidence_dir: metadata/evidence
+  # Pesos del score de convergencia (media ponderada de señales disponibles).
+  weights:
+    diff_effect: 1.0
+    diff_significance: 1.0
+    reproducible: 1.5
+    network_hub: 0.5
+    depmap_essentiality: 1.5
+    opentargets_tractability: 1.5
+    dgidb_druggability: 1.0
+    hpa_tumor_specificity: 1.0
+    gtex_safety: 1.0
+    cbioportal_genomic: 0.75
+
 translation:
   # Cuatro niveles cuantitativos internos (percentiles de evidence_score); ver también capas literarias en context_layers_path.
   evidence_tiers:
