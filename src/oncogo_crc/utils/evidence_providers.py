@@ -7,7 +7,7 @@ se marca ``available=False`` y **no penaliza** el score (diseño no-promisorio).
 Contrato de cada snapshot (columnas mínimas; los nombres alternativos se detectan por heurística):
 
 - ``depmap``      → ``gene_symbol``, ``chronos_mean`` (más negativo = más esencial); opc. ``essential_fraction``
-- ``opentargets`` → ``gene_symbol``, ``tractability`` (0–1)
+- ``opentargets`` → ``gene_symbol``, ``tractability`` (0–1). El association score no se lee.
 - ``dgidb``       → ``gene_symbol``, ``n_drugs`` (entero); opc. ``drugs``
 - ``hpa``         → ``gene_symbol``, ``tumor_specificity`` (0–1 o score continuo)
 - ``gtex``        → ``gene_symbol``, ``max_normal_tpm`` (menor = más seguro)
@@ -87,7 +87,8 @@ _SPEC: dict[str, tuple[str, list[str], dict[str, tuple[list[str], str]]]] = {
                 ["tractability", "overall_tractability", "tractability_score", "max_tractability"],
                 "float",
             ),
-            "opentargets_association": (["association_score", "overall_association"], "float"),
+            # association_score / overall_association están prohibidos: ya incluyen
+            # literatura y expresión diferencial, y contarían dos veces la evidencia propia.
         },
     ),
     "dgidb": (

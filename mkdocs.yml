@@ -9,6 +9,7 @@ theme:
       accent: teal
 nav:
   - Inicio: index.md
+  - Guía de estudio (certificación 3.0): GUIA_ESTUDIANTE_CERTIFICACION.md
   - Fundamentos y herramientas:
       - Justificación (por qué / qué hace / qué busca): JUSTIFICACION_Y_PROYECTO.md
       - Herramientas y técnicas (catálogo): HERRAMIENTAS_Y_TECNICAS.md

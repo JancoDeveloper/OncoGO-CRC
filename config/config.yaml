@@ -220,6 +220,19 @@ external_evidence:
   # Genera con: ``python scripts/fetch_tcga_coadread_survival.py``
   survival_gene_cox_tsv: metadata/tcga_auxiliary/tcga_coadread_cox_os.tsv
 
+# Capa de certificación (results/certification/). No cambia el diferencial.
+# Umbrales del diseño 3.0. El informe de brecha dice cuáles todavía no se aplican.
+certification:
+  alpha: 0.05
+  overlap_tsv: results/reproducibility/cptac_pride_differential_overlap.tsv
+  # Declarados y aún no aplicados al motor de expresión diferencial:
+  treat_lfc: 0.585
+  h1_protein_concordance_max: 0.70
+  h1_pathway_concordance_min: 0.80
+  h4_measurable_fraction_redundant: 0.90
+  forbid_open_targets_association_score: true
+  impute_for_inference: false
+
 # Capa C — priorización por evidencia convergente (results/prioritization/).
 # Proveedores externos = snapshots locales pluggables en metadata/evidence/ (ver README allí).
 # La evidencia ausente NO penaliza el score (diseño no-promisorio: hipótesis, no dianas validadas).

@@ -1,5 +1,7 @@
 # Diseño técnico OncoGO-CRC 2.0 — herramienta metodológica de análisis, armonización e priorización de hipótesis
 
+> **Lectura vigente.** Este documento describe el diseño de las tres capas (A, B, C) tal como se pensó antes de la capa de certificación. Varias ideas de aquí quedaron **restringidas** en la actualización 3.0: ComBat y Harmony solo para figuras, no para inferencia; el *association score* de Open Targets está prohibido; un GNN no se interpreta si no supera a las líneas base y al nulo de rewiring. La guía que manda ahora es [GUIA_ESTUDIANTE_CERTIFICACION.md](GUIA_ESTUDIANTE_CERTIFICACION.md).
+
 > **Encuadre (leer primero).** OncoGO-CRC es un **pipeline/metodología de investigación computacional, reproducible y reutilizable**. Su producto es un **análisis** y una **tabla de priorización de candidatos como HIPÓTESIS con evidencia convergente**, acompañada de trazabilidad completa.
 > **La tesis NO promete** dianas terapéuticas validadas, biomarcadores listos para clínica, ni predicción/tratamiento de pacientes. Toda salida es **exploratoria y generadora de hipótesis**, y requiere validación experimental independiente que queda **fuera del alcance**. Este encuadre sigue la prudencia traslacional estándar en ómicas (p. ej. estándares TRIPOD+AI / DOME / REMARK y principios FAIR).
 

@@ -24,6 +24,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from oncogo_crc.certification.contract import drop_forbidden_evidence
 from oncogo_crc.settings import Settings
 from oncogo_crc.utils import run_manifest
 from oncogo_crc.utils.evidence_providers import (
@@ -192,6 +193,8 @@ def run(settings: Settings) -> None:
         if pr.available:
             cand = cand.merge(pr.df, left_on="gene_symbol", right_index=True, how="left")
 
+    dropped_forbidden = drop_forbidden_evidence(cand)
+
     # --- Cálculo de favorabilidades (0–1); NaN = evidencia ausente (no cuenta) ---
     favor = pd.DataFrame(index=cand.index)
     raw_values: dict[str, pd.Series] = {}
@@ -291,7 +294,12 @@ def run(settings: Settings) -> None:
         "network_hub_available": bool(hub_degree),
         "evidence_dir": str(evidence_dir),
         "providers": providers_meta,
-        "note": "Score de convergencia = media ponderada de señales disponibles. Evidencia ausente no penaliza. Hipótesis exploratorias, no dianas validadas.",
+        "forbidden_evidence_dropped": dropped_forbidden,
+        "note": (
+            "Score de convergencia = media ponderada de señales disponibles. "
+            "Evidencia ausente no penaliza. El association score de Open Targets está prohibido. "
+            "Hipótesis exploratorias, no dianas validadas."
+        ),
     }
     (out_dir / "prioritization_provenance.json").write_text(json.dumps(provenance, indent=2), encoding="utf-8")
 

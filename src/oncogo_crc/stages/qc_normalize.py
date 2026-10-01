@@ -114,6 +114,13 @@ def run(settings: Settings) -> None:
         else:
             mat_log = mat_raw
 
+        # Matriz observada: las ausencias siguen siendo ausencias. El diseño 3.0
+        # exige usarla para inferencia. El diferencial actual sigue leyendo log2norm
+        # (imputada) hasta que ese cambio se preregistre.
+        out_obs = pd.concat([df0[meta].reset_index(drop=True), mat_log.reset_index(drop=True)], axis=1)
+        p_obs = proc / f"{key}_log2_observed.tsv"
+        write_tsv(out_obs, p_obs)
+
         mat_log_imp = knn_impute(mat_log, n_neighbors=int(pp.get("knn_neighbors", 5)))
         out_log = pd.concat([df0[meta].reset_index(drop=True), mat_log_imp.reset_index(drop=True)], axis=1)
         p_log = proc / f"{key}_log2norm.tsv"
@@ -135,6 +142,7 @@ def run(settings: Settings) -> None:
             "n_samples_after_missingness_filter": len(sample_cols),
             "n_nonpositive_values_masked_for_log2": int(n_nonpositive),
             "outputs": {
+                "log2_observed": settings.relative_to_project(p_obs),
                 "log2norm": settings.relative_to_project(p_log),
                 "zscore": settings.relative_to_project(p_z),
                 **(
@@ -163,7 +171,8 @@ def run(settings: Settings) -> None:
                 write_tsv(pc_z.reset_index().rename(columns={"index": "sample_id"}), pc_z_out)
 
         print(
-            f"[qc] {key} -> {settings.relative_to_project(p_log)} (log2norm), "
+            f"[qc] {key} -> {settings.relative_to_project(p_obs)} (log2 observado, sin imputar), "
+            f"{settings.relative_to_project(p_log)} (log2norm imputado), "
             f"{settings.relative_to_project(p_z)} (zscore)"
             + (f", legacy {key}_normalized.tsv" if legacy_alias else "")
         )

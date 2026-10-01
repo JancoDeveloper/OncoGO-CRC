@@ -21,7 +21,7 @@ def main(argv: list[str] | None = None) -> int:
         "--stage",
         choices=STAGE_ORDER + ["all"],
         default="all",
-        help="Etapa concreta o `all` en orden (download→…→report). `ingest_cptac` no forma parte de `all`.",
+        help="Etapa concreta o `all` en orden. `ingest_cptac` no forma parte de `all`.",
     )
     runp.add_argument(
         "--demo",

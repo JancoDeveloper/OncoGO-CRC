@@ -1,5 +1,7 @@
 # Arquitectura y diseño de OncoGO-CRC 2.0 (pre-implementación)
 
+> **Actualización 3.0.** La arquitectura de stages de este documento sigue siendo el mapa del código. La capa de certificación se añadió como etapa `certification`, después de `prioritization`. Las reglas nuevas (no fusionar cohortes, no imputar para inferir, índice R, auditoría de independencia) están en [GUIA_ESTUDIANTE_CERTIFICACION.md](GUIA_ESTUDIANTE_CERTIFICACION.md).
+
 > **Estado:** documento de **diseño previo a la implementación**. Define arquitectura, diagramas, flujo de
 > datos y la **capa web** para consulta pública. Marca qué **ya existe** en OncoGO-CRC 1.0 y qué es **nuevo**
 > (2.0). Los diagramas están en [Mermaid](https://mermaid.js.org/) y se renderizan en la web (MkDocs Material).

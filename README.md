@@ -6,6 +6,7 @@
 
 | Archivo | Contenido |
 |-----------|-----------|
+| [docs/GUIA_ESTUDIANTE_CERTIFICACION.md](docs/GUIA_ESTUDIANTE_CERTIFICACION.md) | **Empieza aquí si vas a escribir la tesis.** Qué se busca, conceptos desde cero, diagramas, qué se actualizó y el orden de escritura de los capítulos. |
 | [GUIA_EJECUCION_Y_REDACTION_TESIS.md](GUIA_EJECUCION_Y_REDACTION_TESIS.md) | Checklist operativo + mapa **pipeline → capítulos de la tesis**; redacción en paralelo al análisis. |
 | [PLAN_EJECUCION_TESIS.md](PLAN_EJECUCION_TESIS.md) | Plan por fases (técnico + científico + material de tesis); ejecución incremental del pipeline. |
 | [CATALOGO_DATASETS_Y_ESTADO.md](CATALOGO_DATASETS_Y_ESTADO.md) | Fuente, contenido, utilidad y estado funcional (remoto) de cada dataset. |
