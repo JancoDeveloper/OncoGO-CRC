@@ -161,3 +161,45 @@ de cualquier análisis de v2.
   decide no es el resultado, es la frase con que se describe.
 - **Qué no cambia**: ningún subíndice del certificado. D2 no recalcula R4, porque
   la cohorte que tiene pureza medida no tiene tejido normal pareado.
+
+## E9 — Los umbrales de la deconvolución con referencia externa
+
+- **Fecha**: 2026-10-03
+- **Tipo**: reglas y umbrales nuevos, fijados al implementar un método que el
+  preregistro listaba sin especificar
+- **Qué faltaba en el preregistro**:
+  `c7_composicion.metodos_sensibilidad` incluía
+  `deconvolucion_referencia_externa`, y `semillas.desplazamientos` reservaba el
+  415 para él. Pero no decía de dónde salía la referencia, cómo se elegían los
+  genes marcadores ni cuándo había que declarar que el resultado no era
+  utilizable. Eran cuatro decisiones sin escribir.
+- **Qué se fija**:
+  1. **La referencia**: los perfiles por tipo celular del Human Protein Atlas
+     (`rna_single_cell_type.tsv`), restringidos a once tipos del colon que se
+     listan en `scripts/download/hpa_single_cell.py` antes de mirar ningún
+     resultado. La referencia específica de colon (GSE178341, Pelka 2021) queda
+     declarada y sin usar.
+  2. **La regla de marcadores**: un gen entra si su tipo con más expresión llega
+     a 10 nCPM y es al menos 5 veces la media de los demás tipos. Un gen
+     expresado igual en todos los tipos no aporta información y sí aporta ruido.
+  3. **Los umbrales del diagnóstico**: residuo relativo mediano por encima de
+     0,5 significa que la mezcla no explica el perfil; correlación de 0,8 entre
+     dos columnas de la referencia significa que esos dos tipos no son
+     separables; un tipo ausente (por debajo de 0,005) en más de la mitad de las
+     muestras significa que el método lo está descartando, no estimándolo en
+     cero.
+  4. **Cuándo se usa el eje epitelial como covariable**: solo si baja en el
+     tumor en al menos el 75 % de los pares y coincide en sentido con el índice
+     estromal. Son dos indicios de que el orden entre muestras lleva señal, que
+     es lo que un ajuste necesita.
+- **Nota de honestidad**: los umbrales del punto 3 se fijaron **después** de ver
+  que el residuo salía alrededor de 0,9 y que varios tipos salían en cero. Es
+  decir, se fijaron sabiendo que el diagnóstico iba a fallar. En descargo: la
+  primera versión del diagnóstico comprobaba solo el máximo por tipo y declaraba
+  las proporciones publicables, y al mirar las tablas se vio que eso era falso.
+  El cambio no eligió un resultado: corrigió una comprobación que no detectaba lo
+  que decía detectar. El umbral del punto 4 se fijó antes de calcular la
+  dirección en cada cohorte, y de hecho una de las dos cohortes no lo pasa.
+- **Qué no cambia**: ningún subíndice del certificado. El R4 del certificado
+  sigue siendo el de CPTAC con el índice estromal. Esta enmienda solo gobierna un
+  análisis de sensibilidad que, además, no se puede correr en CPTAC.

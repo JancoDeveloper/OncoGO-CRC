@@ -38,6 +38,7 @@ from oncogo_crc.stages import (
     v2_marcadores,
     v2_pureza,
     v2_heterogeneidad,
+    v2_deconvolucion,
     v2_vias,
     v2_certified,
     validate_inputs,
@@ -85,6 +86,7 @@ STAGES: dict[str, StageFn] = {
     "v2_marcadores": v2_marcadores.run,
     "v2_pureza": v2_pureza.run,
     "v2_heterogeneidad": v2_heterogeneidad.run,
+    "v2_deconvolucion": v2_deconvolucion.run,
 }
 
 STAGE_ORDER = list(STAGES.keys())
@@ -93,5 +95,5 @@ STAGE_ORDER = list(STAGES.keys())
 # Las de v2 se orquestan con `make all-v2`, no con `--stage all`, para que una
 # corrida del pipeline viejo no pise los resultados de v2.
 EXCLUDED_FROM_ALL: frozenset[str] = frozenset(
-    {"ingest_cptac", "v2_certified", "v2_axes", "v2_vias", "v2_deteccion", "v2_meta", "v2_certificado", "v2_report", "v2_tcga", "v2_marcadores", "v2_pureza", "v2_heterogeneidad"}
+    {"ingest_cptac", "v2_certified", "v2_axes", "v2_vias", "v2_deteccion", "v2_meta", "v2_certificado", "v2_report", "v2_tcga", "v2_marcadores", "v2_pureza", "v2_heterogeneidad", "v2_deconvolucion"}
 )

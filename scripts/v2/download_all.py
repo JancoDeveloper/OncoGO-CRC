@@ -80,6 +80,12 @@ FUENTES: list[tuple[str, str, str, str]] = [
         "ocho regiones del mismo tumor, PXD036434 (D3)",
     ),
     (
+        "referencia_unicelular",
+        "hpa_single_cell.py",
+        "referencia_unicelular",
+        "perfiles por tipo celular del Human Protein Atlas, para deconvolver (D5)",
+    ),
+    (
         "alvez_2023",
         "alvez_2023.py",
         "alvez_2023",

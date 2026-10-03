@@ -545,6 +545,105 @@ encontramos más» y «buscamos y esto es lo que hay» no son lo mismo.
 
 ---
 
+### D5 — Perfiles por tipo celular del Human Protein Atlas
+
+- **Qué es**: la expresión media de cada gen en cada tipo celular, medida con
+  secuenciación de una sola célula y publicada ya agregada. No contiene ningún
+  dato de ninguna persona.
+- **URL**: `https://www.proteinatlas.org/download/tsv/rna_single_cell_type.tsv.zip`
+- **Versión**: la vigente en la fecha de acceso; el portal documenta las
+  versiones en `https://www.proteinatlas.org/about/download`.
+- **Fecha de acceso**: 2026-10-03.
+- **Licencia**: Creative Commons Attribution-ShareAlike 4.0 International.
+  Permite reutilización citando la fuente.
+- **Cita**: Karlsson M, Zhang C, Méar L, et al. A single-cell type
+  transcriptomics map of human tissues. *Science Advances* 2021;
+  7(31):eabh2169.
+- **Columnas usadas**: `Gene name`, `Cell type`, `nCPM`.
+- **Qué se construye**: los once tipos celulares del colon se fijan en
+  `scripts/download/hpa_single_cell.py` antes de mirar ningún resultado, y de
+  ellos se extraen 3890 genes marcadores con la regla de la enmienda E9. Cuatro
+  de los once tipos son epitelio.
+- **Para qué sirve**: es la referencia externa del método de sensibilidad que el
+  preregistro llama `deconvolucion_referencia_externa`. Al venir de fuera del
+  proteoma que se contrasta, rompe la circularidad que C7 solo pudo mitigar en el
+  índice estromal.
+- **Script**: `scripts/download/hpa_single_cell.py`; análisis en
+  `src/oncogo_crc/v2/deconvolucion.py` y etapa `v2_deconvolucion`.
+
+**Las tres cosas que esta fuente no puede hacer, y que conviene leer antes que
+cualquier número.**
+
+La primera: la referencia es de ARN y lo que se deconvuelve es proteína. D2 midió
+el acuerdo entre el transcrito y la proteína del mismo gen en CEACAM5 y salió una
+correlación de rangos de 0,24. Toda cifra que salga de aquí hereda esa
+aproximación.
+
+La segunda: los tipos celulares del atlas son de todos los tejidos juntos. Un
+fibroblasto de piel y uno de colon no tienen el mismo perfil, así que
+«fibroblastos» aquí es un promedio entre tejidos.
+
+La tercera, y la que decide qué se publica: **las proporciones tipo a tipo no son
+utilizables**. El residuo del ajuste es de 0,90 en una cohorte y de 0,93 en la
+otra, es decir que la mezcla reproduce menos de una décima parte del perfil
+medido; y cuatro o cinco tipos celulares salen ausentes en más de la mitad de las
+muestras, que es lo que ocurre cuando otro tipo con perfil parecido se lleva su
+señal entera. Un cero en esas tablas no significa «este tipo celular no está»:
+significa que el método ha asignado su señal a otro. Lo único que se usa es el
+agregado epitelio frente a no epitelio, y solo después de comprobar en los datos
+que ordena los pares en el sentido que la histología espera.
+
+### D5 — La referencia específica de colon, declarada y sin usar
+
+- **Qué es**: `GSE178341`, el atlas unicelular de cáncer colorrectal de Pelka et
+  al. Sería la referencia correcta para este tejido, porque los perfiles no
+  serían un promedio entre tejidos.
+- **Portal**: `https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE178341`
+- **Cita**: Pelka K, Hofree M, Chen JH, et al. Spatially organized multicellular
+  immune hubs in human colorectal cancer. *Cell* 2021; 184(18):4734-4752.
+- **Estado**: `no_comprobable_desde_esta_maquina`. **No** es `requiere_acceso`:
+  GEO es público y el fichero no pide ninguna cuenta. Lo que falla es la red.
+- **Motivo**: el servidor `ftp.ncbi.nlm.nih.gov` resuelve de forma intermitente
+  en el DNS de esta red, mientras `www.ncbi.nlm.nih.gov` resuelve siempre. En un
+  momento en que resolvía, el fichero respondió con código 200 y 1 203 550 558
+  bytes anunciados, y la descarga se cortó a los 100 MB. El parcial se borró para
+  que ninguna etapa leyera un fichero truncado que parecería válido.
+- **Cómo completarlo**: descargar los tres ficheros desde una red que resuelva el
+  servidor y volver a ejecutar `scripts/download/hpa_single_cell.py --pelka
+  CARPETA`. El `.h5` trae la matriz de células por genes y el `cluster.csv` la
+  etiqueta de tipo celular de cada célula; la firma se construye promediando por
+  etiqueta.
+- **Qué quedaría mejor con ella**: la segunda limitación de la fuente anterior
+  —tipos celulares promediados entre tejidos— desaparecería. Las otras dos no:
+  seguiría siendo ARN contra proteína, y el residuo del ajuste depende de que un
+  proteoma sea una mezcla lineal de perfiles, que es lo que falla.
+
+### D5 — Por qué la deconvolución no se corre en CPTAC
+
+No es una decisión de conveniencia y no se afirma de memoria: la etapa lo
+comprueba con los datos delante y deja el número en la auditoría.
+
+Mezclar perfiles celulares supone que lo medido es una combinación **no
+negativa** y **lineal** de ellos. CPTAC publica `Unshared Log Ratio`, que es el
+logaritmo de un cociente contra un canal de referencia. **El 52,5 % de esos
+valores es negativo.** Una mezcla de perfiles no negativos con pesos no negativos
+solo puede producir valores no negativos, así que no existe ninguna proporción
+que reproduzca ese perfil. No es que el ajuste salga malo: es que el sistema no
+tiene solución con sentido.
+
+Hay dos motivos más, independientes del primero. El logaritmo no es lineal:
+aunque se recortaran los negativos, el doble de fibroblastos no da el doble de
+log-intensidad. Y el cociente es contra un canal de referencia que es a su vez
+una mezcla distinta en cada lote, de modo que dividir por él ya ha mezclado la
+composición que se quiere estimar con la del canal.
+
+La consecuencia es que el R4 alternativo no se calcula en la cohorte donde vive
+R4. Se calcula en las cohortes LFQ, cuyas intensidades sí están en escala de
+abundancia. Son cohortes distintas, con menos pares y otra tecnología: el número
+no sustituye al R4 del certificado, lo acompaña.
+
+---
+
 ## Recordatorio
 
 Ningún resultado de esta tesis sirve para decidir sobre un paciente.
