@@ -101,7 +101,11 @@ def main() -> int:
     frozen = subprocess.run(
         [sys.executable, "-m", "pip", "freeze"], capture_output=True, text=True
     ).stdout
-    keep = [l for l in frozen.splitlines() if l and not l.startswith("-e ") and "oncogo" not in l]
+    keep = [
+        linea
+        for linea in frozen.splitlines()
+        if linea and not linea.startswith("-e ") and "oncogo" not in linea
+    ]
     lock.write_text(
         "# Generado por scripts/v2/session_info.py. Versiones exactas de la corrida v2.\n"
         + "\n".join(sorted(keep))

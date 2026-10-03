@@ -109,3 +109,30 @@ de cualquier análisis de v2.
   protección efectiva son tres cosas: `results/v1_manifest.sha256`, que v2 escribe
   únicamente bajo `results/v2/`, y el test de regresión que falla si los números
   de v1 cambian. Los ficheros `._*` quedan excluidos de los manifiestos.
+
+## E7 — El nulo de C5 permuta el brazo por proteína y vuelve a seleccionar
+
+- **Fecha**: 2026-10-03
+- **Tipo**: corrección de un nulo mal especificado en el preregistro
+- **Qué decía el preregistro**: `c5_polipos.nulo_intercambio` fijaba «permuta las
+  etiquetas pólipo y tumor dentro de cada paciente», con unidad paciente.
+- **Qué está mal**: ese nulo destruye lo que quiere medir. Al intercambiar las
+  etiquetas paciente a paciente, el brazo que hace de tumor queda siendo una
+  mezcla de columnas de tumor y de pólipo, así que su media se encoge hacia cero.
+  Las proteínas se habían elegido por tener media grande en el tumor, y esa
+  ventaja desaparece en el nulo. Resultado: el nulo queda por debajo de lo
+  observado incluso cuando los dos brazos son ruido independiente, y el p sale
+  significativo sin que haya nada. Se comprobó en
+  `tests/test_polipos_c5.py`: con dos matrices de ruido puro, el nulo del
+  preregistro daba p = 0,005.
+- **Qué se hace en su lugar**: para cada proteína se sortea cuál de los dos
+  brazos hace de tumor y después se **vuelve a aplicar la regla de selección**
+  sobre ese brazo. El nulo repite todo el procedimiento, selección incluida, que
+  es la única forma de que mida el sesgo de selección. Con ruido puro el nulo
+  iguala lo observado, como debe ser; con un pólipo de verdad intermedio, no lo
+  alcanza.
+- **Qué no cambia**: el número de permutaciones (1000), la semilla
+  (desplazamiento 206 sobre 20260914) y la regla de decisión de C5.
+- **Nota de honestidad**: el preregistro se escribió antes de mirar los datos y
+  por eso contiene este error. No se edita el fichero preregistrado; la
+  desviación se declara aquí.
