@@ -136,3 +136,28 @@ de cualquier análisis de v2.
 - **Nota de honestidad**: el preregistro se escribió antes de mirar los datos y
   por eso contiene este error. No se edita el fichero preregistrado; la
   desviación se declara aquí.
+
+## E8 — El umbral que convierte el índice estromal en un sustituto de la pureza
+
+- **Fecha**: 2026-10-03
+- **Tipo**: umbral nuevo, fijado después de que la fuente existiera
+- **Qué faltaba en el preregistro**: `c7_composicion.metodos_sensibilidad` ya
+  incluía `pureza_absolute_tcga`, y el lenguaje obligatorio ya decía que R4 es
+  «una cota del efecto de composición, no una pureza medida, salvo cuando la
+  covariable es la pureza ABSOLUTE de TCGA». Pero no fijaba **cuánto** tenía que
+  parecerse el índice a la pureza para poder ejercer ese «salvo».
+- **Qué se fija**: una correlación de rangos de 0,7 en valor absoluto y con signo
+  negativo. Por encima, el índice se puede presentar como sustituto de la pureza.
+  Por debajo, R4 sigue siendo un análisis de sensibilidad legítimo pero no un
+  control de pureza.
+- **Por qué 0,7**: es el valor al que el índice y la pureza comparten la mitad de
+  la varianza (0,7² ≈ 0,49). Por debajo de ahí, más de la mitad de la variación
+  en pureza queda fuera del índice, y llamarlo «control de pureza» describiría
+  mal lo que hace.
+- **Nota de honestidad**: el umbral se fija con el dato ya calculado delante
+  (rho = −0,228), así que no tiene el valor de un umbral preregistrado y se
+  declara así en el informe. Con cualquier umbral razonable el veredicto sería el
+  mismo: 0,228 queda lejos de 0,7 y también de 0,5 y de 0,4. Lo que el umbral
+  decide no es el resultado, es la frase con que se describe.
+- **Qué no cambia**: ningún subíndice del certificado. D2 no recalcula R4, porque
+  la cohorte que tiene pureza medida no tiene tejido normal pareado.

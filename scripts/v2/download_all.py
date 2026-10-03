@@ -66,6 +66,14 @@ FUENTES: list[tuple[str, str, str, str]] = [
         "CEA sérico, pureza ABSOLUTE y CEACAM5 en TCGA (D1)",
     ),
     (
+        # Va después de tcga_coadread porque el análisis cruza las dos por
+        # paciente. La descarga en sí es independiente; el orden es por claridad.
+        "tcga_cptac_retro",
+        "tcga_cptac_retro.py",
+        "tcga_cptac_retro",
+        "proteoma retrospectivo de colon de TCGA, PDC000111 (D2)",
+    ),
+    (
         "alvez_2023",
         "alvez_2023.py",
         "alvez_2023",

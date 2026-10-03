@@ -171,6 +171,68 @@ El estado legible por máquina vive junto a cada descarga, en
   594 tumores con proteoma ausente, así que la pureza medida no sirve todavía
   para un R4 alternativo (eso depende de D2).
 
+### PDC000111 — proteoma retrospectivo de colon de TCGA (Zhang et al. 2014)
+
+- **Estado**: usada
+- **Script**: `scripts/download/tcga_cptac_retro.py`
+- **Etapa**: `make v2-pureza`
+- **Portal**: <https://pdc.cancer.gov/pdc/study/PDC000111>
+- **Identificador**: `PDC000111`, `TCGA COAD Proteome S016-1`, CPTAC2
+  Retrospective, label free.
+- **Cita**: Zhang B, Wang J, Wang X, et al. Proteogenomic characterization of
+  human colon and rectal cancer. *Nature* 2014; 513(7518):382-387.
+  doi:10.1038/nature13438
+- **Licencia**: datos abiertos del Proteomic Data Commons del NCI. Las matrices
+  derivadas del CDAP son públicas y no requieren acuerdo de uso.
+- **Qué contiene**: 95 alícuotas de 90 pacientes, 5 561 genes. 64 de colon y 31
+  de recto.
+- **Columnas usadas**: `Gene` y las que acaban en `Unshared Area`, que son los
+  péptidos que solo pueden venir de ese gen. Es el mismo criterio de «no
+  compartido» que v1 usó en CPTAC.
+- **Qué se descarga**: solo la matriz derivada del CDAP, 8,7 MB. Los espectros
+  crudos del estudio pasan del terabyte y no hacen falta para nada de esto.
+- **Para qué sirve**: es la única cohorte con proteoma y **pureza del tumor
+  medida por ADN en la misma persona**, porque son pacientes de TCGA. Eso permite
+  preguntar si el índice estromal que R4 usa como covariable se parece a una
+  pureza de verdad. El preregistro ya contemplaba esta vía
+  (`pureza_absolute_tcga` entre los métodos de sensibilidad de C7).
+- **Tres discrepancias con el enunciado, encontradas al consultar la API en vez
+  de suponer**:
+  1. **El identificador no era adivinable.** El candidato que más se parece por
+     el nombre, `PDC000289` («TCGA Colorectal Cancer CompRef Samples»), son
+     muestras de referencia para control de calidad y no pacientes. Usarlo habría
+     dado una cohorte de duplicados técnicos presentada como cohorte de personas.
+  2. **Esta cohorte no tiene normales**: las 95 alícuotas son tumor primario. Sin
+     pares no hay contraste tumor-normal, así que D2 **no recalcula R4**. Valida
+     su covariable, que es una pregunta distinta y se declara como tal.
+  3. **`PDC000109` no es una cohorte independiente.** Es «Prospective COAD
+     Proteome S037-1», label free, y 97 de sus 100 pacientes son los mismos de
+     `PDC000116`, el descubrimiento del certificado. Es la misma gente
+     recuantificada por otro laboratorio. Si entrara como réplica, contaría a
+     esas personas dos veces y el acuerdo entre cohortes saldría altísimo por
+     construcción. El script lo comprueba cruzando identificadores de caso y deja
+     el veredicto escrito.
+- **El cero es ausencia**: el 36 % de la matriz son áreas de cero, que en label
+  free significa que el péptido no se detectó. Se tratan como ausentes y no se
+  imputa nada.
+- **Las alícuotas repetidas se usan**: cinco tumores se midieron dos veces. Esas
+  réplicas dan la reproducibilidad del ensayo, que es lo que decide si una
+  correlación débil es biología o es el método.
+- **Limitaciones**:
+  - Es label free y `PDC000116` es TMT. Lo que se valida es el constructo del
+    índice, no los valores concretos de R4.
+  - Son tumores sin normales, así que el índice se calcula entre tumores y no
+    como diferencia dentro de un par.
+  - La pureza ABSOLUTE es a su vez una estimación de ADN, no un recuento de
+    células al microscopio: la comparación es entre dos medidas indirectas.
+  - La pieza del proteoma y la del ADN no son el mismo trozo de tumor, así que
+    parte de la discrepancia es muestreo y no error de ninguna de las dos.
+  - El CEA sérico solo existe en una parte de estos pacientes, así que el
+    análisis del CEACAM5 corre sobre menos gente que el de la pureza. Los dos
+    tamaños se publican por separado.
+- **No entra en el certificado**: ningún número de esta fuente es un subíndice.
+  Lo que decide es cómo hay que describir R4, y queda recogido en la enmienda E8.
+
 ### Human Protein Atlas — concentraciones en sangre
 
 - **Estado**: usada

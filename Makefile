@@ -7,7 +7,7 @@ RUN := $(ONCOGO) run --data-workspace $(WORKSPACE) --stage
 .PHONY: manifest-write manifest-verify session-info regresion-v1
 .PHONY: v2-certified v2-axes v2-vias v2-deteccion v2-meta v2-certificado
 .PHONY: v2-external v2-report verificar-numeros all-v2 serve-v2 v2-tcga v2-marcadores
-.PHONY: v2-cohorte-cea
+.PHONY: v2-cohorte-cea v2-pureza
 
 install:
 	python3 -m venv .venv && . .venv/bin/activate && pip install -e ".[dev]"
@@ -74,6 +74,11 @@ v2-meta:
 v2-tcga:
 	$(RUN) v2_tcga
 
+# D2: el índice estromal de R4 contra la pureza ABSOLUTE medida. Necesita las
+# descargas tcga_cptac_retro.py y tcga_coadread.py; sin las dos no calcula nada.
+v2-pureza:
+	$(RUN) v2_pureza
+
 # D8: tabla 2x2 de la literatura y meta-análisis bivariado de Reitsma.
 # La extracción va antes porque la etapa lee su TSV.
 v2-marcadores:
@@ -107,7 +112,7 @@ v2-report:
 	$(RUN) v2_report
 
 all-v2: manifest-write session-info regresion-v1 v2-external v2-certified v2-axes \
-        v2-vias v2-deteccion v2-meta v2-tcga v2-marcadores v2-certificado v2-report \
+        v2-vias v2-deteccion v2-meta v2-tcga v2-pureza v2-marcadores v2-certificado v2-report \
         verificar-numeros manifest-verify
 	@echo "v2 completa. Informe en $(WORKSPACE)/results/v2/report/"
 
