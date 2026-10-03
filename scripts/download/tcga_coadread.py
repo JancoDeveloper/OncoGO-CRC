@@ -429,8 +429,42 @@ def main() -> int:
 
     tabla, cobertura = _tabla_limpia(clinico, pureza, cbio, expresion)
     destino = salida / "tcga_coadread_cea_pureza.tsv"
-    tabla.to_csv(destino, sep="\t", index=False)
 
+    # Las dos columnas que dan sentido a esta fuente. Sin ellas la tabla tiene
+    # 594 filas y no sirve para nada de lo que D1 y D2 preguntan.
+    faltan = [
+        c
+        for c in ("cea_pretratamiento_ng_ml", "pureza_absolute")
+        if c not in tabla.columns or tabla[c].notna().sum() == 0
+    ]
+    if faltan:
+        # No se sobrescribe una tabla buena con una incompleta. El DNS de esta red
+        # falla de forma intermitente, y un script idempotente que degrada un
+        # artefacto correcto cuando la red parpadea es peor que uno que se niega.
+        habia = destino.exists()
+        estado["estado"] = "parcial_conservando_lo_anterior" if habia else "parcial"
+        estado["motivo"] = (
+            f"faltan las columnas {faltan}, que son las que dan sentido a esta "
+            "fuente: el CEA sérico y la pureza medida por ADN. "
+            + (
+                "La tabla anterior, que sí las tenía, se conserva sin tocar."
+                if habia
+                else "No hay tabla previa que conservar."
+            )
+        )
+        estado["cobertura_del_intento"] = cobertura
+        estado["que_queda_sin_evaluar"] = (
+            "D1 (qué determina el CEA sérico) y D2 (validar el índice estromal "
+            "contra una pureza medida). Las dos etapas lo dirán en lugar de "
+            "calcular con columnas vacías."
+        )
+        (salida / "estado.json").write_text(
+            json.dumps(estado, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+        print(f"[tcga] parcial: {estado['motivo']}", file=sys.stderr)
+        return 1
+
+    tabla.to_csv(destino, sep="\t", index=False)
     estado["estado"] = "usada"
     estado["tabla_limpia"] = destino.name
     estado["sha256_de_la_tabla_limpia"] = _sha256(destino.read_bytes())

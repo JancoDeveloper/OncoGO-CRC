@@ -220,3 +220,46 @@ def test_con_un_cero_la_sensibilidad_lo_imputa_y_lo_dice():
     assert res["estado"] == "calculado"
     assert res["n_ceros_imputados"] == 1
     assert res["suelo_usado_ng_ml"] == 0.9
+
+
+# ------------------------------------------- la descarga no degrada lo bueno
+def test_una_descarga_sin_cea_ni_pureza_no_se_marca_usada(tmp_path, monkeypatch):
+    """El DNS de esta red falla de forma intermitente.
+
+    Cuando el GDC no resolvió, el script escribió una tabla de 594 filas sin CEA
+    y sin pureza y la marcó «usada». D1 y D2 la leyeron y dieron por bueno un
+    estado que no lo era. Un script idempotente que degrada un artefacto correcto
+    cuando la red parpadea es peor que uno que se niega a escribir.
+    """
+    import json
+    import sys
+
+    import scripts.download.tcga_coadread as T2
+
+    salida = tmp_path / "external" / "tcga_coadread"
+    salida.mkdir(parents=True)
+    anterior = salida / "tcga_coadread_cea_pureza.tsv"
+    anterior.write_text("paciente\tcea_pretratamiento_ng_ml\nTCGA-A6-0001\t3.4\n")
+
+    monkeypatch.setattr(T2, "_clinico_biotab", lambda _c: (None, [], "DNS no resuelve"))
+    monkeypatch.setattr(T2, "_pureza", lambda _c: (None, {}, "DNS no resuelve"))
+    monkeypatch.setattr(
+        T2,
+        "_clinico_cbioportal",
+        lambda: (
+            pd.DataFrame(
+                {"paciente": ["TCGA-A6-0001"], "muestra": ["TCGA-A6-0001-01"], "edad": [60]}
+            ),
+            [],
+        ),
+    )
+    monkeypatch.setattr(T2, "_expresion", lambda: (pd.DataFrame(), ""))
+    monkeypatch.setattr(sys, "argv", ["tcga_coadread.py", "--workspace", str(tmp_path)])
+
+    assert T2.main() == 1
+    estado = json.loads((salida / "estado.json").read_text(encoding="utf-8"))
+    assert estado["estado"] == "parcial_conservando_lo_anterior"
+    assert "cea_pretratamiento_ng_ml" in estado["motivo"]
+    assert "pureza_absolute" in estado["motivo"]
+    # Lo decisivo: la tabla anterior sigue intacta.
+    assert "3.4" in anterior.read_text()
