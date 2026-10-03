@@ -74,6 +74,12 @@ FUENTES: list[tuple[str, str, str, str]] = [
         "proteoma retrospectivo de colon de TCGA, PDC000111 (D2)",
     ),
     (
+        "heterogeneidad_intratumoral",
+        "pride_heterogeneidad.py",
+        "heterogeneidad_intratumoral",
+        "ocho regiones del mismo tumor, PXD036434 (D3)",
+    ),
+    (
         "alvez_2023",
         "alvez_2023.py",
         "alvez_2023",

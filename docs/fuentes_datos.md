@@ -233,6 +233,75 @@ El estado legible por máquina vive junto a cada descarga, en
 - **No entra en el certificado**: ningún número de esta fuente es un subíndice.
   Lo que decide es cómo hay que describir R4, y queda recogido en la enmienda E8.
 
+### PXD036434 — ocho regiones del mismo tumor
+
+- **Estado**: usada, **fuera del meta-análisis**
+- **Script**: `scripts/download/pride_heterogeneidad.py`
+- **Etapa**: `make v2-heterogeneidad`
+- **Portal**: <https://www.ebi.ac.uk/pride/archive/projects/PXD036434>
+- **Cita**: Herzog R, Amaral FMR, Lerner R, et al. Panomics reveals patient
+  individuality as the major driver of colorectal cancer progression. *Genome
+  Medicine* 2023. doi:10.1186/s13073-023-01176-5
+- **Licencia**: PRIDE Archive, datos públicos.
+- **Qué contiene**: 2 880 genes y 19 muestras de 4 pacientes. De cada paciente,
+  tumor primario, mucosa normal y metástasis hepática; y del cuarto paciente,
+  **ocho regiones distintas del mismo tumor**.
+- **Columnas usadas**: las que siguen el patrón `T`, `NM` y `LM` con el número de
+  paciente. El identificador se toma del símbolo de gen que viene en `GN=` dentro
+  de `DESCRIPTION`, **no** de la columna `PROTEIN ID`, que trae nombres de entrada
+  de UniProt (`PLEC_HUMAN`). Cruzar un nombre de entrada con un símbolo de gen no
+  falla: devuelve cero coincidencias y parece que las cohortes no comparten
+  proteínas.
+- **No entra en el meta-análisis**: el preregistro exige al menos 10 pacientes por
+  cohorte (`d3_inclusion_cohortes.min_pacientes`). Son 4. El umbral no se dobla
+  para que entre.
+- **Para qué sirve entonces**: ninguna cohorte del certificado tiene más de un
+  trozo del mismo tumor, así que ninguna puede comprobar lo que todas suponen:
+  que el trozo medido representa al tumor. Esta sí.
+- **Dos trampas del análisis, las dos resueltas**:
+  1. **El número de observaciones.** Comparar la desviación de ocho valores con
+     la de cuatro no es justo, porque el estimador de cuatro es más ruidoso. Se
+     eligen cuatro de las ocho regiones al azar, 500 veces.
+  2. **A qué paciente se compara.** El paciente de las ocho regiones también es
+     uno de los cuatro, y cuál de sus regiones lo represente cambia la variación
+     entre pacientes. Fijar una sería escoger el resultado, así que se promedia
+     sobre todas las elecciones.
+- **La concordancia se publica junto a lo que daría el azar**: con cuatro pares,
+  el azar ya pone de acuerdo a una proteína de cada ocho. Un porcentaje de
+  concordancia sin esa referencia no se puede leer.
+- **Limitaciones**:
+  - Son cuatro pacientes. De aquí no sale ninguna estimación de efecto comparable
+    con las cohortes del certificado.
+  - Las ocho regiones son de **un** tumor de **un** paciente. Lo que se puede
+    decir es que existe al menos un tumor así, no cuántos tumores son así.
+  - La cuantificación es un cociente contra una referencia común y la plataforma
+    no es la de ninguna cohorte del certificado. Lo que se compara aquí es
+    variación contra variación dentro de la misma matriz.
+  - Las regiones del mismo tumor se midieron probablemente más juntas en el
+    tiempo que las muestras de pacientes distintos. Si eso sesga algo, las haría
+    parecer **más** parecidas entre sí: el sesgo va en contra del resultado.
+
+### La búsqueda de cohortes de D3, con los descartes
+
+El preregistro fija cuatro criterios en `d3_inclusion_cohortes`: tejido humano,
+tumor y normal, matriz descargable y al menos 10 pacientes. Se revisaron los 571
+depósitos de PRIDE que responden a «colorectal» y los estudios colorrectales del
+PDC. **Ningún depósito nuevo cumple los cuatro.** El registro queda en
+`results/v2/axes/heterogeneidad/busqueda_de_cohortes_d3.tsv` porque «no
+encontramos más» y «buscamos y esto es lo que hay» no son lo mismo.
+
+| Fuente | Veredicto | Motivo |
+| --- | --- | --- |
+| PXD019504 | incluida | cumple los cuatro criterios; es la que C10 ya usa |
+| PDC000278 | no disponible | 30 personas con epitelio de colon normal, pero el depósito no publica matriz de proteínas: solo espectros (393 GB) y PSM |
+| PDC000109 | excluida | 97 de sus 100 pacientes son los de PDC000116 |
+| PXD002137 | no disponible | el diseño es el ideal (mucosa, adenoma, cáncer) pero no hay matriz publicada |
+| PXD001676 | no disponible | sin matriz de proteínas publicada |
+| PXD060933 | excluida | tiene matriz, pero sus 12 muestras son todas de cáncer y no hay normal |
+| PXD059755 | excluida | 594 proteínas y el campo de enfermedad viene como «not available» |
+| PXD051882 | excluida | el diseño da el canal de TMT pero no dice cuál es tumor y cuál mucosa |
+| PXD036434 | fuera del meta-análisis | 4 pacientes frente a los 10 que exige el preregistro |
+
 ### Human Protein Atlas — concentraciones en sangre
 
 - **Estado**: usada
