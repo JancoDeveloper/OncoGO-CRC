@@ -55,7 +55,11 @@ PATRONES_IGNORADOS = (
     re.compile(r"^\|\s*\d+\s*\|", re.MULTILINE),
 )
 
-NUMERO = re.compile(r"(?<![\w.,])(\d+(?:[.,]\d+)?)(?![\w])")
+# El signo menos de los informes es U+2212, no un guion. Sin capturarlo, un
+# −0,228 se leía como +0,228 y no coincidía con su fuente: todo número negativo
+# del texto parecía escrito a mano. El guion normal se deja fuera a propósito,
+# porque en «0,492–0,708» separa los extremos de un intervalo y no niega nada.
+NUMERO = re.compile(r"(?<![\w.,\u2212])(\u2212?\d+(?:[.,]\d+)?)(?![\w])")
 
 
 def valores_de_json(obj, salida: set[float]) -> None:
@@ -105,18 +109,31 @@ def valores_de_tsv(path: Path, salida: set[float]) -> None:
 # Solo las tablas de resumen cuentan como fuente. Las tablas por proteína traen
 # cientos de miles de valores, y con tantos cualquier número del texto coincidiría
 # con alguno por azar: el verificador dejaría de verificar nada.
-TSV_DE_RESUMEN = ("indice_R_v2.tsv", "changelog_numeros.tsv")
+TSV_DE_RESUMEN = (
+    "indice_R_v2.tsv",
+    "changelog_numeros.tsv",
+    "tamano_necesario_cohorte_cea.tsv",
+)
 
 
-def recoger_fuentes(raiz: Path, extra: list[Path]) -> tuple[set[float], list[str]]:
+def recoger_fuentes(
+    raiz: Path, extra: list[Path], fichas: Path | None = None
+) -> tuple[set[float], list[str]]:
     valores: set[float] = set()
     usadas: list[str] = []
-    for path in sorted(raiz.rglob("*.json")):
+    rutas = sorted(raiz.rglob("*.json"))
+    if fichas is not None and fichas.exists():
+        # Las fichas de las fuentes externas también son artefactos calculados: las
+        # escriben los scripts de descarga con su hash y su fecha de acceso. Un
+        # número citado de una ficha no está escrito a mano, pero vive fuera de
+        # `results/` y sin esto el verificador no podía verlo.
+        rutas += sorted(fichas.glob("*/estado.json"))
+    for path in rutas:
         if path.name.startswith("._"):
             continue
         try:
             valores_de_json(json.loads(path.read_text(encoding="utf-8")), valores)
-            usadas.append(str(path.relative_to(raiz)))
+            usadas.append(path.name if raiz not in path.parents else str(path.relative_to(raiz)))
         except (json.JSONDecodeError, UnicodeDecodeError):
             print(f"[verificar] aviso: {path} no es JSON válido", file=sys.stderr)
     for nombre in TSV_DE_RESUMEN:
@@ -161,7 +178,7 @@ def verificar(path: Path, fuentes: set[float]) -> list[dict]:
             len(bruto.split(".")[1]) if "." in bruto else 0
         )
         try:
-            valor = float(bruto.replace(",", "."))
+            valor = float(bruto.replace(",", ".").replace("\u2212", "-"))
         except ValueError:
             continue
         if not coincide(valor, fuentes, decimales):
@@ -194,6 +211,7 @@ def main() -> int:
             repo / "config" / "preregistro_v2.yaml",
             repo / "config" / "registro_subindices.yaml",
         ],
+        fichas=Path(args.workspace) / "external",
     )
     print(
         f"[verificar] {len(fuentes)} valores numéricos distintos "

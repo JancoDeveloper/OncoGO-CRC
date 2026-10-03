@@ -145,3 +145,31 @@ def test_el_orden_de_los_pasos_de_una_tabla_no_se_verifica(raiz, tmp_path):
         encoding="utf-8",
     )
     assert vn.verificar(informe, _fuentes(raiz)) == []
+
+
+def _numeros_sin_fuente(texto: str, fuentes: set[float], tmp: Path) -> list[str]:
+    informe = tmp / "SINTETICO_informe.md"
+    informe.write_text(texto + "\n", encoding="utf-8")
+    return [f["numero"] for f in vn.verificar(informe, fuentes)]
+
+
+def test_el_signo_menos_tipografico_cuenta_como_signo(tmp_path):
+    """El informe usa U+2212 y no un guion.
+
+    Sin capturarlo, un −0,228 se leía como +0,228 y no coincidía con su fuente
+    negativa: todos los números negativos del texto parecían escritos a mano. El
+    guion normal se deja fuera a propósito, porque en «0,492–0,708» separa los
+    extremos de un intervalo y no niega nada.
+    """
+    fuentes = {-0.228, 0.492, 0.708}
+    assert _numeros_sin_fuente("La correlación fue de \u22120,228.", fuentes, tmp_path) == []
+    # Y el positivo del mismo valor sigue sin fuente, que es lo que lo hace útil.
+    assert _numeros_sin_fuente("La correlación fue de 0,228.", fuentes, tmp_path) == ["0,228"]
+    # Un intervalo con guion no se lee como un número negativo.
+    assert _numeros_sin_fuente("IC 95 % 0,492\u20130,708.", fuentes, tmp_path) == []
+
+
+def test_un_numero_negativo_inventado_se_sigue_detectando(tmp_path):
+    assert _numeros_sin_fuente("La pendiente fue \u22120,6142.", {-0.228}, tmp_path) == [
+        "\u22120,6142"
+    ]
