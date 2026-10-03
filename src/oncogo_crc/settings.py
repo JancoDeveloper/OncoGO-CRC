@@ -127,8 +127,14 @@ def _seed_workspace_metadata_from_repo(repo_root: Path, workspace: Path) -> None
 
 
 def _is_workspace_relative(rel: str) -> bool:
-    """Rutas pesadas y metadata: data/, results/, reports/, metadata/, y docs/web (MkDocs)."""
-    norm = rel.replace("\\", "/").lstrip("/")
+    """Rutas pesadas y metadata: data/, results/, reports/, metadata/, y docs/web (MkDocs).
+
+    También los directorios raíz sin barra final (``results``, ``data``…): si no, ``resolve("results")``
+    escribe en el clon aunque ``data_workspace`` esté activo.
+    """
+    norm = rel.replace("\\", "/").lstrip("/").rstrip("/")
+    if norm in {"data", "results", "reports", "metadata"}:
+        return True
     return (
         norm.startswith("data/")
         or norm.startswith("results/")

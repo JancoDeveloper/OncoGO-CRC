@@ -7,6 +7,8 @@ from oncogo_crc.settings import Settings
 from oncogo_crc.stages import (
     clinical_translation,
     cohort_overlap,
+    certified_inference,
+    secondary_contrasts,
     differential_analysis,
     download_data,
     certification,
@@ -26,6 +28,7 @@ from oncogo_crc.stages import (
     publish_results,
     qc_normalize,
     stability_analysis,
+    translational_axes,
     validate_inputs,
     version_inputs,
 )
@@ -42,6 +45,9 @@ STAGES: dict[str, StageFn] = {
     "harmonize": harmonize_ids.run,
     "qc": qc_normalize.run,
     "differential": differential_analysis.run,
+    "certified_inference": certified_inference.run,
+    "translational_axes": translational_axes.run,
+    "secondary_contrasts": secondary_contrasts.run,
     "cohort_overlap": cohort_overlap.run,
     "gsea": gsea_enrichment.run,
     "go": go_enrichment.run,

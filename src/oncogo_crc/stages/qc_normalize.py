@@ -14,6 +14,7 @@ from oncogo_crc.utils.qc import (
     log2_transform_masked,
     zscore_by_protein,
 )
+from oncogo_crc.utils.quant_columns import columns_for_family, is_summary_protein
 
 
 def _sha256_file(path: Path) -> str:
@@ -59,8 +60,17 @@ def run(settings: Settings) -> None:
         if not path.exists():
             continue
         df = read_tsv(path)
+        if "protein_id" in df.columns:
+            df = df.loc[~df["protein_id"].map(is_summary_protein)].copy()
         meta = [c for c in df.columns if c in meta_cols]
         sc0 = [c for c in df.columns if c not in meta_cols]
+        ds_cfg = settings.datasets["datasets"].get(key, {})
+        family = ds_cfg.get("quant_column_family")
+        picked = columns_for_family(sc0, str(family) if family else None)
+        if family and picked and len(picked) < len(sc0):
+            df = df[meta + picked].copy()
+            sc0 = picked
+        abundance_scale = str(ds_cfg.get("abundance_scale") or "")
         prot_frac_before = df[sc0].isna().mean(axis=1)
         samp_frac_before = df[sc0].isna().mean(axis=0)
 
@@ -109,7 +119,8 @@ def run(settings: Settings) -> None:
         write_tsv(samp_df, qc_dir / f"{key}_sample_missingness.tsv")
 
         n_nonpositive = 0
-        if pp.get("log2_transform", True):
+        # log2_ratio: la matriz pública ya es un log2. Transformar otra vez no es un fold change.
+        if pp.get("log2_transform", True) and abundance_scale != "log2_ratio":
             mat_log, n_nonpositive = log2_transform_masked(mat_raw)
         else:
             mat_log = mat_raw

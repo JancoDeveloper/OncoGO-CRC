@@ -36,8 +36,8 @@ def _report_markdown(report_dict: dict, overlap_path: str | None) -> str:
         "",
         f"Fecha UTC: {datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}",
         "",
-        "Este informe no es un capítulo de resultados. Dice qué se puede afirmar hoy",
-        "con los artefactos del pipeline y qué queda fuera hasta ejecutar el diseño 3.0.",
+        "Este informe no es un capítulo de resultados. Dice qué cláusulas sostienen",
+        "los números del contraste certificado y qué sigue fuera de alcance.",
         "",
         f"Cruce usado: `{overlap_path or 'ninguno'}`",
         "",
@@ -59,10 +59,20 @@ def _report_markdown(report_dict: dict, overlap_path: str | None) -> str:
         f"(mismo signo: {report_dict['n_same_sign']})",
         f"- Cláusula de proteína de H1 (umbral < {H1_PROTEIN_CONCORDANCE_MAX}): "
         f"**{report_dict['h1_protein_clause']}**",
-        f"- Cláusula de vía de H1 (umbral > {H1_PATHWAY_CONCORDANCE_MIN}): no evaluable en esta etapa.",
+        f"- Concordancia de vía: {_fmt(report_dict.get('pathway_concordance'))} "
+        f"(términos evaluables: {report_dict.get('pathway_n', 0)}; "
+        f"IC 95 %: {_fmt(report_dict.get('pathway_ci_low'))} – {_fmt(report_dict.get('pathway_ci_high'))})",
+        f"- Cláusula de vía de H1 (umbral > {H1_PATHWAY_CONCORDANCE_MIN}): "
+        f"**{report_dict.get('h1_pathway_clause', 'no_evaluable')}**",
+        f"- H1 (las dos cláusulas juntas): **{report_dict.get('h1_status', 'no_evaluable')}**",
         f"- Proxy de medibilidad H4 (se falsifica si ≥ {H4_MEASURABLE_FRACTION_REDUNDANT}): "
         f"**{report_dict['h4_proxy']}** (fracción {_fmt(report_dict['measurable_fraction'])}).",
-        f"- Umbral treat declarado y aún no aplicado al diferencial: log2FC = {TREAT_LFC}.",
+        (
+            f"- Contraste: `{report_dict['inference_method']}`. "
+            f"Umbral treat aplicado al p-valor: log2FC = {TREAT_LFC}."
+            if report_dict.get("inference_method")
+            else f"- Umbral treat declarado y aún no aplicado al diferencial: log2FC = {TREAT_LFC}."
+        ),
         "",
         "## Lo que este pipeline todavía no cumple",
         "",
@@ -83,9 +93,36 @@ def run(settings: Settings) -> None:
             "results/reproducibility/cptac_pride_differential_overlap.tsv",
         )
     )
-    overlap_path = settings.resolve(overlap_rel)
+    certified_overlap = settings.resolve("results/certified/cptac_pride_overlap.tsv")
+    overlap_path = certified_overlap if certified_overlap.exists() else settings.resolve(overlap_rel)
     overlap = read_tsv(overlap_path) if overlap_path.exists() else None
-    report = build_certification_report(overlap, alpha=alpha)
+    audit_path = settings.resolve("results/certified/inference_audit.json")
+    audit: dict = {}
+    if audit_path.exists() and overlap_path == certified_overlap:
+        audit = json.loads(audit_path.read_text(encoding="utf-8"))
+    report = build_certification_report(
+        overlap,
+        alpha=alpha,
+        gaps=audit.get("gaps"),
+        pathway_concordance=audit.get("pathway_concordance"),
+        pathway_n=int(audit.get("pathway_n") or 0),
+        pathway_ci_low=audit.get("pathway_ci_low"),
+        pathway_ci_high=audit.get("pathway_ci_high"),
+        inference_method=str(audit.get("method") or ""),
+        measurable_override=audit.get("peptide_measurable_fraction"),
+        r2_note=audit.get("r2_note"),
+    )
+    for sub in report.subindices:
+        if sub.code == "R5_nulo" and audit.get("r5_empirical_p") is not None:
+            sub.value = round(float(audit["r5_empirical_p"]), 4)
+            sub.status = "calculado"
+            sub.note = str(audit.get("r5_note") or "")
+        stroma = audit.get("r4_stroma") or {}
+        if sub.code == "R4_pureza" and stroma.get("fraction_surviving") is not None:
+            sub.value = round(float(stroma["fraction_surviving"]), 4)
+            sub.status = "calculado"
+            sub.name = "Fracción del efecto que sobrevive al ajuste estromal"
+            sub.note = str(audit.get("r4_note") or "")
     payload = report.to_dict()
     payload["alpha"] = alpha
     payload["overlap_tsv"] = str(overlap_path) if overlap is not None else None

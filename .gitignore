@@ -20,10 +20,10 @@ data/raw/**/*.txt
 !data/raw/**/.gitkeep
 data/interim/*.tsv
 data/processed/*.tsv
-results/**/*
-!results/**/.gitkeep
-reports/**/*.md
-!reports/**/.gitkeep
+/results/**/*
+!/results/**/.gitkeep
+/reports/**/*.md
+!/reports/**/.gitkeep
 
 # MkDocs
 site/
@@ -33,6 +33,10 @@ site/
 .vscode/
 *.swp
 .DS_Store
+
+# AppleDouble: ExFAT (el disco externo JANCODATA) crea un ._fichero por fichero.
+# No son datos del proyecto.
+._*
 
 # Jupyter
 .ipynb_checkpoints/

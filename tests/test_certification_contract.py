@@ -41,6 +41,23 @@ def test_sign_concordance_uses_only_discovery_hits():
     assert codes["R5_nulo"] == "no_calculable"
 
 
+def test_measurable_fraction_counts_discovery_only_hits():
+    overlap = _overlap()
+    extra = pd.DataFrame(
+        {
+            "_merge": ["left_only", "right_only"],
+            "padj_cptac": [0.01, float("nan")],
+            "log2fc_cptac": [1.0, float("nan")],
+            "log2fc_pride": [float("nan"), -0.4],
+        }
+    )
+    report = build_certification_report(pd.concat([overlap, extra], ignore_index=True), alpha=0.05)
+    # Cuatro significativas en CPTAC (tres both + una left_only); tres tienen log2FC en PRIDE.
+    assert report.measurable_fraction == 3 / 4
+    assert report.h4_proxy == "filtro_no_redundante_en_el_proxy"
+    assert report.n_sign_evaluable == 3
+
+
 def test_h1_rejects_protein_clause_at_threshold():
     assert h1_protein_clause(0.70) == "rechaza_clausula_proteina"
     assert h1_protein_clause(0.69) == "sostiene_clausula_proteina"

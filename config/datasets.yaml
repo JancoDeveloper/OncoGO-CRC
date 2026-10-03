@@ -12,6 +12,10 @@ datasets:
     sample_metadata: metadata/sample_metadata/cptac_metadata.tsv
     id_column: sample_id
     protein_column: protein_id
+    # El TSV de PDC ya está en log2 (Log Ratio). Un segundo log2 no es un fold change.
+    abundance_scale: log2_ratio
+    # Unshared = péptidos no compartidos. No se mezcla con Log Ratio del mismo espécimen.
+    quant_column_family: unshared_log_ratio
     # Fuente primaria PDC: estudio portal PDC000116 (Prospective Colon PNNL proteome, tumor/normal emparejado).
     # Alternativa rápida (sin URLs firmadas): `oncogo-crc run --stage ingest_cptac` tras `pip install 'oncogo-crc[ingest]'`.
     download_real:

@@ -55,7 +55,15 @@ class CertificationReport:
     sign_ci_high: float | None = None
     sign_p_vs_half: float | None = None
     measurable_fraction: float | None = None
+    measurable_fraction_log2fc: float | None = None
     h1_protein_clause: str = "no_evaluable"
+    h1_pathway_clause: str = "no_evaluable"
+    h1_status: str = "no_evaluable"
+    pathway_concordance: float | None = None
+    pathway_n: int = 0
+    pathway_ci_low: float | None = None
+    pathway_ci_high: float | None = None
+    inference_method: str = ""
     h4_proxy: str = "no_evaluable"
     subindices: list[Subindex] = field(default_factory=list)
     gaps: list[str] = field(default_factory=list)
@@ -132,19 +140,18 @@ def measurable_fraction_two_cohorts(
     discovery_padj: str = "padj_cptac",
     replica_lfc: str = "log2fc_pride",
 ) -> dict[str, Any]:
-    """Proxy de medibilidad con las dos cohortes ya cruzadas.
+    """Proxy de medibilidad con el cruce outer de las dos cohortes.
 
-    Una proteína significativa en descubrimiento cuenta como medible aquí solo
-    si también tiene log2FC finito en la réplica. No sustituye el criterio de
-    péptido proteotípico en al menos dos plataformas: ese dato aún no está en
-    el pipeline.
+    El denominador son todas las proteínas con q < alpha en descubrimiento,
+    incluidas las que el cruce marca como ``left_only``. Cuentan como medibles
+    solo las que además tienen log2FC finito en la réplica. Restringir el
+    denominador a ``_merge == both`` daría fracción 1 por construcción.
+    No sustituye el criterio de péptido proteotípico en al menos dos plataformas.
     """
     out = {"n_discovery_significant": 0, "n_measurable": 0, "fraction": None}
     if overlap is None or overlap.empty or discovery_padj not in overlap.columns:
         return out
     disc = overlap
-    if "_merge" in disc.columns:
-        disc = disc.loc[disc["_merge"].astype(str) == "both"]
     padj = pd.to_numeric(disc[discovery_padj], errors="coerce")
     sig = disc.loc[padj < alpha]
     n_sig = int(len(sig))
@@ -168,6 +175,26 @@ def h1_protein_clause(concordance: float | None, *, threshold: float = H1_PROTEI
     if concordance < threshold:
         return "sostiene_clausula_proteina"
     return "rechaza_clausula_proteina"
+
+
+def h1_pathway_clause(concordance: float | None, *, threshold: float = H1_PATHWAY_CONCORDANCE_MIN) -> str:
+    """H1 predice concordancia de vía por encima del umbral. El umbral no se incluye."""
+    if concordance is None:
+        return "no_evaluable"
+    if concordance > threshold:
+        return "sostiene_clausula_via"
+    return "rechaza_clausula_via"
+
+
+def h1_status(protein_clause: str, pathway_clause: str) -> str:
+    """H1 es la conjunción. Se rechaza si falla cualquiera de las dos cláusulas."""
+    if protein_clause == "rechaza_clausula_proteina" or pathway_clause == "rechaza_clausula_via":
+        return "rechaza_h1"
+    if protein_clause == "sostiene_clausula_proteina" and pathway_clause == "sostiene_clausula_via":
+        return "sostiene_h1"
+    if protein_clause == "sostiene_clausula_proteina":
+        return "parcial_solo_proteina"
+    return "no_evaluable"
 
 
 def h4_proxy_verdict(
@@ -203,11 +230,24 @@ def default_gaps() -> list[str]:
     ]
 
 
-def build_certification_report(overlap: pd.DataFrame | None, *, alpha: float = 0.05) -> CertificationReport:
+def build_certification_report(
+    overlap: pd.DataFrame | None,
+    *,
+    alpha: float = 0.05,
+    gaps: list[str] | None = None,
+    pathway_concordance: float | None = None,
+    pathway_n: int = 0,
+    pathway_ci_low: float | None = None,
+    pathway_ci_high: float | None = None,
+    inference_method: str = "",
+    measurable_override: float | None = None,
+    r2_note: str | None = None,
+) -> CertificationReport:
     sign = sign_concordance_discovery(overlap if overlap is not None else pd.DataFrame(), alpha=alpha)
     meas = measurable_fraction_two_cohorts(overlap if overlap is not None else pd.DataFrame(), alpha=alpha)
     conc = sign["concordance"]
-    frac = meas["fraction"]
+    frac_log2 = meas["fraction"]
+    frac = frac_log2 if measurable_override is None else measurable_override
     n_both = 0
     if overlap is not None and not overlap.empty and "_merge" in overlap.columns:
         n_both = int((overlap["_merge"].astype(str) == "both").sum())
@@ -223,7 +263,9 @@ def build_certification_report(overlap: pd.DataFrame | None, *, alpha: float = 0
             "Fracción de proteínas con q < alpha en CPTAC cuyo log2FC tiene el mismo signo en PRIDE. "
             "Intervalo de Clopper–Pearson."
         ),
-        note="Solo cierra la cláusula de proteína de H1. La cláusula de vía sigue abierta.",
+        note=(
+            "Cláusula de proteína de H1. La de vía se informa aparte y no se pliega en este número."
+        ),
     )
     r2_value = None if frac is None else round(float(frac), 4)
     r2 = Subindex(
@@ -232,9 +274,10 @@ def build_certification_report(overlap: pd.DataFrame | None, *, alpha: float = 0
         value=r2_value,
         status="calculado" if frac is not None else "no_calculable",
         definition=(
-            "Fracción de proteínas significativas en CPTAC que también tienen log2FC finito en PRIDE."
+            "Fracción de proteínas significativas en CPTAC que también se miden en la réplica."
         ),
-        note="Proxy. No es el criterio de péptido proteotípico en ≥2 plataformas.",
+        note=r2_note
+        or "Proxy por log2FC finito. No es el criterio de péptido proteotípico en ≥2 plataformas.",
     )
     pending = [
         Subindex(
@@ -269,10 +312,21 @@ def build_certification_report(overlap: pd.DataFrame | None, *, alpha: float = 0
         sign_ci_high=sign["ci_high"],
         sign_p_vs_half=sign["p_vs_half"],
         measurable_fraction=None if frac is None else float(frac),
+        measurable_fraction_log2fc=None if frac_log2 is None else float(frac_log2),
         h1_protein_clause=h1_protein_clause(None if conc is None else float(conc)),
+        h1_pathway_clause=h1_pathway_clause(pathway_concordance),
+        h1_status=h1_status(
+            h1_protein_clause(None if conc is None else float(conc)),
+            h1_pathway_clause(pathway_concordance),
+        ),
+        pathway_concordance=pathway_concordance,
+        pathway_n=int(pathway_n),
+        pathway_ci_low=pathway_ci_low,
+        pathway_ci_high=pathway_ci_high,
+        inference_method=inference_method,
         h4_proxy=h4_proxy_verdict(None if frac is None else float(frac)),
         subindices=[r1, r2, *pending],
-        gaps=default_gaps(),
+        gaps=default_gaps() if gaps is None else gaps,
     )
 
 
