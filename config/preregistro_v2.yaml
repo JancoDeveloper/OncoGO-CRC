@@ -1,0 +1,256 @@
+# Preregistro de la versión 2 de OncoGO-CRC
+#
+# Este fichero se escribe ANTES de correr cualquier análisis de v2 y se commitea
+# solo. Fija umbrales, tamaños mínimos, semillas y reglas de decisión. Si algo de
+# aquí cambia después de ver un resultado, el cambio se registra en
+# docs/enmiendas_v2.md con fecha y justificación, y el valor viejo se conserva.
+#
+# Fecha de preregistro: 2026-10-03
+# Corrida de referencia congelada: v1 del 2026-10-01 (results/v1_manifest.sha256)
+
+version: 2
+fecha_preregistro: "2026-10-03"
+
+# ---------------------------------------------------------------- 1. Inferencia
+inferencia:
+  # Heredados de v1 sin cambio. No son enmiendas.
+  alpha: 0.05
+  correccion_multiple: benjamini_hochberg
+  treat_lfc: 0.585           # log2(1,5): un cambio del 50 %
+  min_pares_observados: 3    # pares completos mínimos por proteína; no se imputa
+  escala_cptac: log2_ratio   # el TSV de PDC ya viene en log2; no se vuelve a transformar
+  familia_columnas_cptac: unshared_log_ratio
+  cero_maxquant_es_ausencia: true
+  fusionar_cohortes: false   # cada cohorte se contrasta dentro de sí misma, siempre
+
+# ------------------------------------------------------------------ 2. Semillas
+# La base es la de v1. Cada análisis estocástico usa base + desplazamiento fijo.
+# Los desplazamientos se declaran aquí para que la semilla no se elija después.
+semillas:
+  base: 20260914
+  desplazamientos:
+    r5_permutacion_cptac: 0        # 20260914, igual que v1
+    r5_permutacion_vias: 101
+    c5_mitades_divididas: 205
+    c5_nulo_intercambio: 206
+    c6_bootstrap_conglomerado: 310
+    c6_validacion_cruzada: 311
+    c7_deconvolucion: 415
+    c10_meta_arranque: 520
+
+# ------------------------------------------- 3. C1: nulos de permutación
+c1_permutaciones:
+  # v1 usó 100 permutaciones, y el p mínimo alcanzable era 1/101 = 0,0099.
+  # El valor reportado era ese piso, no una estimación.
+  cptac_n_permutaciones: 10000
+  formula_p: "(b + 1) / (B + 1)"
+  intervalo_p: clopper_pearson
+  # 16 pares en PXD034575: el espacio de inversiones de signo es enumerable.
+  pride_exacto: true
+  pride_n_inversiones: 65536     # 2^16
+  guardar_distribucion_nula: true
+  regla: "Ningún p reportado puede ser menor que 1/(B+1). Si b = 0 se reporta p = 1/(B+1) y se dice que es un tope."
+
+# ------------------------------------- 4. C2 y C3: certificado y denominadores
+certificado:
+  # Una sola fuente de verdad para código, nombre, definición y estado.
+  registro_subindices: config/registro_subindices.yaml
+  # Toda fracción del certificado lleva numerador y denominador explícitos.
+  exigir_numerador_denominador: true
+  tolerancia_fraccion: 1.0e-9
+  # Prohibido que una definición de un subíndice `calculado` diga que no se calculó.
+  frases_prohibidas_si_calculado: ["aún no", "todavía no", "no ejecutad", "no se calcul"]
+  # Las unidades del denominador se nombran: proteínas, no filas del cruce.
+  unidad_denominador: proteinas_unicas
+
+# ----------------------------------------------------- 5. C15: denominador de R1
+# No está en el diseño original. Se añade porque en v1 R1 = 104/119, y 119 es el
+# 17,3 % de las 688 proteínas certificadas: el denominador son los hallazgos que
+# la réplica además alcanza a medir, no los hallazgos.
+c15_denominador_r1:
+  declarar_cobertura: true
+  # R1 se reporta siempre con los tres números juntos.
+  campos_obligatorios: [n_certificadas, n_evaluables, n_mismo_signo, cobertura_evaluable]
+  # Si la cobertura es baja, R1 no se presenta como propiedad de los hallazgos.
+  cobertura_minima_para_generalizar: 0.50
+  regla: "Si n_evaluables / n_certificadas < 0,50, R1 se reporta como concordancia condicionada a detectabilidad en la réplica y no como concordancia de los hallazgos."
+
+# ------------------------------------------------ 6. C4 y C13: vías y conjuntos
+c4_vias:
+  # v1 declaró `sostiene` con 4 términos e IC de 0,40 a 1,0. Con 4 términos no se
+  # sostiene nada. El mínimo se fija aquí, antes de recalcular.
+  n_min_terminos: 10
+  estado_si_insuficiente: no_evaluable
+  colecciones: [go_bp, reactome, msigdb_hallmark]
+  # Prueba competitiva por conjunto dentro de cada cohorte, por separado.
+  # Equivalente a limma::camera: t moderado por proteína, estadístico del conjunto
+  # frente al resto, con corrección por correlación intergénica.
+  prueba: competitiva_camera
+  correlacion_intergenica: estimada_de_los_residuos
+  min_proteinas_por_termino: 10
+  # Luego, concordancia de signo del NES entre cohortes.
+  concordancia: signo_del_estadistico_entre_cohortes
+  umbral_h1_via_min: 0.80
+c13_nulo_vias:
+  permutar_etiquetas_de_gen: true
+  n_permutaciones: 1000
+  reportar_los_dos_nulos_por_separado: true
+
+# ------------------------------------------- 7. H1, H2 y H4: reglas de decisión
+hipotesis:
+  h1:
+    clausula_proteina:
+      prediccion: "concordancia de signo < 0,70"
+      umbral: 0.70
+    clausula_via:
+      prediccion: "concordancia de vía > 0,80"
+      umbral: 0.80
+      requiere_n_min_terminos: 10
+    # Tabla de verdad completa. H1 es la conjunción de las dos cláusulas.
+    tabla_verdad:
+      - [rechaza_clausula_proteina, cualquiera, rechaza_h1]
+      - [sostiene_clausula_proteina, rechaza_clausula_via, rechaza_h1]
+      - [sostiene_clausula_proteina, sostiene_clausula_via, sostiene_h1]
+      - [sostiene_clausula_proteina, no_evaluable, parcial_solo_proteina]
+      - [no_evaluable, cualquiera, no_evaluable]
+    nota: "La cláusula de proteína basta para rechazar H1. Una cláusula de vía no evaluable no salva H1."
+  h2:
+    estado: no_evaluada
+    motivo: "No hay nulo que conserve el grado de cada nodo. Ninguna red se interpreta."
+    requisito_para_evaluar: "≥1000 redes con reconexión que conserve grados"
+  h4:
+    prediccion: "se falsifica si ≥ 0,90 de los candidatos ya es medible"
+    umbral: 0.90
+
+# ------------------------------------------- 8. C5: pólipos sin winner's curse
+c5_polipos:
+  # En v1 las proteínas se eligieron por ser significativas en el brazo tumor de
+  # PXD034575 y se midieron en el mismo dato: la magnitud en tumor está inflada.
+  analisis_principal: seleccion_independiente_cptac
+  seleccion_independiente:
+    cohorte_seleccion: cptac_pdc000116
+    cohorte_medicion: pride_pxd034575
+  mitades_divididas:
+    n_repeticiones: 1000
+    unidad: paciente
+    percentiles: [2.5, 50, 97.5]
+  nulo_intercambio:
+    # Permuta las etiquetas pólipo y tumor dentro de cada paciente.
+    n_permutaciones: 1000
+    unidad: paciente
+  regla: "La conclusión del gradiente normal–adenoma–carcinoma solo se sostiene si la selección independiente la reproduce. Las mitades divididas y el nulo de intercambio acotan el sesgo."
+
+# ----------------------------------- 9. C6: remuestreo y validación por paciente
+c6_remuestreo:
+  # Los 32 especímenes de prueba son 16 pacientes con 2 muestras cada uno.
+  # Remuestrear especímenes trata muestras del mismo paciente como independientes.
+  bootstrap: conglomerado_por_paciente
+  n_bootstrap: 2000
+  validacion_cruzada: group_k_fold
+  k_pliegues: 5
+  anidada_para_hiperparametros: true
+  grupo: participante
+  metrica_primaria: auc_cohorte_externa
+  intervalo: 0.95
+  regla_ganador: "Solo hay ganador si el intervalo del mejor no se solapa con el del segundo."
+  reportar_diferencia_por_pares: true
+  escalado_entre_cohortes: zscore_por_proteina_dentro_de_cohorte
+
+# ---------------------------------- 10. C7: composición de tejido y pureza
+c7_composicion:
+  # v1 usó las 282 proteínas de GO:0031012 como índice y a la vez las contrastó.
+  # El valor principal de R4 se elige aquí, antes de ver los resultados.
+  metodo_principal: ecm_leave_one_out
+  metodos_sensibilidad:
+    - ecm_sin_exclusion            # el de v1, para comparar
+    - musculo_liso
+    - inmune
+    - epitelial
+    - conjunto_multiindice
+    - deconvolucion_referencia_externa
+    - pureza_absolute_tcga
+  firmas:
+    musculo_liso: [DES, ACTG2, MYH11, CNN1, TAGLN, MYL9]
+    inmune: [PTPRC, CD3E, CD19, LYZ, MPO, CD68, ITGAM]
+    epitelial: [EPCAM, KRT8, KRT18, KRT20, CDH17, CDH1]
+  evaluar_efecto_en: 0.0          # diferencia de composición cero entre el par
+  lenguaje_obligatorio: "R4 es una cota del efecto de composición, no una pureza medida, salvo cuando la covariable es la pureza ABSOLUTE de TCGA."
+
+# ------------------------------------ 11. C8: ventana de detección tejido–suero
+c8_ventana_deteccion:
+  # Tejido y suero son contrastes distintos, y el DIA no dirigido no llega a ng/ml.
+  anotacion_concentracion: human_protein_atlas
+  secciones_hpa: [concentracion_ms, concentracion_inmunoensayo]
+  umbral_deteccion: empirico_de_pxd055218
+  reportar_concordancia: solo_por_encima_del_umbral
+  reportar_aparte: por_debajo_del_umbral
+  lenguaje_obligatorio: "ventana de detección"
+  excepcion_discordancia_biologica: "Solo para proteínas bien medidas en los dos lados (p. ej. LRG1, SERPINA1, ORM1)."
+
+# ------------------------------------------- 12. C9: concordancia estratificada
+c9_estratificacion:
+  estratos:
+    - cuartiles_de_intensidad_pride
+    - n_peptidos_unicos
+    - direccion_del_efecto          # sube o baja en tumor
+    - sobrevive_ajuste_estromal     # las 307 de v1
+  reportar_intervalo_por_estrato: true
+
+# ------------------------------------------------ 13. C10: meta-análisis R3
+c10_meta:
+  metodo: reml
+  # metafor::rma no está disponible (no hay R). Se implementa en Python y se
+  # valida contra ejemplos con resultado conocido. Ver docs/enmiendas_v2.md.
+  implementacion: python_equivalente_a_metafor_rma
+  estadisticos: [tau2, I2, efecto_combinado, ci]
+  min_cohortes_por_proteina: 2
+  # Con 2 cohortes I² es muy inestable. R3 se reporta solo con 3 o más.
+  min_cohortes_para_reportar_r3: 3
+  definicion_r3: "mediana de (1 − I²) entre las proteínas certificadas evaluables"
+  estado_si_insuficiente: no_calculable
+
+# ------------------------------------- 14. C11: réplica primaria y auditoría H0
+c11_replica_primaria:
+  acceso: PXD019504
+  mismas_reglas_que: PXD034575
+  log2_solo_de_valores_positivos: true
+  sin_imputar: true
+  h0_nivel_a:
+    comparar: [PXD019504, PXD031705]
+    checksums: [md5, sha256]
+    fuente: listados_de_pride
+    reportar: ficheros_compartidos
+
+# ------------------------------- 15. Criterios de inclusión de cohortes (D3)
+d3_inclusion_cohortes:
+  tejido_humano: true
+  requiere_tumor_y_normal: true
+  emparejado_preferido: true
+  min_pacientes: 10
+  requiere_matriz_descargable: true
+  contraste: dentro_de_cada_cohorte
+  combinacion: solo_de_efectos_via_meta
+
+# ----------------------------------- 16. Tamaños mínimos para estratificar
+tamanos_minimos:
+  min_por_grupo_contraste: 15
+  min_pares_emparejado: 10
+
+# --------------------------------------------- 17. Integridad y procedencia
+integridad:
+  manifiesto_entradas: results/v2/manifest_inputs.sha256
+  manifiesto_v1: results/v1_manifest.sha256
+  verificar_al_final: true
+  v1_solo_lectura: true
+  salida_v2: results/v2
+  prohibido_sintetico_en_resultados: true
+  sintetico_permitido_solo_en: tests/
+  prefijo_sintetico: SINTETICO_
+  # Si una fuente falla, el análisis se marca y se sigue. Nunca se rellena.
+  estados_fuente: [usada, no_disponible, requiere_acceso]
+  numeros_del_reporte: "Todos salen de un TSV o JSON de results/v2. Ninguno se escribe a mano."
+
+# ------------------------------------------------------- 18. Datos personales
+datos_personales:
+  permitidos: false
+  nota: "Ningún dato clínico de un paciente individual entra en el repositorio, en los resultados ni en los reportes. Ningún resultado de esta tesis sirve para decidir sobre un paciente."
