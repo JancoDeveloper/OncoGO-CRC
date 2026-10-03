@@ -133,13 +133,15 @@ def _is_workspace_relative(rel: str) -> bool:
     escribe en el clon aunque ``data_workspace`` esté activo.
     """
     norm = rel.replace("\\", "/").lstrip("/").rstrip("/")
-    if norm in {"data", "results", "reports", "metadata"}:
+    if norm in {"data", "results", "reports", "metadata", "external"}:
         return True
     return (
         norm.startswith("data/")
         or norm.startswith("results/")
         or norm.startswith("reports/")
         or norm.startswith("metadata/")
+        # external/ son las descargas de fuentes ajenas de v2 (D1-D9).
+        or norm.startswith("external/")
         or norm.startswith("docs/web")
     )
 

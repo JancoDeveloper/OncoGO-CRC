@@ -160,35 +160,67 @@ def nulo_etiquetas_de_gen(
     de cada conjunto. Es el nulo que faltaba: R5 de v1 solo permutaba los pares,
     así que no cubría la etapa de vías.
 
+    El cálculo se hace con sumas acumuladas, no conjunto a conjunto. El
+    estadístico de un conjunto de tamaño ``m`` depende únicamente de la suma de
+    los estadísticos elegidos, porque la media de fuera es el total menos esa
+    suma y el error estándar solo depende de ``m``, ``rho`` y ``n``. Así que una
+    sola permutación, acumulada, da una extracción válida para **todos** los
+    tamaños a la vez: la suma de los primeros ``m`` elementos permutados es un
+    subconjunto aleatorio de tamaño ``m``. Eso baja el coste de
+    permutaciones × términos × proteínas a permutaciones × proteínas.
+
     Devuelve, por término, la fracción de permutaciones en las que el
     estadístico absoluto fue al menos el observado.
     """
     rng = np.random.default_rng(semilla)
     stats = np.asarray(estadisticos, dtype=float)
-    ok = np.isfinite(stats)
-    stats = stats[ok]
+    stats = stats[np.isfinite(stats)]
+    n = stats.size
+    total = float(stats.sum())
+    var_comun = float(((stats - stats.mean()) ** 2).sum() / (n - 1)) if n > 1 else 0.0
+    if n < 4 or var_comun <= 0:
+        return {}
+
     observado: dict[str, float] = {}
     tamanos: dict[str, int] = {}
+    ok = np.isfinite(np.asarray(estadisticos, dtype=float))
     for termino, sel in pertenencia.items():
-        sel = np.asarray(sel, dtype=bool)[ok]
-        m = int(sel.sum())
+        sel_ok = np.asarray(sel, dtype=bool)[ok]
+        m = int(sel_ok.sum())
         if m < min_proteinas:
             continue
-        res = camera_un_conjunto(stats, sel, termino=termino, rho=rho, df=df)
+        res = camera_un_conjunto(stats, sel_ok, termino=termino, rho=rho, df=df)
         if res is None:
             continue
         observado[termino] = abs(res.estadistico)
         tamanos[termino] = m
+    if not observado:
+        return {}
+
+    unicos = np.array(sorted(set(tamanos.values())))
+    n_fuera = n - unicos
+    vif = 1.0 + (unicos - 1) * rho
+    se = np.sqrt(var_comun * (vif / unicos + 1.0 / n_fuera))
+    # El estadístico observado de cada tamaño, puesto en el mismo orden.
+    obs_por_tamano = {m: [] for m in unicos}
+    for termino, m in tamanos.items():
+        obs_por_tamano[m].append(observado[termino])
+    umbral = np.array([min(obs_por_tamano[m]) for m in unicos])  # solo para cortar antes
 
     conteo = {k: 0 for k in observado}
-    n = stats.size
+    por_tamano = {int(m): i for i, m in enumerate(unicos)}
     for _ in range(n_permutaciones):
-        perm = rng.permutation(n)
+        acum = np.cumsum(stats[rng.permutation(n)])
+        suma = acum[unicos - 1]
+        est = np.abs((suma / unicos - (total - suma) / n_fuera) / se)
+        # ``umbral`` evita recorrer términos cuyo tamaño no llegó ni al mínimo
+        # observado de su grupo; el resto se comprueba uno a uno.
+        activos = est >= umbral
+        if not activos.any():
+            continue
         for termino, m in tamanos.items():
-            sel = np.zeros(n, dtype=bool)
-            sel[perm[:m]] = True
-            res = camera_un_conjunto(stats, sel, termino=termino, rho=rho, df=df)
-            if res is not None and abs(res.estadistico) >= observado[termino]:
+            i = por_tamano[m]
+            if activos[i] and est[i] >= observado[termino]:
                 conteo[termino] += 1
     return {k: (conteo[k] + 1) / (n_permutaciones + 1) for k in observado}
 

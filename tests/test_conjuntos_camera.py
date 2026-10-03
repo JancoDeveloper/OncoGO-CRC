@@ -136,3 +136,46 @@ def test_el_nulo_es_reproducible_con_la_misma_semilla():
     assert nulo_etiquetas_de_gen(stats, {"T": sel}, **kw) == nulo_etiquetas_de_gen(
         stats, {"T": sel}, **kw
     )
+
+
+def test_el_nulo_por_sumas_acumuladas_coincide_con_el_calculo_directo():
+    """La optimización de C13 tiene que dar el mismo p que recorrer conjuntos.
+
+    Se compara contra una implementación lenta y obvia sobre las mismas
+    permutaciones. Si la equivalencia fallara, la optimización sería un cambio
+    de método disfrazado de cambio de velocidad.
+    """
+    rng = np.random.default_rng(20260914)
+    n = 300
+    stats = rng.normal(size=n)
+    stats[:25] += 2.0
+    pertenencia = {
+        "enriquecido": np.array([i < 25 for i in range(n)]),
+        "neutro": np.array([100 <= i < 140 for i in range(n)]),
+    }
+    rho, df, n_perm, semilla = 0.01, 50.0, 300, 20260914
+    rapido = nulo_etiquetas_de_gen(
+        stats, pertenencia, rho=rho, df=df, min_proteinas=10,
+        n_permutaciones=n_perm, semilla=semilla,
+    )
+
+    observado = {
+        t: abs(camera_un_conjunto(stats, s, termino=t, rho=rho, df=df).estadistico)
+        for t, s in pertenencia.items()
+    }
+    lento = {t: 0 for t in pertenencia}
+    gen = np.random.default_rng(semilla)
+    for _ in range(n_perm):
+        perm = gen.permutation(n)
+        for t, s in pertenencia.items():
+            m = int(s.sum())
+            sel = np.zeros(n, dtype=bool)
+            sel[perm[:m]] = True
+            r = camera_un_conjunto(stats, sel, termino=t, rho=rho, df=df)
+            if r is not None and abs(r.estadistico) >= observado[t]:
+                lento[t] += 1
+    esperado = {t: (lento[t] + 1) / (n_perm + 1) for t in pertenencia}
+    assert rapido == pytest.approx(esperado)
+    # Y el conjunto enriquecido tiene que quedar en el extremo del nulo.
+    assert rapido["enriquecido"] < 0.01
+    assert rapido["neutro"] > 0.05
