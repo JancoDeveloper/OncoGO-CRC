@@ -77,6 +77,18 @@ de cualquier análisis de v2.
   y rompe `make all-v2` como comando único reproducible. La trazabilidad temporal
   la da `results/v2/session_info.txt`, que registra fecha, commit y versiones.
 
+## E5 — La protección de v1 es el manifiesto, no el sistema de ficheros
+
+- **Fecha**: 2026-10-03
+- **Tipo**: limitación del entorno
+- **Qué cambia**: el disco externo JANCODATA es ExFAT. No guarda permisos POSIX
+  ni enlaces simbólicos, y crea un fichero `._nombre` de AppleDouble por cada
+  fichero.
+- **Consecuencia**: no se puede marcar v1 como solo lectura con `chmod`. La
+  protección efectiva son tres cosas: `results/v1_manifest.sha256`, que v2 escribe
+  únicamente bajo `results/v2/`, y el test de regresión que falla si los números
+  de v1 cambian. Los ficheros `._*` quedan excluidos de los manifiestos.
+
 ## E6 — Control negativo con covariables permutadas en C7
 
 - **Fecha**: 2026-10-03
@@ -97,18 +109,6 @@ de cualquier análisis de v2.
 - **Nota de honestidad**: este control no estaba preregistrado. Se añade porque
   sin él el 12,1 % se leería como un resultado biológico cuando puede ser
   aritmética del modelo. No cambia ningún umbral de decisión.
-
-## E5 — La protección de v1 es el manifiesto, no el sistema de ficheros
-
-- **Fecha**: 2026-10-03
-- **Tipo**: limitación del entorno
-- **Qué cambia**: el disco externo JANCODATA es ExFAT. No guarda permisos POSIX
-  ni enlaces simbólicos, y crea un fichero `._nombre` de AppleDouble por cada
-  fichero.
-- **Consecuencia**: no se puede marcar v1 como solo lectura con `chmod`. La
-  protección efectiva son tres cosas: `results/v1_manifest.sha256`, que v2 escribe
-  únicamente bajo `results/v2/`, y el test de regresión que falla si los números
-  de v1 cambian. Los ficheros `._*` quedan excluidos de los manifiestos.
 
 ## E7 — El nulo de C5 permuta el brazo por proteína y vuelve a seleccionar
 

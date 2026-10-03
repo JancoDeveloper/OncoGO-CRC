@@ -127,7 +127,9 @@ def recoger_fuentes(
         # escriben los scripts de descarga con su hash y su fecha de acceso. Un
         # número citado de una ficha no está escrito a mano, pero vive fuera de
         # `results/` y sin esto el verificador no podía verlo.
-        rutas += sorted(fichas.glob("*/estado.json"))
+        # Recursivo: algunas fichas van un nivel más abajo, como
+        # `external/pride/PXD019504/estado.json`.
+        rutas += sorted(fichas.rglob("estado.json"))
     for path in rutas:
         if path.name.startswith("._"):
             continue
