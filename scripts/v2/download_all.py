@@ -71,6 +71,14 @@ FUENTES: list[tuple[str, str, str, str]] = [
         "alvez_2023",
         "recurso de sangre pan-cáncer, Olink Explore (D4b)",
     ),
+    (
+        # Va después de alvez_2023 a propósito: lee su AUC para ponerlo al lado
+        # del propio. Si se ejecutara antes, la comparación saldría incompleta.
+        "wannberg_2026",
+        "wannberg_2026.py",
+        "wannberg_2026",
+        "plasma de cáncer frente a enfermedad benigna (D6)",
+    ),
 ]
 
 # Tiempo máximo por fuente. El HPA descarga un zip grande; el resto es rápido.

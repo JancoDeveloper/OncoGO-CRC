@@ -235,6 +235,60 @@ El estado legible por máquina vive junto a cada descarga, en
   - Que una proteína no esté en el panel no es evidencia de que no cambie. Dos
     de las tres proteínas de v1 están en esa situación.
 
+### Wannberg et al. 2026 — cáncer frente a enfermedad benigna
+
+- **Estado**: usada
+- **Script**: `scripts/download/wannberg_2026.py`
+- **Fichero**: `external/wannberg_2026/wannberg_2026_tabla_s5.tsv`
+- **Origen**: información suplementaria 1 del artículo (PDF de 9 páginas).
+- **Licencia**: CC BY 4.0, acceso abierto.
+- **Cita**: Wannberg F, Bueno Álvez M, Qvick A, et al. Plasma protein profiling
+  predicts cancer in patients with non-specific symptoms. *Nature
+  Communications* 2026. doi:10.1038/s41467-025-67688-3
+- **Contenido**: Olink Explore con las mismas 1 463 proteínas que D4b. Cohorte
+  de descubrimiento MEDECA: 456 pacientes derivados por síntomas no
+  específicos, 160 con cáncer y 296 sin él. Réplica ALLVOS: 238 pacientes, 35
+  con cáncer. AUC 0,80 en descubrimiento y 0,82 en réplica.
+- **Qué aporta**: el grupo de control que a v1 y a D4b les falta. Aquí los
+  controles no son personas sanas: son pacientes con síntomas que, tras el
+  estudio, no tenían cáncer. De los 155 descritos en la cohorte de
+  descubrimiento, 55 tenían una enfermedad autoinmune y 32 una infección.
+- **Resultado en v2, la comparación que importa**: con el mismo panel de 1 463
+  proteínas, el AUC es **0,994 contra personas sanas** (D4b) y **0,80 contra
+  pacientes con síntomas**. La diferencia no viene del método ni de la
+  plataforma: viene de contra quién se compara. Es la advertencia que hay que
+  hacerle a los tres resultados de plasma de v1, obtenidos también contra
+  personas sanas.
+- **Segundo resultado**: las 22 proteínas de la tabla S5 **no son de respuesta de
+  fase aguda**. Ocho son nucleares, cinco intracelulares, tres mitocondriales y
+  dos citoqueratinas; solo una, S100A12, es claramente inflamatoria, y es la de
+  menor efecto de las 22 (OR 1,27 en descubrimiento). En plasma, las proteínas
+  nucleares y las citoqueratinas indican recambio y muerte celular, no
+  inflamación. Ninguna de las tres proteínas de plasma de v1 aparece.
+- **Columnas usadas**: de la tabla S5, `Cohort`, `Assay`, `OR`, `SE`,
+  `Statistic`, `P value`, `Adjusted P value`, `CI low`, `CI high`. De las tablas
+  S1 a S4, los tamaños de los grupos y los diagnósticos no malignos. Del
+  resumen del artículo, los dos AUC.
+- **Números extraídos de un PDF**: las 44 filas de la tabla S5 se extraen del
+  texto del PDF con un patrón de fila completa. Una fila que no encaje entera no
+  entra. Se comprueba además que el OR caiga dentro de su intervalo, que el p
+  ajustado no sea menor que el crudo y que las dos cohortes traigan las mismas
+  proteínas. Cada fila lleva `fuente_tabla`, `fuente_pagina` y
+  **`verificado_por` vacía**, que rellena el autor tras comparar con el
+  original.
+- **Limitaciones**:
+  - Es un trabajo de cáncer en general. Solo 5 de los 160 cánceres de
+    descubrimiento y 1 de los 35 de la réplica eran colorrectales, así que de
+    aquí no sale ninguna afirmación sobre cáncer colorrectal en particular.
+  - La localización de cada proteína es la anotación de UniProt, no un resultado
+    del artículo. Sirve solo para decir si la lista se parece o no a una
+    respuesta de fase aguda.
+  - Las dos cohortes son suecas y de dos hospitales. Un grupo de control de
+    pacientes con síntomas no es el mismo en todos los sistemas sanitarios.
+  - Poner un AUC de este trabajo al lado de uno de D4b no es un contraste
+    estadístico: son dos números publicados puestos uno al lado del otro. Vale
+    porque la plataforma y el número de ensayos coinciden, y nada más.
+
 ---
 
 ## Recordatorio
