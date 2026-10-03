@@ -340,6 +340,103 @@ def _r1_estratificado(
     return {"global": global_frac.to_dict(), "estratos": estratos}
 
 
+def _r1_tras_el_ajuste(
+    overlap: pd.DataFrame,
+    ajustada: pd.DataFrame | None,
+    *,
+    alpha: float,
+    r1_sin_ajustar: dict,
+) -> dict:
+    """C9: R1 recalculado con el efecto de CPTAC ya ajustado por composición.
+
+    El estrato ``sobrevive_ajuste_composicion`` responde a otra pregunta: parte las
+    proteínas según si el ajuste las deja significativas, pero sigue midiendo la
+    dirección con el efecto sin ajustar. Aquí la selección y el signo salen los dos
+    de la tabla ajustada, que es la que pregunta si la concordancia entre cohortes
+    sobrevive al quitar la contribución estromal.
+
+    Lo que este cálculo no puede hacer. La réplica no lleva ajuste: PXD034575 no
+    tiene suficientes proteínas de matriz extracelular medidas en los dos brazos
+    para construirle un índice propio. Así que la comparación es efecto ajustado en
+    CPTAC contra efecto crudo en la réplica. Es una cota superior de lo que el
+    ajuste puede romper, no un contraste simétrico.
+    """
+    if ajustada is None or ajustada.empty:
+        return {
+            "estado": "no_calculable",
+            "motivo": "no hay tabla ajustada por composición para CPTAC",
+        }
+    aj = ajustada.copy()
+    aj["_pid"] = aj["protein_id"].astype(str).str.strip().str.upper()
+    aj = aj.drop_duplicates("_pid").set_index("_pid")
+
+    ov = overlap.copy()
+    ov["_pid"] = ov["protein_id_cptac"].astype(str).str.strip().str.upper()
+    ov["_padj_aj"] = pd.to_numeric(
+        ov["_pid"].map(aj["padj"]).to_numpy(), errors="coerce"
+    )
+    ov["_a_aj"] = pd.to_numeric(
+        ov["_pid"].map(aj["log2fc"]).to_numpy(), errors="coerce"
+    )
+    ov["_b"] = pd.to_numeric(ov["log2fc_pride"], errors="coerce")
+
+    sig = ov.loc[ov["_padj_aj"] < alpha]
+    ev = sig.loc[
+        np.isfinite(sig["_a_aj"])
+        & np.isfinite(sig["_b"])
+        & (sig["_a_aj"] != 0)
+        & (sig["_b"] != 0)
+    ].drop_duplicates("_pid")
+    if ev.empty:
+        return {
+            "estado": "no_calculable",
+            "motivo": "ninguna proteína significativa tras el ajuste llega a la réplica",
+            "n_significativas_tras_el_ajuste": int((ov["_padj_aj"] < alpha).sum()),
+        }
+
+    mismo = np.sign(ev["_a_aj"]) == np.sign(ev["_b"])
+    frac = Fraccion(
+        nombre="R1_direccion_tras_ajuste",
+        numerador=int(mismo.sum()),
+        denominador=int(len(ev)),
+        unidad_denominador="proteinas_unicas",
+        nota=(
+            "Selección y signo salen de la tabla ajustada de CPTAC. La réplica entra "
+            "sin ajustar, así que la comparación no es simétrica."
+        ),
+    ).to_dict()
+
+    base = r1_sin_ajustar.get("global", {})
+    cambio = frac["valor"] - float(base.get("valor", np.nan))
+    bordes = (
+        frac["ci_low"],
+        frac["ci_high"],
+        base.get("ci_low"),
+        base.get("ci_high"),
+    )
+    solapan = (
+        all(v is not None for v in bordes)
+        and frac["ci_low"] <= base["ci_high"]
+        and base["ci_low"] <= frac["ci_high"]
+    )
+    return {
+        "estado": "calculado",
+        "fraccion": frac,
+        "sin_ajustar": base,
+        "cambio_en_la_concordancia": float(cambio),
+        "los_dos_intervalos_se_solapan": bool(solapan),
+        "n_proteinas_que_pierde_el_denominador": int(
+            int(base.get("denominador", 0)) - frac["denominador"]
+        ),
+        "lectura": (
+            "La concordancia de dirección no cambia de forma apreciable al ajustar: "
+            "los intervalos se solapan."
+            if solapan
+            else "El ajuste mueve la concordancia fuera del intervalo sin ajustar."
+        ),
+    }
+
+
 def _intensidad_mediana_pride(path) -> pd.Series | None:
     """Mediana de log2 de las intensidades LFQ positivas, por proteína."""
     try:
@@ -462,6 +559,7 @@ def run(settings: Settings) -> None:
     go_path = settings.go_gene_long_path()
     ajustes: list[dict] = []
     sobreviven_principal: set[str] = set()
+    tabla_principal: pd.DataFrame | None = None
     if go_path.exists():
         go_long = load_go_long(go_path)
         cols = columns_for_family(
@@ -550,6 +648,7 @@ def run(settings: Settings) -> None:
                     .astype(str)
                     .tolist()
                 )
+                tabla_principal = tabla
             f = resumen["fraccion"]
             print(
                 f"[v2-certified] C7 {etiqueta}: sobreviven {f['numerador']}/{f['denominador']} "
@@ -596,10 +695,29 @@ def run(settings: Settings) -> None:
         f"[v2-certified] C15 R1: {g['numerador']}/{g['denominador']} = {g['valor']:.4f}; "
         f"cobertura {g['cobertura']:.4f} de {g['universo']} certificadas"
     )
+    r1["tras_el_ajuste_de_composicion"] = _r1_tras_el_ajuste(
+        overlap, tabla_principal, alpha=alpha, r1_sin_ajustar=r1
+    )
+    tras = r1["tras_el_ajuste_de_composicion"]
+    if tras["estado"] == "calculado":
+        ft = tras["fraccion"]
+        print(
+            f"[v2-certified] C9 R1 tras el ajuste: {ft['numerador']}/{ft['denominador']} "
+            f"= {ft['valor']:.4f} (sin ajustar {g['valor']:.4f}, "
+            f"cambio {tras['cambio_en_la_concordancia']:+.4f}); "
+            f"{'se solapan' if tras['los_dos_intervalos_se_solapan'] else 'NO se solapan'}"
+        )
+    else:
+        print(f"[v2-certified] C9 R1 tras el ajuste: {tras['motivo']}")
+
     filas_estratos = []
     for estrato, filas in r1["estratos"].items():
         for fila in filas:
             filas_estratos.append({"estrato": estrato, **fila})
+    if tras["estado"] == "calculado":
+        filas_estratos.append(
+            {"estrato": "r1_tras_el_ajuste_de_composicion", **tras["fraccion"]}
+        )
     write_tsv(pd.DataFrame(filas_estratos), out / "r1_estratificado.tsv")
 
     # ----------------------------------------------------------------- auditoría
