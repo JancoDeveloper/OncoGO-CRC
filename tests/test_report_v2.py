@@ -329,6 +329,59 @@ def test_un_intervalo_ausente_no_dibuja_una_barra_de_cero_disfrazada(tmp_path):
 
 
 # ------------------------------------------------------------------ extremo a extremo
+def test_una_figura_que_ya_no_se_genera_no_se_queda_en_la_carpeta(tmp_path):
+    """El caso real: una figura cambió de nombre y la vieja sobrevivió.
+
+    Nada en el nombre del fichero avisa de que su contenido es de otra corrida,
+    así que el lector la abre y la lee como vigente. Y el README, que se escribe
+    desde las figuras de esta corrida, decía doce cuando en la carpeta había
+    trece.
+    """
+    dir_figs = tmp_path / "figuras"
+    dir_figs.mkdir()
+    for nombre in ("indice_r_v1_vs_v2.png", "indice_r_v1_vs_v2.tsv"):
+        (dir_figs / nombre).write_text("de una corrida anterior", encoding="utf-8")
+    (dir_figs / "._indice_r_v1_vs_v2.png").write_text("acompañante", encoding="utf-8")
+    viva = F.Figura(
+        nombre="viva",
+        titulo="t",
+        pie="p",
+        png=dir_figs / "viva.png",
+        svg=dir_figs / "viva.svg",
+        tsv=dir_figs / "viva.tsv",
+    )
+    for p in (viva.png, viva.svg, viva.tsv):
+        p.write_text("de esta corrida", encoding="utf-8")
+
+    borrados = R._limpiar_figuras_viejas(dir_figs, {"v": viva})
+
+    assert borrados == ["indice_r_v1_vs_v2.png", "indice_r_v1_vs_v2.tsv"]
+    assert sorted(p.name for p in dir_figs.iterdir()) == [
+        "viva.png",
+        "viva.svg",
+        "viva.tsv",
+    ]
+
+
+def test_la_limpieza_no_toca_las_figuras_de_esta_corrida(tmp_path):
+    dir_figs = tmp_path / "figuras"
+    dir_figs.mkdir()
+    viva = F.Figura(
+        nombre="viva",
+        titulo="t",
+        pie="p",
+        png=dir_figs / "viva.png",
+        svg=dir_figs / "viva.svg",
+        tsv=dir_figs / "viva.tsv",
+    )
+    for p in (viva.png, viva.svg, viva.tsv):
+        p.write_text("x", encoding="utf-8")
+    assert R._limpiar_figuras_viejas(dir_figs, {"v": viva}) == []
+    assert len(list(dir_figs.iterdir())) == 3
+    # Y sin carpeta no se cae.
+    assert R._limpiar_figuras_viejas(tmp_path / "no_existe", {}) == []
+
+
 def test_el_informe_entero_se_genera_sin_ninguna_auditoria(tmp_path):
     """Sin datos el informe existe y dice que no hay datos. No se cae."""
     class _S:

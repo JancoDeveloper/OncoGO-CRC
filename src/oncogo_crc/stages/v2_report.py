@@ -1006,6 +1006,33 @@ def _comparacion(changelog: pd.DataFrame, cert: dict | None) -> str:
     return "\n".join(lineas)
 
 
+def _limpiar_figuras_viejas(dir_figs: Path, figs: dict[str, F.Figura]) -> list[str]:
+    """Borra de `figuras/` lo que esta corrida no ha escrito.
+
+    Una figura de una corrida anterior que ya no se genera —porque cambió de
+    nombre o porque su etapa dejó de correr— se queda en la carpeta con un
+    contenido viejo, y nada en el nombre del fichero avisa de eso. El lector la
+    abre y la lee como vigente.
+    """
+    if not dir_figs.exists():
+        return []
+    vivos = {f.png.name for f in figs.values()}
+    vivos |= {f.svg.name for f in figs.values()}
+    vivos |= {f.tsv.name for f in figs.values()}
+    borrados = []
+    for p in sorted(dir_figs.iterdir()):
+        if not p.is_file() or p.name.startswith("._") or p.name in vivos:
+            continue
+        p.unlink()
+        # El disco de datos es ExFAT y crea un `._nombre` por fichero. Si se
+        # borra el fichero y no su acompañante, queda un huérfano.
+        companero = p.with_name(f"._{p.name}")
+        if companero.exists():
+            companero.unlink()
+        borrados.append(p.name)
+    return borrados
+
+
 def _readme(figs: dict, auditorias: dict, *, hay_pdf: bool) -> str:
     """Cómo reproducir v2 desde cero, en el orden en el que las etapas dependen."""
     etapas = [
@@ -1384,7 +1411,11 @@ def run(settings: Settings) -> None:
         figs["d5"] = F.fig_d5_deconvolucion(auditorias["deconvolucion"], dir_figs)
     if (auditorias["marcadores"] or {}).get("estado") == "calculado":
         figs["d8"] = F.fig_d8_marcadores(auditorias["marcadores"], dir_figs)
+    sobrantes = _limpiar_figuras_viejas(dir_figs, figs)
     print(f"[v2-report] {len(figs)} figuras en PNG a {F.DPI} dpi y SVG, cada una con su TSV.")
+    if sobrantes:
+        print(f"[v2-report] borradas {len(sobrantes)} figuras de corridas anteriores: "
+              f"{', '.join(sobrantes)}.")
 
     protocolo = PROTOCOLO.exists()
     tamanos = _tamanos_del_protocolo(auditorias["marcadores"])
