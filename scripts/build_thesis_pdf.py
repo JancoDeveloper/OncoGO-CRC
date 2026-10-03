@@ -644,7 +644,7 @@ def main() -> int:
         print(
             "\nEstos archivos los produce el pipeline (etapas certified_inference, secondary_contrasts,\n"
             "translational_axes, certification). Con el disco de datos montado:\n"
-            f"  .venv/bin/python scripts/build_thesis_pdf.py --sync-cache\n"
+            "  .venv/bin/python scripts/build_thesis_pdf.py --sync-cache\n"
             "Eso deja la copia en docs/tesis_datos y desde entonces el PDF se rehace sin el disco."
         )
         return 1

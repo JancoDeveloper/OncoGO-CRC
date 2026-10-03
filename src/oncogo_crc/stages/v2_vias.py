@@ -182,7 +182,11 @@ def run(settings: Settings) -> None:
         )
     elif all(v == "sostiene" for v in evaluables.values()):
         clausula_via = "sostiene"
-        motivo_via = f"Las {len(evaluables)} colecciones evaluables coinciden."
+        motivo_via = (
+            "La única colección evaluable la sostiene."
+            if len(evaluables) == 1
+            else f"Las {len(evaluables)} colecciones evaluables coinciden."
+        )
     else:
         clausula_via = "rechaza"
         motivo_via = (
@@ -228,20 +232,24 @@ def run(settings: Settings) -> None:
     )
     r1 = (auditoria_v2.get("c15_r1_direccion") or {}).get("global") or {}
     umbral_prot = float(prereg.get("hipotesis.h1.clausula_proteina.umbral"))
+    def _coma(valor, digitos: int = 3) -> str:
+        return f"{float(valor):.{digitos}f}".replace(".", ",").replace("-", "\u2212")
+
     if r1.get("ci_high") is None:
         clausula_proteina = "no_evaluable"
         motivo_prot = "R1 no es calculable."
     elif float(r1["ci_high"]) < umbral_prot:
         clausula_proteina = "sostiene"
         motivo_prot = (
-            f"El intervalo de R1 queda entero por debajo de {umbral_prot}: "
-            f"{r1['ci_low']:.3f}–{r1['ci_high']:.3f}."
+            f"El intervalo de R1 queda entero por debajo de {_coma(umbral_prot, 2)}: "
+            f"{_coma(r1['ci_low'])} a {_coma(r1['ci_high'])}."
         )
     else:
         clausula_proteina = "rechaza"
         motivo_prot = (
-            f"El intervalo de R1 llega hasta {float(r1['ci_high']):.3f}, que no está "
-            f"por debajo de {umbral_prot}."
+            f"El intervalo de R1 llega hasta {_coma(r1['ci_high'])}, que no está por "
+            f"debajo de {_coma(umbral_prot, 2)}. La dirección se repite más de lo que "
+            "la hipótesis predecía."
         )
 
     h1 = vias.tabla_verdad_h1(clausula_proteina, clausula_via)
