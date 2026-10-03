@@ -102,3 +102,46 @@ def test_las_tablas_por_proteina_no_son_fuente(tmp_path):
     valores, usadas = vn.recoger_fuentes(tmp_path / "results" / "v2", [])
     assert valores == set()
     assert usadas == []
+
+
+def test_un_numero_dentro_de_un_campo_de_texto_del_tsv_cuenta_como_fuente(tmp_path):
+    """Los motivos del changelog los escribe el código desde los datos."""
+    base = tmp_path / "results" / "v2" / "certification"
+    base.mkdir(parents=True)
+    (base / "changelog_numeros.tsv").write_text(
+        "numero\tv1\tv2\tmotivo\n"
+        "R1\t0.5\t0.6\tv1 tenía tres denominadores: 688, 702 y 244.\n",
+        encoding="utf-8",
+    )
+    valores, _ = vn.recoger_fuentes(tmp_path / "results" / "v2", [])
+    assert {688.0, 702.0, 244.0} <= valores
+
+    informe = tmp_path / "SINTETICO_informe.md"
+    informe.write_text("Los denominadores eran 688, 702 y 244.\n", encoding="utf-8")
+    assert vn.verificar(informe, valores) == []
+
+
+def test_el_numero_de_filas_de_una_tabla_de_resumen_es_fuente(tmp_path):
+    base = tmp_path / "results" / "v2" / "certification"
+    base.mkdir(parents=True)
+    filas = "".join(f"R{i}\t0.{i}\n" for i in range(1, 12))
+    (base / "indice_R_v2.tsv").write_text("codigo\tvalor\n" + filas, encoding="utf-8")
+    valores, _ = vn.recoger_fuentes(tmp_path / "results" / "v2", [])
+
+    informe = tmp_path / "SINTETICO_informe.md"
+    informe.write_text("La tabla tiene 11 filas.\n", encoding="utf-8")
+    assert vn.verificar(informe, valores) == []
+
+    mal = tmp_path / "SINTETICO_mal.md"
+    mal.write_text("La tabla tiene 37 filas.\n", encoding="utf-8")
+    assert len(vn.verificar(mal, valores)) == 1
+
+
+def test_el_orden_de_los_pasos_de_una_tabla_no_se_verifica(raiz, tmp_path):
+    informe = tmp_path / "SINTETICO_informe.md"
+    informe.write_text(
+        "| Orden | Comando |\n| --- | --- |\n"
+        "| 1 | make uno |\n| 13 | make trece |\n",
+        encoding="utf-8",
+    )
+    assert vn.verificar(informe, _fuentes(raiz)) == []

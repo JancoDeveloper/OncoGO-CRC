@@ -50,6 +50,9 @@ PATRONES_IGNORADOS = (
     re.compile(r"`[^`]*`"),          # código en línea
     re.compile(r"\[[^\]]*\]\([^)]*\)"),  # enlaces
     re.compile(r"^\s{0,3}#{1,6}\s.*$", re.MULTILINE),  # títulos
+    # Primera celda de una fila de tabla cuando es un entero suelto: es el orden
+    # de los pasos de un procedimiento, no una medida.
+    re.compile(r"^\|\s*\d+\s*\|", re.MULTILINE),
 )
 
 NUMERO = re.compile(r"(?<![\w.,])(\d+(?:[.,]\d+)?)(?![\w])")
@@ -77,15 +80,26 @@ def valores_de_json(obj, salida: set[float]) -> None:
 
 
 def valores_de_tsv(path: Path, salida: set[float]) -> None:
+    n_filas = 0
     with path.open(encoding="utf-8", errors="replace") as fh:
         for i, linea in enumerate(fh):
             if i == 0:
                 continue
+            n_filas += 1
             for campo in linea.rstrip("\n").split("\t"):
                 try:
                     salida.add(float(campo))
                 except ValueError:
-                    continue
+                    # Un número dentro de un campo de texto también es fuente: los
+                    # motivos del changelog los escribe el código desde los datos.
+                    for m in NUMERO.finditer(campo):
+                        try:
+                            salida.add(float(m.group(1).replace(",", ".")))
+                        except ValueError:
+                            continue
+    # Cuántas filas tiene la tabla es un dato de la tabla. El informe dice «de los
+    # 11 números del changelog», y ese 11 es exactamente este recuento.
+    salida.add(float(n_filas))
 
 
 # Solo las tablas de resumen cuentan como fuente. Las tablas por proteína traen
@@ -186,9 +200,16 @@ def main() -> int:
         f"en {len(usadas)} tablas de resumen."
     )
 
-    informes = [Path(p) for p in args.informes] or [
-        p for p in sorted(raiz.rglob("*.md")) if not p.name.startswith("._")
-    ]
+    informes = [Path(p) for p in args.informes]
+    if not informes:
+        # El informe de brecha se copia a report/ para el despliegue, así que
+        # aparece dos veces. Verificarlo una basta.
+        vistos: set[str] = set()
+        for p in sorted(raiz.rglob("*.md")):
+            if p.name.startswith("._") or p.name in vistos:
+                continue
+            vistos.add(p.name)
+            informes.append(p)
     if not informes:
         print("[verificar] no hay informes que verificar", file=sys.stderr)
         return 1
