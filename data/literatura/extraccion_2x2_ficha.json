@@ -1,0 +1,122 @@
+{
+  "generado": "2026-10-03",
+  "fuentes": {
+    "wang_2023": {
+      "cita": "Wang R, Mohamedali A, Kwan B, et al. Significance of carcinoembryonic antigen detection in the early diagnosis of colorectal cancer: A systematic review and meta-analysis. World Journal of Gastrointestinal Surgery 2023; 15(12):2904-2914.",
+      "pmc": "PMC10784816",
+      "tabla": "Table 2 (Diagnostic values of follow up duration and reference standards)",
+      "pagina": 2909,
+      "orden_de_columnas_en_el_original": "True positive, False positive, False negative, True negative",
+      "acceso_abierto": true
+    },
+    "sun_2017": {
+      "cita": "Sun J, Fei F, Zhang M, et al. The role of mSEPT9 in screening, diagnosis, and recurrence monitoring of colorectal cancer. Diagnostic Accuracy of Methylated SEPT9 for Blood-based Colorectal Cancer Detection: A Systematic Review and Meta-Analysis. Clinical and Translational Gastroenterology 2017; 8(1):e216.",
+      "pmc": "PMC5288600",
+      "tabla": "Table 1 (Characteristic of included studies)",
+      "pagina": 3,
+      "orden_de_columnas_en_el_original": "TP, TN, FP, FN",
+      "acceso_abierto": true
+    },
+    "zhu_2024": {
+      "cita": "Circulating tumour DNA-based molecular residual disease detection in resectable cancers: a systematic review and meta-analysis. eBioMedicine 2024.",
+      "pmc": "PMC11021841",
+      "tabla": "Table 2 (Sens, Fpr, AUSROC y DOR de cada cáncer por modelo bivariado)",
+      "pagina": 7,
+      "orden_de_columnas_en_el_original": "Subgroups, Number of data, Sens, LL, UL, Fpr, LL, UL",
+      "acceso_abierto": true,
+      "solo_combinado": "Esta fuente no publica las tablas 2x2 por estudio en el texto principal, así que de aquí solo se usa su estimación combinada."
+    }
+  },
+  "regla_de_algoritmo_en_la_metilacion": "cuando un estudio publica varios algoritmos sobre los mismos pacientes se queda el 2(3), que es el de la prueba comercial Epi proColon 2.0; si no lo da, la primera variante publicada",
+  "filas_excluidas_a_proposito": [
+    {
+      "estudio": "Moloney",
+      "anio": 2019,
+      "n": 138,
+      "tp": 2,
+      "fp": 5,
+      "fn": 4,
+      "tn": 127,
+      "motivo": "en la tabla 2 del original la prueba indice figura como «N/A», no como CEA. El texto dice que de los 12 estudios nueve usaron CEA, dos ecografia y uno exploracion fisica, asi que no se puede saber cual es este. Entrar en el modelo del CEA seria suponerlo."
+    }
+  ],
+  "ctdna_solo_combinado": {
+    "todas": {
+      "k": 18,
+      "sensibilidad": 0.58,
+      "sensibilidad_ci": [
+        0.48,
+        0.68
+      ],
+      "fpr": 0.08,
+      "fpr_ci": [
+        0.06,
+        0.11
+      ],
+      "auc_publicado": 0.89,
+      "que_es": "cualquier momento de medicion"
+    },
+    "landmark": {
+      "k": 14,
+      "sensibilidad": 0.51,
+      "sensibilidad_ci": [
+        0.41,
+        0.61
+      ],
+      "fpr": 0.09,
+      "fpr_ci": [
+        0.07,
+        0.11
+      ],
+      "auc_publicado": 0.89,
+      "que_es": "una sola medicion despues de la cirugia"
+    },
+    "seriada": {
+      "k": 4,
+      "sensibilidad": 0.84,
+      "sensibilidad_ci": [
+        0.73,
+        0.91
+      ],
+      "fpr": 0.05,
+      "fpr_ci": [
+        0.01,
+        0.2
+      ],
+      "auc_publicado": 0.89,
+      "que_es": "mediciones repetidas durante el seguimiento"
+    }
+  },
+  "por_que_no_se_reconstruyen_tablas": "De ninguna prueba se calcula una tabla 2x2 a partir de una sensibilidad publicada. El redondeo de un porcentaje no determina las celdas, y las que saldrían no serían las del estudio.",
+  "las_dos_pruebas_no_son_comparables": "El CEA de estas tablas se usa para detectar recaída después de una cirugía, con una prevalencia del 20 %. La metilación de SEPT9 se usa para detectar cáncer en cribado, en su mayoría en estudios de casos y controles donde la proporción de enfermos la fija el diseño. No se combinan en un mismo modelo y la comparación directa queda marcada como no comparable.",
+  "advertencia_clinica": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.",
+  "comprobacion": {
+    "n_filas": 33,
+    "problemas": [],
+    "coherente": true,
+    "las_celdas_suman_el_tamano_de_muestra": true,
+    "por_prueba_e_indicacion": {
+      "CEA|deteccion_de_recaida": {
+        "k": 8,
+        "n_total": 2663,
+        "n_casos": 596,
+        "n_sin_la_enfermedad": 2067,
+        "n_con_alguna_celda_cero": 0,
+        "disenos": []
+      },
+      "metilacion_SEPT9|cribado_o_diagnostico": {
+        "k": 25,
+        "n_total": 9927,
+        "n_casos": 2975,
+        "n_sin_la_enfermedad": 6952,
+        "n_con_alguna_celda_cero": 0,
+        "disenos": [
+          "caso-control",
+          "prospectivo"
+        ]
+      }
+    },
+    "pendiente_de_verificacion_humana": 33,
+    "regla": "Ningún número copiado de una tabla publicada entra en un resultado sin que una persona lo haya comprobado contra el original. La columna verificado_por la rellena el autor, no el script."
+  }
+}

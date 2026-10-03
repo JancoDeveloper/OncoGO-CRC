@@ -321,6 +321,58 @@ El estado legible por máquina vive junto a cada descarga, en
 - **Limitación del propio recurso**: un cis-pQTL no invalida un marcador. Dice
   que un umbral fijo no vale igual para todo el mundo, que es otra cosa.
 
+### Literatura: tablas 2×2 de CEA, metilación de SEPT9 y ctDNA
+
+- **Estado**: usada, **pendiente de verificación humana**
+- **Script**: `scripts/literatura/extraer_2x2.py`
+- **Fichero**: `data/literatura/extraccion_2x2.tsv`, en el repositorio y no en el
+  workspace de datos, porque es un artefacto curado a mano que necesita revisión
+  e historia de cambios.
+- **Qué es**: 33 tablas 2×2 copiadas de tablas publicadas, cada fila con su
+  referencia, su tabla y su página.
+- **Fuentes**:
+  - **CEA para detectar recaída**, umbral 5 µg/L: 8 estudios de Wang R et al.,
+    *World Journal of Gastrointestinal Surgery* 2023; 15(12):2904-2914, tabla 2
+    (PMC10784816). 2 663 personas, 596 con recaída.
+  - **Metilación de SEPT9 para cribado o diagnóstico**: 25 estudios de Sun J et
+    al., *Clinical and Translational Gastroenterology* 2017; 8(1):e216, tabla 1
+    (PMC5288600). 9 927 personas, 2 975 con cáncer.
+  - **ctDNA para detectar recaída**: solo la estimación combinada publicada, de
+    *eBioMedicine* 2024, tabla 2, fila CRC (PMC11021841). Esa fuente no publica
+    las tablas por estudio en el texto principal.
+- **Dos trampas de las tablas de origen, las dos resueltas en el script**:
+  1. **El orden de las columnas no es el mismo.** La del CEA viene en orden TP,
+     FP, FN, TN. La de la metilación viene en orden **TP, TN, FP, FN**. Leer una
+     con el orden de la otra intercambia los falsos positivos con los
+     verdaderos negativos, y convierte una especificidad del 99 % en una del
+     1 % sin que nada falle.
+  2. **Un estudio puede aparecer en varias filas.** Cinco estudios de
+     metilación publican dos o tres algoritmos sobre los *mismos* pacientes.
+     Meter todas las filas sería contar a esas personas varias veces. Se queda
+     una fila por estudio, con la regla declarada: el algoritmo 2(3), que es el
+     de la prueba comercial Epi proColon 2.0, y si no lo hay, la primera
+     variante publicada. La regla va por algoritmo y no por resultado.
+- **Comprobación automática**: en las dos fuentes el tamaño de muestra se
+  publica aparte de las cuatro celdas, así que si las celdas suman el tamaño, el
+  orden y los cuatro valores están bien. Las 33 filas suman. Además, los totales
+  de la metilación reproducen exactamente los 9 927 y los 2 975 que declara el
+  artículo, lo que confirma que la selección de una fila por estudio es la
+  correcta.
+- **Una fila excluida a propósito**: Moloney 2019. En la tabla de origen su
+  prueba índice figura como «N/A» y no como CEA, y el texto dice que de los 12
+  estudios nueve usaron CEA, dos ecografía y uno exploración física. Entrar en
+  el modelo del CEA sería suponerlo. La exclusión queda escrita porque una
+  exclusión silenciosa es indistinguible de un descuido.
+- **Ninguna tabla se reconstruye desde un porcentaje.** El redondeo de una
+  sensibilidad publicada no determina las celdas, y las que saldrían no serían
+  las del estudio.
+- **`verificado_por` vacía** en las 33 filas. La rellena el autor tras comparar
+  cada fila con el original.
+- **Limitación de fondo**: el CEA de estas tablas detecta recaída después de una
+  cirugía; la metilación detecta cáncer en cribado. Son dos preguntas distintas,
+  no se combinan nunca en un mismo modelo y la comparación directa entre las dos
+  queda marcada como no comparable.
+
 ---
 
 ## Recordatorio
