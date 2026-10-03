@@ -5,7 +5,8 @@ RUN := $(ONCOGO) run --data-workspace $(WORKSPACE) --stage
 
 .PHONY: install demo pipeline docs docs-build lint test
 .PHONY: manifest-write manifest-verify session-info regresion-v1
-.PHONY: v2-certified v2-axes v2-secondary v2-meta v2-external v2-report all-v2 serve-v2
+.PHONY: v2-certified v2-axes v2-vias v2-deteccion v2-meta v2-certificado
+.PHONY: v2-external v2-report verificar-numeros all-v2 serve-v2
 
 install:
 	python3 -m venv .venv && . .venv/bin/activate && pip install -e ".[dev]"
@@ -55,9 +56,13 @@ v2-certified:
 v2-axes:
 	$(RUN) v2_axes
 
-# ~1 min: contrastes por sexo, estadio y plasma con los denominadores de v2.
-v2-secondary:
-	$(RUN) v2_secondary
+# ~1 min: cláusula de vías con tres colecciones, prueba competitiva y nulo de etiquetas.
+v2-vias:
+	$(RUN) v2_vias
+
+# ~1 min: ventana de detección en plasma con las concentraciones del HPA.
+v2-deteccion:
+	$(RUN) v2_deteccion
 
 # ~1 min: meta-análisis REML por proteína entre las cohortes de tejido disponibles.
 v2-meta:
@@ -68,11 +73,21 @@ v2-meta:
 v2-external:
 	$(PY) scripts/v2/download_all.py
 
-# ~1 min: certificado v2, informe de brecha, changelog, figuras, PDF y HTML.
+# Certificado v2, índice R, changelog frente a v1 e informe de brecha.
+# Va al final: lee las auditorías de las etapas anteriores.
+v2-certificado:
+	$(RUN) v2_certificado
+
+# Falla si algún número de los informes no sale de una tabla de resumen.
+verificar-numeros:
+	$(PY) scripts/v2/verificar_numeros.py --workspace $(WORKSPACE)
+
+# ~1 min: figuras a 300 dpi, HTML y PDF del informe de v2.
 v2-report:
 	$(RUN) v2_report
 
-all-v2: manifest-write session-info regresion-v1 v2-external v2-certified v2-axes v2-secondary v2-meta v2-report manifest-verify
+all-v2: manifest-write session-info regresion-v1 v2-external v2-certified v2-axes \
+        v2-vias v2-deteccion v2-meta v2-certificado v2-report verificar-numeros manifest-verify
 	@echo "v2 completa. Informe en $(WORKSPACE)/results/v2/report/"
 
 serve-v2:
