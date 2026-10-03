@@ -77,6 +77,27 @@ de cualquier análisis de v2.
   y rompe `make all-v2` como comando único reproducible. La trazabilidad temporal
   la da `results/v2/session_info.txt`, que registra fecha, commit y versiones.
 
+## E6 — Control negativo con covariables permutadas en C7
+
+- **Fecha**: 2026-10-03
+- **Tipo**: control añadido después de ver el primer resultado de v2
+- **Qué pasó**: el ajuste conjunto por los cuatro compartimentos (matriz
+  extracelular, músculo liso, inmune, epitelial) deja 83 de 688 proteínas, es
+  decir el 12,1 %, frente al 44,6 % de v1 con un solo índice. Antes de escribir
+  que eso es confusión por composición hay que descartar la explicación trivial.
+- **Por qué hacía falta**: ajustar por k covariables gasta k grados de libertad
+  en 94 pares e infla el error estándar. Una parte de la caída es pérdida de
+  potencia, no confusión. Sin el control, el número no se puede interpretar.
+- **Qué se añade**: 200 repeticiones en las que el orden de los pares de cada
+  covariable se permuta. Eso conserva la distribución de la covariable y rompe su
+  relación con el contraste real del par. La fracción que sobrevive en el control
+  es el techo que la pérdida de potencia explica por sí sola; la diferencia con
+  el ajuste real es la parte atribuible a composición.
+- **Semilla**: desplazamiento 416 sobre la base 20260914, añadido al preregistro.
+- **Nota de honestidad**: este control no estaba preregistrado. Se añade porque
+  sin él el 12,1 % se leería como un resultado biológico cuando puede ser
+  aritmética del modelo. No cambia ningún umbral de decisión.
+
 ## E5 — La protección de v1 es el manifiesto, no el sistema de ficheros
 
 - **Fecha**: 2026-10-03

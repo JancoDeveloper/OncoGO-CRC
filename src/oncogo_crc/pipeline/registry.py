@@ -29,6 +29,7 @@ from oncogo_crc.stages import (
     qc_normalize,
     stability_analysis,
     translational_axes,
+    v2_certified,
     validate_inputs,
     version_inputs,
 )
@@ -62,9 +63,13 @@ STAGES: dict[str, StageFn] = {
     "report": generate_report.run,
     "stability": stability_analysis.run,
     "publish_results": publish_results.run,
+    # Versión 2. Escriben solo bajo results/v2/ y no tocan la corrida certificada v1.
+    "v2_certified": v2_certified.run,
 }
 
 STAGE_ORDER = list(STAGES.keys())
 
-# Etapas opcionales que no deben ejecutarse en `oncogo-crc run --stage all`
-EXCLUDED_FROM_ALL: frozenset[str] = frozenset({"ingest_cptac"})
+# Etapas opcionales que no deben ejecutarse en `oncogo-crc run --stage all`.
+# Las de v2 se orquestan con `make all-v2`, no con `--stage all`, para que una
+# corrida del pipeline viejo no pise los resultados de v2.
+EXCLUDED_FROM_ALL: frozenset[str] = frozenset({"ingest_cptac", "v2_certified"})

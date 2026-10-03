@@ -2,6 +2,11 @@
 
 > **Workspace de datos:** `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` apuntan a `/Volumes/JANCODATA/OncoGO-CRC` (el clon conserva `config/`, `src/` y el resto de `docs/`). Trazabilidad de corrida: `results/run_manifest.json`.
 
+## `certification/`
+
+- `results/certification/indice_R.tsv` (~1 KiB)
+- `results/certification/certificado_resumen.json` (~3 KiB)
+
 ## `clinical/`
 
 - `results/clinical/demographics_counts.tsv` (~1 KiB)
@@ -118,6 +123,12 @@
 ## `networks/`
 
 - `results/networks/cptac_colorectal_hub_proteins.tsv` (~87 KiB)
+
+## `prioritization/`
+
+- `results/prioritization/convergence_evidence_matrix.tsv` (~109 KiB)
+- `results/prioritization/hypothesis_priority.tsv` (~112 KiB)
+- `results/prioritization/prioritization_provenance.json` (~2 KiB)
 
 ## `qc/`
 

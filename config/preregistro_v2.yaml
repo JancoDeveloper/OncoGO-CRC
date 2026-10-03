@@ -36,6 +36,7 @@ semillas:
     c6_bootstrap_conglomerado: 310
     c6_validacion_cruzada: 311
     c7_deconvolucion: 415
+    c7_control_permutado: 416     # añadido por la enmienda E6
     c10_meta_arranque: 520
 
 # ------------------------------------------- 3. C1: nulos de permutación
@@ -175,6 +176,13 @@ c7_composicion:
     epitelial: [EPCAM, KRT8, KRT18, KRT20, CDH17, CDH1]
   evaluar_efecto_en: 0.0          # diferencia de composición cero entre el par
   lenguaje_obligatorio: "R4 es una cota del efecto de composición, no una pureza medida, salvo cuando la covariable es la pureza ABSOLUTE de TCGA."
+  # Control negativo (enmienda E6): ajustar por k covariables gasta k grados de
+  # libertad, así que parte de la caída puede ser pérdida de potencia y no
+  # confusión. El control permuta el orden de los pares en cada covariable, lo
+  # que conserva su distribución y rompe su relación con el contraste del par.
+  control_permutado:
+    n_permutaciones: 200
+    interpretacion: "La diferencia entre el ajuste real y el control permutado es la parte atribuible a composición. Lo que el control ya pierde es pérdida de potencia."
 
 # ------------------------------------ 11. C8: ventana de detección tejido–suero
 c8_ventana_deteccion:
