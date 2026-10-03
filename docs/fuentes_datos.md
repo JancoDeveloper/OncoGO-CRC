@@ -94,6 +94,82 @@ El estado legible por máquina vive junto a cada descarga, en
 - **Resultado en v2**: 7 términos significativos en CPTAC, 2 evaluables en la
   réplica. **No evaluable**.
 
+### PXD019504 — tercera cohorte de tejido pareado
+
+- **Estado**: usada
+- **Script**: `scripts/download/pride_cohortes.py`
+- **Fichero**: `external/pride/PXD019504/proteinGroups.txt`
+- **Qué es**: LFQ con MaxQuant de tumor y mucosa normal del mismo paciente.
+- **Qué aporta a v2**: la tercera cohorte del meta-análisis REML de C10. Con dos
+  cohortes la heterogeneidad no se puede estimar; con tres, sí.
+- **Nombres de columna**: `LFQ intensity CRC<n><N|T>`, donde **T es el tumor**.
+  Es la convención contraria a PXD034575, que usa `M`. Confundirlas invertiría
+  el signo de una cohorte entera, y el error no daría ningún aviso.
+- **Identificadores**: las accesiones vienen sueltas, separadas por `;`. Otros
+  depósitos usan el formato `sp|P12345|NOMBRE_HUMAN`, donde la accesión es el
+  campo del medio. Quedarse con el último campo daría el nombre de la proteína.
+- **Limitación**: es LFQ, igual que PXD034575 y a diferencia del TMT de
+  PDC000116. La heterogeneidad que mide C10 podría venir de esa diferencia de
+  tecnología, y por eso se calcula también el I² solo entre las dos cohortes LFQ.
+
+### Auditoría de independencia entre cohortes
+
+- **Estado**: usada
+- **Script**: `scripts/download/auditoria_independencia.py`
+- **Fichero**: `external/pride/auditoria_independencia.json`
+- **Qué es**: no es una fuente de datos nueva, es la comprobación de que las
+  cohortes que entran en el meta-análisis son independientes de verdad.
+- **Cómo decide**: dos niveles. El nivel A compara las sumas de verificación que
+  publica PRIDE: ficheros compartidos entre dos depósitos significan muestras
+  compartidas. El nivel B correlaciona cada muestra con cada muestra de las otras
+  cohortes sobre las proteínas comunes; por encima de 0,98 con al menos 200
+  proteínas comunes, se considera la misma muestra reanalizada. **El nivel B es el
+  que decide**, porque un fichero puede haberse renombrado.
+- **Por qué importa**: un meta-análisis que suma dos veces la misma muestra
+  estrecha artificialmente los intervalos y presenta como replicación lo que es
+  una repetición.
+- **Regla dura**: sin auditoría no entra ninguna cohorte. La ausencia del fichero
+  no se interpreta como «independientes».
+
+### TCGA COAD/READ — CEA sérico, pureza y expresión de CEACAM5
+
+- **Estado**: usada
+- **Script**: `scripts/download/tcga_coadread.py`
+- **Fichero**: `external/tcga_coadread/tcga_coadread_cea_pureza.tsv`
+- **Origen**: BCR Biotab del GDC (`nationwidechildrens.org_clinical_patient_coad.txt`
+  y `..._read.txt`), pureza ABSOLUTE del GDC, y la API REST de cBioPortal para
+  el estudio `coadread_tcga_pan_can_atlas_2018`.
+- **Licencia**: datos abiertos del GDC. No hay datos controlados en esta descarga.
+- **Cita**: The Cancer Genome Atlas Network. Comprehensive molecular
+  characterization of human colon and rectal cancer. *Nature* 2012. Y
+  Hoadley KA et al. *Cell* 2018 para el PanCanAtlas.
+- **Contenido**: 594 muestras de tumor primario. CEA pretratamiento en 380
+  (64,0 %), pureza ABSOLUTE en 586, las dos en 376. Expresión RNA-seq de
+  CEACAM5, CEACAM6 y CEACAM1.
+- **Qué aporta**: el eje D1. Mide cuánto de la variación del CEA en sangre
+  explica la expresión tisular de su propio gen, que es el caso mejor estudiado
+  que existe de un marcador y su origen.
+- **Columnas usadas**: `cea_level_pretreatment`, `ajcc_pathologic_tumor_stage`,
+  `ajcc_metastasis_pathologic_pm`, `icd_o_3_site`, `gender`,
+  `age_at_initial_pathologic_diagnosis`, la pureza y la fracción de ADN tumoral
+  de ABSOLUTE, `MSI_SCORE_MANTIS` y `SUBTYPE` de cBioPortal.
+- **Tres discrepancias con lo que se esperaba**, comprobadas contra el servicio
+  en lugar de supuestas:
+  1. El campo del CEA no se llama `preoperative_pretreatment_cea_level`. En el
+     Biotab actual se llama `cea_level_pretreatment`.
+  2. `HEAD` contra `api.gdc.cancer.gov/data/<id>` devuelve 400 aunque el fichero
+     exista. Hay que comprobarlo con `GET`.
+  3. El tarball de cBioPortal en S3 responde 403. La API REST sí funciona y es
+     la que se usa.
+- **CMS**: `requiere_acceso`. La clasificación consensuada vive en Synapse
+  (syn2623706) y hace falta cuenta. El script queda preparado y no intenta
+  autenticarse. Como sustituto declarado se usa el `SUBTYPE` del PanCanAtlas
+  (CIN, MSI, GS, POLE), que **no es equivalente** a CMS1–CMS4.
+- **Limitaciones**: el CEA es una determinación clínica de laboratorios
+  distintos, sin un ensayo único; la expresión es RNA-seq y no proteína; y hay
+  594 tumores con proteoma ausente, así que la pureza medida no sirve todavía
+  para un R4 alternativo (eso depende de D2).
+
 ### Human Protein Atlas — concentraciones en sangre
 
 - **Estado**: usada

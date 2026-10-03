@@ -6,7 +6,7 @@ RUN := $(ONCOGO) run --data-workspace $(WORKSPACE) --stage
 .PHONY: install demo pipeline docs docs-build lint test
 .PHONY: manifest-write manifest-verify session-info regresion-v1
 .PHONY: v2-certified v2-axes v2-vias v2-deteccion v2-meta v2-certificado
-.PHONY: v2-external v2-report verificar-numeros all-v2 serve-v2
+.PHONY: v2-external v2-report verificar-numeros all-v2 serve-v2 v2-tcga
 
 install:
 	python3 -m venv .venv && . .venv/bin/activate && pip install -e ".[dev]"
@@ -68,6 +68,11 @@ v2-deteccion:
 v2-meta:
 	$(RUN) v2_meta
 
+# D1: determinantes del CEA sérico en TCGA COAD/READ. Necesita la descarga
+# scripts/download/tcga_coadread.py; sin ella la etapa se marca no_disponible.
+v2-tcga:
+	$(RUN) v2_tcga
+
 # Descargas idempotentes. Depende de la red; cada fuente queda marcada
 # usada / no_disponible / requiere_acceso y nunca se rellena con datos inventados.
 v2-external:
@@ -87,7 +92,8 @@ v2-report:
 	$(RUN) v2_report
 
 all-v2: manifest-write session-info regresion-v1 v2-external v2-certified v2-axes \
-        v2-vias v2-deteccion v2-meta v2-certificado v2-report verificar-numeros manifest-verify
+        v2-vias v2-deteccion v2-meta v2-tcga v2-certificado v2-report \
+        verificar-numeros manifest-verify
 	@echo "v2 completa. Informe en $(WORKSPACE)/results/v2/report/"
 
 serve-v2:
