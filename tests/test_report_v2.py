@@ -41,12 +41,73 @@ def test_el_intervalo_se_declara_cuando_no_existe():
     assert R._ic({"ci_low": None, "ci_high": None}) == "sin intervalo"
 
 
+def test_un_extremo_negativo_no_se_pega_al_guion_del_intervalo():
+    """«de −0,423 a −0,013» se lee de una vez. «−0,423–−0,013» hay que leerlo dos."""
+    texto = R._ic({"ci_low": -0.4226, "ci_high": -0.0134})
+    assert texto == "IC 95 % de \u22120,423 a \u22120,013"
+    assert "\u2212\u2013" not in texto
+
+
 # ------------------------------------------------------------------ secciones
 def test_una_etapa_que_no_ha_corrido_lo_dice_en_su_seccion():
-    for constructor in (R._sec_gradiente, R._sec_modelos):
+    for constructor in (
+        R._sec_gradiente,
+        R._sec_modelos,
+        R._sec_pureza,
+        R._sec_heterogeneidad,
+        R._sec_deconvolucion,
+        R._sec_marcadores,
+    ):
         sec = constructor(None, None)
         assert sec.figura is None
         assert "no ha corrido" in " ".join(sec.cuerpo)
+
+
+def test_una_fuente_que_no_ha_corrido_tambien_lo_dice():
+    """Una fuente ausente declara la ausencia y el motivo, en lugar de callar."""
+    for constructor in (R._sec_cea_tcga, R._sec_plasma_benigno):
+        texto = " ".join(constructor(None).cuerpo)
+        assert "no ha corrido" in texto or "no está disponible" in texto
+        assert "Motivo" in texto or "no ha corrido" in texto
+
+
+def test_sin_el_meta_analisis_no_se_imprime_ningun_tamano_de_cohorte():
+    """El AUC de partida sale de D8 o no sale.
+
+    Es la tentación concreta que este test cierra: para imprimir un tamaño de
+    muestra hace falta un AUC de partida, y si D8 no ha corrido lo único que
+    queda a mano es inventárselo o copiarlo de los datos sintéticos de los
+    tests. Entonces el informe daría un número de pacientes que no se sostiene
+    en ninguna medida.
+    """
+    assert R._tamanos_del_protocolo(None) == []
+    assert R._tamanos_del_protocolo({"ajustes": {}}) == []
+    a_medias = {"ajustes": {"CEA|deteccion_de_recaida": {"estado": "no_disponible"}}}
+    assert R._tamanos_del_protocolo(a_medias) == []
+    texto = " ".join(R._sec_protocolo(True, []).cuerpo)
+    # Y la sección dice por qué no hay cifra, en lugar de omitir el párrafo.
+    assert "no ha corrido" in texto
+    assert not re.search(r"\d+ pacientes", texto)
+
+
+def test_el_auc_de_partida_de_la_cohorte_sale_del_meta_analisis():
+    marc = {
+        "ajustes": {
+            "CEA|deteccion_de_recaida": {
+                "estado": "calculado",
+                "sensibilidad": 0.6,
+                "especificidad": 0.9,
+                "k": 7,
+            }
+        }
+    }
+    filas = R._tamanos_del_protocolo(marc)
+    assert [f["delta"] for f in filas] == [0.05, 0.10]
+    # La media de 0,6 y 0,9, no un valor redondo elegido por el autor.
+    assert all(f["auc_de_partida"] == 0.75 for f in filas)
+    assert "7 estudios" in filas[0]["de_donde_sale_el_auc_de_partida"]
+    # Detectar una mejora mayor cuesta menos pacientes.
+    assert filas[1]["n_pacientes"] < filas[0]["n_pacientes"]
 
 
 def test_el_cierre_clinico_aparece_en_los_tres_formatos(tmp_path):

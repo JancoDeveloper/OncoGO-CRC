@@ -1094,3 +1094,436 @@ def fig_c7_c9_composicion(certified: dict, salida: Path) -> Figura:
         svg=svg,
         tsv=tsv,
     )
+
+
+# --------------------------------------------------------------------- D2
+def fig_d2_pureza(pureza: dict, salida: Path) -> Figura:
+    """Cuánto se parece cada firma de composición a una pureza medida de verdad."""
+    bonito = {
+        "ecm": "Matriz extracelular\n(la de R4)",
+        "musculo_liso": "Músculo liso",
+        "inmune": "Inmune",
+        "epitelial": "Epitelial",
+    }
+    filas = []
+    for clave, v in pureza["validacion_del_indice"].items():
+        if v.get("estado") != "calculado":
+            continue
+        filas.append(
+            {
+                "firma": bonito.get(clave, clave),
+                "clave": clave,
+                "n_proteinas": v["n_proteinas_de_la_firma"],
+                "n_pacientes": v["n"],
+                "rho": v["rho"],
+                "ci_low": v["rho_ci_low"],
+                "ci_high": v["rho_ci_high"],
+                "varianza_compartida": v["varianza_compartida"],
+                "es_la_de_r4": clave == "ecm",
+            }
+        )
+    df = pd.DataFrame(filas)
+    tsv = _tabla(df, salida, "d2_indice_frente_a_pureza")
+
+    umbral = float(pureza["veredicto_sobre_r4"]["umbral"])
+    fig, ax = plt.subplots(figsize=(7.6, 2.9))
+    ys = np.arange(len(df))[::-1]
+    for y_, (_, r) in zip(ys, df.iterrows()):
+        color = ROJO if r["es_la_de_r4"] else GRIS
+        _barras_de_error(ax, y_, r["rho"], r["ci_low"], r["ci_high"], color=color)
+        ax.text(
+            r["rho"],
+            y_ + 0.24,
+            f"{_coma3(r['rho'])}   comparte {r['varianza_compartida'] * 100:.1f} %"
+            .replace(".", ","),
+            fontsize=7.5,
+            ha="center",
+            color=color,
+        )
+    _linea_vertical(ax, 0.0, "sin relación", color=GRIS, estilo=":", arriba=0.16)
+    _linea_vertical(
+        ax, -umbral, "umbral para sustituir a la pureza (E9)", color=ROJO, arriba=0.97
+    )
+    ax.set_yticks(ys)
+    ax.set_yticklabels(df["firma"], fontsize=7.5)
+    ax.set_xlim(-0.85, 0.25)
+    _holgura(ax, len(df))
+    ax.set_xlabel(
+        "Correlación de rangos con la pureza ABSOLUTE medida por ADN", fontsize=8.5
+    )
+    _estilo(ax, formato_x=_coma)
+    ax.set_title(
+        f"D2. En rojo, la firma que usa R4. n = {int(df['n_pacientes'].max())} pacientes",
+        fontsize=9.5,
+        loc="left",
+    )
+    png, svg = _guardar(fig, salida, "d2_indice_frente_a_pureza")
+    return Figura(
+        nombre="d2_indice_frente_a_pureza",
+        titulo="El índice estromal de R4 frente a una pureza medida por ADN",
+        pie=(
+            "Los cuatro índices de composición van en el sentido esperado: más "
+            "estroma, menos pureza tumoral. Pero ninguno se acerca al umbral que "
+            "haría de ellos un sustituto de la pureza. El de matriz extracelular, "
+            "que es el que usa R4, comparte un 5,2 % de la varianza con la pureza "
+            "medida, y eso con 230 proteínas; la firma inmune, con cuatro, llega "
+            "más lejos. La consecuencia es que el lenguaje obligatorio del "
+            "preregistro sobre R4 no es una cautela de más: es la descripción "
+            "correcta."
+        ),
+        png=png,
+        svg=svg,
+        tsv=tsv,
+    )
+
+
+# --------------------------------------------------------------------- D3
+def fig_d3_heterogeneidad(het: dict, por_proteina: pd.DataFrame, salida: Path) -> Figura:
+    """Variación dentro de un tumor frente a variación entre pacientes."""
+    v = het["variacion_dentro_frente_a_entre"]
+    prot = het["variacion_por_proteina"]
+    cert = prot["certificadas"]
+
+    filas = [
+        {
+            "comparacion": "Cociente con n igualado\n(remuestreo)",
+            "valor": v["cociente_mediano"],
+            "ci_low": v["cociente_ci_low"],
+            "ci_high": v["cociente_ci_high"],
+            "n": v["n_remuestreos_utiles"],
+        },
+        {
+            "comparacion": "Las 338 certificadas\npresentes aquí",
+            "valor": cert["cociente_mediano"],
+            "ci_low": float("nan"),
+            "ci_high": float("nan"),
+            "n": cert["n_presentes"],
+        },
+        {
+            "comparacion": "El resto de proteínas",
+            "valor": prot["certificadas"]["cociente_mediano_del_resto"],
+            "ci_low": float("nan"),
+            "ci_high": float("nan"),
+            "n": prot["n_evaluables"] - cert["n_presentes"],
+        },
+    ]
+    df = pd.DataFrame(filas)
+
+    concordancia = pd.DataFrame(
+        [
+            {
+                "contraste": "Tumor frente a\nmucosa normal",
+                "observado": het["tumor_frente_a_mucosa_normal"][
+                    "fraccion_con_todos_los_pares_en_la_misma_direccion"
+                ],
+                "azar": het["tumor_frente_a_mucosa_normal"]["fraccion_esperada_por_azar"],
+                "veces": het["tumor_frente_a_mucosa_normal"]["veces_por_encima_del_azar"],
+            },
+            {
+                "contraste": "Metástasis hepática\nfrente a primario",
+                "observado": het["metastasis_frente_a_tumor_primario"][
+                    "fraccion_con_todos_los_pares_en_la_misma_direccion"
+                ],
+                "azar": het["metastasis_frente_a_tumor_primario"][
+                    "fraccion_esperada_por_azar"
+                ],
+                "veces": het["metastasis_frente_a_tumor_primario"][
+                    "veces_por_encima_del_azar"
+                ],
+            },
+        ]
+    )
+    tsv = _tabla(
+        pd.concat(
+            [
+                df.assign(panel="cociente_de_variacion"),
+                concordancia.assign(panel="concordancia_frente_al_azar"),
+            ],
+            ignore_index=True,
+        ),
+        salida,
+        "d3_heterogeneidad",
+    )
+
+    fig, (ax1, ax2) = plt.subplots(
+        1, 2, figsize=(10.4, 3.0), gridspec_kw={"width_ratios": [1.25, 1], "wspace": 0.12}
+    )
+
+    ys = np.arange(len(df))[::-1]
+    for y_, (_, r) in zip(ys, df.iterrows()):
+        color = ROJO if y_ == ys[0] else GRIS
+        _barras_de_error(ax1, y_, r["valor"], r["ci_low"], r["ci_high"], color=color)
+        ax1.text(
+            r["valor"], y_ + 0.24, _coma3(r["valor"]), fontsize=8, ha="center", color=color
+        )
+    _linea_vertical(ax1, 1.0, "la misma variación", color=AZUL, arriba=0.97)
+    ax1.set_yticks(ys)
+    ax1.set_yticklabels(df["comparacion"], fontsize=7.5)
+    ax1.set_xlim(0.4, 2.0)
+    _holgura(ax1, len(df))
+    ax1.set_xlabel(
+        "Variación dentro de un tumor ÷ variación entre pacientes", fontsize=8.5
+    )
+    _estilo(ax1, formato_x=_coma)
+    ax1.set_title(
+        "D3. Ocho regiones de un tumor frente a cuatro pacientes", fontsize=9.5, loc="left"
+    )
+
+    y2 = np.arange(len(concordancia))[::-1]
+    ax2.barh(y2, concordancia["observado"], color=AZUL, height=0.42, label="observado")
+    ax2.barh(
+        y2 - 0.44,
+        concordancia["azar"],
+        color="#bdbdbd",
+        height=0.42,
+        label="esperado por azar",
+    )
+    for y_, (_, r) in zip(y2, concordancia.iterrows()):
+        ax2.text(
+            r["observado"] + 0.012,
+            y_,
+            f"{_coma(r['veces'])}× el azar",
+            fontsize=7.5,
+            va="center",
+            color=AZUL,
+        )
+    ax2.set_yticks(y2 - 0.22)
+    ax2.set_yticklabels(concordancia["contraste"], fontsize=7.5)
+    _filas_a_la_derecha(ax2)
+    ax2.set_xlim(0, 0.62)
+    ax2.set_ylim(-1.0, len(concordancia) - 0.3)
+    ax2.set_xlabel("Proteínas que concuerdan en los 4 pares", fontsize=8.5)
+    _estilo(ax2, formato_x=_coma)
+    ax2.legend(fontsize=7.5, frameon=False, loc="lower right")
+    ax2.set_title("Con 4 pares el azar ya acierta 1 de cada 8", fontsize=9.5, loc="left")
+
+    fig.suptitle(
+        "D3. La variación dentro de un mismo tumor es del orden de la que hay entre pacientes",
+        fontsize=10,
+        x=0.02,
+        y=1.06,
+        ha="left",
+    )
+    png, svg = _guardar(fig, salida, "d3_heterogeneidad")
+    return Figura(
+        nombre="d3_heterogeneidad",
+        titulo="Variación dentro de un tumor frente a variación entre pacientes",
+        pie=(
+            "Izquierda: con el número de observaciones igualado por remuestreo, dos "
+            "trozos del mismo tumor se parecen algo menos entre sí que dos tumores de "
+            "pacientes distintos, pero el intervalo incluye el uno. Es una señal, no "
+            "un resultado: lo que sostiene es que las dos variaciones son del mismo "
+            "orden. Las 338 proteínas certificadas presentes están entre las menos "
+            "variables por región, lo que favorece al certificado y se describe sin "
+            "contrastarlo. Derecha: la concordancia de dirección necesita su "
+            "referencia de azar para poder leerse."
+        ),
+        png=png,
+        svg=svg,
+        tsv=tsv,
+    )
+
+
+# --------------------------------------------------------------------- D5
+def fig_d5_deconvolucion(dec: dict, salida: Path) -> Figura:
+    """El R4 alternativo y por qué los dos ajustes no son comparables sin más."""
+    filas = []
+    for c in dec["cohortes"]:
+        for a in c["ajustes"]:
+            f = a["fraccion"]
+            filas.append(
+                {
+                    "cohorte": c["cohorte"],
+                    "covariable": (
+                        "Referencia externa\n(fracción epitelial)"
+                        if "externa" in a["covariable"]
+                        else "Índice del propio\nproteoma (matriz)"
+                    ),
+                    "clave": a["covariable"],
+                    "valor": f["valor"],
+                    "ci_low": f["ci_low"],
+                    "ci_high": f["ci_high"],
+                    "numerador": f["numerador"],
+                    "denominador": f["denominador"],
+                    "distancia_al_cero": a["distancia_tipificada_al_cero"],
+                    "es_externa": "externa" in a["covariable"],
+                }
+            )
+    df = pd.DataFrame(filas)
+    tsv = _tabla(df, salida, "d5_r4_alternativo")
+
+    etiquetas = [f"{r['cohorte']}\n{r['covariable']}" for _, r in df.iterrows()]
+    fig, (ax1, ax2) = plt.subplots(
+        1, 2, figsize=(10.4, 3.0), gridspec_kw={"width_ratios": [1.3, 1], "wspace": 0.12}
+    )
+
+    ys = np.arange(len(df))[::-1]
+    for y_, (_, r) in zip(ys, df.iterrows()):
+        color = VERDE if r["es_externa"] else GRIS
+        _barras_de_error(ax1, y_, r["valor"], r["ci_low"], r["ci_high"], color=color)
+        ax1.text(
+            r["valor"],
+            y_ + 0.24,
+            f"{_coma3(r['valor'])}  ({int(r['numerador'])}/{int(r['denominador'])})",
+            fontsize=7.5,
+            ha="center",
+            color=color,
+        )
+    ax1.set_yticks(ys)
+    ax1.set_yticklabels(etiquetas, fontsize=7)
+    ax1.set_xlim(0.0, 1.05)
+    _holgura(ax1, len(df))
+    ax1.set_xlabel("Fracción que sigue significativa al ajustar", fontsize=8.5)
+    _estilo(ax1, formato_x=_coma)
+    ax1.set_title("D5. En verde, la covariable que viene de fuera", fontsize=9.5, loc="left")
+
+    ok = df["distancia_al_cero"].notna()
+    y2 = np.arange(int(ok.sum()))[::-1]
+    sub = df[ok]
+    ax2.barh(
+        y2,
+        sub["distancia_al_cero"],
+        color=[VERDE if e else GRIS for e in sub["es_externa"]],
+        height=0.5,
+    )
+    for y_, (_, r) in zip(y2, sub.iterrows()):
+        ax2.text(
+            r["distancia_al_cero"] + 0.03,
+            y_,
+            _coma(r["distancia_al_cero"]),
+            fontsize=8,
+            va="center",
+            color=GRIS,
+        )
+    ax2.set_yticks(y2)
+    ax2.set_yticklabels(
+        [f"{r['cohorte']}\n{r['covariable']}" for _, r in sub.iterrows()], fontsize=7
+    )
+    _filas_a_la_derecha(ax2)
+    ax2.set_xlim(0, max(1.4, float(sub["distancia_al_cero"].max()) * 1.35))
+    ax2.set_ylim(-0.7, len(sub) - 0.3)
+    ax2.set_xlabel(
+        "Desviaciones típicas entre los datos y la composición cero", fontsize=8.5
+    )
+    _estilo(ax2, formato_x=_coma)
+    ax2.set_title("Cuánto hay que extrapolar para evaluar R4", fontsize=9.5, loc="left")
+
+    fig.suptitle(
+        "D5. R4 depende de cómo se mida la composición, y de cuánto haya que extrapolar",
+        fontsize=10,
+        x=0.02,
+        y=1.06,
+        ha="left",
+    )
+    png, svg = _guardar(fig, salida, "d5_r4_alternativo")
+    return Figura(
+        nombre="d5_r4_alternativo",
+        titulo="R4 con una covariable de composición que no sale del propio proteoma",
+        pie=(
+            "Izquierda: en PXD019504 el ajuste por una composición estimada con una "
+            "referencia externa deja en pie una fracción mucho menor que el ajuste por "
+            "el índice del propio proteoma. Derecha: la razón no es que la covariable "
+            "externa detecte más confusión —las dos marcan un número parecido de "
+            "proteínas como dependientes de la composición— sino que obliga a "
+            "extrapolar más del doble de lejos para evaluar el efecto en composición "
+            "cero, y extrapolar cuesta precisión. La lectura conjunta es que R4 es una "
+            "cota, no una cantidad."
+        ),
+        png=png,
+        svg=svg,
+        tsv=tsv,
+    )
+
+
+# --------------------------------------------------------------------- D8
+def fig_d8_marcadores(marc: dict, salida: Path) -> Figura:
+    """Sensibilidad y especificidad del CEA frente a las alternativas."""
+    filas = []
+    for clave, a in marc["ajustes"].items():
+        if a.get("estado") != "calculado":
+            continue
+        marcador, indicacion = clave.split("|", 1)
+        filas.append(
+            {
+                "marcador": marcador.replace("_", " "),
+                "indicacion": indicacion.replace("_", " "),
+                "k": a["k"],
+                "sensibilidad": a["sensibilidad"],
+                "sens_low": a["sensibilidad_ci_low"],
+                "sens_high": a["sensibilidad_ci_high"],
+                "especificidad": a["especificidad"],
+                "esp_low": a["especificidad_ci_low"],
+                "esp_high": a["especificidad_ci_high"],
+                "fuente": "propio",
+            }
+        )
+    ctdna = marc.get("comparacion_entre_cea_y_ctdna", {}).get("todas", {})
+    pub = ctdna.get("publicado")
+    if pub:
+        filas.append(
+            {
+                "marcador": "ctDNA (publicado)",
+                "indicacion": ctdna.get("que_es", ""),
+                "k": pub["k"],
+                "sensibilidad": pub["sensibilidad"],
+                "sens_low": pub["sensibilidad_ci"][0],
+                "sens_high": pub["sensibilidad_ci"][1],
+                "especificidad": pub["especificidad"],
+                "esp_low": pub["especificidad_ci"][0],
+                "esp_high": pub["especificidad_ci"][1],
+                "fuente": pub["fuente"],
+            }
+        )
+    df = pd.DataFrame(filas)
+    tsv = _tabla(df, salida, "d8_marcadores")
+
+    fig, (ax1, ax2) = plt.subplots(
+        1, 2, figsize=(10.4, 2.9), gridspec_kw={"wspace": 0.1}
+    )
+    etiquetas = [f"{r['marcador']}\n({r['indicacion']}, k = {int(r['k'])})" for _, r in df.iterrows()]
+    ys = np.arange(len(df))[::-1]
+    for y_, (_, r) in zip(ys, df.iterrows()):
+        color = NARANJA if r["fuente"] == "propio" else GRIS
+        _barras_de_error(ax1, y_, r["sensibilidad"], r["sens_low"], r["sens_high"], color=color)
+        ax1.text(r["sensibilidad"], y_ + 0.24, _coma3(r["sensibilidad"]),
+                 fontsize=8, ha="center", color=color)
+        _barras_de_error(ax2, y_, r["especificidad"], r["esp_low"], r["esp_high"], color=color)
+        ax2.text(r["especificidad"], y_ + 0.24, _coma3(r["especificidad"]),
+                 fontsize=8, ha="center", color=color)
+    for ax, titulo, xlab in (
+        (ax1, "Sensibilidad", "Proporción de recaídas detectadas"),
+        (ax2, "Especificidad", "Proporción de sanos clasificados como sanos"),
+    ):
+        ax.set_xlim(0.35, 1.02)
+        ax.set_ylim(-0.7, len(df) - 0.25)
+        ax.set_xlabel(xlab, fontsize=8.5)
+        _estilo(ax, formato_x=_coma)
+        ax.set_title(titulo, fontsize=9.5, loc="left")
+    ax1.set_yticks(ys)
+    ax1.set_yticklabels(etiquetas, fontsize=7)
+    ax2.set_yticks([])
+
+    fig.suptitle(
+        "D8. Meta-análisis bivariado de Reitsma sobre tablas 2×2 de la literatura",
+        fontsize=10,
+        x=0.02,
+        y=1.06,
+        ha="left",
+    )
+    png, svg = _guardar(fig, salida, "d8_marcadores")
+    return Figura(
+        nombre="d8_marcadores",
+        titulo="El CEA frente a las alternativas, en sensibilidad y especificidad",
+        pie=(
+            "Cada punto es la estimación conjunta de un modelo bivariado de efectos "
+            "aleatorios; k es el número de estudios. En naranja, los ajustes hechos "
+            "aquí; en gris, una cifra publicada puesta al lado. Los intervalos se "
+            "solapan, pero eso es una descripción y no una prueba: los grupos de "
+            "estudios son distintos y tienen criterios de inclusión distintos. "
+            "Ninguna fila de la tabla de extracción se ha dado por verificada: la "
+            "columna verificado_por está vacía a propósito."
+        ),
+        png=png,
+        svg=svg,
+        tsv=tsv,
+    )
