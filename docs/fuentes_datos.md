@@ -97,7 +97,7 @@ El estado legible por máquina vive junto a cada descarga, en
 ### PXD019504 — tercera cohorte de tejido pareado
 
 - **Estado**: usada
-- **Script**: `scripts/download/pride_cohortes.py`
+- **Script**: `scripts/download/pride_cohorte_extra.py`
 - **Fichero**: `external/pride/PXD019504/proteinGroups.txt`
 - **Qué es**: LFQ con MaxQuant de tumor y mucosa normal del mismo paciente.
 - **Qué aporta a v2**: la tercera cohorte del meta-análisis REML de C10. Con dos
@@ -115,8 +115,9 @@ El estado legible por máquina vive junto a cada descarga, en
 ### Auditoría de independencia entre cohortes
 
 - **Estado**: usada
-- **Script**: `scripts/download/auditoria_independencia.py`
-- **Fichero**: `external/pride/auditoria_independencia.json`
+- **Script**: `scripts/download/independencia_cohortes.py`
+- **Fichero**: `external/independencia/estado.json`, con las correlaciones cruzadas en
+  `external/independencia/correlaciones_<a>_vs_<b>.tsv`
 - **Qué es**: no es una fuente de datos nueva, es la comprobación de que las
   cohortes que entran en el meta-análisis son independientes de verdad.
 - **Cómo decide**: dos niveles. El nivel A compara las sumas de verificación que
@@ -189,6 +190,50 @@ El estado legible por máquina vive junto a cada descarga, en
   los pacientes de PXD055218. Sirven para el orden de magnitud, no como medida
   del individuo. Además solo una fracción del proteoma tiene concentración
   publicada, y está sesgada hacia proteínas abundantes y ya estudiadas.
+
+### Álvez et al. 2023 — proteoma de sangre pan-cáncer (Olink Explore)
+
+- **Estado**: usada
+- **Script**: `scripts/download/alvez_2023.py`
+- **Ficheros**: `external/alvez_2023/alvez_2023_colorrectal_por_proteina.tsv` y
+  `..._auc.tsv`
+- **Origen**: información suplementaria del artículo, en
+  `static-content.springer.com`. Se descargan tres suplementarios: el 3 (resumen
+  de cohortes), el 6 (AUC por número de proteínas) y el 11 (datos de las
+  figuras, con los resultados por proteína).
+- **Licencia**: CC BY 4.0, acceso abierto.
+- **Cita**: Álvez MB, Edfors F, von Feilitzen K, et al. Next generation
+  pan-cancer blood proteome profiling using proteograph. *Nature Communications*
+  2023; 14:4308. doi:10.1038/s41467-023-39765-y
+- **Contenido**: 1 463 ensayos de Olink Explore en 221 pacientes de cáncer
+  colorrectal (101 mujeres, 120 hombres; estadios I 26, II 68, III 99, IV 28)
+  frente a 74 controles sanos del programa Wellness. 780 proteínas
+  significativas: 328 suben y 452 bajan.
+- **Qué aporta**: la comprobación externa que a v1 le faltaba. v1 encontró tres
+  proteínas de plasma en 20 contra 20 sueros; aquí hay una cohorte diez veces
+  mayor en la que mirar.
+- **Resultado en v2**: de las tres proteínas de plasma de v1, solo LBP (P18428)
+  está en el panel, y **no replica**: +0,14 en NPX con p ajustado 0,082. SAA1
+  (P0DJI8) y CHMP4A (Q9BY43) **no son ensayos del panel**, así que este recurso
+  no dice nada sobre ellas, ni a favor ni en contra. CEACAM5 sí sube (+0,52, p
+  ajustado 4,7·10⁻⁵) y CEACAM1 baja, lo que concuerda con el eje D1.
+- **Qué rinden tres proteínas**: el clasificador del artículo da AUC 0,854 con 3
+  proteínas y 0,994 con las 1 463. Es la escala de lo que puede esperarse de un
+  panel del tamaño del de v1.
+- **Solo estadísticas publicadas**. No hay acceso a datos individuales, así que
+  no se recalcula nada ni se aplica el `treat` de este trabajo.
+- **Limitaciones**:
+  - NPX es una escala log2 relativa de inmunoensayo, no comparable en magnitud
+    con el log2 de una intensidad de espectrometría de masas. Solo se cruzan el
+    signo y el hecho de ser significativa.
+  - Los controles son sanos de 50 a 65 años, no pacientes con síntomas ni con
+    enfermedad benigna. Un AUC contra sanos es optimista para cualquier uso
+    clínico: en la consulta el problema es separar cáncer de enfermedad benigna.
+    Eso es justo lo que mira D6.
+  - Los grupos están desbalanceados (221 contra 74) y vienen de reclutamientos
+    distintos, así que parte de la separación puede ser de cohorte.
+  - Que una proteína no esté en el panel no es evidencia de que no cambie. Dos
+    de las tres proteínas de v1 están en esa situación.
 
 ---
 

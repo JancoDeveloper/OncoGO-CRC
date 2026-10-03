@@ -201,7 +201,19 @@ def main() -> int:
         nivel_b[f"{a}_vs_{b}"] = res
         print(f"[independencia] nivel B {a} vs {b}: {res.get('veredicto', res.get('motivo'))}")
 
+    # El estado de esta auditoría es «usada» cuando el nivel B ha podido
+    # ejecutarse sobre al menos un par. Sin nivel B no hay veredicto: los hashes
+    # solos no bastan, porque un fichero renombrado los cambia.
+    usable = bool(nivel_b)
     ficha = {
+        "estado": "usada" if usable else "no_disponible",
+        "motivo": None
+        if usable
+        else (
+            "no había dos matrices en disco para correlacionar, así que el nivel "
+            "B no se pudo calcular y la auditoría no tiene veredicto"
+        ),
+        "fecha_de_acceso": datetime.now(UTC).date().isoformat(),
         "fecha": datetime.now(UTC).isoformat(timespec="seconds"),
         "accessions": args.accessions,
         "fallos_de_api": fallos,
