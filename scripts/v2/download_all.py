@@ -79,6 +79,12 @@ FUENTES: list[tuple[str, str, str, str]] = [
         "wannberg_2026",
         "plasma de cáncer frente a enfermedad benigna (D6)",
     ),
+    (
+        "ukb_ppp",
+        "ukb_ppp_pqtl.py",
+        "ukb_ppp",
+        "pQTL del plasma en UK Biobank; requiere cuenta (D7)",
+    ),
 ]
 
 # Tiempo máximo por fuente. El HPA descarga un zip grande; el resto es rápido.

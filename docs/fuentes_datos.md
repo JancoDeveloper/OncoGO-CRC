@@ -289,6 +289,38 @@ El estado legible por máquina vive junto a cada descarga, en
     estadístico: son dos números publicados puestos uno al lado del otro. Vale
     porque la plataforma y el número de ensayos coinciden, y nada más.
 
+### UK Biobank Pharma Proteomics Project — pQTL del plasma
+
+- **Estado**: **requiere_acceso**
+- **Script**: `scripts/download/ukb_ppp_pqtl.py`, preparado y con tests
+- **Origen**: las estadísticas de resumen están en Synapse, proyecto
+  `syn51364943` (doi:10.7303/syn51364943), bajo los términos del UKB-PPP y de
+  UK Biobank. El portal público es `ukb-ppp.gwas.eu`.
+- **Por qué no está**: hace falta cuenta de Synapse y aceptar las condiciones.
+  El script **no intenta autenticarse**: comprueba qué páginas son públicas,
+  deja el análisis escrito y marca la fuente.
+- **Cita**: Sun BB, Chiou J, Traylor M, et al. Plasma proteomic associations
+  with genetics and health in the UK Biobank. *Nature* 2023; 622:329-338.
+- **Qué aportaría**: una tercera explicación de la brecha tejido→plasma de C8,
+  junto a la ventana de detección (C8) y la elección del grupo de control (D6).
+  Si el nivel de una proteína en plasma depende en buena parte de la variante
+  que cada persona hereda, las diferencias entre dos individuos no hablan de la
+  enfermedad: hablan del genotipo. SAA1 y LBP, las dos proteínas de fase aguda
+  de v1, son de las que se sabe que tienen variantes de efecto grande.
+- **Qué calcularía**: por cada proteína, su cis-pQTL de mayor varianza explicada
+  —no el de menor p, que no es lo mismo: en 54 000 personas un efecto pequeño da
+  un p minúsculo y explica casi nada— y si pasa del 5 % de la varianza del
+  nivel. Las proteínas que se consultarían están fijadas en el script antes de
+  tener los datos: SAA1, LBP, CHMP4A, CEACAM5, S100A12, KRT19 y PARP1.
+- **Cómo completarlo**: quien tenga cuenta descarga el fichero y ejecuta
+  `scripts/download/ukb_ppp_pqtl.py --estadisticas RUTA`. No hay nada más que
+  programar: el análisis tiene 16 tests sobre estadísticas de resumen
+  sintéticas.
+- **Lo que no se hace**: no se sustituye por otra fuente ni por datos
+  simulados. Los datos sintéticos de este análisis existen solo en `tests/`.
+- **Limitación del propio recurso**: un cis-pQTL no invalida un marcador. Dice
+  que un umbral fijo no vale igual para todo el mundo, que es otra cosa.
+
 ---
 
 ## Recordatorio
