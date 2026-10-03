@@ -373,6 +373,45 @@ El estado legible por máquina vive junto a cada descarga, en
   no se combinan nunca en un mismo modelo y la comparación directa entre las dos
   queda marcada como no comparable.
 
+### Cohorte de CEA seriado — protocolo, sin datos
+
+- **Estado**: `pendiente_de_aprobacion`. El estudio **no se ha hecho** y no hay
+  ningún dato de ninguna persona.
+- **Protocolo**: `docs/protocolo_cohorte_cea.md`
+- **Análisis**: `src/oncogo_crc/v2/cohorte_cea.py`
+- **Tests**: `tests/test_cohorte_cea_d9.py` (31)
+- **Diana**: `make v2-cohorte-cea`
+- **De dónde sale la pregunta**: del meta-análisis de la fuente anterior. El
+  ctDNA medido una sola vez tras la cirugía tiene sensibilidad 0,51 y medido de
+  forma seriada 0,84, con la misma prueba y la misma población. Al CEA no se le
+  ha hecho esa pregunta: en los ocho estudios se evalúa como en la consulta,
+  cada valor contra un umbral fijo de 5 ng/ml.
+- **Qué compararía**: tres modelos sobre las mismas visitas. El umbral de
+  5 ng/ml, el valor en log2 sin umbral, y la trayectoria del paciente frente a
+  sus propias mediciones anteriores.
+- **Datos que haría falta recoger**: ocho columnas, de las que cinco son
+  obligatorias. Ni nombre, ni fecha de nacimiento, ni número de historia, ni
+  ninguna fecha de calendario: todos los tiempos son meses desde la cirugía. El
+  diccionario completo está en el protocolo.
+- **Tamaño necesario**: 330 pacientes para detectar una diferencia de AUC de
+  0,10 y 1 340 para una de 0,05, con potencia del 80 % y alfa del 5 %. Es la
+  varianza de Hanley y McNeil corregida por el efecto de diseño del
+  conglomerado, declarada como aproximación.
+- **Cohorte sintética**: `tests/SINTETICO_cohorte_cea.csv`, generada por
+  `scripts/literatura/generar_sintetico_cohorte_cea.py` con la semilla
+  20260914 + 909. No corresponde a nadie. Vive solo en `tests/` y el prefijo
+  `SINTETICO_` está ahí para que no se confunda nunca con datos reales. **Sus
+  números no entran en ningún resultado ni en ningún informe.**
+- **Qué demuestran los tests**: que el análisis detecta una diferencia cuando el
+  generador la programó (el valor mejora sobre el umbral y el intervalo de la
+  diferencia no incluye el cero) y que no la fabrica cuando no la programó (la
+  trayectoria no mejora sobre el valor y el intervalo sí incluye el cero).
+- **Limitaciones declaradas**: el estudio no diría si conviene hacer más CEA
+  —detectar antes no es vivir más—, no daría un punto de corte para la consulta,
+  no valdría para quien tenga una sola determinación, y no se trasladaría a otra
+  población sin comprobarlo, porque el CEA basal depende del tabaquismo y de la
+  función hepática.
+
 ---
 
 ## Recordatorio

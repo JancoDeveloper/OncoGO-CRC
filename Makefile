@@ -7,6 +7,7 @@ RUN := $(ONCOGO) run --data-workspace $(WORKSPACE) --stage
 .PHONY: manifest-write manifest-verify session-info regresion-v1
 .PHONY: v2-certified v2-axes v2-vias v2-deteccion v2-meta v2-certificado
 .PHONY: v2-external v2-report verificar-numeros all-v2 serve-v2 v2-tcga v2-marcadores
+.PHONY: v2-cohorte-cea
 
 install:
 	python3 -m venv .venv && . .venv/bin/activate && pip install -e ".[dev]"
@@ -78,6 +79,14 @@ v2-tcga:
 v2-marcadores:
 	$(PY) scripts/literatura/extraer_2x2.py
 	$(RUN) v2_marcadores
+
+# D9: protocolo de cohorte de CEA seriado. El estudio no se ha hecho, así que
+# aquí no hay resultados que calcular: lo que se comprueba es que el análisis
+# corre y que detecta una diferencia solo cuando existe. La cohorte es sintética
+# y se queda en tests/, nunca en results/.
+v2-cohorte-cea:
+	$(PY) scripts/literatura/generar_sintetico_cohorte_cea.py
+	.venv/bin/python -m pytest tests/test_cohorte_cea_d9.py -q
 
 # Descargas idempotentes. Depende de la red; cada fuente queda marcada
 # usada / no_disponible / requiere_acceso y nunca se rellena con datos inventados.
