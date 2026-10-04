@@ -124,6 +124,10 @@ verificar-numeros:
 v2-report:
 	$(RUN) v2_report
 
+# PDF explicativo para lectores sin formación técnica + copia de reportes a docs/reportes/.
+v2-guia-publica:
+	$(PY) scripts/build_public_report_v2.py --workspace $(WORKSPACE) --sync-reportes
+
 all-v2: manifest-write session-info regresion-v1 v2-external v2-certified v2-axes \
         v2-vias v2-deteccion v2-meta v2-tcga v2-pureza v2-heterogeneidad v2-deconvolucion v2-marcadores v2-certificado v2-report \
         verificar-numeros manifest-verify

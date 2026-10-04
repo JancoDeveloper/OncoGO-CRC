@@ -1,0 +1,12 @@
+numero	v1	v2	cambia	motivo	correccion
+R1_concordancia_de_signo	0.8739495798319328	0.8739495798319328	False	Mismo cálculo. Lo que cambia es que ahora se publica junto a su cobertura: el denominador es solo el 17 % de los hallazgos.	C15
+R1_cobertura		0.17296511627906977		v1 no publicaba este número. Sin él, R1 parece una concordancia general y es una concordancia condicionada a que la réplica mida la proteína.	C15
+R2_detectabilidad	0.3285	0.32848837209302323	True	Mismo valor. Lo que se corrige es que v1 tenía tres denominadores distintos circulando (688, 702 y 244) para cosas que parecían la misma.	C3
+R5_p_empirico	0.0099	9.999000099990002e-05	True	100 permutaciones pasan a 10 000. En las dos el nulo nunca alcanza lo observado, así que el número es el mínimo alcanzable y se declara como tope.	C1
+R4_composicion	0.4462	0.4476744186046512	True	v1 usaba las 282 proteínas de la matriz extracelular como índice y a la vez las contrastaba. Ahora cada proteína se excluye de su propio índice.	C7
+concordancia_de_via	1.0	0.9215686274509803	True	v1 daba 1,0 con cuatro términos. Ahora el mínimo es diez términos, la prueba es competitiva y se repite en tres colecciones.	C4
+n_terminos_de_via	4	51	True	El número de términos es parte del resultado, no un detalle: con cuatro, el intervalo iba de 0,398 a 1,0.	C4
+H1_veredicto	rechazada_por_clausula_proteina	rechaza_h1	True	Mismo veredicto, pero ahora sale de una tabla de verdad explícita con el estado no_evaluable incluido.	C4
+polipo_magnitud_intermedia	0.9194630872483222	0.5625	True	v1 seleccionaba las proteínas en el brazo tumor y medía su magnitud en ese mismo brazo. Con selección independiente en CPTAC el efecto desaparece.	C5
+polipo_esperado_por_regresion_a_la_media		0.7515923566878981		v1 no tenía este nulo. Dice cuánta de la asimetría la produce la propia selección.	C5
+concordancia_tejido_plasma	0.4883720930232558	0.5396825396825397	True	v1 medía sobre todas las proteínas comunes. Ahora se mide solo entre las que el método alcanza a detectar en suero.	C8

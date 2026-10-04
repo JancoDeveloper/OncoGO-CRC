@@ -1,5 +1,12 @@
 # OncoGO-CRC
 
+## Reportes v2 (PDF)
+
+- [Guía pública para lectores sin formación técnica](reportes/OncoGO-CRC_guia_publica_v2.pdf)
+- [Informe técnico completo v2](reportes/OncoGO-CRC_informe_v2.pdf)
+- [Índice de reportes y figuras](reportes/README.md)
+- [Resumen de entrega v2](ENTREGA_V2.md)
+
 Este sitio resume la arquitectura del proyecto. La **documentación orientada a tesis** (contexto científico, fases, interpretación de resultados y equivalencias con el paquete original) está en la **raíz del repositorio** con estos nombres:
 
 - [GUIA_ESTUDIANTE_CERTIFICACION.md](GUIA_ESTUDIANTE_CERTIFICACION.md) — guía de estudio: conceptos, diagramas, hipótesis y orden de escritura
