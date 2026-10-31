@@ -7,7 +7,7 @@ RUN := $(ONCOGO) run --data-workspace $(WORKSPACE) --stage
 .PHONY: manifest-write manifest-verify session-info regresion-v1
 .PHONY: v2-certified v2-axes v2-vias v2-deteccion v2-meta v2-certificado
 .PHONY: v2-external v2-report verificar-numeros all-v2 serve-v2 v2-tcga v2-marcadores
-.PHONY: v2-cohorte-cea v2-pureza v2-heterogeneidad v2-deconvolucion
+.PHONY: v2-cohorte-cea v2-pureza v2-heterogeneidad v2-deconvolucion tesis-cierre
 
 install:
 	python3 -m venv .venv && . .venv/bin/activate && pip install -e ".[dev]"
@@ -135,3 +135,8 @@ all-v2: manifest-write session-info regresion-v1 v2-external v2-certified v2-axe
 
 serve-v2:
 	$(PY) -m http.server --directory $(WORKSPACE)/results/v2/report 8000
+
+# Tres grupos de suero, auditoría de candidatas y límite de neoantígenos.
+# No entra en `all` ni en `all-v2`: no reescribe el certificado.
+tesis-cierre:
+	$(RUN) tesis_cierre

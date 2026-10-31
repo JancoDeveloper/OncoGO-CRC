@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.4cm}
+\title{Borrador de tesis\\OncoGO-CRC: qué parte del proteoma tumoral se ve en el suero}
+\author{Programa de Bioinformática y Biología Computacional\\Universidad de Caldas}
+\date{31 de octubre de 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Este borrador recoge solo cifras de la corrida \texttt{tesis\_cierre} del 31 de octubre de 2026. En el suero DIA de Rai y colaboradores (PXD055218; 20 cáncer, 20 colonoscopia negativa, 20 sanos) ninguna proteína separa el cáncer de la otra enfermedad intestinal con FDR 0,05 y cambio mínimo de 1,5 veces. Frente a sanos pasan SAA1, LBP y CHMP4A. CHMP4A se observa en 16 de 40 sueros. La columna P de PXD034575 es tumor primario y la M es metástasis hepática, no un pólipo. Con esa leyenda, el primario correlaciona 0,83 con CPTAC en 874 genes. Las vías GO del tejido casi no están medidas en este suero, y las pocas que lo están no concuerdan por encima del azar.
+\end{abstract}
+
+\section{Pregunta}
+El tumor colorrectal tiene un proteoma distinto del de la mucosa. La tesis pregunta cuánto de ese proteoma sigue siendo visible en sangre, y cuánto de lo visible en sangre es compartido con otra enfermedad intestinal. No propone un marcador para la consulta.
+
+\section{Material y método}
+Las cohortes no se fusionan. El contraste es una t moderada con umbral \texttt{treat} de 0,585 en escala log2, FDR de Benjamini--Hochberg 0,05, sin imputar ausencias \cite{smyth2004,mccarthy2009}. El suero usa los nombres de corrida CP, CN y Normal de PXD055218 \cite{rai2025}. PXD036594 no entra: un orden alfabético de columnas no es un diagnóstico \cite{lesur2023}.
+
+PXD034575 se lee con la leyenda de Tanaka y colaboradores: P tumor primario, M metástasis hepática, N mucosa \cite{tanaka2024}. El cero de MaxQuant es ausencia. La intensidad positiva se transforma a log2 y el contraste es pareado por paciente. La versión 2 había llamado pólipo a P y tumor a M; esos certificados no se reescriben.
+
+La especificidad por AUC exige separar cáncer de colonoscopia negativa con AUC mayor que 0,70, límite inferior del intervalo mayor que 0,50, y ese AUC mayor que el de enfermedad frente a sanos. Una proteína ya marcada como fase aguda, hemólisis o enfermedad inflamatoria no se presenta como específica aunque el AUC cumpla la regla. Las marcas salen del catálogo de literatura, no de este contraste.
+
+Los términos GO se leen de la anotación humana del pipeline. La concordancia funcional toma los términos biológicos con FDR menor o igual a 0,25 en el GSEA de CPTAC y al menos 10 genes en el ranking de suero, y permuta ese ranking 200 veces.
+
+\section{Resultados}
+\subsection{Suero}
+De unas 700 proteínas probadas, tres pasan el umbral en cáncer frente a sanos y una en enfermedad frente a sanos. Cáncer frente a colonoscopia negativa: cero. SAA1 sube (log2FC 3,26, FDR 0,0002). LBP sube (log2FC 1,25, FDR 0,007). CHMP4A sube (log2FC 5,42, FDR 3,42e-07) con 16 observaciones de 40. APOA4 baja en la enfermedad frente a los sanos (log2FC -1,32, FDR 0,022).
+
+Ocho candidatas cumplen la regla de AUC. Cinco están en la lista de fase aguda (C9, LRG1, SERPINA1, HP, CRP). BAIAP3 queda sin esa lista: AUC 0,82, log2FC 2,20 frente a la enfermedad, FDR 0,20. FN1 y TPM4 también cumplen el AUC y no pasan el FDR. FN1 está ligeramente más baja en el cáncer. TPM4 se apoya en pocas observaciones del contraste contra la enfermedad.
+
+\subsection{Tejido, con la leyenda corregida}
+Primario frente a mucosa: 58 proteínas significativas de 2490. Metástasis frente a mucosa: 160 de 2430. Metástasis frente a primario: 16 de 2710. CEACAM5 sube en el primario (log2FC 3,87, FDR 0,002, 13 pares).
+
+El primario y CPTAC comparten signo en 687 de 874 genes (78,6 \%), correlación 0,83. La metástasis correlaciona 0,59 (597 de 842). El signo del efecto primario y el de la metástasis coinciden en el 80,8 \% de 876 genes; entre esos, solo el 46,2 \% tiene magnitud menor en el primario.
+
+La correlación 0,104 de la versión 2, sobre 1\,993 proteínas, permanece como está. Usó otra preparación y la etiqueta antigua de columnas. No mide la sangre.
+
+\subsection{Vías}
+Términos GO del tejido con al menos 10 genes en suero: 12, 13 y 12. Correlación de NES -0,28, -0,31 y -0,04. p del nulo 0,34, 0,30 y 0,93. La concordancia funcional tejido--suero no se sostiene.
+
+\section{Discusión}
+Lo que separa el cáncer de una persona sana en este suero es, en dos de los tres casos, una proteína secretada de respuesta del huésped. Eso encaja con el atlas de origen plasmático de Malmström y con el hallazgo de Seo de que parte de la señal circulante viene del huésped, no de la célula tumoral \cite{malmstrom2025,seo2026}. No encaja con usar SAA1 o LBP como prueba de tumor.
+
+BAIAP3 es la candidata de Rai que sobrevive a la regla de AUC sin estar en la lista de fase aguda, y no sobrevive al FDR. Con 20 por grupo el estudio es de cribado. Yu y colaboradores ya publicaron CA1 y SMPDL3A; aquí el suero no las confirma como específicas \cite{yu2026}.
+
+El tejido, leído como primario y no como pólipo, sí se parece a CPTAC. La metástasis se parece menos. El relato de un adenoma intermedio no tiene apoyo en estas columnas.
+
+Los 19 péptidos de Rai, los neoepítopos de Xiang y los cinco péptidos de Hembrough quedan fuera: una fila de grupo proteico no guarda la secuencia mutada \cite{xiang2026,hembrough2026}.
+
+\section{Diez artículos que esta investigación puede sostener}
+\begin{enumerate}
+\item Especificidad del suero de cáncer colorrectal frente a colonoscopia negativa. El resultado central es el cero proteínas con FDR. \textit{Journal of Proteome Research} o \textit{Clinical Proteomics}.
+\item Corrección de la leyenda de PXD034575 y concordancia del primario con CPTAC. La cifra 0,104 y la de esta corrida se publican como estadísticas distintas. \textit{PLOS Computational Biology}.
+\item Cobertura de vías: el suero no contiene los términos GO del tumor, y los doce que contiene no concuerdan. \textit{Molecular \& Cellular Proteomics}.
+\item SAA1 y LBP como respuesta del huésped cuando el control deja de ser una persona sana. Nota corta junto con el atlas de Malmström.
+\item BAIAP3 entre el AUC y el FDR. Una proteína de la literatura, no un hallazgo de esta tesis.
+\item FN1 y TPM4: AUC sin fase aguda y sin FDR, con el signo de FN1 hacia abajo, como en la proteómica de plasma de 2023 \cite{verathamjamras2023}.
+\item CHMP4A y la ausencia: un log2FC alto con la mitad de los sueros sin medición no es un marcador.
+\item CEACAM5 sube en el primario (log2FC 3,87) y el suero no dirigido no lo convierte en proteína específica. Dialoga con Ögren, cuyo panel de cáncer colorrectal es CEACAM5, FLT1, IL19 y ferritina \cite{ogren2026}.
+\item Límite de los neoantígenos en matrices de grupos proteicos. Comentario metodológico, no un descubrimiento de péptidos.
+\item Fichas públicas de las proteínas de esta corrida, con GO, concentración del Human Protein Atlas y enlace a AlphaFold. Nota de datos, no un biomarcador.
+\end{enumerate}
+
+\section{Qué hay que poder explicar en la sustentación}
+El resultado, en una frase: el cambio de proteínas del tumor se repite entre tejidos y en este suero no aparece como señal propia del cáncer. La tesis responde la pregunta. No propone un examen de sangre.
+
+El orden de estudio es decir esa frase, dibujar las tres cohortes, explicar LBP y BAIAP3, explicar la leyenda P, M y N, y separar la correlación 0,83 de la cifra 0,104. LBP pasa el FDR contra sanos y no contra la colonoscopia negativa. BAIAP3 tiene AUC 0,82 y FDR 0,20.
+
+Hay que poder definir log2FC, el umbral 0,585 como log2 de 1,5, el FDR de Benjamini--Hochberg, la t moderada de \cite{smyth2004,mccarthy2009}, el AUC, el contraste pareado, el grupo proteico y la fase aguda. No se afirma un marcador clínico, ni que la columna P sea un pólipo, ni que 0,83 sustituya a 0,104, ni un neoantígeno, ni que las vías del tumor estén en este suero.
+
+\section{Bibliografía citada en este borrador}
+\begin{thebibliography}{99}
+\bibitem{rai2025} Rai AB, et al. Data-independent acquisition analysis to identify serum biomarkers and neoantigens for differentiating colorectal cancer from inflammatory bowel diseases. \textit{J Proteome Res.} 2025;24:4166--4180. doi:10.1021/acs.jproteome.5c00285.
+\bibitem{vasaikar2019} Vasaikar S, et al. Proteogenomic analysis of human colon cancer reveals new therapeutic opportunities. \textit{Cell.} 2019;177:1035--1049. doi:10.1016/j.cell.2019.03.030.
+\bibitem{tanaka2024} Tanaka A, et al. Proteogenomic characterization of primary colorectal cancer and metastatic progression. \textit{Cell Reports.} 2024;43:113810. doi:10.1016/j.celrep.2024.113810.
+\bibitem{zhang2014} Zhang B, et al. Proteogenomic characterization of human colon and rectal cancer. \textit{Nature.} 2014;513:382--387. doi:10.1038/nature13438.
+\bibitem{robles2024} Robles J, Prakash A, Vizcaíno JA, Casal JI. Integrated meta-analysis of colorectal cancer public proteomic datasets. \textit{PLOS Comput Biol.} 2024;20:e1011828. doi:10.1371/journal.pcbi.1011828.
+\bibitem{smyth2004} Smyth GK. Linear models and empirical Bayes methods for assessing differential expression in microarray experiments. \textit{Stat Appl Genet Mol Biol.} 2004;3:Article 3.
+\bibitem{mccarthy2009} McCarthy DJ, Smyth GK. Testing significance relative to a fold-change threshold is a TREAT. \textit{Bioinformatics.} 2009;25:765--771.
+\bibitem{yu2026} Yu Y, et al. Proteome profiling reveals early diagnostic biomarker candidates for colorectal cancer. \textit{BMC Cancer.} 2026. doi:10.1186/s12885-026-15547-9.
+\bibitem{seo2026} Seo Y, et al. Proteomic profiling of human extracellular vesicles reveals diagnostic biomarkers for colon adenocarcinoma. \textit{J Extracell Vesicles.} 2026. doi:10.1002/jev2.70278.
+\bibitem{malmstrom2025} Malmström E, et al. Human proteome distribution atlas for tissue-specific plasma proteome dynamics. \textit{Cell.} 2025. doi:10.1016/j.cell.2025.03.013.
+\bibitem{ogren2026} Ögren JÅ, et al. Composite proteomic and metabolomic plasma biomarkers for detection of colorectal, lung and ovarian cancers. \textit{Mol Cancer.} 2026. doi:10.1186/s12943-026-02654-1.
+\bibitem{dhami2026} Dhami J, et al. A network-based association of IBD and colorectal cancer using proteomics data. \textit{Proteomics Clin Appl.} 2026. doi:10.1002/prca.70041.
+\bibitem{xiang2026} Xiang H, et al. Predominant mutated non-canonical tumor-specific antigens in CRC. \textit{Cell Genomics.} 2026;6:101062. doi:10.1016/j.xgen.2025.101062.
+\bibitem{hembrough2026} Hembrough T, et al. Extracellular vesicle immunopeptidomics recovers immunogenic neoantigen peptides from cancer patient plasma. \textit{Cancer Res.} 2026;86(7 Suppl):Abstract 7710. doi:10.1158/1538-7445.am2026-7710.
+\bibitem{lesur2023} Lesur A, et al. Quantification of 782 plasma peptides by multiplexed targeted proteomics. \textit{J Proteome Res.} 2023;22:1630--1638. doi:10.1021/acs.jproteome.2c00575.
+\bibitem{verathamjamras2023} Verathamjamras C, Chantaraamporn J, et al. Label-free quantitative proteomics of LRG, C9, FN, A1AT and AGP1 in colorectal cancer plasma. \textit{Clin Proteomics.} 2023. doi:10.1186/s12014-023-09407-y.
+\bibitem{uhlen2015} Uhlén M, et al. Tissue-based map of the human proteome. \textit{Science.} 2015;347:1260419.
+\bibitem{guinney2015} Guinney J, et al. The consensus molecular subtypes of colorectal cancer. \textit{Nat Med.} 2015;21:1350--1356.
+\bibitem{garciafoncillas2026} García-Foncillas J. Biología molecular del cáncer colorrectal. \textit{Rev Colomb Hematol Oncol.} 2026. doi:10.51643/22562915.853.
+\bibitem{subramanian2005} Subramanian A, et al. Gene set enrichment analysis. \textit{Proc Natl Acad Sci USA.} 2005;102:15545--15550.
+\bibitem{jumper2021} Jumper J, et al. Highly accurate protein structure prediction with AlphaFold. \textit{Nature.} 2021;596:583--589.
+\end{thebibliography}
+\end{document}

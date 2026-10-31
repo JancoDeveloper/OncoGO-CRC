@@ -614,6 +614,9 @@ def harmonize_pride_maxquant_lfq(
         elif col.endswith("N"):
             cond = "normal"
         elif col.endswith("P"):
+            # Tanaka et al., Cell Reports 2024: P es el tumor primario (pCRC)
+            # y M la metástasis hepática. v2 guardó P como «polyp». El cierre
+            # de tesis no usa esta etiqueta; usa etiqueta_tanaka.
             cond = "polyp"
         else:
             cond = "unknown"
@@ -631,9 +634,11 @@ def harmonize_plasma_dia_pq500(
     metadata_out: Path,
 ) -> dict[str, Any]:
     """
-    Plasma PXD036594: matriz péptido + ratios Skyline exportados.
-    Reparte CRC vs control en 10+10 según orden lexicográfico del prefijo de run
-    (cohorte bioRxiv n=20); documentar en tesis y sustituir si el suplemento da otro mapeo.
+    Plasma PXD036594: matriz péptido + ratios Skyline de un panel dirigido.
+    El orden alfabético de las corridas no es una etiqueta clínica. Antes se
+    partía en 10 y 10 y se llamaba crc/healthy. Eso fabricaba un contraste.
+    La condición queda en sin_etiqueta_clinica hasta que el suplemento del
+    artículo asigne cada corrida.
     """
     df = pd.read_csv(matrix_path, sep="\t", low_memory=False)
     ratio_cols = [c for c in df.columns if isinstance(c, str) and c.endswith(" Ratio To Standard")]
@@ -661,24 +666,13 @@ def harmonize_plasma_dia_pq500(
         dfix[["protein_id"] + ratio_cols].to_csv(matrix_path, sep="\t", index=False)
 
     prefixes = sorted({c[: -len(" Ratio To Standard")] for c in ratio_cols})
-    if len(prefixes) != 20:
-        # Aún escribimos metadata por columna; el split 10/10 solo si son 20 runs.
-        crc_set: set[str] = set()
-    else:
-        crc_set = set(prefixes[:10])
-
     meta_rows: list[dict[str, str]] = []
     for col in ratio_cols:
-        pref = col[: -len(" Ratio To Standard")]
-        if len(prefixes) == 20:
-            cond = "crc" if pref in crc_set else "healthy"
-        else:
-            cond = "unknown"
         meta_rows.append(
             {
                 "sample_id": col,
-                "condition": cond,
-                "batch": "PXD036594_decile_split" if len(prefixes) == 20 else "PXD036594_needs_curation",
+                "condition": "sin_etiqueta_clinica",
+                "batch": "PXD036594_sin_etiqueta_clinica",
             }
         )
 

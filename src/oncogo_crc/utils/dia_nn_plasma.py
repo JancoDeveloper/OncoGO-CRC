@@ -31,18 +31,27 @@ def pivot_dia_nn_report_to_wide(matrix_path: Path) -> tuple[pd.DataFrame, list[s
 
 
 def build_plasma_metadata_for_pxd055218_runs(run_ids: list[str]) -> pd.DataFrame:
-    """
-    PXD055218: CP_* = CRC (crc), Normal_* = sanos (healthy). CN_* se omite para la
-    comparación binaria plasma_crc_vs_healthy (colonoscopia negativa / otro grupo).
+    """PXD055218 trae tres grupos en el nombre de la corrida.
+
+    CP_* es cáncer colorrectal, CN_* es colonoscopia negativa (otras enfermedades
+    intestinales) y Normal_* es control sano. Los tres se conservan. El contraste
+    binario crc frente a sano sigue filtrando por esas dos etiquetas; tirar CN_*
+    aquí borraba el único grupo que permite preguntar especificidad.
     """
     rows: list[dict[str, str]] = []
     for r in sorted(set(run_ids)):
         if not r or r == "Run":
             continue
-        if r.startswith("CP_"):
-            rows.append({"sample_id": r, "condition": "crc", "batch": "PXD055218"})
-        elif r.startswith("Normal_"):
-            rows.append({"sample_id": r, "condition": "healthy", "batch": "PXD055218"})
+        stem = str(r).replace("\\", "/").split("/")[-1]
+        if stem.startswith("CP_"):
+            cond = "crc"
+        elif stem.startswith("CN_"):
+            cond = "colonoscopy_negative"
+        elif stem.startswith("Normal_"):
+            cond = "healthy"
+        else:
+            continue
+        rows.append({"sample_id": r, "condition": cond, "batch": "PXD055218"})
     return pd.DataFrame(rows)
 
 

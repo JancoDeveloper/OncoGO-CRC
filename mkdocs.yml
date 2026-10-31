@@ -18,7 +18,9 @@ nav:
   - Proceso y datos (detallado): proceso_datos_y_pipeline.md
   - Configuración: configuracion.md
   - Proyecto Web:
-      - Estado: web/index.md
+      - La investigación, en claro: web/divulgacion.md
+      - Para sustentar: web/sustentacion.md
+      - Teoría y diccionarios: web/diccionario.md
       - Síntesis para tesis: web/thesis_synthesis.md
       - Interpretación biológica: web/interpretacion_biologica.md
       - Figuras: web/figuras.md

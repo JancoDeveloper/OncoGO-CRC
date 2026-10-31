@@ -32,23 +32,30 @@ El estado legible por máquina vive junto a cada descarga, en
 - **Trampa conocida**: las filas `Mean`, `Median` y `StdDev` no son proteínas y
   se descartan.
 
-### PXD034575 — Tanaka 2024, réplica independiente
+### PXD034575 — Tanaka et al., Cell Reports 2024
 
 - **Estado**: usada
-- **Qué es**: LFQ con MaxQuant de tumor, mucosa normal y pólipo del mismo
-  paciente, 16 pacientes.
-- **Qué aporta a v2**: la réplica de dirección (R1), el brazo pareado del nulo
-  exacto de C1, el brazo de pólipo de C5 y las 16 unidades de validación de C6.
-- **Nombres de columna**: `LFQ intensity CRC<n><M|N|P>`, donde **M es el tumor**
-  (maligno), N el tejido normal y P el pólipo. No es `T`.
+- **Artículo**: Tanaka A. et al. *Cell Reports* 2024; 43:113810.
+  doi:10.1016/j.celrep.2024.113810
+- **Qué es**: LFQ con MaxQuant de 16 tripletes. El artículo describe tumor
+  primario (pCRC), metástasis hepática (mCRC) y mucosa colónica benigna.
+  En las columnas, **P es el primario, M la metástasis y N la mucosa**.
+  No es un pólipo. La versión 2 guardó P como `polyp` y M como `tumor`;
+  esa etiqueta no se usa en el cierre de tesis.
+- **Qué aporta a v2**: la réplica de dirección se calculó con M frente a N.
+  Con la leyenda del artículo, eso es metástasis hepática frente a mucosa, no
+  tumor primario frente a mucosa. El brazo que v2 llamó pólipo es el primario.
+- **Nombres de columna**: `LFQ intensity CRC<n><M|N|P>`. **M es metástasis, N
+  mucosa normal y P tumor primario.** No es `T` y no es un pólipo.
 - **Trampa conocida**: el cero de MaxQuant significa ausencia de identificación,
   no abundancia cero. No se imputa.
 
-### PXD055218 — suero DIA, cáncer frente a sano
+### PXD055218 — suero DIA, tres grupos
 
 - **Estado**: usada
-- **Qué es**: 20 sueros de cáncer colorrectal y 20 de control sano, DIA sin
-  enriquecimiento.
+- **Qué es**: suero DIA de Rai et al. 2025, 20 cáncer, 20 colonoscopia negativa
+  y 20 sanos. El contraste binario histórico solo lee cáncer y sanos. El
+  cierre de tesis usa los tres.
 - **Qué aporta a v2**: el lado de circulación de la brecha tejido→plasma y de la
   ventana de detección de C8.
 - **Limitación estructural**: no hay ningún paciente con tejido y sangre a la

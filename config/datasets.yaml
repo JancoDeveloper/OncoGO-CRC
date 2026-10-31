@@ -90,7 +90,8 @@ datasets:
     # Revisión tesis: PXD065825 (404 en PRIDE). PXD015163 = plasma CRC Kopylov 2020 (Molecules); el API PRIDE
     # solo lista .xls por muestra (cáncer), sin matriz ancha ni controles en el mismo listado.
     # Para ejecutar `plasma_crc_vs_healthy`: se declara PXD015163 como accession principal y se descarga
-    # DIA-NN_report.tsv de PXD055218 (suero humano DIA; CP_* = crc, Normal_* = healthy) con pivote automático.
+    # DIA-NN_report.tsv de PXD055218 (suero DIA). CP_* = crc, CN_* = colonoscopy_negative, Normal_* = healthy.
+    # Los tres grupos se conservan. El contraste binario solo lee crc y healthy.
     # Harmonización péptido/ratios PXD036594: solo si PXD036594 figura en accessions.
     role: clinical_layer
     mvp_tier: core_required

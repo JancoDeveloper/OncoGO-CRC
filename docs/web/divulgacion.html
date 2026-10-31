@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>OncoGO-CRC · qué se ve del tumor en la sangre</title>
+<style>
+  :root { color-scheme: light; }
+  body { margin: 0; font-family: "Iowan Old Style", Palatino, "Palatino Linotype", serif; background: #f4f1ea; color: #1c2430; line-height: 1.45; }
+  header, main { max-width: 980px; margin: 0 auto; padding: 28px 20px; }
+  header { padding-bottom: 8px; }
+  h1 { font-size: 2rem; line-height: 1.15; margin: 0 0 8px; }
+  h2 { font-size: 1.35rem; margin: 2rem 0 0.6rem; }
+  .pregunta { font-size: 1.15rem; }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .dato, .aviso, .ficha { background: #fffdf8; border: 1px solid #d9d2c5; padding: 14px 16px; }
+  .dato strong { display: block; font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 1.6rem; }
+  .aviso { border-left: 4px solid #9a3b2f; }
+  .grafica { width: 100%; height: auto; background: #fffdf8; border: 1px solid #d9d2c5; }
+  .eje { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 12px; fill: #1c2430; }
+  .fichas { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .ficha h3 { margin: 0; font-family: "Avenir Next", "Segoe UI", sans-serif; }
+  .meta, .go, .enlaces { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.92rem; }
+  a { color: #0f6e6e; }
+  nav { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.95rem; margin: 12px 0 0; }
+  nav a { margin-right: 14px; }
+  details { background: #fffdf8; border: 1px solid #d9d2c5; padding: 10px 14px; margin: 8px 0; }
+  summary { cursor: pointer; font-family: "Avenir Next", "Segoe UI", sans-serif; font-weight: 600; }
+  details p { margin: 0.6rem 0 0.2rem; }
+  ol li, ul li { margin: 0.45rem 0; }
+  table { width: 100%; border-collapse: collapse; background: #fffdf8; font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.92rem; margin: 0.6rem 0 1.2rem; }
+  th, td { border: 1px solid #d9d2c5; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #efe8dc; }
+  .fuente { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.92rem; }
+  footer { max-width: 980px; margin: 0 auto; padding: 8px 20px 40px; font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.9rem; color: #3d4654; }
+</style>
+</head>
+<body>
+<header>
+  <p>OncoGO-CRC · borrador de lectura · 31 de octubre de 2026</p>
+  <h1>Qué parte del tumor colorrectal se deja ver en la sangre</h1>
+  <p class="pregunta">La pregunta no es si hay proteínas distintas en el tumor. Esa parte ya está medida. La pregunta es cuáles de esas diferencias siguen ahí cuando la muestra es suero, y cuáles aparecen también en otra enfermedad del intestino.</p>
+  <nav>
+    <a href="#resultado">Resultado</a>
+    <a href="#suero">Suero</a>
+    <a href="#tejido">Tejido</a>
+    <a href="#fichas">Fichas</a>
+    <a href="#teoria">Teoría</a>
+    <a href="#datos">Datos</a>
+    <a href="#procesos">Procesos</a>
+    <a href="#estudios">Estudios</a>
+    <a href="#estudiar">Para sustentar</a>
+  </nav>
+</header>
+<main>
+  <h2 id="resultado">Resultado de la tesis</h2>
+  <div class="aviso">
+    <p>El cambio de proteínas del tumor se repite entre tejidos. En este suero no aparece como una señal propia del cáncer. Sirve para responder la pregunta. No sirve para proponer un examen de sangre.</p>
+  </div>
+  <p>La página se lee de arriba abajo. Primero el resultado. Después las tres cohortes, cada una con su artículo y su depósito de datos. Luego los números, las fichas, la teoría de cada procedimiento, el diccionario de datos, el diccionario de procesos, la lista de estudios y las preguntas para practicar la sustentación. Cada DOI de esta página se confirmó en Crossref el 31 de octubre de 2026: el título registrado coincide con la cita. El identificador que no abre un artículo no está enlazado.</p>
+  <section class="rejilla">
+    <div class="dato"><strong>20 + 20 + 20</strong>Sueros de <a href="https://doi.org/10.1021/acs.jproteome.5c00285">Rai 2025</a>: cáncer, colonoscopia negativa y sanos. <a href="https://www.ebi.ac.uk/pride/archive/projects/PXD055218">PXD055218</a>.</div>
+    <div class="dato"><strong>0</strong>Proteínas que separan el cáncer de la otra enfermedad intestinal con FDR 0,05 y |log2FC| &gt; 0,585.</div>
+    <div class="dato"><strong>3</strong>Proteínas que separan el cáncer de los sanos con ese mismo umbral: SAA1, LBP y CHMP4A.</div>
+    <div class="dato"><strong>0,83</strong>Correlación del primario de Tanaka con el tumor de CPTAC, en 874 genes. No es la cifra 0,104 de la versión 2.</div>
+  </section>
+
+  <h2>Tres lugares, tres preguntas</h2>
+  <div class="rejilla">
+    <article class="dato"><h3>Tejido de CPTAC</h3><p><a href="https://doi.org/10.1016/j.cell.2019.03.030">Vasaikar et al., <em>Cell</em> 2019</a>. Tumor y mucosa del mismo estudio, TMT. Es el ancla. Datos: <a href="https://pdc.cancer.gov/pdc/study/PDC000116">PDC000116</a>.</p></article>
+    <article class="dato"><h3>Tejido de Tanaka</h3><p>16 pacientes. Columna P, tumor primario. Columna M, metástasis hepática. Columna N, mucosa normal. No hay pólipo. Artículo: <a href="https://doi.org/10.1016/j.celrep.2024.113810">Tanaka et al., <em>Cell Reports</em> 2024</a>. Datos: <a href="https://www.ebi.ac.uk/pride/archive/projects/PXD034575">PXD034575</a>.</p></article>
+    <article class="dato"><h3>Suero de Rai</h3><p>DIA, tres grupos de 20. El grupo de colonoscopia negativa es el que decide si una proteína es del cáncer o de un intestino enfermo. Artículo: <a href="https://doi.org/10.1021/acs.jproteome.5c00285">Rai et al., <em>J Proteome Res</em> 2025</a>. Datos: <a href="https://www.ebi.ac.uk/pride/archive/projects/PXD055218">PXD055218</a>.</p></article>
+  </div>
+
+  <h2 id="tejido">La columna P no era un adenoma</h2>
+  <div class="aviso">
+    <p>La versión 2 llamó pólipo a la columna P y tumor a la columna M. El artículo de esas columnas describe tripletes de tumor primario, metástasis hepática y mucosa. Esta corrida usa esa leyenda. El cero de MaxQuant se trata como proteína no detectada y la intensidad se pasa a log2 antes del contraste pareado.</p>
+    <p>Primario frente a mucosa: 58 proteínas de 2490 pasan el umbral. Metástasis frente a mucosa: 160 de 2430. Metástasis frente a primario: 16 de 2710.</p>
+    <p>Con CPTAC, el primario coincide de signo en 687 de 874 genes (78,6 %) y la correlación es 0,83. La metástasis coincide en 597 de 842 (70,9 %), correlación 0,59.</p>
+    <p>Entre primario y metástasis, el signo coincide en 708 de 876 genes. Solo el 46,2 % de los que coinciden tiene magnitud menor en el primario. No queda un gradiente en el que el primario sea una versión pequeña de la metástasis.</p>
+    <p>La correlación 0,104 y el 56 % de igual signo siguen en <code>results/reproducibility</code>. Salen de otro cálculo, sobre 1 993 proteínas, con la etiqueta antigua de columnas. No se sustituyen por estas cifras. Tampoco miden tejido contra sangre.</p>
+  </div>
+
+  <h2 id="suero">Lo que el suero separa</h2>
+  <p>El eje es el log2FC. A la derecha, más abundante en el primer grupo del contraste. CHMP4A tiene 16 de 40 observaciones: el cambio es grande y el dato está a medias.</p>
+  <svg viewBox="0 0 560 128" role="img" class="grafica"><text x="8" y="26" class="eje">SAA1, cáncer frente a sano</text><rect x="250.0" y="12" width="108.2" height="16" fill="#0f6e6e"/><text x="438" y="25" class="eje">3,26</text><text x="8" y="54" class="eje">LBP, cáncer frente a sano</text><rect x="250.0" y="40" width="41.7" height="16" fill="#0f6e6e"/><text x="438" y="53" class="eje">1,25</text><text x="8" y="82" class="eje">CHMP4A, cáncer frente a sano</text><rect x="250.0" y="68" width="180.0" height="16" fill="#0f6e6e"/><text x="438" y="81" class="eje">5,42</text><text x="8" y="110" class="eje">APOA4, enfermedad frente a sano</text><rect x="206.1" y="96" width="43.9" height="16" fill="#9a3b2f"/><text x="438" y="109" class="eje">-1,32</text><line x1="250" y1="6" x2="250" y2="122" stroke="#1c2430" stroke-width="1"/></svg>
+  <p>SAA1 (P0DJI8) log2FC 3,26, FDR 0,0002. LBP (P18428) log2FC 1,25, FDR 0,007. Las dos están anotadas como secretadas a la sangre. En la ficha de LBP aparece el término GO acute-phase response. La ficha de SAA1, con el mismo corte de términos, muestra quimiotaxis de neutrófilos y adhesión. Frente a la colonoscopia negativa no pasan el FDR. APOA4 baja en la enfermedad intestinal frente a los sanos (log2FC -1,32, FDR 0,022) y no separa el cáncer de esa enfermedad.</p>
+
+  <h2>AUC no es lo mismo que especificidad</h2>
+  <p>Ocho candidatas de la literatura superan AUC 0,70 al separar cáncer de colonoscopia negativa, con el intervalo por encima de 0,50 y por encima del AUC de enfermedad frente a sano. Cinco ya estaban marcadas como fase aguda. Quedan tres sin esa marca: BAIAP3, FN1 y TPM4. Ninguna de las tres pasa el FDR. El AUC no dice si la proteína sube o baja. FN1 en este suero está un poco más baja en cáncer que en sanos (log2FC -0,27).</p>
+  <svg viewBox="0 0 560 240" role="img" class="grafica"><text x="8" y="26" class="eje">BAIAP3</text><rect x="250.0" y="12" width="180.0" height="16" fill="#0f6e6e"/><text x="438" y="25" class="eje">0,82</text><text x="8" y="54" class="eje">C9 · fase aguda</text><rect x="250.0" y="40" width="177.4" height="16" fill="#0f6e6e"/><text x="438" y="53" class="eje">0,81</text><text x="8" y="82" class="eje">CRP · fase aguda</text><rect x="250.0" y="68" width="161.2" height="16" fill="#0f6e6e"/><text x="438" y="81" class="eje">0,73</text><text x="8" y="110" class="eje">FN1</text><rect x="250.0" y="96" width="154.8" height="16" fill="#0f6e6e"/><text x="438" y="109" class="eje">0,70</text><text x="8" y="138" class="eje">HP · fase aguda</text><rect x="250.0" y="124" width="155.9" height="16" fill="#0f6e6e"/><text x="438" y="137" class="eje">0,71</text><text x="8" y="166" class="eje">LRG1 · fase aguda</text><rect x="250.0" y="152" width="170.8" height="16" fill="#0f6e6e"/><text x="438" y="165" class="eje">0,78</text><text x="8" y="194" class="eje">SERPINA1 · fase aguda</text><rect x="250.0" y="180" width="161.4" height="16" fill="#0f6e6e"/><text x="438" y="193" class="eje">0,73</text><text x="8" y="222" class="eje">TPM4</text><rect x="250.0" y="208" width="176.3" height="16" fill="#0f6e6e"/><text x="438" y="221" class="eje">0,80</text><line x1="250" y1="6" x2="250" y2="234" stroke="#1c2430" stroke-width="1"/></svg>
+  <p>BAIAP3, la proteína que Rai señaló en suero, tiene AUC 0,82 y log2FC 2,20 frente a la colonoscopia negativa, con FDR 0,20. Es una señal de cribado, con 20 personas por grupo, no una validación.</p>
+
+  <h2>Las vías del tumor casi no están en este suero</h2>
+  <p>De los términos GO biológicos con FDR menor o igual a 0,25 en el tejido de CPTAC, solo entran al suero los que tienen al menos 10 genes medidos. Son 12 en cáncer frente a sano, 13 en cáncer frente a enfermedad y 12 en enfermedad frente a sano. La correlación de sus NES con el tejido es -0,28, -0,31 y -0,04. El nulo, 200 permutaciones del ranking, da p 0,34, 0,30 y 0,93. No hay concordancia funcional que superar el azar. El suero de esta matriz no contiene el grueso de los procesos que el tumor altera.</p>
+
+  <h2 id="fichas">Fichas</h2>
+  <p>Cada término GO sale de la anotación humana ya usada por el pipeline, restringida a términos de 15 a 300 genes, y el nombre se leyó en <a href="https://www.ebi.ac.uk/QuickGO/">QuickGO</a> el 31 de octubre de 2026. Por ejemplo, <a href="https://www.ebi.ac.uk/QuickGO/term/GO:0006953">GO:0006953</a> es <em>acute-phase response</em>. La concentración es la del <a href="https://www.proteinatlas.org/">Human Protein Atlas</a> en personas de referencia, no en estos pacientes. <a href="https://alphafold.ebi.ac.uk/">AlphaFold</a> muestra una estructura predicha: no confirma que la abundancia haya cambiado. El artículo del atlas es <a href="https://doi.org/10.1126/science.1260419">Uhlén et al., <em>Science</em> 2015</a>. El de la estructura es <a href="https://doi.org/10.1038/s41586-021-03819-2">Jumper et al., <em>Nature</em> 2021</a>.</p>
+  <div class="fichas"><article class="ficha">
+            <h3>APOA4</h3>
+            <p class="meta">pasa el FDR en un contraste · sale de esta corrida</p>
+            <p>UniProt P06727. Secreted to blood.</p>
+            <p>Cáncer frente a sano: log2FC -1,18, FDR 0,1503, n 40.</p><p>Enfermedad frente a sano: log2FC -1,32, FDR 0,0222.</p>
+            <p class="go">removal of superoxide radicals (BP); positive regulation of fatty acid biosynthetic process (BP); hydrogen peroxide catabolic process (BP); reverse cholesterol transport (BP)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P06727">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P06727">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>BAIAP3</h3>
+            <p class="meta">AUC específico, sin marca de ruido · viene de la literatura</p>
+            <p>UniProt O94812. Sin localización de secreción en el atlas.</p>
+            <p>Cáncer frente a sano: log2FC 1,19, FDR 1,0000, n 37.</p><p>Cáncer frente a enfermedad: log2FC 2,20, FDR 0,1992, AUC 0,82.</p>
+            <p class="go">positive regulation of insulin secretion involved in cellular response to glucose stimulus (BP); retrograde transport, endosome to Golgi (BP); modulation of chemical synaptic transmission (BP); recycling endosome membrane (CC)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/O94812">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/O94812">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>C9</h3>
+            <p class="meta">el AUC pasa y ya estaba en fase aguda · viene de la literatura</p>
+            <p>UniProt P02748. Secreted to blood.</p>
+            <p>Cáncer frente a sano: log2FC 0,74, FDR 1,0000, n 40.</p><p>Cáncer frente a enfermedad: log2FC 0,41, FDR 1,0000, AUC 0,81.</p>
+            <p class="go">complement activation (BP); positive regulation of immune response (BP); killing of cells of another organism (BP); protein homooligomerization (BP)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P02748">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P02748">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>CHMP4A</h3>
+            <p class="meta">pasa el FDR en un contraste · sale de esta corrida</p>
+            <p>UniProt Q9BY43. Sin localización de secreción en el atlas.</p>
+            <p>Cáncer frente a sano: log2FC 5,42, FDR 3,4e-07, n 16.</p>
+            <p class="go">vesicle budding from membrane (BP); viral budding from plasma membrane (BP); protein polymerization (BP); late endosome to lysosome transport (BP)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/Q9BY43">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/Q9BY43">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>CRP</h3>
+            <p class="meta">el AUC pasa y ya estaba en fase aguda · viene de la literatura</p>
+            <p>UniProt P02741. Secreted to blood.</p>
+            <p>Cáncer frente a sano: log2FC 2,53, FDR 0,0848, n 36.</p><p>Cáncer frente a enfermedad: log2FC 1,55, FDR 0,6264, AUC 0,73.</p>
+            <p class="go">positive regulation of superoxide anion generation (BP); acute-phase response (BP); defense response to Gram-positive bacterium (BP); innate immune response (BP)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P02741">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P02741">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>FN1</h3>
+            <p class="meta">AUC específico, sin marca de ruido · viene de la literatura</p>
+            <p>UniProt P02751. Secreted to blood.</p>
+            <p>Cáncer frente a sano: log2FC -0,27, FDR 1,0000, n 40.</p><p>Cáncer frente a enfermedad: log2FC -0,20, FDR 1,0000, AUC 0,70.</p>
+            <p class="go">blood coagulation, fibrin clot formation (BP); response to muscle activity (BP); endodermal cell differentiation (BP); regulation of ERK1 and ERK2 cascade (BP)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P02751">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P02751">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>HP</h3>
+            <p class="meta">el AUC pasa y ya estaba en fase aguda · viene de la literatura</p>
+            <p>UniProt P00738. Secreted to blood.</p>
+            <p>Cáncer frente a sano: log2FC 0,88, FDR 0,9733, n 40.</p><p>Cáncer frente a enfermedad: log2FC 0,70, FDR 1,0000, AUC 0,71.</p>
+            <p class="go">response to hydrogen peroxide (BP); zymogen activation (BP); defense response (BP); endocytic vesicle lumen (CC)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P00738">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P00738">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>LBP</h3>
+            <p class="meta">pasa el FDR en un contraste · sale de esta corrida</p>
+            <p>UniProt P18428. Secreted to blood.</p>
+            <p>Cáncer frente a sano: log2FC 1,25, FDR 0,0070, n 40.</p>
+            <p class="go">positive regulation of toll-like receptor 4 signaling pathway (BP); positive regulation of macrophage activation (BP); cell surface pattern recognition receptor signaling pathway (BP); acute-phase response (BP)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P18428">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P18428">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>LRG1</h3>
+            <p class="meta">el AUC pasa y ya estaba en fase aguda · viene de la literatura</p>
+            <p>UniProt P02750. Secreted to blood.</p>
+            <p>Cáncer frente a sano: log2FC 1,23, FDR 0,0848, n 40.</p><p>Cáncer frente a enfermedad: log2FC 0,65, FDR 1,0000, AUC 0,78.</p>
+            <p class="go">positive regulation of keratinocyte proliferation (BP); wound healing, spreading of epidermal cells (BP); positive regulation of transforming growth factor beta receptor signaling pathway (BP); positive regulation of epithelial to mesenchymal transition (BP)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P02750">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P02750">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>SAA1</h3>
+            <p class="meta">pasa el FDR en un contraste · sale de esta corrida</p>
+            <p>UniProt P0DJI8. Secreted to blood.</p>
+            <p>Cáncer frente a sano: log2FC 3,26, FDR 0,0002, n 40.</p>
+            <p class="go">neutrophil chemotaxis (BP); platelet activation (BP); positive regulation of cell adhesion (BP); positive regulation of cytokine production (BP)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P0DJI8">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P0DJI8">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>SERPINA1</h3>
+            <p class="meta">el AUC pasa y ya estaba en fase aguda · viene de la literatura</p>
+            <p>UniProt P01009. Secreted to blood.</p>
+            <p>Cáncer frente a sano: log2FC 0,55, FDR 1,0000, n 40.</p><p>Cáncer frente a enfermedad: log2FC 0,32, FDR 1,0000, AUC 0,73.</p>
+            <p class="go">COPII-coated ER to Golgi transport vesicle (CC); platelet alpha granule lumen (CC); endoplasmic reticulum-Golgi intermediate compartment membrane (CC)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P01009">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P01009">AlphaFold</a></p>
+            </article><article class="ficha">
+            <h3>TPM4</h3>
+            <p class="meta">AUC específico, sin marca de ruido · viene de la literatura</p>
+            <p>UniProt P67936. Sin localización de secreción en el atlas.</p>
+            <p>Cáncer frente a sano: log2FC 0,45, FDR 1,0000, n 16.</p><p>Cáncer frente a enfermedad: log2FC 1,17, FDR 1,0000, AUC 0,80.</p>
+            <p class="go">platelet formation (BP); muscle contraction (BP); osteoblast differentiation (BP); actin filament organization (BP)</p>
+            <p class="enlaces"><a href="https://www.uniprot.org/uniprotkb/P67936">UniProt</a> · <a href="https://alphafold.ebi.ac.uk/entry/P67936">AlphaFold</a></p>
+            </article></div>
+
+  
+  <h2 id="teoria">La teoría detrás de cada paso</h2>
+  <p>Cada número de arriba sale de un procedimiento con una regla escrita antes de mirar el resultado. Esta sección dice qué pregunta hace cada procedimiento y qué artículo lo sostiene.</p>
+
+  <h3>Tres mediciones que no se suman</h3>
+  <p>Una cohorte es un grupo de personas medidas con el mismo método. CPTAC es tejido marcado con TMT: varias muestras se comparan dentro del mismo experimento y el archivo ya llega en log2. Tanaka es tejido medido por LFQ: la intensidad de cada proteína se estima por separado en cada muestra. Rai es suero medido por DIA: se intentan ver muchas proteínas a la vez, sin elegirlas de antemano. Sumar las tres tablas mezclaría técnicas y personas. Por eso cada contraste ocurre dentro de su cohorte. <a href="https://doi.org/10.1371/journal.pcbi.1011828">Robles et al., 2024</a> ya integraron proteomas públicos de cáncer colorrectal; esta tesis no reclama ser la primera en juntar datos públicos.</p>
+
+  <h3>El cero y el log2</h3>
+  <p>En la matriz de Tanaka el cero de MaxQuant significa que esa proteína no se identificó en esa muestra, no que su cantidad sea cero. <a href="https://doi.org/10.1038/nbt.1511">Cox y Mann, 2008</a> describen ese programa. Antes del contraste, el cero se vuelve un hueco y solo la intensidad positiva pasa a log2. El log2 convierte una multiplicación en una resta: log2FC = 1 es el doble, log2FC = −1 es la mitad, y 0,585 es log2(1,5), un cambio de al menos una vez y media. Si el cero se dejara como número, la mediana de la matriz caería en cero y el programa creería que los datos ya están en logaritmo. Esa lectura produce cambios absurdos y no se usa.</p>
+
+  <h3>Pareado o de grupos</h3>
+  <p>En Tanaka, el primario, la metástasis y la mucosa son del mismo paciente. El contraste pareado resta dentro de la persona y así aparta lo que esa persona ya traía. En el suero de Rai los tres grupos son personas distintas, así que el contraste compara grupos. Pedir pareo donde no hay pares inventaría una relación que los datos no tienen.</p>
+
+  <h3>La t moderada</h3>
+  <p><a href="https://doi.org/10.2202/1544-6115.1027">Smyth, 2004</a> reparte la varianza entre las proteínas: una proteína con pocas mediciones no se declara distinta solo porque su desviación salió pequeña por azar. <a href="https://doi.org/10.1093/bioinformatics/btp053">McCarthy y Smyth, 2009</a> llaman treat a la versión que pregunta si el cambio supera un umbral, aquí 0,585, y no si es distinto de cero. Un cambio diminuto y muy preciso se queda fuera. No se imputan los huecos: una proteína ausente no se rellena con un promedio.</p>
+
+  <h3>El FDR</h3>
+  <p>Se prueban cientos de proteínas a la vez. Si cada una se juzgara con p &lt; 0,05, varias entrarían por azar. <a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">Benjamini y Hochberg, 1995</a> controlan la fracción esperada de falsos entre las que se declaran distintas. El corte es 0,05. El FDR no es el p de una sola proteína. En esta corrida, cáncer frente a colonoscopia negativa deja cero proteínas dentro de ese corte y del cambio mínimo.</p>
+
+  <h3>El AUC y la especificidad</h3>
+  <p>El AUC dice si, al ordenar a las personas por una proteína, las del cáncer quedan por encima de las de la otra condición. 0,50 es el orden del azar. La regla de esta tesis pide tres cosas a la vez: AUC mayor que 0,70 al separar cáncer de colonoscopia negativa, el límite inferior del intervalo bootstrap por encima de 0,50, y ese AUC mayor que el de enfermedad frente a sanos. El intervalo usa 2 000 remuestreos y la semilla 20261031. El AUC no dice si la proteína sube o baja. Una proteína ya marcada como fase aguda, hemólisis o enfermedad inflamatoria conserva el número y cambia la lectura: el AUC puede pasar y la proteína seguir siendo una señal de inflamación. Esa marca se escribió en el catálogo antes del contraste.</p>
+
+  <h3>Gene Ontology y las vías</h3>
+  <p><a href="https://doi.org/10.1038/75556">Ashburner et al., 2000</a> arman Gene Ontology: un vocabulario de procesos, componentes y funciones. <a href="https://doi.org/10.1073/pnas.0506580102">Subramanian et al., 2005</a> proponen mirar si los genes de un proceso se acumulan al principio de un ranking, no solo si un gen pasa un corte. Aquí el ranking del suero es el signo del log2FC por menos el log10 del p. Se compara con el NES de los procesos que en el tejido de CPTAC tenían FDR de hasta 0,25. Entran solo los procesos con al menos 10 genes medidos en el suero. Son unos doce. Se permuta el ranking 200 veces. Esas correlaciones no superan el azar: este suero no contiene el grueso de los procesos que el tumor altera.</p>
+
+  <h3>Atlas, ficha y estructura</h3>
+  <p>La ficha anota la proteína para poder verificarla. <a href="https://doi.org/10.1126/science.1260419">Uhlén et al., 2015</a> publican el Human Protein Atlas: concentraciones en sangre de personas de referencia, no de estos pacientes. UniProt identifica la proteína. AlphaFold, <a href="https://doi.org/10.1038/s41586-021-03819-2">Jumper et al., 2021</a>, predice un pliegue. Un pliegue no demuestra que la cantidad haya cambiado en el suero. <a href="https://doi.org/10.1016/j.cell.2025.03.013">Malmström et al., 2025</a> publican un atlas de origen tisular del plasma; esta corrida usa la secreción del atlas de proteínas y los términos GO, y no descarga ese suplemento como una tabla aplicada paciente a paciente.</p>
+
+  <h3>Por qué no hay neoantígeno en estas filas</h3>
+  <p>Un neoantígeno es un péptido que el tumor presenta porque una mutación cambió su secuencia. La matriz de esta tesis guarda grupos de proteínas. Un grupo dice que esos péptidos se parecen a una proteína conocida. No guarda la letra cambiada. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">Rai et al., 2025</a> describen 19 péptidos en suero y un PRM de cuatro péptidos, uno de ellos neoantigénico. <a href="https://doi.org/10.1016/j.xgen.2025.101062">Xiang et al., 2026</a> describen neoepítopos del tumor, no del suero de esta matriz. <a href="https://doi.org/10.1158/1538-7445.am2026-7710">Hembrough et al., 2026</a> recuperan cinco péptidos de una persona con cáncer colorrectal avanzado. Esos tres trabajos marcan el límite. No se reanalizan como si fueran filas de esta tabla.</p>
+
+  <h2 id="datos">Diccionario de datos</h2>
+  <p>Estos nombres aparecen en la página y en los archivos de <code>results/tesis_cierre</code> del disco. El diccionario dice qué es cada uno.</p>
+  <table>
+    <thead><tr><th>Nombre</th><th>Dónde está</th><th>Qué significa</th></tr></thead>
+    <tbody>
+      <tr><td>gene</td><td>Ficha y especificidad</td><td>Símbolo del gen humano con el que se emparejó la proteína. El emparejamiento usa el mapa del repositorio más el mapa revisado de UniProt, por símbolo o por acceso.</td></tr>
+      <tr><td>uniprot</td><td>Ficha</td><td>Acceso de UniProt. BAIAP3 en esta corrida es O94812. El enlace de la ficha abre esa entrada.</td></tr>
+      <tr><td>protein_id</td><td>Tablas de contraste</td><td>Identificador de la fila en la matriz. En el suero y en Tanaka es un acceso. En la tabla certificada de CPTAC es el símbolo del gen.</td></tr>
+      <tr><td>log2fc</td><td>Contraste</td><td>Diferencia de medias en log2. Positivo: más abundante en el primer grupo del contraste. En tejido pareado, el primer grupo es el de la izquierda del nombre del archivo.</td></tr>
+      <tr><td>padj</td><td>Contraste</td><td>p ajustado por Benjamini–Hochberg. El corte de la lista corta es 0,05, junto con |log2FC| mayor que 0,585.</td></tr>
+      <tr><td>p_value</td><td>Contraste</td><td>p de esa proteína antes de corregir por las demás. No se usa solo para declararla distinta.</td></tr>
+      <tr><td>n_obs</td><td>Contraste y ficha</td><td>Cuántas muestras tenían valor en ese contraste. CHMP4A tiene 16 de 40 en cáncer frente a sano. Un hueco no es un cero.</td></tr>
+      <tr><td>significant</td><td>Contraste</td><td>Verdadero si pasa el FDR y el cambio mínimo. En cáncer frente a enfermedad, ninguna fila lo es.</td></tr>
+      <tr><td>escala</td><td>Contraste de Tanaka</td><td><code>log2_de_intensidad_lineal</code> después de convertir los ceros en huecos. Si apareciera <code>ya_en_log_o_razon</code> en esa matriz, la corrida estaría mal leída.</td></tr>
+      <tr><td>auc_crc_vs_enfermedad</td><td>Especificidad</td><td>AUC sin signo, el mayor entre el AUC y 1 menos el AUC, al separar cáncer de colonoscopia negativa.</td></tr>
+      <tr><td>auc_crc_vs_enfermedad_ci_bajo</td><td>Especificidad</td><td>Límite inferior del intervalo bootstrap. La regla pide que supere 0,50.</td></tr>
+      <tr><td>auc_enfermedad_vs_sano</td><td>Especificidad</td><td>AUC de la otra enfermedad frente a sanos. Si es mayor que el del cáncer, la proteína no se llama específica.</td></tr>
+      <tr><td>veredicto</td><td>Especificidad</td><td><code>especifica</code>, <code>compartida_con_enfermedad</code>, <code>inespecifica</code> o <code>no_evaluable</code>. Sale solo del AUC. No relaja el FDR.</td></tr>
+      <tr><td>lista_ruido</td><td>Catálogo</td><td><code>fase_aguda</code>, <code>hemolisis</code> o <code>eii</code>. Se escribió antes del contraste. No borra el AUC.</td></tr>
+      <tr><td>lectura</td><td>Ficha</td><td>El veredicto más la marca. Si el AUC pasa y hay marca, la lectura es <code>auc_pasa_pero_fase_aguda</code> o la marca que corresponda.</td></tr>
+      <tr><td>origen</td><td>Ficha</td><td><code>literatura</code> si la proteína venía del catálogo. <code>resultado_propio</code> si entró por pasar el FDR en esta corrida.</td></tr>
+      <tr><td>go</td><td>Ficha</td><td>Hasta cinco términos biológicos y tres de componente celular, solo si el término tiene entre 15 y 300 genes. El nombre se leyó en QuickGO.</td></tr>
+      <tr><td>hpa_localizacion</td><td>Ficha</td><td>Si el atlas anota la proteína como secretada a sangre. Es una anotación de referencia.</td></tr>
+      <tr><td>hpa_ms_pg_l, hpa_inmuno_pg_l</td><td>Ficha</td><td>Concentración en sangre de personas de referencia, por espectrometría o por inmunoensayo, en pg/L. No es la concentración de estos pacientes.</td></tr>
+      <tr><td>CP_, CN_, Normal_</td><td>Matriz de Rai</td><td>Cáncer, colonoscopia negativa y sano. Veinte columnas de cada prefijo. El orden alfabético no se usa como diagnóstico.</td></tr>
+      <tr><td>LFQ intensity CRCnP, M, N</td><td>Matriz de Tanaka</td><td>P primario, M metástasis hepática, N mucosa. El número es el paciente. Hay 16 de cada letra.</td></tr>
+      <tr><td>0,104</td><td>results/reproducibility</td><td>Correlación de una corrida anterior, 1 993 proteínas, con la etiqueta vieja de columnas. No es tejido contra sangre y no se sustituye por 0,83.</td></tr>
+      <tr><td>0,83</td><td>cierre_audit.json</td><td>Correlación del log2FC del primario frente a mucosa con el log2FC certificado de CPTAC, en 874 genes, misma dirección en 687.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="procesos">Diccionario de procesos</h2>
+  <p>El orden es el de la etapa <code>tesis_cierre</code>. No reescribe los certificados de la versión 1 ni de la versión 2. Los archivos quedan en el disco, bajo <code>results/tesis_cierre</code>.</p>
+  <table>
+    <thead><tr><th>Proceso</th><th>Qué hace</th><th>Qué deja escrito</th></tr></thead>
+    <tbody>
+      <tr><td>Grupos del suero</td><td>Lee la matriz DIA y separa las columnas CP, CN y Normal. Si esas columnas existen, no usa otra etiqueta clínica.</td><td>Tres contrastes: cáncer–sano, cáncer–enfermedad, enfermedad–sano.</td></tr>
+      <tr><td>Contraste de grupos</td><td>t moderada de dos grupos, umbral 0,585, sin imputar. Luego FDR 0,05.</td><td><code>crc_vs_sano.tsv</code>, <code>crc_vs_enfermedad.tsv</code>, <code>enfermedad_vs_sano.tsv</code>.</td></tr>
+      <tr><td>Especificidad</td><td>Para cada candidata del catálogo que esté medida, calcula el AUC y el intervalo. Aplica la regla de los tres requisitos.</td><td><code>especificidad_candidatas.tsv</code>. Ocho cumplen el AUC. Tres no tienen marca de ruido y aun así no pasan el FDR.</td></tr>
+      <tr><td>Lectura con ruido</td><td>Si el veredicto es específico y la lista de ruido no está vacía, la lectura lo dice al lado. El AUC no se baja de 0,70 para compensar.</td><td>Columna <code>lectura</code>.</td></tr>
+      <tr><td>Leyenda de Tanaka</td><td>Lee el sufijo P, M o N del nombre de la columna. No usa la etiqueta «pólipo» de la versión 2.</td><td>16 pacientes con primario, metástasis y mucosa.</td></tr>
+      <tr><td>Cero y log2</td><td>Convierte intensidades no positivas en hueco y aplica log2 a las positivas. El contraste es pareado, con al menos 8 pares.</td><td><code>tanaka_primario_vs_mucosa.tsv</code>, <code>tanaka_metastasis_vs_mucosa.tsv</code>, <code>tanaka_metastasis_vs_primario.tsv</code>.</td></tr>
+      <tr><td>Concordancia con CPTAC</td><td>Empareja por gen el log2FC de Tanaka con la tabla certificada de CPTAC y calcula el mismo signo y la correlación de Pearson.</td><td>Bloque <code>pxd034575</code> de <code>cierre_audit.json</code>.</td></tr>
+      <tr><td>Vías</td><td>Ranking del suero contra los términos GO biológicos del tejido. Pide al menos 10 genes en el suero y 200 permutaciones.</td><td>Bloque <code>vias_suero</code>. Doce a trece términos. El nulo no se supera.</td></tr>
+      <tr><td>Fichas</td><td>Reúne las proteínas que pasan un FDR o que tienen una lectura evaluable. Les añade GO, atlas, UniProt y AlphaFold.</td><td><code>fichas_proteinas.tsv</code> y las tarjetas de esta página.</td></tr>
+      <tr><td>Péptidos</td><td>Escribe el límite: la matriz no confirma secuencia mutada. No busca espectros nuevos.</td><td><code>peptidos_neoantigenos.tsv</code>.</td></tr>
+      <tr><td>PXD036594</td><td>No entra. <a href="https://doi.org/10.1021/acs.jproteome.2c00575">Lesur et al., 2023</a> miden plasma dirigido, y un orden alfabético de columnas no es un diagnóstico. El depósito está en <a href="https://www.ebi.ac.uk/pride/archive/projects/PXD036594">PXD036594</a>.</td><td>Esas columnas quedan como <code>sin_etiqueta_clinica</code>.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="estudios">Estudios enlazados y cómo se comprobaron</h2>
+  <p>El 31 de octubre de 2026 cada DOI de esta lista se consultó en Crossref. La respuesta trae el título y el año. Coinciden con la cita. Donde la editorial respondió, también se abrió la página del artículo. El DOI <code>10.1016/j.xcrm.2025.101689</code> devolvió 404 y no se enlaza. Tampoco se enlaza una cita mal formada de ENCODE ni un DOI de memoria que no resolvió.</p>
+  <table>
+    <thead><tr><th>Para qué se usa</th><th>Estudio</th><th>Enlace comprobado</th></tr></thead>
+    <tbody>
+      <tr><td>Ancla de tejido</td><td>Vasaikar et al., Cell 2019. Proteogenomic analysis of human colon cancer.</td><td><a href="https://doi.org/10.1016/j.cell.2019.03.030">DOI</a> · <a href="https://pdc.cancer.gov/pdc/study/PDC000116">PDC000116</a></td></tr>
+      <tr><td>Primario, metástasis y mucosa</td><td>Tanaka et al., Cell Reports 2024.</td><td><a href="https://doi.org/10.1016/j.celrep.2024.113810">DOI</a> · <a href="https://www.ebi.ac.uk/pride/archive/projects/PXD034575">PXD034575</a></td></tr>
+      <tr><td>Suero con tres grupos</td><td>Rai et al., J Proteome Res 2025.</td><td><a href="https://doi.org/10.1021/acs.jproteome.5c00285">DOI</a> · <a href="https://www.ebi.ac.uk/pride/archive/projects/PXD055218">PXD055218</a></td></tr>
+      <tr><td>t moderada</td><td>Smyth, Stat Appl Genet Mol Biol 2004.</td><td><a href="https://doi.org/10.2202/1544-6115.1027">DOI</a></td></tr>
+      <tr><td>Umbral de cambio, treat</td><td>McCarthy y Smyth, Bioinformatics 2009.</td><td><a href="https://doi.org/10.1093/bioinformatics/btp053">DOI</a></td></tr>
+      <tr><td>FDR</td><td>Benjamini y Hochberg, JRSS B 1995.</td><td><a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">DOI</a></td></tr>
+      <tr><td>Cero de intensidad</td><td>Cox y Mann, Nat Biotechnol 2008. MaxQuant.</td><td><a href="https://doi.org/10.1038/nbt.1511">DOI</a></td></tr>
+      <tr><td>Vocabulario GO</td><td>Ashburner et al., Nat Genet 2000.</td><td><a href="https://doi.org/10.1038/75556">DOI</a> · <a href="https://www.ebi.ac.uk/QuickGO/">QuickGO</a></td></tr>
+      <tr><td>Enriquecimiento de vías</td><td>Subramanian et al., PNAS 2005.</td><td><a href="https://doi.org/10.1073/pnas.0506580102">DOI</a></td></tr>
+      <tr><td>Concentración de referencia</td><td>Uhlén et al., Science 2015.</td><td><a href="https://doi.org/10.1126/science.1260419">DOI</a> · <a href="https://www.proteinatlas.org/">Human Protein Atlas</a></td></tr>
+      <tr><td>Estructura predicha</td><td>Jumper et al., Nature 2021.</td><td><a href="https://doi.org/10.1038/s41586-021-03819-2">DOI</a> · <a href="https://alphafold.ebi.ac.uk/entry/O94812">AlphaFold de BAIAP3</a></td></tr>
+      <tr><td>Identificador de proteína</td><td>UniProt.</td><td><a href="https://www.uniprot.org/uniprotkb/O94812">O94812</a></td></tr>
+      <tr><td>Neoepítopos de tumor</td><td>Xiang et al., Cell Genomics 2026.</td><td><a href="https://doi.org/10.1016/j.xgen.2025.101062">DOI</a></td></tr>
+      <tr><td>Péptidos de una persona</td><td>Hembrough et al., Cancer Res 2026, abstract 7710.</td><td><a href="https://doi.org/10.1158/1538-7445.am2026-7710">DOI</a></td></tr>
+      <tr><td>Panel de plasma ya publicado</td><td>Ögren et al., Mol Cancer 2026. CEACAM5, FLT1, IL19 y ferritina.</td><td><a href="https://doi.org/10.1186/s12943-026-02654-1">DOI</a></td></tr>
+      <tr><td>Origen del plasma</td><td>Malmström et al., Cell 2025.</td><td><a href="https://doi.org/10.1016/j.cell.2025.03.013">DOI</a></td></tr>
+      <tr><td>Señal del huésped en vesículas</td><td>Seo et al., J Extracell Vesicles 2026.</td><td><a href="https://doi.org/10.1002/jev2.70278">DOI</a></td></tr>
+      <tr><td>Candidatas que esta tesis no descubre</td><td>Yu et al., BMC Cancer 2026.</td><td><a href="https://doi.org/10.1186/s12885-026-15547-9">DOI</a></td></tr>
+      <tr><td>Proteínas compartidas con enfermedad inflamatoria</td><td>Dhami et al., Proteomics Clin Appl 2026.</td><td><a href="https://doi.org/10.1002/prca.70041">DOI</a></td></tr>
+      <tr><td>Fibronectina baja en plasma</td><td>Verathamjamras, Chantaraamporn et al., Clin Proteomics 2023.</td><td><a href="https://doi.org/10.1186/s12014-023-09407-y">DOI</a></td></tr>
+      <tr><td>Plasma dirigido que no entra</td><td>Lesur et al., J Proteome Res 2023.</td><td><a href="https://doi.org/10.1021/acs.jproteome.2c00575">DOI</a></td></tr>
+      <tr><td>Integración pública ya publicada</td><td>Robles, Prakash, Vizcaíno y Casal, PLOS Comput Biol 2024.</td><td><a href="https://doi.org/10.1371/journal.pcbi.1011828">DOI</a></td></tr>
+      <tr><td>Otro proteoma de colon y recto, no PDC000116</td><td>Zhang et al., Nature 2014.</td><td><a href="https://doi.org/10.1038/nature13438">DOI</a></td></tr>
+      <tr><td>Revisión narrativa, no proteómica</td><td>García-Foncillas, Rev Colomb Hematol Oncol 2026.</td><td><a href="https://doi.org/10.51643/22562915.853">DOI</a></td></tr>
+      <tr><td>Plasma durante tratamiento, no cribado</td><td>Li et al., Nat Commun 2024.</td><td><a href="https://doi.org/10.1038/s41467-024-44911-1">DOI</a></td></tr>
+    </tbody>
+  </table>
+
+  
+  <h2 id="estudiar">Para sustentar: qué estudiar</h2>
+  <p>El orden cabe en una tarde. Primero la frase del resultado, en voz alta y sin la hoja. Después el dibujo de las tres cohortes. Después dos proteínas: LBP, que pasa el FDR contra sanos y no contra la enfermedad, y BAIAP3, que pasa el AUC y no el FDR. Al final, la leyenda P, M y N, y la diferencia entre 0,83 y 0,104.</p>
+  <ol>
+    <li>Decir el resultado en una frase.</li>
+    <li>Nombrar las tres cohortes y qué pregunta responde cada una.</li>
+    <li>Explicar FDR y AUC con LBP y con BAIAP3.</li>
+    <li>Explicar por qué P es tumor primario y por qué el cero de MaxQuant es una ausencia.</li>
+    <li>Explicar por qué 0,83 y 0,104 son estadísticas distintas, y por qué ninguna es tejido contra sangre.</li>
+    <li>Cerrar con el límite: 20 personas por grupo, sin el inmunoensayo de CEA, y sin secuencia de péptido mutado.</li>
+  </ol>
+  <h3>Palabras que hay que poder definir</h3>
+  <div class="rejilla"><article class="dato"><h3>log2FC</h3><p>Cuántas veces cambia la proteína, en logaritmo base 2. 1 significa el doble. −1 significa la mitad. El umbral 0,585 es log2(1,5): un cambio de al menos una vez y media.</p></article><article class="dato"><h3>FDR</h3><p>Entre las proteínas que se declaran distintas, la fracción esperada de falsos. Se usa Benjamini–Hochberg y el corte es 0,05. No es el p de una sola proteína.</p></article><article class="dato"><h3>t moderada, treat</h3><p>Prueba si el cambio supera 0,585, no si es distinto de cero. Así un cambio diminuto y muy preciso no entra en la lista. Smyth 2004 y McCarthy y Smyth 2009.</p></article><article class="dato"><h3>AUC</h3><p>Probabilidad de que una proteína ordene a una persona con cáncer por encima de una con la otra condición. 0,50 es el azar. Aquí se pidió más de 0,70, con el intervalo por encima de 0,50. El AUC no dice si la proteína sube o baja, y no sustituye al FDR.</p></article><article class="dato"><h3>Pareado</h3><p>En Tanaka, el tumor y la mucosa son del mismo paciente. El contraste resta dentro de la persona. En el suero de Rai los grupos son personas distintas: el contraste no es pareado.</p></article><article class="dato"><h3>DIA y grupo proteico</h3><p>DIA mide muchas proteínas en cada suero sin elegirlas de antemano. El informe las entrega en grupos. Un grupo no guarda la secuencia mutada de un péptido.</p></article><article class="dato"><h3>GO y NES</h3><p>Gene Ontology es el catálogo de procesos. NES dice si los genes de un proceso se acumulan en la cabeza del ranking. En este suero solo entran unos 12 procesos del tumor con al menos 10 genes, y no superan el azar.</p></article><article class="dato"><h3>Fase aguda</h3><p>Respuesta del organismo a inflamación, no una proteína exclusiva del tumor. C9, LRG1, SERPINA1, CRP y HP ya estaban en esa lista antes del contraste.</p></article></div>
+  <h3>Si lo preguntan en la sustentación</h3>
+  <p>Abre cada pregunta y responde antes de leer. La respuesta de abajo es la que sostienen estos números.</p>
+  <details><summary>¿Cuál es el resultado, en una frase?</summary><p>El cambio de proteínas del tumor se repite entre tejidos. En este suero no aparece como una señal propia del cáncer: ninguna proteína separa el cáncer de la colonoscopia negativa con el umbral fijado de antemano.</p></details><details><summary>¿Cero proteínas es un fracaso?</summary><p>Es el resultado. El umbral (FDR 0,05 y cambio de al menos 1,5 veces) se escribió antes de mirar el suero. Un cero con ese control responde la pregunta. Inventar un marcador después de relajar el umbral no la responde.</p></details><details><summary>¿Por qué no basta con comparar contra personas sanas?</summary><p>Contra sanos suben SAA1 y LBP, proteínas secretadas de respuesta del organismo. La colonoscopia negativa es el grupo que decide si esa subida es del cáncer o de un intestino enfermo. Frente a ese grupo, no pasan el FDR.</p></details><details><summary>¿Qué es la columna P?</summary><p>En PXD034575, P es tumor primario, M es metástasis hepática y N es mucosa normal. Son 16 pacientes, cada uno con las tres muestras. La versión 2 llamó pólipo a P. Esa etiqueta no se usa en esta corrida y los certificados viejos no se reescribieron.</p></details><details><summary>¿0,83 y 0,104 son la misma correlación corregida?</summary><p>No. 0,83 es primario frente a mucosa, con ceros tratados como ausencia, en 874 genes, contra CPTAC. 0,104 es otro cálculo de la versión 2, sobre 1 993 proteínas y con la etiqueta antigua de columnas. Ninguna de las dos mide tejido contra sangre.</p></details><details><summary>¿SAA1 sirve de marcador?</summary><p>Separa el cáncer de los sanos (log2FC 3,26, FDR 0,0002) y está secretada a la sangre. No separa el cáncer de la colonoscopia negativa. En la sustentación se presenta como respuesta del huésped.</p></details><details><summary>¿Y BAIAP3?</summary><p>Es la proteína que Rai señaló. El AUC frente a la colonoscopia negativa es 0,82 y no tiene marca de fase aguda. El FDR es 0,20. Queda como candidata de otro estudio, con más personas y, si se puede, el CEA de la misma persona. No es un hallazgo de esta tesis.</p></details><details><summary>¿CHMP4A, con un log2FC de 5,42?</summary><p>El cambio es grande y solo hay medición en 16 de 40 sueros. Un valor ausente no es un cero biológico. No se presenta como marcador.</p></details><details><summary>¿Se confirmaron neoantígenos?</summary><p>No se pueden confirmar con esta matriz. Cada fila es un grupo de proteínas, no la secuencia de un péptido mutado. Rai describe 19 péptidos en suero, Xiang neoepítopos en el tumor y Hembrough cinco péptidos de una persona. Esos trabajos marcan el límite; no se reanalizan aquí.</p></details><details><summary>¿Por qué no se juntaron los estudios en una sola tabla?</summary><p>CPTAC es tejido TMT ya en log2. Tanaka es tejido LFQ. Rai es suero DIA. Juntarlos mezclaría técnicas y personas distintas. Cada contraste se hizo dentro de su cohorte.</p></details>
+  <h3>Frases que no se dicen</h3>
+  <ul>
+    <li>Que hay un marcador de sangre listo para la consulta.</li>
+    <li>Que SAA1, LBP o CHMP4A distinguen el cáncer de otra enfermedad del intestino.</li>
+    <li>Que la columna P es un pólipo o un adenoma.</li>
+    <li>Que 0,83 corrige o sustituye a 0,104.</li>
+    <li>Que esta matriz confirmó un neoantígeno.</li>
+    <li>Que las vías del tumor se ven en este suero.</li>
+  </ul>
+
+
+  <h2>Cómo leer un número de esta página</h2>
+  <ol>
+    <li>Si el FDR pasa y el |log2FC| pasa 0,585, la proteína entra en la lista corta. Hoy esa lista, en suero, tiene cuatro filas y un contraste distinto para APOA4.</li>
+    <li>Si solo pasa el AUC, es una candidata de cribado. La bandera de fase aguda o de hemólisis se escribió antes del contraste y se muestra al lado.</li>
+    <li>Un péptido mutado no está en estas filas. La matriz guarda grupos de proteínas. Rai describe 19 péptidos; Xiang, neoepítopos del tumor; Hembrough, cinco péptidos de una persona. Ninguno se confirma aquí.</li>
+  </ol>
+</main>
+<footer>
+  Corrida <code>tesis_cierre</code> del 31 de octubre de 2026. Semilla de los intervalos y del nulo: 20261031. Umbral treat 0,585, alfa 0,05. Los certificados de la versión 1 y de la versión 2 no se reescribieron. Los DOI de esta página se confirmaron ese día en Crossref.
+</footer>
+</body>
+</html>

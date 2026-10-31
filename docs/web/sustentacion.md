@@ -1,0 +1,59 @@
+# Para sustentar OncoGO-CRC
+
+La página con gráficas y fichas está en [divulgacion.html](divulgacion.html). Esta nota es lo que hay que poder decir.
+
+## El resultado, en una frase
+
+El cambio de proteínas del tumor colorrectal se repite entre tejidos. En el suero de esta tesis no aparece como una señal propia del cáncer.
+
+Sirve como tesis, porque la pregunta queda respondida con un control de otra enfermedad intestinal. No sirve como prueba de un marcador para la consulta.
+
+## Tres cohortes
+
+| Cohorte | Qué es | Qué responde |
+|---|---|---|
+| PDC000116, Vasaikar, *Cell* 2019 | Tejido tumoral y mucosa, TMT, ya en log2 | El ancla. El tumor tiene un proteoma distinto. |
+| PXD034575, Tanaka, *Cell Reports* 2024 | 16 pacientes. P primario, M metástasis hepática, N mucosa | Si ese proteoma se repite en otro tejido. Correlación del primario con CPTAC: 0,83, mismo signo en 687 de 874 genes. La metástasis correlaciona 0,59. |
+| PXD055218, Rai, *J Proteome Res* 2025 | Suero DIA, 20 cáncer, 20 colonoscopia negativa, 20 sanos | Si algo de eso llega a la sangre y es propio del cáncer. Frente a la colonoscopia negativa: cero proteínas con FDR 0,05 y cambio de al menos 1,5 veces. |
+
+## Orden de una tarde
+
+1. Decir el resultado en voz alta, sin la hoja.
+2. Dibujar las tres cohortes y la pregunta de cada una.
+3. Explicar LBP (pasa el FDR contra sanos, no contra la enfermedad) y BAIAP3 (AUC 0,82, FDR 0,20).
+4. Explicar P, M y N, y por qué el cero de MaxQuant es una ausencia.
+5. Explicar que 0,83 y 0,104 son estadísticas distintas. Ninguna mide tejido contra sangre.
+6. Cerrar con el límite: 20 por grupo, sin el inmunoensayo de CEA, sin secuencia de péptido mutado.
+
+## Palabras
+
+- **log2FC.** Cambio en logaritmo base 2. 1 es el doble. El umbral 0,585 es log2(1,5).
+- **FDR.** Fracción esperada de falsos entre lo que se declara distinto. Corte 0,05, Benjamini–Hochberg.
+- **treat.** La t moderada pregunta si el cambio supera 0,585, no si es distinto de cero.
+- **AUC.** Si la proteína ordena al cáncer por encima de la otra condición. 0,50 es azar. No dice si sube o baja y no sustituye al FDR.
+- **Pareado.** En Tanaka, tumor y mucosa son del mismo paciente. En el suero, los grupos son personas distintas.
+- **Grupo proteico.** La fila del DIA no guarda la secuencia mutada de un péptido.
+- **Fase aguda.** Respuesta del organismo. C9, LRG1, SERPINA1, CRP y HP ya estaban marcadas así.
+
+## Si lo preguntan
+
+**¿Cero proteínas es un fracaso?** Es el resultado. El umbral se fijó antes de mirar el suero.
+
+**¿Por qué no basta el sano?** Contra sanos suben SAA1 y LBP. Eso mide respuesta del organismo. La colonoscopia negativa es el control que decide la especificidad.
+
+**¿SAA1 es un marcador?** Separa el cáncer de los sanos. No separa el cáncer de la otra enfermedad intestinal.
+
+**¿BAIAP3?** Candidata de Rai. Pasa el AUC sin marca de fase aguda y no pasa el FDR. No es un hallazgo de esta tesis.
+
+**¿CHMP4A?** log2FC alto con medición en 16 de 40 sueros. No se presenta como marcador.
+
+**¿Neoantígenos?** Esta matriz no puede confirmarlos. Rai, Xiang y Hembrough describen péptidos. Aquí cada fila es un grupo de proteínas.
+
+**¿Por qué no se fusionaron las cohortes?** Tejido TMT, tejido LFQ y suero DIA no son la misma medición ni las mismas personas.
+
+## No se dice
+
+- Que hay un marcador de sangre listo para la consulta.
+- Que la columna P es un pólipo.
+- Que 0,83 sustituye a 0,104.
+- Que las vías del tumor se ven en este suero.
