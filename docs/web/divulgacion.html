@@ -5,52 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>OncoGO-CRC · qué se ve del tumor en la sangre</title>
 <style>
-  :root { color-scheme: light; }
-  body { margin: 0; font-family: "Iowan Old Style", Palatino, "Palatino Linotype", serif; background: #f4f1ea; color: #1c2430; line-height: 1.45; }
-  header, main { max-width: 980px; margin: 0 auto; padding: 28px 20px; }
+  :root { color-scheme: light; --ink: #1c2430; --paper: #f3efe6; --card: #fffdf8; --line: #d7d0c3; --teal: #0c5c5c; --rust: #8d3429; --nav: #142028; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Iowan Old Style", Palatino, "Palatino Linotype", serif; background: var(--paper); color: var(--ink); line-height: 1.5; }
+  .avance { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #e2b15a; transform: scaleX(0); transform-origin: 0 0; z-index: 30; }
+  .barra { position: sticky; top: 0; z-index: 20; display: flex; gap: 14px; align-items: center; background: var(--nav); color: #f4f1ea; padding: 10px 16px; overflow-x: auto; }
+  .barra a { color: #f4f1ea; text-decoration: none; font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.84rem; white-space: nowrap; }
+  .barra a:hover, .barra a:focus { color: #e2b15a; }
+  .marca { font-weight: 700; letter-spacing: 0.01em; }
+  #filtro { margin-left: auto; flex: 0 0 9.5rem; border: 0; border-radius: 999px; padding: 8px 12px; font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.86rem; }
+  header, main, footer { max-width: 1080px; margin: 0 auto; padding: 28px 20px; }
   header { padding-bottom: 8px; }
-  h1 { font-size: 2rem; line-height: 1.15; margin: 0 0 8px; }
-  h2 { font-size: 1.35rem; margin: 2rem 0 0.6rem; }
-  .pregunta { font-size: 1.15rem; }
+  h1 { font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.12; margin: 0 0 10px; letter-spacing: -0.02em; }
+  h2 { font-size: 1.45rem; margin: 2.2rem 0 0.7rem; padding-top: 1.2rem; border-top: 1px solid var(--line); scroll-margin-top: 4.2rem; }
+  h3 { scroll-margin-top: 4.2rem; }
+  .pregunta { font-size: 1.18rem; max-width: 42rem; }
+  .ojo { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--teal); margin: 0 0 6px; }
   .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-  .dato, .aviso, .ficha { background: #fffdf8; border: 1px solid #d9d2c5; padding: 14px 16px; }
-  .dato strong { display: block; font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 1.6rem; }
-  .aviso { border-left: 4px solid #9a3b2f; }
-  .grafica { width: 100%; height: auto; background: #fffdf8; border: 1px solid #d9d2c5; }
-  .eje { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 12px; fill: #1c2430; }
+  .dato, .aviso, .ficha, details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .dato strong { display: block; font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 1.7rem; letter-spacing: -0.03em; }
+  .aviso { border-left: 5px solid var(--rust); }
+  .grafica { width: 100%; height: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  .eje { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 12px; fill: var(--ink); }
   .fichas { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-  .ficha h3 { margin: 0; font-family: "Avenir Next", "Segoe UI", sans-serif; }
-  .meta, .go, .enlaces { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.92rem; }
-  a { color: #0f6e6e; }
-  nav { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.95rem; margin: 12px 0 0; }
-  nav a { margin-right: 14px; }
-  details { background: #fffdf8; border: 1px solid #d9d2c5; padding: 10px 14px; margin: 8px 0; }
-  summary { cursor: pointer; font-family: "Avenir Next", "Segoe UI", sans-serif; font-weight: 600; }
+  .ficha h3 { margin: 0 0 6px; font-family: "Avenir Next", "Segoe UI", sans-serif; }
+  .meta, .go, .enlaces, footer, nav, .ojo { font-family: "Avenir Next", "Segoe UI", sans-serif; }
+  .meta, .go, .enlaces { font-size: 0.92rem; }
+  a { color: var(--teal); }
+  details { margin: 8px 0; }
+  summary { cursor: pointer; font-weight: 600; }
   details p { margin: 0.6rem 0 0.2rem; }
   ol li, ul li { margin: 0.45rem 0; }
-  table { width: 100%; border-collapse: collapse; background: #fffdf8; font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.92rem; margin: 0.6rem 0 1.2rem; }
-  th, td { border: 1px solid #d9d2c5; padding: 8px 10px; text-align: left; vertical-align: top; }
+  .marco { overflow-x: auto; margin: 0.6rem 0 1.2rem; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 0.92rem; }
+  th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
   th { background: #efe8dc; }
-  .fuente { font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.92rem; }
-  footer { max-width: 980px; margin: 0 auto; padding: 8px 20px 40px; font-family: "Avenir Next", "Segoe UI", sans-serif; font-size: 0.9rem; color: #3d4654; }
+  footer { font-size: 0.9rem; color: #3d4654; }
+  [hidden] { display: none !important; }
 </style>
 </head>
 <body>
+<div class="avance" aria-hidden="true"></div>
+<nav class="barra" aria-label="Secciones">
+  <a class="marca" href="#resultado">OncoGO-CRC</a>
+  <a href="#resultado">Resultado</a>
+  <a href="#suero">Suero</a>
+  <a href="#tejido">Tejido</a>
+  <a href="#fichas">Fichas</a>
+  <a href="#teoria">Teoría</a>
+  <a href="#datos">Datos</a>
+  <a href="#procesos">Procesos</a>
+  <a href="#estudios">Estudios</a>
+  <a href="#estudiar">Para sustentar</a>
+  <input id="filtro" type="search" placeholder="Buscar" aria-label="Buscar proteína, técnica o estudio"/>
+</nav>
 <header>
-  <p>OncoGO-CRC · borrador de lectura · 31 de octubre de 2026</p>
+  <p class="ojo">Universidad de Caldas · lectura pública · 31 de octubre de 2026</p>
   <h1>Qué parte del tumor colorrectal se deja ver en la sangre</h1>
   <p class="pregunta">La pregunta no es si hay proteínas distintas en el tumor. Esa parte ya está medida. La pregunta es cuáles de esas diferencias siguen ahí cuando la muestra es suero, y cuáles aparecen también en otra enfermedad del intestino.</p>
-  <nav>
-    <a href="#resultado">Resultado</a>
-    <a href="#suero">Suero</a>
-    <a href="#tejido">Tejido</a>
-    <a href="#fichas">Fichas</a>
-    <a href="#teoria">Teoría</a>
-    <a href="#datos">Datos</a>
-    <a href="#procesos">Procesos</a>
-    <a href="#estudios">Estudios</a>
-    <a href="#estudiar">Para sustentar</a>
-  </nav>
 </header>
 <main>
   <h2 id="resultado">Resultado de la tesis</h2>
@@ -333,5 +345,31 @@
 <footer>
   Corrida <code>tesis_cierre</code> del 31 de octubre de 2026. Semilla de los intervalos y del nulo: 20261031. Umbral treat 0,585, alfa 0,05. Los certificados de la versión 1 y de la versión 2 no se reescribieron. Los DOI de esta página se confirmaron ese día en Crossref.
 </footer>
+<script>
+document.querySelectorAll("table").forEach((tabla) => {
+  const marco = document.createElement("div");
+  marco.className = "marco";
+  tabla.parentElement.insertBefore(marco, tabla);
+  marco.appendChild(tabla);
+});
+const filtro = document.querySelector("#filtro");
+const avance = document.querySelector(".avance");
+function aplicar() {
+  const t = (filtro.value || "").trim().toLowerCase();
+  document.querySelectorAll("table tbody tr, .ficha, details").forEach((el) => {
+    el.hidden = t.length > 1 && !el.textContent.toLowerCase().includes(t);
+  });
+}
+filtro.addEventListener("input", aplicar);
+document.addEventListener("scroll", () => {
+  const h = document.documentElement;
+  const p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+  avance.style.transform = "scaleX(" + p + ")";
+}, { passive: true });
+document.querySelectorAll('a[href^="http"]').forEach((a) => {
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+});
+</script>
 </body>
 </html>
