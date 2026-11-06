@@ -4,7 +4,7 @@ La página con gráficas y fichas está en [divulgacion.html](divulgacion.html).
 
 ## El resultado, en una frase
 
-El cambio de proteínas del tumor colorrectal se repite entre tejidos. En el suero de esta tesis no aparece como una señal propia del cáncer.
+Entre las 688 proteínas certificadas, el primario coincide en signo con CPTAC en 116 de 118. En el suero, el corte de 1,5 veces no separa el cáncer de la colonoscopia negativa: 145 proteínas tienen ese cambio descartado y 731 quedan indeterminadas.
 
 Sirve como tesis, porque la pregunta queda respondida con un control de otra enfermedad intestinal. No sirve como prueba de un marcador para la consulta.
 
@@ -13,8 +13,8 @@ Sirve como tesis, porque la pregunta queda respondida con un control de otra enf
 | Cohorte | Qué es | Qué responde |
 |---|---|---|
 | PDC000116, Vasaikar, *Cell* 2019 | Tejido tumoral y mucosa, TMT, ya en log2 | El ancla. El tumor tiene un proteoma distinto. |
-| PXD034575, Tanaka, *Cell Reports* 2024 | 16 pacientes. P primario, M metástasis hepática, N mucosa | Si ese proteoma se repite en otro tejido. Correlación del primario con CPTAC: 0,83, mismo signo en 687 de 874 genes. La metástasis correlaciona 0,59. |
-| PXD055218, Rai, *J Proteome Res* 2025 | Suero DIA, 20 cáncer, 20 colonoscopia negativa, 20 sanos | Si algo de eso llega a la sangre y es propio del cáncer. Frente a la colonoscopia negativa: cero proteínas con FDR 0,05 y cambio de al menos 1,5 veces. |
+| PXD034575, Tanaka, *Cell Reports* 2024 | 16 pacientes. P primario, M metástasis hepática, N mucosa | Si ese proteoma se repite en otro tejido. En las 688 certificadas: 116 de 118 con el primario, 93 de 106 con la metástasis. El cierre del 31 de octubre, en otro universo, es 687 de 874 y correlación 0,83. |
+| PXD055218, Rai, *J Proteome Res* 2025 | Suero DIA, 20 cáncer, 20 colonoscopia negativa, 20 sanos, 876 proteínas | Frente a la colonoscopia negativa el corte de 1,5 veces deja 0 proteínas. De 876, 145 son equivalentes y 731 indeterminadas. |
 
 ## Orden de una tarde
 
@@ -22,7 +22,7 @@ Sirve como tesis, porque la pregunta queda respondida con un control de otra enf
 2. Dibujar las tres cohortes y la pregunta de cada una.
 3. Explicar LBP (pasa el FDR contra sanos, no contra la enfermedad) y BAIAP3 (AUC 0,82, FDR 0,20).
 4. Explicar P, M y N, y por qué el cero de MaxQuant es una ausencia.
-5. Explicar que 0,83 y 0,104 son estadísticas distintas. Ninguna mide tejido contra sangre.
+5. Explicar que 116/118, 687/874 y 0,104 son tres cuentas distintas. Ninguna mide tejido contra sangre.
 6. Cerrar con el límite: 20 por grupo, sin el inmunoensayo de CEA, sin secuencia de péptido mutado.
 
 ## Palabras

@@ -1,5 +1,7 @@
 # Guía para completar la tesis OncoGO-CRC
 
+Las figuras de esta carpeta salen del cierre del 31 de octubre. La corrida vigente del 6 de noviembre está en `results/v3/`. Si una frase usa un número de tejido o de suero, el de las 688 certificadas es 116 de 118 (primario frente a mucosa) y 93 de 106 (metástasis frente a mucosa). En el suero, de 876 proteínas, el corte de 1,5 veces deja 0 diferentes, 145 equivalentes y 731 indeterminadas frente a la colonoscopia negativa. El 687 de 874 y la correlación 0,83 siguen siendo la cuenta amplia de ese cierre, no un sustituto de 116/118.
+
 Carpeta de figuras: `/Users/jancod/GitHub/OncoGO-CRC/tesis-ucaldas/figuras-para-redactar/`. Rutas de datos relativas a `/Volumes/JANCODATA/OncoGO-CRC/` salvo `.tex`/tests/scripts (repositorio GitHub). Citas con `\textcite{clave}` como en el documento actual.
 
 ## Cómo escribir para que suene a ti

@@ -170,7 +170,7 @@ La página con gráficas y fichas está en [divulgacion.html](divulgacion.html).
 
 ## El resultado, en una frase
 
-El cambio de proteínas del tumor colorrectal se repite entre tejidos. En el suero de esta tesis no aparece como una señal propia del cáncer.
+Entre las 688 proteínas certificadas, el primario coincide en signo con CPTAC en 116 de 118. En el suero, el corte de 1,5 veces no separa el cáncer de la colonoscopia negativa: 145 proteínas tienen ese cambio descartado y 731 quedan indeterminadas.
 
 Sirve como tesis, porque la pregunta queda respondida con un control de otra enfermedad intestinal. No sirve como prueba de un marcador para la consulta.
 
@@ -179,8 +179,8 @@ Sirve como tesis, porque la pregunta queda respondida con un control de otra enf
 | Cohorte | Qué es | Qué responde |
 |---|---|---|
 | PDC000116, Vasaikar, *Cell* 2019 | Tejido tumoral y mucosa, TMT, ya en log2 | El ancla. El tumor tiene un proteoma distinto. |
-| PXD034575, Tanaka, *Cell Reports* 2024 | 16 pacientes. P primario, M metástasis hepática, N mucosa | Si ese proteoma se repite en otro tejido. Correlación del primario con CPTAC: {coma(primario['pearson'])}, mismo signo en {primario['mismo_signo']} de {primario['n']} genes. La metástasis correlaciona {coma(metastasis['pearson'])}. |
-| PXD055218, Rai, *J Proteome Res* 2025 | Suero DIA, 20 cáncer, 20 colonoscopia negativa, 20 sanos | Si algo de eso llega a la sangre y es propio del cáncer. Frente a la colonoscopia negativa: cero proteínas con FDR 0,05 y cambio de al menos 1,5 veces. |
+| PXD034575, Tanaka, *Cell Reports* 2024 | 16 pacientes. P primario, M metástasis hepática, N mucosa | Si ese proteoma se repite en otro tejido. En las 688 certificadas: 116 de 118 con el primario, 93 de 106 con la metástasis. El cierre del 31 de octubre, en otro universo, es {primario['mismo_signo']} de {primario['n']} y correlación {coma(primario['pearson'])}. |
+| PXD055218, Rai, *J Proteome Res* 2025 | Suero DIA, 20 cáncer, 20 colonoscopia negativa, 20 sanos, 876 proteínas | Frente a la colonoscopia negativa el corte de 1,5 veces deja 0 proteínas. De 876, 145 son equivalentes y 731 indeterminadas. |
 
 ## Orden de una tarde
 
@@ -287,7 +287,7 @@ def _explicacion_html() -> str:
   <p><a href="https://doi.org/10.2202/1544-6115.1027">Smyth, 2004</a> reparte la varianza entre las proteínas: una proteína con pocas mediciones no se declara distinta solo porque su desviación salió pequeña por azar. <a href="https://doi.org/10.1093/bioinformatics/btp053">McCarthy y Smyth, 2009</a> llaman treat a la versión que pregunta si el cambio supera un umbral, aquí 0,585, y no si es distinto de cero. Un cambio diminuto y muy preciso se queda fuera. No se imputan los huecos: una proteína ausente no se rellena con un promedio.</p>
 
   <h3>El FDR</h3>
-  <p>Se prueban cientos de proteínas a la vez. Si cada una se juzgara con p &lt; 0,05, varias entrarían por azar. <a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">Benjamini y Hochberg, 1995</a> controlan la fracción esperada de falsos entre las que se declaran distintas. El corte es 0,05. El FDR no es el p de una sola proteína. En esta corrida, cáncer frente a colonoscopia negativa deja cero proteínas dentro de ese corte y del cambio mínimo.</p>
+  <p>Se prueban cientos de proteínas a la vez. Si cada una se juzgara con p &lt; 0,05, varias entrarían por azar. <a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">Benjamini y Hochberg, 1995</a> controlan la fracción esperada de falsos entre las que se declaran distintas. El corte es 0,05. El FDR no es el p de una sola proteína. En esta corrida, cáncer frente a colonoscopia negativa deja cero proteínas dentro de ese corte y del cambio mínimo. De las 876 proteínas del suero, 145 tienen un cambio menor que 1,5 veces demostrado y 731 quedan indeterminadas. La ausencia solo se afirma en las 145.</p>
 
   <h3>El AUC y la especificidad</h3>
   <p>El AUC dice si, al ordenar a las personas por una proteína, las del cáncer quedan por encima de las de la otra condición. 0,50 es el orden del azar. La regla de esta tesis pide tres cosas a la vez: AUC mayor que 0,70 al separar cáncer de colonoscopia negativa, el límite inferior del intervalo bootstrap por encima de 0,50, y ese AUC mayor que el de enfermedad frente a sanos. El intervalo usa 2 000 remuestreos y la semilla 20261031. El AUC no dice si la proteína sube o baja. Una proteína ya marcada como fase aguda, hemólisis o enfermedad inflamatoria conserva el número y cambia la lectura: el AUC puede pasar y la proteína seguir siendo una señal de inflamación. Esa marca se escribió en el catálogo antes del contraste.</p>
@@ -547,7 +547,7 @@ def _html(auditoria, fichas, nombres, tejido, vias, primario, metastasis, progre
   <p>La página se lee de arriba abajo. Primero el resultado. Después las tres cohortes, cada una con su artículo y su depósito de datos. Luego los números, las fichas, la teoría de cada procedimiento, el diccionario de datos, el diccionario de procesos, la lista de estudios y las preguntas para practicar la sustentación. Cada DOI de esta página se confirmó en Crossref el 31 de octubre de 2026: el título registrado coincide con la cita. El identificador que no abre un artículo no está enlazado.</p>
   <section class="rejilla">
     <div class="dato"><strong>20 + 20 + 20</strong>Sueros de <a href="https://doi.org/10.1021/acs.jproteome.5c00285">Rai 2025</a>: cáncer, colonoscopia negativa y sanos. <a href="https://www.ebi.ac.uk/pride/archive/projects/PXD055218">PXD055218</a>.</div>
-    <div class="dato"><strong>0</strong>Proteínas que separan el cáncer de la otra enfermedad intestinal con FDR 0,05 y |log2FC| &gt; 0,585.</div>
+    <div class="dato"><strong>0</strong>Proteínas que separan el cáncer de la otra enfermedad intestinal con FDR 0,05 y |log2FC| &gt; 0,585. De 876, 145 tienen un cambio menor que 1,5 veces demostrado y 731 quedan indeterminadas.</div>
     <div class="dato"><strong>3</strong>Proteínas que separan el cáncer de los sanos con ese mismo umbral: SAA1, LBP y CHMP4A.</div>
     <div class="dato"><strong>{coma(primario['pearson'])}</strong>Correlación del primario de Tanaka con el tumor de CPTAC, en {primario['n']} genes. No es la cifra 0,104 de la versión 2.</div>
   </section>
@@ -563,7 +563,8 @@ def _html(auditoria, fichas, nombres, tejido, vias, primario, metastasis, progre
   <div class="aviso">
     <p>La versión 2 llamó pólipo a la columna P y tumor a la columna M. El artículo de esas columnas describe tripletes de tumor primario, metástasis hepática y mucosa. Esta corrida usa esa leyenda. El cero de MaxQuant se trata como proteína no detectada y la intensidad se pasa a log2 antes del contraste pareado.</p>
     <p>Primario frente a mucosa: {cptac_sig['primario_vs_mucosa']['n_significativas']} proteínas de {cptac_sig['primario_vs_mucosa']['n_probadas']} pasan el umbral. Metástasis frente a mucosa: {cptac_sig['metastasis_vs_mucosa']['n_significativas']} de {cptac_sig['metastasis_vs_mucosa']['n_probadas']}. Metástasis frente a primario: {cptac_sig['metastasis_vs_primario']['n_significativas']} de {cptac_sig['metastasis_vs_primario']['n_probadas']}.</p>
-    <p>Con CPTAC, el primario coincide de signo en {primario['mismo_signo']} de {primario['n']} genes ({coma(100 * primario['fraccion'], 1)} %) y la correlación es {coma(primario['pearson'])}. La metástasis coincide en {metastasis['mismo_signo']} de {metastasis['n']} ({coma(100 * metastasis['fraccion'], 1)} %), correlación {coma(metastasis['pearson'])}.</p>
+    <p>Con CPTAC, el primario coincide de signo en {primario['mismo_signo']} de {primario['n']} genes ({coma(100 * primario['fraccion'], 1)} %) y la correlación es {coma(primario['pearson'])}. La metástasis coincide en {metastasis['mismo_signo']} de {metastasis['n']} ({coma(100 * metastasis['fraccion'], 1)} %), correlación {coma(metastasis['pearson'])}. Esa cuenta es el cierre del 31 de octubre, sobre todos los genes con efecto en las dos matrices.</p>
+    <p>La corrida del 6 de noviembre, en <code>results/v3/k1_etiquetas.json</code>, usa las 688 proteínas certificadas. El primario frente a la mucosa coincide en 116 de 118 (intervalo 0,940 a 0,998; concordancia de Lin 0,734). La metástasis frente a la mucosa coincide en 93 de 106 (Lin 0,440). El 104 de 119 de la versión 2 tomó la metástasis como si fuera el tumor y se conserva con ese nombre.</p>
     <p>Entre primario y metástasis, el signo coincide en {progresion['mismo_signo_que_la_metastasis']} de {progresion['n']} genes. Solo el {coma(100 * progresion['fraccion_menor_entre_las_de_mismo_signo'], 1)} % de los que coinciden tiene magnitud menor en el primario. No queda un gradiente en el que el primario sea una versión pequeña de la metástasis.</p>
     <p>La correlación 0,104 y el 56 % de igual signo siguen en <code>results/reproducibility</code>. Salen de otro cálculo, sobre 1 993 proteínas, con la etiqueta antigua de columnas. No se sustituyen por estas cifras. Tampoco miden tejido contra sangre.</p>
   </div>
@@ -638,7 +639,9 @@ El suero de PXD055218 tiene tres grupos de 20. Con FDR 0,05 y |log2FC| mayor que
 
 Ocho candidatas de la literatura superan la regla de AUC. Cinco están marcadas como fase aguda. BAIAP3, FN1 y TPM4 no llevan esa marca y tampoco pasan el FDR.
 
-PXD034575, Tanaka et al. 2024, es tumor primario (P), metástasis hepática (M) y mucosa (N). No es un pólipo. Tras tratar el cero de MaxQuant como ausencia y pasar a log2, el primario coincide en signo con CPTAC en {primario['mismo_signo']} de {primario['n']} genes, correlación {coma(primario['pearson'])}. La metástasis correlaciona {coma(metastasis['pearson'])}. La cifra 0,104 de la versión 2 es otro cálculo y sigue en los resultados de reproducibilidad.
+PXD034575, Tanaka et al. 2024, es tumor primario (P), metástasis hepática (M) y mucosa (N). No es un pólipo. Tras tratar el cero de MaxQuant como ausencia y pasar a log2, el primario coincide en signo con CPTAC en {primario['mismo_signo']} de {primario['n']} genes, correlación {coma(primario['pearson'])}. La metástasis correlaciona {coma(metastasis['pearson'])}. Esa cuenta es el cierre del 31 de octubre. La cifra 0,104 de la versión 2 es otro cálculo y sigue en los resultados de reproducibilidad.
+
+La corrida del 6 de noviembre está en `results/v3/`. Entre las 688 proteínas certificadas, el primario frente a la mucosa coincide en signo en 116 de 118 (intervalo 0,940 a 0,998; Lin 0,734). La metástasis frente a la mucosa coincide en 93 de 106 (Lin 0,440). El suero tiene 876 proteínas. El corte de 1,5 veces sigue en cero entre cáncer y colonoscopia negativa. De esas 876, 145 tienen un cambio menor que 1,5 veces demostrado y 731 quedan indeterminadas. La ausencia solo se afirma en las 145.
 
 De los términos GO del tejido, el suero solo comparte {vias['crc_vs_sano']['n_terminos']} con al menos 10 genes en cáncer frente a sano. Su correlación de NES no supera el nulo (p {coma(vias['crc_vs_sano']['p_nulo'], 2)}).
 

@@ -77,7 +77,9 @@ def portada() -> None:
         "En el suero, ninguna proteína separó el cáncer de la colonoscopia negativa. Frente a personas sanas pasaron tres: "
         "SAA1, LBP y CHMP4A. SAA1 y LBP están secretadas y se leen como respuesta del organismo. CHMP4A tiene medición en 16 de 40 sueros. "
         "Ocho candidatas de la literatura superan un AUC de 0,70 frente a la colonoscopia negativa; cinco ya estaban marcadas como fase aguda "
-        "y las otras tres no pasan el FDR. En tejido, el primario coincide en signo con CPTAC en 687 de 874 genes, correlación 0,83. "
+        "y las otras tres no pasan el FDR. En tejido, el cierre del 31 de octubre coincide en signo con CPTAC en 687 de 874 genes, correlación 0,83. "
+        "Entre las 688 certificadas, la corrida del 6 de noviembre da 116 de 118 para el primario y 93 de 106 para la metástasis. "
+        "En el suero de 876 proteínas, 145 tienen un cambio menor que 1,5 veces demostrado y 731 quedan indeterminadas. "
         "De los procesos del tumor, este suero solo mide alrededor de doce con al menos diez genes, y esa concordancia no supera el azar. "
         "Una fila de grupo proteico no confirma un péptido mutado. La tesis responde la pregunta de visibilidad. No propone un examen de sangre."
     )
@@ -277,9 +279,12 @@ def capitulo_4() -> None:
     h(1, "Capítulo 4. Análisis de resultados")
     h(2, "El suero no separa el cáncer de la otra enfermedad")
     p(
-        "PXD055218 tiene los tres grupos, veinte corridas cada uno. Se probaron alrededor de setecientas proteínas en cada contraste. "
+        "PXD055218 tiene los tres grupos, veinte corridas cada uno, y 876 proteínas en la corrida del 6 de noviembre. "
         "Cáncer frente a colonoscopia negativa: cero proteínas dentro del FDR y del cambio mínimo. "
-        "Cáncer frente a sanos: tres. Colonoscopia negativa frente a sanos: una."
+        "De esas 876, 145 tienen un cambio menor que 1,5 veces demostrado y 731 quedan indeterminadas. "
+        "La ausencia solo se afirma en las 145. Cáncer frente a sanos: tres. Colonoscopia negativa frente a sanos: una. "
+        "El 687 de 874 y la correlación 0,83 son el cierre del 31 de octubre. Entre las 688 certificadas, "
+        "el primario coincide en 116 de 118 y la metástasis en 93 de 106."
     )
     tabla(
         "Tabla 2. Proteínas del suero que pasan FDR 0,05 y |log2FC| mayor que 0,585.",

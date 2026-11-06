@@ -1,6 +1,8 @@
-# OncoGO-CRC — Resultados actuales y limitaciones explícitas para la tesis
+# OncoGO-CRC — Resultados del pipeline antiguo y limitaciones
 
-Este documento resume **lo que el pipeline OncoGO-CRC ya puede afirmar con evidencia reproducible** y **lo que queda explícitamente como trabajo en progreso o limitación metodológica**. Está pensado como guía honesta para redactar el capítulo de resultados / discusión de la tesis sin sobre-interpretar.
+> Los números de la tesis de revisión, corrida del 6 de noviembre de 2026, están en `results/v3/` y en `tesis-ucaldas/latex/`. Este archivo describe el pipeline antiguo (`results/differential/`, `results/go/`, `results/gsea/`, `results/ml/`). Esas etapas imputan y no alimentan la tesis. El 104/119 de v1 y v2 se conserva como la lectura que usó la metástasis como tumor. El contraste principal vigente es 116/118, primario frente a mucosa.
+
+Este archivo resume **lo que el pipeline antiguo puede afirmar** y **lo que queda explícitamente como trabajo en progreso o limitación metodológica**. Está pensado como guía honesta para redactar el capítulo de resultados / discusión de la tesis sin sobre-interpretar.
 
 > **Encuadre:** la propuesta enviada al Dr. Bonilla (oncólogo investigador) y a García-Foncillas et al. (2026) enfatiza un trabajo **estrictamente investigativo y computacional**. Los resultados se interpretan como **hipótesis generadoras**, no como biomarcadores listos para uso clínico — alineado con las recomendaciones de prudencia traslacional en estudios ómicos (Nature 2013, 12564) y con el meta-análisis de reuso de proteómica pública de CCR (Robles et al., 2024, *PLOS Comp Biol*).
 
