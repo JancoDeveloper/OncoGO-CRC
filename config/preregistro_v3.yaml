@@ -366,3 +366,80 @@ prohibido:
   - borrar_numeros_de_v1_v2_o_cierre
   - citar_un_doi_que_no_este_en_references.bib
   - escribir_un_numero_que_no_salga_de_una_tabla
+
+# ------------------------------------------------- 14. Enmienda v3.2
+# No borra lo anterior. v3.2 lee este bloque. El valor viejo de
+# inferencia.min_pares_observados sigue siendo el de v3.
+enmienda_v3_2:
+  fecha: "2026-11-06"
+  transparencia: "El 6-nov-2026, una revisión externa analizó el report original de PXD055218 con filtros de FDR y especie, y vio un ranking exploratorio (Mann-Whitney, sin umbral). Esta enmienda se motiva en las guías de DIA-NN y del HPP y en la presencia de especies no humanas, no en ese ranking. El análisis oficial es el preregistrado."
+  report_pxd055218:
+    url: "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD055218/DIA-NN_report.tsv"
+    sha256_esperado: "A8A5AADD74391AFEF68CF4D6C3A7D3860023101E5C92590E2E87C152A39E59E8"
+    bytes_esperados: 213313241
+    destino: "data/raw/plasma/DIA-NN_report.tsv"
+    solo_lectura: true
+    matriz_filtrada: "data/processed/plasma/pxd055218_pg_maxlfq_filtrado.tsv"
+  filtro_suero_principal:
+    q_value_max: 0.01
+    pg_q_value_max: 0.01
+    global_pg_q_value_max: 0.01
+    especie: al_menos_un_miembro_HUMAN
+    cuantificacion: PG.MaxLFQ
+    indice: Protein.Group
+  sensibilidades_suero:
+    - id: diann_por_defecto
+      que: "Q.Value <= 0.01 y Global.PG.Q.Value <= 0.01, sin PG.Q.Value por corrida"
+    - id: genes_maxlfq
+      que: "Genes.MaxLFQ por Genes, con GG.Q.Value <= 0.01 y Global.PG.Q.Value <= 0.01"
+    - id: sin_filtro_de_especie
+      que: "el filtro principal sin exigir _HUMAN"
+  contaminantes:
+    fuente: "https://github.com/HaoGroup-ProtContLib/Protein-Contaminant-Libraries-for-DDA-and-DIA-Proteomics"
+    commit: "bddf6da9334f4300caed75f7a87c096dd96b6bca"
+    fecha_commit: "2026-07-03T16:55:14Z"
+    fichero: "external/frankenfield_2022/0602_Universal_Contaminants.fasta"
+    sha256: "c0782146be6dad6ecf53e23e5a21a7ed4fea9b4802cb01e8d00091404ec66926"
+    bytes: 201365
+    regla: "Un grupo es contaminante si algún acceso, sin el prefijo Cont_, está en la librería, o si su símbolo coincide con el campo GN."
+    nota: "La librería incluye queratinas epiteliales (KRT8, KRT18, KRT19, KRT20). Salen del contraste principal porque la librería se fija entera. Vuelven en la sensibilidad con contaminantes. No se sacan a mano."
+  contaminante_piel:
+    genes: [KRT1, KRT2, KRT5, KRT9, KRT10, KRT14, KRT16, KRT6A, KRT6B, KRT6C, KRT17, KRT73, KRT78, DCD]
+  paneles_geyer_2019:
+    origen: "Lista del texto. La tabla suplementaria no se descargó: la URL probada devolvió 404. No se añadieron genes que el texto no nombra."
+    eritrocitos: [HBA1, HBB, HBD, CA1, CA2, PRDX2, CAT, SLC4A1]
+    plaquetas: [PF4, PPBP, TLN1, MYH9, ITGA2B, GP1BA, THBS1, GP5, PF4V1]
+    coagulacion: [FGA, FGB, FGG, F13A1, SERPINC1]
+    puntuacion: "mediana del z de log2 dentro de la matriz filtrada, por muestra y panel"
+    contraste_principal: "Las proteínas de estos paneles se excluyen del contraste y se reportan aparte."
+    sensibilidad: "La puntuación de coagulación entra como covariable."
+  tejido:
+    excluir_si:
+      - "el identificador empieza por CON__"
+      - "el identificador empieza por REV__"
+      - "Reverse es +"
+      - "Potential contaminant es +"
+      - "Only identified by site es +"
+    min_pares_observados: 8
+    motivo_min_pares: "El cierre del 31 de octubre usó 8 pares. v3 bajó el mínimo a 3 sin enmienda. Se vuelve a 8: en 16 pares, un efecto visto en menos de la mitad no entra en el contraste principal. No se elige por cuántas proteínas salen."
+  analisis_principal_suero: "sin contaminantes de la librería, sin contaminante_piel y sin proteínas de los paneles"
+  semillas:
+    base: 20260914
+    desplazamientos:
+      k4_alfa_efectivo: 710
+      k4_efecto_minimo: 711
+      k5_bootstrap_auc: 712
+      k5_permutacion_etiquetas: 713
+      k5_bootstrap_diferencia: 714
+      ml_cv: 720
+      ml_permutacion: 721
+      h5_submuestreo: 730
+      h7_modelo: 740
+      h7_bootstrap: 741
+      h8_ordinal: 750
+      h9_mr: 760
+      g_permutacion_vias: 770
+  salida: "results/v3_2/"
+  v3_congelado: true
+  crudos_pxd055218: "no se descargan. La búsqueda con AlphaDIA queda como extensión documentada."
+  firebase: "no se despliega. La web se construye solo en local."
