@@ -32,3 +32,11 @@ Resultado. Tres tests pasan. `results/v3_manifest.sha256` resume 66 ficheros de 
 Comando: `curl` de `https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD055218/DIA-NN_report.tsv` hacia `data/raw/plasma/DIA-NN_report.tsv`.
 
 Resultado. La primera descarga se cortó a los 14 minutos con `curl` código 56 (tiempo de espera), en unos 50 MB de 203. Se reanudó con `curl -C -`. El parser nuevo está en `src/oncogo_crc/utils/dia_nn_plasma.py`. Los tests sintéticos pasan. El test con el report real se salta mientras el fichero no tenga 213 313 241 bytes. `download_real.py` ya no escribe encima del report. `plasma_crc_2024` tiene `overwrite: false` para no pisar la matriz ancha histórica. La etapa `v3_2_suero` está en el commit `590412e` y no se ha corrido: sin el report completo no hay cifra.
+
+## 2026-11-06 17:00 (UTC−5). Fase 1 y 2, código antes de la cifra
+
+Comando: `pytest tests/test_v3_2_filtros.py tests/test_v3_2_sello.py tests/test_v3_2_suero.py`.
+
+Resultado. 8 pasan y 1 se salta (el report aún no tiene 213 313 241 bytes). El análisis S2–S9 está en `src/oncogo_crc/v3/suero_v32.py` y no se ejecuta hasta que el SHA-256 coincida. El tejido, que ya está en disco, se corre en la etapa `v3_2_tejido` con el filtro CON__/REV__ y 8 pares.
+
+Decisión. No se interpretan queratinas ni el ranking exploratorio. La frase del suero sale de las clases de treat y TOST cuando el report esté completo.

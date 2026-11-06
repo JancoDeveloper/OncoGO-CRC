@@ -23,6 +23,7 @@ from oncogo_crc.utils.io import write_tsv
 from oncogo_crc.utils.sello import escribir_sello, exigir_arbol_limpio, hacer_sello
 from oncogo_crc.v3.prereg import PreregistroV3
 from oncogo_crc.v3.rutas import rechazar_si_es_pipeline_antiguo
+from oncogo_crc.v3.suero_v32 import analizar_suero
 
 ESPERADO = {
     "filas": 283_488,
@@ -116,4 +117,5 @@ def run(settings: Settings) -> None:
     escribir_sello(salida / "sello_corrida.json", sello)
     if distinto or cifras["q_value_max"] > 0.01:
         raise RuntimeError(f"los controles no coinciden con la revisión: {distinto or cifras}")
+    analizar_suero(tabla, traza, ancha, prereg, salida, sello, settings)
     print(f"[v3.2] matriz principal {payload['n_grupos_en_matriz_principal']} grupos -> {destino_matriz}")

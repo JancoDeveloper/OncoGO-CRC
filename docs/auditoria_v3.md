@@ -97,3 +97,5 @@ Comprobado en esta pasada:
 - El intérprete del entorno es Python 3.14.3. El prompt dice 3.11. Gana el fichero real: el sello escribe 3.14.3.
 - `make manifest-verify` coincidió (11 entradas, 31 de v1). `make regresion-v1` pasó: 688, 140, 28, 104/119, 226 y 307.
 - Los 60 crudos no se descargan. La web no se despliega.
+- Lista de ficheros de PRIDE, 6 de noviembre de 2026, `external/pride/PXD055218/files.json`: 61 ficheros. 60 son `.raw` de Thermo (`CP_`, `CN_`, `HC_`) y el otro es `DIA-NN_report.tsv` de 213 313 241 bytes. No hay `.fasta` ni `report.log.txt`. En el report parcial, las corridas se llaman `CP_`, `CN_` y `Normal_`, no `HC_`. El nombre del crudo y el de la corrida no coinciden. La base de búsqueda sigue sin fichero.
+- UniProt humano revisado con isoformas, descarga del 6 de noviembre de 2026: `external/uniprot/human_reviewed_isoforms.fasta.gz`, 42 560 entradas, SHA-256 `96a0fc42f6dbba02386eaae1d0241407eef335876bf0ddc6b1aa91144cb961ae`. Sirve para el ortólogo compartido. No es la base con la que los autores buscaron PXD055218.

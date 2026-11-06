@@ -32,6 +32,8 @@ COLUMNAS = [
     "Global.PG.Q.Value",
     "GG.Q.Value",
     "Proteotypic",
+    "Precursor.Quantity",
+    "Stripped.Sequence",
 ]
 
 
