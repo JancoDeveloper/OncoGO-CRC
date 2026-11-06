@@ -123,6 +123,23 @@ datasets:
       retries: 3
     requires_token: false
 
+  serum_pxd055218:
+    label: "Suero DIA PXD055218 (Rai 2025): cáncer, colonoscopia negativa y sanos"
+    role: clinical_layer
+    mvp_tier: core_required
+    matrix_path: data/raw/plasma/plasma_crc_matrix.tsv
+    sample_metadata: metadata/sample_metadata/plasma_metadata.tsv
+    id_column: sample_id
+    protein_column: protein_id
+    accession: PXD055218
+    download_real:
+      enabled: false
+      provider: pride
+      accessions: ["PXD055218"]
+      source_project_url: "https://www.ebi.ac.uk/pride/archive/projects/PXD055218"
+      matrix_source_accession_note: "PXD055218"
+    requires_token: false
+
   crcdb_context:
     enabled: false
     label: "CRCDB / contexto EOCRC (opcional)"

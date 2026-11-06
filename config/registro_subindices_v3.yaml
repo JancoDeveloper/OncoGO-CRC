@@ -1,0 +1,54 @@
+# Subíndices que añade la versión 3.
+#
+# config/registro_subindices.yaml sigue teniendo exactamente los cinco de v2:
+# un test lo exige y v2 no se reabre. Estos códigos no entran en el certificado
+# de v2.
+
+version: 3
+
+subindices:
+  - codigo: R1_primario_frente_a_mucosa
+    nombre: "Concordancia de signo, primario frente a mucosa"
+    unidad: fraccion
+    numerador: n_mismo_signo
+    denominador: n_sign_evaluable
+    unidad_denominador: proteinas_unicas
+    definicion: >-
+      Fracción de proteínas certificadas en CPTAC cuyo log2FC tiene el mismo
+      signo en el contraste pareado de tumor primario frente a mucosa de
+      PXD034575, entre las que ese contraste mide con log2FC finito y distinto
+      de cero.
+    nota_obligatoria: >-
+      El contraste principal es P frente a N. La cobertura se reporta junto al
+      valor. Si es menor que 0,50, es una concordancia condicionada a
+      detectabilidad.
+    metodo: clopper_pearson
+
+  - codigo: R1_metastasis_frente_a_mucosa
+    nombre: "Concordancia de signo, metástasis hepática frente a mucosa"
+    unidad: fraccion
+    numerador: n_mismo_signo
+    denominador: n_sign_evaluable
+    unidad_denominador: proteinas_unicas
+    definicion: >-
+      La misma fracción, con el contraste pareado de metástasis hepática frente
+      a mucosa. Es un contraste secundario, con su nombre. No es la réplica del
+      tumor primario.
+    nota_obligatoria: >-
+      M frente a N mezcla hígado y tumor. No se presenta como la réplica de la
+      dirección del primario.
+    metodo: clopper_pearson
+
+  - codigo: R1_linea_base_h5
+    nombre: "Concordancia de signo frente a otros carcinomas"
+    unidad: fraccion
+    numerador: n_mismo_signo
+    denominador: n_sign_evaluable
+    unidad_denominador: proteinas_unicas
+    definicion: >-
+      Concordancia de signo entre el primario de PXD034575 y cada otro carcinoma
+      de CPTAC con proteoma normal, con intervalo de Clopper-Pearson.
+    nota_obligatoria: >-
+      Si la fuente pan-cáncer no está leída, el estado es no_evaluable y no se
+      publica un número. No es una fusión de matrices.
+    metodo: clopper_pearson

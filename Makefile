@@ -140,3 +140,19 @@ serve-v2:
 # No entra en `all` ni en `all-v2`: no reescribe el certificado.
 tesis-cierre:
 	$(RUN) tesis_cierre
+
+# ---------------------------------------------------------------------- v3
+# Escribe solo bajo results/v3/. v1, v2 y el cierre no se tocan.
+.PHONY: v3-manifiestos v3-citas v3-correcciones all-v3
+
+v3-manifiestos:
+	$(PY) scripts/v3/congelar_manifiestos.py
+
+v3-citas:
+	$(PY) scripts/v3/verificar_citas.py
+
+v3-correcciones:
+	$(RUN) v3_correcciones
+
+all-v3: manifest-write v3-manifiestos regresion-v1 v3-citas v3-correcciones
+	@echo "v3 parcial. Resultados en $(WORKSPACE)/results/v3/"
