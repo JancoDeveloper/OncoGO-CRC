@@ -40,3 +40,11 @@ Comando: `pytest tests/test_v3_2_filtros.py tests/test_v3_2_sello.py tests/test_
 Resultado. 8 pasan y 1 se salta (el report aún no tiene 213 313 241 bytes). El análisis S2–S9 está en `src/oncogo_crc/v3/suero_v32.py` y no se ejecuta hasta que el SHA-256 coincida. El tejido, que ya está en disco, se corre en la etapa `v3_2_tejido` con el filtro CON__/REV__ y 8 pares.
 
 Decisión. No se interpretan queratinas ni el ranking exploratorio. La frase del suero sale de las clases de treat y TOST cuando el report esté completo.
+
+## 2026-11-06 17:05 (UTC−5). Fase 2, tejido
+
+Comando: `oncogo-crc run --stage v3_2_tejido --data-workspace /Volumes/JANCODATA/OncoGO-CRC`.
+
+Resultado. `results/v3_2/k1_etiquetas.json`. Se excluyen 237 filas (CON__, REV__ y las marcas de MaxQuant). Con mínimo de 8 pares, primario frente a mucosa es 89/90, IC 0,940–1,000, Spearman 0,713, Lin 0,704. H1 sigue en `rechaza_h1`. Metástasis frente a mucosa: 69/82. No pareado: 95/98. Hígado: 13 pasan, 2 no evaluables, 1 falla. Mucosa: 16 no evaluables (pocos genes observados en el par). Cromosoma Y: no detectado en la matriz. Nadie se excluye en la sensibilidad, porque nadie falla dos de tres pruebas.
+
+Decisión. No se reetiqueta ninguna muestra. El mínimo de 8 pares es el de la enmienda, no se movió al ver 89/90.

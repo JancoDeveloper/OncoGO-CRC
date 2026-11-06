@@ -1,0 +1,90 @@
+{
+  "estado": "calculado",
+  "min_pares_observados": 8,
+  "n_filas_excluidas_contaminante_o_decoy": 237,
+  "n_pares_primario_mucosa": 16,
+  "n_pares_metastasis_mucosa": 16,
+  "n_pares_metastasis_primario": 16,
+  "n_pares_sensibilidad_etiquetas": 16,
+  "participantes_excluidos_solo_en_sensibilidad": [],
+  "n_certificadas": 688,
+  "contrastes": {
+    "primario_frente_a_mucosa": {
+      "numerador": 89,
+      "denominador": 90,
+      "estimacion": 0.9888888888888889,
+      "ci_low": 0.9396425194252669,
+      "ci_high": 0.9997187305863082,
+      "spearman": {
+        "n": 90,
+        "rho": 0.7133473268304729,
+        "p": 3.044278320451987e-15
+      },
+      "lin": {
+        "n": 90,
+        "ccc": 0.7039752671364922
+      }
+    },
+    "metastasis_hepatica_frente_a_mucosa": {
+      "numerador": 69,
+      "denominador": 82,
+      "estimacion": 0.8414634146341463,
+      "ci_low": 0.7441667270876365,
+      "ci_high": 0.9127950953364374,
+      "spearman": {
+        "n": 82,
+        "rho": 0.6800861984523461,
+        "p": 2.113975068541549e-12
+      },
+      "lin": {
+        "n": 82,
+        "ccc": 0.3895265686884572
+      }
+    },
+    "primario_frente_a_mucosa_no_pareado": {
+      "numerador": 95,
+      "denominador": 98,
+      "estimacion": 0.9693877551020408,
+      "ci_low": 0.9131369911217164,
+      "ci_high": 0.9936419742825396,
+      "spearman": {
+        "n": 98,
+        "rho": 0.6818213695975109,
+        "p": 1.0881340124190403e-14
+      },
+      "lin": {
+        "n": 98,
+        "ccc": 0.6894133025359924
+      }
+    }
+  },
+  "h1_clausula_proteina": "rechaza",
+  "h1_veredicto": "rechaza_h1",
+  "cobertura": {
+    "nombre": "R1_cobertura",
+    "valor": 0.1308139534883721,
+    "numerador": 90,
+    "denominador": 688,
+    "unidad_denominador": "proteinas_unicas",
+    "ci_low": 0.1065179677095568,
+    "ci_high": 0.15832619708212506,
+    "p_vs_azar": 6.736958137240193e-93
+  },
+  "sello": {
+    "commit": "670c7d403c561834273d2e6a76127eb361398da2",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-06T22:00:52Z",
+    "sha256_preregistro": "f9e1c23990245ca6b3d6d9f1a5e54dbf543c8507128696a2414b949d7ddcecdb",
+    "sha256_enmiendas": "739cc3b7bdfc7f67c0de7af2db005cfc65327d61e64d0cdaca6338926bc5abed",
+    "sha256_manifest_entradas": "9253faf6edb8036dd446dea1742fc8546efa7394c3429d6b91c62592d6219748",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_2_tejido"
+  }
+}
