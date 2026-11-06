@@ -1,0 +1,368 @@
+# Preregistro de la versión 3 de OncoGO-CRC
+#
+# Este fichero se commitea solo, antes de descargar o abrir cualquier fuente
+# nueva y antes de calcular H5 a H10. Fija hipótesis, umbrales, tamaños mínimos,
+# semillas y reglas de decisión. Un cambio posterior se escribe en
+# docs/enmiendas_v3.md con fecha, motivo y valor anterior. El valor viejo no se
+# borra.
+#
+# Fecha de preregistro: 2026-11-06
+# Commit de citas previo: corrección de PXD036434, Álvez 2023 y Wannberg,
+# verificada contra api.crossref.org el mismo día.
+# Hereda, sin relajarlos, alpha, treat y la semilla base de config/preregistro_v2.yaml.
+
+version: 3
+fecha_preregistro: "2026-11-06"
+hereda: config/preregistro_v2.yaml
+
+# ---------------------------------------------------------------- 1. Inferencia
+# Los umbrales de v2 no se mueven. No se imputa. No se fusionan matrices.
+# No se aplica un segundo log2 a CPTAC. El cero de MaxQuant y la ausencia en
+# DIA-NN son ausencia.
+inferencia:
+  alpha: 0.05
+  correccion_multiple: benjamini_hochberg
+  treat_lfc: 0.585
+  min_pares_observados: 3
+  min_por_grupo_suero: 8
+  fraccion_minima_observada: 0.70
+  escala_cptac: log2_ratio
+  cero_maxquant_es_ausencia: true
+  ausencia_diann_es_ausencia: true
+  fusionar_cohortes: false
+  combat_entre_estudios: false
+  segundo_log2_cptac: false
+  imputar: false
+
+# ------------------------------------------------------------------ 2. Semillas
+# Base de v1 y v2. Los desplazamientos 600 a 699 son de v3 y no se reasignan.
+semillas:
+  base: 20260914
+  desplazamientos:
+    k4_alfa_efectivo: 610
+    k4_efecto_minimo: 611
+    k5_bootstrap_auc: 612
+    k5_permutacion_etiquetas: 613
+    k5_bootstrap_diferencia: 614
+    h5_permutacion: 630
+    h7_modelo: 640
+    h7_bootstrap: 641
+    h8_ordinal: 650
+    h9_mr: 660
+    g_permutacion_vias: 670
+
+# ------------------------------------------------------- 3. K1. Etiquetas
+# PXD034575. El contraste principal es el primario (sufijo P) frente a la
+# mucosa (sufijo N), pareado por participante. M es la metástasis hepática.
+# La palabra histórica que v2 guardó para P no se lee como tejido.
+k1_etiquetas:
+  accesion: PXD034575
+  sufijos:
+    P: primary
+    M: liver_metastasis
+    N: mucosa
+  contraste_principal:
+    nombre: primario_frente_a_mucosa
+    grupo_a: primary
+    grupo_b: mucosa
+    diseno: pareado_por_participante
+  contrastes_secundarios:
+    - nombre: metastasis_hepatica_frente_a_mucosa
+      grupo_a: liver_metastasis
+      grupo_b: mucosa
+      diseno: pareado_por_participante
+    - nombre: metastasis_hepatica_frente_a_primario
+      grupo_a: liver_metastasis
+      grupo_b: primary
+      diseno: pareado_por_participante
+  comparacion_con_v1:
+    # El 104/119 de v1 salió de un contraste no pareado que tomó M como tumor.
+    # Se repite el mismo método no pareado con P frente a N para aislar el
+    # efecto de la etiqueta. No sustituye al contraste principal.
+    diseno: no_pareado
+    grupo_a: primary
+    grupo_b: mucosa
+  eje_precursor:
+    # PXD034575 no aporta adenoma. El eje de precursores es el de la sección F4.
+    usar_pxd034575_como_adenoma: false
+  r1:
+    universo: proteinas_certificadas_cptac_treat_bh
+    denominador: proteinas_con_log2fc_finito_y_distinto_de_cero_en_las_dos
+    unidad: proteinas_unicas
+    intervalo: clopper_pearson
+    metricas_adicionales: [spearman, concordancia_de_lin]
+  r2:
+    # El 226/688 de v2 cuenta péptidos únicos. No depende de la etiqueta.
+    # Se recomputa y, si no cambia, se dice. La cobertura del contraste nuevo
+    # se reporta aparte y no se presenta como si fuera ese 226/688.
+    definicion_v2: peptido_unico_en_proteinGroups
+    cobertura_nueva: log2fc_finito_en_el_contraste_principal
+  r3:
+    # Tres cohortes solo si K2 no encuentra solapamiento. Si no se puede
+    # descartar, R3 de tres cohortes queda no_evaluable y no se publica un
+    # número heredado de v2.
+    minimo_cohortes_independientes: 3
+    si_independencia_no_resuelta: no_evaluable
+
+# -------------------------------------------------- 4. K2. Independencia
+k2_independencia:
+  cohortes: [PXD034575, PXD019504, PXD031705]
+  nivel_a: sumas_de_verificacion_pride
+  nivel_b:
+    correlacion_minima: 0.98
+    proteinas_minimas: 200
+  regla: >-
+    Si no se puede descartar que dos depósitos comparten personas, entra una
+    sola en cada análisis: la de mayor número de pares. Se declara cuál y por qué.
+
+# ------------------------------------------------------- 5. K4. Suero
+# PXD055218. «No hay señal» solo se escribe para la clase equivalente.
+k4_suero:
+  accesion: PXD055218
+  dataset: serum_pxd055218
+  contrastes:
+    - crc_frente_a_colonoscopia_negativa
+    - crc_frente_a_sanos
+    - colonoscopia_negativa_frente_a_sanos
+  diseno: no_pareado
+  margenes_tost_log2: [-0.585, 0.585]
+  potencia_objetivo: 0.80
+  n_sim_alfa: 2000
+  n_sim_efecto: 1000
+  delta_maximo_busqueda: 4.0
+  alfa_efectivo: >-
+    Se simula el catálogo bajo efecto cero, con el error estándar y los grados
+    de libertad observados. En cada simulación el umbral es el mayor p que BH
+    rechaza; si no rechaza ninguno, es alpha dividido por el número de proteínas
+    con p finito. El alfa efectivo es la mediana de esos umbrales. No se usa una
+    fórmula cerrada de tamaño muestral.
+  efecto_minimo_detectable: >-
+    Para cada proteína, el menor |log2FC| en la rejilla tal que la fracción de
+    simulaciones con p de treat por debajo del alfa efectivo alcanza la potencia
+    objetivo. Si no se alcanza dentro de delta_maximo_busqueda, el estado es
+    no_alcanzable.
+  clases:
+    diferente: treat significativo tras BH
+    equivalente: p de TOST, el máximo de las dos colas, significativo tras BH
+    conflicto: las dos clases a la vez; no se usa ninguna de las dos frases
+    indeterminada: el resto
+  frase_no_hay_senal: solo_si_clase_equivalente
+
+# -------------------------------------------------------- 6. K5. AUC
+k5_auc:
+  auc: con_signo
+  clase_positiva:
+    crc_frente_a_colonoscopia_negativa: crc
+    colonoscopia_negativa_frente_a_sanos: colonoscopy_negative
+  plegado: false
+  intervalo_delong: true
+  bootstrap:
+    n: 2000
+    tipo: estratificado_por_grupo
+    intervalo: percentil_2.5_97.5
+  nulo_del_maximo:
+    contraste: crc_frente_a_colonoscopia_negativa
+    estadistico: maximo_del_auc_plegado_en_el_catalogo
+    n_permutaciones: 10000
+    unidad: permutacion_de_etiquetas_de_muestra
+    p: "(b + 1) / (B + 1)"
+  comparacion_de_auc:
+    # DeLong no aplica: los dos contrastes no comparten los dos grupos.
+    metodo: bootstrap_estratificado_de_la_diferencia
+    grupos_remuestreados: [crc, colonoscopy_negative, healthy]
+  minimo_observados_por_grupo: 8
+
+# ----------------------------------------------- 7. K6. Faltantes
+k6_faltantes:
+  umbral_observacion: 0.70
+  por_debajo_del_umbral:
+    prueba_de_presencia: fisher_exacto
+    correccion: benjamini_hochberg
+    contraste_de_abundancia: separado_solo_sobre_observados
+  referencias: [Lazar 2016, Webb-Robertson 2015]
+  no_imputar_para_rescatar: true
+
+# ----------------------------------------- 8. K7. Control técnico
+k7_control_tecnico:
+  accesion: PXD055218
+  por_corrida: [n_grupos_proteicos, mediana_de_intensidad]
+  alta_abundancia: [ALB, IGHA1, IGHA2, IGHG1, IGHG2, IGHG3, IGHG4, IGHM, IGKC, IGLC1, IGLC2]
+  hemolisis: [HBA1, HBB, CA1, PRDX2]
+  # Nombradas en el texto de Geyer et al., EMBO Mol Med 2019. No es la tabla
+  # completa de 30 proteínas de cada panel: esa tabla no se copió aquí.
+  plaquetas: [PPBP, GP1BA, THBS1, GP5, PF4V1]
+  coagulacion_baja_en_suero: [FGA, FGB, FGG, F13A1, SERPINC1]
+  prueba_entre_grupos: kruskal_wallis
+  alpha_exploratorio: 0.05
+  regla: >-
+    Si un indicador difiere entre grupos, se declara confusión técnica en ese
+    indicador. Es una pantalla de limitación, no un descubrimiento.
+  precursores: >-
+    El número de precursores por corrida solo se calcula si DIA-NN_report.tsv
+    sigue en el disco. Si el informe se sustituyó por la matriz ancha, queda
+    no_disponible y se dice.
+  orden_de_corrida: >-
+    Si el orden no está en el informe y haría falta bajar los crudos, se declara
+    como limitación. No se reconstruye.
+
+# ------------------------------------------------------- 9. K9 y K10
+k9_pipeline_antiguo:
+  no_leer:
+    - results/differential/
+    - results/go/
+    - results/gsea/
+    - results/ml/
+  motivo: >-
+    config/config.yaml conserva project.seed 42 e imputation knn del pipeline
+    viejo. Ningún número de v3 sale de esas etapas.
+k10_denominadores:
+  unidad: proteinas_unicas
+  exigir_numerador_y_denominador: true
+
+# ------------------------------------------------------- 10. Hipótesis
+# Cada una se declara sostiene, refuta, no_evaluable o requiere_acceso.
+# No se promedian entre sí. Lo que no se haya calculado queda no_evaluable,
+# sin un número aproximado.
+hipotesis:
+  h1:
+    heredada_de: config/preregistro_v2.yaml
+    reevaluar_con: k1_etiquetas.contraste_principal
+    umbral_concordancia_proteina: 0.70
+    nota: El umbral no cambia. Cambia la réplica: P frente a N, no M frente a N.
+  h2:
+    estado_heredado: no_evaluada
+    motivo: Sigue sin un nulo que conserve el grado de cada nodo.
+  h4:
+    umbral: 0.90
+    prediccion: se falsifica si al menos 0,90 de los candidatos ya es medible
+  h5:
+    nombre: especificidad_de_organo_en_tejido
+    prediccion: >-
+      Una parte importante del cambio tumor frente a normal de CPTAC colon es
+      común a otros carcinomas.
+    canceres: [CCRCC, HNSCC, LSCC, LUAD, OV, PDAC, UCEC]
+    fuente: LinkedOmicsKB
+    regla_de_clase:
+      pan_carcinoma: mismo signo y treat en al menos 4 de los 7
+      especifica_colon: treat en colon y en ninguno de los otros con el mismo signo
+      intermedia: el resto
+    linea_base: >-
+      Concordancia de signo entre Tanaka P frente a N y cada otro cáncer de
+      CPTAC, con intervalo de Clopper-Pearson.
+    refutacion: >-
+      Fracción pan_carcinoma menor que 0,20 y concordancia con otros órganos al
+      menos 0,15 por debajo de la concordancia con colon.
+    umbral_fraccion_pan_carcinoma: 0.20
+    diferencia_minima_frente_a_colon: 0.15
+  h6:
+    nombre: origen_celular
+    prediccion: >-
+      La concordancia entre cohortes difiere entre proteínas epiteliales del
+      tumor y proteínas de estroma o inmunes. La prueba es bilateral. No se
+      predice el sentido.
+    referencia_primaria: Pelka 2021 GSE178341
+    respaldo_si_falla_la_descarga: HPA single cell type
+    lineas_celulares: CCLE Nusinow 2020
+    prueba: interaccion_bilateral
+  h7:
+    nombre: visibilidad_en_sangre
+    prediccion: >-
+      Un modelo con variables conocidas antes de mirar la sangre predice qué
+      proteínas tumorales cambian en sangre en la misma dirección.
+    variables:
+      - componente_celular_go
+      - hpa_secreted_to_blood
+      - concentracion_plasmatica_hpa_log10
+      - especificidad_tisular
+      - origen_celular_h6
+      - clase_h5
+      - magnitud_en_tejido
+      - abundancia_en_tejido
+      - presencia_en_vesiculas_pxd033236
+    resultado: cambio concordante y significativo en sangre
+    validacion: dejar_un_recurso_de_sangre_fuera
+    metrica: auc_con_intervalo_bootstrap
+    calibracion: true
+    sostiene: limite_inferior_del_auc_mayor_que_0.55 en al menos 2 de 3 recursos
+    refuta: el intervalo incluye 0.50 en todos los recursos
+    umbral_limite_inferior: 0.55
+    recursos_minimos: 2
+    n_recursos: 3
+    fase_pepe: 1
+    no_es_prueba_diagnostica: true
+    modelo: [logistica_penalizada, arboles_como_sensibilidad]
+    reporte: TRIPOD+AI
+  h8:
+    nombre: carga_tumoral_en_suero
+    fuente: PXD064655
+    contraste: estadio_IV_frente_a_I_II
+    diseno: no_pareado_treat
+    prediccion: >-
+      Las proteínas que suben en estadio IV frente a I-II están enriquecidas en
+      proteínas tumorales epiteliales del tejido, por encima de lo que explican
+      la fase aguda y las proteínas hepáticas.
+    listas_de_ruido:
+      fase_aguda: GO:0006953
+      higado: HPA tejido enriquecido en hígado y secretadas a sangre
+      hemolisis: [HBA1, HBB, CA1, PRDX2]
+    sensibilidad: correlacion_con_estadio_ordinal
+    advertencia: la mitad de los casos pueden ser estadio IV con metástasis hepática
+  h9:
+    nombre: direccion_causal
+    exploratoria: true
+    decide_la_tesis: false
+    instrumentos: cis_1Mb
+    metodos: [wald, ivw]
+    sensibilidad_si_hay_al_menos_3_instrumentos: [mr_egger, mediana_ponderada]
+    colocacion_pp_h4_minimo: 0.8
+    reporte: STROBE-MR
+    si_exige_registro: requiere_acceso
+  h10:
+    nombre: especificidad_clinica_en_sangre
+    proteinas_de_partida: [SAA1, LBP, CHMP4A, BAIAP3, FN1, TPM4]
+    panel_adicional: fase_aguda
+    comparacion: otras enfermedades en HPA Disease Blood Atlas y Wannberg
+    no_usar_controles_sanos_de_alvez_como_sintomaticos: true
+    fase_pepe: 1
+
+# ------------------------------------------------- 11. Recursos nombrados
+# Las columnas se leen del fichero cuando se abre y se escriben en la ficha.
+# No se eligen después de ver el efecto. Si el fichero no está o pide cuenta,
+# el estado es no_disponible o requiere_acceso. No se sustituye.
+recursos:
+  sangre:
+    - id: alvez_2023
+      papel: validacion_1_h7_frente_a_sanos_optimista
+      diseno: estadisticas_publicadas
+    - id: hpa_disease_blood_atlas
+      papel: validacion_2_h7_y_base_de_h10
+      estado_al_preregistro: por_verificar
+    - id: papier_2024
+      papel: validacion_3_h7_prospectivo
+      estado_al_preregistro: por_verificar
+    - id: wannberg
+      papel: contraste_h10_cancer_frente_a_sintomaticos
+      no_generalizar_a_colon: true
+      ano_crossref: 2025
+      volumen: 17
+      numero_de_articulo: 151
+  tejido_nulo_h5: LinkedOmicsKB
+  precursores_f4: [Li 2024 Cancer Research, Wisniewski 2015, PXD000445]
+  suero_dentro_del_cancer: PXD064655
+
+# ------------------------------------------------- 12. Vías
+vias_suero:
+  n_min_terminos: 10
+  n_permutaciones: 10000
+  p: phipson_smyth_2010
+  si_no_se_alcanza_el_minimo: no_evaluable
+
+# ------------------------------------------------- 13. Lo que no se hace
+prohibido:
+  - relajar_fdr_treat_o_auc_despues_de_ver_los_datos
+  - imputar
+  - presentar_h7_como_prueba_clinica
+  - llamar_validacion_a_una_comprobacion_de_direccion_con_estadisticas_publicadas
+  - borrar_numeros_de_v1_v2_o_cierre
+  - citar_un_doi_que_no_este_en_references.bib
+  - escribir_un_numero_que_no_salga_de_una_tabla
