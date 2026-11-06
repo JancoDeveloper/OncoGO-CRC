@@ -1,0 +1,26 @@
+% !TeX program = lualatex
+% !BIB program = biber
+% Archivo principal de Overleaf. Compiler: LuaLaTeX. Bibliografía: Biber.
+% Estilo por defecto: APA 7 (biblatex style=apa). La guía de 2022 no impone estilo.
+% Para Vancouver, en ucaldas-tesis.cls cambie style=apa por style=vancouver.
+\documentclass{ucaldas-tesis}
+\addbibresource{references.bib}
+
+\begin{document}
+
+\input{chapters/00-cubierta}
+\input{chapters/00-portada}
+\input{chapters/03-resumen}
+\input{chapters/04-abstract}
+\input{chapters/05-preliminares}
+\input{chapters/06-introduccion}
+\input{chapters/07-marco-teorico}
+\input{chapters/08-metodos}
+\input{chapters/09-resultados}
+\input{chapters/90-conclusiones}
+\input{chapters/91-anexos}
+
+\cleardoublepage
+\printbibliography[heading=bibintoc,title={Referencias bibliográficas}]
+
+\end{document}

@@ -1,0 +1,104 @@
+\chapter{Resultados y discusión}
+
+\section{El suero no separa el cáncer de la otra enfermedad}
+PXD055218 tiene los tres grupos, veinte corridas cada uno. Se probaron alrededor de setecientas proteínas en cada contraste. Cáncer frente a colonoscopia negativa: cero proteínas dentro del corte. Cáncer frente a personas sanas: tres. Colonoscopia negativa frente a personas sanas: una. La figura~\ref{fig:suero} resume ese conteo.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/figura-suero.png}
+\caption{Proteínas del suero PXD055218 que superan la tasa de descubrimientos falsos de 0,05 y el cambio mínimo de 1,5 veces}
+\label{fig:suero}
+\fuente{elaboración propia, corrida del 31 de octubre de 2026.}
+\end{figure}
+
+\begin{table}[ht]
+\caption{Proteínas del suero que pasan los dos cortes}
+\centering
+\begin{tabular}{@{}p{2.2cm}p{2.3cm}p{4.4cm}p{1.8cm}p{1.8cm}p{2.2cm}@{}}
+\toprule
+Proteína & Acceso & Contraste & log2FC & FDR & $n$ \\
+\midrule
+SAA1 & P0DJI8 & Cáncer frente a sanos & 3,26 & 0,0002 & 40 \\
+LBP & P18428 & Cáncer frente a sanos & 1,25 & 0,007 & 40 \\
+CHMP4A & Q9BY43 & Cáncer frente a sanos & 5,42 & 3,4e-7 & 16 de 40 \\
+APOA4 & P06727 & Enfermedad frente a sanos & $-1{,}32$ & 0,022 & 40 \\
+\bottomrule
+\end{tabular}
+\fuente{elaboración propia, corrida del 31 de octubre de 2026. FDR: tasa de descubrimientos falsos.}
+\end{table}
+
+SAA1 y LBP están anotadas como secretadas a la sangre. En la ficha de LBP aparece el término GO de respuesta de fase aguda. Frente a la colonoscopia negativa no pasan el corte. CHMP4A tiene un cambio grande y la mitad de los sueros sin medición. Un hueco no es un cero biológico, y no se presenta como marcador. APOA4 baja en la enfermedad intestinal frente a las personas sanas y no separa el cáncer de esa enfermedad.
+
+\section{El área bajo la curva es más laxa que el FDR}
+Ocho candidatas de la literatura cumplen la regla de área bajo la curva. Cinco ya estaban en la lista de fase aguda: C9, LRG1, SERPINA1, CRP y HP. Tres no tienen esa marca y tampoco pasan el control de falsos: BAIAP3, FN1 y TPM4.
+
+\begin{table}[ht]
+\caption{Candidatas que cumplen la regla de área bajo la curva}
+\centering
+\begin{tabular}{@{}p{2.4cm}p{4.2cm}p{4.4cm}p{3.6cm}@{}}
+\toprule
+Gen & AUC cáncer vs.\ enfermedad & Lectura & FDR del mismo contraste \\
+\midrule
+BAIAP3 & 0,82 & Sin marca de ruido & 0,20 \\
+FN1 & 0,70 & Sin marca de ruido & No pasa \\
+TPM4 & 0,80 & Sin marca de ruido & No pasa \\
+C9 & 0,81 & Fase aguda & No pasa \\
+LRG1 & 0,78 & Fase aguda & No pasa \\
+SERPINA1 & 0,73 & Fase aguda & No pasa \\
+CRP & 0,73 & Fase aguda & No pasa \\
+HP & 0,71 & Fase aguda & No pasa \\
+\bottomrule
+\end{tabular}
+\fuente{elaboración propia. AUC: área bajo la curva. El valor es el mayor entre el AUC y su complemento.}
+\end{table}
+
+BAIAP3, acceso O94812, es la proteína que Rai y colaboradores señalaron en suero. El log2FC frente a la colonoscopia negativa es 2,20, con 35 observaciones. El área bajo la curva pasa y la tasa de descubrimientos falsos no. Queda como candidata de otro estudio, con más personas. No es un hallazgo de esta tesis. FN1 en este suero está un poco más baja en cáncer que en personas sanas, log2FC $-0{,}27$, en la misma dirección que el plasma de \textcite{verathamjamras2023}. CEACAM5 no está medida en esta matriz DIA, así que el panel sérico de \textcite{ogren2026} no se puede auditar aquí.
+
+\section{El tejido, leído con la leyenda del artículo}
+PXD034575 tiene 16 pacientes y tres columnas por paciente. P es tumor primario, M es metástasis hepática y N es mucosa. Después de tratar el cero como ausencia y pasar a log2, la escala queda como logaritmo de intensidad lineal. CEACAM5 sube en el primario: log2FC 3,87, tasa de descubrimientos falsos 0,002, 13 pares. Esa dirección confirma que el contraste quedó orientado.
+
+\begin{table}[ht]
+\caption{Contrastes pareados de PXD034575}
+\centering
+\begin{tabular}{@{}p{6.5cm}p{4cm}p{3.5cm}@{}}
+\toprule
+Contraste & Significativas & Probadas \\
+\midrule
+Primario frente a mucosa & 58 & 2490 \\
+Metástasis frente a mucosa & 160 & 2430 \\
+Metástasis frente a primario & 16 & 2710 \\
+\bottomrule
+\end{tabular}
+\fuente{elaboración propia, después de convertir el cero en ausencia y la intensidad positiva en log2.}
+\end{table}
+
+\begin{table}[ht]
+\caption{Concordancia del tejido de Tanaka con CPTAC}
+\centering
+\begin{tabular}{@{}p{5.5cm}p{3.6cm}p{2.4cm}p{2.8cm}@{}}
+\toprule
+Comparación & Mismo signo & Genes & Correlación \\
+\midrule
+Primario frente a mucosa & 687 (78,6\,\%) & 874 & 0,83 \\
+Metástasis frente a mucosa & 597 (70,9\,\%) & 842 & 0,59 \\
+\bottomrule
+\end{tabular}
+\fuente{elaboración propia, contra la tabla certificada de CPTAC.}
+\end{table}
+
+Entre primario y metástasis el signo coincide en 708 de 876 genes, el 80,8\,\%. Entre los que coinciden, solo el 46,2\,\% tiene magnitud menor en el primario. No queda un gradiente en el que el primario sea una versión pequeña de la metástasis. La correlación 0,104 y el 56\,\% de igual signo, sobre 1\,993 proteínas, pertenecen a un cálculo anterior, con la etiqueta vieja de columnas. Esa cifra se conserva. No se sustituye por 0,83. Ninguna de las dos mide tejido contra sangre.
+
+\section{Las vías del tumor casi no están en este suero}
+De los términos GO biológicos con tasa de descubrimientos falsos menor o igual a 0,25 en CPTAC, entran al suero los que tienen al menos diez genes medidos. Son 12 en cáncer frente a personas sanas, 13 en cáncer frente a enfermedad y 12 en enfermedad frente a personas sanas. La correlación de sus puntuaciones con el tejido es $-0{,}28$, $-0{,}31$ y $-0{,}04$. El nulo, con 200 permutaciones, da valores de p de 0,34, 0,30 y 0,93. Este suero no contiene el grueso de los procesos que el tumor altera.
+
+\section{Lo ya medido hacia la sangre, y los péptidos}
+Una corrida anterior, que no se rehizo en este cierre, comparó la dirección del cambio en tejido y en plasma: coincide en 42 de 86 proteínas, 0,488. Dentro de la ventana de concentración en la que el suero sí puede ver la proteína, coincide en 34 de 63, 0,540, con intervalo de 0,409 a 0,666. Ese intervalo incluye el azar. La falta de transferencia no se explica solo porque el suero no alcance a medir proteínas escasas.
+
+La tabla de péptidos fija un límite, no una lista descubierta. Los 19 péptidos de Rai y colaboradores, los 96 neoepítopos de Xiang y colaboradores y los cinco péptidos de Hembrough y colaboradores quedan fuera de las filas de abundancia. En tejido CPTAC, 33 candidatas del catálogo se detectan y siete repiten el signo de la literatura con el corte fijado: CEACAM5, CA1, SMPDL3A, HBB, HBD, LCN2 y TOP2A. CA1, HBB y HBD quedan marcadas como posible hemólisis. LCN2 queda marcada como compartida con inflamación intestinal. TOP2A sube en tejido y no tiene contraste evaluable en este suero.
+
+\section{Discusión}
+El resultado se lee en dos capas. En tejido, el cambio del primario se parece al de CPTAC cuando las columnas se nombran como el artículo las nombra. En suero, esa biología no aparece como señal propia del cáncer. Lo que el suero separa de una persona sana es, en dos de los tres casos, una proteína secretada de respuesta del huésped. Eso encaja con el atlas de \textcite{malmstrom2025} y con la señal de huésped descrita por \textcite{seo2026}. No encaja con usar SAA1 o LBP como prueba de tumor.
+
+\textcite{rai2025} combinaron proteínas con el antígeno carcinoembrionario y reportaron un área bajo la curva de 0,758 en su propio estudio. Esta matriz no trae ese inmunoensayo, así que no se puede preguntar si alguna proteína añade algo al marcador que ya se usa. BAIAP3 sobrevive a la regla de área bajo la curva sin marca de fase aguda y no sobrevive al control de falsos. Con veinte personas por grupo, eso es una candidata, no una validación.
+
+\textcite{xiang2026} miden presentación por MHC en el tumor. \textcite{hembrough2026} recuperan péptidos de una persona. Este trabajo mide grupos de proteínas. Las tres preguntas son vecinas y no son la misma. Afirmar un neoantígeno a partir de estas filas cruzaría ese límite.

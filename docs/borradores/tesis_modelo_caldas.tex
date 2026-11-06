@@ -1,0 +1,304 @@
+% Archivo principal de Overleaf. Compiler: pdfLaTeX. Overleaf ejecuta Biber.
+% Estilo IEEE numerado, el de las tesis de la Facultad de Ingenierías.
+\documentclass[12pt,oneside]{report}
+\usepackage[english,spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=ieee,sorting=none,doi=true,isbn=false,url=false]{biblatex}
+\addbibresource{referencias.bib}
+\AtBeginBibliography{\selectlanguage{english}}
+\usepackage{hyperref}
+\usepackage{setspace}
+\geometry{margin=2.5cm}
+\onehalfspacing
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+\title{Qué parte del tumor colorrectal se deja ver en la sangre}
+\author{[Nombre completo del estudiante]\\Universidad de Caldas}
+\date{Manizales, 2026}
+\begin{document}
+\chapter*{Nota para el autor}
+Nota para quien entrega el documento. Esta organización sigue el modelo de las tesis de maestría de la Universidad de Caldas: portada, página de título, epígrafe, agradecimientos, resumen, abstract, capítulos y referencias. El contenido, las cifras y la bibliografía son de OncoGO-CRC, corrida tesis\_cierre del 31 de octubre de 2026. Quite esta nota, complete los corchetes y, si el programa lo pide, pase el texto a primera persona del plural. En Word, clic derecho sobre la tabla de contenido y elija Actualizar campos.
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Large Universidad de Caldas}\\[0.4cm]
+{\large Facultad de Ingenierías}\\[2cm]
+{\LARGE Qué parte del tumor colorrectal se deja ver en la sangre}\\[2cm]
+{\Large [Nombre completo del estudiante]}\\[2cm]
+Tesis presentada como requisito parcial para optar al título de:\\[0.3cm]
+Magíster en Bioinformática y Biología Computacional\\[2cm]
+Manizales, Colombia\\2026
+\end{titlepage}
+\tableofcontents
+\listoftables
+\chapter*{Epígrafe}
+\addcontentsline{toc}{chapter}{Epígrafe}
+[Escriba aquí una frase breve y cite a su autor. En las tesis de referencia esta página es personal y no forma parte del argumento científico.]
+
+\chapter*{Agradecimientos}
+\addcontentsline{toc}{chapter}{Agradecimientos}
+A la Universidad de Caldas, por la formación en el programa de Bioinformática y Biología Computacional. A [nombre del director], por la dirección de este trabajo. A [familia, profesores y compañeros, en las frases que cada quien quiera dejar].
+
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+El tumor colorrectal ya tiene un proteoma distinto del de la mucosa. Esta tesis pregunta cuánto de ese cambio sigue visible cuando la muestra es suero, y cuánto de lo que aparece en suero es compartido con otra enfermedad del intestino. Las matrices no se fusionaron. El tejido de anclaje es el de CPTAC, PDC000116, TMT, tumor y mucosa del mismo estudio. La réplica tisular es PXD034575: 16 pacientes con tumor primario, metástasis hepática y mucosa normal. El suero es PXD055218, adquisición independiente de datos, con 20 personas con cáncer, 20 con colonoscopia negativa y 20 sanas. El contraste es una t moderada contra un cambio mínimo de 1,5 veces, FDR 0,05, sin imputar ausencias.
+
+En el suero, ninguna proteína separó el cáncer de la colonoscopia negativa. Frente a personas sanas pasaron tres: SAA1, LBP y CHMP4A. SAA1 y LBP están secretadas y se leen como respuesta del organismo. CHMP4A tiene medición en 16 de 40 sueros. Ocho candidatas de la literatura superan un AUC de 0,70 frente a la colonoscopia negativa; cinco ya estaban marcadas como fase aguda y las otras tres no pasan el FDR. En tejido, el primario coincide en signo con CPTAC en 687 de 874 genes, correlación 0,83. De los procesos del tumor, este suero solo mide alrededor de doce con al menos diez genes, y esa concordancia no supera el azar. Una fila de grupo proteico no confirma un péptido mutado. La tesis responde la pregunta de visibilidad. No propone un examen de sangre.
+
+Palabras clave: cáncer colorrectal, proteómica, suero, especificidad, Gene Ontology, neoantígeno.
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+The colorectal tumor already has a proteome distinct from that of the mucosa. This thesis asks how much of that change remains visible in serum, and how much of the serum signal is shared with another bowel disease. Cohorts were not fused. The anchor tissue is CPTAC PDC000116. The tissue replicate is PXD034575, sixteen patients with primary tumor, hepatic metastasis and normal mucosa. The serum is PXD055218, data-independent acquisition, twenty people with cancer, twenty with a negative colonoscopy and twenty healthy people. The contrast is a moderated t test against a minimum 1.5-fold change, FDR 0.05, with no imputation.
+
+In serum, no protein separated cancer from the negative-colonoscopy group. Three proteins separated cancer from healthy people: SAA1, LBP and CHMP4A. Eight published candidates pass an AUC of 0.70 against the disease control; five were already tagged as acute-phase proteins and the other three fail the FDR. The primary tumor agrees in sign with CPTAC in 687 of 874 genes, correlation 0.83. About twelve tumor Gene Ontology terms are measured in this serum with at least ten genes, and that concordance does not beat the null. A protein-group row cannot confirm a mutated peptide. The thesis answers the visibility question. It does not propose a blood test.
+
+Keywords: colorectal cancer, proteomics, serum, specificity, Gene Ontology, neoantigen.
+
+\chapter*{Contenido}
+\addcontentsline{toc}{chapter}{Contenido}
+El orden es el de las tesis de maestría de la Universidad de Caldas: introducción, justificación, política pública y objetivos; marco teórico; materiales y métodos; análisis de resultados; conclusiones, trabajos futuros e impacto; referencias. En Word, clic derecho sobre el campo de contenido y elija Actualizar campos. En LaTeX, el contenido se genera al compilar dos veces.
+
+\chapter*{Lista de tablas}
+\addcontentsline{toc}{chapter}{Lista de tablas}
+Tabla 1. Cohortes y papel de cada una.
+
+Tabla 2. Contrastes del suero PXD055218.
+
+Tabla 3. Contrastes pareados del tejido PXD034575.
+
+Tabla 4. Concordancia del tejido de Tanaka con CPTAC.
+
+Tabla 5. Candidatas con AUC por encima de la regla y su lectura.
+
+\chapter{Introducción}
+\section{Introducción}
+El cáncer colorrectal se estudia desde hace años en el tejido. El proteoma del tumor y el de la mucosa del mismo estudio ya fueron medidos en cohortes públicas, entre ellas la de CPTAC publicada por Vasaikar y colaboradores en 2019 \cite{vasaikar2019}. La pregunta clínica que queda abierta es otra: si una parte de ese cambio se puede leer en sangre, y si lo que se lee en sangre pertenece al cáncer o también aparece cuando el intestino está enfermo por otra causa.
+
+Comparar cáncer solo contra personas sanas enciende proteínas de respuesta del organismo. Esa comparación describe inflamación. La comparación que decide una señal propia del cáncer es cáncer frente a otra enfermedad intestinal. Rai y colaboradores, en 2025 \cite{rai2025}, midieron suero con tres grupos: cáncer, colonoscopia negativa y sanos. Esta tesis usa esa matriz para auditar la especificidad, y usa el tejido para preguntar si el cambio del tumor se repite y si llega a la sangre.
+
+El trabajo es de bioinformática sobre datos públicos. No recluta pacientes. No fusiona intensidades de plataformas distintas. No presenta un panel para la consulta. El producto es una lectura, con reglas escritas antes del resultado, de lo que el suero de esta matriz deja ver.
+
+\section{Justificación}
+Integrar proteomas públicos de cáncer colorrectal, tejido y biopsia líquida, ya está publicado. Robles, Prakash, Vizcaíno y Casal \cite{robles2024} lo hicieron en 2024. Esta tesis no reclama esa prioridad. El hueco que sí cierra es operativo: con una regla fijada de antemano, medir cuánto del cambio tisular se parece entre dos tejidos, cuánto de ese cambio está en el suero, y si las candidatas publicadas separan el cáncer de una colonoscopia negativa.
+
+Ese hueco importa porque varias listas de proteínas «de cáncer» se arman contra controles sanos, se solapan con fase aguda o con hemólisis, y luego se leen como marcadores. Una tesis que deje el cero por escrito, con el control de enfermedad y sin relajar el FDR, evita esa lectura.
+
+\section{Política pública a la que se da respuesta}
+En Colombia, la Ley 1384 de 2010 \cite{ley1384} ordena acciones para la atención integral del cáncer, incluida la detección temprana. Un examen de sangre sería, en ese marco, una herramienta deseable. Esta tesis no diseña ese examen. Lo que aporta a la discusión pública es el estándar de evidencia: una proteína que solo separa el cáncer de una persona sana no basta para una prueba de tamización. Hace falta que separe el cáncer de otra enfermedad del intestino, en una cohorte más grande que veinte personas por grupo, y a ser posible junto al antígeno carcinoembrionario medido en la misma persona. El resultado de este suero dice que esa barra, hoy, no se cruza.
+
+\section{Objetivos}
+\subsection{Objetivo general}
+Cuantificar cuánto del cambio proteico del tumor colorrectal se repite en otro tejido y cuánto es visible y específico en suero, sin fusionar matrices de plataformas distintas y sin presentar como propio un resultado ya publicado.
+
+\subsection{Objetivos específicos}
+\begin{itemize}
+\item Medir la concordancia de signo y de magnitud entre el tumor primario de PXD034575 y el tejido certificado de CPTAC, con la leyenda real de las columnas.
+\item Contrastar el suero de tres grupos y evaluar si las candidatas publicadas separan el cáncer de la colonoscopia negativa, además de separarlo de los sanos.
+\item Estimar si los procesos de Gene Ontology alterados en el tejido están medidos en el suero y si su dirección concuerda por encima del azar.
+\item Delimitar qué parte de los péptidos y neoantígenos publicados en 2025 y 2026 puede afirmarse con una matriz de grupos proteicos.
+\end{itemize}
+\chapter{Marco teórico}
+\section{El tumor y la sangre son dos preguntas}
+Una proteína alterada en el tumor sería útil en sangre si el mismo cambio se pudiera medir en el suero y si ese cambio no lo produjera también otra enfermedad. Malmström y colaboradores, en 2025 \cite{malmstrom2025}, describen el plasma como una mezcla cuyo origen es sobre todo el organismo, no la célula tumoral. Seo y colaboradores, en 2026 \cite{seo2026}, encuentran en vesículas proteínas del huésped. Esa literatura prepara el resultado de esta tesis: lo que separa el cáncer de una persona sana puede ser respuesta del huésped.
+
+\section{Qué mide cada técnica usada aquí}
+El tejido de CPTAC llega marcado con TMT. Varias muestras se comparan dentro del mismo experimento y el archivo ya está en log2. El tejido de Tanaka es LFQ: la intensidad de cada proteína se estima en cada muestra por separado, con MaxQuant. El suero de Rai es DIA: se intentan ver muchas proteínas a la vez, sin elegirlas de antemano, y el informe las entrega en grupos. El PRM de Rai, cuatro péptidos, es una medición dirigida que esta tesis no reanaliza. Lesur y colaboradores, en 2023 \cite{lesur2023}, miden un panel dirigido de plasma; esas columnas no entran porque un orden alfabético no es un diagnóstico.
+
+\section{Cómo se lee un cambio de abundancia}
+En MaxQuant, el cero significa que la proteína no se identificó en esa muestra. Cox y Mann, en 2008 \cite{cox2008}, describen ese programa. Tratar el cero como cantidad cero hunde la mediana y hace creer que la matriz ya está en logaritmo. Por eso el cero se vuelve un hueco y solo la intensidad positiva pasa a log2. Un log2FC de 1 es el doble. Un log2FC de −1 es la mitad. El umbral 0,585 es el log2 de 1,5.
+
+Smyth, en 2004 \cite{smyth2004}, modera la varianza entre proteínas para que una medición escasa no se declare distinta solo porque su desviación salió pequeña. McCarthy y Smyth, en 2009 \cite{mccarthy2009}, llaman treat a la prueba contra un cambio mínimo, no contra cero. Benjamini y Hochberg, en 1995 \cite{benjamini1995}, controlan la fracción esperada de falsos entre las proteínas que se declaran distintas. El corte usado es 0,05. El AUC ordena personas: 0,50 es el azar. El AUC no dice si la proteína sube o baja y no sustituye al FDR.
+
+En Tanaka, tumor y mucosa son del mismo paciente: el contraste resta dentro de la persona. En el suero, los grupos son personas distintas: el contraste compara grupos. Pedir pareo donde no hay pares inventaría una relación.
+
+\section{Gene Ontology}
+Ashburner y colaboradores, en 2000 \cite{ashburner2000}, proponen Gene Ontology como vocabulario de procesos. Subramanian y colaboradores, en 2005 \cite{subramanian2005}, proponen mirar si los genes de un proceso se acumulan al principio de un ranking, no solo si un gen pasa un corte. Un suero que mide pocos genes de cada proceso no puede declarar que el proceso del tumor está en la sangre. Uhlén y colaboradores, en 2015 \cite{uhlen2015}, publican concentraciones de referencia en sangre. Esas concentraciones no son las de estos pacientes. Jumper y colaboradores, en 2021 \cite{jumper2021}, predicen un pliegue con AlphaFold. Un pliegue no demuestra que la cantidad haya cambiado.
+
+\section{Neoantígenos}
+Un neoantígeno es un péptido cuya secuencia cambió por una mutación y que el tumor puede presentar. Rai y colaboradores describen 19 péptidos en suero y validan cuatro por PRM, uno de ellos neoantigénico. Xiang y colaboradores, en 2026 \cite{xiang2026}, identifican 96 neoepítopos mutados de MHC-I en tejido de diez pacientes; la mayoría proviene de regiones no codificantes. Hembrough y colaboradores, en un resumen de congreso de 2026 \cite{hembrough2026}, recuperan cinco péptidos de una persona con cáncer colorrectal avanzado, desde vesículas de plasma. Ninguno de esos trabajos se convierte en una fila de esta tesis. La matriz guarda grupos de proteínas, no la letra mutada.
+
+\section{Estado del arte que cambia la lectura}
+Vasaikar y colaboradores, Cell 2019, son el ancla tisular. Tanaka y colaboradores, Cell Reports 2024 \cite{tanaka2024}, describen tripletes de primario, metástasis hepática y mucosa; la columna P de esa matriz es el primario, no un pólipo. Ögren y colaboradores, en 2026 \cite{ogren2026}, publican un panel de plasma para cáncer colorrectal formado por CEACAM5, FLT1, IL19 y ferritina. Verathamjamras, Chantaraamporn y colaboradores, en 2023 \cite{verathamjamras2023}, encuentran la fibronectina más baja en plasma de cáncer que en sanos. Yu y colaboradores, en 2026 \cite{yu2026}, proponen candidatas tempranas que esta tesis no descubre: las audita. Dhami y colaboradores, en 2026 \cite{dhami2026}, muestran proteínas elevadas a la vez en cáncer y en enfermedad inflamatoria intestinal. García-Foncillas, en 2026 \cite{garciafoncillas2026}, revisa la biología molecular del cáncer colorrectal; es una revisión narrativa, no una evidencia de subtipos en proteína. Zhang y colaboradores, Nature 2014 \cite{zhang2014}, son otro proteoma de colon y recto, distinto de PDC000116. Li y colaboradores, en 2024 \cite{li2024}, perfilan el plasma durante el tratamiento con cetuximab: es respuesta a un fármaco, no un estudio de tamización.
+
+\chapter{Materiales y métodos}
+\section{Cohortes}
+Cada cohorte se contrasta dentro de sí. No hay corrección de lote entre estudios. No hay personas compartidas que autoricen una fusión. La configuración que declara PXD015163 descarga, en la práctica, el informe DIA-NN de PXD055218. En la tesis se nombra el archivo analizado.
+
+\begin{longtable}{p{3.88cm} p{3.88cm} p{3.88cm} p{3.88cm}}
+\caption{Tabla 1. Cohortes y papel de cada una.}\\
+\toprule
+Accesión & Qué es & Papel & Fuente\\
+\midrule
+\endfirsthead
+\toprule
+Accesión & Qué es & Papel & Fuente\\
+\midrule
+\endhead
+PDC000116 & Tejido, TMT, ya en log2 & Ancla tumoral & Vasaikar et al., 2019\\
+PXD034575 & 16 pacientes; P primario, M metástasis, N mucosa & Réplica tisular & Tanaka et al., 2024\\
+PXD055218 & Suero DIA, 20+20+20 & Especificidad & Rai et al., 2025\\
+PXD065161 & PRM de cuatro péptidos & No reanalizado & Rai et al., 2025\\
+PXD036594 & Plasma dirigido & Excluido: sin etiqueta clínica usable & Lesur et al., 2023\\
+\bottomrule
+\end{longtable}
+\section{Reglas fijadas antes de leer el suero}
+\begin{itemize}
+\item FDR de Benjamini–Hochberg 0,05 y |log2FC| mayor que 0,585. Los dos cortes se exigen juntos.
+\item Sin imputar ausencias.
+\item En Tanaka, al menos ocho pares. El cero de MaxQuant es ausencia. La intensidad positiva se transforma a log2.
+\item Especificidad: AUC de cáncer frente a colonoscopia negativa mayor que 0,70, límite inferior del intervalo bootstrap mayor que 0,50, y ese AUC mayor que el de enfermedad frente a sanos. Dos mil remuestreos, semilla 20261031.
+\item La marca de fase aguda, hemólisis o enfermedad inflamatoria se escribió en el catálogo antes del contraste. No baja el umbral del AUC. Cambia la lectura.
+\item Vías: términos biológicos con FDR de hasta 0,25 en el tejido de CPTAC, al menos diez genes medidos en el suero, y 200 permutaciones del ranking.
+\end{itemize}
+\section{Contraste y fichas}
+El suero usa los prefijos de corrida CP, CN y Normal. Si esas columnas existen, no se usa otra etiqueta. El tejido de Tanaka se lee por el sufijo de la columna, no por la etiqueta «pólipo» que una versión anterior del pipeline había asignado a P. Esa versión certificada no se reescribe: sus números quedan como otra estadística.
+
+La concordancia con CPTAC empareja genes y calcula el mismo signo y la correlación de Pearson de los log2FC. Las fichas reúnen proteínas que pasan un FDR o que tienen una lectura de AUC evaluable, y les añaden términos GO de 15 a 300 genes, la anotación de secreción del Human Protein Atlas y los enlaces a UniProt y AlphaFold. El origen de cada fila es literatura o resultado de esta corrida.
+
+\section{Lo que el método no puede hacer}
+No busca espectros de péptidos mutados. No descarga el suplemento de origen tisular de Malmström como tabla aplicada paciente a paciente. No parte PXD036594 en cáncer y control. No estima un examen clínico. Con veinte personas por grupo el alcance es de cribado.
+
+\chapter{Análisis de resultados}
+\section{El suero no separa el cáncer de la otra enfermedad}
+PXD055218 tiene los tres grupos, veinte corridas cada uno. Se probaron alrededor de setecientas proteínas en cada contraste. Cáncer frente a colonoscopia negativa: cero proteínas dentro del FDR y del cambio mínimo. Cáncer frente a sanos: tres. Colonoscopia negativa frente a sanos: una.
+
+\begin{longtable}{p{2.58cm} p{2.58cm} p{2.58cm} p{2.58cm} p{2.58cm} p{2.58cm}}
+\caption{Tabla 2. Proteínas del suero que pasan FDR 0,05 y |log2FC| mayor que 0,585.}\\
+\toprule
+Proteína & Acceso & Contraste & log2FC & FDR & Observaciones\\
+\midrule
+\endfirsthead
+\toprule
+Proteína & Acceso & Contraste & log2FC & FDR & Observaciones\\
+\midrule
+\endhead
+SAA1 & P0DJI8 & Cáncer frente a sano & 3,26 & 0,0002 & 40\\
+LBP & P18428 & Cáncer frente a sano & 1,25 & 0,007 & 40\\
+CHMP4A & Q9BY43 & Cáncer frente a sano & 5,42 & 3,4e-7 & 16 de 40\\
+APOA4 & P06727 & Enfermedad frente a sano & −1,32 & 0,022 & 40\\
+\bottomrule
+\end{longtable}
+SAA1 y LBP están anotadas como secretadas a la sangre. En la ficha de LBP aparece el término GO de respuesta de fase aguda. Frente a la colonoscopia negativa no pasan el FDR. CHMP4A tiene un cambio grande y la mitad de los sueros sin medición. Un hueco no es un cero biológico. APOA4 baja en la enfermedad intestinal frente a los sanos y no separa el cáncer de esa enfermedad.
+
+\section{El AUC es más laxo que el FDR}
+Ocho candidatas de la literatura cumplen la regla de AUC. Cinco ya estaban en la lista de fase aguda: C9, LRG1, SERPINA1, CRP y HP. Tres no tienen esa marca y tampoco pasan el FDR: BAIAP3, FN1 y TPM4.
+
+\begin{longtable}{p{3.88cm} p{3.88cm} p{3.88cm} p{3.88cm}}
+\caption{Tabla 3. Candidatas con la regla de AUC cumplida.}\\
+\toprule
+Gen & AUC cáncer vs enfermedad & Lectura & FDR del mismo contraste\\
+\midrule
+\endfirsthead
+\toprule
+Gen & AUC cáncer vs enfermedad & Lectura & FDR del mismo contraste\\
+\midrule
+\endhead
+BAIAP3 & 0,82 & Sin marca de ruido & 0,20\\
+FN1 & 0,70 & Sin marca de ruido & No pasa\\
+TPM4 & 0,80 & Sin marca de ruido & No pasa\\
+C9 & 0,81 & Fase aguda & No pasa\\
+LRG1 & 0,78 & Fase aguda & No pasa\\
+SERPINA1 & 0,73 & Fase aguda & No pasa\\
+CRP & 0,73 & Fase aguda & No pasa\\
+HP & 0,71 & Fase aguda & No pasa\\
+\bottomrule
+\end{longtable}
+BAIAP3, acceso O94812, es la proteína que Rai señaló en suero. El log2FC frente a la colonoscopia negativa es 2,20. El AUC pasa y el FDR no. Queda como candidata de otro estudio, con más personas. No es un hallazgo de esta tesis. FN1 en este suero está un poco más baja en cáncer que en sanos, log2FC −0,27, en la misma dirección que el plasma publicado en 2023. CEACAM5 no está medida en esta matriz DIA, así que su panel sérico no se puede auditar aquí.
+
+\section{El tejido, leído con la leyenda del artículo}
+PXD034575 tiene 16 pacientes y tres columnas por paciente. P es tumor primario, M es metástasis hepática y N es mucosa. Después de tratar el cero como ausencia y pasar a log2, la escala queda como logaritmo de intensidad lineal. CEACAM5 sube en el primario: log2FC 3,87, FDR 0,002, 13 pares. Esa dirección confirma que el contraste quedó orientado.
+
+\begin{longtable}{p{5.17cm} p{5.17cm} p{5.17cm}}
+\caption{Tabla 4. Contrastes pareados de PXD034575.}\\
+\toprule
+Contraste & Significativas & Probadas\\
+\midrule
+\endfirsthead
+\toprule
+Contraste & Significativas & Probadas\\
+\midrule
+\endhead
+Primario frente a mucosa & 58 & 2490\\
+Metástasis frente a mucosa & 160 & 2430\\
+Metástasis frente a primario & 16 & 2710\\
+\bottomrule
+\end{longtable}
+\begin{longtable}{p{3.88cm} p{3.88cm} p{3.88cm} p{3.88cm}}
+\caption{Tabla 5. Concordancia con el tejido certificado de CPTAC.}\\
+\toprule
+Comparación & Mismo signo & Genes & Correlación\\
+\midrule
+\endfirsthead
+\toprule
+Comparación & Mismo signo & Genes & Correlación\\
+\midrule
+\endhead
+Primario frente a mucosa & 687 (78,6 \%) & 874 & 0,83\\
+Metástasis frente a mucosa & 597 (70,9 \%) & 842 & 0,59\\
+\bottomrule
+\end{longtable}
+Entre primario y metástasis el signo coincide en 708 de 876 genes, el 80,8 \%. Entre los que coinciden, solo el 46,2 \% tiene magnitud menor en el primario. No queda un gradiente en el que el primario sea una versión pequeña de la metástasis. La correlación 0,104 y el 56 \% de igual signo, sobre 1 993 proteínas, pertenecen a un cálculo anterior, con la etiqueta vieja de columnas. Esa cifra se conserva. No se sustituye por 0,83. Ninguna de las dos mide tejido contra sangre.
+
+\section{Las vías del tumor casi no están en este suero}
+De los términos GO biológicos con FDR menor o igual a 0,25 en CPTAC, entran al suero los que tienen al menos diez genes medidos. Son 12 en cáncer frente a sano, 13 en cáncer frente a enfermedad y 12 en enfermedad frente a sano. La correlación de sus puntuaciones con el tejido es −0,28, −0,31 y −0,04. El nulo, 200 permutaciones, da p 0,34, 0,30 y 0,93. Este suero no contiene el grueso de los procesos que el tumor altera.
+
+\section{Lo que la versión certificada ya había medido hacia la sangre}
+Una corrida anterior, sin rehacerse en este cierre, comparó la dirección del cambio en tejido y en plasma: coincide en 42 de 86 proteínas, 0,488. Dentro de la ventana de concentración en la que el suero sí puede ver la proteína, coincide en 34 de 63, 0,540, con intervalo 0,409 a 0,666. Ese intervalo incluye el azar. La falta de transferencia no se explica solo porque el suero no alcance a medir proteínas escasas.
+
+\section{Péptidos}
+La tabla de péptidos de esta corrida fija un límite, no una lista descubierta. Los 19 péptidos de Rai, los 96 neoepítopos de Xiang y los cinco péptidos de Hembrough quedan fuera de las filas de abundancia. En tejido CPTAC, 33 candidatas del catálogo se detectan y siete repiten el signo de la literatura con FDR: CEACAM5, CA1, SMPDL3A, HBB, HBD, LCN2 y TOP2A. CA1, HBB y HBD quedan marcadas como posible hemólisis. LCN2 queda marcada como compartida con inflamación intestinal. TOP2A sube en tejido y no tiene contraste evaluable en este suero.
+
+\section{Discusión}
+El resultado se lee en dos capas. En tejido, el cambio del primario se parece al de CPTAC. La biología del tumor, medida como abundancia, se repite cuando las columnas se nombran como el artículo las nombra. En suero, esa biología no aparece como señal propia del cáncer. Lo que el suero separa de una persona sana es, en dos de los tres casos, una proteína secretada de respuesta del huésped. Eso encaja con el atlas de Malmström y con la señal de huésped descrita por Seo. No encaja con usar SAA1 o LBP como prueba de tumor.
+
+Rai y colaboradores combinaron proteínas con el antígeno carcinoembrionario y reportaron un AUC de 0,758 en su propio estudio. Esta matriz no trae ese inmunoensayo, así que no se puede preguntar si alguna proteína añade algo al marcador que ya se usa. BAIAP3 sobrevive a la regla de AUC sin marca de fase aguda y no sobrevive al FDR. Con veinte por grupo, eso es una candidata, no una validación. Ögren y colaboradores arman un panel que incluye CEACAM5. Aquí CEACAM5 sube en el primario y no está en el suero no dirigido. El diálogo con ese panel queda abierto para una medición dirigida, no para esta matriz.
+
+Xiang mide presentación por MHC en el tumor. Hembrough recupera péptidos de una persona. Esta tesis mide grupos de proteínas. Las tres preguntas son vecinas y no son la misma. Afirmar un neoantígeno a partir de estas filas cruzaría ese límite.
+
+\chapter{Conclusiones}
+\section{Conclusiones}
+Cada frase corresponde a un objetivo.
+
+\begin{itemize}
+\item El tumor primario de Tanaka, leído como primario y no como pólipo, coincide en signo con CPTAC en 687 de 874 genes y correlaciona 0,83. La metástasis correlaciona 0,59. El primario no es una metástasis pequeña: solo el 46,2 \% de los genes de igual signo tiene magnitud menor en el primario.
+\item En el suero de tres grupos, ninguna proteína separa el cáncer de la colonoscopia negativa con FDR 0,05 y cambio de al menos 1,5 veces. SAA1, LBP y CHMP4A separan el cáncer de los sanos. Las dos primeras se leen como respuesta del huésped. La tercera tiene demasiadas ausencias para presentarse como marcador.
+\item Los procesos GO del tejido casi no están medidos en este suero. Los doce a trece términos que sí entran no concuerdan por encima de 200 permutaciones.
+\item Los péptidos mutados de Rai, Xiang y Hembrough no se confirman ni se rechazan con esta matriz. El resultado de ese objetivo es el límite del método.
+\end{itemize}
+En conjunto, el cambio de proteínas del tumor se repite entre tejidos y en este suero no aparece como una señal propia del cáncer. La tesis sirve para responder esa pregunta. No sirve para proponer un examen de sangre.
+
+\section{Trabajos futuros}
+\begin{itemize}
+\item Repetir BAIAP3 en otra cohorte con colonoscopia negativa, más de veinte personas por grupo, y con el antígeno carcinoembrionario de la misma persona.
+\item Copiar del suplemento de Rai las secuencias de los 19 péptidos y rebuscarlas en crudos independientes, con control de falsos por clase de péptido. Eso no se anticipa con un número.
+\item Medir CEACAM5 de forma dirigida en suero, que es la escala del panel de Ögren, no la de esta matriz DIA.
+\item Emparejar la tabla de muestras de Lesur con las columnas de PXD036594 antes de usar ese plasma.
+\item Aplicar el suplemento de origen tisular de Malmström cuando esté en el disco. Hoy la ficha usa secreción y GO.
+\item Incorporar, cuando exista, tejido y sangre del mismo paciente. Estas matrices no los traen juntos.
+\end{itemize}
+\section{Impacto}
+El impacto es de método y de lectura, no de tamización. Queda escrito un control que muchos trabajos omiten: cáncer frente a otra enfermedad del intestino, con el umbral sin relajar. Queda corregida la leyenda de PXD034575 para cualquier lectura posterior. Queda una página pública, https://oncogo-crc-tesis.web.app, con las fichas, la teoría, los diccionarios y los enlaces de los estudios, para estudiar la sustentación y para que otra persona pueda verificar un DOI. No hay cohorte colombiana en estos datos públicos. La Ley 1384 de 2010 enmarca la detección temprana; este resultado dice qué evidencia faltaría antes de hablar de una prueba.
+
+\section{Limitaciones}
+\begin{itemize}
+\item Veinte sueros por grupo. El alcance es de cribado.
+\item TMT, LFQ y DIA no se pueden sumar.
+\item No hay tejido y sangre del mismo paciente.
+\item La colonoscopia negativa agrupa otras enfermedades intestinales; no es una cohorte pura de enfermedad inflamatoria recién diagnosticada.
+\item PXD036594 sigue sin etiqueta clínica usable.
+\item No hay población latinoamericana en estas matrices.
+\item Los neoantígenos no se rebuscaron en los crudos.
+\item La correlación 0,104 de la versión anterior y la 0,83 de este cierre son estadísticas distintas y deben citarse juntas, cada una con su n.
+\end{itemize}
+\chapter{Referencias bibliográficas}
+La lista está numerada en el orden de aparición, como en las tesis de la Facultad de Ingenierías. Cada DOI se confirmó en Crossref el 31 de octubre de 2026 y el título del registro coincide con la cita. La ficha completa está en referencias.bib.
+
+No entran, porque el identificador no abrió un artículo el 31 de octubre de 2026: doi:10.1016/j.xcrm.2025.101689, la cita mal formada de ENCODE en Nature, y el DOI 10.64898/2026.08.30.26361622. Los preprints de Lee, Tan y Ramsbottom pueden ir a un anexo marcados como no revisados por pares.
+
+\printbibliography[heading=none]
+\end{document}

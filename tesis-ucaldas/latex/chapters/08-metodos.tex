@@ -1,0 +1,41 @@
+\chapter{Materiales y métodos}
+
+\section{Cohortes}
+Cada cohorte se contrasta dentro de sí. No hay corrección de lote entre estudios. No hay personas compartidas que autoricen una fusión. La configuración que declara PXD015163 descarga, en la práctica, el informe DIA-NN de PXD055218. Se nombra el archivo analizado.
+
+\begin{table}[ht]
+\caption{Cohortes y papel de cada una}
+\centering
+\begin{tabular}{@{}p{2.6cm}p{4.2cm}p{3.6cm}p{3.4cm}@{}}
+\toprule
+Accesión & Qué es & Papel & Fuente \\
+\midrule
+PDC000116 & Tejido, TMT, ya en log2 & Ancla tumoral & Vasaikar et al., 2019 \\
+PXD034575 & 16 pacientes; P primario, M metástasis, N mucosa & Réplica tisular & Tanaka et al., 2024 \\
+PXD055218 & Suero DIA, 20 + 20 + 20 & Especificidad & Rai et al., 2025 \\
+PXD065161 & PRM de cuatro péptidos & No reanalizado & Rai et al., 2025 \\
+PXD036594 & Plasma dirigido & Excluido: sin etiqueta clínica usable & Lesur et al., 2023 \\
+\bottomrule
+\end{tabular}
+\fuente{elaboración propia a partir de los depósitos públicos y de los artículos citados.}
+\end{table}
+
+\section{Reglas fijadas antes de leer el suero}
+La tasa de descubrimientos falsos de Benjamini--Hochberg es 0,05 y el valor absoluto del log2FC es mayor que el umbral de la ecuación~\eqref{eq:umbral}. Los dos cortes se exigen juntos. No se imputan ausencias. En el tejido de Tanaka se piden al menos ocho pares. El cero de MaxQuant es ausencia. La intensidad positiva se transforma a log2.
+
+\begin{equation}
+\log_{2}(1{,}5) = 0{,}585
+\label{eq:umbral}
+\end{equation}
+
+La especificidad exige tres condiciones a la vez: área bajo la curva de cáncer frente a colonoscopia negativa mayor que 0,70, límite inferior del intervalo bootstrap mayor que 0,50, y ese valor mayor que el de enfermedad frente a personas sanas. Se usaron dos mil remuestreos, con semilla 20261031. La marca de fase aguda, hemólisis o enfermedad inflamatoria se escribió en el catálogo antes del contraste. No baja el umbral. Cambia la lectura.
+
+Para las vías se tomaron términos biológicos con tasa de descubrimientos falsos de hasta 0,25 en el tejido de CPTAC, al menos diez genes medidos en el suero y 200 permutaciones del ranking.
+
+\section{Contraste y fichas}
+El suero usa los prefijos de corrida CP, CN y Normal. Si esas columnas existen, no se usa otra etiqueta. El tejido de Tanaka se lee por el sufijo de la columna, no por la etiqueta «pólipo» que una versión anterior del pipeline había asignado a P. Esa versión certificada no se reescribe: sus números quedan como otra estadística.
+
+La concordancia con CPTAC empareja genes y calcula el mismo signo y la correlación de Pearson de los log2FC. Las fichas reúnen proteínas que pasan la tasa de descubrimientos falsos o que tienen una lectura de área bajo la curva evaluable, y les añaden términos GO de 15 a 300 genes, la anotación de secreción y los enlaces a UniProt y AlphaFold. El origen de cada fila es literatura o resultado de esta corrida.
+
+\section{Lo que el método no puede hacer}
+No se buscan espectros de péptidos mutados. No se descarga el suplemento de origen tisular de Malmström como tabla aplicada paciente a paciente. No se parte PXD036594 en cáncer y control. No se estima un examen clínico.
