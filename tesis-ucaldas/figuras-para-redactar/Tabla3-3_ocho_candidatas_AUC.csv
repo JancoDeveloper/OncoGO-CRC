@@ -1,0 +1,9 @@
+gene,uniprot,lista_ruido,auc_crc_vs_enfermedad,auc_crc_vs_enfermedad_ci_bajo,auc_crc_vs_enfermedad_ci_alto,auc_enfermedad_vs_sano,log2fc_crc_vs_enfermedad,padj_crc_vs_enfermedad,lectura
+BAIAP3,O94812,,0.817,0.673,0.937,0.675,2.203,0.199,especifica
+C9,P02748,fase_aguda,0.805,0.658,0.928,0.715,0.415,1.0,auc_pasa_pero_fase_aguda
+TPM4,P67936,,0.8,0.6,1.0,0.758,1.166,1.0,especifica
+LRG1,P02750,fase_aguda,0.775,0.61,0.92,0.74,0.65,1.0,auc_pasa_pero_fase_aguda
+SERPINA1,P01009,fase_aguda,0.732,0.575,0.885,0.685,0.324,1.0,auc_pasa_pero_fase_aguda
+CRP,P02741,fase_aguda,0.732,0.553,0.884,0.664,1.549,0.626,auc_pasa_pero_fase_aguda
+HP,P00738,fase_aguda,0.708,0.54,0.865,0.655,0.702,1.0,auc_pasa_pero_fase_aguda
+FN1,P02751,,0.702,0.533,0.86,0.508,-0.201,1.0,especifica

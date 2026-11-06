@@ -1,0 +1,4 @@
+contraste,n_a,n_b,probadas,significativas
+crc_vs_sano,20,20,703,3
+crc_vs_enfermedad,20,20,700,0
+enfermedad_vs_sano,20,20,706,1

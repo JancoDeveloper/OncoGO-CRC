@@ -1,0 +1,4 @@
+contraste_suero,terminos_GO_evaluables,pearson_NES_tejido_suero,p_nulo,permutaciones
+Cáncer vs. sanos,12,-0.284,0.343,200
+Cáncer vs. col. negativa,13,-0.309,0.303,200
+Col. negativa vs. sanos,12,-0.038,0.93,200

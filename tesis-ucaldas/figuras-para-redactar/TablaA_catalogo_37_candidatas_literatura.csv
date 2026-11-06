@@ -1,0 +1,38 @@
+gene,direccion_literatura,matriz_original,fuente,verificacion,origen,lista_ruido,nivel,nota
+BAIAP3,sube,suero DIA,"Rai 2025, J Proteome Res, doi:10.1021/acs.jproteome.5c00285",verificado_2026-10-31,literatura,,proteina,Una de tres proteínas alteradas en colonoscopia positiva frente a negativa. No es un hallazgo de esta tesis.
+CEACAM5,sube,suero,"Rai 2025, panel con CEA, AUC 0,758",verificado_2026-10-31,literatura,,proteina,El artículo lo combina con el marcador sérico. La matriz de proteína no mide el inmunoensayo de CEA.
+C5,sube,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,fase_aguda,proteina,Dirección declarada en el código antes de esta etapa. Citar el artículo original al pasarla a la tesis.
+C8A,sube,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,fase_aguda,proteina,Cascada del complemento. Marcar como respuesta del huésped.
+C9,sube,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,fase_aguda,proteina,Cascada del complemento.
+LRG1,sube,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,fase_aguda,proteina,
+SERPINA1,sube,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,fase_aguda,proteina,Antitripsina. Reactante de fase aguda.
+ORM1,sube,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,fase_aguda,proteina,
+FN1,baja,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,,proteina,
+FTL,baja,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,,proteina,"Ferritina. Posible anemia, no secreción tumoral."
+FTH1,baja,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,,proteina,Ferritina.
+SPP1,sube,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,,proteina,
+PECAM1,sube,plasma,panel predeclarado en translational_axes.py,no_reabierta,literatura,,proteina,
+CA1,baja,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,hemolisis,proteina,No presentar como hallazgo propio. La cita queda pendiente de reabrir el artículo.
+SMPDL3A,baja,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,,proteina,
+HBB,baja,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,hemolisis,proteina,Hemoglobina. Señal de eritrocito.
+HBA2,baja,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,hemolisis,proteina,
+HBD,baja,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,hemolisis,proteina,
+ALAD,baja,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,hemolisis,proteina,
+CAT,baja,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,hemolisis,proteina,
+S100A4,baja,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,,proteina,
+RAB27B,baja,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,,proteina,
+DEFA1,opuesta,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,,proteina,Dirección distinta entre tejido y suero en la fuente. No se exige un signo único.
+TPM4,opuesta,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,,proteina,
+HP,opuesta,tejido y suero,"memoria de revisión 2026-10-30, Yu",pendiente_europepmc,literatura,fase_aguda,proteina,Haptoglobina.
+TFF3,sube,plasma,"memoria de revisión 2026-10-30, Dhami y Lee",pendiente_europepmc,literatura,eii,proteina,También elevada en enfermedad inflamatoria intestinal según esa memoria.
+TFF1,sube,plasma,"memoria de revisión 2026-10-30, Dhami",pendiente_europepmc,literatura,eii,proteina,
+AHCY,sube,plasma,"memoria de revisión 2026-10-30, Dhami",pendiente_europepmc,literatura,eii,proteina,
+RETN,sube,plasma,"memoria de revisión 2026-10-30, Dhami",pendiente_europepmc,literatura,eii,proteina,
+LCN2,sube,plasma,"memoria de revisión 2026-10-30, Dhami",pendiente_europepmc,literatura,eii,proteina,
+SELE,sube,plasma,"memoria de revisión 2026-10-30, Dhami",pendiente_europepmc,literatura,eii,proteina,
+CRP,sube,plasma,"memoria de revisión 2026-10-30, Yarmolinsky",pendiente_europepmc,literatura,fase_aguda,proteina,Confusor inflamatorio. No es un marcador específico.
+GDF15,sube,plasma prediagnóstico,"memoria de revisión 2026-10-30, Lee",pendiente_europepmc,literatura,,proteina,"Marcador de riesgo, no de diagnóstico en el momento de la colonoscopia."
+TOP2A,sube,suero y ARNm,"memoria de revisión 2026-10-30, Tan",pendiente_europepmc,literatura,,proteina,"Proteína nuclear. Caso de prueba de visibilidad, no de secreción."
+FCN1,sube,vesículas de plasma,"memoria de revisión 2026-10-30, Seo",pendiente_europepmc,literatura,,proteina,"La fuente la atribuye al huésped, no a la célula tumoral."
+PSMB3,sube,vesículas de plasma,"memoria de revisión 2026-10-30, Seo",pendiente_europepmc,literatura,,proteina,
+UBA1,sube,vesículas de plasma,"memoria de revisión 2026-10-30, Seo",pendiente_europepmc,literatura,,proteina,
