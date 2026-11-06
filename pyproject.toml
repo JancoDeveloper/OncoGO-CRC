@@ -37,6 +37,11 @@ dev = ["pytest>=7.4", "ruff>=0.3"]
 [project.scripts]
 oncogo-crc = "oncogo_crc.cli:main"
 
+[tool.pytest.ini_options]
+markers = [
+  "datos_reales: se salta si el fichero público no está en el disco",
+]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

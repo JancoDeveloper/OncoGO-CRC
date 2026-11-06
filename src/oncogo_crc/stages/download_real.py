@@ -646,16 +646,9 @@ def run(settings: Settings) -> None:
                     _maybe_gunzip_file_inplace(m_path)
                     _ensure_tsv_from_excel_if_needed(m_path)
                     if bool(spec.get("dia_nn_postprocess_to_wide", False)):
-                        try:
-                            from oncogo_crc.utils.dia_nn_plasma import postprocess_dia_nn_plasma_download
-
-                            postprocess_dia_nn_plasma_download(m_path, md_path)
-                            row["matrix_detail"] = (row.get("matrix_detail") or "") + ";dia_nn_pivoted_wide"
-                            if md_path.exists():
-                                row["metadata_status"] = "ok_generated"
-                        except Exception as exc:  # noqa: BLE001
-                            row["matrix_status"] = "error"
-                            row["matrix_detail"] = f"dia_nn_postprocess_failed:{exc}"
+                        # v3.2 no pivota encima del report. La matriz filtrada
+                        # la escribe la etapa v3_2_suero en otro fichero.
+                        row["matrix_detail"] = (row.get("matrix_detail") or "") + ";dia_nn_report_intacto"
             row["matrix_url"] = url
         if m_path.exists():
             _harmonize_protein_id_column(m_path, protein_column=str(ds.get("protein_column", "protein_id")))

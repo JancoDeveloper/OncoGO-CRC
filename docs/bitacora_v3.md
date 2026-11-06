@@ -20,3 +20,15 @@ Comando: commit solo de `config/preregistro_v3.yaml` y `docs/enmiendas_v3.md`.
 Resultado. Commit `cdce000`. Mensaje: `prereg: enmienda v3.2 (FDR de proteína, especie, contaminantes, paneles de calidad)`. No había ningún fichero en `results/v3_2/`.
 
 Decisión. `min_pares_observados` de v3.2 es 8, el del cierre. La librería de contaminantes queda fijada por commit y SHA-256 antes de mirar el suero filtrado. La tabla de Geyer no se descargó (404) y los paneles son la lista del texto.
+
+## 2026-11-06 16:36 (UTC−5). Fase 0, sello
+
+Comando: `pytest tests/test_v3_2_sello.py` y `scripts/v3/congelar_manifiestos.py`.
+
+Resultado. Tres tests pasan. `results/v3_manifest.sha256` resume 66 ficheros de `results/v3/` en el disco de datos. Commit `862502f`.
+
+## 2026-11-06 16:37 (UTC−5). Fase 1, descarga del report
+
+Comando: `curl` de `https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD055218/DIA-NN_report.tsv` hacia `data/raw/plasma/DIA-NN_report.tsv`.
+
+Resultado. La descarga sigue. El parser nuevo está en `src/oncogo_crc/utils/dia_nn_plasma.py`. Los tests sintéticos pasan. El test con el report real se salta mientras el fichero no tenga 213 313 241 bytes. `download_real.py` ya no escribe encima del report. `plasma_crc_2024` tiene `overwrite: false` para no pisar la matriz ancha histórica.
