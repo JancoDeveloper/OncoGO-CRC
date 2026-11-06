@@ -31,4 +31,4 @@ Resultado. Tres tests pasan. `results/v3_manifest.sha256` resume 66 ficheros de 
 
 Comando: `curl` de `https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD055218/DIA-NN_report.tsv` hacia `data/raw/plasma/DIA-NN_report.tsv`.
 
-Resultado. La descarga sigue. El parser nuevo está en `src/oncogo_crc/utils/dia_nn_plasma.py`. Los tests sintéticos pasan. El test con el report real se salta mientras el fichero no tenga 213 313 241 bytes. `download_real.py` ya no escribe encima del report. `plasma_crc_2024` tiene `overwrite: false` para no pisar la matriz ancha histórica.
+Resultado. La primera descarga se cortó a los 14 minutos con `curl` código 56 (tiempo de espera), en unos 50 MB de 203. Se reanudó con `curl -C -`. El parser nuevo está en `src/oncogo_crc/utils/dia_nn_plasma.py`. Los tests sintéticos pasan. El test con el report real se salta mientras el fichero no tenga 213 313 241 bytes. `download_real.py` ya no escribe encima del report. `plasma_crc_2024` tiene `overwrite: false` para no pisar la matriz ancha histórica. La etapa `v3_2_suero` está en el commit `590412e` y no se ha corrido: sin el report completo no hay cifra.
