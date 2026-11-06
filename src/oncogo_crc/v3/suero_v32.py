@@ -445,7 +445,7 @@ def _frase(principal: dict, con_paneles: dict, traza: pd.DataFrame, tabla_con_pa
     return f"Tras quitar contaminantes, {y} proteínas difieren; {z} de ellas pertenecen al panel de coagulación"
 
 
-def analizar_suero(tabla, traza, ancha, prereg: PreregistroV3, salida: Path, sello: dict, settings: Settings) -> None:
+def analizar_suero(report, traza, ancha, prereg: PreregistroV3, salida: Path, sello: dict, settings: Settings) -> None:
     mat, escala = _log2(ancha)
     grupos = _grupos(list(mat.columns))
     fuera = ids_fuera_de_principal(traza)
@@ -467,8 +467,8 @@ def analizar_suero(tabla, traza, ancha, prereg: PreregistroV3, salida: Path, sel
 
     fasta = settings.resolve("external/uniprot/human_reviewed_isoforms.fasta.gz")
     peptidos = _peptidos_humanos(fasta)
-    especies = _especies(tabla, traza, peptidos)
-    fraccion = _fraccion_no_humana(tabla, especies)
+    especies = _especies(report, traza, peptidos)
+    fraccion = _fraccion_no_humana(report, especies)
     volcar_tsv(especies, salida / "suero_especies.tsv", sello)
     if len(fraccion) >= 3 and fraccion["grupo"].nunique() >= 2:
         muestras = [fraccion.loc[fraccion["grupo"] == g, "fraccion_intensidad_no_humana"].dropna().to_numpy() for g in ("crc", "colonoscopy_negative", "healthy")]
@@ -483,7 +483,7 @@ def analizar_suero(tabla, traza, ancha, prereg: PreregistroV3, salida: Path, sel
         por_muestra[nombre] = serie.reindex(por_muestra["sample_id"]).to_numpy()
     if len(fraccion):
         por_muestra = por_muestra.merge(fraccion.rename(columns={"Run": "sample_id"}), on="sample_id", how="left")
-    por_muestra["n_precursores"] = tabla.groupby(tabla["Run"].astype(str)).size().reindex(por_muestra["sample_id"]).to_numpy()
+    por_muestra["n_precursores"] = report.groupby(report["Run"].astype(str)).size().reindex(por_muestra["sample_id"]).to_numpy()
     por_muestra["n_grupos"] = np.isfinite(mat.to_numpy(dtype=float)).sum(axis=0)
     etiqueta = {col: grupo for grupo, cols in grupos.items() for col in cols}
     por_muestra["grupo"] = por_muestra["sample_id"].map(etiqueta)
@@ -519,12 +519,12 @@ def analizar_suero(tabla, traza, ancha, prereg: PreregistroV3, salida: Path, sel
     ):
         resumen, tablas = _k4_bloque(matriz, grupos, prereg, ajustar=ajustar, coagulacion=coag if ajustar else None)
         conteos[etiqueta_version] = resumen
-        for nombre, tabla in tablas.items():
+        for nombre, contraste in tablas.items():
             nombre_fichero = f"k4_{nombre}.tsv" if etiqueta_version == "principal" else f"k4_{etiqueta_version}_{nombre}.tsv"
-            volcar_tsv(tabla, salida / nombre_fichero, sello)
+            volcar_tsv(contraste, salida / nombre_fichero, sello)
             if etiqueta_version == "principal":
-                tablas_principal[nombre] = tabla
-    genes = matriz_filtrada(tabla, valor="Genes.MaxLFQ", indice="Genes", q_de_grupo="GG.Q.Value") if "Genes.MaxLFQ" in tabla.columns and "GG.Q.Value" in tabla.columns else pd.DataFrame()
+                tablas_principal[nombre] = contraste
+    genes = matriz_filtrada(report, valor="Genes.MaxLFQ", indice="Genes", q_de_grupo="GG.Q.Value") if "Genes.MaxLFQ" in report.columns and "GG.Q.Value" in report.columns else pd.DataFrame()
     if len(genes):
         mat_g, _ = _log2(genes)
         genes_fuera: set[str] = set()
@@ -532,8 +532,8 @@ def analizar_suero(tabla, traza, ancha, prereg: PreregistroV3, salida: Path, sel
             genes_fuera |= _simbolos(fila["genes"])
         resumen_g, tablas_g = _k4_bloque(_recortar(mat_g, genes_fuera), _grupos(list(mat_g.columns)), prereg, ajustar=False, coagulacion=None)
         conteos["genes_maxlfq"] = resumen_g
-        for nombre, tabla in tablas_g.items():
-            volcar_tsv(tabla, salida / f"k4_genes_maxlfq_{nombre}.tsv", sello)
+        for nombre, contraste in tablas_g.items():
+            volcar_tsv(contraste, salida / f"k4_genes_maxlfq_{nombre}.tsv", sello)
     else:
         conteos["genes_maxlfq"] = {"estado": "no_disponible", "motivo": "el report no trae Genes.MaxLFQ o GG.Q.Value"}
     volcar_json({"estado": "calculado", "escala": escala, "versiones": conteos}, salida / "k4_potencia.json", sello)
@@ -586,7 +586,7 @@ def analizar_suero(tabla, traza, ancha, prereg: PreregistroV3, salida: Path, sel
     k6["chmp4a"] = chmp.to_dict(orient="records")
     volcar_json(k6, salida / "k6_presencia.json", sello)
 
-    precursores = tabla.groupby(tabla["Run"].astype(str)).size()
+    precursores = report.groupby(report["Run"].astype(str)).size()
     med = {}
     for g, cols in grupos.items():
         vals = precursores.reindex(cols).dropna().to_numpy()

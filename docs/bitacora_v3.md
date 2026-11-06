@@ -64,3 +64,11 @@ Comando: `bash scripts/v3/correr_v3_2.sh`.
 Resultado. Manifiestos y `regresion-v1` pasaron. El report tiene 213 313 241 bytes y el SHA-256 de la enmienda. La etapa `v3_2_suero` se detuvo: humanos con los dos q-valores son 312. De esos, 307 tienen gen. Los cinco sin gen son P0DOX2, P0DOX3, P0DOX5, P0DOX7 y P0DOX8.
 
 Decisión. Gana el fichero. El control acepta 312 y guarda 307 como el subconjunto con gen. No se sacan esos grupos: el índice del análisis es `Protein.Group`.
+
+## 2026-11-06 18:50 (UTC−5). El suero se cayó al contar precursores
+
+Comando: `bash scripts/v3/correr_v3_2.sh`.
+
+Resultado. K4 y el nulo de K5 terminaron. Después, `analizar_suero` buscó la columna `Run` en la tabla del último contraste, porque el bucle había reutilizado el nombre del report. No se escribió K7 ni el resumen. La sensibilidad por gen tampoco vio el report.
+
+Decisión. El report y las matrices no se editan. Se separan los dos nombres y la etapa se vuelve a correr entera, para que el sello corresponda al código que produce las tablas.
