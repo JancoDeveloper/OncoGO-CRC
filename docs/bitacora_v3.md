@@ -48,3 +48,11 @@ Comando: `oncogo-crc run --stage v3_2_tejido --data-workspace /Volumes/JANCODATA
 Resultado. `results/v3_2/k1_etiquetas.json`. Se excluyen 237 filas (CON__, REV__ y las marcas de MaxQuant). Con mínimo de 8 pares, primario frente a mucosa es 89/90, IC 0,940–1,000, Spearman 0,713, Lin 0,704. H1 sigue en `rechaza_h1`. Metástasis frente a mucosa: 69/82. No pareado: 95/98. Hígado: 13 pasan, 2 no evaluables, 1 falla. Mucosa: 16 no evaluables (pocos genes observados en el par). Cromosoma Y: no detectado en la matriz. Nadie se excluye en la sensibilidad, porque nadie falla dos de tres pruebas.
 
 Decisión. No se reetiqueta ninguna muestra. El mínimo de 8 pares es el de la enmienda, no se movió al ver 89/90.
+
+## 2026-11-06 17:15 (UTC−5). Fases 3 a 6, código listo para correr
+
+Comando: `pytest tests/test_v3_2_resto.py tests/test_v3_2_filtros.py tests/test_v3_2_sello.py tests/test_v3_2_suero.py`.
+
+Resultado. Quedan escritas las etapas `v3_2_controles`, `v3_2_hipotesis`, `v3_2_multiverso`, `v3_2_ml` y `v3_2_report`. H5 descarga LinkedOmicsKB y HGNC al correr. H7, H8 y H9 quedan declaradas si el fichero no está. No se ha lanzado la corrida: el report de PXD055218 todavía no tiene 213 313 241 bytes.
+
+Decisión. La corrida la lanza el autor con `bash scripts/v3/correr_v3_2.sh` cuando el report esté completo. El sello exige el árbol limpio, así que este código se commitea antes.

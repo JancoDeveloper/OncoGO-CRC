@@ -188,4 +188,4 @@ v3-2-docs:
 v3-2-tesis:
 	@echo "v3.2 tesis: LaTeX y Word se regeneran desde las tablas. No hay una etapa de cálculo."
 
-all-v3-2: manifest-write v3-manifiestos regresion-v1 v3-2-suero
+all-v3-2: manifest-write v3-manifiestos regresion-v1 v3-2-suero v3-2-tejido v3-2-controles v3-2-hipotesis v3-2-multiverso v3-2-ml v3-2-report

@@ -462,6 +462,8 @@ def analizar_suero(tabla, traza, ancha, prereg: PreregistroV3, salida: Path, sel
     piel = list(prereg.get("enmienda_v3_2.contaminante_piel.genes"))
     puntuaciones = {nombre: _puntuacion_z(mat, genes_de_fila[genes_de_fila.isin(lista)].index.tolist()) for nombre, lista in {**paneles, "piel": piel}.items()}
     coag = puntuaciones["coagulacion"]
+    volcar_tsv(principal.reset_index(), salida / "suero_matriz_principal.tsv", sello)
+    volcar_tsv(mat.reset_index(), salida / "suero_matriz_humana_fdr.tsv", sello)
 
     fasta = settings.resolve("external/uniprot/human_reviewed_isoforms.fasta.gz")
     peptidos = _peptidos_humanos(fasta)

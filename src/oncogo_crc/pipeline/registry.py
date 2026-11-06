@@ -45,6 +45,11 @@ from oncogo_crc.stages import (
     v3_correcciones,
     v3_2_suero,
     v3_2_tejido,
+    v3_2_controles,
+    v3_2_multiverso,
+    v3_2_hipotesis,
+    v3_2_ml,
+    v3_2_report,
     validate_inputs,
     version_inputs,
 )
@@ -95,6 +100,11 @@ STAGES: dict[str, StageFn] = {
     "v3_correcciones": v3_correcciones.run,
     "v3_2_suero": v3_2_suero.run,
     "v3_2_tejido": v3_2_tejido.run,
+    "v3_2_controles": v3_2_controles.run,
+    "v3_2_multiverso": v3_2_multiverso.run,
+    "v3_2_hipotesis": v3_2_hipotesis.run,
+    "v3_2_ml": v3_2_ml.run,
+    "v3_2_report": v3_2_report.run,
 }
 
 STAGE_ORDER = list(STAGES.keys())
@@ -121,5 +131,10 @@ EXCLUDED_FROM_ALL: frozenset[str] = frozenset(
         "v3_correcciones",
         "v3_2_suero",
         "v3_2_tejido",
+        "v3_2_controles",
+        "v3_2_multiverso",
+        "v3_2_hipotesis",
+        "v3_2_ml",
+        "v3_2_report",
     }
 )

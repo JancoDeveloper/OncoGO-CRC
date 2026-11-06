@@ -15,6 +15,7 @@ from oncogo_crc.v2.metricas import Fraccion
 from oncogo_crc.v3.concordancia import alinear_por_clave, concordancia_de_lin, concordancia_de_signo, spearman
 from oncogo_crc.v3.etiquetas import contraste_no_pareado, contraste_pareado, filas_desde_columnas, matriz_log2_lfq
 from oncogo_crc.v3.prereg import PreregistroV3
+from oncogo_crc.v3.k2k3 import escribir_k2, escribir_k3
 from oncogo_crc.v3.salida_v32 import exigir_v32, volcar_json, volcar_tsv
 
 HIGADO = ("ALB", "APOH", "CPS1", "ARG1", "CYP2E1", "FGB", "HP")
@@ -246,4 +247,12 @@ def run(settings: Settings) -> None:
         "motivo": "Se quitaron CON__, REV__ y las marcas de MaxQuant. El mínimo de pares vuelve a 8, el del cierre, por la enmienda y no por el recuento.",
         "correccion": "T1",
     }]), salida / "changelog_numeros.tsv", sello)
+    escribir_k2(settings, salida, sello)
+    cruzado = alinear_por_clave(
+        certificadas,
+        principal,
+        clave_descubrimiento=certificadas["protein_id"].astype(str).str.upper().map(lambda g: gen_a_uni.get(g) or np.nan),
+        clave_replica=principal["protein_id"].astype(str).map(lambda v: uniprot_base(v.split(";")[0]) or np.nan),
+    )
+    escribir_k3(cruzado, salida, sello)
     print(f"[v3.2] tejido R1 {r1['numerador']}/{r1['denominador']} con {len(malos)} filas fuera")
