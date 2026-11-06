@@ -1,0 +1,4 @@
+contraste	nombre	valor	numerador	denominador	unidad_denominador	ci_low	ci_high	p_vs_azar	universo	universo_nombre	cobertura	n_pares_diseno	spearman	lin_ccc
+primario_frente_a_mucosa	R1_primario_frente_a_mucosa	0.9830508474576272	116	118	proteinas_unicas	0.9401144206453009	0.9979407474434051	4.2262125217147407e-32	688	proteinas_certificadas_cptac	0.17151162790697674	16	0.7406827137634715	0.7335071520801414
+metastasis_hepatica_frente_a_mucosa	R1_metastasis_hepatica_frente_a_mucosa	0.8773584905660378	93	106	proteinas_unicas	0.7994128882818604	0.9330541122466843	4.542762798571596e-16	688	proteinas_certificadas_cptac	0.15406976744186046	16	0.7102249540267526	0.4395200040046645
+primario_frente_a_mucosa_no_pareado	R1_primario_frente_a_mucosa_no_pareado	0.96875	124	128	proteinas_unicas	0.9219204745615824	0.991421064462739	6.475582675466606e-32	688	proteinas_certificadas_cptac	0.18604651162790697	16	0.7367812671671854	0.7455347407468234

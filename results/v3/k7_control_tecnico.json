@@ -1,0 +1,60 @@
+{
+  "estado": "calculado",
+  "pruebas": [
+    {
+      "indicador": "n_grupos_proteicos",
+      "p_kruskal": 0.474421595085596,
+      "confusion_tecnica": false,
+      "mediana_crc": 599.5,
+      "mediana_colonoscopy_negative": 587.0,
+      "mediana_healthy": 590.0
+    },
+    {
+      "indicador": "mediana_intensidad",
+      "p_kruskal": 0.3365473611496554,
+      "confusion_tecnica": false,
+      "mediana_crc": 19.26294039458928,
+      "mediana_colonoscopy_negative": 19.07835047528831,
+      "mediana_healthy": 19.07137176483935
+    },
+    {
+      "indicador": "fraccion_alta_abundancia",
+      "p_kruskal": 1.2346583812334302e-05,
+      "confusion_tecnica": true,
+      "mediana_crc": 0.25290649070747606,
+      "mediana_colonoscopy_negative": 0.3228166449559676,
+      "mediana_healthy": 0.3268345483829418
+    },
+    {
+      "indicador": "hemolisis",
+      "p_kruskal": 0.9256925538425108,
+      "confusion_tecnica": false,
+      "mediana_crc": 19.32808379778335,
+      "mediana_colonoscopy_negative": 19.23982338933652,
+      "mediana_healthy": 19.403199417285776
+    },
+    {
+      "indicador": "plaquetas",
+      "p_kruskal": 0.16078215286657896,
+      "confusion_tecnica": false,
+      "mediana_crc": 19.60706985689207,
+      "mediana_colonoscopy_negative": 19.517158575052818,
+      "mediana_healthy": 19.34678307912621
+    },
+    {
+      "indicador": "coagulacion",
+      "p_kruskal": 0.0062906647854726536,
+      "confusion_tecnica": true,
+      "mediana_crc": 19.276077727454393,
+      "mediana_colonoscopy_negative": 18.909720524718654,
+      "mediana_healthy": 19.123283767020737
+    }
+  ],
+  "precursores": "no_disponible",
+  "motivo_precursores": "DIA-NN_report.tsv no está en el workspace: la matriz ancha ya sustituyó al informe de precursores.",
+  "orden_de_corrida": "limitacion_declarada",
+  "motivo_orden": "El orden de corrida no está en la matriz ancha. Recuperarlo exigiría los crudos, y no se reconstruye.",
+  "escala_puntuaciones": "log2",
+  "escala_fraccion_alta_abundancia": "intensidad_lineal_recuperada_con_exp2",
+  "n_filas_alta_abundancia": 8
+}

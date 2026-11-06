@@ -1,0 +1,6 @@
+codigo	valor	numerador	denominador	unidad_denominador	ci_low	ci_high	cobertura	estado	motivo
+R1_primario_frente_a_mucosa	0.9830508474576272	116.0	118.0	proteinas_unicas	0.9401144206453009	0.9979407474434051	0.17151162790697674	calculado	
+R1_metastasis_frente_a_mucosa	0.8773584905660378	93.0	106.0	proteinas_unicas	0.7994128882818604	0.9330541122466843	0.15406976744186046	calculado	
+R1_linea_base_h5				proteinas_unicas				no_evaluable	LinkedOmicsKB todavía no está leído.
+R2_detectabilidad_peptidos	0.32848837209302323	226.0	688.0	proteinas_unicas	0.2934668814666274	0.36498898198375834		calculado	
+R3_homogeneidad				proteinas_unicas				no_evaluable	v2 metió a PXD019504 como tercera cohorte. K2 todavía no descarta que comparta personas con PXD034575 o PXD031705. Sin eso, 1 − I² de tres cohortes no se recalcula.

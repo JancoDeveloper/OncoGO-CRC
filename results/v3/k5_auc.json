@@ -1,0 +1,13 @@
+{
+  "estado": "calculado",
+  "nulo_maximo_plegado": {
+    "maximo_observado": 0.9375,
+    "n_proteinas": 613,
+    "n_permutaciones": 10000,
+    "b": 244,
+    "p": 0.0244975502449755,
+    "media_nula": 0.843448734899338,
+    "percentil95_nulo": 0.9166666666666666
+  },
+  "n_auc": 1233
+}

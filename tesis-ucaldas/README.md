@@ -1,6 +1,6 @@
 # Tesis de maestría, Universidad de Caldas
 
-Documento de Juan Diego Polanco Franco para optar al título de Magíster en Bioinformática y Biología Computacional. El contenido científico es el de OncoGO-CRC, corrida del 31 de octubre de 2026. El formato sigue la guía de la Biblioteca (2022) y el orden de las tesis en español del programa.
+Documento de Juan Diego Polanco Franco para optar al título de Magíster en Bioinformática y Biología Computacional. Esta copia es una versión para revisión, del 6 de noviembre de 2026, y lleva la marca «no citar». Incorpora la corrida v3 (etiquetas P, M y N, potencia y equivalencia del suero, AUC con nulo). Los números del cierre del 31 de octubre se conservan con ese nombre. Las tablas están en `results/v3/`. El formato sigue la guía de la Biblioteca (2022) y el orden de las tesis en español del programa.
 
 ## Abrir
 

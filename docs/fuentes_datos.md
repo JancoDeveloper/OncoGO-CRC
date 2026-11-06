@@ -45,6 +45,10 @@ El estado legible por máquina vive junto a cada descarga, en
 - **Qué aporta a v2**: la réplica de dirección se calculó con M frente a N.
   Con la leyenda del artículo, eso es metástasis hepática frente a mucosa, no
   tumor primario frente a mucosa. El brazo que v2 llamó pólipo es el primario.
+- **Resultado v3** (6 de noviembre de 2026, `results/v3/k1_etiquetas.json`):
+  primario frente a mucosa, 116/118 proteínas certificadas, intervalo 0,940 a
+  0,998. Metástasis frente a mucosa, 93/106. El 104/119 de v1 y v2 se conserva
+  como la lectura que usó M como tumor.
 - **Nombres de columna**: `LFQ intensity CRC<n><M|N|P>`. **M es metástasis, N
   mucosa normal y P tumor primario.** No es `T` y no es un pólipo.
 - **Trampa conocida**: el cero de MaxQuant significa ausencia de identificación,
@@ -60,6 +64,12 @@ El estado legible por máquina vive junto a cada descarga, en
   ventana de detección de C8.
 - **Limitación estructural**: no hay ningún paciente con tejido y sangre a la
   vez. Toda comparación tejido→plasma es entre cohortes, nunca intraindividual.
+- **Resultado v3** (6 de noviembre de 2026, `results/v3/k4_potencia.json`):
+  876 proteínas. Cáncer frente a colonoscopia negativa: 0 diferentes, 145
+  equivalentes, 731 indeterminadas. La fracción lineal de albúmina e
+  inmunoglobulinas y la coagulación difieren entre grupos
+  (`results/v3/k7_control_tecnico.json`). Los precursores por corrida no están
+  en el disco.
 
 ---
 

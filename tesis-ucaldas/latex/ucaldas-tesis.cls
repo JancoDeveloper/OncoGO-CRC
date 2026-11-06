@@ -57,11 +57,13 @@
 \fancyhf{}
 \fancyhead[LE]{\fontsize{11}{13}\selectfont\thepage}
 \fancyhead[RO]{\fontsize{11}{13}\selectfont\thepage}
+\fancyhead[C]{\fontsize{8}{10}\selectfont\textit{Versión para revisión, no citar}}
 \renewcommand{\headrulewidth}{0pt}
 \fancypagestyle{plain}{%
   \fancyhf{}%
   \fancyhead[LE]{\fontsize{11}{13}\selectfont\thepage}%
   \fancyhead[RO]{\fontsize{11}{13}\selectfont\thepage}%
+  \fancyhead[C]{\fontsize{8}{10}\selectfont\textit{Versión para revisión, no citar}}%
   \renewcommand{\headrulewidth}{0pt}%
 }
 

@@ -1,0 +1,8 @@
+{
+  "escala": "log2_de_intensidad_lineal",
+  "grupos": {
+    "colonoscopy_negative": 20,
+    "crc": 20,
+    "healthy": 20
+  }
+}

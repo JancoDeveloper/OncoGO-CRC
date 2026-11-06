@@ -22,6 +22,11 @@ data/interim/*.tsv
 data/processed/*.tsv
 /results/**/*
 !/results/**/.gitkeep
+# v3 se versiona: la tesis cita estas tablas. La caché de Crossref se regenera.
+!/results/v3/
+!/results/v3/**
+/results/v3/crossref_cache/
+/results/v3/crossref_cache/**
 /reports/**/*.md
 !/reports/**/.gitkeep
 

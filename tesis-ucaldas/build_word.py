@@ -157,6 +157,10 @@ def poner_numero(header, alineacion) -> None:
     parrafo = header.paragraphs[0]
     parrafo.clear()
     parrafo.alignment = alineacion
+    aviso = parrafo.add_run("Versión para revisión, no citar  ")
+    aviso.italic = True
+    aviso.font.size = Pt(9)
+    rfonts(aviso, "Arial")
     campo(parrafo, " PAGE ", "1")
 
 
@@ -310,6 +314,13 @@ class Constructor:
         self._centrado("Facultad de Inteligencia Artificial e Ingenierías", 12, False)
         self._centrado("Manizales, Colombia", 12, False)
         self._centrado("2026", 12, False)
+        aviso = self.doc.add_paragraph()
+        aviso.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        aviso.paragraph_format.space_before = Pt(12)
+        run = aviso.add_run("Versión para revisión, 6 de noviembre de 2026. No citar.")
+        run.italic = True
+        rfonts(run, "Arial")
+        run.font.size = Pt(10)
 
     def _centrado(self, texto: str, tamano: int, negrita: bool, antes: int = 0) -> None:
         parrafo = self.doc.add_paragraph()

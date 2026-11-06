@@ -4,10 +4,16 @@
 Las conclusiones responden a los objetivos.
 
 \begin{itemize}
-\item El tumor primario de Tanaka, leído como primario y no como pólipo, coincide en signo con CPTAC en 687 de 874 genes y correlaciona 0,83. La metástasis correlaciona 0,59. El primario no es una metástasis pequeña: solo el 46,2\,\% de los genes de igual signo tiene magnitud menor en el primario.
-\item En el suero de tres grupos, ninguna proteína separa el cáncer de la colonoscopia negativa con tasa de descubrimientos falsos de 0,05 y cambio de al menos 1,5 veces. SAA1, LBP y CHMP4A separan el cáncer de las personas sanas. Las dos primeras se leen como respuesta del huésped. La tercera tiene demasiadas ausencias para presentarse como marcador.
-\item Los procesos GO del tejido casi no están medidos en este suero. Los doce a trece términos que sí entran no concuerdan por encima de 200 permutaciones.
+% fuente: results/v3/k1_etiquetas.json
+\item Entre las 688 proteínas certificadas, el primario de Tanaka coincide en signo con CPTAC en 116 de 118. El intervalo va de 0,940 a 0,998. La metástasis hepática frente a la mucosa coincide en 93 de 106. La lectura anterior, con la metástasis leída como tumor, era 104 de 119 y se conserva con ese nombre. En el universo más amplio del 31 de octubre, 687 de 874 genes coinciden en signo y la correlación de Pearson es 0,83. Son dos cuentas distintas.
+% fuente: results/v3/k4_potencia.json
+% fuente: results/v3/k6_presencia.tsv
+\item En el suero, ninguna de las 876 proteínas separa el cáncer de la colonoscopia negativa con el corte de 1,5 veces. De ellas, 145 tienen ese cambio descartado y 731 quedan indeterminadas. SAA1, LBP y CHMP4A separan el cáncer de las personas sanas. Las dos primeras se leen como respuesta del huésped. CHMP4A tiene 13, 4 y 3 presencias en los tres grupos de 20, y no se imputa. La fracción de albúmina y la coagulación difieren entre grupos.
+% fuente: results/v3/k5_auc.json
+\item El máximo del área bajo la curva del catálogo, 0,9375, tiene p = 0,0245 frente a 10\,000 permutaciones. La media de ese nulo es 0,843. No es una prueba diagnóstica.
+\item Los procesos GO del tejido casi no están medidos en este suero. Los doce a trece términos del cierre del 31 de octubre no se han vuelto a evaluar con 10\,000 permutaciones. Esa cláusula queda en curso.
 \item Los péptidos mutados descritos por Rai, Xiang y Hembrough no se confirman ni se rechazan con esta matriz. El resultado de ese objetivo es el límite del método.
+\item La especificidad de órgano, el origen celular, la visibilidad en sangre, la carga tumoral, la dirección causal y la especificidad frente a otras enfermedades están preregistradas. Esta versión no les asigna un número.
 \end{itemize}
 
 En conjunto, el cambio de proteínas del tumor se repite entre tejidos y en este suero no aparece como una señal propia del cáncer. El trabajo sirve para responder esa pregunta. No sirve para proponer un examen de sangre.

@@ -1,0 +1,108 @@
+{
+  "estado": "calculado",
+  "n_pares_primario_mucosa": 16,
+  "n_pares_metastasis_mucosa": 16,
+  "n_pares_metastasis_primario": 16,
+  "n_certificadas": 688,
+  "contrastes": {
+    "primario_frente_a_mucosa": {
+      "nombre": "R1_primario_frente_a_mucosa",
+      "valor": 0.9830508474576272,
+      "numerador": 116,
+      "denominador": 118,
+      "unidad_denominador": "proteinas_unicas",
+      "ci_low": 0.9401144206453009,
+      "ci_high": 0.9979407474434051,
+      "p_vs_azar": 4.2262125217147407e-32,
+      "universo": 688,
+      "universo_nombre": "proteinas_certificadas_cptac",
+      "cobertura": 0.17151162790697674,
+      "spearman": {
+        "n": 118,
+        "rho": 0.7406827137634715,
+        "p": 9.122789529597112e-22
+      },
+      "lin": {
+        "n": 118,
+        "ccc": 0.7335071520801414
+      },
+      "n_pares_diseno": 16
+    },
+    "metastasis_hepatica_frente_a_mucosa": {
+      "nombre": "R1_metastasis_hepatica_frente_a_mucosa",
+      "valor": 0.8773584905660378,
+      "numerador": 93,
+      "denominador": 106,
+      "unidad_denominador": "proteinas_unicas",
+      "ci_low": 0.7994128882818604,
+      "ci_high": 0.9330541122466843,
+      "p_vs_azar": 4.542762798571596e-16,
+      "universo": 688,
+      "universo_nombre": "proteinas_certificadas_cptac",
+      "cobertura": 0.15406976744186046,
+      "spearman": {
+        "n": 106,
+        "rho": 0.7102249540267526,
+        "p": 1.524000722800831e-17
+      },
+      "lin": {
+        "n": 106,
+        "ccc": 0.4395200040046645
+      },
+      "n_pares_diseno": 16
+    },
+    "primario_frente_a_mucosa_no_pareado": {
+      "nombre": "R1_primario_frente_a_mucosa_no_pareado",
+      "valor": 0.96875,
+      "numerador": 124,
+      "denominador": 128,
+      "unidad_denominador": "proteinas_unicas",
+      "ci_low": 0.9219204745615824,
+      "ci_high": 0.991421064462739,
+      "p_vs_azar": 6.475582675466606e-32,
+      "universo": 688,
+      "universo_nombre": "proteinas_certificadas_cptac",
+      "cobertura": 0.18604651162790697,
+      "spearman": {
+        "n": 128,
+        "rho": 0.7367812671671854,
+        "p": 3.669804466466547e-23
+      },
+      "lin": {
+        "n": 128,
+        "ccc": 0.7455347407468234
+      },
+      "n_pares_diseno": 16
+    }
+  },
+  "r2_peptidos": {
+    "nombre": "R2_detectabilidad_peptidos",
+    "valor": 0.32848837209302323,
+    "numerador": 226,
+    "denominador": 688,
+    "unidad_denominador": "proteinas_unicas",
+    "ci_low": 0.2934668814666274,
+    "ci_high": 0.36498898198375834,
+    "p_vs_azar": 1.4407780811587535e-19,
+    "nota": "Péptido único en proteinGroups. No depende de qué columna sea el tumor."
+  },
+  "cobertura_principal": {
+    "nombre": "R1_cobertura_primario_frente_a_mucosa",
+    "valor": 0.17151162790697674,
+    "numerador": 118,
+    "denominador": 688,
+    "unidad_denominador": "proteinas_unicas",
+    "ci_low": 0.14407561004483393,
+    "ci_high": 0.20179861927325088,
+    "p_vs_azar": 6.733511454041895e-72,
+    "nota": "Certificadas con log2FC evaluable en el contraste principal."
+  },
+  "h1_clausula_proteina": "rechaza",
+  "h1_clausula_via": "no_evaluable",
+  "h1_veredicto": "rechaza_h1",
+  "h1_motivo_via": "La cláusula de vía no se ha vuelto a calcular con P frente a N.",
+  "r3": {
+    "estado": "no_evaluable",
+    "motivo": "v2 metió a PXD019504 como tercera cohorte. K2 todavía no descarta que comparta personas con PXD034575 o PXD031705. Sin eso, 1 − I² de tres cohortes no se recalcula."
+  }
+}

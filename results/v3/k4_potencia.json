@@ -1,0 +1,25 @@
+{
+  "estado": "calculado",
+  "contrastes": {
+    "crc_frente_a_colonoscopia_negativa": {
+      "alfa_efectivo": 7.142857142857143e-05,
+      "n": 876,
+      "indeterminada": 731,
+      "equivalente": 145
+    },
+    "crc_frente_a_sanos": {
+      "alfa_efectivo": 7.112375533428166e-05,
+      "n": 876,
+      "indeterminada": 720,
+      "equivalente": 153,
+      "diferente": 3
+    },
+    "colonoscopia_negativa_frente_a_sanos": {
+      "alfa_efectivo": 7.08215297450425e-05,
+      "n": 876,
+      "indeterminada": 658,
+      "equivalente": 217,
+      "diferente": 1
+    }
+  }
+}

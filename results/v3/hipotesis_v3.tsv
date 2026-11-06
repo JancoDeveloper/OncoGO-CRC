@@ -1,0 +1,11 @@
+hipotesis	estado	metrica	detalle	fuente
+H1	rechaza_h1	concordancia de signo, primario frente a mucosa	rechaza	results/v3/k1_etiquetas.json
+H2	no_evaluada	red	Sin nulo que conserve el grado.	results/v2/certification/certificado_v2.json
+H3	no_evaluable		No hay H3 en el preregistro de v2 ni en el de v3.	config/preregistro_v3.yaml
+H4	no_evaluable	fraccion medible	v2 fijó el umbral 0,90 y no cerró un veredicto en el certificado.	results/v2/certification/certificado_v2.json
+H5	no_evaluable	especificidad de órgano	Análisis preregistrado. Todavía no está calculado. No se publica un número aproximado.	config/preregistro_v3.yaml
+H6	no_evaluable	origen celular	Análisis preregistrado. Todavía no está calculado. No se publica un número aproximado.	config/preregistro_v3.yaml
+H7	no_evaluable	visibilidad en sangre	Análisis preregistrado. Todavía no está calculado. No se publica un número aproximado.	config/preregistro_v3.yaml
+H8	no_evaluable	carga tumoral en suero	Análisis preregistrado. Todavía no está calculado. No se publica un número aproximado.	config/preregistro_v3.yaml
+H9	no_evaluable	dirección causal	Análisis preregistrado. Todavía no está calculado. No se publica un número aproximado.	config/preregistro_v3.yaml
+H10	no_evaluable	especificidad clínica en sangre	Análisis preregistrado. Todavía no está calculado. No se publica un número aproximado.	config/preregistro_v3.yaml

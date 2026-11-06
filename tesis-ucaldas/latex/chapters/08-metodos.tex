@@ -37,5 +37,10 @@ El suero usa los prefijos de corrida CP, CN y Normal. Si esas columnas existen, 
 
 La concordancia con CPTAC empareja genes y calcula el mismo signo y la correlación de Pearson de los log2FC. Las fichas reúnen proteínas que pasan la tasa de descubrimientos falsos o que tienen una lectura de área bajo la curva evaluable, y les añaden términos GO de 15 a 300 genes, la anotación de secreción y los enlaces a UniProt y AlphaFold. El origen de cada fila es literatura o resultado de esta corrida.
 
+\section{Corrida del 6 de noviembre}
+% fuente: config/preregistro_v3.yaml
+% fuente: results/v3/changelog_numeros.tsv
+El preregistro de esta corrida se fijó antes de recalcular los contrastes. El contraste principal de PXD034575 es el primario frente a la mucosa, pareado, con al menos tres pares. La metástasis frente a la mucosa queda como contraste con nombre propio. La concordancia de las 688 proteínas certificadas se acompaña de Spearman y de la concordancia de Lin. En el suero, cada proteína recibe una clase: diferente, si pasa el corte; equivalente, si las dos pruebas unilaterales demuestran un cambio menor que 1,5 veces; indeterminada, en el resto. El área bajo la curva se reporta con signo. El nulo del máximo usa 10\,000 permutaciones de etiquetas. Las proteínas observadas en menos del 70\,\% de los sueros tienen una prueba de presencia, separada de la abundancia. No se imputa.
+
 \section{Lo que el método no puede hacer}
 No se buscan espectros de péptidos mutados. No se descarga el suplemento de origen tisular de Malmström como tabla aplicada paciente a paciente. No se parte PXD036594 en cáncer y control. No se estima un examen clínico.
