@@ -30,7 +30,8 @@ ESPERADO = {
     "corridas": 60,
     "grupos_global_pg_q_0_01": 329,
     "grupos_sin_pg_q_0_01_en_ninguna_corrida": 432,
-    "humanos_pg_y_global": 307,
+    "humanos_pg_y_global": 312,
+    "humanos_pg_y_global_con_gen": 307,
 }
 
 

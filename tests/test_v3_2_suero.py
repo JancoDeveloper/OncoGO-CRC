@@ -95,4 +95,5 @@ def test_el_report_real_reproduce_los_controles_de_la_revision():
     assert cifras["q_value_max"] <= 0.01
     assert cifras["grupos_global_pg_q_0_01"] == 329
     assert cifras["grupos_sin_pg_q_0_01_en_ninguna_corrida"] == 432
-    assert cifras["humanos_pg_y_global"] == 307
+    assert cifras["humanos_pg_y_global"] == 312
+    assert cifras["humanos_pg_y_global_con_gen"] == 307

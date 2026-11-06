@@ -67,8 +67,14 @@ def controles_del_report(tabla: pd.DataFrame) -> dict:
     pg_min = grupos["PG.Q.Value"].min()
     nombres = grupos["Protein.Names"].first() if "Protein.Names" in tabla.columns else pd.Series("", index=global_q.index)
     humanos = nombres.map(lambda texto: "HUMAN" in especies_de_nombres(texto))
+    if "Genes" in tabla.columns:
+        genes = grupos["Genes"].first().fillna("").astype(str).str.strip()
+        tiene_gen = ~genes.isin(["", "nan"])
+    else:
+        tiene_gen = pd.Series(False, index=global_q.index)
     pasa_global = global_q <= 0.01
     pasa_pg = pg_min <= 0.01
+    ambos = pasa_global & pasa_pg & humanos
     return {
         "filas": int(len(tabla)),
         "corridas": int(tabla["Run"].nunique()),
@@ -78,7 +84,8 @@ def controles_del_report(tabla: pd.DataFrame) -> dict:
         "grupos": int(global_q.size),
         "grupos_global_pg_q_0_01": int(pasa_global.sum()),
         "grupos_sin_pg_q_0_01_en_ninguna_corrida": int((~pasa_pg).sum()),
-        "humanos_pg_y_global": int((pasa_global & pasa_pg & humanos).sum()),
+        "humanos_pg_y_global": int(ambos.sum()),
+        "humanos_pg_y_global_con_gen": int((ambos & tiene_gen).sum()),
     }
 
 
