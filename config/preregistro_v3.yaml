@@ -228,7 +228,7 @@ hipotesis:
     heredada_de: config/preregistro_v2.yaml
     reevaluar_con: k1_etiquetas.contraste_principal
     umbral_concordancia_proteina: 0.70
-    nota: El umbral no cambia. Cambia la réplica: P frente a N, no M frente a N.
+    nota: "El umbral no cambia. Cambia la réplica: P frente a N, no M frente a N."
   h2:
     estado_heredado: no_evaluada
     motivo: Sigue sin un nulo que conserve el grado de cada nodo.
