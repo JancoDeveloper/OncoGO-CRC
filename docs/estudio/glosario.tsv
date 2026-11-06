@@ -1,0 +1,112 @@
+#separator:tab
+#html:false
+#deck:OncoGO-CRC::01 Glosario
+#tags column:3
+ABSOLUTE	Método que estima la pureza tumoral desde el ADN (Carter 2012)	letra::A glosario
+Accesión	Identificador único: P02768 en UniProt, PXD055218 en ProteomeXchange	letra::A glosario
+Adenoma	Pólipo benigno que puede progresar a cáncer	letra::A glosario
+AlphaDIA	Motor abierto para analizar DIA con aprendizaje profundo (Wallmann 2026)	letra::A glosario
+Aleatorización mendeliana (MR)	Inferencia causal con variantes genéticas como instrumentos	letra::A glosario
+AUC	Área bajo la curva ROC: probabilidad de que un caso puntúe más que un control	letra::A glosario
+Bayes empírico	Estimar parámetros "prestando" información de todas las proteínas (limma)	letra::B glosario
+BH	Benjamini-Hochberg: corrección que controla el FDR	letra::B glosario
+Bootstrap	Remuestrear con reemplazo para estimar la incertidumbre	letra::B glosario
+camera	Prueba de conjuntos competitiva que corrige la correlación (Wu y Smyth 2012)	letra::C glosario
+CEA	Antígeno carcinoembrionario (CEACAM5), marcador clínico de seguimiento	letra::C glosario
+CI	Integración continua: los tests corren solos en cada cambio	letra::C glosario
+Clopper-Pearson	Intervalo exacto para una proporción	letra::C glosario
+CMS	Subtipos moleculares de consenso del CCR (1 a 4)	letra::C glosario
+Colocalización	Probar si la misma variante causa dos señales (PP.H4)	letra::C glosario
+Confusión	Una tercera variable que explica la diferencia observada	letra::C glosario
+CON__ / REV__	Prefijos de MaxQuant para contaminantes y decoys	letra::C glosario
+CPTAC	Consorcio de proteogenómica del cáncer (NCI)	letra::C glosario
+CV anidada	Validación cruzada con un bucle interno para elegir hiperparámetros	letra::C glosario
+Dalton (Da)	Unidad de masa molecular; ~ la masa de un protón	letra::D glosario
+DDA / DIA	Adquisición dependiente o independiente de datos	letra::D glosario
+Decoy	Secuencia falsa (invertida) para estimar errores	letra::D glosario
+Deming	Regresión con error en ambas variables	letra::D glosario
+DeLong	Método para el IC de un AUC y para comparar dos AUC en las mismas personas	letra::D glosario
+Dermcidina (DCD)	Proteína del sudor; contaminante típico	letra::D glosario
+DIA-NN	Software de análisis DIA usado por los autores de PXD055218	letra::D glosario
+Efecto de lote	Diferencia técnica entre tandas de medición	letra::E glosario
+EII	Enfermedad inflamatoria intestinal (Crohn, colitis ulcerosa)	letra::E glosario
+Embedding	Vector que resume un objeto (una proteína)	letra::E glosario
+Enmienda	Cambio fechado y justificado a un preregistro	letra::E glosario
+Entrapment	Secuencias que no pueden estar en la muestra, para medir el FDR real	letra::E glosario
+Equivalencia	Demostrar que un efecto es menor que un margen (TOST)	letra::E glosario
+ESM-2	Modelo de lenguaje de proteínas de Meta (Lin 2023)	letra::E glosario
+Estroma	Tejido de soporte: fibroblastos, vasos, matriz	letra::E glosario
+Fase aguda	Respuesta inflamatoria sistémica (SAA1, CRP, LBP)	letra::F glosario
+FDR	Tasa de falsos descubrimientos	letra::F glosario
+FIT	Prueba inmunoquímica fecal de sangre oculta	letra::F glosario
+Fisher (prueba exacta)	Prueba de asociación en tablas 2 × 2 (presencia y ausencia)	letra::F glosario
+Fuga de datos	Información de la prueba que se cuela en el entrenamiento	letra::F glosario
+FWER	Probabilidad de al menos un falso positivo	letra::F glosario
+GO	Gene Ontology: proceso, función y componente	letra::G glosario
+Gradient boosting	Conjunto de árboles que corrigen errores sucesivos	letra::G glosario
+Grupo proteico	Conjunto de proteínas que los péptidos no permiten distinguir	letra::G glosario
+GSEA	Enriquecimiento sobre una lista ordenada completa	letra::G glosario
+GWAS	Estudio de asociación del genoma completo	letra::G glosario
+Hemólisis	Rotura de eritrocitos; libera hemoglobina y otras proteínas	letra::H glosario
+HLA	Moléculas que presentan péptidos al sistema inmune	letra::H glosario
+Hodges-Lehmann	Mediana de las diferencias entre grupos; tamaño del efecto de Mann-Whitney	letra::H glosario
+HPA	Human Protein Atlas	letra::H glosario
+I²	Fracción de la variación entre estudios debida a heterogeneidad real	letra::I glosario
+Imputación	Rellenar valores ausentes; la tesis no lo hace	letra::I glosario
+Isoforma	Variante de una proteína del mismo gen	letra::I glosario
+IVW	Media ponderada por la inversa de la varianza (MR)	letra::I glosario
+Kruskal-Wallis	Prueba no paramétrica para comparar tres o más grupos	letra::K glosario
+LFQ	Cuantificación sin marcaje	letra::L glosario
+limma	Paquete de modelos lineales con varianza moderada	letra::L glosario
+Lin (CCC)	Coeficiente de concordancia sobre y = x	letra::L glosario
+log2FC	Logaritmo en base 2 del cociente; 1 = doble, 0,585 = 1,5 veces	letra::L glosario
+Mann-Whitney	Prueba no paramétrica para dos grupos	letra::M glosario
+Manifiesto	Lista de ficheros con su huella SHA-256	letra::M glosario
+MaxLFQ	Algoritmo de LFQ basado en razones de péptidos (Cox 2014)	letra::M glosario
+MAR / MCAR / MNAR	Tipos de ausencia: al azar condicional, completamente al azar, no al azar	letra::M glosario
+m/z	Masa dividida por carga: lo que mide el espectrómetro	letra::M glosario
+MDE	Efecto mínimo detectable con la potencia fijada	letra::M glosario
+MHCflurry	Predictor abierto de presentación en HLA de clase I	letra::M glosario
+MOFA+	Factorización para integrar varias ómicas	letra::M glosario
+MS1 / MS2	Espectro de iones intactos / de fragmentos	letra::M glosario
+MSI	Inestabilidad de microsatélites; tumores con muchas mutaciones	letra::M glosario
+Multiverso	Repetir el análisis con todas las decisiones razonables	letra::M glosario
+Neoantígeno	Péptido mutado del tumor que el sistema inmune puede reconocer	letra::N glosario
+Nulo del máximo	Distribución del mejor resultado cuando no hay señal	letra::N glosario
+Olink (PEA)	Plataforma de afinidad por anticuerpos pareados, no MS	letra::O glosario
+p-valor	Probabilidad de un resultado tan extremo si H0 fuera cierta	letra::P glosario
+Péptido proteotípico	Péptido que pertenece a una sola proteína	letra::P glosario
+Péptido señal	Secuencia que dirige una proteína a secreción	letra::P glosario
+Permutación	Barajar etiquetas para construir un nulo	letra::P glosario
+Pivotar	Pasar una tabla de formato largo a ancho	letra::P glosario
+Plasma / suero	Sangre sin células con anticoagulante / tras coagular	letra::P glosario
+Potencia	Probabilidad de detectar un efecto real	letra::P glosario
+pQTL	Variante genética asociada al nivel de una proteína	letra::P glosario
+Precursor	Ion de un péptido con una carga dada	letra::P glosario
+Preanalítica	Todo lo que ocurre antes de medir la muestra	letra::P glosario
+Preregistro	Plan fijado antes de ver los datos	letra::P glosario
+ProtT5	Modelo de lenguaje de proteínas (Elnaggar 2022)	letra::P glosario
+Pureza tumoral	Fracción de células tumorales en la muestra	letra::P glosario
+Q de Cochran	Suma ponderada de las distancias de cada estudio al efecto común; base de I²	letra::Q glosario
+q-valor	El menor FDR al que una identificación o prueba sería aceptada	letra::Q glosario
+R1 a R5	Índices de la tesis: concordancia, detectabilidad, homogeneidad, composición y nulo	letra::R glosario
+Regresión logística	Modelo de probabilidad de clase	letra::R glosario
+Regularización	Penalización para evitar el sobreajuste (L1, L2, elastic-net)	letra::R glosario
+Reitsma	Meta-análisis bivariado de sensibilidad y especificidad	letra::R glosario
+Rescoring	Reordenar identificaciones con predicciones de espectro y tiempo	letra::R glosario
+Sello de corrida	JSON con commit, hash del preregistro y fecha	letra::S glosario
+Semilla	Número que fija el azar para reproducir resultados	letra::S glosario
+SHA-256	Huella digital de un fichero	letra::S glosario
+SHAP	Reparto de una predicción entre variables; explica el modelo, no la biología	letra::S glosario
+Sobreajuste	Memorizar el ruido del entrenamiento	letra::S glosario
+Tamizaje	Buscar enfermedad en personas sin síntomas	letra::T glosario
+Target-decoy	Estrategia de búsqueda con secuencias falsas	letra::T glosario
+τ² (tau cuadrado)	Varianza del efecto verdadero entre estudios en un meta-análisis	letra::T glosario
+TMbed	Predictor abierto de transmembrana y péptido señal	letra::T glosario
+TMT	Marcaje isobárico para multiplexar muestras	letra::T glosario
+TOST	Dos pruebas unilaterales para equivalencia	letra::T glosario
+treat	Prueba de cambio por encima de un umbral (McCarthy y Smyth 2009)	letra::T glosario
+TRIPOD+AI	Guía para reportar modelos de predicción	letra::T glosario
+Universo	Conjunto de fondo en un enriquecimiento	letra::U glosario
+Validación externa	Probar el modelo en datos de otro recurso	letra::V glosario
+VPP	Valor predictivo positivo: probabilidad de enfermedad si la prueba sale positiva; depende de la prevalencia	letra::V glosario
