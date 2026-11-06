@@ -44,7 +44,7 @@ BASE = (
 
 CITA = (
     "Álvez MB, Edfors F, von Feilitzen K, et al. Next generation pan-cancer "
-    "blood proteome profiling using proteograph. Nature Communications 2023; "
+    "blood proteome profiling using proximity extension assay. Nature Communications 2023; "
     "14:4308."
 )
 LICENCIA = (

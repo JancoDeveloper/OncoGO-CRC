@@ -109,6 +109,7 @@ en ómicas (Nature 2013; estándares TRIPOD+AI, REMARK, DOME).
 - Guinney J. et al. (2015). The consensus molecular subtypes of colorectal cancer. *Nat Med* 21:1350.
 - Zhang B. et al. (2014). Proteogenomic characterization of human colon and rectal cancer. *Nature* 513:382.
 - Robles J., Prakash A., Vizcaíno J. A. y Casal J. I. (2024). Integrated meta-analysis of colorectal cancer public proteomic datasets. *PLOS Comput Biol*. doi:10.1371/journal.pcbi.1011828
-- Vasaikar S. et al. (2019). Proteogenomic analysis of human colon cancer. *Cell* 177:1035. doi:10.1016/j.cell.2019.03.030. Es la ficha de PDC000116. El pan-cáncer de CPTAC en *Cancer Cell* 2023 (doi:10.1016/j.ccell.2023.08.014) es otro artículo.
+- Vasaikar S. et al. Proteogenomic analysis of human colon cancer reveals new therapeutic opportunities. *Cell* 2019. doi:10.1016/j.cell.2019.03.030. Es la ficha de PDC000116.
+- Ferrari et al. Sensitizing cancer cells to immune checkpoint inhibitors by microbiota-mediated upregulation of HLA class I. *Cancer Cell* 2023. doi:10.1016/j.ccell.2023.08.014. No es un artículo de CPTAC. Una frase anterior de este archivo lo presentaba como el pan-cáncer de CPTAC.
 - García-Foncillas J. (2026). Biología molecular del cáncer colorrectal. *Rev. colomb. hematol. oncol.* doi:10.51643/22562915.853. Revisión narrativa de vías y biopsia líquida de ADN. No mide el proteoma ni define un subtipo CMS en estas muestras.
 - Colección metodológica y de bases de datos: ver `HERRAMIENTAS_Y_TECNICAS.md` y `DISENO_TECNICO_ONCOGO_2.0.md`.

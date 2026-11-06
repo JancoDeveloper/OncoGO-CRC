@@ -85,8 +85,8 @@ Orden recomendado (alineado con la Fase A-D del informe técnico):
 - Guinney et al. (2015). *Consensus molecular subtypes of colorectal cancer.* Nat Med.
 - Zhang et al. (2014). *Proteogenomic characterization of human colon and rectal cancer.* Nature.
 - Robles et al. (2024). *Meta-analysis of public proteomics datasets for colorectal cancer.* PLOS Comp Biol. doi:10.1371/journal.pcbi.1011828
-- CPTAC pan-cancer proteogenomics (2023). Cancer Cell. doi:10.1016/j.ccell.2023.08.014
-- CPTAC pan-cancer (2023). Cancer Res. doi:10.1158/0008-5472.CAN-23-1878
+- Ferrari et al. Sensitizing cancer cells to immune checkpoint inhibitors by microbiota-mediated upregulation of HLA class I. *Cancer Cell* 2023. doi:10.1016/j.ccell.2023.08.014. Esta línea se había anotado como proteogenómica pan-cáncer de CPTAC. El registro no dice eso, así que no se usa como tal.
+- Li et al. Comprehensive proteogenomic profiling reveals the molecular characteristics of colorectal cancer at distinct stages of progression. *Cancer Research* 2024. doi:10.1158/0008-5472.CAN-23-1878.
 - Li Y. et al. (2024). Longitudinal plasma proteome profiling of colorectal cancer during cetuximab. *Nat Commun*. doi:10.1038/s41467-024-44911-1. Es respuesta a tratamiento, no un estudio de cribado.
 - García-Foncillas J. (2026). doi:10.51643/22562915.853. Revisión narrativa. No es evidencia de un término GO.
 - Tanaka A. et al. (2024). Proteogenomic characterization of primary colorectal cancer and metastatic progression. *Cell Reports* 43:113810. doi:10.1016/j.celrep.2024.113810. PXD034575, cohorte 1: 16 tripletes de tumor primario, metástasis hepática y mucosa normal.

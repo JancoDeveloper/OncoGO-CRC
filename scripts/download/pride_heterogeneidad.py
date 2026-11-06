@@ -46,11 +46,11 @@ ACCESION = "PXD036434"
 API = "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/{}/files?pageSize=500"
 PORTAL = f"https://www.ebi.ac.uk/pride/archive/projects/{ACCESION}"
 FICHERO = "Protein_quantity_matrix.xlsx"
-DOI = "10.1186/s13073-023-01176-5"
+DOI = "10.1186/s12967-022-03855-0"
 CITA = (
-    "Herzog R, Amaral FMR, Lerner R, et al. Panomics reveals patient "
-    "individuality as the major driver of colorectal cancer progression. "
-    "Genome Medicine 2023. doi:10.1186/s13073-023-01176-5"
+    "Praus F, et al. Panomics reveals patient individuality as the major "
+    "driver of colorectal cancer progression. Journal of Translational "
+    "Medicine 2023;21:41. doi:10.1186/s12967-022-03855-0"
 )
 LICENCIA = (
     "PRIDE Archive, datos públicos. La reutilización está permitida citando el "

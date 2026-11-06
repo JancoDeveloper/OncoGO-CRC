@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""D6. Wannberg et al. 2026: plasma de cáncer frente a enfermedad benigna.
+"""D6. Wannberg et al. 2025: plasma de cáncer frente a enfermedad benigna.
+
+El año es el de Crossref (`issued`, 29 de diciembre de 2025). El editor asigna
+el artículo al volumen 17, número 151. El nombre de este fichero no cambia:
+v2 ya escribió la descarga en ``external/wannberg_2026/``.
 
 Para qué sirve esto. v1 comparó suero de cáncer contra suero de personas sanas,
 y D4b hace lo mismo con una cohorte diez veces mayor. Pero en una consulta nadie
@@ -55,7 +59,7 @@ ESM = (
 CITA = (
     "Wannberg F, Bueno Álvez M, Qvick A, et al. Plasma protein profiling "
     "predicts cancer in patients with non-specific symptoms. Nature "
-    "Communications 2026. doi:10.1038/s41467-025-67688-3"
+    "Communications 2025;17:151. doi:10.1038/s41467-025-67688-3"
 )
 LICENCIA = (
     "CC BY 4.0. El artículo y su información suplementaria son de acceso "

@@ -53,10 +53,10 @@ El objetivo de este documento es especificar, con detalle técnico, las **tres c
 
 ### A.5 Referencias validadas (Capa A)
 - Voß et al. 2022, *Nat Commun* — **HarmonizR**. DOI: 10.1038/s41467-022-31007-x
-- Qiaochu et al. 2025, *Nat Commun* — corrección batch a nivel proteína. DOI: 10.1038/s41467-025-64718-y
+- Chen Q et al. 2025, *Nat Commun* — corrección batch a nivel proteína. DOI: 10.1038/s41467-025-64718-y
 - Argelaguet et al. 2020, *Genome Biology* — **MOFA+** (verificar DOI: 10.1186/s13059-020-02015-1).
 - Chen et al. 2025, *Molecular Biomedicine* — MOFA v2 en CPTAC-2 CRC (factor pronóstico CPLF). DOI: 10.1186/s43556-025-00386-0
-- Büttner et al. 2019, *Nat Methods* — **kBET** (verificar DOI: 10.1038/s41592-018-0254-1).
+- Büttner et al. 2018, *Nat Methods* — **kBET** (DOI: 10.1038/s41592-018-0254-1; Crossref `issued` 20 de diciembre de 2018, volumen 16, páginas 43-49).
 - Korsunsky et al. 2019, *Nat Methods* — **Harmony / LISI** (verificar DOI: 10.1038/s41592-019-0619-0).
 - Liu et al. 2025, *Nat Commun* 16:3530 — **DIA-BERT** (futuro). DOI: 10.1038/s41467-025-58866-4
 - Wallmann et al. 2025, *Nat Biotechnol* — **AlphaDIA** transfer learning (futuro). DOI: 10.1038/s41587-025-02791-w
@@ -125,7 +125,7 @@ El objetivo de este documento es especificar, con detalle técnico, las **tres c
 - Estabilidad del ranking (bootstrap) y sensibilidad a pesos.
 
 ### C.4 Referencias validadas (Capa C)
-- Pacini/Garnett et al. 2024, *Cancer Cell* — mapa de dependencias de 2ª generación y **marco de priorización de dianas** (DepMap + PPI). DOI: 10.1016/j.ccell.2023.11.009 *(verificar)*; nota de prensa Open Targets (11-ene-2024) sobre 370 dianas candidatas.
+- El mapa de dependencias de segunda generación (Pacini, Garnett y colaboradores) queda sin DOI: el que figuraba en esta línea resuelve en Crossref a Ruella et al., Cancer Cell 2023, un comentario sobre CAR-T, no a ese mapa. No se cita hasta comprobar el registro.
 - Revisión de uso de bases públicas para evaluación de dianas oncológicas, *PMC10346432* (Open Targets, DepMap, DGIdb, tractability).
 - Frontiers Immunol 2025, marco integrativo de priorización de genes drogables en CRC (OpenTargets + DrugBank + DGIdb). DOI: 10.3389/fimmu.2025.1604154
 - DepMap portal (Broad/Sanger); Open Targets Platform; DGIdb; DrugBank; ChEMBL; Human Protein Atlas; GTEx; cBioPortal (verificar versiones 2025–2026).

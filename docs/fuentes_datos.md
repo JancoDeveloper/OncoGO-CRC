@@ -186,7 +186,7 @@ El estado legible por máquina vive junto a cada descarga, en
 - **Portal**: <https://pdc.cancer.gov/pdc/study/PDC000111>
 - **Identificador**: `PDC000111`, `TCGA COAD Proteome S016-1`, CPTAC2
   Retrospective, label free.
-- **Cita**: Zhang B, Wang J, Wang X, et al. Proteogenomic characterization of
+- **Cita**: the NCI CPTAC, Zhang B, Wang J, Wang X, et al. Proteogenomic characterization of
   human colon and rectal cancer. *Nature* 2014; 513(7518):382-387.
   doi:10.1038/nature13438
 - **Licencia**: datos abiertos del Proteomic Data Commons del NCI. Las matrices
@@ -246,9 +246,12 @@ El estado legible por máquina vive junto a cada descarga, en
 - **Script**: `scripts/download/pride_heterogeneidad.py`
 - **Etapa**: `make v2-heterogeneidad`
 - **Portal**: <https://www.ebi.ac.uk/pride/archive/projects/PXD036434>
-- **Cita**: Herzog R, Amaral FMR, Lerner R, et al. Panomics reveals patient
-  individuality as the major driver of colorectal cancer progression. *Genome
-  Medicine* 2023. doi:10.1186/s13073-023-01176-5
+- **Cita**: Praus F, et al. Panomics reveals patient individuality as the major
+  driver of colorectal cancer progression. *Journal of Translational Medicine*
+  2023;21:41. doi:10.1186/s12967-022-03855-0
+- **Nota de la cita**: una versión anterior de esta ficha atribuía el depósito
+  al DOI de Cascianelli et al., Genome Medicine 2023, artículo 37. Ese registro
+  no es este artículo. El identificador correcto es el de la línea anterior.
 - **Licencia**: PRIDE Archive, datos públicos.
 - **Qué contiene**: 2 880 genes y 19 muestras de 4 pacientes. De cada paciente,
   tumor primario, mucosa normal y metástasis hepática; y del cuarto paciente,
@@ -341,7 +344,7 @@ encontramos más» y «buscamos y esto es lo que hay» no son lo mismo.
   figuras, con los resultados por proteína).
 - **Licencia**: CC BY 4.0, acceso abierto.
 - **Cita**: Álvez MB, Edfors F, von Feilitzen K, et al. Next generation
-  pan-cancer blood proteome profiling using proteograph. *Nature Communications*
+  pan-cancer blood proteome profiling using proximity extension assay. *Nature Communications*
   2023; 14:4308. doi:10.1038/s41467-023-39765-y
 - **Contenido**: 1 463 ensayos de Olink Explore en 221 pacientes de cáncer
   colorrectal (101 mujeres, 120 hombres; estadios I 26, II 68, III 99, IV 28)
@@ -373,7 +376,7 @@ encontramos más» y «buscamos y esto es lo que hay» no son lo mismo.
   - Que una proteína no esté en el panel no es evidencia de que no cambie. Dos
     de las tres proteínas de v1 están en esa situación.
 
-### Wannberg et al. 2026 — cáncer frente a enfermedad benigna
+### Wannberg et al. 2025 — cáncer frente a enfermedad benigna
 
 - **Estado**: usada
 - **Script**: `scripts/download/wannberg_2026.py`
@@ -382,7 +385,10 @@ encontramos más» y «buscamos y esto es lo que hay» no son lo mismo.
 - **Licencia**: CC BY 4.0, acceso abierto.
 - **Cita**: Wannberg F, Bueno Álvez M, Qvick A, et al. Plasma protein profiling
   predicts cancer in patients with non-specific symptoms. *Nature
-  Communications* 2026. doi:10.1038/s41467-025-67688-3
+  Communications* 2025;17:151. doi:10.1038/s41467-025-67688-3
+- **Año**: Crossref registra `issued` el 29 de diciembre de 2025. El editor da
+  volumen 17 y número de artículo 151. El nombre de fichero `wannberg_2026.py`
+  se conserva: es la ruta con la que v2 ya guardó la descarga.
 - **Contenido**: Olink Explore con las mismas 1 463 proteínas que D4b. Cohorte
   de descubrimiento MEDECA: 456 pacientes derivados por síntomas no
   específicos, 160 con cáncer y 296 sin él. Réplica ALLVOS: 238 pacientes, 35
