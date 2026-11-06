@@ -51,6 +51,7 @@ def main() -> int:
     _escribir("results/v2_manifest.sha256", _arbol("results/v2"))
     _escribir("results/tesis_cierre_manifest.sha256", _arbol("results/tesis_cierre"))
     _escribir("results/v3/manifest_inputs.sha256", collect_inputs())
+    _escribir("results/v3_manifest.sha256", _arbol("results/v3"))
     return 0
 
 

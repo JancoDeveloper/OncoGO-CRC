@@ -83,3 +83,17 @@ Control técnico (`results/v3/k7_control_tecnico.json`). Kruskal–Wallis explor
 ## Lo que esta auditoría no cierra
 
 H5 a H10 siguen `no_evaluable` en `results/v3/hipotesis_v3.tsv`. No hay número aproximado. LinkedOmicsKB, PXD031705, PXD064655 y el resto de la sección 15 del plan no se han abierto como datos de v3.
+
+## v3.2
+
+El 6 de noviembre de 2026 el prompt de v3.2 describe un report de DIA-NN sin filtro de proteína, especies no humanas y queratinas de piel. Esas cifras se vuelven a medir cuando `data/raw/plasma/DIA-NN_report.tsv` esté en disco y su SHA-256 coincida con `A8A5AADD74391AFEF68CF4D6C3A7D3860023101E5C92590E2E87C152A39E59E8`. Hasta entonces no se copian como resultado de esta corrida.
+
+Comprobado en esta pasada:
+
+- El parser de `src/oncogo_crc/utils/dia_nn_plasma.py` pivotaba `Genes.MaxLFQ` por `Protein.Group` y `postprocess_dia_nn_plasma_download` escribía encima del propio fichero (línea 60).
+- `results/v3/k7_control_tecnico.json` dice que el report no está en el workspace. Al empezar v3.2 seguía sin estar.
+- La librería universal de Frankenfield et al. 2022 se bajó del commit `bddf6da9334f4300caed75f7a87c096dd96b6bca`. SHA-256 `c0782146be6dad6ecf53e23e5a21a7ed4fea9b4802cb01e8d00091404ec66926`. 381 entradas. Incluye KRT8, KRT18, KRT19 y KRT20 además de las de piel. La enmienda no las saca a mano.
+- La tabla suplementaria de Geyer et al. 2019 no se obtuvo. `https://www.embopress.org/doi/suppl/10.15252/emmm.201910427/suppl_file/emmm201910427-sup-0001-figs.pdf` devolvió 404 el 6 de noviembre de 2026. Los paneles usan la lista del texto, escrita en la enmienda.
+- El intérprete del entorno es Python 3.14.3. El prompt dice 3.11. Gana el fichero real: el sello escribe 3.14.3.
+- `make manifest-verify` coincidió (11 entradas, 31 de v1). `make regresion-v1` pasó: 688, 140, 28, 104/119, 226 y 307.
+- Los 60 crudos no se descargan. La web no se despliega.

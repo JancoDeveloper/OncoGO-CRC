@@ -156,3 +156,36 @@ v3-correcciones:
 
 all-v3: manifest-write v3-manifiestos regresion-v1 v3-citas v3-correcciones
 	@echo "v3 parcial. Resultados en $(WORKSPACE)/results/v3/"
+
+# --------------------------------------------------------------------- v3.2
+# Escribe solo bajo results/v3_2/. v3 queda congelado por results/v3_manifest.sha256.
+.PHONY: v3-2-suero v3-2-tejido v3-2-controles v3-2-multiverso v3-2-hipotesis v3-2-ml v3-2-report v3-2-docs v3-2-tesis all-v3-2
+
+v3-2-suero:
+	$(RUN) v3_2_suero
+
+v3-2-tejido:
+	$(RUN) v3_2_tejido
+
+v3-2-controles:
+	$(RUN) v3_2_controles
+
+v3-2-multiverso:
+	$(RUN) v3_2_multiverso
+
+v3-2-hipotesis:
+	$(RUN) v3_2_hipotesis
+
+v3-2-ml:
+	$(RUN) v3_2_ml
+
+v3-2-report:
+	$(RUN) v3_2_report
+
+v3-2-docs:
+	@echo "v3.2 docs: los textos leen results/v3_2. No hay una etapa de cálculo."
+
+v3-2-tesis:
+	@echo "v3.2 tesis: LaTeX y Word se regeneran desde las tablas. No hay una etapa de cálculo."
+
+all-v3-2: manifest-write v3-manifiestos regresion-v1 v3-2-suero
