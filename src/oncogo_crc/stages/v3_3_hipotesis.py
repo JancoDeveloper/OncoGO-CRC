@@ -8,10 +8,10 @@ from pathlib import Path
 import pandas as pd
 
 from oncogo_crc.settings import Settings
-from oncogo_crc.stages.v3_2_controles import _abrir
+from oncogo_crc.stages.v3_3_controles import _abrir
 from oncogo_crc.v3.h5 import ejecutar as ejecutar_h5
 from oncogo_crc.v3.h10 import ejecutar as ejecutar_h10
-from oncogo_crc.v3.salida_v32 import volcar_tsv
+from oncogo_crc.v3.salida import volcar_tsv
 
 
 def _fila(codigo: str, nivel: str, estado: str, metrica: str, detalle: str, fuente: str, fraccion: str = "") -> dict:
@@ -61,7 +61,7 @@ def _buscar(settings: Settings, nombre: str) -> Path | None:
 
 
 def run(settings: Settings) -> None:
-    _prereg, salida, sello = _abrir(settings, "v3_2_hipotesis")
+    _prereg, salida, sello = _abrir(settings, "v3_3_hipotesis")
     k1 = salida / "k1_etiquetas.json"
     if not k1.is_file():
         raise FileNotFoundError("falta k1_etiquetas.json; corre v3-2-tejido antes")

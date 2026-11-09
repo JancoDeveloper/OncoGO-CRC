@@ -8,12 +8,12 @@ import numpy as np
 import pandas as pd
 
 from oncogo_crc.settings import Settings
-from oncogo_crc.stages.v3_2_tejido import ids_descartados
+from oncogo_crc.stages.v3_3_tejido import ids_descartados
 from oncogo_crc.utils.moderated import moderate_table, paired_observed_stats
 from oncogo_crc.v3.etiquetas import _pares, filas_desde_columnas, matriz_log2_lfq
 from oncogo_crc.v3.prereg import PreregistroV3
 from oncogo_crc.utils.sello import exigir_arbol_limpio, hacer_sello
-from oncogo_crc.v3.salida_v32 import exigir_v32, volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import carpeta, exigir_vigente, manifiesto_congelado, volcar_json, volcar_tsv
 
 MUCOSA_BAJA = ("CA1", "AQP8", "SLC26A3", "GUCA2A")
 N_PERMUTACIONES = 200
@@ -22,11 +22,11 @@ SEMILLA_PERMUTACION = 20260914 + 701
 
 def _abrir(settings: Settings, etapa: str):
     prereg = PreregistroV3(settings.root)
-    salida = settings.resolve("results") / "v3_2"
-    exigir_v32(salida / "marca.txt")
+    salida = carpeta(settings)
+    exigir_vigente(salida / "marca.txt")
     salida.mkdir(parents=True, exist_ok=True)
-    manifest = settings.resolve("results/v3_manifest.sha256")
-    sello = hacer_sello(settings.root, etapa=etapa, manifest=manifest if manifest.is_file() else None)
+    manifest = manifiesto_congelado(settings)
+    sello = hacer_sello(settings.root, etapa=etapa, manifest=manifest)
     exigir_arbol_limpio(sello)
     return prereg, salida, sello
 
@@ -157,7 +157,7 @@ def _suero(salida) -> list[dict]:
 
 
 def run(settings: Settings) -> None:
-    prereg, salida, sello = _abrir(settings, "v3_2_controles")
+    prereg, salida, sello = _abrir(settings, "v3_3_controles")
     if not (salida / "k1_primario_frente_a_mucosa.tsv").is_file():
         raise FileNotFoundError("falta el tejido v3.2; corre v3-2-tejido antes")
     filas = _genes_bajos(settings, salida)

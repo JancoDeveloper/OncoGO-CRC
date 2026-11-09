@@ -8,9 +8,9 @@ import numpy as np
 import pandas as pd
 
 from oncogo_crc.settings import Settings
-from oncogo_crc.stages.v3_2_controles import _abrir
+from oncogo_crc.stages.v3_3_controles import _abrir
 from oncogo_crc.v3.suero_v32 import _contraste, _contraste_covariable, _grupos
-from oncogo_crc.v3.salida_v32 import volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import volcar_json, volcar_tsv
 
 LFC = (0.585, 1.0)
 ALFA = (0.05, 0.10)
@@ -30,7 +30,7 @@ def _conclusion(tabla: pd.DataFrame) -> str:
 
 
 def run(settings: Settings) -> None:
-    _prereg, salida, sello = _abrir(settings, "v3_2_multiverso")
+    _prereg, salida, sello = _abrir(settings, "v3_3_multiverso")
     principal_path = salida / "suero_matriz_principal.tsv"
     humana_path = salida / "suero_matriz_humana_fdr.tsv"
     if not principal_path.is_file() or not humana_path.is_file():

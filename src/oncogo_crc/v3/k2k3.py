@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 from oncogo_crc.settings import Settings
-from oncogo_crc.v3.salida_v32 import volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import volcar_json, volcar_tsv
 
 
 def pendiente_deming(x: np.ndarray, y: np.ndarray, razon_de_varianzas: float = 1.0) -> dict:

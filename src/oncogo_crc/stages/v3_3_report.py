@@ -6,8 +6,8 @@ import json
 from pathlib import Path
 
 from oncogo_crc.settings import Settings
-from oncogo_crc.stages.v3_2_controles import _abrir
-from oncogo_crc.v3.salida_v32 import volcar_json
+from oncogo_crc.stages.v3_3_controles import _abrir
+from oncogo_crc.v3.salida import volcar_json
 
 
 def _leer(path: Path) -> dict | None:
@@ -17,7 +17,7 @@ def _leer(path: Path) -> dict | None:
 
 
 def run(settings: Settings) -> None:
-    _prereg, salida, sello = _abrir(settings, "v3_2_report")
+    _prereg, salida, sello = _abrir(settings, "v3_3_report")
     piezas = {
         "suero": _leer(salida / "suero_resumen.json"),
         "tejido": _leer(salida / "k1_etiquetas.json"),

@@ -22,7 +22,7 @@ from oncogo_crc.utils.dia_nn_plasma import (
 from oncogo_crc.utils.io import write_tsv
 from oncogo_crc.utils.sello import escribir_sello, exigir_arbol_limpio, hacer_sello
 from oncogo_crc.v3.prereg import PreregistroV3
-from oncogo_crc.v3.rutas import rechazar_si_es_pipeline_antiguo
+from oncogo_crc.v3.salida import carpeta, exigir_vigente, manifiesto_congelado
 from oncogo_crc.v3.suero_v32 import analizar_suero
 
 ESPERADO = {
@@ -36,10 +36,7 @@ ESPERADO = {
 
 
 def _salida(path: Path) -> None:
-    texto = str(path).replace("\\", "/")
-    rechazar_si_es_pipeline_antiguo(path)
-    if "/results/v3_2/" not in texto and not texto.endswith("/results/v3_2"):
-        raise RuntimeError(f"v3.2 solo escribe bajo results/v3_2: {path}")
+    exigir_vigente(path)
 
 
 def _sha256(path: Path) -> str:
@@ -55,11 +52,11 @@ def _sha256(path: Path) -> str:
 
 def run(settings: Settings) -> None:
     prereg = PreregistroV3(settings.root)
-    salida = settings.resolve("results") / "v3_2"
+    salida = carpeta(settings)
     _salida(salida / "marca.txt")
     salida.mkdir(parents=True, exist_ok=True)
-    manifest = settings.resolve("results/v3_manifest.sha256")
-    sello = hacer_sello(settings.root, etapa="v3_2_suero", manifest=manifest if manifest.is_file() else None)
+    manifest = manifiesto_congelado(settings)
+    sello = hacer_sello(settings.root, etapa="v3_3_suero", manifest=manifest)
     exigir_arbol_limpio(sello)
     report = settings.resolve(str(prereg.get("enmienda_v3_2.report_pxd055218.destino")))
     if not report.is_file():

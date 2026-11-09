@@ -1,4 +1,4 @@
-"""Escritura bajo results/v3_2/, con el sello al lado de cada tabla."""
+"""Congelado. v3.2 se reproduce desde la etiqueta v3.2-final."""
 
 from __future__ import annotations
 

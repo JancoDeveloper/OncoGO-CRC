@@ -16,7 +16,7 @@ import pandas as pd
 
 from oncogo_crc.settings import Settings
 from oncogo_crc.v3.prereg import PreregistroV3
-from oncogo_crc.v3.salida_v32 import volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import volcar_json, volcar_tsv
 
 CANCER = "Colorectal cancer"
 

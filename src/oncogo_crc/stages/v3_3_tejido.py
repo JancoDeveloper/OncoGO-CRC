@@ -16,7 +16,7 @@ from oncogo_crc.v3.concordancia import alinear_por_clave, concordancia_de_lin, c
 from oncogo_crc.v3.etiquetas import contraste_no_pareado, contraste_pareado, filas_desde_columnas, matriz_log2_lfq
 from oncogo_crc.v3.prereg import PreregistroV3
 from oncogo_crc.v3.k2k3 import escribir_k2, escribir_k3
-from oncogo_crc.v3.salida_v32 import exigir_v32, volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import carpeta, exigir_vigente, manifiesto_congelado, volcar_json, volcar_tsv
 
 HIGADO = ("ALB", "APOH", "CPS1", "ARG1", "CYP2E1", "FGB", "HP")
 MUCOSA = ("CA1", "CA2", "AQP8", "SLC26A3", "CLCA4", "GUCA2A", "GUCA2B")
@@ -145,11 +145,11 @@ def _resumen(certificadas, tabla, gen_a_uni, n_cert, nombre):
 
 def run(settings: Settings) -> None:
     prereg = PreregistroV3(settings.root)
-    salida = settings.resolve("results") / "v3_2"
-    exigir_v32(salida / "marca.txt")
+    salida = carpeta(settings)
+    exigir_vigente(salida / "marca.txt")
     salida.mkdir(parents=True, exist_ok=True)
-    manifest = settings.resolve("results/v3_manifest.sha256")
-    sello = hacer_sello(settings.root, etapa="v3_2_tejido", manifest=manifest if manifest.is_file() else None)
+    manifest = manifiesto_congelado(settings)
+    sello = hacer_sello(settings.root, etapa="v3_3_tejido", manifest=manifest)
     exigir_arbol_limpio(sello)
     min_pares = int(prereg.get("enmienda_v3_2.tejido.min_pares_observados"))
     alpha = float(prereg.get("inferencia.alpha"))

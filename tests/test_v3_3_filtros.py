@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-from oncogo_crc.stages.v3_2_tejido import ids_descartados
+from oncogo_crc.stages.v3_3_tejido import ids_descartados
 from oncogo_crc.v3.suero_v32 import ids_fuera_de_principal, semilla_v32
 from oncogo_crc.v3.prereg import PreregistroV3
 

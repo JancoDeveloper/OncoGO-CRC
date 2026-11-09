@@ -5,14 +5,14 @@ from __future__ import annotations
 import pandas as pd
 
 from oncogo_crc.settings import Settings
-from oncogo_crc.stages.v3_2_controles import _abrir
+from oncogo_crc.stages.v3_3_controles import _abrir
 from oncogo_crc.v3.ml_suero import evaluar, matrices_de_suero
 from oncogo_crc.v3.suero_v32 import semilla_v32
-from oncogo_crc.v3.salida_v32 import volcar_json
+from oncogo_crc.v3.salida import volcar_json
 
 
 def run(settings: Settings) -> None:
-    prereg, salida, sello = _abrir(settings, "v3_2_ml")
+    prereg, salida, sello = _abrir(settings, "v3_3_ml")
     principal = salida / "suero_matriz_principal.tsv"
     humana = salida / "suero_matriz_humana_fdr.tsv"
     calidad = salida / "suero_calidad_muestra.tsv"

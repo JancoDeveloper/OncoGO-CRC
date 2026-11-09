@@ -94,3 +94,19 @@ Decisión del autor, el 9 de noviembre de 2026:
 - Sí se descargan los 60 crudos de PXD055218 al disco externo. AlphaDIA sigue sin ejecutarse en esta pasada: DIA-NN no se corre y los crudos no entran en el cálculo de v3.3.
 
 El mensaje `35fad60` empieza por `feat:`. El encargo lo contó sin prefijo. Gana el mensaje real y queda anotado en `docs/auditoria_v3.md` y en la cronología. `50caef8` y `c2be8e4` sí se publicaron sin prefijo y no se reescriben.
+
+## 2026-11-09 14:40 (UTC−5). v3.3, Fase 1, enmienda
+
+Comando: edición de `config/preregistro_v3.yaml` y `docs/enmiendas_v3.md`, y `yaml.safe_load`.
+
+Resultado. El YAML parsea. Commit `0edf54a`. No hay ficheros en `results/v3_3/`.
+
+Decisión. La enmienda queda antes del código de cálculo. Los umbrales no se mueven.
+
+## 2026-11-09 14:50 (UTC−5). v3.3, renombrar etapas
+
+Comando: `git mv` de `stages/v3_2_*.py` y `tests/test_v3_2_*.py` a `v3_3`, y `pytest tests/test_v3_3_suero.py tests/test_v3_3_filtros.py tests/test_v3_3_sello.py tests/test_v3_3_resto.py tests/test_v3_3_congelado.py tests/test_cronologia.py`.
+
+Resultado. 19 tests pasan. El registro ya no tiene etapas `v3_2_*`. La salida vigente es `results/v3_3/`. `salida_v32.py` se queda, sin uso. Los 112 ficheros de `results/v3_2/` coinciden con el manifiesto.
+
+Decisión. El Makefile de v3.3 se añade después de los parches, como pide el encargo. La descarga de los 60 crudos sigue en el disco externo y no entra en este commit.

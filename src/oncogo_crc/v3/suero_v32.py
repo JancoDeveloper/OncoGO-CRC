@@ -22,7 +22,7 @@ from oncogo_crc.v3.auc import auc_firmado, bootstrap_auc, delong_ic, nulo_del_ma
 from oncogo_crc.v3.faltantes import fisher_presencia
 from oncogo_crc.v3.potencia import alfa_efectivo, clasificar, efecto_minimo_detectable, p_tost
 from oncogo_crc.v3.prereg import PreregistroV3
-from oncogo_crc.v3.salida_v32 import volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import volcar_json, volcar_tsv
 
 REACTIVOS = frozenset({"TRY1", "TRY2", "PRSS1", "PRSS2", "CSN1S1", "CSN1S2", "CSN1S2A", "CSN2", "CSN3"})
 PARES = {
@@ -36,6 +36,17 @@ Z95 = 1.959963984540054
 def semilla_v32(prereg: PreregistroV3, nombre: str) -> int:
     base = int(prereg.get("enmienda_v3_2.semillas.base"))
     return base + int(prereg.get(f"enmienda_v3_2.semillas.desplazamientos.{nombre}"))
+
+
+def semilla_v33(prereg: PreregistroV3, nombre: str) -> int:
+    """Primero el desplazamiento de v3.3. Si no está, el de v3.2. La base no cambia."""
+    base = int(prereg.get("enmienda_v3_2.semillas.base"))
+    for bloque in ("enmienda_v3_3", "enmienda_v3_2"):
+        try:
+            return base + int(prereg.get(f"{bloque}.semillas.desplazamientos.{nombre}"))
+        except Exception:
+            continue
+    raise KeyError(nombre)
 
 
 def _log2(ancha: pd.DataFrame) -> tuple[pd.DataFrame, str]:

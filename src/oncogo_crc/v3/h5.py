@@ -16,7 +16,7 @@ from oncogo_crc.settings import Settings
 from oncogo_crc.utils.moderated import moderate_table, paired_observed_stats
 from oncogo_crc.v3.concordancia import concordancia_de_signo
 from oncogo_crc.v3.prereg import PreregistroV3
-from oncogo_crc.v3.salida_v32 import volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import volcar_json, volcar_tsv
 
 BASE = "https://cptac-pancancer-data.s3.us-west-2.amazonaws.com/data_freeze_v1.2_reorganized"
 HGNC_URL = "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt"
