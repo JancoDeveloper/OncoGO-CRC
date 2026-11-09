@@ -131,3 +131,7 @@ El atlas del HPA usa el contraste de cáncer colorrectal frente a `Healthy`. La 
 Papier 2024 no está en el disco. H7 se evalúa con dos recursos, y la regla de al menos dos exige los dos. El solapamiento de casos entre Álvez y el HPA no está comprobado.
 
 ESM-2 y TMbed no entran en el modelo principal. La rejilla de regularización tiene 10 valores desde 0,1 hasta 10 000. El entero `Cs=10` de scikit-learn empieza en 10⁻⁴ y, cuando todas las C empatan en AUC, se queda la más pequeña: las probabilidades quedan en 0,5 y el AUC agregado entre pliegues se desarma.
+
+## v3.4, H5
+
+`Fraccion` no tiene el atributo `ci_low`. El intervalo sale de `intervalo()`, que es Clopper–Pearson. El resto de `concordancias_mismo_universo` y de `submuestreo` sigue el encargo.

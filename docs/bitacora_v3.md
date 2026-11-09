@@ -245,4 +245,20 @@ Decisiones, con el valor por defecto del encargo:
 - El orden de adquisición se intenta solo si están los 60 crudos. Con 4, la etapa queda `no_disponible`.
 - H9 no se intenta. Queda `requiere_acceso`.
 
-Tests. `test_enmienda_v3_4_es_anterior_a_sus_resultados` y `test_el_manifiesto_de_v3_3_sigue_igual` no existían y fallaban por ausencia; pasan al añadir el manifiesto y la guarda de cronología.
+Tests. `test_enmienda_v3_4_es_anterior_a_sus_resultados` y `test_el_manifiesto_de_v3_3_sigue_igual` no existían y fallaban por ausencia; pasan al añadir el manifiesto y la guarda de cronología. Commit `b904b5e`.
+
+## 2026-11-09 16:35 (UTC−5). v3.4, Fase 1
+
+Comando: commit solo de `config/preregistro_v3.yaml` y `docs/enmiendas_v3.md`.
+
+Resultado. Commit `a70d46b`. La fecha de la enmienda es 2026-11-09. No hay ficheros en `results/v3_4/`.
+
+Decisión. Firebase solo con el checklist en verde. PDF por Overleaf. ESM-2 y TMbed sí. H9 no se intenta. La matriz de PXD064655 no se abre en este commit.
+
+## 2026-11-09 16:45 (UTC−5). v3.4, H5
+
+Comando: `pytest tests/test_h5_v34.py`.
+
+Resultado antes del parche: `ImportError: cannot import name 'concordancias_mismo_universo'`. 1 error en la recolección.
+
+Resultado después: 4 passed en 2,04 s. `test_el_bucle_de_v3_3_no_completa_ninguna_repeticion` documenta 0 de 200. `test_submuestreo_completa_200_y_n_sub_es_10` da `n_sub` 10 y 200 repeticiones.

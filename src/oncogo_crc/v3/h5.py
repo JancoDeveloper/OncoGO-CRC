@@ -131,6 +131,93 @@ def _efecto_sub(tumor: pd.DataFrame, normal: pd.DataFrame, columnas: list[str], 
     return tabla
 
 
+def _pares_comunes(tumor: pd.DataFrame, normal: pd.DataFrame) -> list[str]:
+    return [c for c in tumor.columns if c in normal.columns]
+
+
+def concordancias_mismo_universo(
+    tanaka: pd.Series, efectos: dict[str, pd.DataFrame], carcinomas: list[str]
+) -> tuple[dict, list[str]]:
+    """tanaka: log2FC P-N indexado por gen. El mismo universo para todos los carcinomas."""
+    universo = pd.Index(tanaka.index[np.isfinite(tanaka.to_numpy())])
+    for cancer in carcinomas:
+        bloque = efectos[cancer]["log2fc"]
+        universo = universo.intersection(bloque.index[np.isfinite(bloque.to_numpy())])
+    salida: dict[str, dict] = {}
+    for cancer in carcinomas:
+        a = np.sign(tanaka.loc[universo].to_numpy(dtype=float))
+        b = np.sign(efectos[cancer].loc[universo, "log2fc"].to_numpy(dtype=float))
+        ok = (a != 0) & (b != 0)
+        fraccion = concordancia_de_signo(
+            a[ok], b[ok], nombre=f"H5_{cancer}", universo=int(ok.sum()), universo_nombre="tanaka_treat_comun"
+        )
+        bajo, alto = fraccion.intervalo()
+        salida[cancer] = {
+            "estimacion": fraccion.valor,
+            "numerador": fraccion.numerador,
+            "denominador": fraccion.denominador,
+            "ci_low": bajo,
+            "ci_high": alto,
+        }
+    return salida, list(universo)
+
+
+def submuestreo(
+    matrices, todos, genes, mapa, rng, *, n_rep, min_pares, lfc, alpha,
+    umbral_pan, fraccion_pan, colon="COAD", umbral_clase=4,
+) -> dict:
+    """Submuestrea todos los carcinomas, colon incluido, al mismo número de pares."""
+    n_sub = min(len(_pares_comunes(*matrices[k])) for k in todos)
+    if n_sub < min_pares:
+        return {"estado": "no_calculado", "motivo": f"n_sub={n_sub} < {min_pares}", "n_sub": int(n_sub)}
+    otros = [k for k in todos if k != colon]
+    fracs = []
+    n_sig = {k: [] for k in todos}
+    for _ in range(n_rep):
+        sub = {}
+        for k in todos:
+            tumor, normal = matrices[k]
+            elegidas = list(rng.choice(_pares_comunes(tumor, normal), size=n_sub, replace=False))
+            tabla = _efecto_sub(tumor, normal, elegidas, min_pares, lfc, alpha)
+            tabla["gen"] = tabla["protein_id"].map(mapa)
+            sub[k] = tabla.dropna(subset=["gen"]).drop_duplicates("gen").set_index("gen")
+            n_sig[k].append(int(sub[k]["significant"].sum()) if len(sub[k]) else 0)
+        if len(sub) != len(todos):
+            raise RuntimeError("submuestreo incompleto: faltan carcinomas")
+        clases = []
+        for gen in genes:
+            if gen not in sub[colon].index or not np.isfinite(sub[colon].at[gen, "log2fc"]):
+                continue
+            observados = [
+                (float(sub[k].at[gen, "log2fc"]), bool(sub[k].at[gen, "significant"]))
+                if gen in sub[k].index else (float("nan"), False)
+                for k in otros
+            ]
+            clases.append(clase_de_proteina(
+                bool(sub[colon].at[gen, "significant"]), float(sub[colon].at[gen, "log2fc"]), observados,
+                min_otros=len(otros), umbral_pan=umbral_clase,
+            ))
+        clases = [c for c in clases if c != "no_clasificable"]
+        if clases:
+            fracs.append(clases.count("pan_carcinoma") / len(clases))
+    fracs_np = np.asarray(fracs, dtype=float)
+    if len(fracs_np) < n_rep:
+        raise RuntimeError(f"submuestreo incompleto: {len(fracs_np)}/{n_rep}")
+    mismo = float(np.mean((fracs_np < umbral_pan) == (fraccion_pan < umbral_pan)))
+    return {
+        "estado": "calculado",
+        "n_sub": int(n_sub),
+        "n_repeticiones": int(n_rep),
+        "fraccion_mismo_lado_0_20": mismo,
+        "mediana_fraccion_pan": float(np.median(fracs_np)),
+        "p2_5": float(np.quantile(fracs_np, 0.025)),
+        "p97_5": float(np.quantile(fracs_np, 0.975)),
+        "potencia_submuestreada": {
+            k: {"n_pares": int(n_sub), "n_significativas_mediana": float(np.median(v))} for k, v in n_sig.items()
+        },
+    }
+
+
 def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV3) -> dict:
     destino = settings.resolve("external/linkedomics")
     hgnc = settings.resolve("external/hgnc/hgnc_complete_set.txt")
@@ -202,12 +289,12 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
     conteo = clasificadas["clase"].value_counts().to_dict()
     n = int(len(clasificadas))
     fraccion_pan = float(conteo.get("pan_carcinoma", 0) / n) if n else float("nan")
+    import json
     k1 = salida / "k1_etiquetas.json"
-    concordancia_colon = None
+    concordancia_k1 = None
     if k1.is_file():
-        import json
-        bloque = json.loads(k1.read_text(encoding="utf-8"))["contrastes"]["primario_frente_a_mucosa"]
-        concordancia_colon = float(bloque["estimacion"])
+        bloque_k1 = json.loads(k1.read_text(encoding="utf-8"))["contrastes"]["primario_frente_a_mucosa"]
+        concordancia_k1 = float(bloque_k1["estimacion"])
     tanaka = pd.read_csv(salida / "k1_primario_frente_a_mucosa.tsv", sep="\t")
     mapa_tejido = mapa_genes(
         settings.resolve("data/raw/pride/Cohort1_proteinGroups.txt"),
@@ -219,19 +306,21 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
     if columna_n is not None:
         tanaka = tanaka.sort_values(columna_n, ascending=False, kind="stable")
     tanaka = tanaka.drop_duplicates("gen", keep="first")
-    concordancias = {}
-    for cancer in disponibles:
-        otro = efectos[cancer]["log2fc"].rename("log2fc_otro")
-        cruzado = tanaka.merge(otro, left_on="gen", right_index=True, how="inner")
-        fraccion = concordancia_de_signo(
-            cruzado["log2fc"].to_numpy(),
-            cruzado["log2fc_otro"].to_numpy(),
-            nombre=f"H5_{cancer}",
-            universo=n,
-            universo_nombre="certificadas_clasificadas",
-        )
-        concordancias[cancer] = {"estimacion": fraccion.valor, "numerador": fraccion.numerador, "denominador": fraccion.denominador}
-    max_otro = max((v["estimacion"] for v in concordancias.values() if v["estimacion"] is not None), default=float("nan"))
+    tanaka["log2fc"] = pd.to_numeric(tanaka["log2fc"], errors="coerce")
+    serie_amplia = tanaka.set_index("gen")["log2fc"]
+    if "significant" in tanaka.columns:
+        marca = tanaka["significant"].map(lambda v: str(v).lower() in {"true", "1"} or v is True)
+        serie_principal = tanaka.loc[marca].set_index("gen")["log2fc"]
+    else:
+        serie_principal = serie_amplia
+    carcinomas = [COLON, *disponibles]
+    concordancias, universo = concordancias_mismo_universo(serie_principal, efectos, carcinomas)
+    concordancias_amplias, universo_amplio = concordancias_mismo_universo(serie_amplia, efectos, carcinomas)
+    concordancia_colon = concordancias.get(COLON, {}).get("estimacion")
+    max_otro = max(
+        (v["estimacion"] for k, v in concordancias.items() if k != COLON and v["estimacion"] is not None),
+        default=float("nan"),
+    )
     umbral_pan = float(prereg.get("hipotesis.h5.umbral_fraccion_pan_carcinoma"))
     diferencia = float(prereg.get("hipotesis.h5.diferencia_minima_frente_a_colon"))
     if concordancia_colon is None or not np.isfinite(max_otro):
@@ -240,37 +329,29 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
         estado = "refuta"
     else:
         estado = "sostiene"
-    rng = np.random.default_rng(int(prereg.get("semillas.base")) + int(prereg.get("enmienda_v3_2.semillas.desplazamientos.h5_submuestreo")))
-    n_colon = int(colon["n_pares"].iloc[0]) if len(colon) else 0
-    iguales = 0
-    for _ in range(N_REPETICIONES):
-        efectos_sub = {COLON: colon}
-        for cancer in disponibles:
-            tumor, normal = matrices[cancer]
-            comunes = [c for c in tumor.columns if c in normal.columns]
-            if len(comunes) < n_colon or n_colon < min_pares:
-                break
-            elegidas = list(rng.choice(comunes, size=n_colon, replace=False))
-            sub = _efecto_sub(tumor, normal, elegidas, min_pares, lfc, alpha)
-            sub["gen"] = sub["protein_id"].map(mapa)
-            efectos_sub[cancer] = sub.dropna(subset=["gen"]).drop_duplicates("gen").set_index("gen")
-        if len(efectos_sub) != 1 + len(disponibles):
-            continue
-        clases = []
-        for gen in clasificadas["gen"]:
-            if gen not in colon.index:
-                continue
-            otros = []
-            for cancer in disponibles:
-                bloque = efectos_sub[cancer]
-                if gen not in bloque.index:
-                    otros.append((float("nan"), False))
-                else:
-                    otros.append((float(bloque.at[gen, "log2fc"]), bool(bloque.at[gen, "significant"])))
-            clases.append(clase_de_proteina(bool(colon.at[gen, "significant"]), float(colon.at[gen, "log2fc"]), otros))
-        frac = clases.count("pan_carcinoma") / len(clases) if clases else float("nan")
-        if np.isfinite(frac) and (frac < umbral_pan) == (fraccion_pan < umbral_pan):
-            iguales += 1
+    potencia = {}
+    for cancer, bloque in efectos.items():
+        n_sig = int(bloque["significant"].sum()) if len(bloque) else 0
+        potencia[cancer] = {
+            "n_pares": int(bloque["n_pares"].iloc[0]) if len(bloque) else 0,
+            "n_significativas": n_sig,
+            "fraccion_significativas": (n_sig / len(bloque)) if len(bloque) else None,
+        }
+    rng = np.random.default_rng(
+        int(prereg.get("semillas.base")) + int(prereg.get("enmienda_v3_4.semillas.desplazamientos.h5_submuestreo_v3_4"))
+    )
+    sub = submuestreo(
+        matrices, carcinomas, list(universo), mapa, rng,
+        n_rep=N_REPETICIONES, min_pares=min_pares, lfc=lfc, alpha=alpha,
+        umbral_pan=umbral_pan, fraccion_pan=fraccion_pan, colon=COLON, umbral_clase=UMBRAL_PAN,
+    )
+    sin_ov = [cancer for cancer in carcinomas if cancer != "OV"]
+    sub_sin_ov = submuestreo(
+        matrices, sin_ov, list(universo), mapa, rng,
+        n_rep=N_REPETICIONES, min_pares=min_pares, lfc=lfc, alpha=alpha,
+        umbral_pan=umbral_pan, fraccion_pan=fraccion_pan, colon=COLON, umbral_clase=4,
+    )
+    sub_sin_ov["decide_el_veredicto"] = False
     volcar_tsv(tabla, salida / "h5_especificidad_organo.tsv", sello)
     payload = {
         "estado": estado,
@@ -278,11 +359,21 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
         "conteo": {k: int(conteo.get(k, 0)) for k in ("pan_carcinoma", "especifica_colon", "intermedia")},
         "fraccion_pan_carcinoma": fraccion_pan,
         "concordancia_colon_tanaka": concordancia_colon,
-        "concordancia_otros": concordancias,
+        "concordancia_otros": {k: v for k, v in concordancias.items() if k != COLON},
+        "concordancias_universo_principal": concordancias,
+        "universo_principal_n": len(universo),
+        "concordancias_sensibilidad": {"n": len(universo_amplio), "concordancias": concordancias_amplias},
+        "concordancia_k1_referencia": {
+            "estimacion": concordancia_k1,
+            "nota": "seleccionada por CPTAC; no entra en la regla",
+        },
         "maxima_concordancia_otro_organo": max_otro,
-        "fraccion_de_submuestreos_con_pan_al_mismo_lado_de_0_20": iguales / N_REPETICIONES,
-        "n_submuestreos": N_REPETICIONES,
-        "n_pares_colon": n_colon,
+        "submuestreo": sub,
+        "sensibilidad_sin_ov": sub_sin_ov,
+        "potencia_por_carcinoma": potencia,
+        "fraccion_de_submuestreos_con_pan_al_mismo_lado_de_0_20": sub.get("fraccion_mismo_lado_0_20"),
+        "n_submuestreos": sub.get("n_repeticiones", 0),
+        "n_pares_colon": potencia.get(COLON, {}).get("n_pares"),
         "sostiene_significa": "No se cumple la refutación preregistrada.",
         "carcinomas_disponibles": disponibles,
         "carcinomas_excluidos": excluidos,
