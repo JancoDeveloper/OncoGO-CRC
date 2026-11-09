@@ -7,7 +7,6 @@ import json
 import os
 from pathlib import Path
 
-import pandas as pd
 
 from oncogo_crc.settings import Settings
 from oncogo_crc.utils.dia_nn_plasma import (

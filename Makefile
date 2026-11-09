@@ -189,3 +189,28 @@ v3-2-tesis:
 	@echo "v3.2 tesis: LaTeX y Word se regeneran desde las tablas. No hay una etapa de cálculo."
 
 all-v3-2: manifest-write v3-manifiestos regresion-v1 v3-2-suero v3-2-tejido v3-2-controles v3-2-hipotesis v3-2-multiverso v3-2-ml v3-2-report
+
+# --------------------------------------------------------------------- v3.3
+# Escribe solo bajo results/v3_3/. v3 y v3.2 quedan congelados por sus manifiestos.
+.PHONY: v3-3-suero v3-3-tejido v3-3-controles v3-3-hipotesis v3-3-multiverso v3-3-ml v3-3-report v3-3-figuras v3-3-sitio v3-3-tesis all-v3-3
+v3-3-suero:
+	$(RUN) v3_3_suero
+v3-3-tejido:
+	$(RUN) v3_3_tejido
+v3-3-controles:
+	$(RUN) v3_3_controles
+v3-3-hipotesis:
+	$(RUN) v3_3_hipotesis
+v3-3-multiverso:
+	$(RUN) v3_3_multiverso
+v3-3-ml:
+	$(RUN) v3_3_ml
+v3-3-report:
+	$(RUN) v3_3_report
+v3-3-figuras:
+	$(PY) scripts/v3/figuras_v3_3.py
+v3-3-sitio:
+	$(PY) scripts/v3/exportar_sitio.py
+v3-3-tesis:
+	$(PY) scripts/v3/exportar_cifras_tesis.py
+all-v3-3: manifest-write v3-manifiestos regresion-v1 v3-3-suero v3-3-tejido v3-3-controles v3-3-hipotesis v3-3-multiverso v3-3-ml v3-3-report v3-3-figuras v3-3-sitio v3-3-tesis

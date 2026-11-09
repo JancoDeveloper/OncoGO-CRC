@@ -33,7 +33,6 @@ def run(settings: Settings) -> None:
     namespaces = go_cfg.get("ontologies", ["BP", "MF", "CC"])
     term2g = _build_term_genes(go_long, namespaces)
 
-    proc = settings.resolve(settings.config["paths"]["processed_dir"])
     diff_dir = settings.resolve(settings.config["paths"]["results_dir"]) / "differential"
     out_dir = settings.resolve(settings.config["paths"]["results_dir"]) / "go"
 

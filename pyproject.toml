@@ -33,6 +33,12 @@ docs = ["mkdocs>=1.5", "mkdocs-material>=9.5"]
 web = ["streamlit>=1.30", "plotly>=5.18"]
 survival = ["lifelines>=0.27"]
 dev = ["pytest>=7.4", "ruff>=0.3"]
+ml = [
+  "torch",
+  "transformers",
+  # tmbed no está en PyPI de forma estable para Python 3.14.
+  # pip install "git+https://github.com/BernhoferM/TMbed.git"
+]
 
 [project.scripts]
 oncogo-crc = "oncogo_crc.cli:main"

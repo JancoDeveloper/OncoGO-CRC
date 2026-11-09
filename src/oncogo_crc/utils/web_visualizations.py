@@ -247,7 +247,7 @@ def plot_transfer_auc_bars(transfer_json_path: Path, out_png: Path) -> Path | No
     y = np.arange(len(labels))
     ax.barh(y, aucs, color=colors)
     ax.set_yticks(y)
-    ax.set_yticklabels([_short_label(l, 32) for l in labels], fontsize=9)
+    ax.set_yticklabels([_short_label(etiqueta, 32) for etiqueta in labels], fontsize=9)
     ax.invert_yaxis()
     ax.set_xlim(0, 1.0)
     ax.axvline(0.5, color="grey", linestyle="--", linewidth=0.7)

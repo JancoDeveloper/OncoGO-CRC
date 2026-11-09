@@ -17,7 +17,6 @@ Esta capa es **complementaria** a la narrativa del autor: nunca reemplaza la dis
 from __future__ import annotations
 
 import re
-from pathlib import Path
 from typing import Iterable
 
 import pandas as pd

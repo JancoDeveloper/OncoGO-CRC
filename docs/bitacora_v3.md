@@ -158,3 +158,11 @@ Comando: `pytest tests/test_v3_3_h7.py`.
 Resultado. 4 tests pasan. Con etiquetas aleatorias el veredicto no es sostiene. Con una variable que determina la etiqueta, sí. La PCA se ajusta dentro del tubo y no ve las proteínas de prueba. Con menos de 10 por clase, el intervalo queda no_evaluable.
 
 Decisión. Papier 2024 no está en el disco: H7 usa Álvez 2023 y el atlas del HPA, y la regla de dos recursos exige los dos. ESM-2 y TMbed no entran en el modelo principal. La rejilla de C empieza en 0,1: el entero 10 de scikit-learn empieza en 10⁻⁴ y, si todas empatan en AUC, deja las probabilidades en 0,5.
+
+## 2026-11-09 16:20 (UTC−5). v3.3, Makefile y CI
+
+Comando: `ruff check src tests`.
+
+Resultado. Pasa, después de quitar imports sin uso. La CI corre en macOS 14 y Ubuntu 24.04, con Python 3.12 y 3.14, y con la historia completa de git para el test de cronología.
+
+Decisión. `correr_v3_3.sh` sigue si los controles del tejido fallan, y lo anota. AQP8 y GUCA2A no están en el proteinGroups: eso no bloquea el suero.

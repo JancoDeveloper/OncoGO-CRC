@@ -25,7 +25,6 @@ def _optional_comparison_viable(spec: dict, sm: pd.DataFrame, default_min_n: int
 
 def run(settings: Settings) -> None:
     """Modelado estadístico simple (t-test + FDR) por cada comparación declarada (matriz log2norm)."""
-    proc = settings.resolve(settings.config["paths"]["processed_dir"])
     res_dir = settings.resolve(settings.config["paths"]["results_dir"]) / "differential"
     fig_dir = settings.resolve(settings.config["paths"]["results_dir"]) / "figures"
     dc = settings.config.get("differential", {})

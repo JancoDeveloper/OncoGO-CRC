@@ -5,7 +5,6 @@ import shutil
 from pathlib import Path
 from typing import Any
 
-import pandas as pd
 
 from oncogo_crc.settings import Settings
 from oncogo_crc.utils.io import read_tsv
@@ -281,7 +280,7 @@ def _generate_web_figures(
     primary = settings.config.get("project", {}).get("primary_dataset", "cptac_colorectal")
     primary_log2 = proc / f"{primary}_log2norm.tsv"
     primary_meta = settings.resolve(settings.datasets["datasets"].get(primary, {}).get("sample_metadata", ""))
-    primary_diff = res / "differential" / f"cptac_tumor_vs_normal_diff.tsv"
+    primary_diff = res / "differential" / "cptac_tumor_vs_normal_diff.tsv"
     if primary_log2.exists() and primary_diff.exists():
         _write_both(f"{primary}__heatmap_top", f"{primary}_top_features_heatmap.png",
                     lambda p, m=primary_log2, md=primary_meta, d=primary_diff:

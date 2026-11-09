@@ -495,8 +495,6 @@ def run(settings: Settings) -> None:
     default_overwrite = bool(dl_cfg.get("overwrite", False))
     # Wall-clock por dataset (override por dataset.download_real.dataset_wallclock_s);
     # cubre todo el bloque matrix+metadata+provider para evitar que un solo accession bloquee la corrida.
-    default_dataset_wallclock = int(dl_cfg.get("dataset_wallclock_s", 900))
-
     rows: list[dict[str, Any]] = []
     summary: dict[str, Any] = {"datasets": {}}
     manifests_dir = settings.resolve(dl_cfg.get("manifests_dir", "data/manifests"))
