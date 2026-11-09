@@ -1,0 +1,153 @@
+{
+  "estado": "calculado",
+  "escala": "log2_de_intensidad_lineal",
+  "versiones": {
+    "principal": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 205,
+        "alfa_efectivo": 0.0002538071065989848,
+        "diferente": 0,
+        "equivalente": 105,
+        "indeterminada": 100,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 205,
+        "alfa_efectivo": 0.0002564102564102564,
+        "diferente": 2,
+        "equivalente": 104,
+        "indeterminada": 99,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 205,
+        "alfa_efectivo": 0.0002577319587628866,
+        "diferente": 0,
+        "equivalente": 128,
+        "indeterminada": 77,
+        "conflicto": 0
+      }
+    },
+    "con_contaminantes": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 312,
+        "alfa_efectivo": 0.0001666666666666667,
+        "diferente": 0,
+        "equivalente": 170,
+        "indeterminada": 142,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 312,
+        "alfa_efectivo": 0.00016778523489932888,
+        "diferente": 2,
+        "equivalente": 160,
+        "indeterminada": 150,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 312,
+        "alfa_efectivo": 0.00016891891891891893,
+        "diferente": 1,
+        "equivalente": 201,
+        "indeterminada": 110,
+        "conflicto": 0
+      }
+    },
+    "sin_contaminantes_con_paneles": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 213,
+        "alfa_efectivo": 0.00024630541871921186,
+        "diferente": 0,
+        "equivalente": 108,
+        "indeterminada": 105,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 213,
+        "alfa_efectivo": 0.0002487562189054727,
+        "diferente": 2,
+        "equivalente": 107,
+        "indeterminada": 104,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 213,
+        "alfa_efectivo": 0.00025,
+        "diferente": 0,
+        "equivalente": 131,
+        "indeterminada": 82,
+        "conflicto": 0
+      }
+    },
+    "ajustado_coagulacion": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 205,
+        "alfa_efectivo": 0.0002538071065989848,
+        "diferente": 0,
+        "equivalente": 76,
+        "indeterminada": 129,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 205,
+        "alfa_efectivo": 0.0002564102564102564,
+        "diferente": 1,
+        "equivalente": 86,
+        "indeterminada": 118,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 205,
+        "alfa_efectivo": 0.0002577319587628866,
+        "diferente": 0,
+        "equivalente": 122,
+        "indeterminada": 83,
+        "conflicto": 0
+      }
+    },
+    "genes_maxlfq": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 199,
+        "alfa_efectivo": 0.0002631578947368421,
+        "diferente": 0,
+        "equivalente": 100,
+        "indeterminada": 99,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 199,
+        "alfa_efectivo": 0.00026595744680851064,
+        "diferente": 2,
+        "equivalente": 102,
+        "indeterminada": 95,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 199,
+        "alfa_efectivo": 0.00026737967914438503,
+        "diferente": 0,
+        "equivalente": 123,
+        "indeterminada": 76,
+        "conflicto": 0
+      }
+    }
+  },
+  "sello": {
+    "commit": "293e6eecb8912476feb70720cbe080731feec7b2",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-06T23:51:46Z",
+    "sha256_preregistro": "f9e1c23990245ca6b3d6d9f1a5e54dbf543c8507128696a2414b949d7ddcecdb",
+    "sha256_enmiendas": "739cc3b7bdfc7f67c0de7af2db005cfc65327d61e64d0cdaca6338926bc5abed",
+    "sha256_manifest_entradas": "9253faf6edb8036dd446dea1742fc8546efa7394c3429d6b91c62592d6219748",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_2_suero"
+  }
+}

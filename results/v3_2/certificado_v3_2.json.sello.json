@@ -1,0 +1,17 @@
+{
+  "commit": "293e6eecb8912476feb70720cbe080731feec7b2",
+  "arbol_limpio": true,
+  "fecha_utc": "2026-11-07T00:06:05Z",
+  "sha256_preregistro": "f9e1c23990245ca6b3d6d9f1a5e54dbf543c8507128696a2414b949d7ddcecdb",
+  "sha256_enmiendas": "739cc3b7bdfc7f67c0de7af2db005cfc65327d61e64d0cdaca6338926bc5abed",
+  "sha256_manifest_entradas": "9253faf6edb8036dd446dea1742fc8546efa7394c3429d6b91c62592d6219748",
+  "python": "3.14.3",
+  "paquetes": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.8.0"
+  },
+  "semilla": 20260914,
+  "etapa": "v3_2_report"
+}

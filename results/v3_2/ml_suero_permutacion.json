@@ -1,0 +1,62 @@
+{
+  "estado": "calculado",
+  "pregunta": "cáncer frente a colonoscopia negativa",
+  "n_por_clase": "sale de las columnas CP_ y CN_",
+  "versiones": {
+    "filtrada_humana": {
+      "estado": "calculado",
+      "auc_media": 0.99625,
+      "ic_bajo": 0.9375,
+      "ic_alto": 1.0,
+      "n_pliegues": 100,
+      "intervalo": "cuantiles de la validación cruzada repetida, no un intervalo de DeLong",
+      "auc_de_la_permutacion": 1.0,
+      "p": 0.000999000999000999,
+      "media_del_nulo": 0.497921875,
+      "n_permutaciones": 1000
+    },
+    "sin_contaminantes_ni_paneles": {
+      "estado": "calculado",
+      "auc_media": 0.9809375,
+      "ic_bajo": 0.76484375,
+      "ic_alto": 1.0,
+      "n_pliegues": 100,
+      "intervalo": "cuantiles de la validación cruzada repetida, no un intervalo de DeLong",
+      "auc_de_la_permutacion": 1.0,
+      "p": 0.000999000999000999,
+      "media_del_nulo": 0.49714687500000004,
+      "n_permutaciones": 1000
+    },
+    "solo_coagulacion": {
+      "estado": "calculado",
+      "auc_media": 0.81875,
+      "ic_bajo": 0.569921875,
+      "ic_alto": 0.984375,
+      "n_pliegues": 100,
+      "intervalo": "cuantiles de la validación cruzada repetida, no un intervalo de DeLong",
+      "auc_de_la_permutacion": 0.83125,
+      "p": 0.000999000999000999,
+      "media_del_nulo": 0.504134375,
+      "n_permutaciones": 1000
+    }
+  },
+  "no_es_biomarcador": true,
+  "fase_pepe": 1,
+  "sello": {
+    "commit": "293e6eecb8912476feb70720cbe080731feec7b2",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-06T23:56:32Z",
+    "sha256_preregistro": "f9e1c23990245ca6b3d6d9f1a5e54dbf543c8507128696a2414b949d7ddcecdb",
+    "sha256_enmiendas": "739cc3b7bdfc7f67c0de7af2db005cfc65327d61e64d0cdaca6338926bc5abed",
+    "sha256_manifest_entradas": "9253faf6edb8036dd446dea1742fc8546efa7394c3429d6b91c62592d6219748",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_2_ml"
+  }
+}

@@ -1,0 +1,11 @@
+hipotesis	nivel	estado	metrica	detalle	umbral	fuente	fraccion_multiverso
+H1	heredada	rechaza_h1	concordancia de signo, primario frente a mucosa	89/90		results/v3_2/k1_etiquetas.json	
+H2	heredada	no_evaluable	red	No se recalcula en v3.2. v3 decía: Sin nulo que conserve el grado.		results/v2/certification/certificado_v2.json	
+H3	heredada	no_evaluable	nan	No se recalcula en v3.2. v3 decía: No hay H3 en el preregistro de v2 ni en el de v3.		config/preregistro_v3.yaml	
+H4	heredada	no_evaluable	fraccion medible	No se recalcula en v3.2. v3 decía: v2 fijó el umbral 0,90 y no cerró un veredicto en el certificado.		results/v2/certification/certificado_v2.json	
+H5	secundaria	no_disponible	fraccion pan_carcinoma	UCEC no tiene 8 pares con el mismo identificador		results/v3_2/h5_especificidad_organo.json	
+H6	exploratoria	no_evaluable	origen celular	La matriz está, pero este corte no ajusta la interacción.		/Volumes/JANCODATA/OncoGO-CRC/external/referencia_unicelular	
+H7	confirmatoria	no_evaluable	AUC incremental fuera de un recurso	Álvez y Wannberg traen estadísticas publicadas, no una matriz de muestras. No se informa un AUC. Los predictores de secuencia no se ejecutaron en esta corrida.		external/alvez_2023/estado.json	
+H8	secundaria	no_disponible	treat estadio IV frente a I-II	PXD064655 no está en el disco.		external	
+H9	exploratoria	requiere_acceso	Wald o IVW con instrumentos cis	las estadísticas de resumen están en Synapse (syn51364943) bajo los términos del UKB-PPP, que exigen cuenta y aceptación de condiciones. Este script no intenta autenticarse.		/Volumes/JANCODATA/OncoGO-CRC/external/ukb_ppp/estado.json	
+H10	secundaria	no_evaluable	proteínas específicas frente a sanos, otros cánceres y otras enfermedades	El preregistro no fija un umbral para sostener o refutar H10. El atlas da 0 específicas, 1165 no específicas y 0 no medidas. Fase de Pepe 1.		results/v3_2/h10_especificidad.json	

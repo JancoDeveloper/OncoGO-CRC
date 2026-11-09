@@ -1,0 +1,48 @@
+{
+  "sello": {
+    "commit": "293e6eecb8912476feb70720cbe080731feec7b2",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-06T23:51:46Z",
+    "sha256_preregistro": "f9e1c23990245ca6b3d6d9f1a5e54dbf543c8507128696a2414b949d7ddcecdb",
+    "sha256_enmiendas": "739cc3b7bdfc7f67c0de7af2db005cfc65327d61e64d0cdaca6338926bc5abed",
+    "sha256_manifest_entradas": "9253faf6edb8036dd446dea1742fc8546efa7394c3429d6b91c62592d6219748",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_2_suero"
+  },
+  "controles": {
+    "filas": 283488,
+    "corridas": 60,
+    "q_value_max": 0.0099975,
+    "pg_q_value_max": 0.135314,
+    "global_pg_q_value_max": 1.0,
+    "grupos": 897,
+    "grupos_global_pg_q_0_01": 329,
+    "grupos_sin_pg_q_0_01_en_ninguna_corrida": 432,
+    "humanos_pg_y_global": 312,
+    "humanos_pg_y_global_con_gen": 307,
+    "sha256": "A8A5AADD74391AFEF68CF4D6C3A7D3860023101E5C92590E2E87C152A39E59E8",
+    "bytes": 213313241,
+    "solo_lectura": "0o700"
+  },
+  "esperado": {
+    "filas": 283488,
+    "corridas": 60,
+    "grupos_global_pg_q_0_01": 329,
+    "grupos_sin_pg_q_0_01_en_ninguna_corrida": 432,
+    "humanos_pg_y_global": 312,
+    "humanos_pg_y_global_con_gen": 307
+  },
+  "coincide_con_la_revision": true,
+  "diferencias": {},
+  "n_grupos_en_matriz_principal": 312,
+  "n_contaminantes_en_la_traza": 129,
+  "n_piel_en_la_traza": 13,
+  "matriz": "/Volumes/JANCODATA/OncoGO-CRC/data/processed/plasma/pxd055218_pg_maxlfq_filtrado.tsv"
+}

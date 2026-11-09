@@ -1,0 +1,44 @@
+{
+  "estado": "calculado",
+  "precursores_min": 2934,
+  "precursores_max": 5576,
+  "precursores_mediana": {
+    "colonoscopy_negative": 4755.5,
+    "crc": 4816.5,
+    "healthy": 4766.0
+  },
+  "orden_de_corrida": "limitacion_declarada",
+  "motivo_orden": "El nombre de la corrida no trae la fecha de adquisición. Los crudos no se descargaron. Queda la limitación de Leek 2010.",
+  "confusion_preanalitica": [
+    {
+      "indicador": "coagulacion",
+      "lectura": "confusión preanalítica",
+      "p_kruskal": 0.0009909115846774195,
+      "hl_crc_menos_colonoscopy_negative": 0.7218830478945852
+    },
+    {
+      "indicador": "piel",
+      "lectura": "confusión preanalítica",
+      "p_kruskal": 3.3681479278313017e-06,
+      "hl_crc_menos_colonoscopy_negative": 1.1930211692820878
+    }
+  ],
+  "escala": "log2_de_intensidad_lineal",
+  "sello": {
+    "commit": "293e6eecb8912476feb70720cbe080731feec7b2",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-06T23:51:46Z",
+    "sha256_preregistro": "f9e1c23990245ca6b3d6d9f1a5e54dbf543c8507128696a2414b949d7ddcecdb",
+    "sha256_enmiendas": "739cc3b7bdfc7f67c0de7af2db005cfc65327d61e64d0cdaca6338926bc5abed",
+    "sha256_manifest_entradas": "9253faf6edb8036dd446dea1742fc8546efa7394c3429d6b91c62592d6219748",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_2_suero"
+  }
+}

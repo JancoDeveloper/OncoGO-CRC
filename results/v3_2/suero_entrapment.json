@@ -1,0 +1,31 @@
+{
+  "estado": "cota",
+  "estimador": "FDP ≈ N_e * (1 + 1/r) / (N_t + N_e)",
+  "nivel": "grupo_de_proteina_con_Global.PG.Q.Value_<=_0.01",
+  "N_t": 312,
+  "N_e": 13,
+  "r": "no_disponible",
+  "motivo_r": "PRIDE lista 60 crudos Thermo y el report. No hay FASTA ni report.log.txt, así que el cociente de péptidos únicos de las dos bases no se conoce.",
+  "cota_inferior_si_r_es_grande": 0.04,
+  "advertencia": "La base no se diseñó como entrapment. La cota inferior es el estimador cuando r tiende a infinito. Si r es menor, el estimador es mayor. No es un FDR oficial.",
+  "p_kruskal_fraccion_no_humana": 0.11324555992911839,
+  "ortologos": "calculado",
+  "motivo_ortologos": null,
+  "sello": {
+    "commit": "293e6eecb8912476feb70720cbe080731feec7b2",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-06T23:51:46Z",
+    "sha256_preregistro": "f9e1c23990245ca6b3d6d9f1a5e54dbf543c8507128696a2414b949d7ddcecdb",
+    "sha256_enmiendas": "739cc3b7bdfc7f67c0de7af2db005cfc65327d61e64d0cdaca6338926bc5abed",
+    "sha256_manifest_entradas": "9253faf6edb8036dd446dea1742fc8546efa7394c3429d6b91c62592d6219748",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_2_suero"
+  }
+}

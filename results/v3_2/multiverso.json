@@ -1,0 +1,27 @@
+{
+  "estado": "calculado",
+  "conclusion_preregistrada": "sin_diferencia",
+  "fraccion_de_celdas_con_esa_conclusion": 0.9375,
+  "n_celdas": 48,
+  "h5": "no_disponible",
+  "h7": "no_evaluable",
+  "h10": "no_evaluable",
+  "nota": "H5, H7 y H10 no dependen de estas celdas del suero. No se recalculan en cada una.",
+  "sello": {
+    "commit": "293e6eecb8912476feb70720cbe080731feec7b2",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-06T23:56:29Z",
+    "sha256_preregistro": "f9e1c23990245ca6b3d6d9f1a5e54dbf543c8507128696a2414b949d7ddcecdb",
+    "sha256_enmiendas": "739cc3b7bdfc7f67c0de7af2db005cfc65327d61e64d0cdaca6338926bc5abed",
+    "sha256_manifest_entradas": "9253faf6edb8036dd446dea1742fc8546efa7394c3429d6b91c62592d6219748",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_2_multiverso"
+  }
+}
