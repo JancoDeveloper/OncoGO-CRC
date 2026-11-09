@@ -190,3 +190,11 @@ Comando: `ruff check scripts/v3/figuras_v3_3.py`.
 Resultado. El guion lee `results/v3_3/` y escribe F1 a F14 en PNG y SVG. El título de F1 es el texto del titular. F7 dice que AQP8, SLC26A3 y GUCA2A no tienen log2FC.
 
 Decisión. El guion se commitea antes de firmar las figuras, porque el sello exige árbol limpio.
+
+## 2026-11-09 16:05 (UTC−5). v3.3, figuras
+
+Comando: `python scripts/v3/figuras_v3_3.py`.
+
+Resultado. Catorce figuras en `results/v3_3/report/figuras/`, `sitio/figuras/` y `tesis-ucaldas/latex/figures/`. F7 no dibuja un log2FC en cero cuando el control no lo tiene. F1 usa el texto del titular.
+
+Decisión. Entran las figuras. El título no dice que las etiquetas del tejido quedaron confirmadas.

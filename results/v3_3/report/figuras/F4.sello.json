@@ -1,0 +1,19 @@
+{
+  "commit": "0a21d3a74fcf68fea4ac238de2d12b84a9311cf1",
+  "arbol_limpio": true,
+  "fecha_utc": "2026-11-09T20:43:21Z",
+  "sha256_preregistro": "6883b44fc0f546d69fd5f453b0cd8aa28c31de9dc7631727a455277e84f49a7a",
+  "sha256_enmiendas": "c3f356ec5e215458f28f4fef698f41ed44d352e3ec15fea0b873479c79dbb3ff",
+  "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+  "python": "3.14.3",
+  "paquetes": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.8.0"
+  },
+  "semilla": 20260914,
+  "etapa": "v3_3_figuras",
+  "figura": "F4",
+  "titulo": "Ninguna proteína es diferente: 166 equivalentes y 118 indeterminadas."
+}
