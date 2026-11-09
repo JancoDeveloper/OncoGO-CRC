@@ -36,17 +36,17 @@ def test_pan_carcinoma_exige_cuatro_del_mismo_signo():
 
 
 def test_h10_solo_es_especifica_si_las_demas_no_pasan():
+    # Enmienda v3.3: la primera fila de colorrectal ya no decide. Este bloque,
+    # sin las tres filas de Control, deja de ser "especifica".
     alpha = 0.05
     especifica = pd.DataFrame({
         "Disease": ["Colorectal cancer", "Lung cancer", "Myositis"],
         "Class": ["Cancer", "Cancer", "Autoimmune"],
         "padj": [0.01, 0.2, 0.4],
+        "logFC": [1.0, 0.2, 0.2],
+        "tipo_control": ["sanos", "sanos", "sanos"],
     })
-    assert clasificar_gen(especifica, alpha) == "especifica"
-    compartida = especifica.copy()
-    compartida.loc[1, "padj"] = 0.01
-    assert clasificar_gen(compartida, alpha) == "no_especifica"
-    assert clasificar_gen(especifica.iloc[1:], alpha) == "no_medida"
+    assert clasificar_gen(especifica, alpha, 0.585)["clase"] == "no_medida"
 
 
 def test_la_imputacion_no_ve_el_valor_de_prueba():

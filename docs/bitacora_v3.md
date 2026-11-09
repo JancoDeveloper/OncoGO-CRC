@@ -142,3 +142,11 @@ Comando: `pytest tests/test_v3_3_normalizacion.py`.
 Resultado. Con un desplazamiento constante de +1 en las columnas P, la mediana del log2FC pareado queda en 0 después de centrar. El análisis principal no se centra. La sensibilidad escribe `k1_sensibilidad_normalizacion.json`. Si R1 cruza 0,70, H1 queda frágil a la normalización.
 
 Decisión. La mediana de las diferencias no es la diferencia de las medianas. El test usa un desplazamiento constante, que es el caso que describe la enmienda.
+
+## 2026-11-09 15:50 (UTC−5). v3.3, H5 y H10
+
+Comando: `pytest tests/test_v3_3_h5_h10.py tests/test_v3_3_resto.py`.
+
+Resultado. 10 tests pasan. Con 7 carcinomas la clase coincide con v3. Con 6 y 4 concordantes sale pan_carcinoma. Con 5 sale no_clasificable. H10 lee `Healthy`, `Class` y `All other diseases`. El test viejo, que daba por específica la primera fila, ahora da `no_medida` porque faltan los tres controles.
+
+Decisión. UCEC no se reetiqueta: sus normales se llaman NX1, NX2 y no comparten identificador con el tumor. H10 queda descriptiva.

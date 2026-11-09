@@ -24,17 +24,19 @@ HGNC_URL = "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hg
 OTROS = ("CCRCC", "HNSCC", "LSCC", "LUAD", "OV", "PDAC", "UCEC")
 COLON = "COAD"
 N_REPETICIONES = 200
+MIN_CARCINOMAS = 6
+UMBRAL_PAN = 4
 
 
-def clase_de_proteina(treat_colon: bool, signo_colon: float, otros: list[tuple[float, bool]]) -> str:
-    """pan_carcinoma, especifica_colon o intermedia. otros tiene un elemento por carcinoma."""
-    if not np.isfinite(signo_colon) or signo_colon == 0 or len(otros) != 7:
+def clase_de_proteina(treat_colon: bool, signo_colon: float, otros: list[tuple[float, bool]], *, min_otros: int = MIN_CARCINOMAS, umbral_pan: int = UMBRAL_PAN) -> str:
+    """pan_carcinoma, especifica_colon o intermedia. otros tiene un elemento por carcinoma disponible."""
+    if not np.isfinite(signo_colon) or signo_colon == 0 or len(otros) < min_otros:
         return "no_clasificable"
     mismo = 0
     for signo, treat in otros:
         if treat and np.isfinite(signo) and np.sign(signo) == np.sign(signo_colon):
             mismo += 1
-    if mismo >= 4:
+    if mismo >= umbral_pan:
         return "pan_carcinoma"
     if treat_colon and mismo == 0:
         return "especifica_colon"
@@ -74,6 +76,17 @@ def _leer_matriz(path: Path) -> pd.DataFrame:
     repetidos = set(tabla.loc[tabla["ensembl"].duplicated(keep=False), "ensembl"])
     tabla = tabla.loc[~tabla["ensembl"].isin(repetidos)]
     return tabla.drop_duplicates("ensembl").set_index("ensembl")
+
+
+def _diagnostico_pares(tumor: pd.DataFrame, normal: pd.DataFrame) -> dict:
+    comunes = [c for c in tumor.columns if c in normal.columns]
+    return {
+        "n_tumor": int(tumor.shape[1]),
+        "n_normal": int(normal.shape[1]),
+        "n_comunes": len(comunes),
+        "ejemplos_tumor": list(map(str, tumor.columns[:3])),
+        "ejemplos_normal": list(map(str, normal.columns[:3])),
+    }
 
 
 def _efecto(tumor: pd.DataFrame, normal: pd.DataFrame, min_pares: int, lfc: float, alpha: float) -> pd.DataFrame | None:
@@ -137,17 +150,33 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
     min_pares = int(prereg.get("enmienda_v3_2.tejido.min_pares_observados"))
     efectos: dict[str, pd.DataFrame] = {}
     matrices: dict[str, tuple[pd.DataFrame, pd.DataFrame]] = {}
+    excluidos: dict[str, str] = {}
+    diagnostico: dict[str, dict] = {}
+    disponibles: list[str] = []
     for cancer in (COLON, *OTROS):
         tumor = _leer_matriz(destino / f"{cancer}_proteomics_gene_abundance_log2_reference_intensity_normalized_Tumor.txt")
         normal = _leer_matriz(destino / f"{cancer}_proteomics_gene_abundance_log2_reference_intensity_normalized_Normal.txt")
         matrices[cancer] = (tumor, normal)
+        diagnostico[cancer] = _diagnostico_pares(tumor, normal)
         tabla = _efecto(tumor, normal, min_pares, lfc, alpha)
         if tabla is None:
-            payload = {"estado": "no_disponible", "motivo": f"{cancer} no tiene {min_pares} pares con el mismo identificador"}
-            volcar_json(payload, salida / "h5_especificidad_organo.json", sello)
-            return payload
+            excluidos[cancer] = f"no tiene {min_pares} pares con el mismo identificador"
+            continue
         tabla["gen"] = tabla["protein_id"].map(mapa)
         efectos[cancer] = tabla.dropna(subset=["gen"]).drop_duplicates("gen").set_index("gen")
+        if cancer != COLON:
+            disponibles.append(cancer)
+    if COLON in excluidos or len(disponibles) < MIN_CARCINOMAS:
+        motivo = excluidos.get(COLON) or f"hay {len(disponibles)} carcinomas y el mínimo es {MIN_CARCINOMAS}"
+        payload = {
+            "estado": "no_disponible",
+            "motivo": motivo,
+            "carcinomas_disponibles": disponibles,
+            "carcinomas_excluidos": excluidos,
+            "diagnostico_pares": diagnostico,
+        }
+        volcar_json(payload, salida / "h5_especificidad_organo.json", sello)
+        return payload
     certificadas = pd.read_csv(settings.resolve("results/certified/cptac_unshared_treat.tsv"), sep="\t")
     genes = sorted(certificadas.loc[certificadas["significant"].astype(bool), "protein_id"].astype(str).str.upper().unique())
     colon = efectos[COLON]
@@ -157,7 +186,7 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
             filas.append({"gen": gen, "clase": "no_clasificable", "log2fc_colon": colon.at[gen, "log2fc"] if gen in colon.index else np.nan})
             continue
         otros = []
-        for cancer in OTROS:
+        for cancer in disponibles:
             if gen not in efectos[cancer].index:
                 otros.append((float("nan"), False))
             else:
@@ -191,7 +220,7 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
         tanaka = tanaka.sort_values(columna_n, ascending=False, kind="stable")
     tanaka = tanaka.drop_duplicates("gen", keep="first")
     concordancias = {}
-    for cancer in OTROS:
+    for cancer in disponibles:
         otro = efectos[cancer]["log2fc"].rename("log2fc_otro")
         cruzado = tanaka.merge(otro, left_on="gen", right_index=True, how="inner")
         fraccion = concordancia_de_signo(
@@ -216,7 +245,7 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
     iguales = 0
     for _ in range(N_REPETICIONES):
         efectos_sub = {COLON: colon}
-        for cancer in OTROS:
+        for cancer in disponibles:
             tumor, normal = matrices[cancer]
             comunes = [c for c in tumor.columns if c in normal.columns]
             if len(comunes) < n_colon or n_colon < min_pares:
@@ -225,14 +254,14 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
             sub = _efecto_sub(tumor, normal, elegidas, min_pares, lfc, alpha)
             sub["gen"] = sub["protein_id"].map(mapa)
             efectos_sub[cancer] = sub.dropna(subset=["gen"]).drop_duplicates("gen").set_index("gen")
-        if len(efectos_sub) != 8:
+        if len(efectos_sub) != 1 + len(disponibles):
             continue
         clases = []
         for gen in clasificadas["gen"]:
             if gen not in colon.index:
                 continue
             otros = []
-            for cancer in OTROS:
+            for cancer in disponibles:
                 bloque = efectos_sub[cancer]
                 if gen not in bloque.index:
                     otros.append((float("nan"), False))
@@ -255,6 +284,9 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
         "n_submuestreos": N_REPETICIONES,
         "n_pares_colon": n_colon,
         "sostiene_significa": "No se cumple la refutación preregistrada.",
+        "carcinomas_disponibles": disponibles,
+        "carcinomas_excluidos": excluidos,
+        "diagnostico_pares": diagnostico,
     }
     volcar_json(payload, salida / "h5_especificidad_organo.json", sello)
     return payload

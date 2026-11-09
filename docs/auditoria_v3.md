@@ -115,3 +115,9 @@ Comprobado en esta pasada:
 La matriz tiene 6824 filas. Con el cruce viejo, 2415 tienen el primer acceso en el mapa revisado. Con el mapa nuevo, 3941 tienen un solo gen, 2688 tienen más de uno y 195 no tienen ninguno. Una fila con varios genes no entra en R1. La columna de pares es `n_obs`.
 
 CA1 está en el grupo V9HWE3, con genes HEL-S-11 y CA1, y el acceso P00915 va dentro del grupo. SLC26A3 está en P40879, junto al símbolo viejo DKFZp686P10213. AQP8 (O94778) y GUCA2A (Q02747) no aparecen en `Protein IDs`, ni en `Gene names`, ni en `GN=` de las cabeceras, ni en la matriz. No es un fallo del mapa: esas dos proteínas no están en la salida de MaxQuant de esta cohorte. El control las escribe como falla. La corrida no las va a dar por buenas.
+
+## v3.3, H5 y la columna Control del HPA
+
+UCEC tiene 95 columnas de tumor (`C3N-00858`, `C3L-01252`, …) y 18 de normal (`NX1`, `NX2`, …). La intersección es 0. No es el mismo participante con otro sufijo, así que no se normaliza el identificador. UCEC queda excluido. COAD tiene 96 pares. CCRCC 80, HNSCC 62, LSCC 99, LUAD 101, OV 10 y PDAC 44. Con el mínimo de 8 pares hay 6 carcinomas además del colon.
+
+La columna `Control` del atlas trae exactamente `Healthy`, `Class` y `All other diseases`. `Class` contiene la subcadena `all`, así que un mapeo por subcadena la mandaría al control equivocado. El mapeo explícito es Healthy → sanos, Class → misma_clase, All other diseases → todas_las_demas. Un texto distinto detiene la etapa.
