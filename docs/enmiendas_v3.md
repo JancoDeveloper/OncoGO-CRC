@@ -63,3 +63,23 @@ El máximo del AUC plegado baja de 0,939 (FGB, matriz humana filtrada, p = 0,004
 H5 quedó `no_disponible`: el carcinoma de endometrio no tiene 8 pares con el mismo identificador. H10 cuenta 0 específicas de 1 165, en 60 enfermedades, y el veredicto queda `no_evaluable` porque el preregistro no fija un umbral. H6, H7, H8 y H9 quedan sin número, con el motivo de `hipotesis_v3_2.tsv`.
 
 La página pública se armó después, a pedido del autor: https://oncogo-crc-tesis.web.app. La frase de arriba sobre no desplegar la web es la regla de la corrida.
+
+## Enmienda v3.3 — 9 de noviembre de 2026
+
+No borra v3.2. Esos números quedan en `results/v3_2/` y en la etiqueta `v3.2-final`. Lo nuevo se calculará en `results/v3_3/`. El autor ya había visto los resultados de v3.2 cuando se escribió esta enmienda. Ningún umbral de inferencia, TOST, AUC, FDR, pares mínimos ni regla de H1, H5 o H7 se mueve.
+
+Contaminantes. El valor anterior cruzaba por símbolo de gen, sin mirar la especie. La albúmina bovina de la librería marcaba la albúmina humana, y lo mismo pasaba con el fibrinógeno, la transferrina, el complemento y las apolipoproteínas: 98 de 312 grupos humanos. El valor nuevo cruza por acceso, sin `Cont_`, sin `sp|…|` y sin el sufijo de isoforma. Un grupo humano es contaminante solo si uno de sus accesos está en la librería con `OX=9606`. Un grupo sin miembro humano es contaminante si alguno de sus accesos está en la librería. El símbolo solo se usa para entradas humanas y solo si el grupo no trae `Protein.Ids`. Los grupos mixtos se quedan en el principal con la marca `comparte_con_contaminante` y salen en la sensibilidad `sin_grupos_mixtos`. KRT7, KRT8, KRT18, KRT19 y KRT20 siguen fuera del principal, porque la librería se fija entera, y vuelven en `con_queratinas_epiteliales`. ALB, APOA1, C3, TF, SERPINA1, A2M, APOE, FGA, FGB, FGG y LRG1 humanas no pueden salir como contaminantes.
+
+ML del suero. El valor anterior añadía cada muestra dos veces, una por cada matriz, y la validación cruzada veía la misma persona en el entrenamiento y en la prueba. Por eso el nulo no era interpretable. El valor nuevo usa columnas únicas, 20 CP y 20 CN, entra en log2 si hace falta, y calcula seis modelos fijados aquí: proteínas humanas, proteínas del principal, solo calidad de muestra, solo coagulación, principal residualizado por la calidad dentro del pliegue, y cinco componentes principales dentro del pliegue. El titular sale de una regla escrita antes de correr. La dispersión entre pliegues no se llama intervalo. El intervalo es el de LeDell et al. 2015.
+
+Tejido. El valor anterior buscaba el gen por acceso exacto y, si no lo encontraba, escribía `no_evaluable` sin detener la etapa. CA1, AQP8, SLC26A3 y GUCA2A no se evaluaban. El valor nuevo usa un solo mapa: Gene names, el `GN=` de las cabeceras FASTA y todos los Protein IDs pasados por el mapa de UniProt. Un control positivo no evaluable cuenta como fallo. El análisis principal no normaliza. Se añade la sensibilidad de centrado por mediana. Si la concordancia cruza 0,70 solo con esa sensibilidad, H1 se declara frágil a la normalización.
+
+H5. El valor anterior devolvía `no_disponible` en cuanto un carcinoma, UCEC, no tenía ocho pares. El valor nuevo excluye ese carcinoma con su diagnóstico y evalúa la hipótesis si quedan al menos seis. Pan-carcinoma sigue siendo mismo signo y treat en al menos cuatro de los disponibles. Con siete carcinomas, la regla es la de v3.
+
+H10. El valor anterior tomaba la primera fila de colorrectal e ignoraba la columna Control. El valor nuevo lee esa columna y llama específica a la proteína que es significativa, con el mismo signo, frente a sanos, frente a la misma clase y frente a todas las demás. El informe empieza por SAA1, LBP, CHMP4A, BAIAP3, FN1 y TPM4. H10 queda descriptiva: el preregistro no fijó umbral, y fijarlo después de ver 0/1165 sería elegir por resultado.
+
+H7. El valor anterior se escribía a mano como `no_evaluable`. El valor nuevo es un modelo por proteína, fuera de recurso y fuera de proteína, con las variables que ya estaban en el preregistro. ESM-2 y TMbed entran solo como modelo secundario. No se sustituye una variable que falte.
+
+El autor pidió, el mismo día, desplegar la web solo si el checklist queda en verde, guardar ProtT5-XL en el disco externo y descargar los 60 crudos al disco externo. Esos crudos no entran en el cálculo y DIA-NN no se ejecuta.
+
+Estas correcciones cambian cifras que ya estaban en la tesis y en la web. Las cifras v3.2 no se borran: pasan al anexo de historial con su motivo.

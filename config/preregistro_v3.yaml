@@ -443,3 +443,142 @@ enmienda_v3_2:
   v3_congelado: true
   crudos_pxd055218: "no se descargan. La búsqueda con AlphaDIA queda como extensión documentada."
   firebase: "no se despliega. La web se construye solo en local."
+
+# ------------------------------------------------- 15. Enmienda v3.3
+# No borra lo anterior. Corrige errores de implementación encontrados por una
+# revisión externa del código después de la corrida v3.2. No relaja ningún umbral.
+enmienda_v3_3:
+  fecha: "2026-11-09"
+  transparencia: >-
+    Los resultados v3.2 ya se habían visto cuando se escribió esta enmienda.
+    Las correcciones son de implementación: un cruce de contaminantes por
+    símbolo de gen sin especie, muestras duplicadas en el ML, un mapa de genes
+    que no encontraba los controles del tejido, H5 abortada por un carcinoma,
+    H10 sin leer la columna Control del HPA y H7 sin calcular. Ningún umbral de
+    inferencia, TOST, AUC, FDR, pares mínimos ni regla de H1, H5 o H7 se mueve.
+    Los valores v3.2 se conservan en results/v3_2/ y en la etiqueta v3.2-final.
+  no_cambia:
+    - inferencia
+    - k4_suero
+    - k5_auc
+    - enmienda_v3_2.filtro_suero_principal
+    - enmienda_v3_2.tejido.min_pares_observados
+    - hipotesis.h1.umbral_concordancia_proteina
+    - hipotesis.h5.umbral_fraccion_pan_carcinoma
+    - hipotesis.h5.diferencia_minima_frente_a_colon
+    - hipotesis.h7.sostiene
+    - hipotesis.h7.refuta
+  contaminantes:
+    regla: >-
+      El acceso se compara sin el prefijo Cont_, sin la parte sp|...| y sin el
+      sufijo de isoforma. Un grupo con algún miembro _HUMAN es contaminante solo
+      si alguno de sus accesos está en la librería con OX=9606. Un grupo sin
+      miembro humano es contaminante si alguno de sus accesos está en la
+      librería. El símbolo GN solo se usa para entradas OX=9606 y solo si el
+      grupo no trae Protein.Ids.
+    valor_anterior: "enmienda_v3_2.contaminantes.regla"
+    motivo: >-
+      La librería trae proteínas bovinas con el mismo GN que las humanas (ALB,
+      FGA, FGB, FGG, TF, C3, APOA1...). Cruzar por símbolo marcaba 98 de 312
+      grupos humanos.
+    grupos_mixtos: >-
+      Un grupo humano que también trae un acceso no humano de la librería lleva
+      comparte_con_contaminante. Se queda en el principal y sale en la
+      sensibilidad sin_grupos_mixtos.
+    queratinas_epiteliales:
+      genes: [KRT7, KRT8, KRT18, KRT19, KRT20]
+      principal: excluidas, porque la librería se fija entera
+      sensibilidad: con_queratinas_epiteliales
+    control_positivo: >-
+      ALB, APOA1, C3, TF, SERPINA1, A2M, APOE, FGA, FGB, FGG y LRG1 humanas no
+      salen como contaminantes. Si alguna sale, la etapa para.
+  ml_suero:
+    n_por_clase: 20
+    columnas_unicas: true
+    escala: "log2 si el máximo finito de la matriz supera 100; el cero y los negativos son ausencia"
+    qc: [eritrocitos, plaquetas, coagulacion, piel, log2_n_precursores]
+    modelos:
+      M1_proteinas_filtrada_humana: "matriz humana con FDR, sin quitar contaminantes ni paneles"
+      M2_proteinas_principal: "matriz principal v3.3"
+      M3_solo_qc: "las cinco puntuaciones QC"
+      M4_solo_coagulacion: "la puntuación de coagulación"
+      M5_principal_residualizada_qc: "M2 con cada proteína residualizada por las cinco QC, ajustado dentro del pliegue"
+      M6_principal_pca5: "M2 reducida a 5 componentes principales dentro del pliegue"
+    validacion: "5 pliegues estratificados, 20 repeticiones; nulo de 1000 permutaciones con el mismo tubo"
+    intervalo: "LeDell 2015 sobre las predicciones fuera del pliegue de la primera repetición; la dispersión entre pliegues se informa aparte y no se llama intervalo"
+    titular:
+      alfa: 0.05
+      auc_minima: 0.70
+      regla: >-
+        Si M2 tiene p de permutación >= 0,05: sin_separacion_detectable.
+        Si M2 tiene p < 0,05, y M5 tiene p < 0,05 y AUC fuera del pliegue >= 0,70:
+        senal_mas_alla_de_la_calidad. En otro caso: separacion_explicada_por_calidad.
+      textos:
+        sin_separacion_detectable: "Con 20 muestras por grupo, el suero no separa el cáncer colorrectal de la colonoscopia negativa."
+        senal_mas_alla_de_la_calidad: "El suero separa el cáncer de la colonoscopia negativa más allá de la calidad de muestra. Es una señal de fase 1, no un biomarcador."
+        separacion_explicada_por_calidad: "La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra."
+    semillas: "las de enmienda_v3_2 (ml_cv 720, ml_permutacion 721)"
+  tejido:
+    mapa_de_genes: >-
+      Gene names de Cohort1_proteinGroups.txt, más el GN de Fasta headers, más
+      todos los Protein IDs (sin CON__, REV__ ni isoforma) pasados por
+      gene_uniprot_human_reviewed_bulk.tsv.
+    aplica_a: [controles_mucosa_baja, qc_higado, qc_mucosa, qc_sexo, k1_r1, h5_concordancia_tanaka]
+    valor_anterior: "acceso exacto contra gene_uniprot_human_reviewed_bulk.tsv"
+    varias_filas_por_gen: "la de más pares observados; si empatan, la primera del fichero"
+    gen_ambiguo_en_r1: "una fila con varios genes no entra en R1"
+    control_positivo_no_evaluable: falla
+    normalizacion:
+      principal: ninguna
+      sensibilidad: centrado_por_mediana
+      proteinas_de_referencia: "vistas en el 100 % de las muestras; si son menos de 100, en el 90 %"
+      lectura: "Si R1 cruza 0,70 con la sensibilidad, H1 se declara frágil a la normalización."
+  h5:
+    min_carcinomas_disponibles: 6
+    pan_carcinoma: "mismo signo y treat en al menos 4 de los carcinomas disponibles"
+    identificadores: >-
+      Si tumor y normal de un carcinoma usan el mismo participante con un sufijo
+      de tejido distinto, se normaliza el identificador. Se documenta y se testea.
+    con_7_carcinomas: "la regla es idéntica a la de v3"
+  h7:
+    variables_principales: "las de hipotesis.h7.variables que existan en disco; las que falten se listan y no se sustituyen"
+    modelo_base_secundario: [concentracion_plasmatica_hpa_log10, magnitud_en_tejido]
+    variables_secundarias: [esm2_t12_35M_pca5, tmbed_helices_tm, tmbed_peptido_senal]
+    si_tmbed_no_corre: "anotación de UniProt (Transmembrane y Signal), declarada como sustituto en la sensibilidad, nunca en el principal"
+    pca: "ajustada solo con las proteínas de entrenamiento de cada pliegue"
+    validacion: "recurso fuera y proteína fuera (5 grupos de proteínas asignados con la semilla h7_modelo)"
+    universo: "proteínas certificadas en CPTAC (treat y BH) medidas en el recurso"
+    etiqueta: "1 si el recurso informa padj < 0,05 y el signo coincide con el de CPTAC; 0 si se midió y no cumple"
+    minimo_por_clase: 10
+    bootstrap: "2000 remuestreos estratificados por clase"
+    calibracion: "pendiente e intercepto de calibración (Van Calster 2019)"
+    semillas: {h7_modelo: 840, h7_bootstrap: 841}
+  h10:
+    control_hpa: {sanos: "Healthy", misma_clase: "Class o same class", todas_las_demas: "All other diseases"}
+    especifica_crc: "padj < alfa y |logFC| >= treat_lfc frente a sanos, frente a la misma clase y frente a todas las demás, con el mismo signo"
+    clases_intermedias: [especifica_frente_a_enfermedades, especifica_frente_a_canceres, no_especifica, no_elevada_frente_a_sanos, no_medida]
+    orden_del_informe: [proteinas_de_partida, fase_aguda_GO_0006953, catalogo]
+    estado: descriptiva
+    motivo_estado: "El preregistro no fijó umbral. Fijarlo después de ver 0/1165 sería elegir por resultado."
+  multiverso:
+    dimensiones:
+      cuantificacion: [PG.MaxLFQ, Genes.MaxLFQ]
+      contaminantes: [libreria_v3_3, sin_quitar, con_queratinas_epiteliales, sin_grupos_mixtos]
+      paneles: [excluidos, covariable_coagulacion, incluidos]
+      presencia: [min_n_3, "0.5", "0.7"]
+      lfc: [0.585, 1.0]
+      alfa: [0.05, 0.10]
+      normalizacion_tejido: [ninguna, centrado_por_mediana]
+    salidas: [k4_n_diferentes, k5_auc_maxima_y_p, ml_M2_auc_y_p, ml_M5_auc_y_p, r1_concordancia]
+    celda_preregistrada: "PG.MaxLFQ, libreria_v3_3, excluidos, min_n_3, 0.585, 0.05, ninguna"
+  semillas:
+    desplazamientos:
+      ml_demostracion_fuga: 822
+      h7_modelo: 840
+      h7_bootstrap: 841
+      multiverso_v3_3: 880
+  salida: "results/v3_3/"
+  v3_2_congelado: true
+  firebase: "sí, solo con el checklist en verde. El autor lo autorizó el 2026-11-09."
+  prott5_xl: "sí, en el disco externo. El disco del sistema tenía 14 GB libres."
+  crudos_pxd055218: "sí, al disco externo. No entran en el cálculo de v3.3 y DIA-NN no se ejecuta."
