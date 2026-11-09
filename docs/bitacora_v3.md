@@ -214,3 +214,11 @@ Comando: `python scripts/v3/exportar_cifras_tesis.py`.
 Resultado. `tesis-ucaldas/latex/cifras.tex`, `chapters/09-v33.tex`, `word/cifras.json` y `docs/resumen_director_v3_3.md`. El capítulo de resultados deja la corrida de 205 proteínas como v3.2.
 
 Decisión. No se regenera el Word ni el PDF. El resumen y el abstract siguen por encima de 250 palabras. No hay 18 diapositivas nuevas ni el banco de 50 preguntas.
+
+## 2026-11-09 16:45 (UTC−5). v3.3, resumen, diapositivas y preguntas
+
+Comando: `python scripts/v3/escribir_documentacion_v3_3.py`.
+
+Resultado. El resumen queda en 243 palabras y el abstract en 221. Hay 18 diapositivas y 52 preguntas. Las cifras salen de `results/v3_3/`. El Word no se reescribe: el constructor parte de la plantilla y reemplaza el documento entero.
+
+Decisión. Esta documentación se puede cerrar. El checklist de publicación no: siguen abiertos los tres controles del tejido, el multiverso fuera de la rejilla K4 y los modelos de secuencia.

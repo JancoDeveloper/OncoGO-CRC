@@ -1,5 +1,7 @@
 # Banco de preguntas, versión del 6 de noviembre de 2026
 
+Este banco describe la corrida v3.2. La corrida vigente es v3.3 y está en `docs/sustentacion_v3_3.md`.
+
 Cada respuesta usa una tabla. Si la hipótesis no está calculada, el estado es `no_evaluable`. No hay número aproximado. Ningún resultado de aquí es una prueba diagnóstica. Como mucho está en la fase 1 de Pepe et al. 2001: exploración en muestras ya recogidas.
 
 ## Lo que ya se puede defender

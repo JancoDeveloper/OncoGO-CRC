@@ -1,15 +1,15 @@
 \begin{otherlanguage}{english}
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-% fuente: results/v3_2/k1_etiquetas.json
-% fuente: results/v3_2/suero_resumen.json
-% fuente: results/v3_2/k5_auc.json
-% fuente: results/v3_2/k7_control_tecnico.json
-% fuente: results/v3_2/hipotesis_v3_2.tsv
-The protein change of the colorectal tumor is already described in tissue. This version asks which part of that change is specific to the colon and which part reaches the blood. Cohorts were not fused and missing values were not imputed in the contrast. The anchor was the CPTAC TMT proteome, PDC000116: 688 of 7,394 proteins change by at least 1.5-fold, at a false-discovery rate of 0.05. The replicate was PXD034575, 16 patients. P is the primary tumor, M the liver metastasis and N the mucosa. An earlier reading treated M as the tumor and found 104 of 119 signs in agreement. The current run drops 237 contaminant or decoy rows and requires at least eight pairs. The primary against the mucosa agrees in 89 of 90, with an interval from 0.940 to 0.9997 and Lin's concordance 0.704. The metastasis against the mucosa agrees in 69 of 82, with Lin's concordance 0.390. Unique-peptide detectability remains 226 of 688.
+% fuente: results/v3_3/certificado_v3_3.json
+% fuente: results/v3_3/suero_resumen.json
+% fuente: results/v3_3/k1_etiquetas.json
+The protein change of the colorectal tumor is already described in tissue. Run v3.3 asks whether that change reaches the blood and whether serum separates cancer from a negative colonoscopy. Cohorts were not merged. Missing values were not imputed in the contrast. The anchor is the 688 certified CPTAC proteins. The replicate is PXD034575, 16 patients. P is the primary tumor, M the liver metastasis and N the mucosa.
 
-The serum was PXD055218, 20 people per group. The report has 897 groups. Protein-level FDR of 1\% and a human species filter leave 312. The official contrast, without contaminants or quality panels, has 205 proteins. Against the negative colonoscopy, none differ, 105 are equivalent and 100 remain indeterminate. Only the 105 support a claim of absence at that magnitude. SAA1 and LBP separate cancer from healthy people. CHMP4A does not enter: its global group q-value is 0.037. After contaminants and panels are removed, the maximum area under the curve is 0.865, on SERPINA3; with 10,000 permutations, p = 0.0464. On the human matrix before that cleaning the maximum is 0.939, on FGB. Skin and coagulation scores differ between groups. H5 could not be calculated, and H10 counts zero disease-specific proteins out of 1,165, with no preregistered verdict. The work does not propose a blood test.
+The run drops 237 contaminant or decoy rows and requires at least eight pairs. Primary versus mucosa agrees in sign for 147/147, with an interval from 0,975 a 1 and Lin concordance 0,770. Metastasis versus mucosa agrees for 116/143, with Lin concordance 0,434. CA1 falls in the tumor. AQP8, SLC26A3 and GUCA2A have no log2 fold change, so the tissue labels are not confirmed.
 
-\noindent\textbf{Keywords:} colorectal cancer; proteomics; serum; specificity; Gene Ontology; neoantigen.
+Serum is PXD055218, 20 people per group. The report has 897 groups. A 1\% protein false-discovery rate and the human species filter leave 312. The principal contrast has 284 proteins: 0 different, 166 equivalent and 118 indeterminate against the negative colonoscopy. Against healthy people the separated proteins are LRG1 (P02750), SAA1 (P0DJI8), LBP (P18428). The separation seen by the model is explained by sample quality. H5 is refuta and H7 is refuta. H10 is descriptiva and counts 5 specific proteins. The work does not propose a blood test.
+
+\noindent\textbf{Keywords:} colorectal cancer; proteomics; serum; specificity; sample quality.
 \end{otherlanguage}
 \clearpage

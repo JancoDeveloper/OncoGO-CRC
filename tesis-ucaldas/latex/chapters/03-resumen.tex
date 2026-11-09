@@ -1,13 +1,14 @@
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
-% fuente: results/v3_2/k1_etiquetas.json
-% fuente: results/v3_2/suero_resumen.json
-% fuente: results/v3_2/k5_auc.json
-% fuente: results/v3_2/k7_control_tecnico.json
-% fuente: results/v3_2/hipotesis_v3_2.tsv
-El cambio proteico del tumor colorrectal ya está descrito en el tejido. Esta versión pregunta qué parte de ese cambio es propia del colon y cuál llega a la sangre. No se fusionaron cohortes. En el contraste no se imputaron ausencias. El ancla fue el proteoma TMT de CPTAC, PDC000116: 688 proteínas de 7\,394 cambian al menos 1,5 veces, con tasa de descubrimientos falsos de 0,05. La réplica fue PXD034575, 16 pacientes. P es el tumor primario, M la metástasis hepática y N la mucosa. Una lectura anterior tomó M como tumor y obtuvo 104 de 119 signos iguales. La corrida vigente excluye 237 filas de contaminante o señuelo y pide al menos ocho pares. El primario frente a la mucosa coincide en 89 de 90, con intervalo de 0,940 a 0,9997 y concordancia de Lin 0,704. La metástasis frente a la mucosa coincide en 69 de 82, con Lin 0,390. La detectabilidad por péptido único, 226 de 688, no cambia con la etiqueta.
+% fuente: results/v3_3/certificado_v3_3.json
+% fuente: results/v3_3/suero_resumen.json
+% fuente: results/v3_3/k1_etiquetas.json
+% fuente: results/v3_3/k4_crc_frente_a_sanos.tsv
+El cambio proteico del tumor colorrectal ya está descrito en el tejido. La corrida v3.3 pregunta si ese cambio llega a la sangre y si el suero separa el cáncer de la colonoscopia negativa. No se fusionaron cohortes. En el contraste no se imputaron ausencias. El ancla son las 688 proteínas certificadas de CPTAC. La réplica es PXD034575, con 16 pacientes. P es el tumor primario, M la metástasis hepática y N la mucosa.
 
-El suero fue PXD055218, 20 personas por grupo. El informe trae 897 grupos. Con FDR de proteína del 1\,\% y especie humana quedan 312. El contraste oficial, sin contaminantes ni paneles de calidad, tiene 205 proteínas. Frente a la colonoscopia negativa, ninguna es diferente, 105 son equivalentes y 100 quedan indeterminadas. La ausencia solo se afirma en las 105. Frente a personas sanas se separan SAA1 y LBP. CHMP4A no entra: su q global de grupo es 0,037. El máximo del área bajo la curva, ya sin contaminantes ni paneles, es 0,865 en SERPINA3; con 10\,000 permutaciones, p = 0,0464. En la matriz humana sin esa limpieza el máximo es 0,939, en FGB. La piel y la coagulación difieren entre grupos. H5 no se pudo calcular y H10 cuenta cero proteínas específicas de 1\,165, sin un veredicto fijado de antemano. El trabajo no propone un examen de sangre.
+Se excluyen 237 filas de contaminante o señuelo y se piden al menos ocho pares. El primario frente a la mucosa coincide en signo en 147/147, con intervalo de 0,975 a 1 y concordancia de Lin de 0,770. La metástasis frente a la mucosa coincide en 116/143, con Lin de 0,434. CA1 baja en el tumor. AQP8, SLC26A3 y GUCA2A no tienen log2FC, así que las etiquetas no quedan confirmadas.
 
-\noindent\textbf{Palabras clave:} cáncer colorrectal; proteómica; suero; especificidad; Gene Ontology; neoantígeno.
+El suero es PXD055218, con 20 personas por grupo. El informe trae 897 grupos. Con la tasa de descubrimientos falsos del 1\,\% y la especie humana quedan 312. El contraste principal tiene 284 proteínas: 0 diferentes, 166 equivalentes y 118 indeterminadas frente a la colonoscopia negativa. Frente a personas sanas se separan LRG1 (P02750), SAA1 (P0DJI8), LBP (P18428). La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra. H5 queda en refuta y H7 en refuta. H10 es descriptiva y cuenta 5 proteínas específicas. El trabajo no propone un examen de sangre.
+
+\noindent\textbf{Palabras clave:} cáncer colorrectal; proteómica; suero; especificidad; calidad de muestra.
 \clearpage

@@ -1,0 +1,79 @@
+\documentclass{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\title{OncoGO-CRC, corrida v3.3}
+\author{Juan Diego Polanco Franco}
+\date{9 de noviembre de 2026}
+\begin{document}
+\begin{frame}{Pregunta}
+¿El suero separa el cáncer colorrectal de la colonoscopia negativa, más allá de la calidad de la muestra?
+\end{frame}
+
+\begin{frame}{Diseño}
+No se fusionan cohortes. No se imputan ausencias en el contraste. P es tumor primario, M metástasis hepática y N mucosa.
+\end{frame}
+
+\begin{frame}{Ancla y réplica}
+CPTAC aporta 688 proteínas certificadas. La réplica es PXD034575, 16 pacientes. Se excluyen 237 filas.
+\end{frame}
+
+\begin{frame}{Controles del tejido}
+CA1 baja en el tumor y pasa. AQP8, SLC26A3 y GUCA2A no tienen log2FC. Las etiquetas no quedan confirmadas.
+\end{frame}
+
+\begin{frame}{Concordancia}
+Primario frente a mucosa: 147/147. Intervalo 0,975 a 1. Lin 0,770. H1: rechaza\_h1. Frágil a la normalización: False.
+\end{frame}
+
+\begin{frame}{Metástasis}
+Metástasis hepática frente a mucosa: 116/143. Lin 0,434.
+\end{frame}
+
+\begin{frame}{Filtro del suero}
+PXD055218, 20 personas por grupo. 897 grupos en el informe. 312 humanos tras el FDR. Matriz principal: 284.
+\end{frame}
+
+\begin{frame}{Contraste principal}
+No se detecta diferencia; 166 proteínas son equivalentes Son 0 diferentes, 166 equivalentes y 118 indeterminadas.
+\end{frame}
+
+\begin{frame}{Frente a personas sanas}
+Se separan 3 proteínas: LRG1 (P02750), SAA1 (P0DJI8), LBP (P18428). Esa no es la pregunta clínica.
+\end{frame}
+
+\begin{frame}{Modelo}
+La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra. Clave: separacion_explicada_por_calidad.
+\end{frame}
+
+\begin{frame}{Las dos AUC}
+Con las proteínas principales, AUC fuera de pliegue 0,880 y p 0,000999. Al quitar la calidad, AUC 0,647 y p 0,119. Media del nulo de M2: 0,473.
+\end{frame}
+
+\begin{frame}{La fuga}
+En ruido, el AUC es 0,475 sin duplicar filas y 0,931 al duplicarlas. Los AUC de v3.2 quedan retirados.
+\end{frame}
+
+\begin{frame}{H5}
+Estado: refuta. Fracción pan-carcinoma: 0,119. UCEC sigue fuera: no comparte identificadores.
+\end{frame}
+
+\begin{frame}{H7}
+Estado: refuta. AUC 0,503 en Álvez 2023 y 0,502 en el atlas del HPA. El intervalo incluye 0,50. No es una prueba.
+\end{frame}
+
+\begin{frame}{H10}
+Estado: descriptiva. Proteínas específicas de cáncer colorrectal: 5. Fase 1 de Pepe.
+\end{frame}
+
+\begin{frame}{Lo que no cierra}
+AQP8 y GUCA2A no están en MaxQuant. SLC26A3 no tiene log2FC. El multiverso calculado es la rejilla K4. ESM-2 y TMbed no se ejecutaron.
+\end{frame}
+
+\begin{frame}{Advertencia}
+Ningún resultado de esta tesis sirve para decidir sobre un paciente.
+\end{frame}
+
+\begin{frame}{Cierre}
+La corrida v3.3 está en results/v3\_3. La publicación espera a que el checklist quede en verde.
+\end{frame}
+\end{document}
