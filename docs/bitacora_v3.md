@@ -150,3 +150,11 @@ Comando: `pytest tests/test_v3_3_h5_h10.py tests/test_v3_3_resto.py`.
 Resultado. 10 tests pasan. Con 7 carcinomas la clase coincide con v3. Con 6 y 4 concordantes sale pan_carcinoma. Con 5 sale no_clasificable. H10 lee `Healthy`, `Class` y `All other diseases`. El test viejo, que daba por específica la primera fila, ahora da `no_medida` porque faltan los tres controles.
 
 Decisión. UCEC no se reetiqueta: sus normales se llaman NX1, NX2 y no comparten identificador con el tumor. H10 queda descriptiva.
+
+## 2026-11-09 16:10 (UTC−5). v3.3, H7
+
+Comando: `pytest tests/test_v3_3_h7.py`.
+
+Resultado. 4 tests pasan. Con etiquetas aleatorias el veredicto no es sostiene. Con una variable que determina la etiqueta, sí. La PCA se ajusta dentro del tubo y no ve las proteínas de prueba. Con menos de 10 por clase, el intervalo queda no_evaluable.
+
+Decisión. Papier 2024 no está en el disco: H7 usa Álvez 2023 y el atlas del HPA, y la regla de dos recursos exige los dos. ESM-2 y TMbed no entran en el modelo principal. La rejilla de C empieza en 0,1: el entero 10 de scikit-learn empieza en 10⁻⁴ y, si todas empatan en AUC, deja las probabilidades en 0,5.

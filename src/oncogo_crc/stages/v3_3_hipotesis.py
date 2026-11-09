@@ -10,6 +10,7 @@ import pandas as pd
 from oncogo_crc.settings import Settings
 from oncogo_crc.stages.v3_3_controles import _abrir
 from oncogo_crc.v3.h5 import ejecutar as ejecutar_h5
+from oncogo_crc.v3.h7 import ejecutar as ejecutar_h7
 from oncogo_crc.v3.h10 import ejecutar as ejecutar_h10
 from oncogo_crc.v3.salida import volcar_tsv
 
@@ -96,13 +97,15 @@ def run(settings: Settings) -> None:
         "No hay una matriz de célula única con leyenda verificada en external/referencia_unicelular." if not matrices else "La matriz está, pero este corte no ajusta la interacción.",
         str(referencia),
     ))
+    print("[v3.3] H7: modelo por proteína, fuera de recurso")
+    h7 = ejecutar_h7(settings, salida, sello, _prereg)
     filas.append(_fila(
         "H7",
         "confirmatoria",
-        "no_evaluable",
-        "AUC incremental fuera de un recurso",
-        "Álvez y Wannberg traen estadísticas publicadas, no una matriz de muestras. No se informa un AUC. Los predictores de secuencia no se ejecutaron en esta corrida.",
-        "external/alvez_2023/estado.json",
+        h7["estado"],
+        "AUC fuera de recurso y de proteína",
+        str(h7.get("por_recurso", h7.get("motivo"))),
+        "results/v3_3/h7_visibilidad_en_sangre.json",
     ))
     pxd = _buscar(settings, "*PXD064655*")
     filas.append(_fila(
@@ -125,7 +128,7 @@ def run(settings: Settings) -> None:
         "secundaria",
         "calculado" if h10["estado"] == "calculado" else h10["estado"],
         "proteínas específicas frente a sanos, otros cánceres y otras enfermedades",
-        str(h10.get("n_especificas", h10.get("motivo"))),
+        str(h10.get("n_especificas_crc", h10.get("motivo"))),
         "results/v3_2/h10_especificidad.json",
     ))
     # El estado de H10 en la tabla de hipótesis usa el vocabulario del preregistro.

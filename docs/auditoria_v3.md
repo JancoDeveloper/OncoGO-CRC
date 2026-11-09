@@ -121,3 +121,13 @@ CA1 está en el grupo V9HWE3, con genes HEL-S-11 y CA1, y el acceso P00915 va de
 UCEC tiene 95 columnas de tumor (`C3N-00858`, `C3L-01252`, …) y 18 de normal (`NX1`, `NX2`, …). La intersección es 0. No es el mismo participante con otro sufijo, así que no se normaliza el identificador. UCEC queda excluido. COAD tiene 96 pares. CCRCC 80, HNSCC 62, LSCC 99, LUAD 101, OV 10 y PDAC 44. Con el mínimo de 8 pares hay 6 carcinomas además del colon.
 
 La columna `Control` del atlas trae exactamente `Healthy`, `Class` y `All other diseases`. `Class` contiene la subcadena `all`, así que un mapeo por subcadena la mandaría al control equivocado. El mapeo explícito es Healthy → sanos, Class → misma_clase, All other diseases → todas_las_demas. Un texto distinto detiene la etapa.
+
+## v3.3, recursos de H7
+
+Álvez 2023 está en `external/alvez_2023/alvez_2023_colorrectal_por_proteina.tsv`. Columnas: proteina, olink_id, diferencia_npx, p_ajustado, significativa, direccion, etiqueta_del_articulo. El contraste es colorrectal en el panel de Olink. La etiqueta de H7 es 1 si p_ajustado < 0,05 y el signo coincide con el de CPTAC.
+
+El atlas del HPA usa el contraste de cáncer colorrectal frente a `Healthy`. La concentración sale de `external/hpa/hpa_concentracion_sangre.tsv`, columna `conc_sangre_ms_pg_l`, en log10. `Secreted to blood` es la anotación de secreción. No hay una columna de especificidad tisular: esa variable queda faltante y no se sustituye.
+
+Papier 2024 no está en el disco. H7 se evalúa con dos recursos, y la regla de al menos dos exige los dos. El solapamiento de casos entre Álvez y el HPA no está comprobado.
+
+ESM-2 y TMbed no entran en el modelo principal. La rejilla de regularización tiene 10 valores desde 0,1 hasta 10 000. El entero `Cs=10` de scikit-learn empieza en 10⁻⁴ y, cuando todas las C empatan en AUC, se queda la más pequeña: las probabilidades quedan en 0,5 y el AUC agregado entre pliegues se desarma.
