@@ -27,6 +27,7 @@ ARCHIVOS = [
     "chapters/07-marco-teorico.tex",
     "chapters/08-metodos.tex",
     "chapters/09-resultados.tex",
+    "chapters/09-v33.tex",
     "chapters/90-conclusiones.tex",
     "chapters/91-anexos.tex",
 ]
@@ -354,7 +355,13 @@ class Constructor:
         self.doc.add_heading(texto, level=nivel)
 
     def procesar(self, ruta: Path) -> None:
-        lineas = [self._sin_comentario(linea) for linea in ruta.read_text(encoding="utf-8").splitlines()]
+        macros = macros_de_cifras()
+        lineas = []
+        for linea in ruta.read_text(encoding="utf-8").splitlines():
+            linea = self._sin_comentario(linea)
+            for nombre, valor in macros.items():
+                linea = linea.replace("\\" + nombre, valor)
+            lineas.append(linea)
         buffer: list[str] = []
         i = 0
         while i < len(lineas):
@@ -659,6 +666,13 @@ class Constructor:
             parrafo.paragraph_format.space_after = Pt(8)
             parrafo.alignment = WD_ALIGN_PARAGRAPH.LEFT
             self._plano(parrafo, referencia_apa(campos), 11)
+
+
+def macros_de_cifras() -> dict[str, str]:
+    ruta = LATEX / "cifras.tex"
+    if not ruta.is_file():
+        return {}
+    return dict(re.findall(r"\\newcommand\{\\(\w+)\}\{(.+)\}", ruta.read_text(encoding="utf-8")))
 
 
 def main() -> None:

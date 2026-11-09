@@ -222,3 +222,11 @@ Comando: `python scripts/v3/escribir_documentacion_v3_3.py`.
 Resultado. El resumen queda en 243 palabras y el abstract en 221. Hay 18 diapositivas y 52 preguntas. Las cifras salen de `results/v3_3/`. El Word no se reescribe: el constructor parte de la plantilla y reemplaza el documento entero.
 
 Decisión. Esta documentación se puede cerrar. El checklist de publicación no: siguen abiertos los tres controles del tejido, el multiverso fuera de la rejilla K4 y los modelos de secuencia.
+
+## 2026-11-09 16:50 (UTC−5). v3.3, Word
+
+Comando: `python tesis-ucaldas/build_word.py`.
+
+Resultado. El documento se reconstruye desde la plantilla y los capítulos. La sección «Corrida v3.3» entra con 284, 166 y 147/147. Las macros de `cifras.tex` se sustituyen antes de quitar los comandos. No hay LuaLaTeX en el equipo, así que el PDF no se compiló.
+
+Decisión. El Word se regenera. El PDF/A y Firebase siguen esperando el checklist.
