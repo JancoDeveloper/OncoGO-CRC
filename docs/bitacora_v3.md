@@ -261,4 +261,12 @@ Comando: `pytest tests/test_h5_v34.py`.
 
 Resultado antes del parche: `ImportError: cannot import name 'concordancias_mismo_universo'`. 1 error en la recolección.
 
-Resultado después: 4 passed en 2,04 s. `test_el_bucle_de_v3_3_no_completa_ninguna_repeticion` documenta 0 de 200. `test_submuestreo_completa_200_y_n_sub_es_10` da `n_sub` 10 y 200 repeticiones.
+Resultado después: 4 passed en 2,04 s. `test_el_bucle_de_v3_3_no_completa_ninguna_repeticion` documenta 0 de 200. `test_submuestreo_completa_200_y_n_sub_es_10` da `n_sub` 10 y 200 repeticiones. Commit `9c7725d`.
+
+## 2026-11-09 16:55 (UTC−5). v3.4, controles del tejido
+
+Comando: `pytest tests/test_controles_v34.py`.
+
+Resultado antes del parche: `ModuleNotFoundError: No module named 'oncogo_crc.stages.v3_4_controles'`.
+
+Resultado después: 5 passed. Un gen ausente es `no_detectado`. `n_obs` 4 es `no_evaluable_por_pares`. CA1 con −2,31 es `pasa`. El bloque con QC 16/16 pasa y con QC incompleto falla.
