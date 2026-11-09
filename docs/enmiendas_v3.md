@@ -83,3 +83,31 @@ H7. El valor anterior se escribía a mano como `no_evaluable`. El valor nuevo es
 El autor pidió, el mismo día, desplegar la web solo si el checklist queda en verde, guardar ProtT5-XL en el disco externo y descargar los 60 crudos al disco externo. Esos crudos no entran en el cálculo y DIA-NN no se ejecuta.
 
 Estas correcciones cambian cifras que ya estaban en la tesis y en la web. Las cifras v3.2 no se borran: pasan al anexo de historial con su motivo.
+
+## Enmienda v3.4 — 9 de noviembre de 2026
+
+No borra v3.3. Esos números quedan en `results/v3_3/` y en la etiqueta `v3.3-final`. Lo nuevo se calculará en `results/v3_4/`. Los resultados v3.3 ya se habían visto cuando se escribió esta enmienda. La revisión externa del 9-nov-2026 leyó, además, Sample_Metadata.txt de PXD064655 (100 muestras; estadio 4 en 50, 3 en 21 y 1-2 en 29). No leyó la matriz proteómica de PXD064655. Leyó en el artículo de Álvez 2023 que el análisis diferencial es un cáncer frente a los demás cánceres. Vio en las tablas v3.3 que CEACAM5 sube en Tanaka y es específica de CRC en el HPA; por eso la triangulación es exploratoria y post hoc. Ningún umbral de inferencia, de K4, de K5, del filtro principal, de los pares mínimos, del ML, de H1, de H5 ni de H7 se mueve.
+
+H5, universo. El valor anterior leía la concordancia de colon en las 147 proteínas certificadas de K1 y cruzaba los otros carcinomas con todos los genes de Tanaka. El valor nuevo usa un solo universo: genes con treat significativo en Tanaka, gen único y log2FC finito en COAD y en todos los carcinomas disponibles. La selección se hace solo con Tanaka. La cifra 147/147 se conserva como referencia y no entra en la regla. La sensibilidad `G_amplio` usa todos los genes de Tanaka con log2FC finito medidos en todos.
+
+H5, submuestreo. El valor anterior pedía, a cada carcinoma, los 96 pares de COAD. CCRCC tiene 80, el bucle salía con `break` y se escribía 0,0 como si fuera un resultado. El valor nuevo submuestrea todos los carcinomas, COAD incluido, a `n_sub` igual al mínimo de pares comunes. Si `n_sub` es menor que 8, el estado es `no_calculado`. Hay 200 repeticiones con semilla fija. Se informa la fracción al mismo lado de 0,20, la mediana de la fracción pan-carcinoma y los percentiles 2,5 y 97,5. La sensibilidad sin OV usa los otros cinco carcinomas y la regla de 4 de 5. No decide el veredicto. El JSON incluye, por carcinoma, pares y proteínas significativas en la corrida completa y en la submuestreada.
+
+Controles del tejido. El valor anterior contaba como falla un control positivo no evaluable. AQP8 y GUCA2A no tienen filas en el contraste, y SLC26A3 tiene menos de 8 pares. El valor nuevo cuenta primero las filas físicas en `Cohort1_proteinGroups.txt`, antes y después de los filtros de MaxQuant. Los estados son `no_detectado`, `filtrado`, `no_evaluable_por_pares`, `pasa` y `falla`. El bloque pasa si hay al menos un control evaluable, ningún evaluable falla y el QC de mucosa pasa en todos los participantes del contraste principal. Esta regla se escribe después de ver los resultados de v3.3. Se informan los dos veredictos. CA1 es marcador de colonocito y de eritrocito, así que su descenso no basta solo.
+
+Certificado. El valor anterior listaba solo los JSON ausentes, y podía decir que no faltaba nada con casillas en rojo. El valor nuevo lista cada casilla del checklist con estado verde, rojo o limitación declarada. El estado es `publicable` solo si ninguna casilla está en rojo. Las limitaciones aceptadas son H9 con `requiere_acceso`, ESM-2 o TMbed no ejecutados si el autor dijo que no, un recurso de H7 `no_disponible` con su motivo, y H6 `no_evaluable` si ni Pelka ni el HPA tienen leyenda verificable.
+
+H7. El valor anterior describía a Álvez 2023 como una validación frente a sanos. El contraste del artículo es colorrectal frente a los demás cánceres. El HPA sigue siendo colorrectal frente a Healthy. Papier 2024, si el fichero trae todas las proteínas, es riesgo prospectivo: la etiqueta es 1 si p < 0,05/639 y el signo de log(HR) coincide con CPTAC. Si solo hay asociaciones significativas, el recurso queda `no_disponible`. La regla de sostiene y refuta no cambia. Se comprueba si los casos de 2023 están en el atlas de 2025. Se escriben la tabla 2×2, el kappa y `modelo_completo`.
+
+H6. El valor anterior quedaba `no_evaluable`. El valor nuevo clasifica cada gen certificado como epitelial, no epitelial o mixto, con Pelka 2021 si la leyenda se verifica y, si no, con el tipo celular único del HPA. La prueba es un Fisher bilateral. El sentido no se predice.
+
+H8. No se había calculado. La fuente es PXD064655, agregada con directLFQ. El contraste principal es estadio IV frente a I–II. El estadio III queda fuera del principal. La prueba es un Fisher unilateral después de quitar las listas de ruido. Si el mapa de corridas no es uno a uno, el estado es `no_evaluable`.
+
+H10 y triangulación. Wannberg entra solo como descripción, para las seis proteínas de partida y las catorce de la triangulación. La triangulación es exploratoria y post hoc. No hay pruebas nuevas. El estado de H10 no cambia.
+
+Multiverso. El valor anterior calculó 48 celdas. El valor nuevo calcula las 288 del suero, el ML en las 72 combinaciones de cuantificación, contaminantes, paneles y presencia, y R1 en las dos normalizaciones. La celda preregistrada conserva las 1000 permutaciones de la corrida principal.
+
+H9. No hay un GWAS de CRC descargable sin cuenta y verificado en el GWAS Catalog. Queda `requiere_acceso`.
+
+Las preguntas iniciales se cierran con el valor por defecto: Firebase solo con el checklist en verde; el PDF como zip de Overleaf; ESM-2 y TMbed sí, porque el disco externo tiene más de 20 GB libres; los metadatos de adquisición sí cuando estén los 60 crudos.
+
+Las cifras v3.3 no se borran: pasan al anexo de historial con su motivo.

@@ -582,3 +582,138 @@ enmienda_v3_3:
   firebase: "sí, solo con el checklist en verde. El autor lo autorizó el 2026-11-09."
   prott5_xl: "sí, en el disco externo. El disco del sistema tenía 14 GB libres."
   crudos_pxd055218: "sí, al disco externo. No entran en el cálculo de v3.3 y DIA-NN no se ejecuta."
+
+# ------------------------------------------------- 16. Enmienda v3.4
+# No borra lo anterior. Corrige errores de implementación y de procedimiento
+# encontrados por una revisión externa de results/v3_3/ y del commit 4f85911.
+# Añade fuentes públicas que el preregistro ya nombraba (Papier 2024,
+# PXD064655, PXD033236, Wannberg) o que eran su respaldo (HPA).
+enmienda_v3_4:
+  fecha: "2026-11-09"
+  transparencia: >-
+    Los resultados v3.3 ya se habían visto cuando se escribió esta enmienda.
+    La revisión externa del 9-nov-2026 leyó, además, Sample_Metadata.txt de
+    PXD064655 (100 muestras; estadio 4 en 50, 3 en 21 y 1-2 en 29). No leyó
+    la matriz proteómica de PXD064655. Leyó en el artículo de Álvez 2023
+    que el análisis diferencial es un cáncer frente a los demás cánceres.
+    Vio en las tablas v3.3 que CEACAM5 sube en Tanaka y es específica de CRC
+    en el HPA; por eso la triangulación es exploratoria y post hoc.
+  no_cambia:
+    - inferencia
+    - k4_suero
+    - k5_auc
+    - enmienda_v3_2.filtro_suero_principal
+    - enmienda_v3_2.tejido.min_pares_observados
+    - enmienda_v3_3.ml_suero
+    - hipotesis.h1
+    - hipotesis.h5.umbral_fraccion_pan_carcinoma
+    - hipotesis.h5.diferencia_minima_frente_a_colon
+    - hipotesis.h5.regla_de_clase
+    - hipotesis.h7.sostiene
+    - hipotesis.h7.refuta
+    - hipotesis.h7.variables
+  h5:
+    universo:
+      principal: "genes con treat significativo en Tanaka P frente a N, gen único, log2FC finito en COAD y en todos los carcinomas disponibles"
+      concordancia_colon: "Tanaka frente a CPTAC COAD sobre el universo principal"
+      concordancia_otros: "Tanaka frente a cada carcinoma sobre el mismo universo"
+      sensibilidad: "todos los genes de Tanaka con log2FC finito medidos en todos"
+      valor_anterior: "concordancia_colon leída de k1_etiquetas.json (147 certificadas); otros sobre todos los genes de Tanaka"
+    submuestreo:
+      n_sub: "mínimo de pares comunes entre COAD y los carcinomas disponibles"
+      incluye_colon: true
+      repeticiones: 200
+      minimo: 8
+      si_no_se_puede: no_calculado
+      salidas: [fraccion_mismo_lado_0_20, mediana_fraccion_pan, p2_5, p97_5, n_sub]
+      sensibilidad_sin_ov: "los otros cinco carcinomas, n_sub = mínimo de sus pares, pan_carcinoma con 4 de 5; no decide"
+      valor_anterior: "n_colon pares tomados de cada otro carcinoma; con break nunca se completaba"
+    potencia_por_carcinoma: [n_pares, n_significativas, fraccion_significativas]
+  controles_tejido:
+    comprobacion_fisica: "filas en Cohort1_proteinGroups.txt por Gene names, GN de Fasta headers y Protein IDs mapeados, antes y después de los filtros de MaxQuant"
+    estados: [no_detectado, filtrado, no_evaluable_por_pares, pasa, falla]
+    regla_del_bloque: "al menos un control evaluable, ningún evaluable falla y qc_etiquetas_mucosa pasa en todos los participantes del contraste principal"
+    valor_anterior: "enmienda_v3_3.tejido.control_positivo_no_evaluable: falla"
+    se_informan_los_dos_veredictos: true
+  certificado:
+    casillas: "las del checklist de la sección 18 del prompt v3.4, con estado verde, rojo o limitacion_declarada"
+    publicable: "ninguna casilla en rojo"
+    limitaciones_aceptadas:
+      - "H9 requiere_acceso"
+      - "ESM-2 o TMbed no ejecutados si el autor dijo que no"
+      - "un recurso de H7 no_disponible con motivo"
+      - "H6 no_evaluable si ni Pelka ni el HPA tienen leyenda verificable"
+  h7:
+    recursos:
+      alvez_2023:
+        contraste_real: "colorrectal frente a los demás cánceres (Álvez 2023, métodos)"
+        valor_anterior: "validacion_1_h7_frente_a_sanos_optimista"
+      hpa_disease_blood_atlas:
+        contraste_real: "colorrectal frente a Healthy (Álvez 2025)"
+      papier_2024:
+        contraste_real: "riesgo prospectivo (Cox) en UK Biobank"
+        etiqueta: "1 si p < 0,05/639 y el signo de log(HR) coincide con CPTAC; 0 si se midió y no cumple"
+        si_solo_hay_significativas: no_disponible
+    independencia: "se comprueba si los casos de Álvez 2023 están en el atlas; si lo están, independientes: false"
+    especificidad_tisular: "HPA RNA tissue specificity: enriched 3, group enriched 2, enhanced 1, low 0, not detected NaN; más intestino_entre_los_elevados"
+    presencia_en_vesiculas_pxd033236: "identificada con FDR alto en vesículas de tumor en al menos un estudio"
+    origen_celular_h6: "clase de H6 (epitelial, no_epitelial, mixta)"
+    concordancia_de_etiquetas: "tabla 2x2 y kappa de Cohen entre recursos"
+    modelo_completo: "true solo si están todas las variables de hipotesis.h7.variables"
+  h6:
+    fuente_principal: "Pelka 2021 GSE178341 si la leyenda es verificable; si no, HPA RNA single cell type"
+    clase:
+      epitelial: "expresión media en células epiteliales (incluidas las tumorales) >= 2 veces la máxima de los compartimentos no epiteliales"
+      no_epitelial: "máxima no epitelial >= 2 veces la epitelial"
+      mixta: "el resto; no entra en la prueba principal"
+    resultado: "concordancia de signo Tanaka frente a CPTAC COAD en las certificadas"
+    prueba: "Fisher exacto bilateral, epitelial frente a no epitelial; alfa 0,05"
+    sensibilidad: "regresión logística con la clase y la magnitud en tejido"
+  h8:
+    fuente: PXD064655
+    matriz: "report.pr_matrix.tsv de DIA-NN 1.8.1 agregado con directLFQ por Protein.Group"
+    grupos: {estadio_iv: ["4"], estadio_i_ii: ["1", "2a", "2b"], excluido_del_principal: ["3a", "3b"]}
+    filtro: "al menos un miembro humano; contaminantes por la regla de enmienda_v3_3.contaminantes; presencia >= 0,70 en cada grupo"
+    contraste: "treat no pareado, lfc 0,585, BH alfa 0,05"
+    proteinas_tumorales_epiteliales: "suben en Tanaka P frente a N (treat) y H6 epitelial; si H6 no está, HPA single cell type epitelial"
+    listas_de_ruido: "las de hipotesis.h8.listas_de_ruido, más el panel de Geyer de eritrocitos"
+    prueba: "Fisher exacto unilateral (mayor): subir en IV entre tumorales epiteliales frente al resto, tras quitar las listas de ruido"
+    estado: {sostiene: "OR > 1 y p < 0,05", no_sostiene: "en otro caso", no_evaluable: "menos de 10 tumorales epiteliales en el universo o mapa de muestras no uno a uno"}
+    sensibilidades: ["Spearman con el estadio ordinal 1-4 incluyendo III", "covariable de coagulación de Geyer"]
+    nota_higado: "la mitad de los casos son estadio IV; las proteínas hepáticas salen por la lista de ruido"
+  h10:
+    wannberg: "estadísticas por proteína de cáncer frente a no cáncer en sintomáticos; estrato colorrectal si existe; si no, pan-cáncer con no_generalizar_a_colon; solo descriptivo"
+  triangulacion:
+    tipo: exploratoria_post_hoc
+    genes: [CEACAM5, AGR2, BID, CASP8, ABHD14B, GPA33, MMP12, MNDA, NPM1, PRDX6, VWF, SAA1, LBP, LRG1]
+    columnas: [tanaka_log2fc, tanaka_padj, tanaka_n_obs, cptac_coad_log2fc, cptac_coad_treat, clase_h5, hpa_logfc_sanos, hpa_padj_sanos, clase_h10, wannberg, pxd055218_k4_crc_sanos, pxd055218_k4_crc_cn, pxd064655_presente, pxd064655_iv_frente_i_ii, papier_hr]
+    sin_pruebas_nuevas: true
+  preanalitica_orden_adquisicion:
+    tipo: exploratoria
+    herramienta: "ThermoRawFileParser -m 0"
+    pruebas: ["AUC del orden para CP frente a CN", "Spearman orden frente a cada QC"]
+    no_cambia_el_titular: true
+  multiverso:
+    celdas_suero: 288
+    ml: "72 combinaciones (cuantificacion x contaminantes x paneles x presencia); 200 permutaciones por celda; la preregistrada con 1000"
+    r1: "2 normalizaciones"
+    valor_anterior: "48 celdas"
+  h9:
+    si_hay_gwas_publico_verificado: "Wald con el cis-pQTL líder de Sun 2023 (Nature 622:329) para SAA1, LBP, LRG1 y CEACAM5; exploratorio"
+    si_no: requiere_acceso
+  semillas:
+    desplazamientos:
+      h5_submuestreo_v3_4: 930
+      h6_v3_4: 960
+      h7_modelo_v3_4: 940
+      h7_bootstrap_v3_4: 941
+      h8_v3_4: 950
+      multiverso_v3_4: 980
+      preanalitica_v3_4: 990
+  salida: "results/v3_4/"
+  v3_3_congelado: true
+  firebase: "sí, con el checklist en verde y la confirmación de la pregunta inicial"
+  pdf: "zip de Overleaf. No se instala MacTeX."
+  esm2_tmbed: "sí. El disco externo tiene más de 20 GB libres."
+  orden_adquisicion: "sí si están los 60 crudos. En la Fase 0 había 4, así que la etapa queda no_disponible hasta que estén los 60."
+  h9_decision: "no se intenta. Queda requiere_acceso."
