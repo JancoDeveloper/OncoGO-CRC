@@ -1,0 +1,11 @@
+hipotesis	nivel	estado	metrica	detalle	umbral	fuente	fraccion_multiverso
+H1	heredada	rechaza_h1	concordancia de signo, primario frente a mucosa	147/147		results/v3_3/k1_etiquetas.json	
+H2	heredada	no_evaluable	red	No se recalcula en v3.2. v3 decía: Sin nulo que conserve el grado.		results/v2/certification/certificado_v2.json	
+H3	heredada	no_evaluable	nan	No se recalcula en v3.2. v3 decía: No hay H3 en el preregistro de v2 ni en el de v3.		config/preregistro_v3.yaml	
+H4	heredada	no_evaluable	fraccion medible	No se recalcula en v3.2. v3 decía: v2 fijó el umbral 0,90 y no cerró un veredicto en el certificado.		results/v2/certification/certificado_v2.json	
+H5	secundaria	refuta	fraccion pan_carcinoma	0.11858974358974358		results/v3_3/h5_especificidad_organo.json	
+H6	exploratoria	no_evaluable	origen celular	La matriz está, pero este corte no ajusta la interacción.		/Volumes/JANCODATA/OncoGO-CRC/external/referencia_unicelular	
+H7	confirmatoria	refuta	AUC fuera de recurso y de proteína	{'alvez_2023': {'estado': 'calculado', 'auc': 0.5027138795554407, 'ic95_bajo': 0.4013698630136987, 'ic95_alto': 0.6068945463944171, 'pendiente_calibracion': -0.05374837254654083, 'intercepto_calibracion': -0.3306610521220405, 'n_pos': 53, 'n_neg': 73}, 'hpa_disease_blood_atlas': {'estado': 'calculado', 'auc': 0.5022461814914645, 'ic95_bajo': 0.39770140760706796, 'ic95_alto': 0.6085729260257562, 'pendiente_calibracion': -0.06848368487085052, 'intercepto_calibracion': -0.19355375914620906, 'n_pos': 53, 'n_neg': 63}}		results/v3_3/h7_visibilidad_en_sangre.json	
+H8	secundaria	no_disponible	treat estadio IV frente a I-II	PXD064655 no está en el disco.		external	
+H9	exploratoria	requiere_acceso	Wald o IVW con instrumentos cis	las estadísticas de resumen están en Synapse (syn51364943) bajo los términos del UKB-PPP, que exigen cuenta y aceptación de condiciones. Este script no intenta autenticarse.		/Volumes/JANCODATA/OncoGO-CRC/external/ukb_ppp/estado.json	
+H10	secundaria	descriptiva	proteínas específicas frente a sanos, otros cánceres y otras enfermedades	5		results/v3_3/h10_especificidad.json	

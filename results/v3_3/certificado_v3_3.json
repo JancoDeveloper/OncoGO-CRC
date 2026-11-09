@@ -1,0 +1,108 @@
+{
+  "estado": "calculado",
+  "faltan": [],
+  "frase_suero": "No se detecta diferencia; 166 proteínas son equivalentes",
+  "h1": "rechaza_h1",
+  "advertencia": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.",
+  "titular_ml": {
+    "clave": "separacion_explicada_por_calidad",
+    "texto": "La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra.",
+    "regla": "enmienda_v3_3.ml_suero.titular"
+  },
+  "h1_fragil_a_normalizacion": false,
+  "h5": {
+    "estado": "refuta",
+    "fraccion_pan_carcinoma": 0.11858974358974358,
+    "conteo": {
+      "pan_carcinoma": 74,
+      "especifica_colon": 127,
+      "intermedia": 423
+    },
+    "carcinomas_disponibles": [
+      "CCRCC",
+      "HNSCC",
+      "LSCC",
+      "LUAD",
+      "OV",
+      "PDAC"
+    ],
+    "carcinomas_excluidos": {
+      "UCEC": "no tiene 8 pares con el mismo identificador"
+    }
+  },
+  "h7": {
+    "estado": "refuta",
+    "por_recurso": {
+      "alvez_2023": {
+        "estado": "calculado",
+        "auc": 0.5027138795554407,
+        "ic95_bajo": 0.4013698630136987,
+        "ic95_alto": 0.6068945463944171,
+        "pendiente_calibracion": -0.05374837254654083,
+        "intercepto_calibracion": -0.3306610521220405,
+        "n_pos": 53,
+        "n_neg": 73
+      },
+      "hpa_disease_blood_atlas": {
+        "estado": "calculado",
+        "auc": 0.5022461814914645,
+        "ic95_bajo": 0.39770140760706796,
+        "ic95_alto": 0.6085729260257562,
+        "pendiente_calibracion": -0.06848368487085052,
+        "intercepto_calibracion": -0.19355375914620906,
+        "n_pos": 53,
+        "n_neg": 63
+      }
+    },
+    "variables_faltantes": [
+      "especificidad_tisular",
+      "origen_celular_h6",
+      "presencia_en_vesiculas_pxd033236",
+      "esm2_t12_35M_pca5",
+      "tmbed_helices_tm",
+      "tmbed_peptido_senal",
+      "papier_2024"
+    ],
+    "modelo_secundario": {
+      "estado": "calculado",
+      "recurso": "alvez_2023",
+      "auc_base": 0.4652364952184027,
+      "auc_completo": 0.5027138795554407,
+      "incremento": 0.037477384337037956,
+      "nota": "El completo usa las variables que existen. ESM-2 y TMbed no entraron: quedan fuera del principal."
+    }
+  },
+  "h10": {
+    "estado": "descriptiva",
+    "fase_pepe": 1,
+    "n_especificas_crc": 5,
+    "conteo": {
+      "no_elevada_frente_a_sanos": 1074,
+      "no_especifica": 80,
+      "especifica_frente_a_enfermedades": 6,
+      "especifica_crc": 5
+    },
+    "valores_de_control": [
+      "All other diseases",
+      "Class",
+      "Healthy"
+    ]
+  },
+  "sello": {
+    "commit": "73c6ca6d2e4c96893e18b3b86a63e77a1c4b465f",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-09T20:40:49Z",
+    "sha256_preregistro": "6883b44fc0f546d69fd5f453b0cd8aa28c31de9dc7631727a455277e84f49a7a",
+    "sha256_enmiendas": "c3f356ec5e215458f28f4fef698f41ed44d352e3ec15fea0b873479c79dbb3ff",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_3_report"
+  }
+}

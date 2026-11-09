@@ -174,3 +174,11 @@ Comando: `pytest tests/test_v3_3_cierre.py`.
 Resultado. 3 tests pasan. H1, H5, H7 y H10 quedan con fuente `results/v3_3/`. El certificado copia el titular, H5, H7 y H10. El changelog anota solo la cifra que cambia y le pone la causa 2.1 a 2.7.
 
 Decisión. La corrida de las 15:25 escribió la fuente como `results/v3_2/` aunque el número ya era el de v3.3. Se vuelve a correr hipótesis e informe con el árbol limpio. No se reescriben a mano los JSON.
+
+## 2026-11-09 15:45 (UTC−5). v3.3, resultados
+
+Comando: `make v3-3-hipotesis`, `make v3-3-report` y `python scripts/v3/demostrar_fuga_ml.py`.
+
+Resultado. `results/v3_3/certificado_v3_3.json` y `changelog_numeros.tsv`. Suero principal: 284 proteínas, 0 diferentes, 166 equivalentes, 118 indeterminadas. Titular: `separacion_explicada_por_calidad`. H1 `rechaza_h1`, 147/147, no frágil a la normalización. H5 `refuta`, fracción pan-carcinoma 0,1186. H7 `refuta`. H10 descriptiva, 5 específicas. CA1 pasa. AQP8, SLC26A3 y GUCA2A fallan. El ruido sin duplicar da AUC 0,475 y, duplicado, 0,93125.
+
+Decisión. Esos ficheros entran en el repositorio. No se publican: los tres controles del tejido no pasan, el multiverso completo no está calculado y ESM-2 y TMbed no corrieron.

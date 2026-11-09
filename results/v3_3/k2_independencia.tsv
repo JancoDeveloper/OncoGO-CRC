@@ -1,0 +1,7 @@
+par	nivel	observado	decision	motivo
+PXD019504_vs_PXD031705	A_hash	15.0	una_sola_cohorte	hay ficheros con el mismo hash
+PXD019504_vs_PXD034575	A_hash	0.0	hash_distinto	ningún fichero compartido; el nivel B decide si existe
+PXD031705_vs_PXD034575	A_hash	0.0	hash_distinto	ningún fichero compartido; el nivel B decide si existe
+PXD019504_vs_PXD031705	B_correlacion		una_sola_cohorte	no se descarta el solapamiento: falta la correlación muestra a muestra
+PXD019504_vs_PXD034575	B_correlacion	0.8773488602304906	independientes	cohortes independientes: ninguna pareja de muestras se parece lo suficiente para ser el mismo espécimen
+PXD031705_vs_PXD034575	B_correlacion		una_sola_cohorte	no se descarta el solapamiento: falta la correlación muestra a muestra

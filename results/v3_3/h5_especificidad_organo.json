@@ -1,0 +1,198 @@
+{
+  "estado": "refuta",
+  "n_clasificadas": 624,
+  "conteo": {
+    "pan_carcinoma": 74,
+    "especifica_colon": 127,
+    "intermedia": 423
+  },
+  "fraccion_pan_carcinoma": 0.11858974358974358,
+  "concordancia_colon_tanaka": 1.0,
+  "concordancia_otros": {
+    "CCRCC": {
+      "estimacion": 0.6198347107438017,
+      "numerador": 825,
+      "denominador": 1331
+    },
+    "HNSCC": {
+      "estimacion": 0.6626686656671664,
+      "numerador": 884,
+      "denominador": 1334
+    },
+    "LSCC": {
+      "estimacion": 0.7223053892215568,
+      "numerador": 965,
+      "denominador": 1336
+    },
+    "LUAD": {
+      "estimacion": 0.7201800450112528,
+      "numerador": 960,
+      "denominador": 1333
+    },
+    "OV": {
+      "estimacion": 0.7389558232931727,
+      "numerador": 920,
+      "denominador": 1245
+    },
+    "PDAC": {
+      "estimacion": 0.5044843049327354,
+      "numerador": 675,
+      "denominador": 1338
+    }
+  },
+  "maxima_concordancia_otro_organo": 0.7389558232931727,
+  "fraccion_de_submuestreos_con_pan_al_mismo_lado_de_0_20": 0.0,
+  "n_submuestreos": 200,
+  "n_pares_colon": 96,
+  "sostiene_significa": "No se cumple la refutación preregistrada.",
+  "carcinomas_disponibles": [
+    "CCRCC",
+    "HNSCC",
+    "LSCC",
+    "LUAD",
+    "OV",
+    "PDAC"
+  ],
+  "carcinomas_excluidos": {
+    "UCEC": "no tiene 8 pares con el mismo identificador"
+  },
+  "diagnostico_pares": {
+    "COAD": {
+      "n_tumor": 97,
+      "n_normal": 100,
+      "n_comunes": 96,
+      "ejemplos_tumor": [
+        "01CO008",
+        "22CO006",
+        "05CO002"
+      ],
+      "ejemplos_normal": [
+        "11CO037",
+        "11CO051",
+        "05CO035"
+      ]
+    },
+    "CCRCC": {
+      "n_tumor": 103,
+      "n_normal": 80,
+      "n_comunes": 80,
+      "ejemplos_tumor": [
+        "C3L-00561",
+        "C3L-01287",
+        "C3L-01603"
+      ],
+      "ejemplos_normal": [
+        "C3L-01287",
+        "C3L-00561",
+        "C3N-01524"
+      ]
+    },
+    "HNSCC": {
+      "n_tumor": 108,
+      "n_normal": 62,
+      "n_comunes": 62,
+      "ejemplos_tumor": [
+        "C3L-00997",
+        "C3N-03849",
+        "C3N-03487"
+      ],
+      "ejemplos_normal": [
+        "C3N-01858",
+        "C3L-00997",
+        "C3N-03849"
+      ]
+    },
+    "LSCC": {
+      "n_tumor": 108,
+      "n_normal": 99,
+      "n_comunes": 99,
+      "ejemplos_tumor": [
+        "C3L-02665",
+        "C3L-01663",
+        "C3N-02575"
+      ],
+      "ejemplos_normal": [
+        "C3L-02665",
+        "C3L-01663",
+        "C3N-02575"
+      ]
+    },
+    "LUAD": {
+      "n_tumor": 110,
+      "n_normal": 101,
+      "n_comunes": 101,
+      "ejemplos_tumor": [
+        "C3N-01799",
+        "C3L-01890",
+        "C3N-00572"
+      ],
+      "ejemplos_normal": [
+        "C3N-01799",
+        "C3L-01890",
+        "C3N-00572"
+      ]
+    },
+    "OV": {
+      "n_tumor": 83,
+      "n_normal": 19,
+      "n_comunes": 10,
+      "ejemplos_tumor": [
+        "02OV032",
+        "04OV057",
+        "04OV028"
+      ],
+      "ejemplos_normal": [
+        "01OV007",
+        "17OV003",
+        "01OV023"
+      ]
+    },
+    "PDAC": {
+      "n_tumor": 105,
+      "n_normal": 44,
+      "n_comunes": 44,
+      "ejemplos_tumor": [
+        "C3N-03884",
+        "C3L-03123",
+        "C3L-01687"
+      ],
+      "ejemplos_normal": [
+        "C3L-03123",
+        "C3N-03884",
+        "C3L-03630"
+      ]
+    },
+    "UCEC": {
+      "n_tumor": 95,
+      "n_normal": 18,
+      "n_comunes": 0,
+      "ejemplos_tumor": [
+        "C3N-00858",
+        "C3L-01252",
+        "C3L-00947"
+      ],
+      "ejemplos_normal": [
+        "NX1",
+        "NX2",
+        "NX3"
+      ]
+    }
+  },
+  "sello": {
+    "commit": "73c6ca6d2e4c96893e18b3b86a63e77a1c4b465f",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-09T20:40:38Z",
+    "sha256_preregistro": "6883b44fc0f546d69fd5f453b0cd8aa28c31de9dc7631727a455277e84f49a7a",
+    "sha256_enmiendas": "c3f356ec5e215458f28f4fef698f41ed44d352e3ec15fea0b873479c79dbb3ff",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_3_hipotesis"
+  }
+}

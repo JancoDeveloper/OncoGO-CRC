@@ -1,0 +1,11 @@
+variable	fuente	definicion
+magnitud_en_tejido	results/certified/cptac_unshared_treat.tsv	valor absoluto del log2FC de CPTAC en las proteínas certificadas
+go_extracelular	/Volumes/JANCODATA/OncoGO-CRC/metadata/gene_ontology/go_gene_long.tsv	GO:0005576
+go_membrana	/Volumes/JANCODATA/OncoGO-CRC/metadata/gene_ontology/go_gene_long.tsv	GO:0005886
+go_exosoma	/Volumes/JANCODATA/OncoGO-CRC/metadata/gene_ontology/go_gene_long.tsv	GO:0070062
+hpa_secreted_to_blood	/Volumes/JANCODATA/OncoGO-CRC/external/hpa/hpa_concentracion_sangre.tsv	localizacion_secretoma == Secreted to blood
+concentracion_plasmatica_hpa_log10	/Volumes/JANCODATA/OncoGO-CRC/external/hpa/hpa_concentracion_sangre.tsv	log10 de conc_sangre_ms_pg_l
+clase_h5_pan_carcinoma	/Volumes/JANCODATA/OncoGO-CRC/results/v3_3/h5_especificidad_organo.tsv	one-hot de la clase H5
+clase_h5_especifica_colon	/Volumes/JANCODATA/OncoGO-CRC/results/v3_3/h5_especificidad_organo.tsv	one-hot de la clase H5
+clase_h5_intermedia	/Volumes/JANCODATA/OncoGO-CRC/results/v3_3/h5_especificidad_organo.tsv	one-hot de la clase H5
+abundancia_en_tejido	/Volumes/JANCODATA/OncoGO-CRC/data/raw/pride/pride_crc_matrix.tsv	mediana log2 en Tanaka, una fila por gen único

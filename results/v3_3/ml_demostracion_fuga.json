@@ -1,0 +1,10 @@
+{
+  "semilla": 822,
+  "forma": [
+    40,
+    50
+  ],
+  "auc_sin_duplicar": 0.475,
+  "auc_con_filas_duplicadas": 0.93125,
+  "nota": "Ruido normal. Duplicar las filas puede meter la misma muestra en el entrenamiento y en la prueba."
+}

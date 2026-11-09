@@ -1,0 +1,35 @@
+metrica	valor_v3_2	valor_v3_3	causa	fichero	nota
+n_principal	205	284	2.1	suero_resumen.json	
+frase_suero	No se detecta diferencia; 105 proteínas son equivalentes	No se detecta diferencia; 166 proteínas son equivalentes	2.1	suero_resumen.json	
+principal.crc_frente_a_colonoscopia_negativa.n	205	284	2.1	suero_resumen.json	
+principal.crc_frente_a_colonoscopia_negativa.equivalente	105	166	2.1	suero_resumen.json	
+principal.crc_frente_a_colonoscopia_negativa.indeterminada	100	118	2.1	suero_resumen.json	
+principal.crc_frente_a_sanos.n	205	284	2.1	suero_resumen.json	
+principal.crc_frente_a_sanos.diferente	2	3	2.1	suero_resumen.json	
+principal.crc_frente_a_sanos.equivalente	104	154	2.1	suero_resumen.json	
+principal.crc_frente_a_sanos.indeterminada	99	127	2.1	suero_resumen.json	
+principal.colonoscopia_negativa_frente_a_sanos.n	205	284	2.1	suero_resumen.json	
+principal.colonoscopia_negativa_frente_a_sanos.diferente	0	1	2.1	suero_resumen.json	
+principal.colonoscopia_negativa_frente_a_sanos.equivalente	128	194	2.1	suero_resumen.json	
+principal.colonoscopia_negativa_frente_a_sanos.indeterminada	77	89	2.1	suero_resumen.json	
+primario_frente_a_mucosa	89/90	147/147	2.3	k1_etiquetas.json	
+metastasis_hepatica_frente_a_mucosa	69/82	116/143	2.3	k1_etiquetas.json	
+primario_frente_a_mucosa_no_pareado	95/98	155/157	2.3	k1_etiquetas.json	
+h1_fragil_a_normalizacion	no_calculado	False	2.4	k1_etiquetas.json	
+mediana_log2fc_pareado	no_calculado	0.1792660486145855	2.4	k1_sensibilidad_normalizacion.json	v3.2 no escribió esta sensibilidad. El valor nuevo es el de antes de centrar.
+mediana_log2fc_pareado_centrado	0.1792660486145855	0.08045971886685321	2.4	k1_sensibilidad_normalizacion.json	
+deming_intercepto	0.771543426701222	0.6503090482500555	2.4	k1_sensibilidad_normalizacion.json	Antes y después del centrado por mediana, en la misma corrida v3.3.
+ml.M1_proteinas_filtrada_humana.auc_oof_media	0.99625	0.9466249999999998	2.2	ml_suero_permutacion.json	v3.2 informa el AUC medio de pliegues con muestras duplicadas. v3.3 informa el AUC fuera de pliegue con 40 filas.
+ml.M2_proteinas_principal.auc_oof_media	0.9809375	0.88025	2.2	ml_suero_permutacion.json	v3.2 informa el AUC medio de pliegues con muestras duplicadas. v3.3 informa el AUC fuera de pliegue con 40 filas.
+ml.M4_solo_coagulacion.auc_oof_media	0.81875	0.818375	2.2	ml_suero_permutacion.json	v3.2 informa el AUC medio de pliegues con muestras duplicadas. v3.3 informa el AUC fuera de pliegue con 40 filas.
+ml.M4_solo_coagulacion.p_permutacion	0.000999000999000999	0.001998001998001998	2.2	ml_suero_permutacion.json	v3.2 informa el AUC medio de pliegues con muestras duplicadas. v3.3 informa el AUC fuera de pliegue con 40 filas.
+titular_ml	no_calculado	separacion_explicada_por_calidad	2.2	ml_suero_permutacion.json	
+h5.estado	no_disponible	refuta	2.5	h5_especificidad_organo.json	
+h5.fraccion_pan_carcinoma	no_calculado	0.11858974358974358	2.5	h5_especificidad_organo.json	
+h10.estado	calculado	descriptiva	2.6	h10_especificidad.json	
+h10.n_especificas_crc	0	5	2.6	h10_especificidad.json	v3.2 guardó el recuento en n_especificas. v3.3 lo guarda en n_especificas_crc.
+h7.estado	no_evaluable	refuta	2.7	h7_visibilidad_en_sangre.json	En v3.2 el estado estaba escrito en la tabla de hipótesis, sin modelo.
+control.CA1.pasa	no_evaluable	pasa	2.3	controles.tsv	
+control.AQP8.pasa	no_evaluable	falla	2.3	controles.tsv	
+control.SLC26A3.pasa	no_evaluable	falla	2.3	controles.tsv	
+control.GUCA2A.pasa	no_evaluable	falla	2.3	controles.tsv	

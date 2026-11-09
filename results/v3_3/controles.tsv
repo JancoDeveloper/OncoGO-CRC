@@ -1,0 +1,8 @@
+analisis	control	tipo	esperado	n_filas_del_gen	protein_id	observado	pasa	n_permutaciones	percentil_95
+tumor_frente_a_mucosa	CA1	positivo	log2fc menor que 0	1.0	V9HWE3	-2.314058303758073	pasa		
+tumor_frente_a_mucosa	AQP8	positivo	log2fc menor que 0	0.0		no_evaluable	falla		
+tumor_frente_a_mucosa	SLC26A3	positivo	log2fc menor que 0	1.0		no_evaluable	falla		
+tumor_frente_a_mucosa	GUCA2A	positivo	log2fc menor que 0	0.0		no_evaluable	falla		
+tumor_frente_a_mucosa	permutacion_dentro_del_par	negativo	mediana de proteínas significativas igual a 0			0.0	pasa	200.0	0.0
+suero_filtro	sin_no_humano_ni_contaminante_en_la_matriz_principal	positivo	ningún identificador de la matriz principal está marcado			0	pasa		
+suero_contaminacion	queratinas_de_piel	positivo	hay contaminante_piel y el máximo AUC baja al quitarlas			{'n_piel': 13, 'auc_antes': 0.9388888888888889, 'auc_despues': 0.9025}	pasa		
