@@ -166,3 +166,11 @@ Comando: `ruff check src tests`.
 Resultado. Pasa, después de quitar imports sin uso. La CI corre en macOS 14 y Ubuntu 24.04, con Python 3.12 y 3.14, y con la historia completa de git para el test de cronología.
 
 Decisión. `correr_v3_3.sh` sigue si los controles del tejido fallan, y lo anota. AQP8 y GUCA2A no están en el proteinGroups: eso no bloquea el suero.
+
+## 2026-11-09 15:40 (UTC−5). v3.3, fuentes y certificado
+
+Comando: `pytest tests/test_v3_3_cierre.py`.
+
+Resultado. 3 tests pasan. H1, H5, H7 y H10 quedan con fuente `results/v3_3/`. El certificado copia el titular, H5, H7 y H10. El changelog anota solo la cifra que cambia y le pone la causa 2.1 a 2.7.
+
+Decisión. La corrida de las 15:25 escribió la fuente como `results/v3_2/` aunque el número ya era el de v3.3. Se vuelve a correr hipótesis e informe con el árbol limpio. No se reescriben a mano los JSON.

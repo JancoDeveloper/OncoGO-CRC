@@ -15,6 +15,14 @@ from oncogo_crc.v3.h10 import ejecutar as ejecutar_h10
 from oncogo_crc.v3.salida import volcar_tsv
 
 
+FUENTE = {
+    "H1": "results/v3_3/k1_etiquetas.json",
+    "H5": "results/v3_3/h5_especificidad_organo.json",
+    "H7": "results/v3_3/h7_visibilidad_en_sangre.json",
+    "H10": "results/v3_3/h10_especificidad.json",
+}
+
+
 def _fila(codigo: str, nivel: str, estado: str, metrica: str, detalle: str, fuente: str, fraccion: str = "") -> dict:
     return {
         "hipotesis": codigo,
@@ -74,7 +82,7 @@ def run(settings: Settings) -> None:
         tejido["h1_veredicto"],
         "concordancia de signo, primario frente a mucosa",
         f"{r1['numerador']}/{r1['denominador']}",
-        "results/v3_2/k1_etiquetas.json",
+        FUENTE["H1"],
     )]
     filas.extend(_heredadas(settings.resolve("results/v3/hipotesis_v3.tsv")))
     print("[v3.2] H5: descarga, si falta, y treat por carcinoma")
@@ -85,7 +93,7 @@ def run(settings: Settings) -> None:
         h5["estado"],
         "fraccion pan_carcinoma",
         str(h5.get("fraccion_pan_carcinoma", h5.get("motivo"))),
-        "results/v3_2/h5_especificidad_organo.json",
+        FUENTE["H5"],
     ))
     referencia = settings.resolve("external/referencia_unicelular")
     matrices = list(referencia.glob("*.tsv")) + list(referencia.glob("*.txt")) if referencia.is_dir() else []
@@ -105,7 +113,7 @@ def run(settings: Settings) -> None:
         h7["estado"],
         "AUC fuera de recurso y de proteína",
         str(h7.get("por_recurso", h7.get("motivo"))),
-        "results/v3_3/h7_visibilidad_en_sangre.json",
+        FUENTE["H7"],
     ))
     pxd = _buscar(settings, "*PXD064655*")
     filas.append(_fila(
@@ -129,7 +137,7 @@ def run(settings: Settings) -> None:
         "calculado" if h10["estado"] == "calculado" else h10["estado"],
         "proteínas específicas frente a sanos, otros cánceres y otras enfermedades",
         str(h10.get("n_especificas_crc", h10.get("motivo"))),
-        "results/v3_2/h10_especificidad.json",
+        FUENTE["H10"],
     ))
     # El estado de H10 en la tabla de hipótesis usa el vocabulario del preregistro.
     if filas[-1]["estado"] == "calculado":
