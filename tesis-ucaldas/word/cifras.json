@@ -1,0 +1,17 @@
+{
+  "FraseSuero": "No se detecta diferencia; 166 proteínas son equivalentes",
+  "TitularMl": "La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra.",
+  "ClaveTitular": "separacion_explicada_por_calidad",
+  "SueroN": 284,
+  "SueroDiferente": 0,
+  "SueroEquivalente": 166,
+  "SueroIndeterminada": 118,
+  "Huno": "rechaza_h1",
+  "Runo": "147/147",
+  "HunoFragil": false,
+  "Hcinco": "refuta",
+  "Hsiete": "refuta",
+  "Hdiez": "descriptiva",
+  "HdiezN": 5,
+  "Advertencia": "Ningún resultado de esta tesis sirve para decidir sobre un paciente."
+}

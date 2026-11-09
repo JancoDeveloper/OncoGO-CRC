@@ -206,3 +206,11 @@ Comando: `python scripts/v3/exportar_sitio.py`.
 Resultado. `sitio/index.html` y `sitio/datos/v3_3.json` salen del certificado. La frase vigente es la de 166 equivalentes. La tabla de cambios conserva el 105 y el 0,996 en la columna de v3.2. El simulador aplica Hanley y McNeil a números que escribe el lector.
 
 Decisión. No se despliega. La página local ya no presenta la corrida v3.2 como vigente.
+
+## 2026-11-09 16:20 (UTC−5). v3.3, cifras de la tesis
+
+Comando: `python scripts/v3/exportar_cifras_tesis.py`.
+
+Resultado. `tesis-ucaldas/latex/cifras.tex`, `chapters/09-v33.tex`, `word/cifras.json` y `docs/resumen_director_v3_3.md`. El capítulo de resultados deja la corrida de 205 proteínas como v3.2.
+
+Decisión. No se regenera el Word ni el PDF. El resumen y el abstract siguen por encima de 250 palabras. No hay 18 diapositivas nuevas ni el banco de 50 preguntas.
