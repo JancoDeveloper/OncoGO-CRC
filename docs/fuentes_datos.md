@@ -66,10 +66,14 @@ El estado legible por máquina vive junto a cada descarga, en
   vez. Toda comparación tejido→plasma es entre cohortes, nunca intraindividual.
 - **Resultado v3** (6 de noviembre de 2026, `results/v3/k4_potencia.json`):
   876 proteínas. Cáncer frente a colonoscopia negativa: 0 diferentes, 145
-  equivalentes, 731 indeterminadas. La fracción lineal de albúmina e
-  inmunoglobulinas y la coagulación difieren entre grupos
-  (`results/v3/k7_control_tecnico.json`). Los precursores por corrida no están
-  en el disco.
+  equivalentes, 731 indeterminadas. Esa matriz no tenía el filtro de FDR de
+  proteína ni el de especie.
+- **Resultado v3.2** (6 de noviembre de 2026, `results/v3_2/suero_resumen.json`):
+  312 grupos humanos con FDR de proteína del 1 %. Contraste oficial, 205
+  proteínas: 0 diferentes, 105 equivalentes, 100 indeterminadas frente a la
+  colonoscopia negativa. Frente a sanos, SAA1 y LBP. Piel y coagulación
+  difieren entre grupos. Los precursores van de 2 934 a 5 576
+  (`results/v3_2/k7_control_tecnico.json`).
 
 ---
 

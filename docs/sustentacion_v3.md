@@ -5,16 +5,16 @@ Cada respuesta usa una tabla. Si la hipótesis no está calculada, el estado es 
 ## Lo que ya se puede defender
 
 1. **¿Qué aporta esta tesis que no se supiera?**
-La corrección de la etiqueta y la regla de equivalencia del suero. El primario frente a la mucosa coincide en signo en 116 de 118 proteínas certificadas. La metástasis frente a la mucosa coincide en 93 de 106. En el suero, de 876 proteínas, 0 son diferentes, 145 equivalentes y 731 indeterminadas entre cáncer y colonoscopia negativa. H5, H7 y H8 están preregistradas y todavía `no_evaluable`. Fuente: `results/v3/k1_etiquetas.json`, `results/v3/k4_potencia.json`, `results/v3/hipotesis_v3.tsv`.
+La corrección de la etiqueta, el filtro del suero y la regla de equivalencia. El primario frente a la mucosa coincide en signo en 89 de 90, tras excluir 237 filas y pedir 8 pares. La metástasis frente a la mucosa coincide en 69 de 82. En el suero oficial, de 205 proteínas, 0 son diferentes, 105 equivalentes y 100 indeterminadas entre cáncer y colonoscopia negativa. H5 quedó `no_disponible`. H10 cuenta 0 específicas de 1 165 y no tiene veredicto. Fuente: `results/v3_2/k1_etiquetas.json`, `results/v3_2/suero_resumen.json`, `results/v3_2/hipotesis_v3_2.tsv`.
 
 2. **¿Por qué no fusionaste las cohortes?**
 Cada contraste ocurre dentro de su cohorte. TMT, LFQ y DIA no comparten escala ni personas. Unirlas contaría dos veces al mismo laboratorio si los depósitos se solapan, y mezclaría un hígado metastásico con una mucosa. El preregistro lo prohíbe. Fuente: `config/preregistro_v3.yaml`, sección de inferencia.
 
 3. **Con 20 sueros por grupo, ¿cómo dices que no hay señal?**
-Solo para las 145 proteínas de clase equivalente en cáncer frente a colonoscopia negativa. En esas, las dos pruebas unilaterales demuestran un cambio menor que 1,5 veces. Las 731 indeterminadas no demuestran ausencia. Las 0 diferentes son el corte de treat y BH, que es otra frase. Fuente: `results/v3/k4_potencia.json`, `results/v3/changelog_numeros.tsv`.
+Solo para las 105 proteínas de clase equivalente en el contraste oficial, cáncer frente a colonoscopia negativa, sobre 205 proteínas. En esas, las dos pruebas unilaterales demuestran un cambio menor que 1,5 veces. Las 100 indeterminadas no demuestran ausencia. Las 0 diferentes son el corte de treat y BH, que es otra frase. La lectura anterior, de 876 proteínas, era 145 equivalentes y 731 indeterminadas, y queda en `results/v3/`. Fuente: `results/v3_2/suero_resumen.json`.
 
 4. **¿Por qué la réplica de tejido no es «cualquier tumor contra cualquier normal»?**
-Esa pregunta es H5. Hoy no está calculada: falta el proteoma normal de los otros carcinomas de CPTAC. La réplica que sí está hecha compara el primario de colon con la mucosa del mismo paciente, y aparte nombra la metástasis hepática. No se presenta como específica de colon hasta tener la línea base. Fuente: `results/v3/hipotesis_v3.tsv` (H5, `no_evaluable`), `results/v3/indice_R_v3.tsv` (R1_linea_base_h5).
+Esa pregunta es H5. En v3.2 quedó `no_disponible`: el carcinoma de endometrio no tiene 8 pares con el mismo identificador de muestra. El mínimo no se bajó. La réplica que sí está hecha compara el primario de colon con la mucosa del mismo paciente, y aparte nombra la metástasis hepática. No se presenta como específica de colon. Fuente: `results/v3_2/h5_especificidad_organo.json`, `results/v3_2/hipotesis_v3_2.tsv`.
 
 5. **¿Qué pasó con el pólipo?**
 La columna P de PXD034575 es el tumor primario. Una versión anterior la guardó como pólipo y usó la metástasis (M) como tumor. El fichero viejo no se editó. La leyenda nueva está en `metadata/sample_metadata/pride_pxd034575_v3.tsv`. El contraste principal es primario frente a mucosa. Fuente: `docs/auditoria_v3.md`, sección 2.1; `results/v3/k1_comparacion_contrastes.tsv`.
@@ -80,7 +80,7 @@ Sumar log2 comprime el rango y no es una fracción de masa. La corrida que se re
 `DIA-NN_report.tsv` no está en el disco: la matriz ancha lo sustituyó. El número de precursores queda `no_disponible`. El orden de corrida no se reconstruye. Fuente: `results/v3/k7_control_tecnico.json`.
 
 26. **¿El AUC de 0,94 demuestra un marcador?**
-No. El máximo plegado del catálogo, en cáncer frente a colonoscopia negativa, es 0,9375 (KRT5, P13647). Con 10 000 permutaciones la media nula es 0,843 y el percentil 95 es 0,917. p = 245/10001 = 0,0245. Con 20 contra 20, el máximo de 613 proteínas nace alto. Ese p controla la búsqueda. Fuente: `results/v3/k5_auc.json`.
+No. En la matriz humana filtrada el máximo plegado, cáncer frente a colonoscopia negativa, es 0,939 (FGB, P02675), con p = 0,00490 en 10 000 permutaciones. Al quitar contaminantes y paneles baja a 0,865 (SERPINA3, P01011), con p = 0,0464. SERPINA3 no pasa treat. La lectura anterior, 0,9375 en KRT5, queda en `results/v3/k5_auc.json`. Fuente: `results/v3_2/k5_auc.json`, `results/v3_2/k5_auc.tsv`.
 
 27. **¿Por qué no usas DeLong para comparar los dos AUC?**
 DeLong compara curvas sobre las mismas personas. Cáncer frente a colonoscopia negativa y colonoscopia negativa frente a sanos no comparten los dos grupos. La diferencia va por bootstrap de los tres grupos. Fuente: `config/preregistro_v3.yaml`, sección `k5_auc`; `results/v3/k5_diferencia_auc.tsv`.
@@ -94,8 +94,8 @@ En MaxQuant el cero es ausencia de identificación. En DIA-NN la ausencia es aus
 30. **¿De dónde sale el 688?**
 De CPTAC, PDC000116, ya en log2. treat a 0,585 y BH a 0,05 dejan 688 de 7 394. v3 no repite un segundo log2. La regresión de v1 sigue reproduciendo 688, 140, 28, 104/119, 226 y 307. Fuente: `results/v3/k1_etiquetas.json`, campo `n_certificadas`.
 
-31. **¿687 de 874 y 116 de 118 son la misma cuenta?**
-No. 687 de 874 y la correlación de Pearson 0,83 son el cierre del 31 de octubre, sobre los genes con efecto en las dos matrices. 116 de 118 es la concordancia de signo entre las certificadas que la réplica alcanza a medir. Fuente: `tesis-ucaldas/latex/chapters/09-resultados.tex`; `results/v3/k1_etiquetas.json`.
+31. **¿687 de 874, 116 de 118 y 89 de 90 son la misma cuenta?**
+No. 687 de 874 y la correlación de Pearson 0,83 son el cierre del 31 de octubre, sobre los genes con efecto en las dos matrices. 116 de 118 es la concordancia de `results/v3/`, antes del filtro de filas CON__/REV__ y con otro mínimo de pares. 89 de 90 es la corrida v3.2: 237 filas excluidas, mínimo de 8 pares, intervalo 0,940 a 0,9997. Fuente: `results/v3_2/k1_etiquetas.json`.
 
 32. **¿Qué cita iba mal en PXD036434?**
 El DOI 10.1186/s13073-023-01176-5 es Cascianelli et al., Genome Medicine 2023. El depósito es Praus et al., Journal of Translational Medicine 2023;21:41, doi:10.1186/s12967-022-03855-0. Fuente: `docs/auditoria_v3.md`; `results/v3/auditoria_citas.tsv`.
@@ -137,4 +137,4 @@ La base es 20260914. Los desplazamientos de v3 están en el preregistro, entre 6
 Tejido: `results/v3/k1_etiquetas.json` y `results/v3/k1_comparacion_contrastes.tsv`. Suero: `results/v3/k4_potencia.json`. AUC: `results/v3/k5_auc.json`. Presencia: `results/v3/k6_presencia.tsv`. Control técnico: `results/v3/k7_control_tecnico.json`. Estados: `results/v3/hipotesis_v3.tsv`. Cambios: `results/v3/changelog_numeros.tsv`.
 
 45. **¿Qué no debes decir en la defensa?**
-Que no hay señal en las 731 indeterminadas. Que la columna P es un pólipo. Que 116/118 demuestra un cambio propio del colon. Que SAA1 o el modelo H7 son una prueba de consulta. Que Álvez 2023 valida especificidad clínica: sus controles son sanos.
+Que no hay señal en las 100 indeterminadas. Que la columna P es un pólipo. Que 89/90 demuestra un cambio propio del colon. Que SAA1, la logística o el modelo H7 son una prueba de consulta. Que Álvez 2023 valida especificidad clínica: sus controles son sanos.

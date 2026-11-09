@@ -1,14 +1,14 @@
 \begin{otherlanguage}{english}
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-% fuente: results/v3/k1_etiquetas.json
-% fuente: results/v3/k4_potencia.json
-% fuente: results/v3/k5_auc.json
-% fuente: results/v3/k6_presencia.tsv
-% fuente: results/v3/k7_control_tecnico.json
-The protein change of the colorectal tumor is already described in tissue. This version asks which part of that change is specific to the colon and which part reaches the blood. Cohorts were not fused and missing values were not imputed. The anchor was the CPTAC TMT proteome, PDC000116: 688 of 7,394 proteins change by at least 1.5-fold, at a false-discovery rate of 0.05. The replicate was PXD034575, 16 patients. P is the primary tumor, M the liver metastasis and N the mucosa. An earlier reading treated M as the tumor and found 104 of 119 signs in agreement. With the primary against the mucosa, the sign agrees in 116 of 118 certified proteins, with an interval from 0.940 to 0.998 and Lin's concordance 0.734. The metastasis against the mucosa agrees in 93 of 106, with Lin's concordance 0.440. Unique-peptide detectability remains 226 of 688. Homogeneity across three cohorts has no number in this version.
+% fuente: results/v3_2/k1_etiquetas.json
+% fuente: results/v3_2/suero_resumen.json
+% fuente: results/v3_2/k5_auc.json
+% fuente: results/v3_2/k7_control_tecnico.json
+% fuente: results/v3_2/hipotesis_v3_2.tsv
+The protein change of the colorectal tumor is already described in tissue. This version asks which part of that change is specific to the colon and which part reaches the blood. Cohorts were not fused and missing values were not imputed in the contrast. The anchor was the CPTAC TMT proteome, PDC000116: 688 of 7,394 proteins change by at least 1.5-fold, at a false-discovery rate of 0.05. The replicate was PXD034575, 16 patients. P is the primary tumor, M the liver metastasis and N the mucosa. An earlier reading treated M as the tumor and found 104 of 119 signs in agreement. The current run drops 237 contaminant or decoy rows and requires at least eight pairs. The primary against the mucosa agrees in 89 of 90, with an interval from 0.940 to 0.9997 and Lin's concordance 0.704. The metastasis against the mucosa agrees in 69 of 82, with Lin's concordance 0.390. Unique-peptide detectability remains 226 of 688.
 
-The serum was PXD055218, 20 people per group and 876 proteins. Against the negative colonoscopy, no protein passes the 1.5-fold cut. Of the 876, 145 have a change smaller than 1.5-fold demonstrated and 731 remain indeterminate. Only the 145 support a claim of absence at that magnitude. SAA1, LBP and CHMP4A separate cancer from healthy people. CHMP4A is present in 13 of 20 cancer sera, 4 of 20 negative-colonoscopy sera and 3 of 20 healthy sera, and the presence test does not pass false-discovery control. The albumin and immunoglobulin fraction is lower in cancer (medians 0.253, 0.323 and 0.327) and coagulation also differs. The maximum area under the curve in the catalog is 0.9375; with 10,000 permutations, p = 0.0245. Six later hypotheses are preregistered and this version assigns them no number. The work does not propose a blood test.
+The serum was PXD055218, 20 people per group. The report has 897 groups. Protein-level FDR of 1\% and a human species filter leave 312. The official contrast, without contaminants or quality panels, has 205 proteins. Against the negative colonoscopy, none differ, 105 are equivalent and 100 remain indeterminate. Only the 105 support a claim of absence at that magnitude. SAA1 and LBP separate cancer from healthy people. CHMP4A does not enter: its global group q-value is 0.037. After contaminants and panels are removed, the maximum area under the curve is 0.865, on SERPINA3; with 10,000 permutations, p = 0.0464. On the human matrix before that cleaning the maximum is 0.939, on FGB. Skin and coagulation scores differ between groups. H5 could not be calculated, and H10 counts zero disease-specific proteins out of 1,165, with no preregistered verdict. The work does not propose a blood test.
 
 \noindent\textbf{Keywords:} colorectal cancer; proteomics; serum; specificity; Gene Ontology; neoantigen.
 \end{otherlanguage}

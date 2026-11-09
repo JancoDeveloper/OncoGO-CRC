@@ -4,7 +4,7 @@ La página con gráficas y fichas está en [divulgacion.html](divulgacion.html).
 
 ## El resultado, en una frase
 
-Entre las 688 proteínas certificadas, el primario coincide en signo con CPTAC en 116 de 118. En el suero, el corte de 1,5 veces no separa el cáncer de la colonoscopia negativa: 145 proteínas tienen ese cambio descartado y 731 quedan indeterminadas.
+Entre las 688 proteínas certificadas, el primario coincide en signo con CPTAC en 89 de 90. En el suero oficial, de 205 proteínas, el corte de 1,5 veces no separa el cáncer de la colonoscopia negativa: 105 tienen ese cambio descartado y 100 quedan indeterminadas.
 
 Sirve como tesis, porque la pregunta queda respondida con un control de otra enfermedad intestinal. No sirve como prueba de un marcador para la consulta.
 
@@ -13,16 +13,16 @@ Sirve como tesis, porque la pregunta queda respondida con un control de otra enf
 | Cohorte | Qué es | Qué responde |
 |---|---|---|
 | PDC000116, Vasaikar, *Cell* 2019 | Tejido tumoral y mucosa, TMT, ya en log2 | El ancla. El tumor tiene un proteoma distinto. |
-| PXD034575, Tanaka, *Cell Reports* 2024 | 16 pacientes. P primario, M metástasis hepática, N mucosa | Si ese proteoma se repite en otro tejido. En las 688 certificadas: 116 de 118 con el primario, 93 de 106 con la metástasis. El cierre del 31 de octubre, en otro universo, es 687 de 874 y correlación 0,83. |
-| PXD055218, Rai, *J Proteome Res* 2025 | Suero DIA, 20 cáncer, 20 colonoscopia negativa, 20 sanos, 876 proteínas | Frente a la colonoscopia negativa el corte de 1,5 veces deja 0 proteínas. De 876, 145 son equivalentes y 731 indeterminadas. |
+| PXD034575, Tanaka, *Cell Reports* 2024 | 16 pacientes. P primario, M metástasis hepática, N mucosa | Si ese proteoma se repite en otro tejido. En las 688 certificadas, corrida v3.2: 89 de 90 con el primario, 69 de 82 con la metástasis. El cierre del 31 de octubre, en otro universo, es 687 de 874 y correlación 0,83. |
+| PXD055218, Rai, *J Proteome Res* 2025 | Suero DIA, 20 cáncer, 20 colonoscopia negativa, 20 sanos. Contraste oficial: 205 proteínas | Frente a la colonoscopia negativa el corte de 1,5 veces deja 0 proteínas. De 205, 105 son equivalentes y 100 indeterminadas. |
 
 ## Orden de una tarde
 
 1. Decir el resultado en voz alta, sin la hoja.
 2. Dibujar las tres cohortes y la pregunta de cada una.
-3. Explicar LBP (pasa el FDR contra sanos, no contra la enfermedad) y BAIAP3 (AUC 0,82, FDR 0,20).
+3. Explicar LBP (pasa el FDR contra sanos, no contra la enfermedad) y el AUC vigente: SERPINA3, 0,865, p = 0,0464, clase indeterminada. BAIAP3 (AUC 0,82, FDR 0,20) es el catálogo del 31 de octubre y no se recalculó.
 4. Explicar P, M y N, y por qué el cero de MaxQuant es una ausencia.
-5. Explicar que 116/118, 687/874 y 0,104 son tres cuentas distintas. Ninguna mide tejido contra sangre.
+5. Explicar que 89/90, 687/874 y 0,104 son tres cuentas distintas. Ninguna mide tejido contra sangre.
 6. Cerrar con el límite: 20 por grupo, sin el inmunoensayo de CEA, sin secuencia de péptido mutado.
 
 ## Palabras
@@ -43,9 +43,9 @@ Sirve como tesis, porque la pregunta queda respondida con un control de otra enf
 
 **¿SAA1 es un marcador?** Separa el cáncer de los sanos. No separa el cáncer de la otra enfermedad intestinal.
 
-**¿BAIAP3?** Candidata de Rai. Pasa el AUC sin marca de fase aguda y no pasa el FDR. No es un hallazgo de esta tesis.
+**¿BAIAP3?** En el catálogo del 31 de octubre, candidata de Rai: AUC 0,82 y FDR 0,20. Esa tabla no se recalculó en v3.2. No es un hallazgo de esta tesis.
 
-**¿CHMP4A?** log2FC alto con medición en 16 de 40 sueros. No se presenta como marcador.
+**¿CHMP4A?** No entra en las 312 de v3.2: su q global de grupo es 0,037. El log2FC 5,42 y las 16 de 40 observaciones son la matriz sin filtrar del 31 de octubre. No se presenta como marcador.
 
 **¿Neoantígenos?** Esta matriz no puede confirmarlos. Rai, Xiang y Hembrough describen péptidos. Aquí cada fila es un grupo de proteínas.
 

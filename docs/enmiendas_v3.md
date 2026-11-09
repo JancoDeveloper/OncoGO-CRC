@@ -48,4 +48,18 @@ Semillas de v3.2: base 20260914, desplazamientos 710 a 770. Están en el bloque 
 
 Declaración de transparencia. El 6-nov-2026, una revisión externa analizó el report original de PXD055218 con filtros de FDR y especie, y vio un ranking exploratorio (Mann-Whitney, sin umbral). Esta enmienda se motiva en las guías de DIA-NN y del HPP y en la presencia de especies no humanas, no en ese ranking. El análisis oficial es el preregistrado.
 
-Los 60 crudos (65,6 GB) no se descargan. La búsqueda con AlphaDIA queda como extensión documentada. La web no se despliega.
+Los 60 crudos (65,6 GB) no se descargan. La búsqueda con AlphaDIA queda como extensión documentada. La web no se despliega en esta corrida.
+
+## Resultado de esa corrida
+
+Fuente: `results/v3_2/suero_resumen.json` y `results/v3_2/k1_etiquetas.json`. Sello del suero: commit `293e6ee`.
+
+Suero, cáncer frente a colonoscopia negativa, matriz principal de 205 proteínas: 0 diferentes, 105 equivalentes, 100 indeterminadas. La frase de la tabla es «No se detecta diferencia; 105 proteínas son equivalentes». Frente a sanos, en esa matriz, son diferentes SAA1 y LBP. El informe tiene 897 grupos. Con FDR de proteína y especie humana quedan 312.
+
+Tejido, después de excluir 237 filas y con mínimo de 8 pares: primario frente a mucosa 89/90, intervalo 0,940 a 0,9997, Lin 0,704. Metástasis frente a mucosa 69/82. H1 queda en `rechaza_h1`.
+
+El máximo del AUC plegado baja de 0,939 (FGB, matriz humana filtrada, p = 0,00490) a 0,865 (SERPINA3, sin contaminantes ni paneles, p = 0,0464). Piel y coagulación difieren entre grupos. La logística y la coagulación sola rechazan el nulo de permutación. No es una prueba diagnóstica.
+
+H5 quedó `no_disponible`: el carcinoma de endometrio no tiene 8 pares con el mismo identificador. H10 cuenta 0 específicas de 1 165, en 60 enfermedades, y el veredicto queda `no_evaluable` porque el preregistro no fija un umbral. H6, H7, H8 y H9 quedan sin número, con el motivo de `hipotesis_v3_2.tsv`.
+
+La página pública se armó después, a pedido del autor: https://oncogo-crc-tesis.web.app. La frase de arriba sobre no desplegar la web es la regla de la corrida.

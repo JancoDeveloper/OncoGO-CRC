@@ -1,6 +1,6 @@
 # Guía para completar la tesis OncoGO-CRC
 
-Las figuras de esta carpeta salen del cierre del 31 de octubre. La corrida vigente del 6 de noviembre está en `results/v3/`. Si una frase usa un número de tejido o de suero, el de las 688 certificadas es 116 de 118 (primario frente a mucosa) y 93 de 106 (metástasis frente a mucosa). En el suero, de 876 proteínas, el corte de 1,5 veces deja 0 diferentes, 145 equivalentes y 731 indeterminadas frente a la colonoscopia negativa. El 687 de 874 y la correlación 0,83 siguen siendo la cuenta amplia de ese cierre, no un sustituto de 116/118.
+Las figuras de esta carpeta salen del cierre del 31 de octubre. La corrida vigente es v3.2, en `results/v3_2/`. Si una frase usa un número de tejido o de suero, el de las 688 certificadas es 89 de 90 (primario frente a mucosa) y 69 de 82 (metástasis frente a mucosa). En el suero oficial, de 205 proteínas, el corte de 1,5 veces deja 0 diferentes, 105 equivalentes y 100 indeterminadas frente a la colonoscopia negativa. El 687 de 874 y la correlación 0,83 siguen siendo la cuenta amplia del 31 de octubre, no un sustituto de 89/90. La cuenta 116 de 118 queda en `results/v3/`.
 
 Carpeta de figuras: `/Users/jancod/GitHub/OncoGO-CRC/tesis-ucaldas/figuras-para-redactar/`. Rutas de datos relativas a `/Volumes/JANCODATA/OncoGO-CRC/` salvo `.tex`/tests/scripts (repositorio GitHub). Citas con `\textcite{clave}` como en el documento actual.
 
@@ -275,7 +275,7 @@ Idea a desarrollar:
 
 Qué decir (guías, reescríbelas):
 - La figura 3.5 muestra 58, 160 y 16 proteínas significativas en los tres contrastes.
-- En la figura 3.6 el signo coincide en 708 de 876 proteínas.
+- En la figura 3.6, cierre del 31 de octubre, el signo coincide en 708 de 876 proteínas.
 - Solo el 46,2 % de las que coinciden tiene menor magnitud en el primario.
 - No es un gradiente adenoma–carcinoma; no hay pólipos.
 

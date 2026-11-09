@@ -86,7 +86,7 @@ H5 a H10 siguen `no_evaluable` en `results/v3/hipotesis_v3.tsv`. No hay número 
 
 ## v3.2
 
-El 6 de noviembre de 2026 el prompt de v3.2 describe un report de DIA-NN sin filtro de proteína, especies no humanas y queratinas de piel. Esas cifras se vuelven a medir cuando `data/raw/plasma/DIA-NN_report.tsv` esté en disco y su SHA-256 coincida con `A8A5AADD74391AFEF68CF4D6C3A7D3860023101E5C92590E2E87C152A39E59E8`. Hasta entonces no se copian como resultado de esta corrida.
+El 6 de noviembre de 2026 el report de DIA-NN coincidió con el SHA-256 `A8A5AADD74391AFEF68CF4D6C3A7D3860023101E5C92590E2E87C152A39E59E8` y la corrida terminó. Las tablas están en `results/v3_2/`. La frase del suero, en `suero_resumen.json`, es «No se detecta diferencia; 105 proteínas son equivalentes», sobre 205 proteínas. El tejido, en `k1_etiquetas.json`, es 89/90. El bloque de abajo es lo que se comprobó antes y durante esa corrida.
 
 Comprobado en esta pasada:
 
@@ -96,7 +96,7 @@ Comprobado en esta pasada:
 - La tabla suplementaria de Geyer et al. 2019 no se obtuvo. `https://www.embopress.org/doi/suppl/10.15252/emmm.201910427/suppl_file/emmm201910427-sup-0001-figs.pdf` devolvió 404 el 6 de noviembre de 2026. Los paneles usan la lista del texto, escrita en la enmienda.
 - El intérprete del entorno es Python 3.14.3. El prompt dice 3.11. Gana el fichero real: el sello escribe 3.14.3.
 - `make manifest-verify` coincidió (11 entradas, 31 de v1). `make regresion-v1` pasó: 688, 140, 28, 104/119, 226 y 307.
-- Los 60 crudos no se descargan. La web no se despliega.
+- Los 60 crudos no se descargan. En esta pasada la web no se despliega. Después, a pedido del autor, la página pública quedó en https://oncogo-crc-tesis.web.app. El preregistro no se reescribe.
 - Lista de ficheros de PRIDE, 6 de noviembre de 2026, `external/pride/PXD055218/files.json`: 61 ficheros. 60 son `.raw` de Thermo (`CP_`, `CN_`, `HC_`) y el otro es `DIA-NN_report.tsv` de 213 313 241 bytes. No hay `.fasta` ni `report.log.txt`. En el report parcial, las corridas se llaman `CP_`, `CN_` y `Normal_`, no `HC_`. El nombre del crudo y el de la corrida no coinciden. La base de búsqueda sigue sin fichero.
 - UniProt humano revisado con isoformas, descarga del 6 de noviembre de 2026: `external/uniprot/human_reviewed_isoforms.fasta.gz`, 42 560 entradas, SHA-256 `96a0fc42f6dbba02386eaae1d0241407eef335876bf0ddc6b1aa91144cb961ae`. Sirve para el ortólogo compartido. No es la base con la que los autores buscaron PXD055218.
 - El atlas de enfermedades del HPA (`blood_pea_diseases.tsv.zip`, 6 de noviembre de 2026) trae 60 enfermedades, no 59. Gana el fichero. El colorrectal está en el catálogo con la clase Cancer.

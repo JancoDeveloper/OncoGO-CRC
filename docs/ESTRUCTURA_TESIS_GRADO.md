@@ -50,7 +50,7 @@ Ajustar títulos y extensión a la plantilla de la Universidad de Caldas. El ord
 
 ### Resumen
 
-Un párrafo con el problema (la sangre no repite el proteoma del tumor), el método (cohortes separadas, tejido CPTAC, réplica tisular PXD034575, suero de tres grupos cuando la matriz lo permite) y el aporte (concordancia, especificidad frente a otra enfermedad intestinal, auditoría de candidatas publicadas, y el límite explícito de los neoantígenos). 250 a 300 palabras. Ningún número que no esté en `cierre_audit.json` o en el informe de la versión 2.
+Un párrafo con el problema (la sangre no repite el proteoma del tumor), el método (cohortes separadas, tejido CPTAC, réplica tisular PXD034575, suero de tres grupos cuando la matriz lo permite) y el aporte (concordancia, especificidad frente a otra enfermedad intestinal, auditoría de candidatas publicadas, y el límite explícito de los neoantígenos). 250 a 300 palabras. Los números vigentes salen de `results/v3_2/`. El cierre del 31 de octubre y el informe de la versión 2 se citan con su fecha.
 
 ### 1. Introducción
 

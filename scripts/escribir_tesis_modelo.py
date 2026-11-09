@@ -74,12 +74,13 @@ def portada() -> None:
         "El contraste es una t moderada contra un cambio mínimo de 1,5 veces, FDR 0,05, sin imputar ausencias."
     )
     p(
-        "En el suero, ninguna proteína separó el cáncer de la colonoscopia negativa. Frente a personas sanas pasaron tres: "
-        "SAA1, LBP y CHMP4A. SAA1 y LBP están secretadas y se leen como respuesta del organismo. CHMP4A tiene medición en 16 de 40 sueros. "
-        "Ocho candidatas de la literatura superan un AUC de 0,70 frente a la colonoscopia negativa; cinco ya estaban marcadas como fase aguda "
-        "y las otras tres no pasan el FDR. En tejido, el cierre del 31 de octubre coincide en signo con CPTAC en 687 de 874 genes, correlación 0,83. "
-        "Entre las 688 certificadas, la corrida del 6 de noviembre da 116 de 118 para el primario y 93 de 106 para la metástasis. "
-        "En el suero de 876 proteínas, 145 tienen un cambio menor que 1,5 veces demostrado y 731 quedan indeterminadas. "
+        "En el contraste oficial del suero, 205 proteínas, ninguna separó el cáncer de la colonoscopia negativa: "
+        "105 son equivalentes y 100 quedan indeterminadas. Frente a personas sanas pasan SAA1 y LBP. "
+        "Las dos están secretadas y se leen como respuesta del organismo. CHMP4A no entra en las 312: su q global de grupo es 0,037. "
+        "El máximo del área bajo la curva, sin contaminantes ni paneles, es 0,865 en SERPINA3. "
+        "En tejido, el cierre del 31 de octubre coincide en signo con CPTAC en 687 de 874 genes, correlación 0,83. "
+        "Entre las 688 certificadas, la corrida v3.2 da 89 de 90 para el primario y 69 de 82 para la metástasis. "
+        "La cuenta 116 de 118 queda en results/v3/. "
         "De los procesos del tumor, este suero solo mide alrededor de doce con al menos diez genes, y esa concordancia no supera el azar. "
         "Una fila de grupo proteico no confirma un péptido mutado. La tesis responde la pregunta de visibilidad. No propone un examen de sangre."
     )
@@ -93,9 +94,12 @@ def portada() -> None:
         "and twenty healthy people. The contrast is a moderated t test against a minimum 1.5-fold change, FDR 0.05, with no imputation."
     )
     p(
-        "In serum, no protein separated cancer from the negative-colonoscopy group. Three proteins separated cancer from healthy people: "
-        "SAA1, LBP and CHMP4A. Eight published candidates pass an AUC of 0.70 against the disease control; five were already tagged as acute-phase "
-        "proteins and the other three fail the FDR. The primary tumor agrees in sign with CPTAC in 687 of 874 genes, correlation 0.83. "
+        "In the official serum contrast, 205 proteins, none separated cancer from the negative-colonoscopy group: "
+        "105 are equivalent and 100 remain indeterminate. SAA1 and LBP separate cancer from healthy people. "
+        "CHMP4A does not enter the 312: its global group q-value is 0.037. "
+        "After contaminants and panels are removed, the maximum area under the curve is 0.865, on SERPINA3. "
+        "The 31 October close agrees in sign with CPTAC in 687 of 874 genes, correlation 0.83. "
+        "Among the 688 certified proteins, run v3.2 gives 89 of 90 for the primary and 69 of 82 for the metastasis. "
         "About twelve tumor Gene Ontology terms are measured in this serum with at least ten genes, and that concordance does not beat the null. "
         "A protein-group row cannot confirm a mutated peptide. The thesis answers the visibility question. It does not propose a blood test."
     )
@@ -279,15 +283,15 @@ def capitulo_4() -> None:
     h(1, "Capítulo 4. Análisis de resultados")
     h(2, "El suero no separa el cáncer de la otra enfermedad")
     p(
-        "PXD055218 tiene los tres grupos, veinte corridas cada uno, y 876 proteínas en la corrida del 6 de noviembre. "
+        "PXD055218 tiene los tres grupos, veinte corridas cada uno. El contraste oficial de v3.2 tiene 205 proteínas. "
         "Cáncer frente a colonoscopia negativa: cero proteínas dentro del FDR y del cambio mínimo. "
-        "De esas 876, 145 tienen un cambio menor que 1,5 veces demostrado y 731 quedan indeterminadas. "
-        "La ausencia solo se afirma en las 145. Cáncer frente a sanos: tres. Colonoscopia negativa frente a sanos: una. "
+        "De esas 205, 105 tienen un cambio menor que 1,5 veces demostrado y 100 quedan indeterminadas. "
+        "La ausencia solo se afirma en las 105. Cáncer frente a sanos: SAA1 y LBP. "
         "El 687 de 874 y la correlación 0,83 son el cierre del 31 de octubre. Entre las 688 certificadas, "
-        "el primario coincide en 116 de 118 y la metástasis en 93 de 106."
+        "el primario coincide en 89 de 90 y la metástasis en 69 de 82. La cuenta 116 de 118 queda en results/v3/."
     )
     tabla(
-        "Tabla 2. Proteínas del suero que pasan FDR 0,05 y |log2FC| mayor que 0,585.",
+        "Tabla 2. Proteínas de la matriz sin filtrar del 31 de octubre que pasan FDR 0,05 y |log2FC| mayor que 0,585.",
         ["Proteína", "Acceso", "Contraste", "log2FC", "FDR", "Observaciones"],
         [
             ["SAA1", "P0DJI8", "Cáncer frente a sano", "3,26", "0,0002", "40"],

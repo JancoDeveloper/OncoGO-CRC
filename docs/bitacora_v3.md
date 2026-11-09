@@ -72,3 +72,11 @@ Comando: `bash scripts/v3/correr_v3_2.sh`.
 Resultado. K4 y el nulo de K5 terminaron. Después, `analizar_suero` buscó la columna `Run` en la tabla del último contraste, porque el bucle había reutilizado el nombre del report. No se escribió K7 ni el resumen. La sensibilidad por gen tampoco vio el report.
 
 Decisión. El report y las matrices no se editan. Se separan los dos nombres y la etapa se vuelve a correr entera, para que el sello corresponda al código que produce las tablas.
+
+## 2026-11-06. La corrida v3.2 terminó
+
+Comando: `bash scripts/v3/correr_v3_2.sh`.
+
+Resultado. El informe quedó en el disco, con `faltan []`. La frase de `results/v3_2/suero_resumen.json` es «No se detecta diferencia; 105 proteínas son equivalentes». Matriz principal, 205 proteínas: 0 diferentes, 105 equivalentes, 100 indeterminadas entre cáncer y colonoscopia negativa. Humanos con los dos q-valores: 312. Tejido: 89/90, H1 en `rechaza_h1`. Sello del suero: commit `293e6ee`.
+
+Decisión. Esas tablas se copiaron al repositorio en el commit `35fad60`. Los números de `results/v3/` no se reescriben.
