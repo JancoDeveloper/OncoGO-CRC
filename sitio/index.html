@@ -1,327 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OncoGO-CRC · resultado v3.2</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OncoGO-CRC · corrida v3.3</title>
 <style>
-  :root {
-    color-scheme: light;
-    --ink: #142028;
-    --muted: #3e4c55;
-    --paper: #eef2f1;
-    --card: #fbfcfb;
-    --line: #d3ddd9;
-    --teal: #0c5c56;
-    --teal-ink: #083f3b;
-    --nav: #0d1c22;
-    --gold: #a15c12;
-    --rust: #8d3429;
-    --ok: #0c5c56;
-    --wait: #8a5a12;
-    --off: #5c6b73;
-    --shadow: 0 1px 0 rgba(20, 32, 40, 0.04);
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: "Avenir Next", "Segoe UI", sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.5;
-  }
-  .salto {
-    position: absolute; left: 12px; top: -40px;
-    background: #fff; color: var(--ink); padding: 8px 12px; border-radius: 8px; z-index: 40;
-  }
-  .salto:focus { top: 8px; }
-  .tope {
-    position: sticky; top: 0; z-index: 20;
-    background: var(--nav); color: #f4f7f6;
-    box-shadow: 0 8px 24px rgba(8, 20, 24, 0.18);
-  }
-  .tope-interior {
-    max-width: 1120px; margin: 0 auto;
-    display: grid; grid-template-columns: auto 1fr; gap: 8px 18px;
-    align-items: center; padding: 10px 16px 12px;
-  }
-  .marca { color: #fff; text-decoration: none; font-weight: 700; letter-spacing: -0.02em; }
-  .marca small { display: block; font-weight: 500; color: #b7c7c4; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
-  .busqueda { justify-self: end; width: min(240px, 46vw); }
-  #filtro {
-    width: 100%; border: 0; border-radius: 999px; padding: 8px 12px;
-    font: inherit; font-size: 0.92rem; background: #f4f7f6; color: var(--ink);
-  }
-  #filtro:focus { outline: 2px solid #e2b15a; outline-offset: 2px; }
-  .secciones { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; }
-  .secciones a {
-    color: #e7efed; text-decoration: none; font-size: 0.82rem;
-    border: 1px solid rgba(255,255,255,0.16); border-radius: 999px; padding: 4px 10px;
-  }
-  .secciones a:hover, .secciones a:focus { color: #fff; border-color: #e2b15a; }
-  .avance { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #e2b15a; transform: scaleX(0); transform-origin: 0 0; z-index: 30; }
-  main { max-width: 1120px; margin: 0 auto; padding: 22px 16px 48px; }
-  .ojo { margin: 0 0 8px; color: var(--teal); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
-  h1 {
-    font-family: "Iowan Old Style", Palatino, "Palatino Linotype", serif;
-    font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.12;
-    letter-spacing: -0.03em; margin: 0 0 12px; max-width: 18ch;
-  }
-  h2 {
-    font-family: "Iowan Old Style", Palatino, serif;
-    font-size: 1.55rem; margin: 2rem 0 0.4rem; scroll-margin-top: 7.5rem;
-  }
-  h3 { margin: 0 0 6px; font-size: 1rem; }
-  .lead { max-width: 68ch; color: var(--muted); margin: 0 0 16px; }
-  .sentencia {
-    background: var(--card); border: 1px solid var(--line); border-left: 6px solid var(--teal);
-    border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow);
-  }
-  .sentencia strong { font-family: "Iowan Old Style", Palatino, serif; font-size: 1.25rem; }
-  .rejilla { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
-  .dato, .aviso, .fase, .estado, .modelo {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 14px 12px;
-  }
-  .dato strong { display: block; font-size: 1.65rem; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
-  .dato span, .fase p, .estado p, .modelo p { color: var(--muted); font-size: 0.92rem; }
-  .aviso { border-left: 5px solid var(--rust); margin: 14px 0; }
-  .fases { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .fase { position: relative; padding-left: 58px; }
-  .fase b.n {
-    position: absolute; left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
-    background: var(--teal); color: #fff; display: grid; place-items: center; font-size: 0.85rem;
-  }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; }
-  .chip {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase;
-    border-radius: 999px; padding: 3px 8px; border: 1px solid var(--line); color: var(--muted);
-  }
-  .chip.ok { color: var(--ok); border-color: #b7d6d2; background: #f3faf8; }
-  .chip.wait { color: var(--wait); border-color: #ead7b0; background: #fbf6ea; }
-  .chip.off { color: var(--off); background: #f4f6f7; }
-  .chip.alerta { color: var(--rust); border-color: #efcfc9; background: #fbf4f2; }
-  .marco { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--card); margin: 10px 0 16px; }
-  table { width: 100%; border-collapse: collapse; min-width: 720px; font-size: 0.92rem; }
-  th, td { border-bottom: 1px solid var(--line); padding: 9px 10px; text-align: left; vertical-align: top; }
-  th { background: #e7eeeb; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; }
-  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
-  .barra-clase { display: flex; height: 8px; border-radius: 99px; overflow: hidden; background: #e6ecea; min-width: 120px; margin-top: 6px; }
-  .barra-clase i { display: block; height: 100%; }
-  .eq { background: var(--teal); }
-  .ind { background: #d2b48a; }
-  .dif { background: var(--rust); }
-  .leyenda { display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.82rem; color: var(--muted); }
-  .leyenda i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; }
-  .modelos { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 10px; align-items: start; }
-  .auc { margin: 10px 0 4px; }
-  .auc .pista { position: relative; height: 10px; background: #e6ecea; border-radius: 99px; }
-  .auc .relleno { position: absolute; left: 0; top: 0; bottom: 0; background: var(--teal); border-radius: 99px; }
-  .auc.control .relleno { background: var(--rust); }
-  .auc .meta { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-  figure { margin: 12px 0; }
-  figure img { width: 100%; height: auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
-  figcaption { color: var(--muted); font-size: 0.88rem; margin-top: 6px; }
-  .estados { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .estado h3 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
-  a { color: var(--teal-ink); }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-  footer { max-width: 1120px; margin: 0 auto; padding: 0 16px 36px; color: var(--muted); font-size: 0.88rem; }
-  .vacio { display: none; margin: 8px 0; color: var(--rust); }
-  [hidden] { display: none !important; }
-  @media (max-width: 860px) {
-    .rejilla, .fases, .modelos, .estados { grid-template-columns: 1fr; }
-    .tope-interior { grid-template-columns: 1fr; }
-    .busqueda { justify-self: stretch; width: 100%; }
-    h1 { max-width: none; }
-  }
+  :root { color-scheme: light; --ink:#142028; --paper:#f4f7f6; --card:#fff; --line:#c5d0cc; }
+  body { margin:0; font-family:"Avenir Next","Segoe UI",sans-serif; background:var(--paper); color:var(--ink); line-height:1.5; }
+  main { max-width:46rem; margin:0 auto; padding:1.5rem; }
+  figure { margin:1.5rem 0; background:var(--card); border:1px solid var(--line); padding:0.75rem; }
+  img { max-width:100%; height:auto; }
+  table { border-collapse:collapse; width:100%; font-size:0.9rem; }
+  td, th { border-bottom:1px solid var(--line); text-align:left; padding:0.3rem; vertical-align:top; }
+  a { color:#083f3b; }
 </style>
 </head>
 <body>
-<a class="salto" href="#resultado">Saltar al resultado</a>
-<div class="avance" aria-hidden="true"></div>
-<header class="tope">
-  <div class="tope-interior">
-    <a class="marca" href="#resultado">OncoGO-CRC<small>Universidad de Caldas · 6 de noviembre de 2026</small></a>
-    <form class="busqueda" role="search" onsubmit="return false">
-      <label class="salto" for="filtro" style="position:static;left:auto;top:auto;padding:0;background:transparent;color:#b7c7c4;font-size:0.72rem">Buscar</label>
-      <input id="filtro" type="search" placeholder="Proteína, hipótesis, técnica" aria-label="Buscar proteína, hipótesis o técnica"/>
-    </form>
-    <nav class="secciones" aria-label="Secciones">
-      <a href="#resultado">Resultado</a>
-      <a href="#proceso">Procedimiento</a>
-      <a href="#suero">Suero</a>
-      <a href="#muestra">Muestra</a>
-      <a href="#modelo">Modelo</a>
-      <a href="#tejido">Tejido</a>
-      <a href="#huecos">Sin cálculo</a>
-      <a href="lectura-31-oct.html">31 de octubre</a>
-    </nav>
-  </div>
-</header>
 <main>
-  <p class="ojo">Enmienda v3.2 · sello 293e6ee · semilla 20260914</p>
-  <h1 id="resultado">Qué se hizo y qué salió</h1>
-  <p class="lead">La pregunta del suero es si alguna proteína separa el cáncer colorrectal de una colonoscopia negativa, con un cambio de al menos una vez y media y con el falso descubrimiento controlado. Cada cifra sale de <code>results/v3_2/</code>.</p>
-
-  <section class="sentencia bloque">
-    <p class="ojo">Contraste oficial · 205 proteínas</p>
-    <p><strong>No se detecta diferencia; 105 proteínas son equivalentes.</strong></p>
-    <p>Cero se declaran distintas entre cáncer y colonoscopia negativa. 100 quedan indeterminadas. Esto responde la pregunta del suero. No propone un examen de sangre.</p>
-  </section>
-
-  <section class="rejilla" aria-label="Cifras de cabecera">
-    <article class="dato bloque"><strong>205</strong><span>Humanas, FDR de proteína 1 %, fuera de contaminantes y de paneles de calidad.</span></article>
-    <article class="dato bloque"><strong>0</strong><span>Distintas en el contraste oficial. 105 equivalentes, 100 indeterminadas.</span></article>
-    <article class="dato bloque"><strong>2</strong><span>Distintas frente a sanos, en la misma matriz: SAA1 y LBP.</span></article>
-    <article class="dato bloque"><strong>89/90</strong><span>Mismo signo, primario de Tanaka frente al tumor de CPTAC. H1 rechazada.</span></article>
-  </section>
-
-  <p class="aviso bloque">La <a href="lectura-31-oct.html">lectura del 31 de octubre</a> usó otra matriz, de 876 proteínas, sin el filtro de FDR de proteína ni el de especie. Esos números siguen allí y no se reescriben en esta página.</p>
-
-  <h2 id="proceso">Qué se hizo</h2>
-  <p class="lead">La corrida no busca espectros nuevos y no entrena una red neuronal. Lee archivos ya publicados y aplica reglas escritas antes de mirar el efecto. Python 3.14.3, NumPy 2.4.4, pandas 3.0.2, SciPy 1.17.1, scikit-learn 1.8.0.</p>
-  <div class="fases">
-    <article class="fase bloque"><b class="n">1</b><h3>Informe de suero</h3><p>Se lee <code>DIA-NN_report.tsv</code> de <a href="https://www.ebi.ac.uk/pride/archive/projects/PXD055218">PXD055218</a>, el depósito de <a href="https://doi.org/10.1021/acs.jproteome.5c00285">Rai et al., 2025</a>. DIA-NN es el programa de los autores. Esta corrida no lo ejecuta. El fichero tiene 213&nbsp;313&nbsp;241 bytes y el SHA-256 de la enmienda. 60 corridas, 897 grupos.</p></article>
-    <article class="fase bloque"><b class="n">2</b><h3>Filtro</h3><p>La celda es la mediana de las filas con q del precursor ≤ 0,01 y q del grupo ≤ 0,01. Entra el grupo si su q global mínimo es ≤ 0,01 y el nombre es humano. Un hueco sigue hueco. Quedan 312 grupos. 307 tienen gen. Los cinco sin gen se conservan: el índice es el grupo.</p></article>
-    <article class="fase bloque"><b class="n">3</b><h3>Contraste oficial</h3><p>Salen, enteras, la biblioteca de contaminantes de Frankenfield y las listas de eritrocitos, plaquetas y coagulación. Quedan 205 proteínas. Las queratinas de piel salen con la biblioteca y vuelven en la versión que las conserva.</p></article>
-    <article class="fase bloque"><b class="n">4</b><h3>Escala</h3><p>La intensidad es lineal y se pasa a log2 una sola vez: <code>log2_de_intensidad_lineal</code>. Un log2FC de 0,585 es un cambio de 1,5 veces.</p></article>
-    <article class="fase bloque"><b class="n">5</b><h3>Treat y equivalencia</h3><p><a href="https://doi.org/10.2202/1544-6115.1027">Smyth, 2004</a> reparte la varianza. <a href="https://doi.org/10.1093/bioinformatics/btp053">McCarthy y Smyth, 2009</a> preguntan si el cambio supera 0,585. <a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">Benjamini y Hochberg, 1995</a> cortan en 0,05. TOST usa el mismo umbral. Cada proteína queda distinta, equivalente, indeterminada o en conflicto.</p></article>
-    <article class="fase bloque"><b class="n">6</b><h3>Otras versiones</h3><p>El mismo contraste se repite con contaminantes, con paneles, ajustado por la puntuación de coagulación, y al nivel de gen con <code>Genes.MaxLFQ</code>. Esas reglas se fijaron antes de ver el efecto.</p></article>
-    <article class="fase bloque"><b class="n">7</b><h3>AUC de una proteína</h3><p>Se pliega el AUC y se mira el máximo de la matriz. El nulo permuta las etiquetas 10&nbsp;000 veces, en tres matrices: humana filtrada, sin contaminantes, y la principal.</p></article>
-    <article class="fase bloque"><b class="n">8</b><h3>Calidad de la muestra</h3><p>Se cuentan precursores. La puntuación de coagulación y la de piel son la mediana de cada lista en puntuación z. Kruskal–Wallis compara grupos. Hodges–Lehmann da la diferencia cáncer menos colonoscopia negativa.</p></article>
-    <article class="fase bloque"><b class="n">9</b><h3>Un modelo</h3><p>Regresión logística con penalización L2. Dentro de cada pliegue se imputa la mediana, se escala y se elige la penalización. Validación de 5 pliegues, 20 repeticiones, 1&nbsp;000 permutaciones. La pregunta es cáncer frente a colonoscopia negativa.</p></article>
-    <article class="fase bloque"><b class="n">10</b><h3>Tejido, aparte</h3><p>La matriz de <a href="https://doi.org/10.1016/j.celrep.2024.113810">Tanaka et al., 2024</a> (<a href="https://www.ebi.ac.uk/pride/archive/projects/PXD034575">PXD034575</a>) pierde 237 filas CON__, REV__ y las marcas de MaxQuant. El cero es ausencia. El contraste es pareado, mínimo 8 pares. El signo se compara con 688 proteínas de <a href="https://doi.org/10.1016/j.cell.2019.03.030">Vasaikar et al., 2019</a> (<a href="https://pdc.cancer.gov/pdc/study/PDC000116">PDC000116</a>). La cohorte del contraste es PXD034575. Las otras no se funden.</p></article>
-    <article class="fase bloque"><b class="n">11</b><h3>Atlas de enfermedades</h3><p>El fichero del Human Protein Atlas trae 60 enfermedades. Una proteína es específica si el colorrectal frente a sanos pasa el corte, está medida en otro cáncer y en una enfermedad que no es cáncer, y ninguna otra enfermedad pasa el mismo corte.</p></article>
-    <article class="fase bloque"><b class="n">12</b><h3>Rejilla</h3><p>48 celdas fijadas de antemano: dos cambios, dos alfas, tres reglas de presencia, contaminantes sí o no, coagulación sí o no. La celda preregistrada es cambio 0,585, alfa 0,05, mínimo de 3, contaminantes fuera y coagulación fuera.</p></article>
-  </div>
-
-  <h2 id="suero">Qué salió del suero</h2>
-  <p class="lead">Fuente: <code>suero_resumen.json</code> y los TSV <code>k4_*.tsv</code>. La barra parte equivalentes, indeterminadas y distintas.</p>
-  <p class="leyenda"><span><i class="eq"></i>Equivalente</span><span><i class="ind"></i>Indeterminada</span><span><i class="dif"></i>Distinta</span></p>
-  <div class="marco">
-  <table>
-    <thead><tr><th>Versión</th><th>Contraste</th><th class="num">n</th><th class="num">Distintas</th><th class="num">Equivalentes</th><th class="num">Indeterminadas</th><th>Composición</th></tr></thead>
-    <tbody>
-      <tr class="bloque"><td>Principal</td><td>Cáncer frente a colonoscopia negativa</td><td class="num">205</td><td class="num">0</td><td class="num">105</td><td class="num">100</td><td><div class="barra-clase" role="img" aria-label="105 equivalentes y 100 indeterminadas"><i class="eq" style="width:51.2%"></i><i class="ind" style="width:48.8%"></i></div></td></tr>
-      <tr class="bloque"><td>Principal</td><td>Cáncer frente a sanos</td><td class="num">205</td><td class="num">2</td><td class="num">104</td><td class="num">99</td><td><div class="barra-clase" role="img" aria-label="2 distintas, 104 equivalentes y 99 indeterminadas"><i class="dif" style="width:1%"></i><i class="eq" style="width:50.7%"></i><i class="ind" style="width:48.3%"></i></div></td></tr>
-      <tr class="bloque"><td>Principal</td><td>Colonoscopia negativa frente a sanos</td><td class="num">205</td><td class="num">0</td><td class="num">128</td><td class="num">77</td><td><div class="barra-clase" role="img" aria-label="128 equivalentes y 77 indeterminadas"><i class="eq" style="width:62.4%"></i><i class="ind" style="width:37.6%"></i></div></td></tr>
-      <tr class="bloque"><td>Con contaminantes</td><td>Cáncer frente a colonoscopia negativa</td><td class="num">312</td><td class="num">0</td><td class="num">170</td><td class="num">142</td><td><div class="barra-clase" role="img" aria-label="170 equivalentes y 142 indeterminadas"><i class="eq" style="width:54.5%"></i><i class="ind" style="width:45.5%"></i></div></td></tr>
-      <tr class="bloque"><td>Con los paneles</td><td>Cáncer frente a colonoscopia negativa</td><td class="num">213</td><td class="num">0</td><td class="num">108</td><td class="num">105</td><td><div class="barra-clase" role="img" aria-label="108 equivalentes y 105 indeterminadas"><i class="eq" style="width:50.7%"></i><i class="ind" style="width:49.3%"></i></div></td></tr>
-      <tr class="bloque"><td>Ajustada por coagulación</td><td>Cáncer frente a colonoscopia negativa</td><td class="num">205</td><td class="num">0</td><td class="num">76</td><td class="num">129</td><td><div class="barra-clase" role="img" aria-label="76 equivalentes y 129 indeterminadas"><i class="eq" style="width:37.1%"></i><i class="ind" style="width:62.9%"></i></div></td></tr>
-      <tr class="bloque"><td>Genes, MaxLFQ</td><td>Cáncer frente a colonoscopia negativa</td><td class="num">199</td><td class="num">0</td><td class="num">100</td><td class="num">99</td><td><div class="barra-clase" role="img" aria-label="100 equivalentes y 99 indeterminadas"><i class="eq" style="width:50.3%"></i><i class="ind" style="width:49.7%"></i></div></td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="bloque">En ninguna versión el cáncer se separa de la colonoscopia negativa. Frente a sanos pasan SAA1 (P0DJI8), log2FC 3,033 y FDR 0,000483, y LBP (P18428), log2FC 1,254 y FDR 0,00220. Son las únicas filas <code>diferente</code> de <code>k4_crc_frente_a_sanos.tsv</code>.</p>
-  <p class="bloque">CHMP4A no entra en las 312: su q global de grupo es 0,037. APOA4 está en la biblioteca de contaminantes y sale de las 205. En la versión que conserva contaminantes, APOA4 baja en la colonoscopia negativa frente a sanos (log2FC −1,323, FDR 0,00713). Esa fila no es el contraste oficial.</p>
-  <p class="bloque">37 proteínas de la matriz filtrada se observan en menos del 70 % de las muestras. Un hueco no se convierte en cero.</p>
-  <p class="bloque">La rejilla de 48 celdas repite la frase. 45 celdas, el 93,75 %, concluyen <code>sin_diferencia</code>.</p>
-  <figure class="bloque">
-    <img src="figuras/multiverso.svg" alt="Barras del multiverso: cuántas de las 48 celdas comparten la conclusión sin diferencia."/>
-    <figcaption>Figura escrita por la corrida, <code>multiverso.json</code>. 45 de 48 celdas concluyen sin diferencia.</figcaption>
-  </figure>
-
-  <h2 id="muestra">Lo que cambia con la muestra</h2>
-  <div class="rejilla">
-    <article class="dato bloque"><strong>0,939</strong><span>AUC máximo sin limpiar: FGB, panel de coagulación. Le siguen KRT5, KRT9 y KRT10. p del nulo 0,00490.</span></article>
-    <article class="dato bloque"><strong>0,865</strong><span>AUC máximo ya limpio: SERPINA3. p del nulo 0,0464. En treat, log2FC 0,564, FDR 1, clase indeterminada.</span></article>
-    <article class="dato bloque"><strong>2&nbsp;934–5&nbsp;576</strong><span>Precursores por corrida. Medianas 4&nbsp;816,5 cáncer, 4&nbsp;755,5 colonoscopia negativa, 4&nbsp;766 sanos.</span></article>
-    <article class="dato bloque"><strong>0,04</strong><span>Cota inferior de arrastre: 13 grupos junto a 312 humanos. La fracción no humana no difiere entre grupos, p = 0,113.</span></article>
-  </div>
-  <div class="fases" style="margin-top:10px">
-    <article class="fase bloque" style="padding-left:16px"><h3>Piel <span class="chip alerta">confusión preanalítica</span></h3><p>p = 3,37 × 10⁻⁶. Diferencia de Hodges–Lehmann +1,193 entre cáncer y colonoscopia negativa.</p></article>
-    <article class="fase bloque" style="padding-left:16px"><h3>Coagulación <span class="chip alerta">confusión preanalítica</span></h3><p>p = 0,000991. Diferencia de Hodges–Lehmann +0,722. El nombre de la corrida no trae la fecha de adquisición y los crudos no se descargaron. El orden de corrida queda como límite.</p></article>
-  </div>
-
-  <h2 id="modelo">El modelo logístico</h2>
-  <div class="modelos">
-    <div>
-      <p class="lead">Única pieza de aprendizaje automático. Ordena cáncer por encima de colonoscopia negativa. El intervalo es el cuantil 2,5 y el 97,5 de los pliegues. Con 1&nbsp;000 permutaciones el p no baja de 0,001. Fase 1. Fuente: <code>ml_suero_permutacion.json</code>.</p>
-      <article class="modelo bloque">
-        <h3>Humanas filtradas <span class="chip ok">p = 0,001</span></h3>
-        <div class="auc"><div class="meta"><span>AUC 0,996</span><span>0,938 a 1,000</span></div><div class="pista" aria-hidden="true"><div class="relleno" style="width:99.2%"></div></div></div>
-        <p>Media del nulo 0,498.</p>
-      </article>
-      <article class="modelo bloque">
-        <h3>Sin contaminantes ni paneles <span class="chip ok">p = 0,001</span></h3>
-        <div class="auc"><div class="meta"><span>AUC 0,981</span><span>0,765 a 1,000</span></div><div class="pista" aria-hidden="true"><div class="relleno" style="width:96.2%"></div></div></div>
-        <p>Media del nulo 0,497. El intervalo baja hasta 0,765.</p>
-      </article>
-      <article class="modelo bloque">
-        <h3>Solo coagulación <span class="chip alerta">control</span></h3>
-        <div class="auc control"><div class="meta"><span>AUC 0,819</span><span>0,570 a 0,984</span></div><div class="pista" aria-hidden="true"><div class="relleno" style="width:63.8%"></div></div></div>
-        <p>Media del nulo 0,504. p = 0,001. Una variable de la muestra ya separa los grupos.</p>
-      </article>
-    </div>
-    <aside class="aviso bloque">
-      <h3>Cómo leer el 0,981</h3>
-      <p>Las tres entradas rechazan el nulo. La coagulación sola también. Con 20 personas por grupo, el grupo y el proceso de la muestra van juntos.</p>
-      <p>No se ejecutaron ESM-2, ProtT5, TMbed, Light Attention, MHCflurry ni MOFA+. No se repitió la búsqueda de espectros.</p>
-    </aside>
-  </div>
-
-  <h2 id="tejido">Qué salió del tejido</h2>
-  <p class="lead">Otra pregunta: si el cambio del primario frente a su mucosa se repite en CPTAC. Fuente: <code>k1_etiquetas.json</code>. 16 pares. Nadie se excluye por hígado, mucosa o cromosoma Y. P es primario, M es metástasis hepática, N es mucosa.</p>
-  <div class="marco">
-  <table>
-    <thead><tr><th>Contraste</th><th>Mismo signo</th><th>Intervalo</th><th class="num">Spearman</th><th class="num">Lin</th></tr></thead>
-    <tbody>
-      <tr class="bloque"><td>Primario frente a mucosa, pareado</td><td>89 / 90</td><td>0,940 a 0,9997</td><td class="num">0,713</td><td class="num">0,704</td></tr>
-      <tr class="bloque"><td>Metástasis hepática frente a mucosa</td><td>69 / 82</td><td>0,744 a 0,913</td><td class="num">0,680</td><td class="num">0,390</td></tr>
-      <tr class="bloque"><td>Primario frente a mucosa, sin parear</td><td>95 / 98</td><td>0,913 a 0,994</td><td class="num">0,682</td><td class="num">0,689</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="bloque">H1 queda en <code>rechaza_h1</code>. Para sostenerla, el límite superior del intervalo tenía que quedar por debajo de 0,70. En el primario está en 0,9997. Cobertura: 90 de 688 proteínas certificadas.</p>
-  <div class="chips bloque">
-    <span class="chip ok">Permutación del signo: mediana 0, pasa</span>
-    <span class="chip wait">CA1, AQP8, SLC26A3, GUCA2A: sin evaluar</span>
-    <span class="chip ok">Matriz principal sin identificadores marcados</span>
-    <span class="chip ok">13 queratinas de piel; el AUC máximo baja de 0,939 a 0,865</span>
-  </div>
-
-  <h2 id="huecos">Lo que esta corrida no calculó</h2>
-  <p class="lead">Filas de <code>hipotesis_v3_2.tsv</code>. Un motivo no es un resultado a favor ni en contra.</p>
-  <div class="estados">
-    <article class="estado bloque"><h3>H5 <span class="chip off">no disponible</span></h3><p>Otros carcinomas. El de endometrio no tiene 8 pares con el mismo identificador. El mínimo no se bajó.</p></article>
-    <article class="estado bloque"><h3>H6 <span class="chip wait">no evaluable</span></h3><p>Origen celular. La matriz de referencia está en disco. Este corte no ajusta la interacción.</p></article>
-    <article class="estado bloque"><h3>H7 <span class="chip wait">no evaluable</span></h3><p>Secuencia. Álvez y Wannberg publican estadísticas, no una matriz de muestras. Los modelos de secuencia no se ejecutaron. No hay AUC de H7.</p></article>
-    <article class="estado bloque"><h3>H8 <span class="chip off">no disponible</span></h3><p>Estadio. PXD064655 no está en el disco.</p></article>
-    <article class="estado bloque"><h3>H9 <span class="chip off">requiere acceso</span></h3><p>UKB-PPP. Las estadísticas están en Synapse, con cuenta y condiciones. El programa no se autentica.</p></article>
-    <article class="estado bloque"><h3>H10 <span class="chip wait">no evaluable</span></h3><p>De 1&nbsp;165 proteínas, 0 cumplen la regla de ser específicas del colorrectal, en 60 enfermedades. El preregistro no fija un número para sostener o refutar, así que el conteo se publica y el veredicto no se inventa.</p></article>
-    <article class="estado bloque"><h3>H2, H3, H4 <span class="chip wait">no evaluables</span></h3><p>Se heredan de la corrida anterior y no se recalculan.</p></article>
-    <article class="estado bloque"><h3>Lectura de un número</h3><p>La frase del suero sale de las 205 y de la colonoscopia negativa. SAA1 y LBP separan el cáncer de los sanos. El AUC ordena personas; treat decide el cambio. 89 de 90 es tejido contra tejido.</p></article>
-  </div>
-  <p class="vacio" id="vacio">Ninguna sección contiene ese texto.</p>
+<p><a href="#contenido">Saltar al contenido</a></p>
+<h1 id="contenido">OncoGO-CRC, corrida v3.3</h1>
+<p>Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<p>No se detecta diferencia; 166 proteínas son equivalentes</p>
+<p>La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra.</p>
+<p>H1: rechaza_h1. Frágil a la normalización: False.</p>
+<p>H5: refuta. H7: refuta. H10: descriptiva, 5 proteínas específicas, fase 1.</p>
+<h2>Controles del tejido</h2>
+<ul><li>CA1: pasa, observado -2.314058303758073</li><li>AQP8: falla, observado no_evaluable</li><li>SLC26A3: falla, observado no_evaluable</li><li>GUCA2A: falla, observado no_evaluable</li></ul>
+<p>Con AQP8, SLC26A3 y GUCA2A en falla, las etiquetas de tumor y mucosa no quedan confirmadas.</p>
+<h2>Lo que esta corrida no cierra</h2>
+<ul>
+<li>Variables que H7 lista como faltantes: especificidad_tisular, origen_celular_h6, presencia_en_vesiculas_pxd033236, esm2_t12_35M_pca5, tmbed_helices_tm, tmbed_peptido_senal, papier_2024.</li>
+<li>El multiverso calculado tiene 48 celdas. H5, H7 y H10 no dependen de estas celdas del suero. No se recalculan en cada una.</li>
+</ul>
+<h2>Figuras</h2>
+<figure><img src="figuras/F1.png" alt="Resumen de la corrida"><figcaption>Resumen de la corrida. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F2.png" alt="Grupos que quedan en el contraste principal"><figcaption>Grupos que quedan en el contraste principal. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F3.png" alt="Indicadores de calidad por grupo"><figcaption>Indicadores de calidad por grupo. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F4.png" alt="log2FC del contraste principal"><figcaption>log2FC del contraste principal. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F5.png" alt="AUC de v3.2 y de v3.3"><figcaption>AUC de v3.2 y de v3.3. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F6.png" alt="AUC de ruido con y sin filas duplicadas"><figcaption>AUC de ruido con y sin filas duplicadas. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F7.png" alt="Controles del tejido"><figcaption>Controles del tejido. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F8.png" alt="log2FC antes y después del centrado"><figcaption>log2FC antes y después del centrado. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F9.png" alt="De las proteínas certificadas a las específicas"><figcaption>De las proteínas certificadas a las específicas. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F10.png" alt="Clases de H5"><figcaption>Clases de H5. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F11.png" alt="Rejilla del multiverso de K4"><figcaption>Rejilla del multiverso de K4. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F12.png" alt="Curvas de H7"><figcaption>Curvas de H7. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F13.png" alt="Proteínas de partida en el atlas"><figcaption>Proteínas de partida en el atlas. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F14.png" alt="Fase de Pepe de esta corrida"><figcaption>Fase de Pepe de esta corrida. Fuente: results/v3_3.</figcaption></figure>
+<h2>Qué cambió frente a v3.2</h2>
+<table>
+<thead><tr><th>Cifra</th><th>v3.2</th><th>v3.3</th><th>Causa</th></tr></thead>
+<tbody><tr><td>n_principal</td><td>205</td><td>284</td><td>2.1</td></tr><tr><td>frase_suero</td><td>No se detecta diferencia; 105 proteínas son equivalentes</td><td>No se detecta diferencia; 166 proteínas son equivalentes</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_colonoscopia_negativa.n</td><td>205</td><td>284</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_colonoscopia_negativa.equivalente</td><td>105</td><td>166</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_colonoscopia_negativa.indeterminada</td><td>100</td><td>118</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_sanos.n</td><td>205</td><td>284</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_sanos.diferente</td><td>2</td><td>3</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_sanos.equivalente</td><td>104</td><td>154</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_sanos.indeterminada</td><td>99</td><td>127</td><td>2.1</td></tr><tr><td>principal.colonoscopia_negativa_frente_a_sanos.n</td><td>205</td><td>284</td><td>2.1</td></tr><tr><td>principal.colonoscopia_negativa_frente_a_sanos.diferente</td><td>0</td><td>1</td><td>2.1</td></tr><tr><td>principal.colonoscopia_negativa_frente_a_sanos.equivalente</td><td>128</td><td>194</td><td>2.1</td></tr><tr><td>principal.colonoscopia_negativa_frente_a_sanos.indeterminada</td><td>77</td><td>89</td><td>2.1</td></tr><tr><td>primario_frente_a_mucosa</td><td>89/90</td><td>147/147</td><td>2.3</td></tr><tr><td>metastasis_hepatica_frente_a_mucosa</td><td>69/82</td><td>116/143</td><td>2.3</td></tr><tr><td>primario_frente_a_mucosa_no_pareado</td><td>95/98</td><td>155/157</td><td>2.3</td></tr><tr><td>h1_fragil_a_normalizacion</td><td>no_calculado</td><td>False</td><td>2.4</td></tr><tr><td>mediana_log2fc_pareado</td><td>no_calculado</td><td>0.1792660486145855</td><td>2.4</td></tr><tr><td>mediana_log2fc_pareado_centrado</td><td>0.1792660486145855</td><td>0.08045971886685321</td><td>2.4</td></tr><tr><td>deming_intercepto</td><td>0.771543426701222</td><td>0.6503090482500555</td><td>2.4</td></tr><tr><td>ml.M1_proteinas_filtrada_humana.auc_oof_media</td><td>0.99625</td><td>0.9466249999999998</td><td>2.2</td></tr><tr><td>ml.M2_proteinas_principal.auc_oof_media</td><td>0.9809375</td><td>0.88025</td><td>2.2</td></tr><tr><td>ml.M4_solo_coagulacion.auc_oof_media</td><td>0.81875</td><td>0.818375</td><td>2.2</td></tr><tr><td>ml.M4_solo_coagulacion.p_permutacion</td><td>0.000999000999000999</td><td>0.001998001998001998</td><td>2.2</td></tr><tr><td>titular_ml</td><td>no_calculado</td><td>separacion_explicada_por_calidad</td><td>2.2</td></tr><tr><td>h5.estado</td><td>no_disponible</td><td>refuta</td><td>2.5</td></tr><tr><td>h5.fraccion_pan_carcinoma</td><td>no_calculado</td><td>0.11858974358974358</td><td>2.5</td></tr><tr><td>h10.estado</td><td>calculado</td><td>descriptiva</td><td>2.6</td></tr><tr><td>h10.n_especificas_crc</td><td>0</td><td>5</td><td>2.6</td></tr><tr><td>h7.estado</td><td>no_evaluable</td><td>refuta</td><td>2.7</td></tr><tr><td>control.CA1.pasa</td><td>no_evaluable</td><td>pasa</td><td>2.3</td></tr><tr><td>control.AQP8.pasa</td><td>no_evaluable</td><td>falla</td><td>2.3</td></tr><tr><td>control.SLC26A3.pasa</td><td>no_evaluable</td><td>falla</td><td>2.3</td></tr><tr><td>control.GUCA2A.pasa</td><td>no_evaluable</td><td>falla</td><td>2.3</td></tr></tbody>
+</table>
+<p><a href="lectura-31-oct.html">Lectura del 31 de octubre, histórica.</a> <a href="simulador.html">Simulador del intervalo de una AUC.</a></p>
+<p>Los números de esta página los escribe <code>scripts/v3/exportar_sitio.py</code> desde <code>results/v3_3/</code>.</p>
 </main>
-<footer>
-  Corrida v3.2 del 6 de noviembre de 2026. Sello del suero: commit 293e6ee, árbol limpio, semilla 20260914, umbral treat 0,585, alfa 0,05. Los certificados de la versión 1, de la versión 2 y de <code>results/v3/</code> no se reescribieron. Los 60 crudos de Thermo no se descargaron.
-</footer>
-<script>
-const filtro = document.querySelector("#filtro");
-const vacio = document.querySelector("#vacio");
-const avance = document.querySelector(".avance");
-function aplicar() {
-  const t = (filtro.value || "").trim().toLowerCase();
-  let vistos = 0;
-  document.querySelectorAll(".bloque").forEach((el) => {
-    const entra = t.length < 2 || el.textContent.toLowerCase().includes(t);
-    el.hidden = !entra;
-    if (entra) vistos += 1;
-  });
-  vacio.hidden = t.length < 2 || vistos > 0;
-}
-filtro.addEventListener("input", aplicar);
-document.addEventListener("scroll", () => {
-  const h = document.documentElement;
-  const p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
-  avance.style.transform = "scaleX(" + p + ")";
-}, { passive: true });
-document.querySelectorAll('a[href^="http"]').forEach((a) => {
-  a.target = "_blank";
-  a.rel = "noopener noreferrer";
-});
-</script>
 </body>
 </html>

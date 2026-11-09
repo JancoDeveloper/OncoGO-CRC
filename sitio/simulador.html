@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador del intervalo de una AUC</title>
+<style>
+  body { font-family:"Avenir Next","Segoe UI",sans-serif; max-width:40rem; margin:1.5rem auto; line-height:1.5; color:#142028; }
+  label { display:block; margin-top:0.8rem; }
+  output { display:block; margin-top:1rem; font-size:1.1rem; }
+</style>
+</head>
+<body>
+<p><a href="index.html">Volver a la corrida v3.3</a></p>
+<h1>Anchura del intervalo de una AUC</h1>
+<p>Esta página no usa un resultado del estudio. Aplica la fórmula de Hanley y McNeil (1982) a los dos números que escriba el lector. Riley y colaboradores (2020) advierten que el tamaño de un modelo de predicción no se decide solo con este intervalo.</p>
+<form>
+<label>AUC esperada <input id="auc" type="number" min="0.5" max="0.99" step="0.01" value="0.70"></label>
+<label>Muestras en el grupo 1 <input id="n1" type="number" min="2" step="1" value="20"></label>
+<label>Muestras en el grupo 0 <input id="n0" type="number" min="2" step="1" value="20"></label>
+</form>
+<output id="salida"></output>
+<noscript><p>Sin JavaScript, la fórmula queda escrita: el error estándar es la raíz de [AUC(1−AUC) + (n1−1)(Q1−AUC²) + (n0−1)(Q2−AUC²)] / (n1 n0), con Q1 = AUC/(2−AUC) y Q2 = 2 AUC²/(1+AUC). La anchura del intervalo del 95 % es 2 × 1,96 × ese error.</p></noscript>
+<script>
+function calcular() {
+  const auc = Number(document.getElementById("auc").value);
+  const n1 = Number(document.getElementById("n1").value);
+  const n0 = Number(document.getElementById("n0").value);
+  const q1 = auc / (2 - auc);
+  const q2 = 2 * auc * auc / (1 + auc);
+  const varianza = auc * (1 - auc) + (n1 - 1) * (q1 - auc * auc) + (n0 - 1) * (q2 - auc * auc);
+  const se = Math.sqrt(varianza / (n1 * n0));
+  const anchura = 2 * 1.96 * se;
+  document.getElementById("salida").textContent = "Anchura aproximada del intervalo del 95 %: " + anchura.toFixed(3) + ". No es un resultado de OncoGO-CRC.";
+}
+document.querySelectorAll("input").forEach((campo) => campo.addEventListener("input", calcular));
+calcular();
+</script>
+</body>
+</html>

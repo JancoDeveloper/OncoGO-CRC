@@ -1,0 +1,395 @@
+{
+  "certificado": {
+    "estado": "calculado",
+    "faltan": [],
+    "frase_suero": "No se detecta diferencia; 166 proteínas son equivalentes",
+    "h1": "rechaza_h1",
+    "advertencia": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.",
+    "titular_ml": {
+      "clave": "separacion_explicada_por_calidad",
+      "texto": "La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra.",
+      "regla": "enmienda_v3_3.ml_suero.titular"
+    },
+    "h1_fragil_a_normalizacion": false,
+    "h5": {
+      "estado": "refuta",
+      "fraccion_pan_carcinoma": 0.11858974358974358,
+      "conteo": {
+        "pan_carcinoma": 74,
+        "especifica_colon": 127,
+        "intermedia": 423
+      },
+      "carcinomas_disponibles": [
+        "CCRCC",
+        "HNSCC",
+        "LSCC",
+        "LUAD",
+        "OV",
+        "PDAC"
+      ],
+      "carcinomas_excluidos": {
+        "UCEC": "no tiene 8 pares con el mismo identificador"
+      }
+    },
+    "h7": {
+      "estado": "refuta",
+      "por_recurso": {
+        "alvez_2023": {
+          "estado": "calculado",
+          "auc": 0.5027138795554407,
+          "ic95_bajo": 0.4013698630136987,
+          "ic95_alto": 0.6068945463944171,
+          "pendiente_calibracion": -0.05374837254654083,
+          "intercepto_calibracion": -0.3306610521220405,
+          "n_pos": 53,
+          "n_neg": 73
+        },
+        "hpa_disease_blood_atlas": {
+          "estado": "calculado",
+          "auc": 0.5022461814914645,
+          "ic95_bajo": 0.39770140760706796,
+          "ic95_alto": 0.6085729260257562,
+          "pendiente_calibracion": -0.06848368487085052,
+          "intercepto_calibracion": -0.19355375914620906,
+          "n_pos": 53,
+          "n_neg": 63
+        }
+      },
+      "variables_faltantes": [
+        "especificidad_tisular",
+        "origen_celular_h6",
+        "presencia_en_vesiculas_pxd033236",
+        "esm2_t12_35M_pca5",
+        "tmbed_helices_tm",
+        "tmbed_peptido_senal",
+        "papier_2024"
+      ],
+      "modelo_secundario": {
+        "estado": "calculado",
+        "recurso": "alvez_2023",
+        "auc_base": 0.4652364952184027,
+        "auc_completo": 0.5027138795554407,
+        "incremento": 0.037477384337037956,
+        "nota": "El completo usa las variables que existen. ESM-2 y TMbed no entraron: quedan fuera del principal."
+      }
+    },
+    "h10": {
+      "estado": "descriptiva",
+      "fase_pepe": 1,
+      "n_especificas_crc": 5,
+      "conteo": {
+        "no_elevada_frente_a_sanos": 1074,
+        "no_especifica": 80,
+        "especifica_frente_a_enfermedades": 6,
+        "especifica_crc": 5
+      },
+      "valores_de_control": [
+        "All other diseases",
+        "Class",
+        "Healthy"
+      ]
+    }
+  },
+  "controles_mucosa": [
+    {
+      "control": "CA1",
+      "observado": "-2.314058303758073",
+      "pasa": "pasa"
+    },
+    {
+      "control": "AQP8",
+      "observado": "no_evaluable",
+      "pasa": "falla"
+    },
+    {
+      "control": "SLC26A3",
+      "observado": "no_evaluable",
+      "pasa": "falla"
+    },
+    {
+      "control": "GUCA2A",
+      "observado": "no_evaluable",
+      "pasa": "falla"
+    }
+  ],
+  "multiverso": {
+    "conclusion_preregistrada": "sin_diferencia",
+    "fraccion_de_celdas_con_esa_conclusion": 0.9375,
+    "n_celdas": 48,
+    "nota": "H5, H7 y H10 no dependen de estas celdas del suero. No se recalculan en cada una."
+  },
+  "changelog": [
+    {
+      "metrica": "n_principal",
+      "valor_v3_2": "205",
+      "valor_v3_3": "284",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "frase_suero",
+      "valor_v3_2": "No se detecta diferencia; 105 proteínas son equivalentes",
+      "valor_v3_3": "No se detecta diferencia; 166 proteínas son equivalentes",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.crc_frente_a_colonoscopia_negativa.n",
+      "valor_v3_2": "205",
+      "valor_v3_3": "284",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.crc_frente_a_colonoscopia_negativa.equivalente",
+      "valor_v3_2": "105",
+      "valor_v3_3": "166",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.crc_frente_a_colonoscopia_negativa.indeterminada",
+      "valor_v3_2": "100",
+      "valor_v3_3": "118",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.crc_frente_a_sanos.n",
+      "valor_v3_2": "205",
+      "valor_v3_3": "284",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.crc_frente_a_sanos.diferente",
+      "valor_v3_2": "2",
+      "valor_v3_3": "3",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.crc_frente_a_sanos.equivalente",
+      "valor_v3_2": "104",
+      "valor_v3_3": "154",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.crc_frente_a_sanos.indeterminada",
+      "valor_v3_2": "99",
+      "valor_v3_3": "127",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.colonoscopia_negativa_frente_a_sanos.n",
+      "valor_v3_2": "205",
+      "valor_v3_3": "284",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.colonoscopia_negativa_frente_a_sanos.diferente",
+      "valor_v3_2": "0",
+      "valor_v3_3": "1",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.colonoscopia_negativa_frente_a_sanos.equivalente",
+      "valor_v3_2": "128",
+      "valor_v3_3": "194",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "principal.colonoscopia_negativa_frente_a_sanos.indeterminada",
+      "valor_v3_2": "77",
+      "valor_v3_3": "89",
+      "causa": 2.1,
+      "fichero": "suero_resumen.json",
+      "nota": ""
+    },
+    {
+      "metrica": "primario_frente_a_mucosa",
+      "valor_v3_2": "89/90",
+      "valor_v3_3": "147/147",
+      "causa": 2.3,
+      "fichero": "k1_etiquetas.json",
+      "nota": ""
+    },
+    {
+      "metrica": "metastasis_hepatica_frente_a_mucosa",
+      "valor_v3_2": "69/82",
+      "valor_v3_3": "116/143",
+      "causa": 2.3,
+      "fichero": "k1_etiquetas.json",
+      "nota": ""
+    },
+    {
+      "metrica": "primario_frente_a_mucosa_no_pareado",
+      "valor_v3_2": "95/98",
+      "valor_v3_3": "155/157",
+      "causa": 2.3,
+      "fichero": "k1_etiquetas.json",
+      "nota": ""
+    },
+    {
+      "metrica": "h1_fragil_a_normalizacion",
+      "valor_v3_2": "no_calculado",
+      "valor_v3_3": "False",
+      "causa": 2.4,
+      "fichero": "k1_etiquetas.json",
+      "nota": ""
+    },
+    {
+      "metrica": "mediana_log2fc_pareado",
+      "valor_v3_2": "no_calculado",
+      "valor_v3_3": "0.1792660486145855",
+      "causa": 2.4,
+      "fichero": "k1_sensibilidad_normalizacion.json",
+      "nota": "v3.2 no escribió esta sensibilidad. El valor nuevo es el de antes de centrar."
+    },
+    {
+      "metrica": "mediana_log2fc_pareado_centrado",
+      "valor_v3_2": "0.1792660486145855",
+      "valor_v3_3": "0.08045971886685321",
+      "causa": 2.4,
+      "fichero": "k1_sensibilidad_normalizacion.json",
+      "nota": ""
+    },
+    {
+      "metrica": "deming_intercepto",
+      "valor_v3_2": "0.771543426701222",
+      "valor_v3_3": "0.6503090482500555",
+      "causa": 2.4,
+      "fichero": "k1_sensibilidad_normalizacion.json",
+      "nota": "Antes y después del centrado por mediana, en la misma corrida v3.3."
+    },
+    {
+      "metrica": "ml.M1_proteinas_filtrada_humana.auc_oof_media",
+      "valor_v3_2": "0.99625",
+      "valor_v3_3": "0.9466249999999998",
+      "causa": 2.2,
+      "fichero": "ml_suero_permutacion.json",
+      "nota": "v3.2 informa el AUC medio de pliegues con muestras duplicadas. v3.3 informa el AUC fuera de pliegue con 40 filas."
+    },
+    {
+      "metrica": "ml.M2_proteinas_principal.auc_oof_media",
+      "valor_v3_2": "0.9809375",
+      "valor_v3_3": "0.88025",
+      "causa": 2.2,
+      "fichero": "ml_suero_permutacion.json",
+      "nota": "v3.2 informa el AUC medio de pliegues con muestras duplicadas. v3.3 informa el AUC fuera de pliegue con 40 filas."
+    },
+    {
+      "metrica": "ml.M4_solo_coagulacion.auc_oof_media",
+      "valor_v3_2": "0.81875",
+      "valor_v3_3": "0.818375",
+      "causa": 2.2,
+      "fichero": "ml_suero_permutacion.json",
+      "nota": "v3.2 informa el AUC medio de pliegues con muestras duplicadas. v3.3 informa el AUC fuera de pliegue con 40 filas."
+    },
+    {
+      "metrica": "ml.M4_solo_coagulacion.p_permutacion",
+      "valor_v3_2": "0.000999000999000999",
+      "valor_v3_3": "0.001998001998001998",
+      "causa": 2.2,
+      "fichero": "ml_suero_permutacion.json",
+      "nota": "v3.2 informa el AUC medio de pliegues con muestras duplicadas. v3.3 informa el AUC fuera de pliegue con 40 filas."
+    },
+    {
+      "metrica": "titular_ml",
+      "valor_v3_2": "no_calculado",
+      "valor_v3_3": "separacion_explicada_por_calidad",
+      "causa": 2.2,
+      "fichero": "ml_suero_permutacion.json",
+      "nota": ""
+    },
+    {
+      "metrica": "h5.estado",
+      "valor_v3_2": "no_disponible",
+      "valor_v3_3": "refuta",
+      "causa": 2.5,
+      "fichero": "h5_especificidad_organo.json",
+      "nota": ""
+    },
+    {
+      "metrica": "h5.fraccion_pan_carcinoma",
+      "valor_v3_2": "no_calculado",
+      "valor_v3_3": "0.11858974358974358",
+      "causa": 2.5,
+      "fichero": "h5_especificidad_organo.json",
+      "nota": ""
+    },
+    {
+      "metrica": "h10.estado",
+      "valor_v3_2": "calculado",
+      "valor_v3_3": "descriptiva",
+      "causa": 2.6,
+      "fichero": "h10_especificidad.json",
+      "nota": ""
+    },
+    {
+      "metrica": "h10.n_especificas_crc",
+      "valor_v3_2": "0",
+      "valor_v3_3": "5",
+      "causa": 2.6,
+      "fichero": "h10_especificidad.json",
+      "nota": "v3.2 guardó el recuento en n_especificas. v3.3 lo guarda en n_especificas_crc."
+    },
+    {
+      "metrica": "h7.estado",
+      "valor_v3_2": "no_evaluable",
+      "valor_v3_3": "refuta",
+      "causa": 2.7,
+      "fichero": "h7_visibilidad_en_sangre.json",
+      "nota": "En v3.2 el estado estaba escrito en la tabla de hipótesis, sin modelo."
+    },
+    {
+      "metrica": "control.CA1.pasa",
+      "valor_v3_2": "no_evaluable",
+      "valor_v3_3": "pasa",
+      "causa": 2.3,
+      "fichero": "controles.tsv",
+      "nota": ""
+    },
+    {
+      "metrica": "control.AQP8.pasa",
+      "valor_v3_2": "no_evaluable",
+      "valor_v3_3": "falla",
+      "causa": 2.3,
+      "fichero": "controles.tsv",
+      "nota": ""
+    },
+    {
+      "metrica": "control.SLC26A3.pasa",
+      "valor_v3_2": "no_evaluable",
+      "valor_v3_3": "falla",
+      "causa": 2.3,
+      "fichero": "controles.tsv",
+      "nota": ""
+    },
+    {
+      "metrica": "control.GUCA2A.pasa",
+      "valor_v3_2": "no_evaluable",
+      "valor_v3_3": "falla",
+      "causa": 2.3,
+      "fichero": "controles.tsv",
+      "nota": ""
+    }
+  ]
+}
