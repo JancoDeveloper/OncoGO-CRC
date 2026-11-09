@@ -182,3 +182,11 @@ Comando: `make v3-3-hipotesis`, `make v3-3-report` y `python scripts/v3/demostra
 Resultado. `results/v3_3/certificado_v3_3.json` y `changelog_numeros.tsv`. Suero principal: 284 proteínas, 0 diferentes, 166 equivalentes, 118 indeterminadas. Titular: `separacion_explicada_por_calidad`. H1 `rechaza_h1`, 147/147, no frágil a la normalización. H5 `refuta`, fracción pan-carcinoma 0,1186. H7 `refuta`. H10 descriptiva, 5 específicas. CA1 pasa. AQP8, SLC26A3 y GUCA2A fallan. El ruido sin duplicar da AUC 0,475 y, duplicado, 0,93125.
 
 Decisión. Esos ficheros entran en el repositorio. No se publican: los tres controles del tejido no pasan, el multiverso completo no está calculado y ESM-2 y TMbed no corrieron.
+
+## 2026-11-09 15:55 (UTC−5). v3.3, guion de figuras
+
+Comando: `ruff check scripts/v3/figuras_v3_3.py`.
+
+Resultado. El guion lee `results/v3_3/` y escribe F1 a F14 en PNG y SVG. El título de F1 es el texto del titular. F7 dice que AQP8, SLC26A3 y GUCA2A no tienen log2FC.
+
+Decisión. El guion se commitea antes de firmar las figuras, porque el sello exige árbol limpio.
