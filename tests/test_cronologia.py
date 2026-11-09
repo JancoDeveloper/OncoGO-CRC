@@ -71,6 +71,30 @@ def test_enmienda_v3_3_es_anterior_a_sus_resultados():
         assert _es_anterior(enmienda, resultados)
 
 
+def test_enmienda_v3_4_es_anterior_a_sus_resultados():
+    enmienda = _introduce_clave("enmienda_v3_4:")
+    resultados = _primero_que_anade("results/v3_4")
+    if not enmienda and not resultados:
+        return
+    if resultados and not enmienda:
+        raise AssertionError("hay results/v3_4 sin la enmienda v3.4")
+    if enmienda and resultados:
+        assert _es_anterior(enmienda, resultados)
+
+
+def test_v3_3_no_cambia_despues_de_la_etiqueta():
+    proceso = subprocess.run(
+        ["git", "rev-parse", "--verify", "v3.3-final"],
+        cwd=REPO,
+        capture_output=True,
+        text=True,
+    )
+    if proceso.returncode != 0:
+        pytest.skip("la etiqueta v3.3-final no está en este clon")
+    posteriores = _git("rev-list", "v3.3-final..HEAD", "--", "results/v3_3")
+    assert posteriores.strip() == ""
+
+
 def test_v3_2_no_cambia_despues_de_la_etiqueta():
     etiqueta = _git("rev-parse", "v3.2-final")
     assert etiqueta.strip()

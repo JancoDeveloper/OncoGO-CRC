@@ -230,3 +230,19 @@ Comando: `python tesis-ucaldas/build_word.py`.
 Resultado. El documento se reconstruye desde la plantilla y los capítulos. La sección «Corrida v3.3» entra con 284, 166 y 147/147. Las macros de `cifras.tex` se sustituyen antes de quitar los comandos. No hay LuaLaTeX en el equipo, así que el PDF no se compiló.
 
 Decisión. El Word se regenera. El PDF/A y Firebase siguen esperando el checklist.
+
+## 2026-11-09 16:22 (UTC−5). v3.4, Fase 0
+
+Comando: `git checkout main`, `git fetch origin`, `git pull --ff-only origin main`, `python scripts/v3/congelar_manifiestos.py --carpeta results/v3_3 --salida results/v3_3_manifest.sha256`, `pytest tests/test_cronologia.py tests/test_v3_3_congelado.py`.
+
+Resultado. `main` en `4f85911`, limpio y al día con `origin/main`. El SHA-256 del report DIA-NN es `A8A5AADD74391AFEF68CF4D6C3A7D3860023101E5C92590E2E87C152A39E59E8`. El manifiesto resume 189 ficheros en `results/v3_3_manifest.sha256`. La etiqueta `v3.3-final` apunta a `4f85911`. En el disco externo hay 460 GB libres y 4 crudos de PXD055218, no los 60.
+
+Decisiones, con el valor por defecto del encargo:
+
+- Firebase sí, solo si el checklist de la sección 18 queda en verde.
+- El PDF se entrega como zip de Overleaf. No se instala MacTeX.
+- ESM-2 y TMbed sí: el disco externo tiene más de 20 GB libres.
+- El orden de adquisición se intenta solo si están los 60 crudos. Con 4, la etapa queda `no_disponible`.
+- H9 no se intenta. Queda `requiere_acceso`.
+
+Tests. `test_enmienda_v3_4_es_anterior_a_sus_resultados` y `test_el_manifiesto_de_v3_3_sigue_igual` no existían y fallaban por ausencia; pasan al añadir el manifiesto y la guarda de cronología.

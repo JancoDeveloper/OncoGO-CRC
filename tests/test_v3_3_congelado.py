@@ -21,6 +21,25 @@ def _sha256(path: Path) -> str:
     return resumen.hexdigest()
 
 
+def _coincide(carpeta: Path, manifiesto: Path) -> None:
+    if not carpeta.is_dir() or not manifiesto.is_file():
+        pytest.skip(f"{carpeta.name} no está en este entorno")
+    esperado = {}
+    for linea in manifiesto.read_text(encoding="utf-8").splitlines():
+        if not linea.strip():
+            continue
+        digest, _, rel = linea.partition("  ")
+        esperado[rel] = digest
+    actual = {}
+    for path in sorted(p for p in carpeta.rglob("*") if p.is_file() and not p.name.startswith("._") and p.name != ".DS_Store"):
+        actual[str(path.relative_to(REPO))] = _sha256(path)
+    assert actual == esperado
+
+
+def test_el_manifiesto_de_v3_3_sigue_igual():
+    _coincide(REPO / "results" / "v3_3", REPO / "results" / "v3_3_manifest.sha256")
+
+
 def test_el_manifiesto_de_v3_2_sigue_igual():
     carpeta = REPO / "results" / "v3_2"
     manifiesto = REPO / "results" / "v3_2_manifest.sha256"

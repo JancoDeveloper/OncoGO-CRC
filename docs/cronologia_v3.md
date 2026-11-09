@@ -29,3 +29,20 @@ Tres commits se publicaron fuera de la lista de prefijos del encargo. `50caef8` 
 | 2026-11-09T13:14:21-05:00 | `35fad60` | feat | feat: la corrida v3.2 queda en el repositorio El encargo lo cuenta sin prefijo; el mensaje real empieza por feat. | resultados |
 | 2026-11-09T13:17:46-05:00 | `50caef8` | sin prefijo | resultados Sin prefijo, como quedó publicado. | documentación |
 | 2026-11-09T13:30:30-05:00 | `c2be8e4` | sin prefijo | update doc Sin prefijo, como quedó publicado. | código |
+
+## v3.3, del 9 de noviembre de 2026
+
+La etiqueta `v3.3-final` apunta a `4f85911`. Los resultados de suero, tejido y multiverso se sellaron en `cfdb387`. Hipótesis e informe se sellaron en `73c6ca6`. Python 3.14.3 y semilla base 20260914.
+
+La revisión del mismo día encontró tres errores de implementación que v3.4 corrige: el submuestreo de H5 no completaba ninguna repetición, las concordancias de H5 no usaban el mismo universo, y el certificado no listaba las casillas en rojo. Los controles de mucosa marcaron como falla lo que no está en el proteinGroups.
+
+Una URL `raw.githubusercontent.com/.../main/...` sirvió durante esa revisión una copia en caché de `src/oncogo_crc/v3/h5.py`, anterior al parche de H5. Cualquier comprobación contra GitHub usa el SHA del commit en la URL.
+
+La sección 0.2 del prompt v3.3 pedía parar si un control positivo del tejido fallaba. La corrida siguió después de anotar AQP8, SLC26A3 y GUCA2A, y no hizo push.
+
+| Fecha | Commit | Prefijo | Qué cambió |
+|---|---|---|---|
+| 2026-11-09T14:28:04-05:00 | `a07dcd7` | chore | congelar v3.2 |
+| 2026-11-09T14:29:09-05:00 | `0edf54a` | prereg | enmienda v3.3 |
+| 2026-11-09T15:41:09-05:00 | `f8057c6` | feat | resultados v3.3 |
+| 2026-11-09T15:51:38-05:00 | `4f85911` | tesis | Word regenerado. Etiqueta v3.3-final |
