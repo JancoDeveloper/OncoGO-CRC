@@ -269,4 +269,12 @@ Comando: `pytest tests/test_controles_v34.py`.
 
 Resultado antes del parche: `ModuleNotFoundError: No module named 'oncogo_crc.stages.v3_4_controles'`.
 
-Resultado después: 5 passed. Un gen ausente es `no_detectado`. `n_obs` 4 es `no_evaluable_por_pares`. CA1 con −2,31 es `pasa`. El bloque con QC 16/16 pasa y con QC incompleto falla.
+Resultado después: 5 passed. Un gen ausente es `no_detectado`. `n_obs` 4 es `no_evaluable_por_pares`. CA1 con −2,31 es `pasa`. El bloque con QC 16/16 pasa y con QC incompleto falla. Commit `a9e9c8b`.
+
+## 2026-11-09 17:05 (UTC−5). v3.4, certificado
+
+Comando: el certificado de v3.3 sobre una H7 con variables faltantes, y `pytest tests/test_certificado_v34.py`.
+
+Resultado antes: `armar_certificado` de v3.3 devuelve estado `calculado` y `faltan` `[]`.
+
+Resultado después: 1 passed. El certificado queda `incompleto` y nombra `h7_variables` y `h7_constructos`.
