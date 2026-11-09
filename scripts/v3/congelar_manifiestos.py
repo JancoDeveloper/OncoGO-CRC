@@ -13,6 +13,7 @@ Los dos primeros cubren lo ya calculado. El tercero repite las entradas que
 
 from __future__ import annotations
 
+import argparse
 import importlib.util
 import sys
 from pathlib import Path
@@ -44,7 +45,40 @@ def _escribir(relativo: str, paths: list[Path]) -> None:
     print(f"[v3-manifiestos] {len(paths)} ficheros -> {destino}")
 
 
+def _congelar_carpeta(carpeta: str, salida: str) -> int:
+    """Resume una carpeta ya publicada. No modifica sus ficheros."""
+    relativo = Path(carpeta)
+    if relativo.is_absolute():
+        base = relativo
+        raiz = REPO
+    else:
+        en_repo = REPO / relativo
+        base = en_repo if en_repo.is_dir() else WORKSPACE / relativo
+        raiz = REPO if en_repo.is_dir() else WORKSPACE
+    if not base.is_dir():
+        print(f"carpeta no accesible: {base}", file=sys.stderr)
+        return 2
+    paths = sorted(p for p in base.rglob("*") if p.is_file() and not is_noise(p))
+    destino = Path(salida)
+    if not destino.is_absolute():
+        destino = REPO / destino
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    lineas = [f"{_modulo.sha256(p)}  {p.relative_to(raiz)}" for p in paths]
+    destino.write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    print(f"[v3-manifiestos] {len(paths)} ficheros -> {destino}")
+    return 0
+
+
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--carpeta", help="Carpeta a resumir, por ejemplo results/v3_2")
+    parser.add_argument("--salida", help="Manifiesto de salida, por ejemplo results/v3_2_manifest.sha256")
+    args = parser.parse_args()
+    if args.carpeta or args.salida:
+        if not args.carpeta or not args.salida:
+            print("hacen falta --carpeta y --salida juntas", file=sys.stderr)
+            return 2
+        return _congelar_carpeta(args.carpeta, args.salida)
     if not WORKSPACE.is_dir():
         print(f"workspace no accesible: {WORKSPACE}", file=sys.stderr)
         return 2

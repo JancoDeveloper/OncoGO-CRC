@@ -84,6 +84,12 @@ Control técnico (`results/v3/k7_control_tecnico.json`). Kruskal–Wallis explor
 
 H5 a H10 siguen `no_evaluable` en `results/v3/hipotesis_v3.tsv`. No hay número aproximado. LinkedOmicsKB, PXD031705, PXD064655 y el resto de la sección 15 del plan no se han abierto como datos de v3.
 
+## v3.3, arranque
+
+El encargo dice que `35fad60`, `50caef8` y `c2be8e4` no llevaron prefijo. El mensaje de `35fad60` es `feat: la corrida v3.2 queda en el repositorio`. Gana el commit. `50caef8` (`resultados`) y `c2be8e4` (`update doc`) sí están sin prefijo. No se reescriben. Quedan en `docs/cronologia_v3.md`.
+
+El 9 de noviembre de 2026 el autor pidió desplegar la web si el checklist queda en verde, guardar ProtT5-XL en el disco externo y descargar los 60 crudos al disco externo. El disco del sistema tiene 14 GB libres, por debajo de los 20 GB del valor por defecto. El externo tiene 464 GB.
+
 ## v3.2
 
 El 6 de noviembre de 2026 el report de DIA-NN coincidió con el SHA-256 `A8A5AADD74391AFEF68CF4D6C3A7D3860023101E5C92590E2E87C152A39E59E8` y la corrida terminó. Las tablas están en `results/v3_2/`. La frase del suero, en `suero_resumen.json`, es «No se detecta diferencia; 105 proteínas son equivalentes», sobre 205 proteínas. El tejido, en `k1_etiquetas.json`, es 89/90. El bloque de abajo es lo que se comprobó antes y durante esa corrida.

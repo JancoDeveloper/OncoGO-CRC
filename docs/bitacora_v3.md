@@ -80,3 +80,17 @@ Comando: `bash scripts/v3/correr_v3_2.sh`.
 Resultado. El informe quedó en el disco, con `faltan []`. La frase de `results/v3_2/suero_resumen.json` es «No se detecta diferencia; 105 proteínas son equivalentes». Matriz principal, 205 proteínas: 0 diferentes, 105 equivalentes, 100 indeterminadas entre cáncer y colonoscopia negativa. Humanos con los dos q-valores: 312. Tejido: 89/90, H1 en `rechaza_h1`. Sello del suero: commit `293e6ee`.
 
 Decisión. Esas tablas se copiaron al repositorio en el commit `35fad60`. Los números de `results/v3/` no se reescriben.
+
+## 2026-11-09 14:25 (UTC−5). v3.3, Fase 0, congelar v3.2
+
+Comando: `git checkout main`, `git pull --ff-only origin main`, `make regresion-v1`, `python scripts/v3/congelar_manifiestos.py --carpeta results/v3_2 --salida results/v3_2_manifest.sha256`, `git tag -a v3.2-final`.
+
+Resultado. `main` coincide con `origin/main` en `c2be8e4`. El árbol estaba limpio. La regresión pasó: 688, 140, 28, 104/119, 226 y 307. El SHA-256 del report es `A8A5AADD74391AFEF68CF4D6C3A7D3860023101E5C92590E2E87C152A39E59E8`. El disco del sistema tiene 14 GB libres y el externo, 464 GB. El manifiesto de `results/v3_2/` queda en `results/v3_2_manifest.sha256`. La etiqueta `v3.2-final` apunta a `c2be8e4`, antes de este commit. La cronología está en `docs/cronologia_v3.md`.
+
+Decisión del autor, el 9 de noviembre de 2026:
+
+- Sí se despliega Firebase, solo si el checklist de la sección 16 queda en verde.
+- Sí se descargan los pesos de ProtT5-XL, en el disco externo. El disco del sistema no tiene 20 GB libres.
+- Sí se descargan los 60 crudos de PXD055218 al disco externo. AlphaDIA sigue sin ejecutarse en esta pasada: DIA-NN no se corre y los crudos no entran en el cálculo de v3.3.
+
+El mensaje `35fad60` empieza por `feat:`. El encargo lo contó sin prefijo. Gana el mensaje real y queda anotado en `docs/auditoria_v3.md` y en la cronología. `50caef8` y `c2be8e4` sí se publicaron sin prefijo y no se reescriben.
