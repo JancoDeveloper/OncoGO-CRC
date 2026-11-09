@@ -169,9 +169,9 @@ def _f7(base: Path, sello: dict, destinos: list[Path]) -> None:
             ax.scatter([valor], [i], color=VERDE, s=40)
             ax.text(valor, i, f"  {fila.control} log2FC {valor:.2f}", va="center", fontsize=8)
         else:
-            ax.scatter([0], [i], color=VERMELLON, marker="x", s=40)
-            ax.text(0.05, i, f"  {fila.control}: {fila.observado}, pasa {fila.pasa}", va="center", fontsize=8)
+            ax.text(0.15, i, f"{fila.control}: sin log2FC. Estado: {fila.pasa}", va="center", fontsize=8, color=VERMELLON)
     ax.axvline(0, color=TINTA, lw=0.6)
+    ax.set_xlim(-3.2, 2.4)
     ax.set_yticks([])
     ax.set_xlabel("log2FC, tumor frente a mucosa")
     _guardar(fig, "F7", "CA1 baja en el tumor. AQP8, SLC26A3 y GUCA2A no tienen un log2FC calculable.", sello, destinos)
