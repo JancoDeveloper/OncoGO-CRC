@@ -11,6 +11,7 @@ No imputa. Una corrida sin precursor que pase el corte queda vacía.
 from __future__ import annotations
 
 import re
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import pandas as pd
@@ -89,55 +90,97 @@ def controles_del_report(tabla: pd.DataFrame) -> dict:
     }
 
 
-def _acceso_sin_prefijo(identificador: str) -> str:
-    texto = identificador.strip()
+_ISOFORMA = re.compile(r"-\d+$")
+_OX = re.compile(r"\bOX=(\d+)\b")
+_GN = re.compile(r"\bGN=(\S+)")
+HUMANO_OX = "9606"
+QUERATINAS_EPITELIALES = frozenset({"KRT7", "KRT8", "KRT18", "KRT19", "KRT20"})
+PLASMA_CLASICO = frozenset({"ALB", "APOA1", "C3", "TF", "SERPINA1", "A2M", "APOE", "FGA", "FGB", "FGG", "LRG1"})
+
+
+def acceso_base(identificador: object) -> str:
+    """Cont_P02768, P02768-2 y sp|Cont_P02768|ALBU_BOVIN dan P02768."""
+    texto = str(identificador).strip()
+    if "|" in texto:
+        partes = texto.split("|")
+        texto = partes[1] if len(partes) >= 2 else partes[0]
     if texto.startswith("Cont_"):
-        return texto[len("Cont_") :]
-    return texto
+        texto = texto[len("Cont_"):]
+    return _ISOFORMA.sub("", texto)
 
 
-def accesos_de_fasta(path: Path) -> tuple[set[str], set[str]]:
-    """Accesos UniProt y símbolos GN de la librería de contaminantes."""
+@dataclass(frozen=True)
+class LibreriaContaminantes:
+    accesos: frozenset[str]
+    accesos_humanos: frozenset[str]
+    genes_humanos: frozenset[str]
+    n_entradas: int
+    por_taxon: dict[str, int] = field(default_factory=dict)
+
+    @property
+    def accesos_no_humanos(self) -> frozenset[str]:
+        return self.accesos - self.accesos_humanos
+
+
+LIBRERIA_VACIA = LibreriaContaminantes(frozenset(), frozenset(), frozenset(), 0)
+
+
+def leer_libreria(path: Path) -> LibreriaContaminantes:
+    """Accesos de la librería, separados por especie. El GN solo se guarda para OX=9606."""
     accesos: set[str] = set()
+    humanos: set[str] = set()
     genes: set[str] = set()
+    por_taxon: dict[str, int] = {}
+    n = 0
     for linea in path.read_text(encoding="utf-8", errors="replace").splitlines():
         if not linea.startswith(">"):
             continue
-        cabeza = linea[1:].split()[0]
-        accesos.add(_acceso_sin_prefijo(cabeza.split("|")[-1] if "|" not in cabeza else cabeza.split("|")[1]))
-        if "GN=" in linea:
-            genes.add(linea.split("GN=", 1)[1].split()[0])
-    return accesos, genes
+        n += 1
+        acceso = acceso_base(linea[1:].split()[0])
+        hallado = _OX.search(linea)
+        taxon = hallado.group(1) if hallado else "sin_OX"
+        por_taxon[taxon] = por_taxon.get(taxon, 0) + 1
+        accesos.add(acceso)
+        if taxon == HUMANO_OX:
+            humanos.add(acceso)
+            gen = _GN.search(linea)
+            if gen:
+                genes.add(gen.group(1).upper())
+    return LibreriaContaminantes(frozenset(accesos), frozenset(humanos), frozenset(genes), n, por_taxon)
 
 
 def trazabilidad(
     tabla: pd.DataFrame,
     *,
-    accesos_contaminantes: set[str] | None = None,
-    genes_contaminantes: set[str] | None = None,
+    libreria: LibreriaContaminantes | None = None,
     genes_piel: set[str] | None = None,
     paneles: dict[str, set[str]] | None = None,
 ) -> pd.DataFrame:
-    accesos_contaminantes = accesos_contaminantes or set()
-    genes_contaminantes = genes_contaminantes or set()
-    genes_piel = genes_piel or set()
-    paneles = paneles or {}
+    libreria = libreria or LIBRERIA_VACIA
+    genes_piel = {g.upper() for g in (genes_piel or set())}
+    paneles = {nombre: {g.upper() for g in miembros} for nombre, miembros in (paneles or {}).items()}
     filas = []
     for grupo, bloque in tabla.groupby("Protein.Group", sort=False):
         nombres = str(bloque["Protein.Names"].iloc[0]) if "Protein.Names" in bloque.columns else ""
         genes = str(bloque["Genes"].iloc[0]) if "Genes" in bloque.columns else ""
         especies = especies_de_nombres(nombres)
-        simbolos = {parte.strip() for parte in genes.split(";") if parte.strip()}
-        identificadores = set()
+        humano = "HUMAN" in especies
+        simbolos = {parte.strip().upper() for parte in genes.split(";") if parte.strip() and parte.strip() != "nan"}
+        identificadores: set[str] = set()
         if "Protein.Ids" in bloque.columns:
             for texto in bloque["Protein.Ids"].astype(str):
-                identificadores.update(parte.strip() for parte in texto.split(";") if parte.strip())
-        contaminante = bool(identificadores & accesos_contaminantes or simbolos & genes_contaminantes)
-        piel = bool(simbolos & genes_piel)
-        panel = ""
-        for nombre, miembros in paneles.items():
-            if simbolos & miembros:
-                panel = nombre if not panel else panel + ";" + nombre
+                identificadores.update(acceso_base(p) for p in texto.split(";") if p.strip() and p.strip() != "nan")
+        if humano:
+            if identificadores & libreria.accesos_humanos:
+                motivo = "acceso_humano_en_libreria"
+            elif not identificadores and simbolos & libreria.genes_humanos:
+                motivo = "simbolo_humano_sin_acceso"
+            else:
+                motivo = ""
+        else:
+            motivo = "acceso_no_humano_en_libreria" if identificadores & libreria.accesos else ""
+        comparte = humano and bool(identificadores & libreria.accesos_no_humanos)
+        panel = ";".join(nombre for nombre, miembros in paneles.items() if simbolos & miembros)
         proteotipicos = float("nan")
         if "Proteotypic" in bloque.columns and bloque["Proteotypic"].notna().any():
             proteotipicos = float(bloque["Proteotypic"].mean())
@@ -145,13 +188,16 @@ def trazabilidad(
             "protein_group": grupo,
             "genes": genes,
             "especies": ";".join(especies),
-            "humano": "HUMAN" in especies,
+            "humano": humano,
             "pg_q_min": float(bloque["PG.Q.Value"].min()),
             "global_pg_q": float(bloque["Global.PG.Q.Value"].min()),
             "n_precursores": int(len(bloque)),
             "fraccion_proteotipicos": proteotipicos,
-            "contaminante": contaminante,
-            "contaminante_piel": piel,
+            "contaminante": bool(motivo),
+            "contaminante_motivo": motivo,
+            "comparte_con_contaminante": comparte,
+            "queratina_epitelial": bool(simbolos & QUERATINAS_EPITELIALES),
+            "contaminante_piel": bool(simbolos & genes_piel),
             "panel": panel,
         })
     return pd.DataFrame(filas)

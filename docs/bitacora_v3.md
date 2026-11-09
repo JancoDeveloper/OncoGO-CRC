@@ -110,3 +110,11 @@ Comando: `git mv` de `stages/v3_2_*.py` y `tests/test_v3_2_*.py` a `v3_3`, y `py
 Resultado. 19 tests pasan. El registro ya no tiene etapas `v3_2_*`. La salida vigente es `results/v3_3/`. `salida_v32.py` se queda, sin uso. Los 112 ficheros de `results/v3_2/` coinciden con el manifiesto.
 
 Decisión. El Makefile de v3.3 se añade después de los parches, como pide el encargo. La descarga de los 60 crudos sigue en el disco externo y no entra en este commit.
+
+## 2026-11-09 15:05 (UTC−5). v3.3, contaminantes por acceso
+
+Comando: `pytest tests/test_v3_3_contaminantes.py` antes y después del parche.
+
+Resultado. Antes, el test no se recoge: `ImportError`, no existe `acceso_base`. Después, 9 tests pasan, incluido el de la librería real: 381 entradas, 151 humanas (`OX=9606`) y ningún gen de plasma clásico en esa lista.
+
+Decisión. El cruce por símbolo queda retirado. KRT7, KRT8, KRT18, KRT19 y KRT20 siguen fuera del principal y vuelven en `con_queratinas_epiteliales`. Los grupos mixtos se quedan y salen en `sin_grupos_mixtos`. Si ALB, APOA1, C3, TF, SERPINA1, A2M, APOE, FGA, FGB, FGG o LRG1 salen como contaminante, la etapa se detiene.

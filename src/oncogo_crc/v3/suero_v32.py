@@ -463,6 +463,16 @@ def analizar_suero(report, traza, ancha, prereg: PreregistroV3, salida: Path, se
     solo_contaminante = set(traza.loc[traza["contaminante"].astype(bool) | traza["contaminante_piel"].astype(bool), "protein_group"].astype(str))
     principal = _recortar(mat, fuera)
     con_paneles = _recortar(mat, solo_contaminante)
+    epiteliales = set()
+    if "queratina_epitelial" in traza.columns and "contaminante_motivo" in traza.columns:
+        epiteliales = set(traza.loc[
+            traza["queratina_epitelial"].astype(bool) & traza["contaminante_motivo"].eq("acceso_humano_en_libreria"),
+            "protein_group",
+        ].astype(str))
+    mixtos = set(traza.loc[traza["comparte_con_contaminante"].astype(bool), "protein_group"].astype(str)) if "comparte_con_contaminante" in traza.columns else set()
+    con_queratinas = pd.concat([principal, mat.loc[mat.index.astype(str).isin(epiteliales)]])
+    con_queratinas = con_queratinas[~con_queratinas.index.duplicated(keep="first")]
+    sin_mixtos = _recortar(principal, mixtos)
     gen_de = traza.assign(protein_group=traza["protein_group"].astype(str)).drop_duplicates("protein_group").set_index("protein_group")["genes"]
     genes_de_fila = pd.Series({idx: next(iter(_simbolos(gen_de.get(idx, ""))), "") for idx in mat.index})
     paneles = {
@@ -525,6 +535,8 @@ def analizar_suero(report, traza, ancha, prereg: PreregistroV3, salida: Path, se
     for etiqueta_version, matriz, ajustar in (
         ("principal", principal, False),
         ("con_contaminantes", mat, False),
+        ("con_queratinas_epiteliales", con_queratinas, False),
+        ("sin_grupos_mixtos", sin_mixtos, False),
         ("sin_contaminantes_con_paneles", con_paneles, False),
         ("ajustado_coagulacion", principal, True),
     ):

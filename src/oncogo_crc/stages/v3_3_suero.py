@@ -12,9 +12,11 @@ import pandas as pd
 from oncogo_crc.settings import Settings
 from oncogo_crc.utils.dia_nn_plasma import (
     BYTES_REPORT,
+    PLASMA_CLASICO,
     SHA256_REPORT,
-    accesos_de_fasta,
+    LIBRERIA_VACIA,
     controles_del_report,
+    leer_libreria,
     leer_report,
     matriz_filtrada,
     trazabilidad,
@@ -76,20 +78,21 @@ def run(settings: Settings) -> None:
     cifras["solo_lectura"] = oct(report.stat().st_mode & 0o777)
     distinto = {clave: cifras.get(clave) for clave in ESPERADO if cifras.get(clave) != ESPERADO[clave]}
     fasta = settings.resolve(str(prereg.get("enmienda_v3_2.contaminantes.fichero")))
-    accesos, genes_lib = accesos_de_fasta(fasta) if fasta.is_file() else (set(), set())
+    libreria = leer_libreria(fasta) if fasta.is_file() else LIBRERIA_VACIA
     piel = set(prereg.get("enmienda_v3_2.contaminante_piel.genes"))
     paneles = {
         "eritrocitos": set(prereg.get("enmienda_v3_2.paneles_geyer_2019.eritrocitos")),
         "plaquetas": set(prereg.get("enmienda_v3_2.paneles_geyer_2019.plaquetas")),
         "coagulacion": set(prereg.get("enmienda_v3_2.paneles_geyer_2019.coagulacion")),
     }
-    traza = trazabilidad(
-        tabla,
-        accesos_contaminantes=accesos,
-        genes_contaminantes=genes_lib,
-        genes_piel=piel,
-        paneles=paneles,
-    )
+    traza = trazabilidad(tabla, libreria=libreria, genes_piel=piel, paneles=paneles)
+    humanos_marcados = traza.loc[traza["contaminante"].astype(bool) & traza["humano"].astype(bool)]
+    genes_marcados = set()
+    for texto in humanos_marcados["genes"].astype(str):
+        genes_marcados.update(parte.strip().upper() for parte in texto.split(";") if parte.strip())
+    cruce = sorted(genes_marcados & PLASMA_CLASICO)
+    if cruce:
+        raise RuntimeError(f"proteína de plasma clásica marcada como contaminante: {cruce}")
     ancha = matriz_filtrada(tabla)
     destino_matriz = settings.resolve(str(prereg.get("enmienda_v3_2.report_pxd055218.matriz_filtrada")))
     destino_matriz.parent.mkdir(parents=True, exist_ok=True)
@@ -105,6 +108,17 @@ def run(settings: Settings) -> None:
         "n_grupos_en_matriz_principal": int(ancha["protein_id"].nunique()) if "protein_id" in ancha.columns else 0,
         "n_contaminantes_en_la_traza": int(traza["contaminante"].sum()) if len(traza) else 0,
         "n_piel_en_la_traza": int(traza["contaminante_piel"].sum()) if len(traza) else 0,
+        "libreria_n_entradas": libreria.n_entradas,
+        "libreria_por_taxon": libreria.por_taxon,
+        "n_contaminantes_humanos": int((traza["contaminante"] & traza["humano"]).sum()) if len(traza) else 0,
+        "n_contaminantes_no_humanos": int((traza["contaminante"] & ~traza["humano"]).sum()) if len(traza) else 0,
+        "n_grupos_mixtos": int(traza["comparte_con_contaminante"].sum()) if len(traza) else 0,
+        "n_queratinas_epiteliales": int(traza["queratina_epitelial"].sum()) if len(traza) else 0,
+        "grupos_humanos_contaminantes": [
+            {"protein_group": str(fila.protein_group), "genes": str(fila.genes), "motivo": str(fila.contaminante_motivo)}
+            for fila in humanos_marcados.itertuples(index=False)
+        ],
+        "contaminantes_no_marcan_plasma_clasico": "pasa",
         "matriz": str(destino_matriz),
     }
     destino = salida / "suero_controles.json"
