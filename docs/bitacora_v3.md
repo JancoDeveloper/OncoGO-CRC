@@ -126,3 +126,11 @@ Comando: `pytest tests/test_v3_3_ml.py::test_cada_muestra_entra_una_vez` antes d
 Resultado. Antes, el test falla: `TypeError`, `matrices_de_suero` exigía `prereg` y recorría las columnas de las dos matrices, así que cada `CP_` y cada `CN_` entraba dos veces. Después, 6 tests pasan. Cada modelo tiene 40 filas y 20 de la clase cáncer. La dispersión entre pliegues ya no se llama intervalo. El intervalo que se informa es el de LeDell sobre las predicciones fuera del pliegue.
 
 Decisión. El titular no se escribe aquí. Sale de la regla, cuando corra la etapa.
+
+## 2026-11-09 15:25 (UTC−5). v3.3, mapa de genes del tejido
+
+Comando: `pytest tests/test_v3_3_genes_tanaka.py` antes de cablear `_genes_bajos`, y otra vez después.
+
+Resultado. Antes, `test_control_positivo_no_evaluable_es_falla` falla: el código viejo escribía `pasa=no_evaluable` y la etapa seguía. El mapa sintético ya encontraba CA1, AQP8 por `GN=` y SLC26A3 por el acceso. Después, 7 tests pasan, con `tests/test_v3_3_resto.py`.
+
+Decisión. AQP8 y GUCA2A no están en el proteinGroups. Queda escrito en `docs/auditoria_v3.md`. No se inventa una fila para que el control pase.

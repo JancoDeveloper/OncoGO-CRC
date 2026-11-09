@@ -11,6 +11,7 @@ from oncogo_crc.settings import Settings
 from oncogo_crc.stages.v3_3_tejido import ids_descartados
 from oncogo_crc.utils.moderated import moderate_table, paired_observed_stats
 from oncogo_crc.v3.etiquetas import _pares, filas_desde_columnas, matriz_log2_lfq
+from oncogo_crc.v3.genes_tanaka import filas_de_gen, mapa_genes
 from oncogo_crc.v3.prereg import PreregistroV3
 from oncogo_crc.utils.sello import exigir_arbol_limpio, hacer_sello
 from oncogo_crc.v3.salida import carpeta, exigir_vigente, manifiesto_congelado, volcar_json, volcar_tsv
@@ -33,24 +34,32 @@ def _abrir(settings: Settings, etapa: str):
 
 def _genes_bajos(settings: Settings, salida) -> list[dict]:
     contraste = pd.read_csv(salida / "k1_primario_frente_a_mucosa.tsv", sep="\t")
-    mapa = pd.read_csv(
+    contraste["log2fc"] = pd.to_numeric(contraste["log2fc"], errors="coerce")
+    mapa = mapa_genes(
+        settings.resolve("data/raw/pride/Cohort1_proteinGroups.txt"),
         settings.resolve("metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv"),
-        sep="\t",
-        usecols=["gene_symbol", "uniprot_accession"],
     )
+    columna_n = next((c for c in ("n_obs", "n_pares_observados", "n_pares") if c in contraste.columns), None)
     filas = []
     for gen in MUCOSA_BAJA:
-        accesos = set(mapa.loc[mapa["gene_symbol"].astype(str).str.upper().eq(gen), "uniprot_accession"].astype(str))
-        bloque = contraste.loc[contraste["protein_id"].astype(str).isin(accesos)]
-        if len(bloque) != 1 or not np.isfinite(bloque["log2fc"].iloc[0]):
-            filas.append({"analisis": "tumor_frente_a_mucosa", "control": gen, "tipo": "positivo", "esperado": "log2fc menor que 0", "observado": "no_evaluable", "pasa": "no_evaluable"})
-            continue
-        valor = float(bloque["log2fc"].iloc[0])
-        filas.append({
+        ids = set(filas_de_gen(contraste["protein_id"].astype(str), mapa, gen))
+        bloque = contraste.loc[contraste["protein_id"].astype(str).isin(ids) & np.isfinite(contraste["log2fc"])]
+        base = {
             "analisis": "tumor_frente_a_mucosa",
             "control": gen,
             "tipo": "positivo",
             "esperado": "log2fc menor que 0",
+            "n_filas_del_gen": len(ids),
+        }
+        if bloque.empty:
+            filas.append({**base, "observado": "no_evaluable", "pasa": "falla"})
+            continue
+        if columna_n is not None:
+            bloque = bloque.sort_values(columna_n, ascending=False, kind="stable")
+        valor = float(bloque["log2fc"].iloc[0])
+        filas.append({
+            **base,
+            "protein_id": str(bloque["protein_id"].iloc[0]),
             "observado": valor,
             "pasa": "pasa" if valor < 0 else "falla",
         })

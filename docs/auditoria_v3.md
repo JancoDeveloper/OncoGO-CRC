@@ -107,3 +107,11 @@ Comprobado en esta pasada:
 - UniProt humano revisado con isoformas, descarga del 6 de noviembre de 2026: `external/uniprot/human_reviewed_isoforms.fasta.gz`, 42 560 entradas, SHA-256 `96a0fc42f6dbba02386eaae1d0241407eef335876bf0ddc6b1aa91144cb961ae`. Sirve para el ortólogo compartido. No es la base con la que los autores buscaron PXD055218.
 - El atlas de enfermedades del HPA (`blood_pea_diseases.tsv.zip`, 6 de noviembre de 2026) trae 60 enfermedades, no 59. Gana el fichero. El colorrectal está en el catálogo con la clase Cancer.
 - El 6 de noviembre de 2026, con el report completo y el SHA-256 coincidente, `humanos_pg_y_global` es 312, no 307. Los otros controles coinciden: 283 488 filas, 60 corridas, 329 con `Global.PG.Q.Value` ≤ 0,01 y 432 que no pasan `PG.Q.Value` en ninguna corrida. Los 5 de diferencia son P0DOX2, P0DOX3, P0DOX5, P0DOX7 y P0DOX8: humanos, pasan los dos q-valores y la columna `Genes` está vacía. Con gen, el recuento es 307. El análisis principal indexa por `Protein.Group`, así que esos cinco grupos se quedan.
+
+## v3.3, mapa de genes de PXD034575
+
+`Cohort1_proteinGroups.txt` tiene 420 columnas. Las que usa el mapa son `Protein IDs`, `Gene names` y `Fasta headers`. Los cinco primeros `protein_id` de `pride_crc_matrix.tsv` son D2Y6Y7, X2C0Y9, Q4R1L7, A0A141ZSL4 y A0A1B1PEM6. Ninguno tiene forma de Swiss-Prot revisado. Por eso el cruce viejo, acceso exacto contra `gene_uniprot_human_reviewed_bulk.tsv`, dejaba fuera a la mayoría.
+
+La matriz tiene 6824 filas. Con el cruce viejo, 2415 tienen el primer acceso en el mapa revisado. Con el mapa nuevo, 3941 tienen un solo gen, 2688 tienen más de uno y 195 no tienen ninguno. Una fila con varios genes no entra en R1. La columna de pares es `n_obs`.
+
+CA1 está en el grupo V9HWE3, con genes HEL-S-11 y CA1, y el acceso P00915 va dentro del grupo. SLC26A3 está en P40879, junto al símbolo viejo DKFZp686P10213. AQP8 (O94778) y GUCA2A (Q02747) no aparecen en `Protein IDs`, ni en `Gene names`, ni en `GN=` de las cabeceras, ni en la matriz. No es un fallo del mapa: esas dos proteínas no están en la salida de MaxQuant de esta cohorte. El control las escribe como falla. La corrida no las va a dar por buenas.

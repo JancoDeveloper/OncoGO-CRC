@@ -8,8 +8,7 @@ import numpy as np
 import pandas as pd
 
 from oncogo_crc.settings import Settings
-from oncogo_crc.utils.ids import effective_protein_mapping
-from oncogo_crc.utils.reproducibility_overlap import load_gene_uniprot_from_mapping, uniprot_base
+from oncogo_crc.v3.genes_tanaka import genes_de, gen_unico, mapa_genes
 from oncogo_crc.utils.sello import exigir_arbol_limpio, hacer_sello
 from oncogo_crc.v2.metricas import Fraccion
 from oncogo_crc.v3.concordancia import alinear_por_clave, concordancia_de_lin, concordancia_de_signo, spearman
@@ -39,22 +38,27 @@ def ids_descartados(protein_ids: pd.Series, protein_groups: pd.DataFrame | None)
     return malos
 
 
-def _mapa_gen(settings: Settings) -> dict[str, str]:
-    gen_a_uni = load_gene_uniprot_from_mapping(effective_protein_mapping(settings))
-    uni_a_gen: dict[str, str] = {}
-    for gen, uni in gen_a_uni.items():
-        uni_a_gen.setdefault(str(uni), str(gen))
-    return uni_a_gen
+def _mapa_gen(settings: Settings) -> dict[str, frozenset[str]]:
+    return mapa_genes(
+        settings.resolve("data/raw/pride/Cohort1_proteinGroups.txt"),
+        settings.resolve("metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv"),
+    )
 
 
-def _filas_gen(log2mat: pd.DataFrame, uni_a_gen: dict[str, str], genes: tuple[str, ...]) -> list[str]:
-    buscados = set(genes)
-    hallados = []
-    for pid in log2mat.index.astype(str):
-        base = uniprot_base(pid.split(";")[0]) or pid
-        if uni_a_gen.get(base) in buscados or uni_a_gen.get(pid) in buscados:
-            hallados.append(pid)
-    return hallados
+def _filas_gen(log2mat: pd.DataFrame, mapa: dict[str, frozenset[str]], genes: tuple[str, ...]) -> list[str]:
+    buscados = {g.upper() for g in genes}
+    return [pid for pid in log2mat.index.astype(str) if genes_de(pid, mapa) & buscados]
+
+
+def _por_gen(tabla: pd.DataFrame, mapa: dict[str, frozenset[str]]) -> pd.DataFrame:
+    """Una fila por gen. Si hay varias, se queda la de más pares observados."""
+    replica = tabla.copy()
+    replica["gen"] = [gen_unico(pid, mapa) for pid in replica["protein_id"].astype(str)]
+    replica = replica.dropna(subset=["gen"])
+    columna_n = next((c for c in ("n_obs", "n_pares_observados", "n_pares") if c in replica.columns), None)
+    if columna_n is not None:
+        replica = replica.sort_values(columna_n, ascending=False, kind="stable")
+    return replica.drop_duplicates("gen", keep="first")
 
 
 def _mediana_diferencia(log2mat: pd.DataFrame, filas: list[str], col_a: str, col_b: str) -> float:
@@ -117,12 +121,13 @@ def _qc(log2mat: pd.DataFrame, meta: pd.DataFrame, uni_a_gen: dict[str, str]) ->
     return pd.DataFrame(filas_h), pd.DataFrame(filas_m), pd.DataFrame(filas_s), excluir
 
 
-def _resumen(certificadas, tabla, gen_a_uni, n_cert, nombre):
+def _resumen(certificadas, tabla, mapa, n_cert, nombre):
+    replica = _por_gen(tabla, mapa)
     cruzado = alinear_por_clave(
         certificadas,
-        tabla,
-        clave_descubrimiento=certificadas["protein_id"].astype(str).str.upper().map(lambda g: gen_a_uni.get(g) or np.nan),
-        clave_replica=tabla["protein_id"].astype(str).map(lambda v: uniprot_base(v.split(";")[0]) or np.nan),
+        replica,
+        clave_descubrimiento=certificadas["protein_id"].astype(str).str.upper(),
+        clave_replica=replica["gen"],
     )
     fraccion = concordancia_de_signo(
         cruzado["log2fc_cptac"].to_numpy(),
@@ -187,17 +192,16 @@ def run(settings: Settings) -> None:
     cptac = pd.read_csv(settings.resolve("results/certified/cptac_unshared_treat.tsv"), sep="\t")
     certificadas = cptac.loc[cptac["significant"].astype(bool)].copy()
     n_cert = int(certificadas["protein_id"].nunique())
-    gen_a_uni = load_gene_uniprot_from_mapping(effective_protein_mapping(settings))
+    mapa = _mapa_gen(settings)
     resumenes = {
-        nombre: _resumen(certificadas, tabla, gen_a_uni, n_cert, nombre)
+        nombre: _resumen(certificadas, tabla, mapa, n_cert, nombre)
         for nombre, tabla in (
             ("primario_frente_a_mucosa", principal),
             ("metastasis_hepatica_frente_a_mucosa", metastasis),
             ("primario_frente_a_mucosa_no_pareado", no_pareado),
         )
     }
-    uni_a_gen = _mapa_gen(settings)
-    qc_h, qc_m, qc_s, excluir = _qc(log2mat, meta, uni_a_gen)
+    qc_h, qc_m, qc_s, excluir = _qc(log2mat, meta, mapa)
     volcar_tsv(qc_h, salida / "qc_etiquetas_higado.tsv", sello)
     volcar_tsv(qc_m, salida / "qc_etiquetas_mucosa.tsv", sello)
     volcar_tsv(qc_s, salida / "qc_sexo_por_participante.tsv", sello)
@@ -248,11 +252,12 @@ def run(settings: Settings) -> None:
         "correccion": "T1",
     }]), salida / "changelog_numeros.tsv", sello)
     escribir_k2(settings, salida, sello)
+    replica = _por_gen(principal, mapa)
     cruzado = alinear_por_clave(
         certificadas,
-        principal,
-        clave_descubrimiento=certificadas["protein_id"].astype(str).str.upper().map(lambda g: gen_a_uni.get(g) or np.nan),
-        clave_replica=principal["protein_id"].astype(str).map(lambda v: uniprot_base(v.split(";")[0]) or np.nan),
+        replica,
+        clave_descubrimiento=certificadas["protein_id"].astype(str).str.upper(),
+        clave_replica=replica["gen"],
     )
     escribir_k3(cruzado, salida, sello)
     print(f"[v3.2] tejido R1 {r1['numerador']}/{r1['denominador']} con {len(malos)} filas fuera")

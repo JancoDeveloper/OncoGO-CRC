@@ -15,6 +15,7 @@ import pandas as pd
 from oncogo_crc.settings import Settings
 from oncogo_crc.utils.moderated import moderate_table, paired_observed_stats
 from oncogo_crc.v3.concordancia import concordancia_de_signo
+from oncogo_crc.v3.genes_tanaka import gen_unico, mapa_genes
 from oncogo_crc.v3.prereg import PreregistroV3
 from oncogo_crc.v3.salida import volcar_json, volcar_tsv
 
@@ -179,17 +180,16 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
         bloque = json.loads(k1.read_text(encoding="utf-8"))["contrastes"]["primario_frente_a_mucosa"]
         concordancia_colon = float(bloque["estimacion"])
     tanaka = pd.read_csv(salida / "k1_primario_frente_a_mucosa.tsv", sep="\t")
-    mapa_uni = pd.read_csv(
+    mapa_tejido = mapa_genes(
+        settings.resolve("data/raw/pride/Cohort1_proteinGroups.txt"),
         settings.resolve("metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv"),
-        sep="\t",
-        usecols=["gene_symbol", "uniprot_accession"],
     )
-    conteo_uni = mapa_uni.groupby(mapa_uni["uniprot_accession"].astype(str))["gene_symbol"].nunique()
-    unicos = set(conteo_uni[conteo_uni == 1].index)
-    limpio = mapa_uni.loc[mapa_uni["uniprot_accession"].astype(str).isin(unicos)]
-    uni_a_gen = dict(zip(limpio["uniprot_accession"].astype(str), limpio["gene_symbol"].astype(str).str.upper(), strict=True))
-    tanaka = tanaka.assign(gen=tanaka["protein_id"].astype(str).map(uni_a_gen))
-    tanaka = tanaka.dropna(subset=["gen"]).drop_duplicates("gen")
+    tanaka = tanaka.assign(gen=tanaka["protein_id"].map(lambda pid: gen_unico(pid, mapa_tejido)))
+    columna_n = next((c for c in ("n_obs", "n_pares_observados", "n_pares") if c in tanaka.columns), None)
+    tanaka = tanaka.dropna(subset=["gen"])
+    if columna_n is not None:
+        tanaka = tanaka.sort_values(columna_n, ascending=False, kind="stable")
+    tanaka = tanaka.drop_duplicates("gen", keep="first")
     concordancias = {}
     for cancer in OTROS:
         otro = efectos[cancer]["log2fc"].rename("log2fc_otro")
