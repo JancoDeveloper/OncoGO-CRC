@@ -134,3 +134,11 @@ Comando: `pytest tests/test_v3_3_genes_tanaka.py` antes de cablear `_genes_bajos
 Resultado. Antes, `test_control_positivo_no_evaluable_es_falla` falla: el código viejo escribía `pasa=no_evaluable` y la etapa seguía. El mapa sintético ya encontraba CA1, AQP8 por `GN=` y SLC26A3 por el acceso. Después, 7 tests pasan, con `tests/test_v3_3_resto.py`.
 
 Decisión. AQP8 y GUCA2A no están en el proteinGroups. Queda escrito en `docs/auditoria_v3.md`. No se inventa una fila para que el control pase.
+
+## 2026-11-09 15:40 (UTC−5). v3.3, normalización del tejido
+
+Comando: `pytest tests/test_v3_3_normalizacion.py`.
+
+Resultado. Con un desplazamiento constante de +1 en las columnas P, la mediana del log2FC pareado queda en 0 después de centrar. El análisis principal no se centra. La sensibilidad escribe `k1_sensibilidad_normalizacion.json`. Si R1 cruza 0,70, H1 queda frágil a la normalización.
+
+Decisión. La mediana de las diferencias no es la diferencia de las medianas. El test usa un desplazamiento constante, que es el caso que describe la enmienda.

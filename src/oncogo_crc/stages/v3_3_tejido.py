@@ -12,7 +12,8 @@ from oncogo_crc.v3.genes_tanaka import genes_de, gen_unico, mapa_genes
 from oncogo_crc.utils.sello import exigir_arbol_limpio, hacer_sello
 from oncogo_crc.v2.metricas import Fraccion
 from oncogo_crc.v3.concordancia import alinear_por_clave, concordancia_de_lin, concordancia_de_signo, spearman
-from oncogo_crc.v3.etiquetas import contraste_no_pareado, contraste_pareado, filas_desde_columnas, matriz_log2_lfq
+from oncogo_crc.v3.etiquetas import centrar_por_mediana, contraste_no_pareado, contraste_pareado, filas_desde_columnas, matriz_log2_lfq
+from oncogo_crc.v3.k2k3 import pendiente_deming
 from oncogo_crc.v3.prereg import PreregistroV3
 from oncogo_crc.v3.k2k3 import escribir_k2, escribir_k3
 from oncogo_crc.v3.salida import carpeta, exigir_vigente, manifiesto_congelado, volcar_json, volcar_tsv
@@ -212,7 +213,55 @@ def run(settings: Settings) -> None:
     else:
         n_sens = n_pares
     r1 = resumenes["primario_frente_a_mucosa"]
+    centrada, desplazamiento, regla_ref = centrar_por_mediana(log2mat)
+    centrado, _ = contraste_pareado(
+        centrada, meta, grupo_a="primary", grupo_b="mucosa",
+        nombre="primario_frente_a_mucosa_centrado", lfc=lfc, alpha=alpha, min_pares=min_pares,
+    )
+    volcar_tsv(centrado, salida / "k1_primario_frente_a_mucosa_centrado.tsv", sello)
+    r1_centrado = _resumen(certificadas, centrado, mapa, n_cert, "primario_frente_a_mucosa_centrado")
+    presencia = log2mat.notna().mean(axis=1)
+    n_referencia = int((presencia >= (1.0 if regla_ref == "100 %" else 0.9)).sum())
+
+    def _lectura(tabla, resumen):
+        fc = pd.to_numeric(tabla["log2fc"], errors="coerce")
+        fc = fc[np.isfinite(fc)]
+        replica = _por_gen(tabla, mapa)
+        cruzado = alinear_por_clave(
+            certificadas, replica,
+            clave_descubrimiento=certificadas["protein_id"].astype(str).str.upper(),
+            clave_replica=replica["gen"],
+        )
+        ajuste = pendiente_deming(cruzado["log2fc_cptac"].to_numpy(), cruzado["log2fc_replica"].to_numpy())
+        return {
+            "r1_numerador": resumen["numerador"],
+            "r1_denominador": resumen["denominador"],
+            "r1_estimacion": resumen["estimacion"],
+            "r1_ci_low": resumen["ci_low"],
+            "r1_ci_high": resumen["ci_high"],
+            "lin": resumen["lin"],
+            "deming_pendiente": ajuste["pendiente"],
+            "deming_intercepto": ajuste["intercepto"],
+            "mediana_log2fc": float(fc.median()) if len(fc) else None,
+            "porcentaje_cambios_positivos": float((fc > 0).mean() * 100) if len(fc) else None,
+        }
+
     umbral = float(prereg.get("hipotesis.h1.umbral_concordancia_proteina"))
+    estimacion_centrada = r1_centrado.get("estimacion")
+    fragil = (
+        r1.get("estimacion") is not None
+        and estimacion_centrada is not None
+        and (float(r1["estimacion"]) >= umbral) != (float(estimacion_centrada) >= umbral)
+    )
+    volcar_json({
+        "regla_proteinas_de_referencia": regla_ref,
+        "n_proteinas_de_referencia": n_referencia,
+        "desplazamiento_por_muestra": {str(k): float(v) for k, v in desplazamiento.items()},
+        "antes": _lectura(principal, r1),
+        "despues": _lectura(centrado, r1_centrado),
+        "h1_fragil_a_normalizacion": bool(fragil),
+        "umbral_h1": umbral,
+    }, salida / "k1_sensibilidad_normalizacion.json", sello)
     if r1["ci_high"] is None:
         clausula = "no_evaluable"
     elif float(r1["ci_high"]) < umbral:
@@ -232,6 +281,7 @@ def run(settings: Settings) -> None:
         "contrastes": resumenes,
         "h1_clausula_proteina": clausula,
         "h1_veredicto": "rechaza_h1" if clausula == "rechaza" else ("parcial_solo_proteina" if clausula == "sostiene" else "no_evaluable"),
+        "h1_fragil_a_normalizacion": bool(fragil),
         "cobertura": Fraccion("R1_cobertura", int(r1["denominador"] or 0), n_cert, "proteinas_unicas").to_dict(),
     }
     volcar_json(payload, salida / "k1_etiquetas.json", sello)

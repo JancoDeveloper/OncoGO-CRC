@@ -134,3 +134,14 @@ def contraste_no_pareado(
     )
     tabla["comparison_id"] = nombre
     return tabla
+
+
+def centrar_por_mediana(log2mat: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series, str]:
+    """Resta a cada muestra la mediana de las proteínas de referencia. Devuelve el desplazamiento."""
+    presencia = log2mat.notna().mean(axis=1)
+    referencia, regla = presencia >= 1.0, "100 %"
+    if int(referencia.sum()) < 100:
+        referencia, regla = presencia >= 0.9, "90 %"
+    medianas = log2mat.loc[referencia].median(axis=0)
+    desplazamiento = medianas - medianas.median()
+    return log2mat - desplazamiento, desplazamiento, regla
