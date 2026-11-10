@@ -10,16 +10,17 @@ _ENGANCHADO = False
 _EXCEPCIONES: tuple[str, ...] = ()
 _EVENTOS: list[dict] = []
 _PROHIBIDAS: list[str] = []
+_VERSION = "v3_6"
 
 
-def clasificar(ruta: str, excepciones: tuple[str, ...] = ()) -> str:
+def clasificar(ruta: str, excepciones: tuple[str, ...] = (), version: str = "v3_6") -> str:
     texto = str(ruta).replace("\\", "/")
     marca = "/results/"
     indice = texto.lower().find(marca)
     if indice < 0:
         return "fuera"
     resto = texto[indice + 1:]
-    if resto.startswith("results/v3_6/") or resto == "results/v3_6":
+    if resto.startswith(f"results/{version}/") or resto == f"results/{version}":
         return "permitida"
     if resto.startswith("results/certified/"):
         return "permitida"
@@ -35,7 +36,7 @@ def _gancho(evento: str, args) -> None:
     ruta = args[0]
     if isinstance(ruta, int):
         return
-    clase = clasificar(str(ruta), _EXCEPCIONES)
+    clase = clasificar(str(ruta), _EXCEPCIONES, _VERSION)
     if clase == "fuera":
         return
     _EVENTOS.append({"ruta": str(ruta), "clase": clase})
@@ -43,8 +44,9 @@ def _gancho(evento: str, args) -> None:
         _PROHIBIDAS.append(str(ruta))
 
 
-def activar(excepciones: tuple[str, ...]) -> None:
-    global _ACTIVO, _EXCEPCIONES, _ENGANCHADO
+def activar(excepciones: tuple[str, ...], version: str = "v3_6") -> None:
+    global _ACTIVO, _EXCEPCIONES, _ENGANCHADO, _VERSION
+    _VERSION = version
     _EXCEPCIONES = excepciones
     _EVENTOS.clear()
     _PROHIBIDAS.clear()

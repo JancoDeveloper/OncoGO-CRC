@@ -13,7 +13,7 @@ from oncogo_crc.utils.sello import escribir_sello
 from oncogo_crc.v3.rutas import rechazar_si_es_pipeline_antiguo
 
 VERSION_VIGENTE = "v3_3"
-VERSIONES_DE_ESCRITURA = ("v3_3", "v3_4", "v3_5", "v3_6")
+VERSIONES_DE_ESCRITURA = ("v3_3", "v3_4", "v3_5", "v3_6", "v3_7")
 _salida_forzada: ContextVar[Path | None] = ContextVar("salida_forzada", default=None)
 _corrida_limpia: ContextVar[bool] = ContextVar("corrida_limpia", default=False)
 
@@ -53,12 +53,16 @@ def carpeta_v36(settings) -> Path:
     return settings.resolve("results") / "v3_6"
 
 
+def carpeta_v37(settings) -> Path:
+    return settings.resolve("results") / "v3_7"
+
+
 def exigir_vigente(path: Path) -> None:
     texto = str(path).replace("\\", "/")
     rechazar_si_es_pipeline_antiguo(path)
     if any(f"/results/{version}/" in texto or texto.endswith(f"/results/{version}") for version in VERSIONES_DE_ESCRITURA):
         return
-    raise RuntimeError(f"v3 solo escribe bajo results/v3_3, results/v3_4, results/v3_5 o results/v3_6: {path}")
+    raise RuntimeError(f"v3 solo escribe bajo results/v3_3 a results/v3_7: {path}")
 
 
 def entrada_v3(settings, salida: Path, nombre: str) -> Path:

@@ -25,7 +25,7 @@ def _cerca(valor, esperado, tolerancia) -> bool:
         return valor == esperado
 
 
-def casillas(piezas: dict) -> dict[str, dict]:
+def casillas(piezas: dict, carpeta: str = "results/v3_6") -> dict[str, dict]:
     suero = piezas.get("suero_celda") or {}
     ml = piezas.get("ml") or {}
     multi = piezas.get("multiverso") or {}
@@ -43,49 +43,49 @@ def casillas(piezas: dict) -> dict[str, dict]:
         "cptac_n_significant": 688, "pride_n_significant": 140, "n_both_significant_padj_lt_0.05": 28,
         "n_same_sign": 104, "n_sign_evaluable": 119, "peptide_n_measurable": 226,
         "n_certified_surviving": 307,
-    }.items()), "results/v3_6/regresion_v1.json")
-    salida["sin_mezcla"] = _por_bool(piezas.get("sin_mezcla") is True, "results/v3_6/lecturas_v3_6.json")
-    salida["reproduce_v3_5"] = _por_bool(piezas.get("reproduce") is True, "results/v3_6/changelog_numeros.tsv")
-    salida["rutas_publicas"] = _por_bool(piezas.get("rutas_publicas") is True, "results/v3_6/")
+    }.items()), f"{carpeta}/regresion_v1.json")
+    salida["sin_mezcla"] = _por_bool(piezas.get("sin_mezcla") is True, f"{carpeta}/lecturas_{carpeta.rsplit('/', 1)[-1]}.json")
+    salida["reproduce_v3_5"] = _por_bool(piezas.get("reproduce") is True, f"{carpeta}/changelog_numeros.tsv")
+    salida["rutas_publicas"] = _por_bool(piezas.get("rutas_publicas") is True, f"{carpeta}/")
     salida["suero"] = _por_bool(
         suero.get("n") == 284 and suero.get("diferente") == 0 and suero.get("equivalente") == 166 and suero.get("indeterminada") == 118,
-        "results/v3_6/suero_embudo.json",
+        f"{carpeta}/suero_embudo.json",
     )
     m2 = (ml.get("versiones") or {}).get("M2_proteinas_principal") or {}
-    salida["ml_reproduccion"] = _por_bool(_cerca(m2.get("auc_oof_media"), 0.88025, 1e-9), "results/v3_6/ml_celda_preregistrada.json")
+    salida["ml_reproduccion"] = _por_bool(_cerca(m2.get("auc_oof_media"), 0.88025, 1e-9), f"{carpeta}/ml_celda_preregistrada.json")
     salida["multiverso"] = _por_bool(
         multi.get("n_celdas_suero") == 288 and multi.get("n_celdas_ml") == 72 and multi.get("n_r1") == 2,
-        "results/v3_6/multiverso_resumen.json",
+        f"{carpeta}/multiverso_resumen.json",
     )
     salida["controles_tejido"] = _por_bool(
         controles.get("veredicto_v3_3") == "falla" and bool(controles.get("controles_fisicos")) and bool(controles.get("veredicto_v3_4")),
-        "results/v3_6/controles_tejido.json",
+        f"{carpeta}/controles_tejido.json",
     )
-    salida["h5"] = _por_bool(h5.get("estado") == "sostiene" and h5.get("universo_principal_n") == 29, "results/v3_6/h5_especificidad_organo.json")
-    salida["h6"] = _por_bool(h6.get("estado") == "no_sostiene" and h6.get("tabla_degenerada") is True, "results/v3_6/h6_origen_celular.json")
+    salida["h5"] = _por_bool(h5.get("estado") == "sostiene" and h5.get("universo_principal_n") == 29, f"{carpeta}/h5_especificidad_organo.json")
+    salida["h6"] = _por_bool(h6.get("estado") == "no_sostiene" and h6.get("tabla_degenerada") is True, f"{carpeta}/h6_origen_celular.json")
     alvez = (h7.get("por_recurso") or {}).get("alvez_2023") or {}
-    salida["h7"] = _por_bool(h7.get("estado") == "refuta" and _cerca(alvez.get("auc"), 0.48281209614887566, 1e-9), "results/v3_6/h7_visibilidad_en_sangre.json")
-    salida["h8"] = _estado_h8(h8)
+    salida["h7"] = _por_bool(h7.get("estado") == "refuta" and _cerca(alvez.get("auc"), 0.48281209614887566, 1e-9), f"{carpeta}/h7_visibilidad_en_sangre.json")
+    salida["h8"] = _estado_h8(h8, carpeta)
     auc = (pre.get("calculado_con_legibles") or {}).get("auc") or {}
     if pre.get("estado") == "calculado" and pre.get("n_con_fecha") == 60:
-        salida["preanalitica"] = _por_bool(True, "results/v3_6/preanalitica.json")
+        salida["preanalitica"] = _por_bool(True, f"{carpeta}/preanalitica.json")
     elif pre.get("estado") == "no_evaluable" and isinstance(pre.get("cota_con_60"), dict):
-        salida["preanalitica"] = {"estado": "limitacion_aceptada", "fuente": "results/v3_6/preanalitica.json", "valor": auc.get("valor")}
+        salida["preanalitica"] = {"estado": "limitacion_aceptada", "fuente": f"{carpeta}/preanalitica.json", "valor": auc.get("valor")}
     else:
-        salida["preanalitica"] = _por_bool(False, "results/v3_6/preanalitica.json")
-    salida["h9"] = _por_bool(h9.get("estado") in {"exploratorio", "no_evaluable"}, "results/v3_6/h9_wald.json")
-    salida["h10"] = _por_bool(h10.get("estado") == "descriptiva", "results/v3_6/h10_especificidad.json")
-    salida["triangulacion"] = _por_bool(piezas.get("triangulacion_ok") is True, "results/v3_6/triangulacion.tsv")
-    salida["determinismo"] = _por_bool(piezas.get("determinismo") is True, "results/v3_6/determinismo.json")
+        salida["preanalitica"] = _por_bool(False, f"{carpeta}/preanalitica.json")
+    salida["h9"] = _por_bool(h9.get("estado") in {"exploratorio", "no_evaluable"}, f"{carpeta}/h9_wald.json")
+    salida["h10"] = _por_bool(h10.get("estado") == "descriptiva", f"{carpeta}/h10_especificidad.json")
+    salida["triangulacion"] = _por_bool(piezas.get("triangulacion_ok") is True, f"{carpeta}/triangulacion.tsv")
+    salida["determinismo"] = _por_bool(piezas.get("determinismo") is True, f"{carpeta}/determinismo.json")
     return salida
 
 
-def _estado_h8(h8: dict) -> dict:
+def _estado_h8(h8: dict, carpeta: str) -> dict:
     if h8.get("estado") in {"sostiene", "no_sostiene"}:
-        return _por_bool(True, "results/v3_6/h8_carga_tumoral.json")
+        return _por_bool(True, f"{carpeta}/h8_carga_tumoral.json")
     if h8.get("estado") == "no_evaluable":
-        return {"estado": "limitacion_aceptada", "fuente": "results/v3_6/h8_carga_tumoral.json", "valor": h8.get("n_universo")}
-    return _por_bool(False, "results/v3_6/h8_carga_tumoral.json")
+        return {"estado": "limitacion_aceptada", "fuente": f"{carpeta}/h8_carga_tumoral.json", "valor": h8.get("n_universo")}
+    return _por_bool(False, f"{carpeta}/h8_carga_tumoral.json")
 
 
 def _por_bool(ok: bool, fuente: str) -> dict:
@@ -103,8 +103,8 @@ def rutas_limpias(carpeta: Path) -> bool:
     return True
 
 
-def emitir(piezas: dict, salida: Path, sello: dict) -> dict:
-    cajas = casillas(piezas)
+def emitir(piezas: dict, salida: Path, sello: dict, carpeta: str = "results/v3_6") -> dict:
+    cajas = casillas(piezas, carpeta)
     limitaciones = []
     for nombre, caja in cajas.items():
         if caja["estado"] == "limitacion_aceptada":

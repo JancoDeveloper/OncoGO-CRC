@@ -235,3 +235,16 @@ all-v3-5: v3-5
 v3-6:
 	$(RUN) v3_6
 all-v3-6: v3-6
+
+# --------------------------------------------------------------------- v3.7
+# Recalcula cada pieza en results/v3_7/. No copia corridas anteriores.
+.PHONY: v3-7 all-v3-7 crudos-v3-7
+export PYTHONHASHSEED=0
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+crudos-v3-7:
+	$(PY) scripts/download/pxd055218_crudos.py --workspace $(WORKSPACE)
+v3-7:
+	$(RUN) v3_7
+all-v3-7: regresion-v1 crudos-v3-7 v3-7

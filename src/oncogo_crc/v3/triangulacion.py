@@ -7,8 +7,7 @@ from pathlib import Path
 import pandas as pd
 
 from oncogo_crc.settings import Settings
-from oncogo_crc.utils.dia_nn_plasma import acceso_base
-from oncogo_crc.v3.salida import corrida_limpia, volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import volcar_json, volcar_tsv
 
 NO_MEDIDA = "no_medida"
 
@@ -39,10 +38,8 @@ def _clase_por_gen(ruta: Path, columna_valor: str) -> dict[str, object]:
 
 
 def _de_esta_corrida(salida: Path, nombre: str, anterior: Path) -> Path:
-    local = salida / nombre
-    if local.is_file() or corrida_limpia():
-        return local
-    return anterior
+    del anterior
+    return salida / nombre
 
 
 def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
@@ -51,17 +48,14 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
     tabla = tabla_vacia(genes, columnas)
     buscados = set(genes)
 
-    tanaka = _de_esta_corrida(salida, "k1_primario_frente_a_mucosa.tsv", settings.resolve("results/v3_3/k1_primario_frente_a_mucosa.tsv"))
+    tanaka = salida / "k1_primario_frente_a_mucosa.tsv"
     uni = settings.resolve("metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv")
-    if tanaka.is_file() and uni.is_file():
-        mapa = pd.read_csv(uni, sep="\t", usecols=["gene_symbol", "uniprot_accession"], dtype=str).dropna()
-        mapa["gene_symbol"] = mapa["gene_symbol"].str.upper()
-        acceso_a_gen = {}
-        for gen, acceso in zip(mapa["gene_symbol"], mapa["uniprot_accession"], strict=True):
-            acceso_a_gen.setdefault(acceso_base(acceso), set()).add(gen)
-        unico = {a: next(iter(g)) for a, g in acceso_a_gen.items() if len(g) == 1}
+    grupos = settings.resolve("data/raw/pride/Cohort1_proteinGroups.txt")
+    if tanaka.is_file() and uni.is_file() and grupos.is_file():
+        from oncogo_crc.v3.genes_tanaka import gen_unico, mapa_genes
+        mapa = mapa_genes(grupos, uni)
         bloque = pd.read_csv(tanaka, sep="\t")
-        bloque["gen"] = bloque["protein_id"].map(lambda pid: unico.get(acceso_base(str(pid).split(";")[0])))
+        bloque["gen"] = bloque["protein_id"].map(lambda pid: gen_unico(pid, mapa))
         bloque = bloque.dropna(subset=["gen"]).drop_duplicates("gen")
         for _, fila in bloque.loc[bloque["gen"].isin(buscados)].iterrows():
             _poner(tabla, fila["gen"], "tanaka_log2fc", fila.get("log2fc"))
@@ -84,8 +78,6 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
         ("pxd055218_k4_crc_sanos", _de_esta_corrida(salida, "k4_genes_maxlfq_crc_frente_a_sanos.tsv", settings.resolve("results/v3_3/k4_genes_maxlfq_crc_frente_a_sanos.tsv")), "clase"),
         ("pxd055218_k4_crc_cn", _de_esta_corrida(salida, "k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv", settings.resolve("results/v3_3/k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv")), "clase"),
     ):
-        if ruta == salida / "h5_especificidad_organo.tsv" and not ruta.is_file() and not corrida_limpia():
-            ruta = settings.resolve("results/v3_4/h5_especificidad_organo.tsv")
         for gen, valor in _clase_por_gen(ruta, campo).items():
             if gen in buscados:
                 _poner(tabla, gen, columna, valor)

@@ -1,0 +1,6 @@
+# Excepciones del vigilante de la corrida v3.7.
+# results/certified/ ya está permitido por la enmienda. Esta lista es lo demás.
+entradas:
+  - ruta: "results/certification/certificado_resumen.json"
+    sha256: "ece8a9079cb1e7db29403ce984fc6322fac7b0387b4e7e87259b8127db4d9590"
+    motivo: "La regresión v1 lee n_same_sign y n_sign_evaluable. El fichero no está bajo results/certified/."

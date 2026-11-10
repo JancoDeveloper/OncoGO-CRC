@@ -432,3 +432,11 @@ Resultado. HTTPS no entrega `CN_16_DIA.raw`: el objeto publicado pesa 4096 bytes
 Prueba. Antes de `anotar_redescarga`, `pytest tests/test_v3_7_crudos.py::test_la_cuarentena_marca_el_crudo_como_redescargado` da 1 failed (`AttributeError`). Después, `pytest tests/test_v3_7_crudos.py` da 4 passed.
 
 Decisión. No es un fichero dañado en origen: el SHA-1 del que quedó en el volumen coincide con PRIDE. No se redacta el correo. `make all-v3-7` puede seguir. La clave de Aspera no entra al repositorio.
+
+## 2026-11-10 11:50 (UTC−5). v3.7, etapa que recalcula en su carpeta
+
+Comando, antes del parche: `pytest tests/test_v3_7_sin_mezcla.py`.
+
+Resultado. 2 failed. `clasificar()` no acepta `version` y `h8.py` todavía asigna el gen de Tanaka con `uni.get(acceso_base`. Después del parche, `pytest tests/test_v3_7_sin_mezcla.py tests/test_v3_6_sin_mezcla.py tests/test_v3_7_crudos.py tests/test_v3_5_triangulacion.py` da 10 passed.
+
+Decisión. La etapa `v3_7` escribe en `results/v3_7/`. H8 y la triangulación usan `genes_tanaka.mapa_genes`. El report trae `Run` igual a `CP_` y `CN_`, y a los sanos los llama `Normal_` en un `.mzML`, no `HC_` en un `.raw`. Esa unión no se inventa: queda `verificada` falso. ThermoRawFileParser 2.0.0 ya escribió la fecha de los seis crudos que no tenían JSON.

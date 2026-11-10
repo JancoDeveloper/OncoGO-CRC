@@ -227,7 +227,13 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
         calidad = settings.resolve("results/v3_3/suero_calidad_muestra.tsv")
     if calidad.is_file() and len(con_fecha):
         qc = pd.read_csv(calidad, sep="\t").rename(columns={"grupo": "grupo_calidad"})
-        qc["crudo"] = qc["sample_id"].astype(str) + ".raw"
+        union_path = salida / "union_crudos_calidad.tsv"
+        if union_path.is_file():
+            union = pd.read_csv(union_path, sep="\t", dtype=str)
+            verificadas = union.loc[union["verificada"].str.lower().eq("true"), ["sample_id", "crudo"]]
+            qc = qc.merge(verificadas, on="sample_id", how="inner")
+        else:
+            qc["crudo"] = qc["sample_id"].astype(str) + ".raw"
         unido = con_fecha.merge(qc, on="crudo", how="inner")
         if "n_precursores" in unido.columns:
             unido["log2_n_precursores"] = np.log2(pd.to_numeric(unido["n_precursores"], errors="coerce"))
