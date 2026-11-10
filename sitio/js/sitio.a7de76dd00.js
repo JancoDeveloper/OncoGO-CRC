@@ -1,0 +1,2 @@
+const b=document.getElementById('progreso');if(b){addEventListener('scroll',()=>{const h=document.documentElement;b.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100||0)+'%';});}
+const q=document.getElementById('buscar-glosario');if(q){q.addEventListener('input',()=>{const t=q.value.toLowerCase();document.querySelectorAll('dt').forEach(d=>{d.hidden=!d.textContent.toLowerCase().includes(t);d.nextElementSibling.hidden=d.hidden;});});}

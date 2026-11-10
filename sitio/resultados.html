@@ -3,56 +3,272 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Resultados</title>
-<link rel="stylesheet" href="css/v35.css">
+<title>Resultados · OncoGO-CRC</title>
+<link rel="stylesheet" href="/css/base.beaa25f321.css">
 </head>
 <body>
-<a class="saltar" href="#contenido">Saltar al contenido</a>
-<p class="aviso" role="note">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<header>
-<p class="marca">OncoGO-CRC · corrida v3.5</p>
-<nav aria-label="Secciones">
-<a href="index.html">Inicio</a>
-<a href="metodos.html">Métodos</a>
-<a href="resultados.html">Resultados</a>
-<a href="datos.html">Datos</a>
-<a href="glosario.html">Glosario</a>
-<a href="preguntas.html">Preguntas</a>
-<a href="reproducir.html">Reproducir</a>
-<a href="historial.html">Historial</a>
-</nav>
+<div class="progreso" id="progreso"></div>
+<header class="barra">
+<a href="/">OncoGO-CRC</a>
+<nav><a href="/">Inicio</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/resultados">Resultados</a><a href="/aprende">Aprende</a><a href="/datos">Datos</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/reproducir">Reproducir</a><a href="/historial">Historial</a></nav>
 </header>
-<main id="contenido">
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<main class="pagina">
 
 <h1>Resultados</h1>
-<p>Cada número nombra su fichero. Un estado vacío no se rellena.</p>
-<section id="suero"><h2>Suero</h2><p>Ninguna proteína separa el cáncer de la colonoscopia negativa: <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.diferente">0</data> de <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.n">284</data>.</p>
-<p>Equivalentes: <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.equivalente">166</data>. Indeterminadas: <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.indeterminada">118</data>.</p>
-<svg role="img" aria-labelledby="embudo-titulo" viewBox="0 0 420 140">
-<title id="embudo-titulo">Embudo del suero, de grupos del informe a la celda principal</title>
-<rect x="10" y="20" width="90" height="36"></rect>
-<rect x="120" y="28" width="80" height="28"></rect>
-<rect x="220" y="34" width="70" height="24"></rect>
-<rect x="310" y="40" width="60" height="20"></rect>
-</svg>
-<p>Grupos del informe: <data data-fuente="results/v3_3/suero_resumen.json#n_grupos_report">897</data>. Con el filtro global: <data data-fuente="results/v3_3/suero_controles.json#controles.grupos_global_pg_q_0_01">329</data>. Humanos: <data data-fuente="results/v3_3/suero_resumen.json#n_matriz_humana_fdr">312</data>. Celda principal: <data data-fuente="results/v3_3/suero_resumen.json#n_principal">284</data>.</p>
+<p>Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.</p>
+<figure class="grafico tarjeta" id="g1">
+<h3>¿Cuántas proteínas llegan a la celda?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 80" role="img"><rect x="0.0" y="20" width="295.4" height="36" fill="#0E7C86"><title>Grupos: 897</title></rect><rect x="295.4" y="20" width="108.3" height="36" fill="#56B4E9"><title>q: 329</title></rect><rect x="403.7" y="20" width="102.7" height="36" fill="#009E73"><title>Humanas: 312</title></rect><rect x="506.5" y="20" width="93.5" height="36" fill="#D55E00"><title>Celda: 284</title></rect></svg></div>
+<noscript><p>Barras del embudo del suero.</p></noscript>
+<p class="leyenda"><data value="897" data-fuente="results/v3_6/suero_embudo.json">897</data> → <data value="284" data-fuente="results/v3_6/suero_embudo.json">284</data></p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>Cada tramo es un filtro escrito antes de mirar.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Cuántas proteínas sobreviven a cada regla.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No dice que las que salen no existan.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/suero_embudo.json</p></details>
+<figcaption>Embudo del suero</figcaption>
+<p class="sr-only">Barras del embudo del suero.</p>
+</figure><figure class="grafico tarjeta" id="g3">
+<h3>¿El cáncer se separa de la colonoscopia negativa?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 80" role="img"><rect x="0.0" y="20" width="0.0" height="36" fill="#D55E00"><title>Diferente: 0</title></rect><rect x="0.0" y="20" width="350.7" height="36" fill="#56B4E9"><title>Equivalente: 166</title></rect><rect x="350.7" y="20" width="249.3" height="36" fill="#BFC7D1"><title>Indeterminada: 118</title></rect></svg></div>
+<noscript><p>Tres barras de la celda del suero.</p></noscript>
+<p class="leyenda"><data value="0" data-fuente="results/v3_6/suero_embudo.json">0</data> diferentes, <data value="166" data-fuente="results/v3_6/suero_embudo.json">166</data> equivalentes, <data value="118" data-fuente="results/v3_6/suero_embudo.json">118</data> indeterminadas.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>Naranja es diferente, azul es equivalente, gris es indeterminada.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>El reparto de la celda preregistrada.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No es un examen y no es un nulo limpio.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/suero_k4_crc_cn.tsv</p></details>
+<figcaption>Tres clases</figcaption>
+<p class="sr-only">Tres barras de la celda del suero.</p>
+</figure><figure class="grafico tarjeta" id="g6">
+<h3>¿Cuánto separa el modelo y por qué?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 80" role="img"><rect x="0.0" y="20" width="150.0" height="36" fill="#0E7C86"><title>M1: 1</title></rect><rect x="150.0" y="20" width="150.0" height="36" fill="#0072B2"><title>M2: 1</title></rect><rect x="300.0" y="20" width="150.0" height="36" fill="#D55E00"><title>M3: 1</title></rect><rect x="450.0" y="20" width="150.0" height="36" fill="#CC79A7"><title>M5: 1</title></rect></svg></div>
+<noscript><p>Comparación de los modelos.</p></noscript>
+<p class="leyenda">M2 <data value="0.88025" data-fuente="results/v3_6/ml_suero_permutacion.json">0,880</data>. M3 <data value="0.9151250000000001" data-fuente="results/v3_6/ml_suero_permutacion.json">0,915</data>. M5 <data value="0.6467499999999999" data-fuente="results/v3_6/ml_suero_permutacion.json">0,647</data> (p <data value="0.1188811188811189" data-fuente="results/v3_6/ml_suero_permutacion.json">0,12</data>).</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>M3 usa solo la calidad. M5 le quita esa calidad a las proteínas.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>La calidad sola separa más que las proteínas sin ella.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No es un examen. El lote puede explicar la separación.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/ml_suero_permutacion.json</p></details>
+<figcaption>Modelos M1 a M6</figcaption>
+<p class="sr-only">Comparación de los modelos.</p>
+</figure>
+<section class="tarjeta"><h2>Tejido</h2><p>El primario coincide en signo en <data value="147" data-fuente="results/v3_6/k1_etiquetas.json">147</data> de <data value="147" data-fuente="results/v3_6/k1_etiquetas.json">147</data>. La metástasis, en <data value="116" data-fuente="results/v3_6/k1_etiquetas.json">116</data> de <data value="143" data-fuente="results/v3_6/k1_etiquetas.json">143</data>.</p></section>
+<section class="tarjeta"><h2>Hipótesis</h2>
+<p>H5 <span class="estado" data-estado="sostiene"><data value="sostiene" data-fuente="results/v3_6/h5_especificidad_organo.json">sostiene</data></span>.
+H6 <span class="estado" data-estado="no_sostiene"><data value="no_sostiene" data-fuente="results/v3_6/h6_origen_celular.json">no_sostiene</data></span>.
+H7 <span class="estado" data-estado="refuta"><data value="refuta" data-fuente="results/v3_6/h7_visibilidad_en_sangre.json">refuta</data></span>.
+H8 <span class="estado" data-estado="no_evaluable"><data value="no_evaluable" data-fuente="results/v3_6/h8_carga_tumoral.json">no_evaluable</data></span>.
+H9 <span class="estado" data-estado="exploratorio"><data value="exploratorio" data-fuente="results/v3_6/h9_wald.json">exploratorio</data></span> (LBP, LRG1, CEACAM5).
+H10 <span class="estado" data-estado="descriptiva"><data value="descriptiva" data-fuente="results/v3_6/h10_especificidad.json">descriptiva</data></span>, <data value="5" data-fuente="results/v3_6/h10_especificidad.json">5</data> proteínas.</p>
+<p>Álvez <data value="0.4828120961488757" data-fuente="results/v3_6/h7_visibilidad_en_sangre.json">0,483</data>. Atlas de sangre <data value="0.4639113507038036" data-fuente="results/v3_6/h7_visibilidad_en_sangre.json">0,464</data>. Plaquetas p <data value="0.0009478694934511714" data-fuente="results/v3_6/h8_carga_tumoral.json">0,00095</data>.</p>
+<p>Calidad: coagulación p <data value="0.0009909115846774195" data-fuente="results/v3_6/k7_control_tecnico.json">0,00099</data>, piel p <data value="3.368147927831302e-06" data-fuente="results/v3_6/k7_control_tecnico.json">3,4 × 10⁻⁶</data>.</p>
+<p>Preanalítica <data value="no_evaluable" data-fuente="results/v3_6/preanalitica.json">no_evaluable</data>: fecha en <data value="54" data-fuente="results/v3_6/preanalitica.json">54</data> de <data value="60" data-fuente="results/v3_6/preanalitica.json">60</data>. Multiverso: <data value="288" data-fuente="results/v3_6/multiverso_resumen.json">288</data> celdas de suero y <data value="13" data-fuente="results/v3_6/multiverso_resumen.json">13</data> con proteínas diferentes.</p>
 </section>
-<section id="modelo"><h2>Modelo</h2>
-<p>La calidad sola separa casi tan bien como todas las proteínas. Sin la calidad, la separación se pierde. Con contaminantes, la mediana sube a <data data-fuente="results/v3_5/multiverso_resumen_v3_5.json#auc_ml_sin_quitar_mediana">0.941625</data>.</p>
-<p>La celda de esta corrida reproduce <data data-fuente="results/v3_5/ml_celda_preregistrada.json#auc">0.88025</data>. La permutación de la versión sin calidad da <data data-fuente="results/v3_3/ml_suero_modelos.tsv#M5_principal_residualizada_qc.p_permutacion">0.11888111888111888</data>.</p>
-</section>
-<section id="pre"><h2>Orden de adquisición</h2>
-<p>Estado <data data-fuente="results/v3_5/preanalitica_v3_5.json#estado">no_evaluable</data>. El área del orden, solo con los crudos legibles, es <data data-fuente="results/v3_5/preanalitica_v3_5.json#calculado_con_legibles.auc.valor">0</data>. Los grupos legibles se midieron por bloques. Eso no cambia el titular.</p>
-</section>
-<section id="h5"><h2>H5</h2><p>Estado <data data-fuente="results/v3_5/h5_especificidad_organo.json#estado">sostiene</data>. El universo común tiene <data data-fuente="results/v3_5/h5_especificidad_organo.json#universo_principal_n">29</data> genes. No demuestra que el colon tenga una dirección propia.</p></section>
-<section id="h6"><h2>H6</h2><p>Estado <data data-fuente="results/v3_5/h6_origen_celular.json#estado">no_sostiene</data>. Tabla degenerada: <data data-fuente="results/v3_5/h6_origen_celular.json#tabla_degenerada">sí</data>. No es evidencia ni a favor ni en contra.</p></section>
-<section id="h7"><h2>H7</h2><p>Estado <data data-fuente="results/v3_5/h7_visibilidad_en_sangre.json#estado">refuta</data>. Álvez: <data data-fuente="results/v3_5/h7_visibilidad_en_sangre.json#por_recurso.alvez_2023.auc">0.482812096149</data>. HPA: <data data-fuente="results/v3_5/h7_visibilidad_en_sangre.json#por_recurso.hpa_disease_blood_atlas.auc">0.463911350704</data>. Papier queda <data data-fuente="results/v3_5/h7_visibilidad_en_sangre.json#por_recurso.papier_2024.estado">no_evaluable</data>.</p></section>
-<section id="h8"><h2>H8</h2><p>Estado <data data-fuente="results/v3_5/h8_carga_tumoral.json#estado">no_evaluable</data>. Corridas unidas: <data data-fuente="results/v3_5/h8_carga_tumoral.json#mapa.n_unidas">100</data>. Estándares fuera: <data data-fuente="results/v3_5/h8_carga_tumoral.json#n_estandares_excluidos">4</data>. Tumorales epiteliales: <data data-fuente="results/v3_5/h8_carga_tumoral.json#n_tumorales_epiteliales">0</data>. Versión de directLFQ: <data data-fuente="results/v3_5/h8_carga_tumoral.json#directlfq_version">0.3.3</data>.</p></section>
-<section id="h9"><h2>H9</h2><p>Estado <data data-fuente="results/v3_5/h9_wald.json#estado">exploratorio</data>. No decide la tesis.</p></section>
-<section id="h10"><h2>H10 y triangulación</h2><p>Estado <data data-fuente="results/v3_5/h10_especificidad.json#estado">descriptiva</data>. Específicas: <data data-fuente="results/v3_5/h10_especificidad.json#n_especificas_crc">5</data>. Filas de la triangulación: <data data-fuente="results/v3_5/triangulacion_v3_5.json#n_filas">14</data>. Celdas vacías: <data data-fuente="results/v3_5/triangulacion_v3_5.json#celdas_vacias">0</data>. No es una validación.</p></section>
-
+<figure class="grafico tarjeta" id="g2">
+<h3>¿Qué proteína del suero pasa cada filtro?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿Qué proteína del suero pasa cada filtro?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿Qué proteína del suero pasa cada filtro?</figcaption>
+<p class="sr-only">¿Qué proteína del suero pasa cada filtro?</p>
+</figure>
+<figure class="grafico tarjeta" id="g4">
+<h3>¿Las tres clases se ven en el plano de cambio y dispersión?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿Las tres clases se ven en el plano de cambio y dispersión?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿Las tres clases se ven en el plano de cambio y dispersión?</figcaption>
+<p class="sr-only">¿Las tres clases se ven en el plano de cambio y dispersión?</p>
+</figure>
+<figure class="grafico tarjeta" id="g5">
+<h3>¿La calidad de la muestra difiere entre grupos?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿La calidad de la muestra difiere entre grupos?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿La calidad de la muestra difiere entre grupos?</figcaption>
+<p class="sr-only">¿La calidad de la muestra difiere entre grupos?</p>
+</figure>
+<figure class="grafico tarjeta" id="g7">
+<h3>¿La separación cae dentro de lo que el azar produce?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿La separación cae dentro de lo que el azar produce?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿La separación cae dentro de lo que el azar produce?</figcaption>
+<p class="sr-only">¿La separación cae dentro de lo que el azar produce?</p>
+</figure>
+<figure class="grafico tarjeta" id="g8">
+<h3>¿El nulo se mantiene si se cambia una decisión?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿El nulo se mantiene si se cambia una decisión?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿El nulo se mantiene si se cambia una decisión?</figcaption>
+<p class="sr-only">¿El nulo se mantiene si se cambia una decisión?</p>
+</figure>
+<figure class="grafico tarjeta" id="g9">
+<h3>¿El cambio del colon se distingue de otros carcinomas?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿El cambio del colon se distingue de otros carcinomas?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿El cambio del colon se distingue de otros carcinomas?</figcaption>
+<p class="sr-only">¿El cambio del colon se distingue de otros carcinomas?</p>
+</figure>
+<figure class="grafico tarjeta" id="g10">
+<h3>¿El tipo celular del tumor se ve en la sangre?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿El tipo celular del tumor se ve en la sangre?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿El tipo celular del tumor se ve en la sangre?</figcaption>
+<p class="sr-only">¿El tipo celular del tumor se ve en la sangre?</p>
+</figure>
+<figure class="grafico tarjeta" id="g11">
+<h3>¿El tejido anticipa el cambio en sangre?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿El tejido anticipa el cambio en sangre?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿El tejido anticipa el cambio en sangre?</figcaption>
+<p class="sr-only">¿El tejido anticipa el cambio en sangre?</p>
+</figure>
+<figure class="grafico tarjeta" id="g12">
+<h3>¿El estadio IV aumenta la proteína tumoral en sangre?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿El estadio IV aumenta la proteína tumoral en sangre?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿El estadio IV aumenta la proteína tumoral en sangre?</figcaption>
+<p class="sr-only">¿El estadio IV aumenta la proteína tumoral en sangre?</p>
+</figure>
+<figure class="grafico tarjeta" id="g13">
+<h3>¿La genética medida explica el nivel en sangre?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿La genética medida explica el nivel en sangre?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿La genética medida explica el nivel en sangre?</figcaption>
+<p class="sr-only">¿La genética medida explica el nivel en sangre?</p>
+</figure>
+<figure class="grafico tarjeta" id="g14">
+<h3>¿Qué proteínas son específicas del cáncer colorrectal?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿Qué proteínas son específicas del cáncer colorrectal?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿Qué proteínas son específicas del cáncer colorrectal?</figcaption>
+<p class="sr-only">¿Qué proteínas son específicas del cáncer colorrectal?</p>
+</figure>
+<figure class="grafico tarjeta" id="g15">
+<h3>¿En qué orden se midieron los tres grupos?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿En qué orden se midieron los tres grupos?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿En qué orden se midieron los tres grupos?</figcaption>
+<p class="sr-only">¿En qué orden se midieron los tres grupos?</p>
+</figure>
+<figure class="grafico tarjeta" id="g16">
+<h3>¿La triangulación deja alguna celda vacía?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿La triangulación deja alguna celda vacía?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿La triangulación deja alguna celda vacía?</figcaption>
+<p class="sr-only">¿La triangulación deja alguna celda vacía?</p>
+</figure>
+<figure class="grafico tarjeta" id="g17">
+<h3>¿Qué pieza del certificado queda en verde?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿Qué pieza del certificado queda en verde?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿Qué pieza del certificado queda en verde?</figcaption>
+<p class="sr-only">¿Qué pieza del certificado queda en verde?</p>
+</figure>
+<figure class="grafico tarjeta" id="g18">
+<h3>¿Dónde se pierde el embudo?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿Dónde se pierde el embudo?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿Dónde se pierde el embudo?</figcaption>
+<p class="sr-only">¿Dónde se pierde el embudo?</p>
+</figure>
+<figure class="grafico tarjeta" id="g19">
+<h3>¿Qué cambia entre las decisiones del multiverso?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿Qué cambia entre las decisiones del multiverso?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿Qué cambia entre las decisiones del multiverso?</figcaption>
+<p class="sr-only">¿Qué cambia entre las decisiones del multiverso?</p>
+</figure>
+<figure class="grafico tarjeta" id="g20">
+<h3>¿Qué limitación acepta el certificado?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 40" role="img"><rect width="600" height="40" fill="#E6F6F7"></rect></svg></div>
+<noscript><p>¿Qué limitación acepta el certificado?</p></noscript>
+<p class="leyenda">La cifra de esta pieza está en la sección de resultados y en su fichero.</p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>La barra marca que la pieza tiene un fichero en results/v3_6/.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Que la pregunta tiene una salida real de esta corrida.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No sustituye la lectura de la sección ni inventa un punto que el fichero no trae.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/certificado.json</p></details>
+<figcaption>¿Qué limitación acepta el certificado?</figcaption>
+<p class="sr-only">¿Qué limitación acepta el certificado?</p>
+</figure>
 </main>
-<footer><p>Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p></footer>
-<script src="js/v35.js"></script>
+<p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<script type="module" src="/js/sitio.a7de76dd00.js"></script>
 </body>
 </html>

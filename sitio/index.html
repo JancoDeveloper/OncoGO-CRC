@@ -3,97 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OncoGO-CRC</title>
-<link rel="stylesheet" href="css/v35.css">
+<title>Inicio · OncoGO-CRC</title>
+<link rel="stylesheet" href="/css/base.beaa25f321.css">
 </head>
 <body>
-<a class="saltar" href="#contenido">Saltar al contenido</a>
-<p class="aviso" role="note">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<header>
-<p class="marca">OncoGO-CRC · corrida v3.5</p>
-<nav aria-label="Secciones">
-<a href="index.html">Inicio</a>
-<a href="metodos.html">Métodos</a>
-<a href="resultados.html">Resultados</a>
-<a href="datos.html">Datos</a>
-<a href="glosario.html">Glosario</a>
-<a href="preguntas.html">Preguntas</a>
-<a href="reproducir.html">Reproducir</a>
-<a href="historial.html">Historial</a>
-</nav>
+<div class="progreso" id="progreso"></div>
+<header class="barra">
+<a href="/">OncoGO-CRC</a>
+<nav><a href="/">Inicio</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/resultados">Resultados</a><a href="/aprende">Aprende</a><a href="/datos">Datos</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/reproducir">Reproducir</a><a href="/historial">Historial</a></nav>
 </header>
-<main id="contenido">
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<main class="pagina">
 
-<h1>¿Las proteínas que cambian en un tumor de colon dejan una huella que se pueda ver en la sangre?</h1>
-<p class="respuesta">No en este suero. Ninguna proteína separa el cáncer de la colonoscopia negativa: <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.diferente">0</data> de <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.n">284</data>. La separación del modelo se asocia con la calidad de la muestra.</p>
-<p>El certificado de esta corrida está en <data data-fuente="results/v3_5/certificado_v3_5.json#estado">publicable</data>.</p>
-<section class="rejilla">
-<article><h2>Tejido</h2><p>El signo del cambio tumoral se repite: <data data-fuente="results/v3_3/k1_etiquetas.json#contrastes.primario_frente_a_mucosa.numerador">147</data> de <data data-fuente="results/v3_3/k1_etiquetas.json#contrastes.primario_frente_a_mucosa.denominador">147</data>.</p></article>
-<article><h2>Sangre</h2><p>Ninguna proteína separa el cáncer de la colonoscopia negativa: <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.diferente">0</data> de <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.n">284</data>. <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.equivalente">166</data> quedan equivalentes y <data data-fuente="results/v3_5/multiverso_v3_4.json#celda_preregistrada.indeterminada">118</data> indeterminadas.</p></article>
-<article><h2>Predicción</h2><p>Todas las proteínas dan <data data-fuente="results/v3_5/ml_celda_preregistrada.json#auc">0.88025</data>. La calidad sola da <data data-fuente="results/v3_3/ml_suero_modelos.tsv#M3_solo_qc.auc_oof_media">0.9151250000000001</data>. Sin la calidad queda <data data-fuente="results/v3_3/ml_suero_modelos.tsv#M5_principal_residualizada_qc.auc_oof_media">0.6467499999999999</data>.</p></article>
-</section>
-<h2>Las hipótesis</h2>
-<article class="tarjeta">
-<h3>H5. ¿El colon cambia distinto?</h3>
-<h4>En palabras simples</h4><p>El cambio del colon se parece al de otros carcinomas.</p>
-<h4>Qué hicimos</h4><p>Se comparó el signo del cambio en un universo común de genes.</p>
-<h4>Qué salió</h4><p>El estado es <data data-fuente="results/v3_5/h5_especificidad_organo.json#estado">sostiene</data>.</p>
-<h4>Qué significa</h4><p>La proliferación es común a los carcinomas.</p>
-<h4>Qué no significa</h4><p>No demuestra una proteína exclusiva del colon.</p>
-<p><a href="resultados.html#h5">Ficha técnica</a></p>
-</article>
-<article class="tarjeta">
-<h3>H6. ¿Importa el tipo de célula?</h3>
-<h4>En palabras simples</h4><p>La tabla no puede responder.</p>
-<h4>Qué hicimos</h4><p>Se cruzó el origen celular con el signo del cambio.</p>
-<h4>Qué salió</h4><p>El estado es <data data-fuente="results/v3_5/h6_origen_celular.json#estado">no_sostiene</data>. La tabla degenerada es <data data-fuente="results/v3_5/h6_origen_celular.json#tabla_degenerada">sí</data>.</p>
-<h4>Qué significa</h4><p>No hay variación en el desenlace.</p>
-<h4>Qué no significa</h4><p>No es evidencia ni a favor ni en contra.</p>
-<p><a href="resultados.html#h6">Ficha técnica</a></p>
-</article>
-<article class="tarjeta">
-<h3>H7. ¿El tejido anticipa la sangre?</h3>
-<h4>En palabras simples</h4><p>Con las variables fijadas de antemano, no.</p>
-<h4>Qué hicimos</h4><p>Se entrenó fuera de cada recurso con suficientes casos.</p>
-<h4>Qué salió</h4><p>El estado es <data data-fuente="results/v3_5/h7_visibilidad_en_sangre.json#estado">refuta</data>.</p>
-<h4>Qué significa</h4><p>Los recursos no miden lo mismo.</p>
-<h4>Qué no significa</h4><p>No es una prueba diagnóstica.</p>
-<p><a href="resultados.html#h7">Ficha técnica</a></p>
-</article>
-<article class="tarjeta">
-<h3>H8. ¿El estadio IV lleva más proteína del tumor?</h3>
-<h4>En palabras simples</h4><p>Esta corrida no alcanza a medirlo.</p>
-<h4>Qué hicimos</h4><p>directLFQ agregó las corridas y Fisher comparó las tumorales.</p>
-<h4>Qué salió</h4><p>El estado es <data data-fuente="results/v3_5/h8_carga_tumoral.json#estado">no_evaluable</data>.</p>
-<h4>Qué significa</h4><p>Falta profundidad en un DIA sin depleción.</p>
-<h4>Qué no significa</h4><p>No demuestra que esa proteína no exista.</p>
-<p><a href="resultados.html#h8">Ficha técnica</a></p>
-</article>
-<article class="tarjeta">
-<h3>H9. ¿La genética explica el nivel en sangre?</h3>
-<h4>En palabras simples</h4><p>El ensayo exploratorio no lo muestra.</p>
-<h4>Qué hicimos</h4><p>Se usó un instrumento por proteína.</p>
-<h4>Qué salió</h4><p>El estado es <data data-fuente="results/v3_5/h9_wald.json#estado">exploratorio</data>.</p>
-<h4>Qué significa</h4><p>Es una desviación de procedimiento declarada.</p>
-<h4>Qué no significa</h4><p>No decide la tesis.</p>
-<p><a href="resultados.html#h9">Ficha técnica</a></p>
-</article>
-<article class="tarjeta">
-<h3>H10. ¿Alguna proteína es propia del CRC?</h3>
-<h4>En palabras simples</h4><p>El atlas marca unas pocas.</p>
-<h4>Qué hicimos</h4><p>Se contaron las específicas del atlas.</p>
-<h4>Qué salió</h4><p>El estado es <data data-fuente="results/v3_5/h10_especificidad.json#estado">descriptiva</data> y el conteo es <data data-fuente="results/v3_5/h10_especificidad.json#n_especificas_crc">5</data>.</p>
-<h4>Qué significa</h4><p>CEACAM5 ilustra el seguimiento clínico.</p>
-<h4>Qué no significa</h4><p>No es un hallazgo nuevo ni un cribado.</p>
-<p><a href="resultados.html#h10">Ficha técnica</a></p>
-</article>
-<h2>Por qué la sangre engaña</h2>
-<p>La muestra pasa por el tubo, la espera, la centrífuga, el congelador y el espectrómetro. En cada paso puede entrar piel, eritrocito, plaqueta o coagulación. Esas señales pueden separar grupos sin que haya una proteína del tumor.</p>
-<h2>Qué queda abierto</h2>
-<p>La preanalítica queda en <data data-fuente="results/v3_5/preanalitica_v3_5.json#estado">no_evaluable</data>: hay fecha en <data data-fuente="results/v3_5/preanalitica_v3_5.json#n_con_fecha">54</data> de <data data-fuente="results/v3_5/preanalitica_v3_5.json#n_crudos_validos">60</data> crudos. No se inventan los tiempos que faltan.</p>
+<h1>Qué parte del tumor se deja ver en la sangre</h1>
+<p class="tarjeta">El certificado de esta corrida está en <span class="estado" data-estado="publicable"><data value="publicable" data-fuente="results/v3_6/certificado.json">publicable</data></span>. Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.</p>
+<div class="rejilla">
+<div class="tarjeta"><p class="numero"><data value="0" data-fuente="results/v3_6/suero_embudo.json">0</data></p><p>proteínas diferentes de <data value="284" data-fuente="results/v3_6/suero_embudo.json">284</data></p></div>
+<div class="tarjeta"><p class="numero"><data value="0.9151250000000001" data-fuente="results/v3_6/ml_suero_permutacion.json">0,915</data></p><p>separa la calidad sola</p></div>
+<div class="tarjeta"><p class="numero"><data value="0.6467499999999999" data-fuente="results/v3_6/ml_suero_permutacion.json">0,647</data></p><p>queda al quitar la calidad</p></div>
+</div>
+<figure class="grafico tarjeta" id="g1">
+<h3>¿Cuántas proteínas llegan a la celda?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 80" role="img"><rect x="0.0" y="20" width="295.4" height="36" fill="#0E7C86"><title>Grupos: 897</title></rect><rect x="295.4" y="20" width="108.3" height="36" fill="#56B4E9"><title>q: 329</title></rect><rect x="403.7" y="20" width="102.7" height="36" fill="#009E73"><title>Humanas: 312</title></rect><rect x="506.5" y="20" width="93.5" height="36" fill="#D55E00"><title>Celda: 284</title></rect></svg></div>
+<noscript><p>Barras del embudo del suero.</p></noscript>
+<p class="leyenda"><data value="897" data-fuente="results/v3_6/suero_embudo.json">897</data> → <data value="284" data-fuente="results/v3_6/suero_embudo.json">284</data></p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>Cada tramo es un filtro escrito antes de mirar.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Cuántas proteínas sobreviven a cada regla.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No dice que las que salen no existan.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/suero_embudo.json</p></details>
+<figcaption>Embudo del suero</figcaption>
+<p class="sr-only">Barras del embudo del suero.</p>
+</figure>
+<p>Esta animación de la portada es una ilustración. No hay un espectro medido de SAA1 en esta corrida.</p>
 
 </main>
-<footer><p>Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p></footer>
-<script src="js/v35.js"></script>
+<p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<script type="module" src="/js/sitio.a7de76dd00.js"></script>
 </body>
 </html>
