@@ -1,0 +1,27 @@
+{
+  "n": 147,
+  "pendiente": 1.6707211630563654,
+  "intercepto": 0.771543426701222,
+  "razon_de_varianzas": 1.0,
+  "estado": "calculado",
+  "ejes": "log2fc_cptac frente a log2fc_tanaka_primario_mucosa",
+  "linea_base_otros_carcinomas": "pendiente_de_h5",
+  "supuesto": "La varianza de error de los dos log2FC se toma igual. No se estimó con los datos.",
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:51Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_3_tejido"
+  }
+}

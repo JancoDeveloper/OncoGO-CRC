@@ -1,0 +1,64 @@
+{
+  "estado": "no_sostiene",
+  "motivo": "Fisher bilateral, alfa 0,05; el sentido no se predice",
+  "fuente": "HPA RNA single cell type",
+  "pelka": "no_comprobable_desde_esta_maquina",
+  "tipos_epiteliales": [
+    "colonocytes",
+    "enterocytes",
+    "goblet cells",
+    "paneth cells"
+  ],
+  "tipos_no_epiteliales": [
+    "b-cells",
+    "fibroblasts",
+    "macrophages",
+    "plasma cells",
+    "smooth muscle cells",
+    "t-cells",
+    "vascular endothelial cells"
+  ],
+  "n_genes": 20151,
+  "conteo": {
+    "no_epitelial": 11549,
+    "mixta": 5501,
+    "epitelial": 3101
+  },
+  "fisher": {
+    "motivo": "Fisher bilateral, alfa 0,05; el sentido no se predice",
+    "odds_ratio": NaN,
+    "p": 1.0,
+    "tabla_mismo_signo_luego_distinto": [
+      [
+        20,
+        0
+      ],
+      [
+        98,
+        0
+      ]
+    ],
+    "tabla_degenerada": true,
+    "motivo_degenerada": "ninguna proteína tiene signo distinto; la prueba no puede detectar una diferencia"
+  },
+  "tabla_degenerada": true,
+  "motivo_degenerada": "ninguna proteína tiene signo distinto; la prueba no puede detectar una diferencia",
+  "nota": "Pelka 2021 no tiene la matriz h5 en este disco. La clase sale del HPA y las células tumorales no están en ese atlas.",
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:51Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_6"
+  }
+}

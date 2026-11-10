@@ -1,0 +1,15 @@
+gen	tanaka_log2fc	tanaka_padj	tanaka_n_obs	cptac_coad_log2fc	cptac_coad_treat	clase_h5	hpa_logfc_sanos	hpa_padj_sanos	clase_h10	wannberg	pxd055218_k4_crc_sanos	pxd055218_k4_crc_cn	pxd064655_presente	pxd064655_iv_frente_i_ii	papier_hr
+CEACAM5	3.866279624100332	0.0020046223716261	13.0	0.8806441669157069	True	intermedia	1.09	1.09e-16	especifica_crc	no_medida	no_medida	no_medida	no	no_medida	1.196832
+AGR2	no_medida	no_medida	no_medida	-0.1358011239958285	False	no_medida	1.128	1.89e-14	especifica_crc	1.54	no_medida	no_medida	no	no_medida	1.18129
+BID	no_medida	no_medida	no_medida	0.3206801828751282	False	no_medida	1.554	9.31e-60	especifica_crc	no_medida	no_medida	no_medida	no	no_medida	0.9889014
+CASP8	no_medida	no_medida	no_medida	0.1413865262633211	False	no_medida	1.43	6.029999999999999e-52	especifica_crc	no_medida	no_medida	no_medida	no	no_medida	0.9616178
+ABHD14B	no_medida	no_medida	no_medida	-0.3073817459777241	False	no_medida	1.317	2.9499999999999995e-54	especifica_crc	no_medida	no_medida	no_medida	no	no_medida	0.9252208
+GPA33	-0.8812498606646193	0.999999970557004	14.0	-0.7291508811567312	False	no_medida	-0.944	1.22e-08	especifica_frente_a_enfermedades	no_medida	no_medida	no_medida	no	no_medida	1.060761
+MMP12	no_medida	no_medida	0.0	0.2954846999476235	False	no_medida	0.775	3.1900000000000003e-21	especifica_frente_a_enfermedades	no_medida	no_medida	no_medida	no	no_medida	1.184102
+MNDA	no_medida	no_medida	no_medida	0.7162868670750843	False	no_medida	-0.916	3.68e-10	especifica_frente_a_enfermedades	no_medida	no_medida	no_medida	no	no_medida	1.027033
+NPM1	no_medida	no_medida	no_medida	0.6584729266755703	False	no_medida	-0.855	1.55e-10	especifica_frente_a_enfermedades	no_medida	no_medida	no_medida	no	no_medida	0.9710747
+PRDX6	no_medida	no_medida	no_medida	-0.732560523463855	True	intermedia	1.581	3.53e-142	especifica_frente_a_enfermedades	no_medida	no_medida	no_medida	no	no_medida	0.9455366
+VWF	no_medida	no_medida	no_medida	-0.6443458117065302	False	no_medida	-0.95	1.11e-26	especifica_frente_a_enfermedades	no_medida	indeterminada	indeterminada	si	equivalente	1.054852
+SAA1	no_medida	no_medida	no_medida	-0.218053016573273	False	no_medida	no_medida	no_medida	no_medida	no_medida	diferente	indeterminada	si	indeterminada	no_medida
+LBP	no_medida	no_medida	no_medida	-0.3692385405074311	False	no_medida	0.33	5.16e-05	no_elevada_frente_a_sanos	no_medida	diferente	indeterminada	si	equivalente	1.010129
+LRG1	no_medida	no_medida	1.0	-1.1413372380193505	True	intermedia	no_medida	no_medida	no_medida	no_medida	diferente	indeterminada	si	equivalente	no_medida

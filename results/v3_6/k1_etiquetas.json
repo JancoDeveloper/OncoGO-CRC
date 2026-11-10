@@ -1,0 +1,93 @@
+{
+  "estado": "calculado",
+  "min_pares_observados": 8,
+  "n_filas_excluidas_contaminante_o_decoy": 237,
+  "n_pares_primario_mucosa": 16,
+  "n_pares_metastasis_mucosa": 16,
+  "n_pares_metastasis_primario": 16,
+  "n_pares_sensibilidad_etiquetas": 15,
+  "participantes_excluidos_solo_en_sensibilidad": [
+    "CRC16"
+  ],
+  "n_certificadas": 688,
+  "contrastes": {
+    "primario_frente_a_mucosa": {
+      "numerador": 147,
+      "denominador": 147,
+      "estimacion": 1.0,
+      "ci_low": 0.975217829510418,
+      "ci_high": 1.0,
+      "spearman": {
+        "n": 147,
+        "rho": 0.7502134508005349,
+        "p": 7.77877864777551e-28
+      },
+      "lin": {
+        "n": 147,
+        "ccc": 0.7704808651420477
+      }
+    },
+    "metastasis_hepatica_frente_a_mucosa": {
+      "numerador": 116,
+      "denominador": 143,
+      "estimacion": 0.8111888111888111,
+      "ci_low": 0.7373086765362306,
+      "ci_high": 0.8717308511164875,
+      "spearman": {
+        "n": 143,
+        "rho": 0.6922584457795724,
+        "p": 1.0164267880564237e-21
+      },
+      "lin": {
+        "n": 143,
+        "ccc": 0.43361447596048347
+      }
+    },
+    "primario_frente_a_mucosa_no_pareado": {
+      "numerador": 155,
+      "denominador": 157,
+      "estimacion": 0.9872611464968153,
+      "ci_low": 0.9547422400944148,
+      "ci_high": 0.9984535253679562,
+      "spearman": {
+        "n": 157,
+        "rho": 0.7467889282369651,
+        "p": 2.980235620878157e-29
+      },
+      "lin": {
+        "n": 157,
+        "ccc": 0.764081496583493
+      }
+    }
+  },
+  "h1_clausula_proteina": "rechaza",
+  "h1_veredicto": "rechaza_h1",
+  "h1_fragil_a_normalizacion": false,
+  "cobertura": {
+    "nombre": "R1_cobertura",
+    "valor": 0.2136627906976744,
+    "numerador": 147,
+    "denominador": 688,
+    "unidad_denominador": "proteinas_unicas",
+    "ci_low": 0.18358995382359886,
+    "ci_high": 0.24621436560445875,
+    "p_vs_azar": 8.015762403802496e-54
+  },
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:51Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_3_tejido"
+  }
+}

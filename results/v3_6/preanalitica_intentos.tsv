@@ -1,0 +1,169 @@
+crudo	version	leido	modo	error
+CN_01_DIA.raw	2.0.0.0	False		"modo 0: 2026-11-10 08:13:45 INFO Started parsing  08:13:46 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 973984150.
+Exception of type 'System.OutOfMemoryException' was thrown.
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:13:46 INFO Processing completed 1 errors, 0 warnings
+modo 1: 2026-11-10 08:13:46 INFO Started parsing  08:13:46 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 973984150.
+Exception of type 'System.OutOfMemoryException' was thrown.
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:13:46 INFO Processing completed 1 errors, 0 warnings"
+CN_08_DIA.raw	2.0.0.0	False		"modo 0: 2026-11-10 08:13:47 INFO Started parsing  08:13:48 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 924976754.
+The position may not be greater or equal to the capacity of the accessor. (Parameter 'position')
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:13:48 INFO Processing completed 1 errors, 0 warnings
+modo 1: 2026-11-10 08:13:48 INFO Started parsing  08:13:49 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 924976754.
+The position may not be greater or equal to the capacity of the accessor. (Parameter 'position')
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:13:49 INFO Processing completed 1 errors, 0 warnings"
+CN_16_DIA.raw	2.0.0.0	False		"modo 0: 2026-11-10 08:13:49 INFO Started parsing  08:14:11 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 1128910840.
+Exception of type 'System.OutOfMemoryException' was thrown.
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:14:11 INFO Processing completed 1 errors, 0 warnings
+modo 1: 2026-11-10 08:14:11 INFO Started parsing  08:14:32 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 1128910840.
+Exception of type 'System.OutOfMemoryException' was thrown.
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:14:32 INFO Processing completed 1 errors, 0 warnings"
+CP_18_DIA.raw	2.0.0.0	False		"modo 0: 2026-11-10 08:14:32 INFO Started parsing  08:14:54 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 1149805298.
+Exception of type 'System.OutOfMemoryException' was thrown.
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:14:54 INFO Processing completed 1 errors, 0 warnings
+modo 1: 2026-11-10 08:14:54 INFO Started parsing  08:15:14 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 1149805298.
+Exception of type 'System.OutOfMemoryException' was thrown.
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:15:14 INFO Processing completed 1 errors, 0 warnings"
+HC_17_DIA.raw	2.0.0.0	False		"modo 0: 2026-11-10 08:15:15 INFO Started parsing  08:15:16 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 989358222.
+The position may not be greater or equal to the capacity of the accessor. (Parameter 'position')
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:15:16 INFO Processing completed 1 errors, 0 warnings
+modo 1: 2026-11-10 08:15:16 INFO Started parsing  08:15:16 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 989358222.
+The position may not be greater or equal to the capacity of the accessor. (Parameter 'position')
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:15:16 INFO Processing completed 1 errors, 0 warnings"
+HC_20_DIA.raw	2.0.0.0	False		"modo 0: 2026-11-10 08:15:16 INFO Started parsing  08:15:37 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 1012202018.
+Exception of type 'System.OutOfMemoryException' was thrown.
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:15:37 INFO Processing completed 1 errors, 0 warnings
+modo 1: 2026-11-10 08:15:37 INFO Started parsing  08:15:57 ERROR Native Thermo API reported the following error - RAW file is likely corrupted
+Encountered problems while trying to read ' as a Raw File!
+
+Exception type: System.Exception
+Message       : Error Encountered while loading MsDevice at offset 1012202018.
+Exception of type 'System.OutOfMemoryException' was thrown.
+Stacktrace:
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitialDeviceLists()
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.InitializeDevices(IDisposableReader viewer)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader.LoadRawFile(IDisposableReader viewer, Boolean isCreateMutexFailed)
+   at ThermoFisher.CommonCore.RawFileReader.Facade.MemoryMappingRawFileLoader..ctor(String fileName)
+
+
+2026-11-10 08:15:57 INFO Processing completed 1 errors, 0 warnings"

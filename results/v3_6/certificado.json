@@ -1,0 +1,105 @@
+{
+  "estado": "publicable",
+  "puede_publicar": true,
+  "casillas": {
+    "regresion_v1": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/regresion_v1.json"
+    },
+    "sin_mezcla": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/lecturas_v3_6.json"
+    },
+    "reproduce_v3_5": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/changelog_numeros.tsv"
+    },
+    "rutas_publicas": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/"
+    },
+    "suero": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/suero_embudo.json"
+    },
+    "ml_reproduccion": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/ml_celda_preregistrada.json"
+    },
+    "multiverso": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/multiverso_resumen.json"
+    },
+    "controles_tejido": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/controles_tejido.json"
+    },
+    "h5": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/h5_especificidad_organo.json"
+    },
+    "h6": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/h6_origen_celular.json"
+    },
+    "h7": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/h7_visibilidad_en_sangre.json"
+    },
+    "h8": {
+      "estado": "limitacion_aceptada",
+      "fuente": "results/v3_6/h8_carga_tumoral.json",
+      "valor": 33
+    },
+    "preanalitica": {
+      "estado": "limitacion_aceptada",
+      "fuente": "results/v3_6/preanalitica.json",
+      "valor": 0.0
+    },
+    "h9": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/h9_wald.json"
+    },
+    "h10": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/h10_especificidad.json"
+    },
+    "triangulacion": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/triangulacion.tsv"
+    },
+    "determinismo": {
+      "estado": "pasa",
+      "fuente": "results/v3_6/determinismo.json"
+    }
+  },
+  "limitaciones": [
+    {
+      "pieza": "h8",
+      "estado": "no_evaluable"
+    },
+    {
+      "pieza": "preanalitica",
+      "estado": "no_evaluable"
+    }
+  ],
+  "rojas": [],
+  "lectura": "Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición.",
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:51Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_6"
+  }
+}

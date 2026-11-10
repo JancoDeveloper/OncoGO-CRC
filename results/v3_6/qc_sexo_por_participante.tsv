@@ -1,0 +1,17 @@
+participant_id	genes_Y_en_P	genes_Y_en_M	genes_Y_en_N	n_genes_en_matriz	estado
+CRC02	1.0	1.0	0.0	2	pasa
+CRC03	0.0	0.0	0.0	2	pasa
+CRC05	1.0	0.0	0.0	2	pasa
+CRC06	0.0	1.0	0.0	2	pasa
+CRC07	0.0	0.0	0.0	2	pasa
+CRC08	0.0	0.0	0.0	2	pasa
+CRC09	0.0	0.0	0.0	2	pasa
+CRC10	0.0	0.0	0.0	2	pasa
+CRC11	1.0	0.0	0.0	2	pasa
+CRC12	1.0	1.0	0.0	2	pasa
+CRC13	0.0	0.0	0.0	2	pasa
+CRC14	0.0	0.0	0.0	2	pasa
+CRC15	1.0	2.0	0.0	2	falla
+CRC16	2.0	1.0	0.0	2	falla
+CRC17	0.0	0.0	0.0	2	pasa
+CRC18	0.0	1.0	0.0	2	pasa

@@ -1,0 +1,205 @@
+{
+  "estado": "calculado",
+  "escala": "log2_de_intensidad_lineal",
+  "versiones": {
+    "principal": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 284,
+        "alfa_efectivo": 0.00018181818181818183,
+        "diferente": 0,
+        "equivalente": 166,
+        "indeterminada": 118,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 284,
+        "alfa_efectivo": 0.00018315018315018315,
+        "diferente": 3,
+        "equivalente": 154,
+        "indeterminada": 127,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 284,
+        "alfa_efectivo": 0.0001845018450184502,
+        "diferente": 1,
+        "equivalente": 194,
+        "indeterminada": 89,
+        "conflicto": 0
+      }
+    },
+    "con_contaminantes": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 312,
+        "alfa_efectivo": 0.0001666666666666667,
+        "diferente": 0,
+        "equivalente": 170,
+        "indeterminada": 142,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 312,
+        "alfa_efectivo": 0.00016778523489932888,
+        "diferente": 2,
+        "equivalente": 160,
+        "indeterminada": 150,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 312,
+        "alfa_efectivo": 0.00016891891891891893,
+        "diferente": 1,
+        "equivalente": 201,
+        "indeterminada": 110,
+        "conflicto": 0
+      }
+    },
+    "con_queratinas_epiteliales": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 284,
+        "alfa_efectivo": 0.00018181818181818183,
+        "diferente": 0,
+        "equivalente": 166,
+        "indeterminada": 118,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 284,
+        "alfa_efectivo": 0.00018315018315018315,
+        "diferente": 3,
+        "equivalente": 154,
+        "indeterminada": 127,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 284,
+        "alfa_efectivo": 0.0001845018450184502,
+        "diferente": 1,
+        "equivalente": 194,
+        "indeterminada": 89,
+        "conflicto": 0
+      }
+    },
+    "sin_grupos_mixtos": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 273,
+        "alfa_efectivo": 0.0001893939393939394,
+        "diferente": 0,
+        "equivalente": 158,
+        "indeterminada": 115,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 273,
+        "alfa_efectivo": 0.00019083969465648855,
+        "diferente": 3,
+        "equivalente": 146,
+        "indeterminada": 124,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 273,
+        "alfa_efectivo": 0.0001923076923076923,
+        "diferente": 1,
+        "equivalente": 183,
+        "indeterminada": 89,
+        "conflicto": 0
+      }
+    },
+    "sin_contaminantes_con_paneles": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 301,
+        "alfa_efectivo": 0.0001724137931034483,
+        "diferente": 0,
+        "equivalente": 172,
+        "indeterminada": 129,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 301,
+        "alfa_efectivo": 0.00017361111111111112,
+        "diferente": 3,
+        "equivalente": 160,
+        "indeterminada": 138,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 301,
+        "alfa_efectivo": 0.00017482517482517483,
+        "diferente": 1,
+        "equivalente": 201,
+        "indeterminada": 99,
+        "conflicto": 0
+      }
+    },
+    "ajustado_coagulacion": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 284,
+        "alfa_efectivo": 0.00018181818181818183,
+        "diferente": 0,
+        "equivalente": 152,
+        "indeterminada": 132,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 284,
+        "alfa_efectivo": 0.00018315018315018315,
+        "diferente": 1,
+        "equivalente": 138,
+        "indeterminada": 145,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 284,
+        "alfa_efectivo": 0.0001845018450184502,
+        "diferente": 1,
+        "equivalente": 185,
+        "indeterminada": 98,
+        "conflicto": 0
+      }
+    },
+    "genes_maxlfq": {
+      "crc_frente_a_colonoscopia_negativa": {
+        "n": 273,
+        "alfa_efectivo": 0.00019011406844106465,
+        "diferente": 0,
+        "equivalente": 157,
+        "indeterminada": 116,
+        "conflicto": 0
+      },
+      "crc_frente_a_sanos": {
+        "n": 273,
+        "alfa_efectivo": 0.00019157088122605365,
+        "diferente": 3,
+        "equivalente": 149,
+        "indeterminada": 121,
+        "conflicto": 0
+      },
+      "colonoscopia_negativa_frente_a_sanos": {
+        "n": 273,
+        "alfa_efectivo": 0.00019305019305019305,
+        "diferente": 1,
+        "equivalente": 186,
+        "indeterminada": 86,
+        "conflicto": 0
+      }
+    }
+  },
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:53Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_3_suero"
+  }
+}

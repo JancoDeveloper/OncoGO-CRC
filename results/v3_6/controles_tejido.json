@@ -1,0 +1,56 @@
+{
+  "controles_fisicos": [
+    {
+      "gen": "CA1",
+      "antes_de_filtrar": 1,
+      "despues_de_filtrar": 1,
+      "n_obs": 16.0,
+      "log2fc": -2.314058303758073,
+      "estado": "pasa"
+    },
+    {
+      "gen": "AQP8",
+      "antes_de_filtrar": 0,
+      "despues_de_filtrar": 0,
+      "n_obs": NaN,
+      "log2fc": NaN,
+      "estado": "no_detectado"
+    },
+    {
+      "gen": "SLC26A3",
+      "antes_de_filtrar": 1,
+      "despues_de_filtrar": 1,
+      "n_obs": 4.0,
+      "log2fc": NaN,
+      "estado": "no_evaluable_por_pares"
+    },
+    {
+      "gen": "GUCA2A",
+      "antes_de_filtrar": 0,
+      "despues_de_filtrar": 0,
+      "n_obs": NaN,
+      "log2fc": NaN,
+      "estado": "no_detectado"
+    }
+  ],
+  "veredicto_v3_4": "pasa",
+  "veredicto_v3_3": "falla",
+  "qc_mucosa_todos_pasan": true,
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:51Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_6"
+  }
+}

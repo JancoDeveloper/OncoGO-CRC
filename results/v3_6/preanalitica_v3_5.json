@@ -1,0 +1,255 @@
+{
+  "estado": "no_evaluable",
+  "motivo": "54 de 60 crudos legibles; la prueba preregistrada pide 60",
+  "calculado_con_legibles": {
+    "auc": {
+      "valor": 0.0,
+      "ic95_ledell": null,
+      "motivo_ic": "separación completa; el IC de LeDell degenera",
+      "p_exacta_mann_whitney": 2.3262585529839005e-10,
+      "n_cp": 19,
+      "n_cn": 17
+    },
+    "n_con_fecha": 54,
+    "spearman": {
+      "eritrocitos": {
+        "rho": 0.21312741312741315,
+        "p": 0.21201885844661636,
+        "n": 36
+      },
+      "plaquetas": {
+        "rho": -0.25868725868725867,
+        "p": 0.12765591835527165,
+        "n": 36
+      },
+      "coagulacion": {
+        "rho": -0.651994851994852,
+        "p": 1.647380309499171e-05,
+        "n": 36
+      },
+      "piel": {
+        "rho": -0.7791505791505792,
+        "p": 2.1733818203621972e-08,
+        "n": 36
+      },
+      "log2_n_precursores": {
+        "rho": 0.23732303732303733,
+        "p": 0.1634116247747916,
+        "n": 36
+      }
+    }
+  },
+  "n_crudos_validos": 60,
+  "n_appledouble": 60,
+  "n_con_fecha": 54,
+  "sin_fecha": [
+    {
+      "crudo": "CN_01_DIA.raw",
+      "bytes_local": 1049764670,
+      "bytes_pride": 1049764670,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "CN_08_DIA.raw",
+      "bytes_local": 1000697970,
+      "bytes_pride": 1000697970,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "CN_16_DIA.raw",
+      "bytes_local": 1205043346,
+      "bytes_pride": 1205043346,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "CP_18_DIA.raw",
+      "bytes_local": 1226017242,
+      "bytes_pride": 1226017242,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "HC_17_DIA.raw",
+      "bytes_local": 1065175806,
+      "bytes_pride": 1065175806,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "HC_20_DIA.raw",
+      "bytes_local": 1088171988,
+      "bytes_pride": 1088171988,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    }
+  ],
+  "campo_fecha": "Content Creation Date",
+  "formato_fecha": "%m/%d/%Y %H:%M:%S",
+  "inicio": "2023-09-29T14:04:26",
+  "fin": "2023-10-07T10:31:40",
+  "corridas_por_dia": {
+    "2023-09-29": 5,
+    "2023-09-30": 7,
+    "2023-10-01": 7,
+    "2023-10-02": 7,
+    "2023-10-03": 4,
+    "2023-10-04": 7,
+    "2023-10-05": 7,
+    "2023-10-06": 8,
+    "2023-10-07": 2
+  },
+  "corridas_por_grupo": {
+    "CP": 19,
+    "HC": 18,
+    "CN": 17
+  },
+  "hc_dentro_del_rango_cp_cn": 0,
+  "posicion_hc": "aparte",
+  "instrumento": "Orbitrap Fusion",
+  "p_exacta_mann_whitney": 2.3262585529839005e-10,
+  "cota_con_60": {
+    "auc_min": 0.0,
+    "auc_max": 0.1925,
+    "n_parejas_conocidas": 323,
+    "n_parejas_desconocidas": 77
+  },
+  "posicion_por_grupo": {
+    "CN": {
+      "orden_min": 20,
+      "orden_max": 36,
+      "inicio": "2023-10-02T04:14:10",
+      "fin": "2023-10-04T15:10:19",
+      "n": 17
+    },
+    "CP": {
+      "orden_min": 1,
+      "orden_max": 19,
+      "inicio": "2023-09-29T14:04:26",
+      "fin": "2023-10-01T16:24:35",
+      "n": 19
+    },
+    "HC": {
+      "orden_min": 37,
+      "orden_max": 54,
+      "inicio": "2023-10-04T23:08:06",
+      "fin": "2023-10-07T10:31:40",
+      "n": 18
+    }
+  },
+  "bloques_perfectos": true,
+  "spearman_54": {
+    "estado": "no_evaluable",
+    "n_unidas": 36,
+    "n_con_fecha": 54,
+    "n_sin_union": 18,
+    "motivo": "hay crudos con fecha cuyo nombre no coincide con el sample_id de la tabla de calidad",
+    "en_las_unidas": {
+      "eritrocitos": {
+        "rho": 0.21312741312741315,
+        "p": 0.21201885844661636,
+        "n": 36
+      },
+      "plaquetas": {
+        "rho": -0.25868725868725867,
+        "p": 0.12765591835527165,
+        "n": 36
+      },
+      "coagulacion": {
+        "rho": -0.651994851994852,
+        "p": 1.647380309499171e-05,
+        "n": 36
+      },
+      "piel": {
+        "rho": -0.7791505791505792,
+        "p": 2.1733818203621972e-08,
+        "n": 36
+      },
+      "log2_n_precursores": {
+        "rho": 0.23732303732303733,
+        "p": 0.1634116247747916,
+        "n": 36
+      }
+    }
+  },
+  "spearman_por_grupo": {
+    "CN": {
+      "eritrocitos": {
+        "rho": 0.09068627450980393,
+        "p": 0.729235337448989,
+        "n": 17
+      },
+      "plaquetas": {
+        "rho": -0.21078431372549022,
+        "p": 0.41674984855133407,
+        "n": 17
+      },
+      "coagulacion": {
+        "rho": -0.26960784313725494,
+        "p": 0.2953357994714052,
+        "n": 17
+      },
+      "piel": {
+        "rho": -0.49019607843137264,
+        "p": 0.04575998028099106,
+        "n": 17
+      },
+      "log2_n_precursores": {
+        "rho": 0.6151960784313726,
+        "p": 0.008575573424594191,
+        "n": 17
+      }
+    },
+    "CP": {
+      "eritrocitos": {
+        "rho": 0.2789473684210526,
+        "p": 0.24747875892631563,
+        "n": 19
+      },
+      "plaquetas": {
+        "rho": -0.04912280701754386,
+        "p": 0.8417115685641904,
+        "n": 19
+      },
+      "coagulacion": {
+        "rho": -0.1824561403508772,
+        "p": 0.45468613071911346,
+        "n": 19
+      },
+      "piel": {
+        "rho": -0.1456140350877193,
+        "p": 0.5519696732095336,
+        "n": 19
+      },
+      "log2_n_precursores": {
+        "rho": -0.06666666666666667,
+        "p": 0.7862629610688757,
+        "n": 19
+      }
+    },
+    "HC": {
+      "estado": "no_evaluable",
+      "motivo": "el crudo no une con la tabla de calidad"
+    }
+  },
+  "lectura": "Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.",
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:51Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_6"
+  }
+}

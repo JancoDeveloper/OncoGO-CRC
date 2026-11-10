@@ -1,0 +1,52 @@
+{
+  "estado": "calculado",
+  "nulos": {
+    "filtrada_humana": {
+      "maximo_observado": 0.9388888888888889,
+      "n_proteinas": 280,
+      "n_permutaciones": 10000,
+      "b": 48,
+      "p": 0.004899510048995101,
+      "media_nula": 0.796952201911829,
+      "percentil95_nulo": 0.8740021008403354,
+      "version": "filtrada_humana"
+    },
+    "sin_contaminantes": {
+      "maximo_observado": 0.9388888888888889,
+      "n_proteinas": 271,
+      "n_permutaciones": 10000,
+      "b": 48,
+      "p": 0.004899510048995101,
+      "media_nula": 0.7960633379853674,
+      "percentil95_nulo": 0.8727417027417026,
+      "version": "sin_contaminantes"
+    },
+    "sin_contaminantes_ni_paneles": {
+      "maximo_observado": 0.9025,
+      "n_proteinas": 256,
+      "n_permutaciones": 10000,
+      "b": 164,
+      "p": 0.0164983501649835,
+      "media_nula": 0.7928411484371672,
+      "percentil95_nulo": 0.8675,
+      "version": "sin_contaminantes_ni_paneles"
+    }
+  },
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:53Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_3_suero"
+  }
+}

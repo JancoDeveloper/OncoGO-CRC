@@ -1,0 +1,39 @@
+{
+  "estado": "descriptiva",
+  "fase_pepe": 1,
+  "motivo_estado": "El preregistro no fijó umbral. Fijarlo después de ver 0/1165 sería elegir por resultado.",
+  "valores_de_control": [
+    "All other diseases",
+    "Class",
+    "Healthy"
+  ],
+  "n_enfermedades": 59,
+  "n_enfermedades_en_el_catalogo": 60,
+  "nota_catalogo": "El catálogo incluye Healthy. n_enfermedades lo deja fuera.",
+  "alfa": 0.05,
+  "treat_lfc": 0.585,
+  "n_especificas_crc": 5,
+  "conteo": {
+    "no_elevada_frente_a_sanos": 1074,
+    "no_especifica": 80,
+    "especifica_frente_a_enfermedades": 6,
+    "especifica_crc": 5
+  },
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:51Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_6"
+  }
+}

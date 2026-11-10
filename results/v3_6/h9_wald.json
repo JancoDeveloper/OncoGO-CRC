@@ -1,0 +1,73 @@
+{
+  "estado": "exploratorio",
+  "motivo": "Wald con un instrumento por proteína. No decide la tesis. IVW, Egger y la mediana piden al menos tres.",
+  "gwas": "GCST90255676",
+  "md5": "919638df0721391b4414e8873a2c87da",
+  "n_exploratorios": 3,
+  "proteinas": [
+    {
+      "proteina": "SAA1",
+      "estado": "no_medido",
+      "motivo": "no está en el descubrimiento de ST9"
+    },
+    {
+      "proteina": "LBP",
+      "rsid": "rs2232613",
+      "variante": "20:36997655:C:T:imp:v1",
+      "beta_exposicion": -1.18791,
+      "se_exposicion": 0.0137197,
+      "beta_desenlace_alineado": -0.0152757,
+      "se_desenlace": 0.0153125,
+      "estado": "exploratorio",
+      "beta": 0.012859307523297218,
+      "se": 0.012891141860904416,
+      "z": 0.9975305261589167,
+      "p": 0.31850706422075337
+    },
+    {
+      "proteina": "LRG1",
+      "rsid": "rs8105192",
+      "variante": "19:4547371:C:G:imp:v1",
+      "beta_exposicion": -0.55974,
+      "se_exposicion": 0.00738934,
+      "beta_desenlace_alineado": 0.00876029,
+      "se_desenlace": 0.00911834,
+      "estado": "exploratorio",
+      "beta": -0.015650641369207133,
+      "se": 0.016291623524777036,
+      "z": -0.9606557225806828,
+      "p": 0.3367253010540485
+    },
+    {
+      "proteina": "CEACAM5",
+      "rsid": "rs9621",
+      "variante": "19:42231159:G:A:imp:v1",
+      "beta_exposicion": 0.963008,
+      "se_exposicion": 0.0186498,
+      "beta_desenlace_alineado": -0.0215693,
+      "se_desenlace": 0.0213547,
+      "estado": "exploratorio",
+      "beta": -0.022397840931747192,
+      "se": 0.02217923945997809,
+      "z": -1.0098561301961486,
+      "p": 0.31256422338933576
+    }
+  ],
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:51Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_6"
+  }
+}

@@ -1,0 +1,1071 @@
+{
+  "ficheros": [
+    {
+      "fichero": "certificado.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b6b4a598aa5b4968c90ed8e504b28579e5a45745b29f023f66049052e7c2f9be"
+    },
+    {
+      "fichero": "certificado.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "changelog_numeros.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "2c5fb4395a62ff48786f7cdc9284b118f191ef0370c6d4557774dbb5ee9925aa"
+    },
+    {
+      "fichero": "changelog_numeros.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "controles.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "4dce3e5444a7cc5b208545443efd46261842e345cb75e9ee7f5970e5061e060d"
+    },
+    {
+      "fichero": "controles.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "controles.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "f4e13ae35a36175cab067f906b41559f8df5c66987534d900ab26c13ed6b1bb5"
+    },
+    {
+      "fichero": "controles.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "controles_fisicos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "46108e3f35cd5a98baa8499e17eff49693aea78a2b2370080ea5006b1bd78db8"
+    },
+    {
+      "fichero": "controles_fisicos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "controles_tejido.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "e26ff38b23f99d3465e82bea14f29f72199282bd53ebf5c1f894f7a2d7c16aac"
+    },
+    {
+      "fichero": "controles_tejido.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "controles_v3_4.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "e26ff38b23f99d3465e82bea14f29f72199282bd53ebf5c1f894f7a2d7c16aac"
+    },
+    {
+      "fichero": "controles_v3_4.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "determinismo.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "d62edfe696d92dd50b1755fe81e7c9677737111b7b14054e6ccbc0e84ba2cc3f"
+    },
+    {
+      "fichero": "determinismo.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h10_especificidad.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "9eef81fd410a40f869fadd93d3ea430c5f84719a851f68885b9c4aef5137867b"
+    },
+    {
+      "fichero": "h10_especificidad.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h10_especificidad.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "a0b56ad6891623aad18992dd3d96129d2616c987fe287f44ace51d57bd54f306"
+    },
+    {
+      "fichero": "h10_especificidad.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h10_fase_aguda.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "c2c58c3d90c97bf06402fefd790415e264508f0ad63e1b6ba44ef315e9bf57e0"
+    },
+    {
+      "fichero": "h10_fase_aguda.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h10_proteinas_de_partida.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "ca0141226b5fd83958373e9aa8de81f177053e11b1b73293e94d4dbe56b4c913"
+    },
+    {
+      "fichero": "h10_proteinas_de_partida.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h5_especificidad_organo.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "a0f9c4a944e5edbdf03930212fa331b3b141021d570b0ae8aa2c82855f34a26d"
+    },
+    {
+      "fichero": "h5_especificidad_organo.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h5_especificidad_organo.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "c362d4e4f816ef9ad10ef2b1b9e3560fab481e2ddb1710fba2ca1aa971d30ef1"
+    },
+    {
+      "fichero": "h5_especificidad_organo.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h6_origen_celular.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "a37bab2b409179ebc6c38a92341359bd8dd2c3b787cfe93cdf0c25441777016f"
+    },
+    {
+      "fichero": "h6_origen_celular.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h6_origen_celular.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "71744eda5c7326f22e3f9f43963d66f8328e1cbe541bd4ea0157b42e9626911a"
+    },
+    {
+      "fichero": "h6_origen_celular.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h7_predicciones.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "465ccdc8123aa246a4e6091374b9dafd4e2f09610c5c27b168f7c6a9c515066b"
+    },
+    {
+      "fichero": "h7_predicciones.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h7_tabla_proteinas.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "37f324c7795b6836656cd86c02fa3d1ae6ac7998365b303d8abfd112d674c266"
+    },
+    {
+      "fichero": "h7_tabla_proteinas.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h7_variables.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "b952523fb14dd544ac4d37dac2c73b41745e9310707de38b3c1d9dec4cb54f30"
+    },
+    {
+      "fichero": "h7_variables.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h7_visibilidad_en_sangre.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b50219e9a367d79bd7a719136486dcaf5618dd79ce8838bf3bb859277ee1a7d5"
+    },
+    {
+      "fichero": "h7_visibilidad_en_sangre.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h8_carga_tumoral.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "90334d89185c9fbd5ade7c64e66decd08c61f7b70dbbe3d35b50e06dd84a5699"
+    },
+    {
+      "fichero": "h8_carga_tumoral.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h8_carga_tumoral.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "da7dc73c07c610fc69dc71f18dafcd28a159b14800f71dea4293195f179793dc"
+    },
+    {
+      "fichero": "h8_carga_tumoral.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h8_qc_muestras.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "e056015a5855c0910620280254468faad84b480ac5d186255123dae1daf3452e"
+    },
+    {
+      "fichero": "h8_qc_muestras.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h9_wald.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "3f077a0fa9db59f77b69c525895c16f856df7ac0ffd6b52b3cb5a38c3a194d5c"
+    },
+    {
+      "fichero": "h9_wald.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "h9_wald.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "5b675ffdf3b0e7588779b69819232322c6bfa7255c750f2ee23d113dae1d802a"
+    },
+    {
+      "fichero": "h9_wald.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "k1_etiquetas.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b1d3e1c4edb6de1da9caa21fce5dad627319f89e5c9dfea24b8fd3c99a51f776"
+    },
+    {
+      "fichero": "k1_etiquetas.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k1_metastasis_hepatica_frente_a_mucosa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "d7677b52494811a4425c1b3488e4ce9457837cf0053cd12318d7dd51b5be8f93"
+    },
+    {
+      "fichero": "k1_metastasis_hepatica_frente_a_mucosa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k1_metastasis_hepatica_frente_a_primario.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "b98cc8f6ec72f8358bc09d5d1f780bb19287b5b1a94ce4740d929b2cce66747b"
+    },
+    {
+      "fichero": "k1_metastasis_hepatica_frente_a_primario.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k1_primario_frente_a_mucosa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "8183d4cfbdad55e86abbbd27ec7186083b3b58f82d76fdee7ed14dec70d6f77a"
+    },
+    {
+      "fichero": "k1_primario_frente_a_mucosa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k1_primario_frente_a_mucosa_centrado.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "340121dc1a1ec3597c8d7cd96b4863c0296e639f3333ca6bf4e42bbd5a608c77"
+    },
+    {
+      "fichero": "k1_primario_frente_a_mucosa_centrado.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k1_primario_frente_a_mucosa_no_pareado.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "57f8cb0df7ee1e6904541d068a020f9677fc1caeecf21c0ca63a7096c0d46e35"
+    },
+    {
+      "fichero": "k1_primario_frente_a_mucosa_no_pareado.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k1_sensibilidad_etiquetas.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "552b0651136a7bcd1af63a1418edca0f93d4dc56076d3ad4acd36ecf0808785d"
+    },
+    {
+      "fichero": "k1_sensibilidad_etiquetas.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k1_sensibilidad_normalizacion.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "6072d78cb887a28cf7600d66db464d96823228f9f3d1c90569aaf768fce5983f"
+    },
+    {
+      "fichero": "k1_sensibilidad_normalizacion.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k2_independencia.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "cf30b13b190396af2c9865ec2c49f1c76020621e8d9096832b6841d1232060ac"
+    },
+    {
+      "fichero": "k2_independencia.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k2_independencia.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "1083157e5b9ce806ccfa44be9c6a21c36d414dc51a256f64c75c7a76ff9f9409"
+    },
+    {
+      "fichero": "k2_independencia.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k3_deming.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "d601222bba7049959443cc89c5ed7428ebe00daeb1e1b392804f709c361cf1a9"
+    },
+    {
+      "fichero": "k3_deming.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "k4_ajustado_coagulacion_colonoscopia_negativa_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "920998a4868eba0fa170afd794b2ca9ec05ae90e69d09ac21067c28327bb5ed9"
+    },
+    {
+      "fichero": "k4_ajustado_coagulacion_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_ajustado_coagulacion_crc_frente_a_colonoscopia_negativa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "ee799d58d691b34cfb98fe43493a9856cdc748ed7f6b96e3f5700c7b3765dd7d"
+    },
+    {
+      "fichero": "k4_ajustado_coagulacion_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_ajustado_coagulacion_crc_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "5f13354a8d7ea451cccb7c69c437981b40773c84064873a4aa992ff069029b9c"
+    },
+    {
+      "fichero": "k4_ajustado_coagulacion_crc_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_colonoscopia_negativa_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "829076cae15a345e017bf45eaa4376bf8c5e6e5eb4d732b94b4cd017eb7f2e4b"
+    },
+    {
+      "fichero": "k4_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_con_contaminantes_colonoscopia_negativa_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "c13b132090e635f8a73b42eaf1d44a0416410037fc7b1caf9bea797b39f30813"
+    },
+    {
+      "fichero": "k4_con_contaminantes_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_con_contaminantes_crc_frente_a_colonoscopia_negativa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "355bdec7e126e193731f99285c46d0e7c84cb08dd1801678b05a8c6680aa185f"
+    },
+    {
+      "fichero": "k4_con_contaminantes_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_con_contaminantes_crc_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "356f9b7e5bf974bd310ff268984cc3912b485dca9fd1fffb06dfc2220ba4b297"
+    },
+    {
+      "fichero": "k4_con_contaminantes_crc_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_con_queratinas_epiteliales_colonoscopia_negativa_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "87d9856846ede1ad44e02db5eb3887eb5b630845d3e639553cf6e0ab69f6ebd5"
+    },
+    {
+      "fichero": "k4_con_queratinas_epiteliales_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_con_queratinas_epiteliales_crc_frente_a_colonoscopia_negativa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "5c86633a7ba3df9775bce7abe9993a9f8497a29d1272e960e77833c78623a40a"
+    },
+    {
+      "fichero": "k4_con_queratinas_epiteliales_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_con_queratinas_epiteliales_crc_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "ad547f2a199fdaaf7a0901062283cbc3df0f2c0b97031fc6cf3f856851902de6"
+    },
+    {
+      "fichero": "k4_con_queratinas_epiteliales_crc_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_crc_frente_a_colonoscopia_negativa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "46d44670e0f3aad0491fe7425fbe4c63ce2f8c666aab04561739e577233e7abc"
+    },
+    {
+      "fichero": "k4_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_crc_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "67d8fe2c8ff007b55c6f27efb9d4bd009b6b27878081c9add72e9ed596d88610"
+    },
+    {
+      "fichero": "k4_crc_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_genes_maxlfq_colonoscopia_negativa_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "8f228875aaaea1fcd2c6735d120da63deaf2e5bd0a7d440b116a4835f6a8992c"
+    },
+    {
+      "fichero": "k4_genes_maxlfq_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "8db994094d4b79b452292d43a1e711f251628f474c7344d92480149639940e7f"
+    },
+    {
+      "fichero": "k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_genes_maxlfq_crc_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "ed6602ccb09b92a3df07c17bb3946947ab4756994cc74a8b4e3cf6c32d4bffc3"
+    },
+    {
+      "fichero": "k4_genes_maxlfq_crc_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_potencia.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "184b5ec9ea3359e3c82305a2c14612196aae32abd701fd91f4a4a40f27aad3c5"
+    },
+    {
+      "fichero": "k4_potencia.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_sin_contaminantes_con_paneles_colonoscopia_negativa_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "157738265ce835e35254a1d3e6167377049647c6999ddb7823b6d65711a14ddd"
+    },
+    {
+      "fichero": "k4_sin_contaminantes_con_paneles_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_sin_contaminantes_con_paneles_crc_frente_a_colonoscopia_negativa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "47d084061202274315f0330b73815428da88bdef6b198513a5300f99724b1b41"
+    },
+    {
+      "fichero": "k4_sin_contaminantes_con_paneles_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_sin_contaminantes_con_paneles_crc_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "a56f74dba9131d550d00ec39d2af10564374781fe768147ae8a936f9fb10ea16"
+    },
+    {
+      "fichero": "k4_sin_contaminantes_con_paneles_crc_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_sin_grupos_mixtos_colonoscopia_negativa_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "e12c45a72359b12c9d520484cbb39ae8d448c1ba9e87d613bf52f9072469df06"
+    },
+    {
+      "fichero": "k4_sin_grupos_mixtos_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_sin_grupos_mixtos_crc_frente_a_colonoscopia_negativa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "0a35d2652ca6ae6db9e52b6eb5f9a631cfa2488007ddb4d107b4a51343e621ef"
+    },
+    {
+      "fichero": "k4_sin_grupos_mixtos_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k4_sin_grupos_mixtos_crc_frente_a_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "2a2607681e8e400dec4df3bb060a2e046e6071df77b3eef38fba48aed24a2ba9"
+    },
+    {
+      "fichero": "k4_sin_grupos_mixtos_crc_frente_a_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k5_auc.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "db51d811c3f0d56f00cd604b616d08e66f4f8ef83e8b702eff0775147077176a"
+    },
+    {
+      "fichero": "k5_auc.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k5_auc.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "269912ddd5240ca1138e7e506f87f34b4bf279a27cf0fd9333c34aad8daac628"
+    },
+    {
+      "fichero": "k5_auc.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k5_diferencia_auc.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "e769f4f6235252786ae0584a4a17d7951c039f0549536a14fc1ac3f126554977"
+    },
+    {
+      "fichero": "k5_diferencia_auc.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k6_presencia.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "2610f3cbe17290d7bba5f78e4c28fdd3135f28ae12364b8ea1b9309ae4bf0a70"
+    },
+    {
+      "fichero": "k6_presencia.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k6_presencia.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "e53ce142c82806096fd0eb7b1d1089f6108e3fb4c58dc9439b9c2ac27525ab00"
+    },
+    {
+      "fichero": "k6_presencia.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k7_control_tecnico.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "9d5e383aa4b4161bdc884484087eca3a7586a1f5bc7cf9c05fa36c9e51cc879e"
+    },
+    {
+      "fichero": "k7_control_tecnico.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "k7_pruebas.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "5608c67bb43c625728c31454f5bf27857705608ccdd7717b81b80598b0db58dc"
+    },
+    {
+      "fichero": "k7_pruebas.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "lecturas_v3_6.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "53a463704b411eb6a91951fc87f2f0eb69ba5c38b963e13e9563b83e149dabd1"
+    },
+    {
+      "fichero": "lecturas_v3_6.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "ml_celda_preregistrada.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "e78603db7431c3dd2642404689589c8c1048a8bffb3e63828c4fb7f5af83510a"
+    },
+    {
+      "fichero": "ml_celda_preregistrada.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "ml_modelos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "a8cca1cd51e2e57602b4eeffc20495ef27f47ce6016de1ee0d93e08fffc4922a"
+    },
+    {
+      "fichero": "ml_nulo_permutaciones.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "91ac35d2f44caa8c4076e1f69b97f98ed41958c53ba9add12256fb41f87e06d9"
+    },
+    {
+      "fichero": "ml_nulo_permutaciones.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "a61cffdd30e5fe980aa1698233288eb7cf9d64fc7e2228318bf8145ec4cf4037"
+    },
+    {
+      "fichero": "ml_predicciones_oof.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "3066d52d6dc3b6059193e712a51a726fe670e2ff983ebeaa6d18ccf651d7fd7e"
+    },
+    {
+      "fichero": "ml_predicciones_oof.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "a61cffdd30e5fe980aa1698233288eb7cf9d64fc7e2228318bf8145ec4cf4037"
+    },
+    {
+      "fichero": "ml_suero_modelos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "a8cca1cd51e2e57602b4eeffc20495ef27f47ce6016de1ee0d93e08fffc4922a"
+    },
+    {
+      "fichero": "ml_suero_modelos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "a61cffdd30e5fe980aa1698233288eb7cf9d64fc7e2228318bf8145ec4cf4037"
+    },
+    {
+      "fichero": "ml_suero_permutacion.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "de91ea29d12c8f1104a5735c0ca4dc02a2a8a5165d18e4c2912da7a771d7007c"
+    },
+    {
+      "fichero": "ml_suero_permutacion.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "a61cffdd30e5fe980aa1698233288eb7cf9d64fc7e2228318bf8145ec4cf4037"
+    },
+    {
+      "fichero": "multiverso.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "9b4bb8e225ff87b6d73650f1e657d1d213506bcc8e95b08fe1ef9ffc46b9a059"
+    },
+    {
+      "fichero": "multiverso_ml.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "a6aa223f9a9dc5c8548df3b1079925ce69874c61ca502024ea24fa162ef72672"
+    },
+    {
+      "fichero": "multiverso_ml_v3_4.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "a6aa223f9a9dc5c8548df3b1079925ce69874c61ca502024ea24fa162ef72672"
+    },
+    {
+      "fichero": "multiverso_ml_v3_4.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "multiverso_resumen.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "392007b989bb376dcfbdbc6ae9638c72976b91f438f560d04871bb18688380a9"
+    },
+    {
+      "fichero": "multiverso_resumen.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "multiverso_suero.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "a74d69a8daa2d5c86fa33407cca02e7d889df6fa86bbfc5a842d4fc0a1300671"
+    },
+    {
+      "fichero": "multiverso_suero_v3_4.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "a74d69a8daa2d5c86fa33407cca02e7d889df6fa86bbfc5a842d4fc0a1300671"
+    },
+    {
+      "fichero": "multiverso_suero_v3_4.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "multiverso_v3_4.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "9b4bb8e225ff87b6d73650f1e657d1d213506bcc8e95b08fe1ef9ffc46b9a059"
+    },
+    {
+      "fichero": "multiverso_v3_4.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "preanalitica.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "849e29eb2fad64f2630886ebc50fccf607191e301d5efee1fb03e514f38ef4f9"
+    },
+    {
+      "fichero": "preanalitica.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "preanalitica_intentos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "12378f45622db8a86d03069dd9714e3724c2104c0bbbc41476da232aaa493df5"
+    },
+    {
+      "fichero": "preanalitica_intentos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "preanalitica_orden.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "5fdb0426fc1b4d1395f1af44c6f58a423e16586d5198e8f342e5bfc2bb2a288e"
+    },
+    {
+      "fichero": "preanalitica_orden.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "preanalitica_v3_5.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "849e29eb2fad64f2630886ebc50fccf607191e301d5efee1fb03e514f38ef4f9"
+    },
+    {
+      "fichero": "preanalitica_v3_5.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "procedencia.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "e06945010a80c0ad0967ed53476675f3d48da3b53cc4d3c1f199a5625f0a2e8f"
+    },
+    {
+      "fichero": "procedencia.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "qc_etiquetas_higado.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "abd74f43f6d4493dcbd9fa6dad5f9f1a2ed4a65196bd5947996b4df135997391"
+    },
+    {
+      "fichero": "qc_etiquetas_higado.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "qc_etiquetas_mucosa.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "280cd77b2c0ca4998d1be7eee37f8e822b175fe47f7d08313e9e023de277bc86"
+    },
+    {
+      "fichero": "qc_etiquetas_mucosa.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "qc_sexo_por_participante.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "95002b99495ce750a67a3c637b490ad3b7d92f8cd0991ce325f18d168577326c"
+    },
+    {
+      "fichero": "qc_sexo_por_participante.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "1e422576360aed0348b095df2aed92daa127b1da0d3a6c96e97cfa88a37ff3b8"
+    },
+    {
+      "fichero": "regresion_v1.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "2e440a9e52cea676a9e6f20b31e2f786366717f84bf929fee1e56b3b1ed1deb4"
+    },
+    {
+      "fichero": "regresion_v1.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "secuencia.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "3e76dfcccdf9562152fbcad96a5752953a9adc0b6c1d8a8e05c90fdc23dd7921"
+    },
+    {
+      "fichero": "secuencia.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "secuencia_v3_4.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "3e76dfcccdf9562152fbcad96a5752953a9adc0b6c1d8a8e05c90fdc23dd7921"
+    },
+    {
+      "fichero": "secuencia_v3_4.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "sello_corrida.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "suero_calidad.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "9d5e383aa4b4161bdc884484087eca3a7586a1f5bc7cf9c05fa36c9e51cc879e"
+    },
+    {
+      "fichero": "suero_calidad_muestra.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "eb8318a65449ad43f3e17e5f30147329e43966f1403c9bed84c243364675ff69"
+    },
+    {
+      "fichero": "suero_calidad_muestra.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "suero_calidad_pruebas.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "5608c67bb43c625728c31454f5bf27857705608ccdd7717b81b80598b0db58dc"
+    },
+    {
+      "fichero": "suero_calidad_pruebas.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "suero_controles.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c1397259ffb60e96dff75431f58d18121c3f04a9a2160c99549af9a3d41b55cf"
+    },
+    {
+      "fichero": "suero_controles.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "suero_embudo.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "7c9ea17ff68fd1922a72afdfeadac064de8b2e933c6a42334aaaf69986fbe32d"
+    },
+    {
+      "fichero": "suero_embudo.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "suero_entrapment.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "49ff9ddd29098fe0077321231480b0439e809eae4b70f2ec029d7b3d80abbc19"
+    },
+    {
+      "fichero": "suero_entrapment.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "suero_especies.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "7e7a6cd3207a8c775a5c48a694bee86d287b20c0c421cdcbcd50e9e611493afd"
+    },
+    {
+      "fichero": "suero_especies.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "suero_k4_cn_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "74d75ab10dff8956a864f5b3286084c7feec276257fa9f0054732e6518e81031"
+    },
+    {
+      "fichero": "suero_k4_cn_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "suero_k4_crc_cn.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "c72a94d85be02c2eed0f23de354e438af79ecec0fe8ce4fd5a20bdc6998847ac"
+    },
+    {
+      "fichero": "suero_k4_crc_cn.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "suero_k4_crc_sanos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "85eaf8d66966a2a974e99b9be95de5906b5a83eb9b739b26bec266d5590422fd"
+    },
+    {
+      "fichero": "suero_k4_crc_sanos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "suero_matriz_humana_fdr.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "c960915e73f7c7c1e994d5e7248e9eb40d0a445985a4d5807f5e5c095e9ec695"
+    },
+    {
+      "fichero": "suero_matriz_humana_fdr.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "suero_matriz_principal.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "05ffd8e94b6165234c10514fe6405770eca14a22be139b3feecb9446ba3e099f"
+    },
+    {
+      "fichero": "suero_matriz_principal.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "suero_resumen.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "28cba264e4057a44e9b5e14ab0701798fa300cd62092a0c3b43a43c1bd837253"
+    },
+    {
+      "fichero": "suero_resumen.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "suero_trazabilidad_grupos.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "63de27f436841660bfd1706a535088c56b29d64a0aab1a60c8573803065d56ff"
+    },
+    {
+      "fichero": "suero_trazabilidad_grupos.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "c165cf112b8aa9f72e4429bfdb4dcc43f4c8d24836b6139b2fbeeac692118b65"
+    },
+    {
+      "fichero": "triangulacion.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "7276581288de21c64494b49701939f1237d0887eed980178e885ef0f2b638ead"
+    },
+    {
+      "fichero": "triangulacion.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "572389722e9e40e02afb06154fd616179a14848f412380ad5942890e63380e54"
+    },
+    {
+      "fichero": "triangulacion_v3_5.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "7276581288de21c64494b49701939f1237d0887eed980178e885ef0f2b638ead"
+    },
+    {
+      "fichero": "triangulacion_v3_5.json.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    },
+    {
+      "fichero": "triangulacion_v3_5.tsv",
+      "origen": "recalculado_v3_6",
+      "sha256": "572389722e9e40e02afb06154fd616179a14848f412380ad5942890e63380e54"
+    },
+    {
+      "fichero": "triangulacion_v3_5.tsv.sello.json",
+      "origen": "recalculado_v3_6",
+      "sha256": "b0099406deb0e546b8de6d7f24f4e97af50f0eac8c3a73b5a2be1ff92fa7b604"
+    }
+  ],
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:51Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_6"
+  }
+}

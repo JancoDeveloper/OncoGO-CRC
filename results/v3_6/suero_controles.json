@@ -1,0 +1,154 @@
+{
+  "sello": {
+    "commit": "186d2637c8c6b747ec4148a9eceff28df693c6ec",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T13:19:53Z",
+    "sha256_preregistro": "a09fa52cd84736986a4b2ec00aab700a60b41d5e6f61e843d4062d3ac654623f",
+    "sha256_enmiendas": "ccce9663a969e007b55c32a821c026fc401d474c4a13ff36c400da4e2aaa4926",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_3_suero"
+  },
+  "controles": {
+    "filas": 283488,
+    "corridas": 60,
+    "q_value_max": 0.0099975,
+    "pg_q_value_max": 0.135314,
+    "global_pg_q_value_max": 1.0,
+    "grupos": 897,
+    "grupos_global_pg_q_0_01": 329,
+    "grupos_sin_pg_q_0_01_en_ninguna_corrida": 432,
+    "humanos_pg_y_global": 312,
+    "humanos_pg_y_global_con_gen": 307,
+    "sha256": "A8A5AADD74391AFEF68CF4D6C3A7D3860023101E5C92590E2E87C152A39E59E8",
+    "bytes": 213313241,
+    "solo_lectura": "0o700"
+  },
+  "esperado": {
+    "filas": 283488,
+    "corridas": 60,
+    "grupos_global_pg_q_0_01": 329,
+    "grupos_sin_pg_q_0_01_en_ninguna_corrida": 432,
+    "humanos_pg_y_global": 312,
+    "humanos_pg_y_global_con_gen": 307
+  },
+  "coincide_con_la_revision": true,
+  "diferencias": {},
+  "n_grupos_en_matriz_principal": 312,
+  "n_contaminantes_en_la_traza": 25,
+  "n_piel_en_la_traza": 13,
+  "libreria_n_entradas": 381,
+  "libreria_por_taxon": {
+    "83333": 1,
+    "1498": 1,
+    "9823": 4,
+    "1280": 1,
+    "93061": 1,
+    "9031": 2,
+    "69": 1,
+    "615": 1,
+    "5627": 1,
+    "224": 1,
+    "105402": 1,
+    "6100": 1,
+    "9606": 151,
+    "3981": 2,
+    "287": 1,
+    "10090": 26,
+    "559292": 1,
+    "9796": 2,
+    "9986": 1,
+    "11008": 1,
+    "296": 1,
+    "9913": 159,
+    "9940": 16,
+    "1895": 1,
+    "668": 1,
+    "0000": 2
+  },
+  "n_contaminantes_humanos": 14,
+  "n_contaminantes_no_humanos": 11,
+  "n_grupos_mixtos": 20,
+  "n_queratinas_epiteliales": 1,
+  "grupos_humanos_contaminantes": [
+    {
+      "protein_group": "P02533",
+      "genes": "KRT14",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "P13645",
+      "genes": "KRT10",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "P02538",
+      "genes": "KRT6A",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "P04264",
+      "genes": "KRT1",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "P08779",
+      "genes": "KRT16",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "P13647",
+      "genes": "KRT5",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "P35908",
+      "genes": "KRT2",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "P35527",
+      "genes": "KRT9",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "Q86Y46;Q86Y46-2",
+      "genes": "KRT73",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "Q5D862",
+      "genes": "FLG2",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "Q86YZ3",
+      "genes": "HRNR",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "A5A6N0;P08729;Q9DCV7",
+      "genes": "KRT7;Krt7",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "P48668",
+      "genes": "KRT6C",
+      "motivo": "acceso_humano_en_libreria"
+    },
+    {
+      "protein_group": "Q8N1N4",
+      "genes": "KRT78",
+      "motivo": "acceso_humano_en_libreria"
+    }
+  ],
+  "contaminantes_no_marcan_plasma_clasico": "pasa",
+  "matriz": "data/processed/plasma/pxd055218_pg_maxlfq_filtrado.tsv"
+}
