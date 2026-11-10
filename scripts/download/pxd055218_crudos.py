@@ -28,17 +28,18 @@ def sha1_de(path: Path) -> str:
 
 
 def parsear_checksum(texto: str) -> dict[str, str]:
-    """Devuelve nombre de fichero → SHA-1. Quita la ruta de Windows del depositante."""
+    """Devuelve nombre de fichero → SHA-1. El depositante escribe ruta, tabulador y SHA-1."""
     salida: dict[str, str] = {}
     for linea in texto.splitlines():
-        encontrado = SHA1_RE.search(linea)
-        if not encontrado:
+        if not linea.strip() or linea.startswith("#"):
             continue
-        nombre = linea[encontrado.end():].strip().replace("\\", "/").split("/")[-1]
-        if nombre:
-            salida[nombre.lower()] = encontrado.group(1).lower()
-            salida[nombre] = encontrado.group(1).lower()
-    return {nombre: digest for nombre, digest in salida.items() if nombre.endswith(".raw") or nombre.endswith(".tsv")}
+        partes = re.split(r"[\t ]+", linea.strip())
+        digest = next((parte for parte in partes if SHA1_RE.fullmatch(parte)), "")
+        ruta = next((parte for parte in partes if parte.lower().endswith((".raw", ".tsv"))), "")
+        if not digest or not ruta:
+            continue
+        salida[ruta.replace("\\", "/").split("/")[-1]] = digest.lower()
+    return salida
 
 
 def evaluar_crudo(crudo: Path, sha1_pride: str, bytes_pride: int | None) -> dict:

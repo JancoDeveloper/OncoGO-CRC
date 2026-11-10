@@ -400,3 +400,11 @@ Comando, antes del módulo: `pytest tests/test_v3_7_crudos.py`.
 Resultado. Salida 2 en la colección: `ModuleNotFoundError: No module named 'scripts.download.pxd055218_crudos'`. Con el módulo y la carga por ruta, 1 passed.
 
 Decisión. El comprobador compara el SHA-1 y pide redescarga si no coincide. La pasada sobre los 60 crudos reales empieza después de este commit.
+
+## 2026-11-10 09:25 (UTC−5). v3.7, el checksum trae la ruta delante
+
+Comando: `python scripts/download/pxd055218_crudos.py --workspace /Volumes/JANCODATA/OncoGO-CRC`.
+
+Resultado. Sale con código 1: `PRIDE no publica SHA-1 para CN_01_DIA.raw`. `checksum.txt` tiene 4838 bytes y cada línea es `D:\Akhila\PhD\DIA\PRIDE\<crudo>`, tabulador y el SHA-1. El lector tomaba el texto que va detrás del hash, y ahí no hay nombre. La prueba nueva falla con `KeyError: CN_01_DIA.raw` y, con el lector corregido, `pytest tests/test_v3_7_crudos.py` da 2 passed.
+
+Decisión. Se relanza la pasada de los 60.

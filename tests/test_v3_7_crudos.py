@@ -12,6 +12,12 @@ assert _SPEC.loader is not None
 _SPEC.loader.exec_module(_MOD)
 
 
+def test_el_checksum_de_pride_trae_la_ruta_delante_del_sha1():
+    texto = "D:\\Akhila\\PhD\\DIA\\PRIDE\\CN_01_DIA.raw\t991006918db00e872d13525fa23eb4bae459b53a\n"
+    tabla = _MOD.parsear_checksum(texto)
+    assert tabla["CN_01_DIA.raw"] == "991006918db00e872d13525fa23eb4bae459b53a"
+
+
 def test_un_sha1_distinto_pide_redescarga(tmp_path):
     crudo = tmp_path / "CN_01_DIA.raw"
     crudo.write_bytes(b"abc")
