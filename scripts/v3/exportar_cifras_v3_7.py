@@ -106,7 +106,6 @@ def _entradas(carpeta: Path, version: str) -> list[tuple[str, object, str, str]]
         ("PreEstado", pre["estado"], "estado", f"{prefijo}/preanalitica.json#estado"),
         ("PreAuc", auc["valor"], "auc", f"{prefijo}/preanalitica.json#calculado_con_legibles.auc.valor"),
         ("PreP", auc["p_exacta_mann_whitney"], "p", f"{prefijo}/preanalitica.json#calculado_con_legibles.auc.p_exacta_mann_whitney"),
-        ("PreCotaMax", pre["cota_con_60"]["auc_max"], "auc", f"{prefijo}/preanalitica.json#cota_con_60.auc_max"),
         ("PreRhoPiel", spearman["rho"], "rho", f"{prefijo}/preanalitica.json#spearman.piel.rho"),
         ("PreFecha", pre["n_con_fecha"], "entero", f"{prefijo}/preanalitica.json#n_con_fecha"),
         ("PreCrudos", pre["n_crudos_validos"], "entero", f"{prefijo}/preanalitica.json#n_crudos_validos"),

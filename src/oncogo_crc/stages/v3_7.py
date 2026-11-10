@@ -14,8 +14,23 @@ from oncogo_crc.v3.prereg import PreregistroV3
 from oncogo_crc.stages import v3_3_controles, v3_3_ml, v3_3_suero, v3_3_tejido, v3_4
 from oncogo_crc.stages.v3_5 import _numeros_v1
 from oncogo_crc.stages.v3_5_preanalitica import ejecutar as preanalitica
-from oncogo_crc.stages.v3_6_report import emitir, rutas_limpias
-from oncogo_crc.utils.sello import exigir_arbol_limpio, hacer_sello
+from oncogo_crc.stages.v3_6_report import rutas_limpias
+from oncogo_crc.utils.sello import exigir_arbol_limpio, escribir_sello, hacer_sello
+from oncogo_crc.v3.cierre_v37 import (
+    auditar_rai,
+    casillas_de_esta_corrida,
+    construir_manifiesto,
+    correr_tests,
+    ejecutar_explicacion,
+    ejecutar_go,
+    ejecutar_priorizacion,
+    emitir,
+    escribir_corrida,
+    exigir_carpeta_inicial,
+    marcar_declaradas,
+    unificar_sellos,
+    version_trfp,
+)
 from oncogo_crc.v3 import h5, h6, h7, h8, h9, h10, triangulacion
 from oncogo_crc.v3.salida import activar_corrida_limpia, carpeta_v37, cerrar_corrida_limpia, volcar_json, volcar_tsv
 from oncogo_crc.v3.vigilante import activar as activar_vigilante
@@ -51,17 +66,25 @@ def _celda(path: Path) -> dict:
     }
 
 
-def _alias(origen: Path, destino: Path) -> None:
+def _alias(origen: Path, destino: Path, sello: dict | None = None) -> None:
     if origen.is_file() and origen.resolve() != destino.resolve():
         destino.write_bytes(origen.read_bytes())
+        if sello is not None:
+            from oncogo_crc.utils.sello import escribir_sello
+            escribir_sello(destino.with_name(destino.name + ".sello.json"), sello)
 
 
-def _procedencia(salida: Path, sello: dict) -> None:
+def _procedencia(salida: Path, sello: dict, eventos: list[dict]) -> None:
+    escritos = set()
+    for evento in eventos:
+        modo = str(evento.get("modo") or "")
+        if any(flag in modo for flag in ("w", "a", "+")):
+            escritos.add(Path(evento["ruta"]).resolve())
     filas = []
     for path in sorted(p for p in salida.iterdir() if p.is_file() and not p.name.startswith("._")):
         filas.append({
             "fichero": path.name,
-            "origen": "recalculado_v3_7",
+            "origen": "recalculado_v3_7" if path.resolve() in escritos else "no_escrito_en_esta_corrida",
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         })
     volcar_json({"ficheros": filas}, salida / "procedencia.json", sello)
@@ -99,11 +122,12 @@ def _report_y_union(settings: Settings, salida: Path, sello: dict) -> None:
                         fecha = str(item.get("value") or "")
             fechas.append(fecha)
             legibles.append("true" if fecha else "false")
-        tabla["legible_trfp"] = legibles
-        tabla["version_trfp"] = "2.0.0.0"
+        if "legible_trfp" in tabla.columns:
+            tabla = tabla.drop(columns=["legible_trfp"])
+        tabla["metadato_trfp_con_fecha"] = legibles
+        tabla["version_trfp"] = version_trfp(settings)
         tabla["fecha_creacion"] = fechas
         tabla["metodo_fecha"] = ["trfp" if fecha else "" for fecha in fechas]
-        tabla["error"] = ""
         volcar_tsv(tabla, salida / "crudos_integridad.tsv", sello)
 
 
@@ -111,10 +135,15 @@ def run(settings: Settings) -> None:
     prereg = PreregistroV3(settings.root)
     salida = carpeta_v37(settings)
     salida.mkdir(parents=True, exist_ok=True)
-    sello = hacer_sello(settings.root, etapa="v3_7", manifest=None)
+    exigir_carpeta_inicial(salida)
+    manifiesto = construir_manifiesto(settings, salida)
+    sello = hacer_sello(settings.root, etapa="v3_7", manifest=manifiesto)
     exigir_arbol_limpio(sello)
+    escribir_sello(manifiesto.with_name(manifiesto.name + ".sello.json"), sello)
+    escribir_corrida(salida, sello, time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), None)
     tokens = activar_corrida_limpia(salida)
     activar_vigilante(excepciones_de(settings.root / "config" / "entradas_v3_7.yaml"), version="v3_7")
+    manifiesto.write_bytes(manifiesto.read_bytes())
     try:
         _pieza("tejido", lambda: v3_3_tejido.run(settings))
         _pieza("suero", lambda: v3_3_suero.run(settings))
@@ -131,21 +160,21 @@ def run(settings: Settings) -> None:
         controles = _pieza("controles_tejido", lambda: v3_4._controles(settings, salida, sello, prereg))
         volcar_json(controles, salida / "controles_tejido.json", sello)
         _pieza("ml", lambda: v3_3_ml.run(settings))
-        _alias(salida / "ml_suero_modelos.tsv", salida / "ml_modelos.tsv")
+        _alias(salida / "ml_suero_modelos.tsv", salida / "ml_modelos.tsv", sello)
         _con_ic(salida / "k4_crc_frente_a_colonoscopia_negativa.tsv", salida / "suero_k4_crc_cn.tsv", sello)
         _con_ic(salida / "k4_crc_frente_a_sanos.tsv", salida / "suero_k4_crc_sanos.tsv", sello)
         _con_ic(salida / "k4_colonoscopia_negativa_frente_a_sanos.tsv", salida / "suero_k4_cn_sanos.tsv", sello)
         celda = _celda(salida / "suero_k4_crc_cn.tsv")
         controles_suero = json.loads((salida / "suero_controles.json").read_text(encoding="utf-8"))
         volcar_json({"celda_preregistrada": celda, "controles": controles_suero.get("controles"), "n_grupos_en_matriz_principal": controles_suero.get("n_grupos_en_matriz_principal")}, salida / "suero_embudo.json", sello)
-        _alias(salida / "k7_control_tecnico.json", salida / "suero_calidad.json")
+        _alias(salida / "k7_control_tecnico.json", salida / "suero_calidad.json", sello)
         modelos = pd.read_csv(salida / "ml_modelos.tsv", sep="\t")
         m2 = modelos.loc[modelos["modelo"].eq("M2_proteinas_principal")].iloc[0]
         volcar_json({"modelo": "M2_proteinas_principal", "auc_oof_media": float(m2["auc_oof_media"]), "versiones": {"M2_proteinas_principal": {"auc_oof_media": float(m2["auc_oof_media"])}}}, salida / "ml_celda_preregistrada.json", sello)
         multi = _pieza("multiverso", lambda: v3_4._multiverso(settings, salida, sello, prereg))
-        _alias(salida / "multiverso_suero_v3_4.tsv", salida / "multiverso_suero.tsv")
-        _alias(salida / "multiverso_ml_v3_4.tsv", salida / "multiverso_ml.tsv")
-        _alias(salida / "multiverso_v3_4.json", salida / "multiverso.json")
+        _alias(salida / "multiverso_suero_v3_4.tsv", salida / "multiverso_suero.tsv", sello)
+        _alias(salida / "multiverso_ml_v3_4.tsv", salida / "multiverso_ml.tsv", sello)
+        _alias(salida / "multiverso_v3_4.json", salida / "multiverso.json", sello)
         suero_mv = pd.read_csv(salida / "multiverso_suero.tsv", sep="\t")
         con_diferencias = suero_mv.loc[pd.to_numeric(suero_mv["diferente"], errors="coerce").fillna(0).gt(0)]
         resumen = {
@@ -174,11 +203,20 @@ def run(settings: Settings) -> None:
         h9_payload = _pieza("h9", lambda: h9.ejecutar(settings, salida, sello, prereg))
         h10_payload = _pieza("h10", lambda: h10.ejecutar(settings, salida, sello, prereg))
         _pieza("report_y_union", lambda: _report_y_union(settings, salida, sello))
-        pre = _pieza("preanalitica", lambda: preanalitica(settings, salida, sello, prereg))
+        pre = _pieza("preanalitica", lambda: preanalitica(settings, salida, sello, prereg, cierre=True))
         volcar_json(pre, salida / "preanalitica.json", sello)
-        tri = _pieza("triangulacion", lambda: triangulacion.ejecutar(settings, salida, sello, prereg))
-        _alias(salida / "triangulacion_v3_5.tsv", salida / "triangulacion.tsv")
-        _alias(salida / "triangulacion_v3_5.json", salida / "triangulacion.json")
+        universo = pd.read_csv(settings.resolve("results/certified/cptac_unshared_treat.tsv"), sep="\t", usecols=["protein_id"])
+        genes = universo["protein_id"].astype(str).str.upper().drop_duplicates().tolist()
+        tri = _pieza("triangulacion", lambda: triangulacion.ejecutar(settings, salida, sello, prereg, universo=genes))
+        _alias(salida / "triangulacion_v3_5.tsv", salida / "triangulacion.tsv", sello)
+        _alias(salida / "triangulacion_v3_5.json", salida / "triangulacion.json", sello)
+        _pieza("go", lambda: ejecutar_go(settings, salida, sello))
+        _pieza("explicacion", lambda: ejecutar_explicacion(settings, salida, sello, prereg))
+        _pieza("priorizacion", lambda: ejecutar_priorizacion(settings, salida, sello))
+        traza = pd.read_csv(salida / "suero_trazabilidad_grupos.tsv", sep="\t")
+        matriz = pd.read_csv(salida / "suero_matriz_principal.tsv", sep="\t", usecols=["protein_id"])
+        celda_genes = pd.read_csv(salida / "k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv", sep="\t", usecols=["protein_id"])
+        volcar_tsv(auditar_rai(traza, matriz, celda_genes), salida / "auditoria_rai2025.tsv", sello)
         sec = _pieza("secuencia", lambda: v3_4._secuencia(salida, sello))
         volcar_json(sec, salida / "secuencia.json", sello)
         v1 = _numeros_v1(settings)
@@ -197,49 +235,32 @@ def run(settings: Settings) -> None:
             return abs(float(segunda["auc_oof_media"]) - float(m2["auc_oof_media"])) < 1e-12
         determinismo_ok = _pieza("determinismo_m2", segunda_m2)
         volcar_json({"pasa": bool(determinismo_ok), "pieza": "M2_proteinas_principal"}, salida / "determinismo.json", sello)
+        escribir_corrida(salida, sello, "", 0)
         eventos, prohibidas = cerrar_vigilante()
+        eventos = marcar_declaradas(eventos, manifiesto, salida)
         relativas = []
         for evento in eventos:
             texto = str(evento["ruta"]).replace("\\", "/")
             marca = texto.lower().find("/results/")
             relativa = texto[marca + 1:] if marca >= 0 else Path(texto).name
-            relativas.append({"ruta": relativa, "clase": evento["clase"]})
+            relativas.append({"ruta": relativa, "clase": evento["clase"], "declarada": evento.get("declarada", "no_declarada")})
         prohibidas_rel = []
         for ruta in prohibidas:
             texto = str(ruta).replace("\\", "/")
             marca = texto.lower().find("/results/")
             prohibidas_rel.append(texto[marca + 1:] if marca >= 0 else Path(texto).name)
         volcar_json({"lecturas": relativas, "prohibidas": prohibidas_rel}, salida / "lecturas_v3_7.json", sello)
-        _procedencia(salida, sello)
-        ml_json = json.loads((salida / "ml_celda_preregistrada.json").read_text(encoding="utf-8"))
-        tri_tabla = pd.read_csv(salida / "triangulacion.tsv", sep="\t") if (salida / "triangulacion.tsv").is_file() else pd.DataFrame()
-        piezas = {
-            "suero_celda": celda,
-            "ml": ml_json,
-            "multiverso": resumen,
-            "controles": controles,
-            "h5": h5_payload,
-            "h6": h6_payload,
-            "h7": h7_payload,
-            "h8": h8_payload,
-            "h9": h9_payload,
-            "h10": h10_payload,
-            "pre": pre,
-            "v1": v1,
-            "sin_mezcla": not prohibidas and all(fila["origen"] == "recalculado_v3_7" for fila in json.loads((salida / "procedencia.json").read_text())["ficheros"]),
-            "reproduce": celda == {"n": 284, "diferente": 0, "equivalente": 166, "indeterminada": 118} and abs(float(m2["auc_oof_media"]) - 0.88025) < 1e-9,
-            "rutas_publicas": rutas_limpias(salida),
-            "triangulacion_ok": len(tri_tabla) >= 14 and not tri_tabla.isna().any().any() if len(tri_tabla) else False,
-            "determinismo": bool(determinismo_ok),
-        }
-        certificado = emitir(piezas, salida, sello, carpeta="results/v3_7")
-        _procedencia(salida, sello)
+        _procedencia(salida, sello, eventos)
+        if not rutas_limpias(salida):
+            raise RuntimeError("una salida contiene una ruta local")
+        tests_codigo = _pieza("tests", lambda: correr_tests(settings.root, salida))
+        unificar_sellos(salida, sello)
+        cajas = casillas_de_esta_corrida(salida, settings, prereg, prohibidas_rel, relativas, tests_codigo, sello)
+        certificado = emitir(cajas, prohibidas_rel)
+        volcar_json(certificado, salida / "certificado.json", sello)
+        unificar_sellos(salida, sello)
         print(f"[v3.7] certificado {certificado['estado']}", flush=True)
-        if prohibidas:
-            raise RuntimeError(f"lectura prohibida: {prohibidas[:5]}")
-        if multi is None:
-            pass
-        if tri is None:
+        if multi is None or tri is None or controles is None or v1 is None:
             pass
     finally:
         cerrar_corrida_limpia(tokens)

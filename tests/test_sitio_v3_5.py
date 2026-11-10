@@ -2,27 +2,24 @@
 
 from __future__ import annotations
 
-import importlib.util
+import json
 import re
 from pathlib import Path
 
-_ruta = Path(__file__).resolve().parents[1] / "scripts" / "v3" / "exportar_sitio_v3_5.py"
-_spec = importlib.util.spec_from_file_location("exportar_sitio_v3_5", _ruta)
-_mod = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(_mod)
-AVISO, leer, texto = _mod.AVISO, _mod.leer, _mod.texto
-
 RAIZ = Path(__file__).resolve().parents[1]
 SITIO = RAIZ / "sitio"
+AVISO = "Ningún resultado de esta tesis sirve para decidir sobre un paciente."
 PAGINAS = [
     "index.html",
-    "metodos.html",
+    "como-se-hizo.html",
     "resultados.html",
+    "aprende.html",
     "datos.html",
     "glosario.html",
     "preguntas.html",
     "reproducir.html",
     "historial.html",
+    "404.html",
 ]
 PROHIBIDAS = (
     "directLFQ no está instalado",
@@ -38,9 +35,15 @@ def test_cada_cifra_sale_de_su_fichero():
     for nombre in PAGINAS:
         html = (SITIO / nombre).read_text(encoding="utf-8")
         assert html.count(AVISO) >= 2
-        for fuente, valor in re.findall(r'data-fuente="([^"]+)">([^<]*)</data>', html):
-            ruta, campo = fuente.split("#", 1)
-            assert texto(leer(ruta, campo)) == valor, fuente
+        for valor, fuente in re.findall(r'<data value="([^"]*)" data-fuente="([^"]+)"', html):
+            ruta, _, campo = fuente.partition("#")
+            assert (RAIZ / ruta).is_file(), fuente
+            if not campo:
+                continue
+            datos = json.loads((RAIZ / ruta).read_text(encoding="utf-8"))
+            for parte in campo.split("."):
+                datos = datos[parte]
+            assert str(datos) == valor, fuente
 
 
 def test_no_hay_frases_invalidadas_fuera_del_historial():

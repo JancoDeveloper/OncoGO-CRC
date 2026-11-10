@@ -39,7 +39,8 @@ def _gancho(evento: str, args) -> None:
     clase = clasificar(str(ruta), _EXCEPCIONES, _VERSION)
     if clase == "fuera":
         return
-    _EVENTOS.append({"ruta": str(ruta), "clase": clase})
+    modo = args[1] if len(args) > 1 and isinstance(args[1], str) else ""
+    _EVENTOS.append({"ruta": str(ruta), "clase": clase, "modo": modo})
     if clase == "prohibida":
         _PROHIBIDAS.append(str(ruta))
 

@@ -42,8 +42,8 @@ def _de_esta_corrida(salida: Path, nombre: str, anterior: Path) -> Path:
     return salida / nombre
 
 
-def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
-    genes = [str(g) for g in prereg.get("enmienda_v3_4.triangulacion.genes")]
+def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, universo: list[str] | None = None) -> dict:
+    genes = [str(g) for g in (universo if universo is not None else prereg.get("enmienda_v3_4.triangulacion.genes"))]
     columnas = [str(c) for c in prereg.get("enmienda_v3_4.triangulacion.columnas")]
     tabla = tabla_vacia(genes, columnas)
     buscados = set(genes)

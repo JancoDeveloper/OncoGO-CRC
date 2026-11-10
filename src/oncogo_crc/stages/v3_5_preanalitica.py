@@ -155,7 +155,24 @@ def intentos_previos(ruta: Path) -> dict[str, dict]:
     return {str(fila["crudo"]): fila.to_dict() for _, fila in viejo.iterrows()}
 
 
-def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
+def bh_descriptivo(por_grupo: dict) -> dict:
+    """BH sobre los Spearman dentro de CP y dentro de CN. No decide una hipótesis."""
+    from oncogo_crc.v3.cierre_v37 import bh
+
+    pares = []
+    for grupo in ("CP", "CN"):
+        bloque = por_grupo.get(grupo) or {}
+        if not isinstance(bloque, dict) or bloque.get("estado") == "no_evaluable":
+            continue
+        for metrica, valores in bloque.items():
+            if isinstance(valores, dict) and isinstance(valores.get("p"), (int, float)):
+                pares.append((f"{grupo}:{metrica}", float(valores["p"])))
+    if not pares:
+        return {"estado": "no_evaluable", "motivo": "no hay Spearman dentro de CP o CN"}
+    return {"estado": "calculado", "n_pruebas": len(pares), "q": bh(pares)}
+
+
+def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, *, cierre: bool = False) -> dict:
     campo = str(prereg.get("enmienda_v3_5.preanalitica.campo_fecha"))
     carpeta = settings.resolve("data/raw/plasma/pxd055218_raw")
     metadatos = settings.resolve("external/pxd055218_metadata")
@@ -322,12 +339,23 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
         "posicion_hc": posicion_hc,
         "instrumento": con_fecha["instrumento"].dropna().mode().iloc[0] if len(con_fecha) and con_fecha["instrumento"].notna().any() else None,
         "p_exacta_mann_whitney": p_exacta,
-        "cota_con_60": cota_con_60(),
         "posicion_por_grupo": bloques_de_orden(con_fecha)[0] if len(con_fecha) else {},
         "bloques_perfectos": bloques_de_orden(con_fecha)[1] if len(con_fecha) else False,
-        "spearman_54": spearman_54,
         "spearman_por_grupo": spearman_por_grupo,
-        "lectura": "Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.",
+        "lectura": (
+            "El orden de adquisición y el grupo están confundidos por completo: "
+            "CP, CN y HC se midieron en bloques. El Spearman de CP y CN juntos no separa el uno del otro. "
+            "Dentro de CP no hay deriva. Dentro de CN suben los precursores. "
+            "HC no se evalúa por muestra porque la unión del report con el crudo sigue pendiente."
+            if cierre else
+            "Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos."
+        ),
     }
+    if cierre:
+        payload["spearman_union"] = spearman_54
+        payload["bh_descriptivo"] = bh_descriptivo(spearman_por_grupo)
+    else:
+        payload["cota_con_60"] = cota_con_60()
+        payload["spearman_54"] = spearman_54
     volcar_json(payload, salida / "preanalitica_v3_5.json", sello)
     return payload

@@ -458,3 +458,11 @@ Resultado. El primer intento sale con `codigo_python=1` porque `logs/` deja el �
 Prueba. Antes del arreglo, `pytest tests/test_v3_5_preanalitica.py::test_un_tsv_de_intentos_vacio_no_se_lee_como_tabla` da `ImportError: cannot import name 'intentos_previos'`. Después, `pytest tests/test_v3_5_preanalitica.py` da 4 passed.
 
 Decisión. Un TSV vacío no se lee como tabla y no se vuelve a escribir. La corrida que vale sigue pendiente: el certificado de `9af0d01` no cumple las casillas nuevas.
+
+## 2026-11-10 15:55 (UTC−5). v3.7, el cierre exige la fuente
+
+Comando, antes del parche: `pytest tests/test_cierre_v37.py`.
+
+Resultado. 1 error de colección: `ModuleNotFoundError: No module named 'oncogo_crc.v3.cierre_v37'`. Después, `pytest tests/test_cierre_v37.py tests/test_v3_5_preanalitica.py tests/test_v3_6_preanalitica.py tests/test_v3_7_sin_mezcla.py tests/test_v3_7_crudos.py` da 21 passed. `config/esperado_v3_7.tsv` se lee de `results/v3_7/` ya versionado: 35 métricas, sin teclear los valores. La enmienda `enmienda_v3_7_cierre` ya estaba en `2d3cf42`.
+
+Decisión. La etapa no arranca si `results/v3_7/` tiene restos. El certificado se emite después del vigilante. Una lectura prohibida deja el estado en `no_publicable`. Lo que la enmienda declara no ejecutado es `desviacion_declarada`, no una falla. GO, el SHAP lineal y la priorización se calculan en la corrida; no se ejecutan vías de suero, XIC, PRTC, redes, el catálogo ni neoantígenos.
