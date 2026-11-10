@@ -238,11 +238,26 @@ def _resumen_multiverso(settings: Settings, salida: Path, sello: dict, prereg) -
     return payload
 
 
+def _numeros_v1(settings: Settings) -> dict[str, int]:
+    """Las mismas casillas que tests/test_regresion_v1.py. No están todas en la raíz del JSON."""
+    auditoria = json.loads(settings.resolve("results/certified/inference_audit.json").read_text(encoding="utf-8"))
+    certificado = json.loads(settings.resolve("results/certification/certificado_resumen.json").read_text(encoding="utf-8"))
+    resumen = {fila["metric"]: fila["value"] for fila in auditoria.get("summary_metrics", [])}
+    return {
+        "cptac_n_significant": int(auditoria["cptac_n_significant"]),
+        "pride_n_significant": int(auditoria["pride_n_significant"]),
+        "n_both_significant_padj_lt_0.05": int(resumen["n_both_significant_padj_lt_0.05"]),
+        "n_same_sign": int(certificado["n_same_sign"]),
+        "n_sign_evaluable": int(certificado["n_sign_evaluable"]),
+        "peptide_n_measurable": int(auditoria["peptide_n_measurable"]),
+        "n_certified_surviving": int(auditoria["r4_stroma"]["n_certified_surviving"]),
+    }
+
+
 def _comprobaciones(settings: Settings, salida: Path, sello: dict) -> tuple[dict, dict]:
-    auditoria = settings.resolve("results/certified/inference_audit.json")
-    datos = json.loads(auditoria.read_text(encoding="utf-8")) if auditoria.is_file() else {}
-    iguales = {k: datos.get(k) == v for k, v in V1.items()}
-    regresion = {"estado": "pasa" if all(iguales.values()) and iguales else "no_pasa", "coinciden": iguales, "reejecucion_fase_0": "4 passed"}
+    observados = _numeros_v1(settings)
+    iguales = {k: observados.get(k) == v for k, v in V1.items()}
+    regresion = {"estado": "pasa" if all(iguales.values()) else "no_pasa", "coinciden": iguales, "observados": observados, "reejecucion_fase_0": "4 passed"}
     volcar_json(regresion, salida / "regresion_v1.json", sello)
     manifiestos = {}
     for carpeta, nombre in (("results/v3_2", "results/v3_2_manifest.sha256"), ("results/v3_3", "results/v3_3_manifest.sha256"), ("results/v3_4", "results/v3_4_manifest.sha256")):
