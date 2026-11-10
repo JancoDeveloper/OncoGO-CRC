@@ -241,7 +241,9 @@ def construir_tabla_h7(settings: Settings, salida: Path) -> tuple[pd.DataFrame, 
 
     if not _origen_h6(settings, salida, tabla, variables):
         faltantes.append("origen_celular_h6")
-    faltantes.extend(["presencia_en_vesiculas_pxd033236", "esm2_t12_35M_pca5", "tmbed_helices_tm", "tmbed_peptido_senal"])
+    from oncogo_crc.v3.vesiculas import anotar as anotar_vesiculas
+    if not anotar_vesiculas(settings, tabla, variables):
+        faltantes.append("presencia_en_vesiculas_pxd033236")
     return tabla, pd.DataFrame(variables), faltantes
 
 
@@ -320,6 +322,8 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, semilla: int
         faltantes.append("papier_2024")
         if tabla.attrs.get("papier_motivo"):
             faltantes.append(str(tabla.attrs["papier_motivo"]))
+    from oncogo_crc.v3.secuencia_features import anotar as anotar_secuencia
+    secuencia = anotar_secuencia(settings, tabla)
     variables = [c for c in ficha["variable"] if c in tabla.columns]
     volcar_tsv(ficha, salida / "h7_variables.tsv", sello)
     volcar_tsv(tabla.reset_index(names="gen"), salida / "h7_tabla_proteinas.tsv", sello)
@@ -329,8 +333,8 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, semilla: int
             "motivo": "hacen falta dos recursos de sangre o una variable del preregistro",
             "recursos": recursos,
             "variables_faltantes": faltantes,
-            "modelo_secundario": "no_disponible",
-            "nota_tmbed": "TMbed no se ejecutó. El sustituto de UniProt no entra en el modelo principal.",
+            "modelo_secundario": secuencia,
+            "nota_tmbed": "ESM-2 y TMbed quedan fuera del modelo principal. UniProt no los sustituye.",
             "nota_tripod": "TRIPOD+AI: esto no es una prueba diagnóstica. La validación es fuera de recurso y fuera de proteína.",
         }
         volcar_json(payload, salida / "h7_visibilidad_en_sangre.json", sello)
@@ -346,22 +350,24 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, semilla: int
         por_recurso[recurso] = auc_bootstrap(y.loc[ok].to_numpy(), pred.loc[ok].to_numpy(), semilla_b)
         for gen in tabla.index[ok]:
             predicciones.append({"gen": gen, "recurso": recurso, "y": float(y.at[gen]), "p": float(pred.at[gen])})
-    base_vars = [c for c in ("concentracion_plasmatica_hpa_log10", "magnitud_en_tejido") if c in variables]
-    incremental = {"estado": "no_disponible", "motivo": "el modelo secundario de secuencia no se ajustó en esta corrida"}
-    if len(base_vars) == 2 and recursos:
-        pred_base = fuera_de_recurso(tabla, recursos, recursos[0], base_vars, [], semilla)
+    columnas_esm = [c for c in tabla.columns if c.startswith("esm2_")]
+    vars_tmbed = [c for c in ("tmbed_helices_tm", "tmbed_peptido_senal") if c in tabla.columns]
+    incremental = {**secuencia, "estado": "no_disponible", "motivo": "ESM-2 o TMbed no tienen salida completa"}
+    if columnas_esm and vars_tmbed and recursos:
+        pred_sec = fuera_de_recurso(tabla, recursos, recursos[0], variables + vars_tmbed, columnas_esm, semilla)
         y0 = tabla[f"y_{recursos[0]}"]
-        ok = y0.notna() & pred_base.notna()
-        base = auc_bootstrap(y0.loc[ok].to_numpy(), pred_base.loc[ok].to_numpy(), semilla_b)
-        completo = por_recurso[recursos[0]]
-        if base.get("estado") == "calculado" and completo.get("estado") == "calculado":
+        ok = y0.notna() & pred_sec.notna()
+        secundario = auc_bootstrap(y0.loc[ok].to_numpy(), pred_sec.loc[ok].to_numpy(), semilla_b)
+        principal = por_recurso[recursos[0]]
+        if secundario.get("estado") == "calculado" and principal.get("estado") == "calculado":
             incremental = {
+                **secuencia,
                 "estado": "calculado",
                 "recurso": recursos[0],
-                "auc_base": base["auc"],
-                "auc_completo": completo["auc"],
-                "incremento": completo["auc"] - base["auc"],
-                "nota": "El completo usa las variables que existen. ESM-2 y TMbed no entraron: quedan fuera del principal.",
+                "auc_principal": principal["auc"],
+                "auc_secundario": secundario["auc"],
+                "incremento": secundario["auc"] - principal["auc"],
+                "nota": "El secundario añade ESM-2, con PCA de 5 dentro de cada pliegue, y las dos salidas de TMbed. No entra en el veredicto.",
             }
     minimo = 2 if "papier_2024" not in recursos else 2
     estado = veredicto(por_recurso, minimo=minimo)
@@ -373,7 +379,7 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, semilla: int
         "recursos": recursos,
         "modelo_secundario": incremental,
         "nota_alvez_hpa": "El solapamiento de casos entre Álvez 2023 y el atlas HPA no está comprobado. Si lo hay, no son dos recursos independientes.",
-        "nota_tmbed": "TMbed y ESM-2 no se ejecutaron en el modelo principal. ProtT5 queda en el disco externo si se descarga; no cambia la regla.",
+        "nota_tmbed": "ESM-2 y TMbed no entran en el modelo principal ni lo sustituyen.",
         "nota_tripod": "TRIPOD+AI: no es una prueba diagnóstica. Validación fuera de recurso y fuera de proteína, 5 grupos, semilla h7_modelo.",
         "fase_pepe": 1,
     }

@@ -305,6 +305,21 @@ def _preanalitica(settings: Settings, salida: Path, sello: dict) -> dict:
 
 
 def _secuencia(salida: Path, sello: dict) -> dict:
+    ruta = salida / "h7_visibilidad_en_sangre.json"
+    if ruta.is_file():
+        datos = json.loads(ruta.read_text(encoding="utf-8"))
+        sec = datos.get("modelo_secundario") or {}
+        if sec.get("esm2") == "calculado" and sec.get("tmbed") == "calculado":
+            payload = {
+                "estado": "calculado",
+                "esm2": sec.get("esm2_fuente"),
+                "tmbed": sec.get("tmbed_fuente"),
+                "n_con_secuencia": sec.get("n_con_secuencia"),
+                "n_sin_secuencia": sec.get("n_sin_secuencia"),
+                "nota": "El modelo principal no usa estas variables. El secundario sí, y no cambia el veredicto.",
+            }
+            volcar_json(payload, salida / "secuencia_v3_4.json", sello)
+            return payload
     try:
         import torch  # noqa: F401
         hay_torch = True
@@ -312,7 +327,7 @@ def _secuencia(salida: Path, sello: dict) -> dict:
         hay_torch = False
     payload = {
         "estado": "no_disponible" if not hay_torch else "no_evaluable",
-        "motivo": "torch no está instalado; ESM-2 y ProtT5 no se ejecutaron" if not hay_torch else "torch está, pero esta etapa no lanza el modelo",
+        "motivo": "torch no está instalado; ESM-2 y ProtT5 no se ejecutaron" if not hay_torch else "ESM-2 o TMbed no tienen todavía una salida completa",
     }
     volcar_json(payload, salida / "secuencia_v3_4.json", sello)
     return payload

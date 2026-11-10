@@ -77,6 +77,11 @@ def casillas(piezas: dict, prereg: dict) -> list[dict]:
     return salida
 
 
+def puede_publicar(certificado: dict) -> bool:
+    """La enmienda deja publicar solo cuando ninguna casilla está en rojo."""
+    return certificado.get("estado") == "publicable" and not certificado.get("faltan")
+
+
 def armar_certificado(piezas: dict, prereg: dict | None = None) -> dict:
     lista = casillas(piezas, prereg or {})
     rojas = [c for c in lista if c["estado"] == "rojo"]
