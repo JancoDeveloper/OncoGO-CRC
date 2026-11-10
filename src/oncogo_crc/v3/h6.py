@@ -75,10 +75,18 @@ def ejecutar(settings: Settings, salida: Path, sello: dict) -> dict:
         "n_genes": int(len(clases)),
         "conteo": {str(k): int(v) for k, v in clases["clase"].value_counts().items()},
         "fisher": {k: v for k, v in prueba.items() if k != "estado"},
+        "tabla_degenerada": bool(prueba.get("tabla_degenerada")),
+        "motivo_degenerada": prueba.get("motivo_degenerada"),
         "nota": "Pelka 2021 no tiene la matriz h5 en este disco. La clase sale del HPA y las células tumorales no están en ese atlas.",
     }
     volcar_json(payload, salida / "h6_origen_celular.json", sello)
     return payload
+
+
+def tabla_degenerada(tabla) -> bool:
+    """Una columna en cero: el desenlace no varía y Fisher no puede ver una diferencia."""
+    arr = np.asarray(tabla)
+    return bool(arr.size) and bool((arr == 0).all(axis=0).any())
 
 
 def _fisher(settings: Settings, salida: Path, clases: pd.DataFrame) -> dict:
@@ -119,10 +127,13 @@ def _fisher(settings: Settings, salida: Path, clases: pd.DataFrame) -> dict:
     if tabla.sum() == 0 or (tabla.sum(axis=1) == 0).any():
         return {"estado": "no_evaluable", "motivo": "no hay epiteliales y no epiteliales con signo en las dos cohortes", "tabla": tabla.tolist()}
     razon, p = fisher_exact(tabla, alternative="two-sided")
+    degenerada = tabla_degenerada(tabla)
     return {
         "estado": "sostiene" if p < 0.05 else "no_sostiene",
         "motivo": "Fisher bilateral, alfa 0,05; el sentido no se predice",
         "odds_ratio": float(razon),
         "p": float(p),
         "tabla_mismo_signo_luego_distinto": tabla.tolist(),
+        "tabla_degenerada": degenerada,
+        "motivo_degenerada": "ninguna proteína tiene signo distinto; la prueba no puede detectar una diferencia" if degenerada else None,
     }
