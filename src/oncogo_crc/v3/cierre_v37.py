@@ -27,6 +27,7 @@ OBJETIVOS_RAI = (("BAIAP3", "O94812"), ("CEACAM5", "P06731"))
 ENTRADAS = (
     "data/raw/plasma/DIA-NN_report.tsv",
     "results/certified/cptac_unshared_treat.tsv",
+    "results/certified/inference_audit.json",
     "results/certification/certificado_resumen.json",
     "metadata/gene_ontology/go_gene_long.tsv",
     "metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv",
