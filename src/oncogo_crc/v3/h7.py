@@ -247,6 +247,27 @@ def construir_tabla_h7(settings: Settings, salida: Path) -> tuple[pd.DataFrame, 
     return tabla, pd.DataFrame(variables), faltantes
 
 
+def partir_recursos(tabla: pd.DataFrame, recursos: list[str], minimo: int = MINIMO_POR_CLASE) -> tuple[list[str], list[dict]]:
+    """Un recurso con menos de 10 en alguna clase no entrena a los demás."""
+    entrenables = []
+    no_entrenables = []
+    for recurso in recursos:
+        y = tabla[f"y_{recurso}"]
+        n_pos = int((y == 1).sum())
+        n_neg = int((y == 0).sum())
+        if n_pos < minimo or n_neg < minimo:
+            no_entrenables.append({
+                "recurso": recurso,
+                "estado": "no_evaluable",
+                "n_pos": n_pos,
+                "n_neg": n_neg,
+                "motivo": "menos de 10 en alguna clase; no entra en el entrenamiento",
+            })
+        else:
+            entrenables.append(recurso)
+    return entrenables, no_entrenables
+
+
 def _recursos(settings: Settings, tabla: pd.DataFrame) -> list[str]:
     alvez = settings.resolve("external/alvez_2023/alvez_2023_colorrectal_por_proteina.tsv")
     if alvez.is_file():
@@ -317,8 +338,9 @@ def _anotar_papier(settings: Settings, tabla: pd.DataFrame) -> None:
 
 def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, semilla: int | None = None, semilla_b: int | None = None) -> dict:
     tabla, ficha, faltantes = construir_tabla_h7(settings, salida)
-    recursos = _recursos(settings, tabla)
-    if "papier_2024" not in recursos:
+    recursos_todos = _recursos(settings, tabla)
+    recursos, no_entrenables = partir_recursos(tabla, recursos_todos)
+    if "papier_2024" not in recursos_todos:
         faltantes.append("papier_2024")
         if tabla.attrs.get("papier_motivo"):
             faltantes.append(str(tabla.attrs["papier_motivo"]))
@@ -332,6 +354,8 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, semilla: int
             "estado": "no_evaluable",
             "motivo": "hacen falta dos recursos de sangre o una variable del preregistro",
             "recursos": recursos,
+            "recursos_entrenables": recursos,
+            "recursos_no_entrenables": no_entrenables,
             "variables_faltantes": faltantes,
             "modelo_secundario": secuencia,
             "nota_tmbed": "ESM-2 y TMbed quedan fuera del modelo principal. UniProt no los sustituye.",
@@ -350,6 +374,8 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, semilla: int
         por_recurso[recurso] = auc_bootstrap(y.loc[ok].to_numpy(), pred.loc[ok].to_numpy(), semilla_b)
         for gen in tabla.index[ok]:
             predicciones.append({"gen": gen, "recurso": recurso, "y": float(y.at[gen]), "p": float(pred.at[gen])})
+    for item in no_entrenables:
+        por_recurso[item["recurso"]] = {k: item[k] for k in ("estado", "n_pos", "n_neg", "motivo")}
     columnas_esm = [c for c in tabla.columns if c.startswith("esm2_")]
     vars_tmbed = [c for c in ("tmbed_helices_tm", "tmbed_peptido_senal") if c in tabla.columns]
     incremental = {**secuencia, "estado": "no_disponible", "motivo": "ESM-2 o TMbed no tienen salida completa"}
@@ -377,6 +403,8 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, semilla: int
         "variables_usadas": variables,
         "variables_faltantes": faltantes,
         "recursos": recursos,
+        "recursos_entrenables": recursos,
+        "recursos_no_entrenables": no_entrenables,
         "modelo_secundario": incremental,
         "nota_alvez_hpa": "El solapamiento de casos entre Álvez 2023 y el atlas HPA no está comprobado. Si lo hay, no son dos recursos independientes.",
         "nota_tmbed": "ESM-2 y TMbed no entran en el modelo principal ni lo sustituyen.",
