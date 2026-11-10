@@ -1,20 +1,21 @@
 \chapter{Discusión}
-% REDACTAR-AUTOR: ampliar cada sección. Los párrafos de abajo son la base, con las cifras de results/v3_6/ y las citas ya verificadas.
+% REDACTAR-AUTOR: ampliar cada sección. Los párrafos de abajo son la base, con las cifras de results/v3_7/ y las citas ya verificadas.
+% REDACTAR-AUTOR: el universo de H8 cambió al usar el mapa de genes de esta corrida. Faltan las vías del suero, la cláusula de H1, el GO del tejido, el catálogo, los neoantígenos y el PRTC. No redactar un resultado para esas piezas: no tienen fichero.
 
 \section{El diseño en bloques}
-% fuente: results/v3_6/preanalitica.json
+% fuente: results/v3_7/preanalitica.json
 Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos. Hay fecha en \PreFecha\ de \PreCrudos\ crudos y el estado es \PreEstado. El AUC del orden es \PreAuc. La piel y la coagulación cambian a lo largo de una corrida cuando el manejo de la muestra no está fijo \cite{geyer2019}. Un lote puede producir la apariencia de una diferencia biológica \cite{leek2010}.
 
 % REDACTAR-AUTOR: contar con más detalle por qué un bloque confunde grupo y lote, y por qué el nulo frente a la colonoscopia negativa tampoco queda protegido.
 
 \section{Coagulación: tubo o tumor}
-% fuente: results/v3_6/k7_control_tecnico.json
+% fuente: results/v3_7/k7_control_tecnico.json
 La coagulación difiere entre cáncer y colonoscopia negativa, con p \CalidadCoagP. El cáncer activa la coagulación, y el tubo y el tiempo hasta centrifugar también la cambian. Con estos datos no se separan. La piel, con p \CalidadPielP, apunta a manipulación.
 
 % REDACTAR-AUTOR: decidir si se cita trombocitosis solo con una fuente verificada en Crossref. Si no, dejar escrito que no se separa el tubo de la biología.
 
 \section{El resultado negativo}
-% fuente: results/v3_6/suero_embudo.json
+% fuente: results/v3_7/suero_embudo.json
 \SueroDif\ de \SueroN\ proteínas separan el cáncer de la colonoscopia negativa. \SueroEq\ son equivalentes: descartan el cambio de la regla. \SueroInd\ quedan indeterminadas. Con este tamaño, no detectar una diferencia no equivale a demostrar que no existe.
 
 % REDACTAR-AUTOR: desarrollar la potencia con veinte personas por grupo, sin presentar el nulo como limpio.

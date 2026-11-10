@@ -1,11 +1,11 @@
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
-% fuente: results/v3_6/suero_embudo.json
-% fuente: results/v3_6/ml_suero_permutacion.json
-% fuente: results/v3_6/h5_especificidad_organo.json
-% fuente: results/v3_6/h6_origen_celular.json
-% fuente: results/v3_6/h7_visibilidad_en_sangre.json
-% fuente: results/v3_6/h8_carga_tumoral.json
+% fuente: results/v3_7/suero_embudo.json
+% fuente: results/v3_7/ml_suero_permutacion.json
+% fuente: results/v3_7/h5_especificidad_organo.json
+% fuente: results/v3_7/h6_origen_celular.json
+% fuente: results/v3_7/h7_visibilidad_en_sangre.json
+% fuente: results/v3_7/h8_carga_tumoral.json
 La pregunta es si las proteínas que cambian en un tumor de colon dejan una huella que se pueda ver en la sangre. El diseño va del tejido a la sangre y después a un modelo que intenta separar los grupos. En la celda escrita de antemano, \SueroDif\ de \SueroN\ proteínas separan el cáncer de la colonoscopia negativa. \SueroEq\ tienen el cambio de la regla descartado. \SueroInd\ quedan indeterminadas: con pocas personas por grupo falta potencia.
 
 El modelo que mezcla las proteínas separa los grupos. Su área bajo la curva es \MlTodas. La calidad de la muestra sola también los separa: \MlCalidad. Al quitar la calidad, la separación cae a \MlSinCalidad\ y la permutación da \MlSinCalidadP. La separación se asocia con la calidad de la muestra, no con una proteína del tumor. La coagulación puede venir del tubo o del propio cáncer. La piel es de manipulación.

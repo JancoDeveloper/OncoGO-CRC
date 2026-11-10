@@ -1,4 +1,4 @@
-"""La tesis v3.6 solo usa macros de results/v3_6/ y no arrastra cifras viejas."""
+"""La tesis vigente solo usa macros de results/v3_7/ y no arrastra cifras viejas."""
 
 from __future__ import annotations
 
@@ -34,11 +34,11 @@ def test_cada_macro_definida_se_usa_y_cada_uso_esta_definido():
     assert not (usadas & {nombre for nombre in usadas if nombre.startswith("Vcinco")})
 
 
-def test_las_fuentes_de_las_macros_salen_de_v3_6():
+def test_las_fuentes_de_las_macros_salen_de_v3_7():
     cifras = (LATEX / "cifras.tex").read_text(encoding="utf-8")
     fuentes = re.findall(r"% fuente: (\S+)", cifras)
     assert fuentes
-    assert all(fuente.startswith("results/v3_6/") for fuente in fuentes)
+    assert all(fuente.startswith("results/v3_7/") for fuente in fuentes)
 
 
 def test_no_hay_flotantes_sin_redondear_ni_frases_viejas():

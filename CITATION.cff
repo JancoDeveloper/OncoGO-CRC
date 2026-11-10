@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: Polanco Franco
     given-names: Juan Diego
-version: "3.6"
+version: "3.7"
 date-released: "2026-11-10"
 license: MIT
 repository-code: "https://github.com/JancoDeveloper/OncoGO-CRC"

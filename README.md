@@ -1,12 +1,12 @@
 # OncoGO-CRC
 
-La corrida vigente es la **v3.6**. El certificado está en `results/v3_6/certificado.json` y la página pública es [oncogo-crc-tesis.web.app](https://oncogo-crc-tesis.web.app). Para repetirla:
+La recálculo vigente es la **v3.7**. El certificado está en `results/v3_7/certificado.json` y dice publicable. Lo que cambió, lo que falló y lo que sigue pendiente está en [docs/estado_v3_7.md](docs/estado_v3_7.md). La página pública [oncogo-crc-tesis.web.app](https://oncogo-crc-tesis.web.app) sigue mostrando la v3.6 hasta que el sitio de la v3.7 esté completo. Para repetir la recálculo, con los 60 crudos ya verificados:
 
 ```bash
-make all-v3-6
+make v3-7
 ```
 
-La etiqueta `v3.6-final` marca esa corrida. Las carpetas `results/v3_2` a `results/v3_5` quedan congeladas.
+No hay etiqueta `v3.7-final`. Faltan las vías del suero, la cláusula de vías de H1, el GO del tejido, el catálogo de candidatas, los neoantígenos y el PRTC. La etiqueta `v3.6-final` marca la corrida anterior. Las carpetas `results/v3_2` a `results/v3_6` quedan congeladas.
 
 **OncoGO-CRC** es un entorno reproducible de bioinformática para integrar proteómica pública de cáncer colorrectal (CCR). El anteproyecto y el reajuste técnico están en la carpeta `Informacion/`.
 

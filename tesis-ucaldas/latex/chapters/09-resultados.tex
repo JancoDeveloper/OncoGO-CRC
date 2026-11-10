@@ -1,93 +1,103 @@
 \chapter{Resultados}
-% fuente: results/v3_6/
+% fuente: results/v3_7/
 
-Cada sección dice la pregunta, la regla, el número, la figura y qué no demuestra. Las cifras salen de \texttt{results/v3\_6/}. \Advertencia
+Cada sección dice la pregunta, la regla, el número, la figura y qué no demuestra. Las cifras salen de \texttt{results/v3\_7/}. Los dibujos de este capítulo son los de la v3.6: no se volvieron a trazar. \Advertencia
 
 \section{Integridad de los datos}
-% fuente: results/v3_6/suero_embudo.json
+% fuente: results/v3_7/suero_embudo.json
 ¿Cuántas proteínas quedan para el contraste del suero? La regla pide q global de hasta 0,01, especie humana y la celda preregistrada. El informe parte de \EmbudoGrupos\ grupos, deja \EmbudoQ\ con ese q, \EmbudoHumanos\ humanas y \SueroN\ en la celda. La figura~\ref{fig:embudo} muestra el embudo.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.82\textwidth]{figures/Fig4-1_embudo_suero.png}
-\caption{Embudo del suero. Fuente: \texttt{results/v3\_6/suero\_embudo.json}.}
+\caption{Embudo del suero. Dibujo de la v3.6. El mismo conteo está en \texttt{results/v3\_7/suero\_embudo.json}.}
 \label{fig:embudo}
 \end{figure}
 
 Qué no demuestra. El embudo no dice que las proteínas que salen no existan en la sangre. Dice que no pasan la regla escrita.
 
 \section{Tejido}
-% fuente: results/v3_6/k1_etiquetas.json
+% fuente: results/v3_7/k1_etiquetas.json
 ¿El cambio del tumor primario se repite entre Tanaka y CPTAC? El primario frente a la mucosa coincide en signo en \TejidoNum\ de \TejidoDen. La metástasis hepática frente a la mucosa coincide en \TejidoMetaNum\ de \TejidoMetaDen.
 
 Qué no demuestra. No confirma cada etiqueta de tumor y de mucosa. De los controles físicos, CA1 pasa. AQP8 y GUCA2A no se detectan. SLC26A3 no se evalúa por falta de pares.
 
 \section{Suero}
-% fuente: results/v3_6/suero_k4_crc_cn.tsv
+% fuente: results/v3_7/suero_k4_crc_cn.tsv
 ¿Alguna proteína separa el cáncer de la colonoscopia negativa? La regla es diferencia y equivalencia con un cambio de 1,5 veces, escrita antes de mirar. En la celda hay \SueroDif\ diferentes, \SueroEq\ equivalentes y \SueroInd\ indeterminadas, sobre \SueroN. La figura~\ref{fig:equivalencia} reparte esas tres clases. Frente a personas sanas hay tres proteínas diferentes, SAA1, LBP y LRG1. La colonoscopia negativa frente a sanos deja una, APOA4.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.72\textwidth]{figures/Fig4-3_equivalencia_suero.png}
-\caption{Clases del contraste de cáncer frente a colonoscopia negativa. Fuente: \texttt{results/v3\_6/suero\_k4\_crc\_cn.tsv}.}
+\caption{Clases del contraste de cáncer frente a colonoscopia negativa. Dibujo de la v3.6. El mismo conteo está en \texttt{results/v3\_7/suero\_k4\_crc\_cn.tsv}.}
 \label{fig:equivalencia}
 \end{figure}
 
 Qué no demuestra. Un nulo frente a la colonoscopia negativa no es un nulo limpio: un lote puede crear diferencias y también ocultarlas. No se detecta no quiere decir no existe.
 
 \section{Calidad de la muestra}
-% fuente: results/v3_6/k7_control_tecnico.json
+% fuente: results/v3_7/k7_control_tecnico.json
 ¿La calidad de la muestra difiere entre grupos? La coagulación tiene p \CalidadCoagP\ y la piel tiene p \CalidadPielP.
 
 Qué no demuestra. La diferencia de coagulación puede ser del tubo o del tumor. Con estos datos no se separan. La piel apunta a manipulación.
 
 \section{Orden de adquisición}
-% fuente: results/v3_6/preanalitica.json
-¿En qué orden se midieron las muestras? Hay \PreCrudos\ crudos válidos y fecha en \PreFecha. El estado es \PreEstado. El AUC del orden entre cáncer y colonoscopia negativa es \PreAuc, con p exacta \PreP. La cota si se leyeran los seis crudos sin fecha llega hasta \PreCotaMax. La correlación de Spearman de la piel con el orden, en cáncer y colonoscopia negativa, es \PreRhoPiel. Los rangos de los tres grupos no se solapan. La figura~\ref{fig:orden} lo muestra.
+% fuente: results/v3_7/preanalitica.json
+¿En qué orden se midieron las muestras? Hay \PreCrudos\ crudos válidos y fecha en \PreFecha. El estado es \PreEstado. El AUC del orden entre cáncer y colonoscopia negativa es \PreAuc, con p exacta \PreP. La cota que se había calculado para seis crudos sin fecha llega hasta \PreCotaMax; en esta corrida no se usa, porque los \PreCrudos\ tienen fecha. La correlación de Spearman de la piel con el orden, en cáncer y colonoscopia negativa, es \PreRhoPiel. Los rangos de los tres grupos no se solapan. La figura~\ref{fig:orden} es el dibujo de la v3.6. Las cifras de este párrafo salen de \texttt{results/v3\_7/preanalitica.json}.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/Fig4-2_orden_adquisicion.png}
-\caption{Orden de adquisición por grupo. Fuente: \texttt{results/v3\_6/preanalitica\_orden.tsv}.}
+\caption{Orden de adquisición por grupo. Dibujo de la v3.6. La lectura numérica vigente está en \texttt{results/v3\_7/preanalitica.json}.}
 \label{fig:orden}
 \end{figure}
 
 Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.
 
-Qué no demuestra. No atribuye la separación al tumor. Tampoco imputa la fecha de los crudos que el analizador no leyó.
+Qué no demuestra. No atribuye la separación al tumor. No imputa fechas: las que faltaban se leyeron del crudo cuyo SHA-1 coincide con PRIDE.
 
 \section{Modelo}
-% fuente: results/v3_6/ml_suero_permutacion.json
+% fuente: results/v3_7/ml_suero_permutacion.json
 ¿Cuánto separa un modelo y por qué? La celda preregistrada, con todas las proteínas, tiene AUC \MlTodas. La matriz humana da \MlHumana. Solo la calidad da \MlCalidad. Solo la coagulación da \MlCoagulacion. Sin la calidad, el AUC cae a \MlSinCalidad\ y la permutación da p \MlSinCalidadP. El modelo con cinco componentes da \MlPca. Si no se quitan contaminantes, la mediana del AUC en el multiverso es \MlContaminantes.
 
 Qué no demuestra. No es un examen. La separación puede venir del lote de adquisición tanto como de la manipulación de la muestra.
 
 \section{Multiverso}
-% fuente: results/v3_6/multiverso_resumen.json
+% fuente: results/v3_7/multiverso_resumen.json
 ¿El nulo depende de una sola forma de analizar? Hay \MultiSuero\ celdas de suero y \MultiMl\ de modelo. \MultiDif\ celdas tienen proteínas diferentes y todas dejan los contaminantes sin quitar.
 
 Qué no demuestra. No convierte esas celdas en un resultado del tumor. Muestra que el nulo de la celda preregistrada no es el de esas variantes.
 
 \section{Hipótesis}
-% fuente: results/v3_6/h5_especificidad_organo.json
+% fuente: results/v3_7/h5_especificidad_organo.json
 H5 queda en \HcincoEstado. El universo común tiene \HcincoUniverso\ genes. La diferencia con el otro carcinoma de mayor concordancia es \HcincoDif. Qué no demuestra: no dice que el colon tenga una dirección de cambio propia.
 
-% fuente: results/v3_6/h6_origen_celular.json
+% fuente: results/v3_7/h6_origen_celular.json
 H6 queda en \HseisEstado. La tabla está degenerada: una columna queda vacía. Qué no demuestra: no informa si el tipo celular influye. No es evidencia ni a favor ni en contra.
 
-% fuente: results/v3_6/h7_visibilidad_en_sangre.json
+% fuente: results/v3_7/h7_visibilidad_en_sangre.json
 H7 queda en \HsieteEstado. Álvez da \HsieteAlvez\ y el atlas de sangre da \HsieteHpa. Papier no se evalúa. Qué no demuestra: no anticipa qué proteína tumoral se verá en sangre y no es una prueba diagnóstica.
 
-% fuente: results/v3_6/h8_carga_tumoral.json
+% fuente: results/v3_7/h8_carga_tumoral.json
 H8 queda en \HochoEstado. El universo de la prueba tiene \HochoUniverso\ proteínas y las tumorales epiteliales son \HochoTumorales. Las plaquetas difieren entre el estadio IV y los estadios I--II, con p \HochoPlaquetasP. Qué no demuestra: no dice que el estadio IV no lleve proteína del tumor. Un DIA de suero sin depleción ve sobre todo proteínas abundantes. El metadato dice plasma y el protocolo de PRIDE dice suero: se anota sin decidir. La diferencia de plaquetas no se explica por el orden, porque esas muestras se aleatorizaron. Puede ser del tubo o biológica, y con la cita disponible no se separan.
 
-% fuente: results/v3_6/h9_wald.json
+% fuente: results/v3_7/h9_wald.json
 H9 queda en \HnueveEstado. Las proteínas con resultado exploratorio son \HnueveGenes. Qué no demuestra: no decide la tesis.
 
-% fuente: results/v3_6/h10_especificidad.json
+% fuente: results/v3_7/h10_especificidad.json
 H10 queda en \HdiezEstado, con \HdiezN\ proteínas específicas de cáncer colorrectal: \HdiezGenes. Qué no demuestra: no es un hallazgo nuevo. CEACAM5 ilustra el seguimiento tras la cirugía \cite{locker2006}.
 
 \section{Triangulación y certificado}
-% fuente: results/v3_6/triangulacion.tsv
-% fuente: results/v3_6/certificado.json
-La triangulación reúne los genes de la enmienda y no deja celdas vacías. Qué no demuestra: no valida un panel. El certificado queda en \CertificadoEstado. Las limitaciones aceptadas son H8 y la preanalítica.
+% fuente: results/v3_7/triangulacion.tsv
+% fuente: results/v3_7/certificado.json
+La triangulación reúne los genes de la enmienda y no deja celdas vacías. Qué no demuestra: no valida un panel. El certificado queda en \CertificadoEstado. La limitación aceptada es H8. La preanalítica queda en \PreEstado.
+
+\section{Qué cambió y qué queda pendiente}
+% fuente: results/v3_7/h8_carga_tumoral.json
+% fuente: results/v3_7/preanalitica.json
+% fuente: results/v3_7/union_crudos_calidad.tsv
+El mapa de genes de Tanaka, el de esta corrida, deja el universo de H8 en \HochoUniverso\ proteínas. Sigue en \HochoEstado\ y las tumorales epiteliales siguen en \HochoTumorales. Qué no demuestra: un universo más grande no convierte la pieza en evidencia de carga tumoral en sangre.
+
+Los sesenta crudos coinciden con el SHA-1 de PRIDE y tienen fecha. El estado de la preanalítica es \PreEstado. Qué no demuestra: no une los sanos. El reporte nombra esas corridas como \texttt{Normal\_} dentro de un \texttt{.mzML}. El crudo se llama \texttt{HC\_}. \texttt{union\_crudos\_calidad.tsv} deja esa unión en falso. No se fabricó la igualdad por el número.
+
+Quedan sin fichero en \texttt{results/v3\_7/} las vías del suero, la cláusula de vías de H1, el GO del tejido, el catálogo de candidatas, los neoantígenos y el PRTC. No hay resultado de esas piezas. El sello no trae el manifiesto de entradas. El determinismo repetido es solo el del modelo M2. La lista y la causa están en \texttt{docs/estado\_v3\_7.md}.

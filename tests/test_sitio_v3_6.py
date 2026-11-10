@@ -29,8 +29,23 @@ def test_paginas_aviso_y_figuras():
     assert len(re.findall(r"<dt[ >]", (SITIO / "glosario.html").read_text(encoding="utf-8"))) >= 40
 
 
+def test_el_estado_v3_7_coincide_con_sus_ficheros():
+    import json
+
+    pagina = (SITIO / "index.html").read_text(encoding="utf-8")
+    pares = re.findall(r'<data value="([^"]*)" data-fuente="(results/v3_7/[^"]+)"', pagina)
+    assert pares
+    for valor, fuente in pares:
+        ruta, _, campo = fuente.partition("#")
+        datos = json.loads((RAIZ / ruta).read_text(encoding="utf-8"))
+        actual = datos
+        for parte in campo.split("."):
+            actual = actual[parte]
+        assert str(actual) == valor, fuente
+
+
 def test_cada_cifra_tiene_fuente_de_v3_6():
     for path in SITIO.glob("*.html"):
         for valor, fuente in re.findall(r'<data value="([^"]*)" data-fuente="([^"]+)"', path.read_text(encoding="utf-8")):
-            assert fuente.startswith("results/v3_6/"), fuente
+            assert fuente.startswith("results/v3_6/") or fuente.startswith("results/v3_7/"), fuente
             assert valor

@@ -440,3 +440,11 @@ Comando, antes del parche: `pytest tests/test_v3_7_sin_mezcla.py`.
 Resultado. 2 failed. `clasificar()` no acepta `version` y `h8.py` todavía asigna el gen de Tanaka con `uni.get(acceso_base`. Después del parche, `pytest tests/test_v3_7_sin_mezcla.py tests/test_v3_6_sin_mezcla.py tests/test_v3_7_crudos.py tests/test_v3_5_triangulacion.py` da 10 passed.
 
 Decisión. La etapa `v3_7` escribe en `results/v3_7/`. H8 y la triangulación usan `genes_tanaka.mapa_genes`. El report trae `Run` igual a `CP_` y `CN_`, y a los sanos los llama `Normal_` en un `.mzML`, no `HC_` en un `.raw`. Esa unión no se inventa: queda `verificada` falso. ThermoRawFileParser 2.0.0 ya escribió la fecha de los seis crudos que no tenían JSON.
+
+## 2026-11-10 14:20 (UTC−5). v3.7, certificado de la recálculo
+
+Comandos: `make v3-7` y, al cortarse, el tramo desde H9 con el sello ya escrito.
+
+Resultado. `make v3-7` salió con código 2 al imprimir `[v3.7] h9`, sin traza de Python. El mismo corte, también con código 2 y sin traza, había ocurrido antes al imprimir `[v3.7] h10`. H9, H10, la unión, la preanalítica, la triangulación, la repetición de M2 y el certificado se calcularon después con el sello `2026-11-10T18:31:55Z` del commit `c1c2289`. `results/v3_7/certificado.json` queda `publicable` y `rojas` está vacío. La limitación aceptada es H8. La celda sigue en 284, 0, 166 y 118. M2 sigue en 0,88025. H8 sigue `no_evaluable` y el universo pasa de 33 a 53. La preanalítica pasa de `no_evaluable` con 54 fechas a `calculado` con 60. `union_crudos_calidad.tsv` deja verificadas las 40 corridas CP y CN, y falsas las 20 `Normal_`, con la evidencia «el report no nombra ese crudo». `lecturas_v3_7.json` solo cubre el segundo proceso. `sha256_manifest_entradas` queda nulo. `determinismo.json` solo repite M2.
+
+Decisión. Se publican los ficheros de esta recálculo y la documentación dice qué cambió y qué no se calculó. No se etiqueta `v3.7-final` y no se despliega Firebase: faltan `vias_suero.json`, `h1_vias.json`, `go_ora_tejido.tsv`, `catalogo_auditoria.tsv`, `neoantigenos.tsv`, `prtc_por_corrida.tsv` y `manifest_entradas.sha256`. El detalle está en `docs/estado_v3_7.md` y `docs/changelog_v3_6_frente_a_v3_7.md`.
