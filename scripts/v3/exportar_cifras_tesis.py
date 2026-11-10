@@ -98,6 +98,71 @@ def main() -> None:
         encoding="utf-8",
     )
     print("[v3.3] cifras de la tesis escritas")
+    escribir_v35(lineas, macros)
+
+
+def _coma(valor: object) -> str:
+    if isinstance(valor, float):
+        return format(valor, ".12g").replace(".", ",")
+    return str(valor).replace(".", ",")
+
+
+def escribir_v35(lineas: list[str], macros: dict) -> None:
+    """Añade las macros de v3.5. No pisa las de v3.3."""
+    base = RAIZ / "results" / "v3_5"
+    v33 = RAIZ / "results" / "v3_3"
+
+    def leer(carpeta: Path, nombre: str) -> dict:
+        return json.loads((carpeta / nombre).read_text(encoding="utf-8"))
+
+    cert = leer(base, "certificado_v3_5.json")
+    h5 = leer(base, "h5_especificidad_organo.json")
+    h6 = leer(base, "h6_origen_celular.json")
+    h7 = leer(base, "h7_visibilidad_en_sangre.json")
+    h8 = leer(base, "h8_carga_tumoral.json")
+    h9 = leer(base, "h9_wald.json")
+    h10 = leer(base, "h10_especificidad.json")
+    pre = leer(base, "preanalitica_v3_5.json")
+    ml = leer(base, "ml_celda_preregistrada.json")
+    multi = leer(base, "multiverso_v3_4.json")
+    resumen = leer(base, "multiverso_resumen_v3_5.json")
+    celda = multi["celda_preregistrada"]
+    modelos = (v33 / "ml_suero_modelos.tsv").read_text(encoding="utf-8").splitlines()
+    cab = modelos[0].split("\t")
+    por_modelo = {fila.split("\t")[0]: dict(zip(cab, fila.split("\t"), strict=False)) for fila in modelos[1:]}
+    nuevas = {
+        "VcincoEstado": cert["estado"],
+        "VcincoSueroN": celda["n"],
+        "VcincoSueroDif": celda["diferente"],
+        "VcincoSueroEq": celda["equivalente"],
+        "VcincoSueroInd": celda["indeterminada"],
+        "VcincoMdos": _coma(ml["auc"]),
+        "VcincoMtres": _coma(por_modelo["M3_solo_qc"]["auc_oof_media"]),
+        "VcincoMcinco": _coma(por_modelo["M5_principal_residualizada_qc"]["auc_oof_media"]),
+        "VcincoMcincoP": _coma(por_modelo["M5_principal_residualizada_qc"]["p_permutacion"]),
+        "VcincoHcinco": h5["estado"],
+        "VcincoHseis": h6["estado"],
+        "VcincoHsiete": h7["estado"],
+        "VcincoHocho": h8["estado"],
+        "VcincoHnueve": h9["estado"],
+        "VcincoHdiez": h10["estado"],
+        "VcincoHdiezN": h10["n_especificas_crc"],
+        "VcincoPreCrudos": pre["n_crudos_validos"],
+        "VcincoPreFecha": pre["n_con_fecha"],
+        "VcincoPreEstado": pre["estado"],
+        "VcincoTejido": macros["Runo"],
+        "VcincoAdvertencia": cert["advertencia"],
+        "VcincoAucContaminantes": _coma(resumen["auc_ml_sin_quitar_mediana"]),
+    }
+    for nombre, valor in nuevas.items():
+        lineas.append(f"\\newcommand{{\\{nombre}}}{{{_tex(valor)}}}")
+    destino = RAIZ / "tesis-ucaldas" / "latex" / "cifras.tex"
+    destino.write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    macros.update({k: str(v) for k, v in nuevas.items()})
+    (RAIZ / "tesis-ucaldas" / "word" / "cifras.json").write_text(
+        json.dumps(macros, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+    print("[v3.5] cifras de la tesis escritas")
 
 
 if __name__ == "__main__":
