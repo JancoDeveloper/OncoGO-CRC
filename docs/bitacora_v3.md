@@ -320,3 +320,17 @@ Resultado antes: 1 error. `ModuleNotFoundError: No module named 'oncogo_crc.stag
 Comando después: el mismo pytest.
 
 Resultado después: 3 passed. Los `._*` no cuentan. El campo `Content Creation Date` se lee como fecha. Con 54 de 60 el estado es `no_evaluable` y el AUC queda en `calculado_con_legibles`.
+
+## 2026-11-10 07:05 (UTC−5). v3.5, parches
+
+Certificado. Antes: `ModuleNotFoundError: oncogo_crc.stages.v3_5_report`. Después: 1 passed. H8 `no_evaluable` con solo la regla de H6 queda en rojo.
+
+H7. `partir_recursos` no existía en el commit anterior. Después: 1 passed. Un recurso 1/125 no entra en `entrenables`.
+
+H6. Después: 1 passed. La tabla `[[20, 0], [98, 0]]` marca `tabla_degenerada` y el estado sigue en `no_sostiene`.
+
+Controles. Después: 1 passed. `n_fallos` 3 da `falla` y 0 da `pasa`.
+
+Triangulación. Después: 1 passed. 14 genes y ninguna celda vacía: lo que falta dice `no_medida`.
+
+El conjunto de estos tests, con la cronología, queda en 19 passed.

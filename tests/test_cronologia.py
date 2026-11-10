@@ -82,6 +82,17 @@ def test_enmienda_v3_4_es_anterior_a_sus_resultados():
         assert _es_anterior(enmienda, resultados)
 
 
+def test_enmienda_v3_5_es_anterior_a_sus_resultados():
+    enmienda = _introduce_clave("enmienda_v3_5:")
+    resultados = _primero_que_anade("results/v3_5")
+    if not enmienda and not resultados:
+        return
+    if resultados and not enmienda:
+        raise AssertionError("hay results/v3_5 sin la enmienda v3.5")
+    if enmienda and resultados:
+        assert _es_anterior(enmienda, resultados)
+
+
 def test_v3_3_no_cambia_despues_de_la_etiqueta():
     proceso = subprocess.run(
         ["git", "rev-parse", "--verify", "v3.3-final"],

@@ -221,3 +221,10 @@ all-v3-3: manifest-write v3-manifiestos regresion-v1 v3-3-suero v3-3-tejido v3-3
 v3-4:
 	$(RUN) v3_4
 all-v3-4: v3-4
+
+# --------------------------------------------------------------------- v3.5
+# Escribe solo bajo results/v3_5/. Copia lo congelado de v3.4 y recalcula el resto.
+.PHONY: v3-5 all-v3-5
+v3-5:
+	$(RUN) v3_5
+all-v3-5: v3-5

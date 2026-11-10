@@ -218,7 +218,10 @@ def _mapa_uniprot(path: Path) -> dict[str, str]:
     return {acceso: next(iter(genes)) for acceso, genes in salida.items() if len(genes) == 1}
 
 
-def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
+def ejecutar(settings: Settings, salida: Path, sello: dict, prereg=None) -> dict:
+    if prereg is None:
+        from oncogo_crc.v3.prereg import PreregistroV3
+        prereg = PreregistroV3(settings.root)
     import directlfq
     matriz_path = settings.resolve("external/pxd064655/report.pr_matrix.tsv")
     meta_path = settings.resolve("external/pxd064655/Sample_Metadata.txt")
