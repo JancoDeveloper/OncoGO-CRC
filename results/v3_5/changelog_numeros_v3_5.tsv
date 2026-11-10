@@ -1,0 +1,11 @@
+cifra	valor_v3_4	valor_v3_5	causa
+h7_alvez_2023_auc	0.4603256655466529	0.48281209614887566	2.5
+h7_hpa_disease_blood_atlas_auc	0.4693021862833183	0.46391135070380357	2.5
+h7_papier_2024_auc		no_evaluable	2.5
+h6_tabla_degenerada		True	2.6
+h6_estado	no_sostiene	no_sostiene	2.6
+h8_estado	no_evaluable	no_evaluable	2.1
+preanalitica_n_crudos	120	60	2.3
+preanalitica_estado	no_disponible	no_evaluable	2.3
+ml_celda_preregistrada_auc	0.888875	0.88025	2.7
+controles_veredicto_v3_3	calculado	falla	2.9

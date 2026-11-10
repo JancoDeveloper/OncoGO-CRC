@@ -1,0 +1,39 @@
+{
+  "estado": "pasa",
+  "coinciden": {
+    "cptac_n_significant": true,
+    "pride_n_significant": true,
+    "n_both_significant_padj_lt_0.05": true,
+    "n_same_sign": true,
+    "n_sign_evaluable": true,
+    "peptide_n_measurable": true,
+    "n_certified_surviving": true
+  },
+  "observados": {
+    "cptac_n_significant": 688,
+    "pride_n_significant": 140,
+    "n_both_significant_padj_lt_0.05": 28,
+    "n_same_sign": 104,
+    "n_sign_evaluable": 119,
+    "peptide_n_measurable": 226,
+    "n_certified_surviving": 307
+  },
+  "reejecucion_fase_0": "4 passed",
+  "sello": {
+    "commit": "f7aa3cb0a8322cf8de63bfdb4d0e8a86a3bbe743",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T12:04:13Z",
+    "sha256_preregistro": "6558ade274d3b0f6bbbfb7e0a1c015d74ea193263384dc623cca923f117876e6",
+    "sha256_enmiendas": "db7afdc45a35533117a88daa2b8e11ade56bde42707c99700eb4a247b6230472",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_5"
+  }
+}

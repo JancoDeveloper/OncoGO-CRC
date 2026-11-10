@@ -334,3 +334,11 @@ Controles. Después: 1 passed. `n_fallos` 3 da `falla` y 0 da `pasa`.
 Triangulación. Después: 1 passed. 14 genes y ninguna celda vacía: lo que falta dice `no_medida`.
 
 El conjunto de estos tests, con la cronología, queda en 19 passed.
+
+## 2026-11-10 07:06 (UTC−5). v3.5, corrida
+
+Comando: `make v3-5`. Duración 135613 ms. Salida `0`.
+
+Resultado. `results/v3_5/certificado_v3_5.json` queda `publicable` y `puede_publicar` es verdadero. H5 sigue en sostiene, copiada de v3.4. H6 queda `no_sostiene` con `tabla_degenerada` verdadero (`h6_origen_celular.json`): no es evidencia ni a favor ni en contra. H7 sigue en `refuta`. Papier queda `no_evaluable` (1 y 125) y no entra en el entrenamiento. H8 une 100 de 100, excluye 4 estándares y directLFQ 0.3.3 escribe `pr_matrix_SH.aq_reformat.tsv.protein_intensities.tsv`. El estado es `no_evaluable`: menos de 10 tumorales epiteliales en el universo (`h8_carga_tumoral.json`). No demuestra que el estadio IV no lleve proteína del tumor. La preanalítica cuenta 60 crudos y 54 con fecha; el estado es `no_evaluable` (`preanalitica_v3_5.json`). Los crudos legibles salen por bloques: CP, luego CN, luego HC. La celda de ML reproduce 0,88025 (`ml_celda_preregistrada.json`). El valor 0,888875 de v3.4 queda como variación de semilla. La triangulación tiene 14 filas y 0 celdas vacías. La queratina epitelial de la traza, `A5A6N0;P08729;Q9DCV7`, no está en la matriz de proteína, así que el eje no cambia el contraste (`multiverso_resumen_v3_5.json`).
+
+Decisión. Se copian los ficheros al repositorio y se congela `results/v3_5_manifest.sha256`. Las limitaciones declaradas son H8, la preanalítica y el recurso de H7. Están en la lista de la enmienda.

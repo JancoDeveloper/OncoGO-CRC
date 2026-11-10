@@ -1,0 +1,122 @@
+{
+  "estado": "refuta",
+  "por_recurso": {
+    "alvez_2023": {
+      "estado": "calculado",
+      "auc": 0.48281209614887566,
+      "ic95_bajo": 0.3812289997415353,
+      "ic95_alto": 0.5836262600155079,
+      "pendiente_calibracion": -0.04937232080518761,
+      "intercepto_calibracion": -0.3315280025807929,
+      "n_pos": 53,
+      "n_neg": 73
+    },
+    "hpa_disease_blood_atlas": {
+      "estado": "calculado",
+      "auc": 0.46391135070380357,
+      "ic95_bajo": 0.352785265049416,
+      "ic95_alto": 0.5732404911650194,
+      "pendiente_calibracion": -0.12782604571386208,
+      "intercepto_calibracion": -0.2343751246433065,
+      "n_pos": 53,
+      "n_neg": 63
+    },
+    "papier_2024": {
+      "recurso": "papier_2024",
+      "estado": "no_evaluable",
+      "n_pos": 1,
+      "n_neg": 125,
+      "motivo": "menos de 10 en alguna clase; no entra en el entrenamiento"
+    }
+  },
+  "variables_usadas": [
+    "magnitud_en_tejido",
+    "go_extracelular",
+    "go_membrana",
+    "go_exosoma",
+    "hpa_secreted_to_blood",
+    "concentracion_plasmatica_hpa_log10",
+    "especificidad_tisular",
+    "intestino_entre_los_elevados",
+    "clase_h5_pan_carcinoma",
+    "clase_h5_especifica_colon",
+    "clase_h5_intermedia",
+    "abundancia_en_tejido",
+    "h6_epitelial",
+    "h6_no_epitelial",
+    "h6_mixta",
+    "presencia_en_vesiculas_pxd033236"
+  ],
+  "variables_faltantes": [],
+  "recursos": [
+    "alvez_2023",
+    "hpa_disease_blood_atlas"
+  ],
+  "recursos_entrenables": [
+    "alvez_2023",
+    "hpa_disease_blood_atlas"
+  ],
+  "recursos_no_entrenables": [
+    {
+      "recurso": "papier_2024",
+      "estado": "no_evaluable",
+      "n_pos": 1,
+      "n_neg": 125,
+      "motivo": "menos de 10 en alguna clase; no entra en el entrenamiento"
+    }
+  ],
+  "modelo_secundario": {
+    "esm2": "calculado",
+    "tmbed": "calculado",
+    "n_con_secuencia": 668,
+    "n_sin_secuencia": 20,
+    "tmbed_fuente": "/Volumes/JANCODATA/OncoGO-CRC/external/modelos/h7_tmbed.pred",
+    "esm2_dim": 480,
+    "esm2_fuente": "/Volumes/JANCODATA/OncoGO-CRC/external/modelos/models--facebook--esm2_t12_35M_UR50D/snapshots/6fbf070e65b0b7291e7bbcd451118c216cff79d8",
+    "estado": "calculado",
+    "recurso": "alvez_2023",
+    "auc_principal": 0.48281209614887566,
+    "auc_secundario": 0.4799689842336521,
+    "incremento": -0.002843111915223573,
+    "nota": "El secundario añade ESM-2, con PCA de 5 dentro de cada pliegue, y las dos salidas de TMbed. No entra en el veredicto."
+  },
+  "nota_alvez_hpa": "El solapamiento de casos entre Álvez 2023 y el atlas HPA no está comprobado. Si lo hay, no son dos recursos independientes.",
+  "nota_tmbed": "ESM-2 y TMbed no entran en el modelo principal ni lo sustituyen.",
+  "nota_tripod": "TRIPOD+AI: no es una prueba diagnóstica. Validación fuera de recurso y fuera de proteína, 5 grupos, semilla h7_modelo.",
+  "fase_pepe": 1,
+  "constructo_por_recurso": {
+    "alvez_2023": "colorrectal frente a los demás cánceres (Álvez 2023, métodos)",
+    "hpa_disease_blood_atlas": "colorrectal frente a Healthy (Álvez 2025)",
+    "papier_2024": "riesgo prospectivo (Cox) en UK Biobank"
+  },
+  "independientes": {
+    "comprobado": false,
+    "motivo": "los ficheros descargados no dicen si los casos de Álvez 2023 están en el atlas de 2025"
+  },
+  "concordancia_de_etiquetas": [
+    {
+      "a": "alvez_2023",
+      "b": "hpa_disease_blood_atlas",
+      "n": 115,
+      "kappa": 0.21148864848392512
+    }
+  ],
+  "modelo_completo": true,
+  "sello": {
+    "commit": "f7aa3cb0a8322cf8de63bfdb4d0e8a86a3bbe743",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T12:04:13Z",
+    "sha256_preregistro": "6558ade274d3b0f6bbbfb7e0a1c015d74ea193263384dc623cca923f117876e6",
+    "sha256_enmiendas": "db7afdc45a35533117a88daa2b8e11ade56bde42707c99700eb4a247b6230472",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_5"
+  }
+}

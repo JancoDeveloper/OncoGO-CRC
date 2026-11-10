@@ -1,0 +1,34 @@
+{
+  "modelo": "M2_proteinas_principal",
+  "auc": 0.88025,
+  "ic95_ledell_bajo": 0.7676648219568768,
+  "ic95_ledell_alto": 0.9923351780431232,
+  "p_permutacion": 0.000999000999000999,
+  "media_del_nulo": 0.47266250000000004,
+  "n_variables": 284,
+  "semilla_cv": 20261634,
+  "semilla_permutacion": 20261635,
+  "orden_de_muestras": "el de _columnas_cp_cn de v3.3",
+  "debe_reproducir": 0.88025,
+  "reproduce": true,
+  "sha256_x": "b46e44366931ef376bad1fa519888a0ee7499660c694709e2ffe807beee8d429",
+  "auc_v3_4_variacion_de_semilla": 0.888875,
+  "nota_v3_4": "0,888875 de v3.4 es la misma matriz con otra semilla. No es un resultado nuevo.",
+  "sello": {
+    "commit": "f7aa3cb0a8322cf8de63bfdb4d0e8a86a3bbe743",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T12:04:13Z",
+    "sha256_preregistro": "6558ade274d3b0f6bbbfb7e0a1c015d74ea193263384dc623cca923f117876e6",
+    "sha256_enmiendas": "db7afdc45a35533117a88daa2b8e11ade56bde42707c99700eb4a247b6230472",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_5"
+  }
+}

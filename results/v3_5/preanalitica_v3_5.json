@@ -1,0 +1,131 @@
+{
+  "estado": "no_evaluable",
+  "motivo": "54 de 60 crudos legibles; la prueba preregistrada pide 60",
+  "calculado_con_legibles": {
+    "auc": {
+      "valor": 0.0,
+      "ic95_ledell": [
+        0.0,
+        0.0
+      ],
+      "n_cp": 19,
+      "n_cn": 17
+    },
+    "n_con_fecha": 54,
+    "spearman": {
+      "eritrocitos": {
+        "rho": 0.21312741312741315,
+        "p": 0.21201885844661636,
+        "n": 36
+      },
+      "plaquetas": {
+        "rho": -0.25868725868725867,
+        "p": 0.12765591835527165,
+        "n": 36
+      },
+      "coagulacion": {
+        "rho": -0.651994851994852,
+        "p": 1.647380309499171e-05,
+        "n": 36
+      },
+      "piel": {
+        "rho": -0.7791505791505792,
+        "p": 2.1733818203621972e-08,
+        "n": 36
+      },
+      "log2_n_precursores": {
+        "rho": 0.23732303732303733,
+        "p": 0.1634116247747916,
+        "n": 36
+      }
+    }
+  },
+  "n_crudos_validos": 60,
+  "n_appledouble": 60,
+  "n_con_fecha": 54,
+  "sin_fecha": [
+    {
+      "crudo": "CN_01_DIA.raw",
+      "bytes_local": 1049764670,
+      "bytes_pride": 1049764670,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "CN_08_DIA.raw",
+      "bytes_local": 1000697970,
+      "bytes_pride": 1000697970,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "CN_16_DIA.raw",
+      "bytes_local": 1205043346,
+      "bytes_pride": 1205043346,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "CP_18_DIA.raw",
+      "bytes_local": 1226017242,
+      "bytes_pride": 1226017242,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "HC_17_DIA.raw",
+      "bytes_local": 1065175806,
+      "bytes_pride": 1065175806,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    },
+    {
+      "crudo": "HC_20_DIA.raw",
+      "bytes_local": 1088171988,
+      "bytes_pride": 1088171988,
+      "tamaño_igual_a_pride": true,
+      "motivo": "ThermoRawFileParser no escribió JSON. El tamaño coincide con PRIDE, así que la descarga no quedó corta."
+    }
+  ],
+  "campo_fecha": "Content Creation Date",
+  "formato_fecha": "%m/%d/%Y %H:%M:%S",
+  "inicio": "2023-09-29T14:04:26",
+  "fin": "2023-10-07T10:31:40",
+  "corridas_por_dia": {
+    "2023-09-29": 5,
+    "2023-09-30": 7,
+    "2023-10-01": 7,
+    "2023-10-02": 7,
+    "2023-10-03": 4,
+    "2023-10-04": 7,
+    "2023-10-05": 7,
+    "2023-10-06": 8,
+    "2023-10-07": 2
+  },
+  "corridas_por_grupo": {
+    "CP": 19,
+    "HC": 18,
+    "CN": 17
+  },
+  "hc_dentro_del_rango_cp_cn": 0,
+  "posicion_hc": "aparte",
+  "instrumento": "Orbitrap Fusion",
+  "no_cambia_el_titular": true,
+  "sello": {
+    "commit": "f7aa3cb0a8322cf8de63bfdb4d0e8a86a3bbe743",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T12:04:13Z",
+    "sha256_preregistro": "6558ade274d3b0f6bbbfb7e0a1c015d74ea193263384dc623cca923f117876e6",
+    "sha256_enmiendas": "db7afdc45a35533117a88daa2b8e11ade56bde42707c99700eb4a247b6230472",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_5"
+  }
+}

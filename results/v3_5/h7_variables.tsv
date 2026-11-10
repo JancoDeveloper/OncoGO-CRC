@@ -1,0 +1,17 @@
+variable	fuente	definicion
+magnitud_en_tejido	results/certified/cptac_unshared_treat.tsv	valor absoluto del log2FC de CPTAC en las proteínas certificadas
+go_extracelular	/Volumes/JANCODATA/OncoGO-CRC/metadata/gene_ontology/go_gene_long.tsv	GO:0005576
+go_membrana	/Volumes/JANCODATA/OncoGO-CRC/metadata/gene_ontology/go_gene_long.tsv	GO:0005886
+go_exosoma	/Volumes/JANCODATA/OncoGO-CRC/metadata/gene_ontology/go_gene_long.tsv	GO:0070062
+hpa_secreted_to_blood	/Volumes/JANCODATA/OncoGO-CRC/external/hpa/hpa_concentracion_sangre.tsv	localizacion_secretoma == Secreted to blood
+concentracion_plasmatica_hpa_log10	/Volumes/JANCODATA/OncoGO-CRC/external/hpa/hpa_concentracion_sangre.tsv	log10 de conc_sangre_ms_pg_l
+especificidad_tisular	/Volumes/JANCODATA/OncoGO-CRC/external/hpa/proteinatlas.tsv.zip	enriched 3, group enriched 2, enhanced 1, low 0, not detected NaN
+intestino_entre_los_elevados	/Volumes/JANCODATA/OncoGO-CRC/external/hpa/proteinatlas.tsv.zip	1 si colon, intestine o rectum está en RNA tissue specific nTPM
+clase_h5_pan_carcinoma	/Volumes/JANCODATA/OncoGO-CRC/results/v3_5/h5_especificidad_organo.tsv	one-hot de la clase H5
+clase_h5_especifica_colon	/Volumes/JANCODATA/OncoGO-CRC/results/v3_5/h5_especificidad_organo.tsv	one-hot de la clase H5
+clase_h5_intermedia	/Volumes/JANCODATA/OncoGO-CRC/results/v3_5/h5_especificidad_organo.tsv	one-hot de la clase H5
+abundancia_en_tejido	/Volumes/JANCODATA/OncoGO-CRC/data/raw/pride/pride_crc_matrix.tsv	mediana log2 en Tanaka, una fila por gen único
+h6_epitelial	/Volumes/JANCODATA/OncoGO-CRC/results/v3_5/h6_origen_celular.tsv	clase H6 epitelial
+h6_no_epitelial	/Volumes/JANCODATA/OncoGO-CRC/results/v3_5/h6_origen_celular.tsv	clase H6 no_epitelial
+h6_mixta	/Volumes/JANCODATA/OncoGO-CRC/results/v3_5/h6_origen_celular.tsv	clase H6 mixta
+presencia_en_vesiculas_pxd033236	/Volumes/JANCODATA/OncoGO-CRC/external/pxd033236	1 si el q-valor de proteína del pdResult no supera el umbral de FDR guardado en el archivo (0.01) y hay abundancia finita en un canal CoT

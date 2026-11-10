@@ -1,0 +1,165 @@
+{
+  "ficheros": [
+    {
+      "fichero": "h10_especificidad.json",
+      "origen": "results/v3_4",
+      "sha256": "a71e3748f303b11eb4ed8fd10f098d5676f2deff6fd95d720a32bccccc43dd67",
+      "sello": "h10_especificidad.json.sello.json"
+    },
+    {
+      "fichero": "h10_especificidad.json.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "h10_especificidad.tsv",
+      "origen": "results/v3_4",
+      "sha256": "a0b56ad6891623aad18992dd3d96129d2616c987fe287f44ace51d57bd54f306",
+      "sello": "h10_especificidad.tsv.sello.json"
+    },
+    {
+      "fichero": "h10_especificidad.tsv.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "h10_fase_aguda.tsv",
+      "origen": "results/v3_4",
+      "sha256": "c2c58c3d90c97bf06402fefd790415e264508f0ad63e1b6ba44ef315e9bf57e0",
+      "sello": "h10_fase_aguda.tsv.sello.json"
+    },
+    {
+      "fichero": "h10_fase_aguda.tsv.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "h10_proteinas_de_partida.tsv",
+      "origen": "results/v3_4",
+      "sha256": "ca0141226b5fd83958373e9aa8de81f177053e11b1b73293e94d4dbe56b4c913",
+      "sello": "h10_proteinas_de_partida.tsv.sello.json"
+    },
+    {
+      "fichero": "h10_proteinas_de_partida.tsv.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "h5_especificidad_organo.json",
+      "origen": "results/v3_4",
+      "sha256": "e357d43f390cc11af04293247aa53c3df9049c8b837b979edcc795c73b75571a",
+      "sello": "h5_especificidad_organo.json.sello.json"
+    },
+    {
+      "fichero": "h5_especificidad_organo.json.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "h5_especificidad_organo.tsv",
+      "origen": "results/v3_4",
+      "sha256": "c362d4e4f816ef9ad10ef2b1b9e3560fab481e2ddb1710fba2ca1aa971d30ef1",
+      "sello": "h5_especificidad_organo.tsv.sello.json"
+    },
+    {
+      "fichero": "h5_especificidad_organo.tsv.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "h9_wald.json",
+      "origen": "results/v3_4",
+      "sha256": "66a2c520876ca1c01caf5e19e08aff19fdd160d705d6e13d8b7f507d75f49187",
+      "sello": "h9_wald.json.sello.json"
+    },
+    {
+      "fichero": "h9_wald.json.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "h9_wald.tsv",
+      "origen": "results/v3_4",
+      "sha256": "5b675ffdf3b0e7588779b69819232322c6bfa7255c750f2ee23d113dae1d802a",
+      "sello": "h9_wald.tsv.sello.json"
+    },
+    {
+      "fichero": "h9_wald.tsv.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "multiverso_ml_v3_4.tsv",
+      "origen": "results/v3_4",
+      "sha256": "a6aa223f9a9dc5c8548df3b1079925ce69874c61ca502024ea24fa162ef72672",
+      "sello": "multiverso_ml_v3_4.tsv.sello.json"
+    },
+    {
+      "fichero": "multiverso_ml_v3_4.tsv.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "multiverso_suero_v3_4.tsv",
+      "origen": "results/v3_4",
+      "sha256": "a74d69a8daa2d5c86fa33407cca02e7d889df6fa86bbfc5a842d4fc0a1300671",
+      "sello": "multiverso_suero_v3_4.tsv.sello.json"
+    },
+    {
+      "fichero": "multiverso_suero_v3_4.tsv.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "multiverso_v3_4.json",
+      "origen": "results/v3_4",
+      "sha256": "14099dfb1c4d991656bae10679db79eeec0172fdc47f31d7a11d1f54307221ba",
+      "sello": "multiverso_v3_4.json.sello.json"
+    },
+    {
+      "fichero": "multiverso_v3_4.json.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    },
+    {
+      "fichero": "secuencia_v3_4.json",
+      "origen": "results/v3_4",
+      "sha256": "8e046e7855333f4f772e16d5967d66a685dd5222dd61295e03b1d5cb0cc045cb",
+      "sello": "secuencia_v3_4.json.sello.json"
+    },
+    {
+      "fichero": "secuencia_v3_4.json.sello.json",
+      "origen": "results/v3_4",
+      "sha256": "53f2eb2cc0474c71bc9bc02bf07c8bf230660c8fc99f519fad8ff4e6007291cb",
+      "sello": null
+    }
+  ],
+  "sello": {
+    "commit": "f7aa3cb0a8322cf8de63bfdb4d0e8a86a3bbe743",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T12:04:13Z",
+    "sha256_preregistro": "6558ade274d3b0f6bbbfb7e0a1c015d74ea193263384dc623cca923f117876e6",
+    "sha256_enmiendas": "db7afdc45a35533117a88daa2b8e11ade56bde42707c99700eb4a247b6230472",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_5"
+  }
+}

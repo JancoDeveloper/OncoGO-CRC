@@ -1,0 +1,179 @@
+{
+  "estado": "publicable",
+  "faltan": [],
+  "limitaciones": [
+    {
+      "id": "h7_recurso",
+      "estado": "limitacion_declarada",
+      "motivo": "papier_2024 no_evaluable",
+      "fuente": "h7_visibilidad_en_sangre.json",
+      "pieza": "h7_recurso",
+      "estado_pieza": "no_evaluable"
+    },
+    {
+      "id": "h8",
+      "estado": "limitacion_declarada",
+      "motivo": "menos de 10 tumorales epiteliales en el universo",
+      "fuente": "h8_carga_tumoral.json",
+      "pieza": "h8",
+      "estado_pieza": "no_evaluable"
+    },
+    {
+      "id": "preanalitica",
+      "estado": "limitacion_declarada",
+      "motivo": "54 de 60 crudos legibles; la prueba preregistrada pide 60",
+      "fuente": "preanalitica_v3_5.json",
+      "pieza": "preanalitica",
+      "estado_pieza": "no_evaluable"
+    }
+  ],
+  "casillas": [
+    {
+      "id": "h5_submuestreo",
+      "estado": "verde",
+      "motivo": "200 repeticiones con n_sub",
+      "fuente": "h5_especificidad_organo.json",
+      "pieza": "h5_submuestreo",
+      "estado_pieza": null
+    },
+    {
+      "id": "h5_universo",
+      "estado": "verde",
+      "motivo": "mismo denominador, potencia y sensibilidad sin OV",
+      "fuente": "h5_especificidad_organo.json",
+      "pieza": "h5_universo",
+      "estado_pieza": null
+    },
+    {
+      "id": "controles_tejido",
+      "estado": "verde",
+      "motivo": "comprobación física; veredicto v3.3 = falla",
+      "fuente": "controles_v3_4.json",
+      "pieza": "controles_tejido",
+      "estado_pieza": null
+    },
+    {
+      "id": "h7_constructos",
+      "estado": "verde",
+      "motivo": "el JSON trae constructo, independencia, kappa y modelo_completo",
+      "fuente": "h7_visibilidad_en_sangre.json",
+      "pieza": "h7_constructos",
+      "estado_pieza": null
+    },
+    {
+      "id": "h7_variables",
+      "estado": "verde",
+      "motivo": "están las variables del preregistro",
+      "fuente": "h7_visibilidad_en_sangre.json",
+      "pieza": "h7_variables",
+      "estado_pieza": null
+    },
+    {
+      "id": "h7_recurso",
+      "estado": "limitacion_declarada",
+      "motivo": "papier_2024 no_evaluable",
+      "fuente": "h7_visibilidad_en_sangre.json",
+      "pieza": "h7_recurso",
+      "estado_pieza": "no_evaluable"
+    },
+    {
+      "id": "h6",
+      "estado": "verde",
+      "motivo": "Fisher bilateral, alfa 0,05; el sentido no se predice. ninguna proteína tiene signo distinto; la prueba no puede detectar una diferencia",
+      "fuente": "h6_origen_celular.json",
+      "pieza": "h6",
+      "estado_pieza": "no_sostiene"
+    },
+    {
+      "id": "h8",
+      "estado": "limitacion_declarada",
+      "motivo": "menos de 10 tumorales epiteliales en el universo",
+      "fuente": "h8_carga_tumoral.json",
+      "pieza": "h8",
+      "estado_pieza": "no_evaluable"
+    },
+    {
+      "id": "preanalitica",
+      "estado": "limitacion_declarada",
+      "motivo": "54 de 60 crudos legibles; la prueba preregistrada pide 60",
+      "fuente": "preanalitica_v3_5.json",
+      "pieza": "preanalitica",
+      "estado_pieza": "no_evaluable"
+    },
+    {
+      "id": "triangulacion",
+      "estado": "verde",
+      "motivo": "14 filas y ninguna celda vacía",
+      "fuente": "triangulacion_v3_5.tsv",
+      "pieza": "triangulacion",
+      "estado_pieza": null
+    },
+    {
+      "id": "ml_reproduccion",
+      "estado": "verde",
+      "motivo": "la celda preregistrada reproduce 0.88025",
+      "fuente": "ml_celda_preregistrada.json",
+      "pieza": "ml_reproduccion",
+      "estado_pieza": null
+    },
+    {
+      "id": "multiverso",
+      "estado": "verde",
+      "motivo": "288, 72 y 2, con resumen",
+      "fuente": "multiverso_resumen_v3_5.json",
+      "pieza": "multiverso",
+      "estado_pieza": null
+    },
+    {
+      "id": "h9",
+      "estado": "verde",
+      "motivo": "exploratorio",
+      "fuente": "h9_wald.json",
+      "pieza": "h9",
+      "estado_pieza": "exploratorio"
+    },
+    {
+      "id": "h9_fuente",
+      "estado": "verde",
+      "motivo": "la fuente es h9_wald.json",
+      "fuente": "h9_wald.json",
+      "pieza": "h9_fuente",
+      "estado_pieza": null
+    },
+    {
+      "id": "regresion_v1",
+      "estado": "verde",
+      "motivo": "pasa",
+      "fuente": "regresion_v1.json",
+      "pieza": "regresion_v1",
+      "estado_pieza": null
+    },
+    {
+      "id": "manifiestos",
+      "estado": "verde",
+      "motivo": "pasa",
+      "fuente": "manifiestos_v3_5.json",
+      "pieza": "manifiestos",
+      "estado_pieza": null
+    }
+  ],
+  "advertencia": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.",
+  "puede_publicar": true,
+  "sello": {
+    "commit": "f7aa3cb0a8322cf8de63bfdb4d0e8a86a3bbe743",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T12:04:13Z",
+    "sha256_preregistro": "6558ade274d3b0f6bbbfb7e0a1c015d74ea193263384dc623cca923f117876e6",
+    "sha256_enmiendas": "db7afdc45a35533117a88daa2b8e11ade56bde42707c99700eb4a247b6230472",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_5"
+  }
+}

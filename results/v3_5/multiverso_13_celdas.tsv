@@ -1,0 +1,71 @@
+cuantificacion	contaminantes	paneles	presencia	lfc	alfa	protein_id	gen	clase
+PG.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	P04264		diferente
+PG.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	P13645		diferente
+PG.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	P13647		diferente
+PG.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	P35527		diferente
+PG.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	P35908		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	P04264		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	P13645		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	P13647		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	P35527		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	P35908		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	P04264		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	P13645		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	P13647		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	P35527		diferente
+PG.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	P35908		diferente
+PG.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	P02675		diferente
+PG.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	P04264		diferente
+PG.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	P13645		diferente
+PG.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	P13647		diferente
+PG.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	P35527		diferente
+PG.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	P35908		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	P02675		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	P04264		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	P13645		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	P13647		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	P35527		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	P35908		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	P04264		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	P13645		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	P13647		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	P35527		diferente
+PG.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	P35908		diferente
+Genes.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	KRT1	KRT1	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	KRT10	KRT10	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	KRT2	KRT2	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	KRT5	KRT5	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	min_n_3	0.585	0.1	KRT9	KRT9	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	KRT1	KRT1	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	KRT10	KRT10	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	KRT2	KRT2	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	KRT5	KRT5	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.5	0.585	0.1	KRT9	KRT9	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	KRT1	KRT1	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	KRT10	KRT10	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	KRT2	KRT2	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	KRT5	KRT5	diferente
+Genes.MaxLFQ	sin_quitar	excluidos	0.7	0.585	0.1	KRT9	KRT9	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	FGB	FGB	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	KRT1	KRT1	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	KRT10	KRT10	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	KRT2	KRT2	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	KRT5	KRT5	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	min_n_3	0.585	0.1	KRT9	KRT9	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.05	FGB	FGB	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.05	KRT1	KRT1	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.05	KRT10	KRT10	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.05	KRT2	KRT2	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.05	KRT5	KRT5	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.05	KRT9	KRT9	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	FGB	FGB	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	KRT1	KRT1	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	KRT10	KRT10	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	KRT2	KRT2	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	KRT5	KRT5	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.5	0.585	0.1	KRT9	KRT9	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	KRT1	KRT1	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	KRT10	KRT10	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	KRT2	KRT2	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	KRT5	KRT5	diferente
+Genes.MaxLFQ	sin_quitar	incluidos	0.7	0.585	0.1	KRT9	KRT9	diferente

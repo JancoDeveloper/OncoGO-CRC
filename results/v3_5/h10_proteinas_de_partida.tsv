@@ -1,0 +1,7 @@
+gen	clase	padj_sanos	padj_misma_clase	padj_todas_las_demas	logfc_sanos	logfc_misma_clase	logfc_todas_las_demas
+SAA1	no_medida						
+LBP	no_elevada_frente_a_sanos	5.16e-05	0.358	0.0547	0.33	0.073	-0.164
+CHMP4A	no_medida						
+BAIAP3	no_medida						
+FN1	no_medida						
+TPM4	no_medida						
