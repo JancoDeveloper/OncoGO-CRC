@@ -1,5 +1,7 @@
 """Piezas de v3.4 que no leen la cohorte."""
 
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
@@ -48,6 +50,22 @@ def test_tmbed_cuenta_helice_y_senal():
     from oncogo_crc.v3.secuencia_features import helices_y_senal
     assert helices_y_senal("SS..HHH...hh..") == (2.0, 1.0)
     assert helices_y_senal("....") == (0.0, 0.0)
+
+
+def test_la_pagina_v34_explica_la_corrida_sin_imprimir_none():
+    import importlib.util
+    base = Path(__file__).resolve().parents[1] / "results" / "v3_4"
+    if not (base / "certificado_v3_4.json").is_file():
+        return
+    ruta = Path(__file__).resolve().parents[1] / "scripts" / "v3" / "exportar_sitio_v3_4.py"
+    spec = importlib.util.spec_from_file_location("exportar_sitio_v3_4", ruta)
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    html = modulo.pagina(modulo.datos_publicos(base))
+    assert "None" not in html
+    assert "decidir sobre un paciente" in html
+    assert 'id="recorrido"' in html
+    assert 'id="conclusion"' in html
 
 
 def test_el_sitio_v3_4_exige_certificado_publicable():

@@ -286,3 +286,9 @@ Comando: `make all-v3-4`, luego `python scripts/v3/exportar_sitio_v3_4.py` y `py
 Resultado. La corrida firmada es el commit `3c3f666`, sello `2026-11-10T02:42:55Z`, árbol limpio. El certificado queda `publicable`. Las casillas verdes son H5, controles, H7, H6, multiverso (288, 72 y 2) y H9 (`exploratorio`). H8 queda `limitacion_declarada`: `report.pr_matrix.tsv` es una matriz de precursores y directLFQ no está instalado. H5 `sostiene`. H6 `no_sostiene`. H7 `refuta`, con el modelo principal completo. H10 `descriptiva`, 5 proteínas específicas. La preanalítica queda `no_disponible`. ESM-2 y TMbed entran solo en el modelo secundario: 668 genes con secuencia y 20 sin ella.
 
 Decisión. La página y `results/v3_4/` publican esos JSON. El Word añade la sección generada desde los mismos ficheros. Ninguna cifra de esta entrada se escribió a mano.
+
+## 2026-11-09 22:15 (UTC−5). v3.4, página de lectura
+
+Comando: `python scripts/v3/exportar_sitio_v3_4.py results/v3_4` y `pytest tests/test_v3_4_pendientes.py`.
+
+Resultado. 9 passed. La página deja de ser solo el checklist. Explica la pregunta, el orden de los ocho pasos, la razón de cada fuente, el resultado de H5, controles, H6, H7, la celda de suero, H8, H9 y H10, las catorce figuras de v3.3 y la conclusión. Las cifras salen de `results/v3_4/`. H7 sigue en refuta. H8 y la preanalítica siguen con el motivo de la corrida firmada `3c3f666`.

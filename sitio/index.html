@@ -3,30 +3,210 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OncoGO-CRC · corrida v3.4</title>
+<title>OncoGO-CRC · la tesis y la corrida v3.4</title>
 <style>
-  :root { color-scheme: light; --ink:#142028; --paper:#f4f7f6; --card:#fff; --line:#c5d0cc; }
-  body { margin:0; font-family:"Avenir Next","Segoe UI",sans-serif; background:var(--paper); color:var(--ink); line-height:1.5; }
-  main { max-width:48rem; margin:0 auto; padding:1.5rem; }
-  table { border-collapse:collapse; width:100%; font-size:0.9rem; }
-  td, th { border-bottom:1px solid var(--line); text-align:left; padding:0.3rem; vertical-align:top; }
-  a { color:#083f3b; }
+:root {
+  color-scheme: light;
+  --ink:#1c1915; --muted:#5c564c; --paper:#f6f1e8; --card:#fffdf8; --line:#e2d8c8;
+  --teal:#0f3d38; --teal-2:#1f6f64; --gold:#a15c07; --good:#1e6b45; --bad:#8c3a2f; --soft:#24577a;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:"Avenir Next","Segoe UI",sans-serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+a { color:var(--teal-2); }
+.aviso { background:var(--teal); color:#f6f1e8; padding:.75rem 1.25rem; }
+.aviso p { max-width:74rem; margin:0 auto; }
+header.porta { max-width:74rem; margin:0 auto; padding:2.2rem 1.25rem 1rem; }
+header.porta h1 { font-family:Palatino,"Iowan Old Style",Georgia,serif; font-weight:600; font-size:clamp(2rem,4vw,3.3rem); line-height:1.05; margin:0 0 .6rem; }
+header.porta .lede { font-size:1.15rem; max-width:42rem; }
+nav { position:sticky; top:0; z-index:2; background:rgba(246,241,232,.94); border-bottom:1px solid var(--line); }
+nav ul { max-width:74rem; margin:0 auto; padding:.4rem 1.25rem; display:flex; gap:.9rem; list-style:none; overflow:auto; }
+nav a { color:var(--ink); text-decoration:none; font-size:.92rem; }
+main { max-width:74rem; margin:0 auto; padding:1rem 1.25rem 3rem; }
+section { margin:2.2rem 0; }
+h2 { font-family:Palatino,"Iowan Old Style",Georgia,serif; font-size:1.8rem; margin-bottom:.4rem; }
+.resumen { display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; }
+.resumen article, article.bloque, .paso { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1rem 1.05rem; }
+.resumen h3 { margin:.2rem 0; font-size:1rem; }
+.recorrido { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; }
+.paso { color:inherit; text-decoration:none; display:block; }
+.paso .n { display:inline-grid; place-items:center; width:1.6rem; height:1.6rem; border-radius:99px; background:var(--teal); color:#fff; font-size:.85rem; }
+.paso p { color:var(--muted); font-size:.92rem; margin:.45rem 0 0; }
+article.bloque { margin:.8rem 0; }
+article.bloque header, .resumen header { display:flex; justify-content:space-between; gap:.6rem; align-items:flex-start; }
+article.bloque h3 { margin:0; font-size:1.15rem; }
+.estado { border-radius:99px; padding:.1rem .55rem; font-size:.78rem; letter-spacing:.02em; background:#eee; white-space:nowrap; }
+.e-sostiene, .e-verde, .e-pasa, .e-calculado { background:#e5f4ea; color:var(--good); }
+.e-refuta, .e-rojo { background:#f8e6e2; color:var(--bad); }
+.e-no_sostiene, .e-limitacion_declarada, .e-no_evaluable, .e-no_disponible { background:#f8efd8; color:var(--gold); }
+.e-exploratorio, .e-descriptiva { background:#e6f0f6; color:var(--soft); }
+table { width:100%; border-collapse:collapse; font-size:.92rem; margin:.6rem 0; }
+th, td { text-align:left; padding:.35rem .3rem; border-bottom:1px solid var(--line); vertical-align:top; }
+.auc svg { width:100%; height:2.4rem; }
+.auc .ref { stroke:#8c3a2f; stroke-width:.4; }
+.auc .ic { stroke:var(--teal); stroke-width:1.1; }
+.auc .punto { fill:var(--teal); }
+.eje { display:flex; justify-content:space-between; color:var(--muted); font-size:.78rem; margin:0; }
+.galeria { display:grid; grid-template-columns:repeat(3,1fr); gap:.7rem; }
+.figura { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:.4rem; text-align:left; cursor:zoom-in; color:inherit; }
+.figura img { width:100%; height:9rem; object-fit:contain; background:#fff; }
+.figura span { display:block; font-size:.82rem; padding:.35rem; }
+dialog { width:min(920px, 94vw); border:0; border-radius:16px; padding:1rem; }
+dialog img { width:100%; }
+dialog::backdrop { background:rgba(28,25,21,.55); }
+footer { color:var(--muted); font-size:.9rem; }
+@media (max-width: 900px) {
+  .resumen, .recorrido, .galeria { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
+<div class="aviso"><p>Ningún resultado de esta tesis sirve para decidir sobre un paciente. Fase de Pepe 1. El certificado de esta corrida es publicable.</p></div>
+<header class="porta">
+  <p>OncoGO-CRC · corrida v3.4 · commit 3c3f666 · 2026-11-10T02:42:55Z</p>
+  <h1>Qué pregunta la tesis, en qué orden se responde y qué salió.</h1>
+  <p class="lede">Se busca saber si las proteínas que cambian en el tumor de colon dejan una señal reconocible en la sangre, y si esa señal se puede anticipar con lo que ya se sabe del tejido. Cada número de esta página sale del JSON de la corrida firmada.</p>
+</header>
+<nav><ul>
+  <li><a href="#pregunta">Pregunta</a></li>
+  <li><a href="#recorrido">Recorrido</a></li>
+  <li><a href="#fuentes">Fuentes</a></li>
+  <li><a href="#resultados">Resultados</a></li>
+  <li><a href="#figuras">Figuras</a></li>
+  <li><a href="#conclusion">Conclusión</a></li>
+  <li><a href="#certificado">Certificado</a></li>
+</ul></nav>
 <main>
-<h1>OncoGO-CRC, corrida v3.4</h1>
-<p>Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<p>Certificado: publicable. Commit 3c3f666ddf57dbbb1e6f0c0fd03cfb3b0a1cfdd6, 2026-11-10T02:42:55Z.</p>
-<h2>Checklist</h2>
-<table>
-<thead><tr><th>Casilla</th><th>Estado</th><th>Motivo</th><th>Fuente</th></tr></thead>
-<tbody><tr><td>h5_submuestreo</td><td>verde</td><td>200 repeticiones con n_sub</td><td>h5_especificidad_organo.json</td></tr><tr><td>h5_universo</td><td>verde</td><td>mismo denominador, potencia y sensibilidad sin OV</td><td>h5_especificidad_organo.json</td></tr><tr><td>controles_tejido</td><td>verde</td><td>comprobación física y los dos veredictos</td><td>controles_fisicos.tsv</td></tr><tr><td>h7_constructos</td><td>verde</td><td>el JSON trae constructo, independencia, kappa y modelo_completo</td><td>h7_visibilidad_en_sangre.json</td></tr><tr><td>h7_variables</td><td>verde</td><td>están las variables del preregistro</td><td>h7_visibilidad_en_sangre.json</td></tr><tr><td>h6</td><td>verde</td><td>Fisher bilateral, alfa 0,05; el sentido no se predice</td><td>h6_origen_celular.json</td></tr><tr><td>h8</td><td>limitacion_declarada</td><td>report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto.</td><td>h8_carga_tumoral.json</td></tr><tr><td>multiverso</td><td>verde</td><td>288, 72 y 2</td><td>multiverso_v3_4.json</td></tr><tr><td>h9</td><td>verde</td><td>exploratorio</td><td>hipotesis_v3_4.tsv</td></tr></tbody>
-</table>
-<h2>Estados que escribió la corrida</h2>
-<ul><li>h5: sostiene</li><li>h6: no_sostiene. Fisher bilateral, alfa 0,05; el sentido no se predice</li><li>h7: refuta</li><li>h8: no_evaluable. report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto</li><li>h9: exploratorio. Wald con un instrumento por proteína. No decide la tesis. IVW, Egger y la mediana piden al menos tres</li><li>h10: descriptiva</li><li>multiverso: 288 celdas de suero. 72 celdas de aprendizaje. 2 normalizaciones</li><li>preanalitica: no_disponible. hacen falta los 60 crudos y ThermoRawFileParser en el PATH. No se inventan tiempos de adquisición. 120 crudos contados</li><li>secuencia: calculado. 668 genes con secuencia. 20 genes sin secuencia</li></ul>
-<p><a href="v3_3.html">Corrida v3.3, página anterior.</a> <a href="datos/v3_4.json">JSON de esta página.</a></p>
-<p>Los números los escribe <code>scripts/v3/exportar_sitio_v3_4.py</code> desde <code>results/v3_4/</code>. Esta página no decide sobre un paciente.</p>
+<section id="pregunta">
+  <h2>La pregunta</h2>
+  <div class="resumen">
+    <article><h3>Lo que se busca</h3><p>Una regla, escrita antes de mirar estos resultados, que diga si el conocimiento del tejido predice qué proteínas tumorales cambian en sangre.</p></article>
+    <article><h3>Lo que hizo esta corrida</h3><p>H7 queda refuta. En la celda de suero escrita de antemano hay 0 proteínas diferentes entre cáncer y colonoscopia negativa.</p></article>
+    <article><h3>Cómo se lee un estado</h3><p>Sostiene y refuta son los dos finales de una regla fija. Exploratorio y descriptivo no deciden. No evaluable significa que el dato pedido no se pudo calcular.</p></article>
+  </div>
+</section>
+<section id="recorrido">
+  <h2>El orden del trabajo</h2>
+  <p>Primero el tejido, después la calidad de ese contraste, después la sangre y, al final, la predicción. La sangre no se usa para elegir las proteínas del tejido.</p>
+  <div class="recorrido"><a class="paso" href="#r-h5"><span class="n">1</span><strong>Tejido</strong><small>H5</small><span class="estado e-sostiene">sostiene</span><p>Se mira si el cambio tumoral del colon es compartido con otros carcinomas, antes de hablar de sangre.</p></a><a class="paso" href="#r-controles"><span class="n">2</span><strong>Controles</strong><small>Controles</small><span class="estado e-pasa">pasa</span><p>Se comprueba que el contraste de tejido vea los marcadores que debería ver y que la mucosa pase el control de calidad.</p></a><a class="paso" href="#r-h6"><span class="n">3</span><strong>Célula</strong><small>H6</small><span class="estado e-no_sostiene">no_sostiene</span><p>Se pregunta si la concordancia entre cohortes de tejido depende del tipo celular. El sentido no está predicho.</p></a><a class="paso" href="#r-multiverso"><span class="n">4</span><strong>Sangre</strong><small>Multiverso</small><span class="estado e-calculado">calculado</span><p>En plasma se contrasta cáncer frente a colonoscopia negativa, y se repite el análisis en la rejilla escrita.</p></a><a class="paso" href="#r-h7"><span class="n">5</span><strong>Predicción</strong><small>H7</small><span class="estado e-refuta">refuta</span><p>Con lo que se sabe del tejido, antes de mirar la sangre, se intenta predecir qué proteínas tumorales cambian en sangre.</p></a><a class="paso" href="#r-h8"><span class="n">6</span><strong>Estadio</strong><small>H8</small><span class="estado e-no_evaluable">no_evaluable</span><p>En otra cohorte de plasma se pregunta si el estadio IV concentra proteínas epiteliales del tumor.</p></a><a class="paso" href="#r-h9"><span class="n">7</span><strong>Causalidad</strong><small>H9</small><span class="estado e-exploratorio">exploratorio</span><p>Un instrumento genético por proteína. Esta pieza es exploratoria y no decide la tesis.</p></a><a class="paso" href="#r-h10"><span class="n">8</span><strong>Atlas</strong><small>H10</small><span class="estado e-descriptiva">descriptiva</span><p>Se describe cuántas proteínas del atlas de sangre son específicas de cáncer colorrectal.</p></a></div>
+</section>
+<section id="fuentes">
+  <h2>De dónde sale cada dato</h2>
+  <p>Cada fuente entra por una razón escrita en el preregistro. Una cohorte no se fusiona con otra: no hay personas compartidas que autoricen esa fusión.</p>
+  <table><thead><tr><th>Fuente</th><th>Para qué entra</th><th>Dónde se usa</th></tr></thead><tbody><tr><td>Tanaka, tumor frente a mucosa</td><td>El contraste de tejido del que salen las proteínas que cambian en el colon.</td><td>H5, H6, H7 y H8</td></tr><tr><td>CPTAC y LinkedOmics, otros carcinomas</td><td>Sirve para ver si ese cambio es de colon o aparece en otros órganos.</td><td>H5</td></tr><tr><td>PXD055218, plasma DIA-NN</td><td>Cáncer colorrectal, colonoscopia negativa y personas sanas. Es la sangre de la tesis.</td><td>Multiverso, aprendizaje y H7</td></tr><tr><td>Álvez 2023</td><td>El artículo compara colorrectal con otros cánceres. No es una comparación con personas sanas.</td><td>H7</td></tr><tr><td>Atlas de sangre del HPA, 2025</td><td>Colorrectal frente a Healthy. Es el segundo recurso de sangre de H7.</td><td>H7 y H10</td></tr><tr><td>Papier 2024</td><td>Riesgo prospectivo. Entra solo si el fichero permite etiquetar todas las proteínas.</td><td>H7</td></tr><tr><td>PXD033236, vesículas</td><td>Una proteína cuenta como presente en vesículas de tumor si pasa el FDR escrito en el propio archivo y tiene abundancia en una columna de tumor.</td><td>H7</td></tr><tr><td>UniProt, ESM-2 y TMbed</td><td>Secuencia, hélices y péptido señal. Entran en un modelo secundario. El principal no las usa.</td><td>H7</td></tr><tr><td>PXD064655</td><td>Plasma con estadio. La enmienda pide agregar los precursores con directLFQ.</td><td>H8</td></tr><tr><td>GWAS Catalog GCST90255676</td><td>El instrumento cis de cada proteína. Un solo instrumento no decide la tesis.</td><td>H9</td></tr><tr><td>Paneles de Geyer</td><td>Eritrocitos, plaquetas y coagulación. Miden calidad de la muestra, no el tumor.</td><td>Multiverso</td></tr></tbody></table>
+</section>
+<section id="resultados">
+  <h2>Qué se hizo y qué se concluye en cada paso</h2>
+  
+    <article id="r-h5">
+      <header><h3>H5. ¿El cambio del colon es común a otros carcinomas?</h3><span class="estado e-sostiene">sostiene</span></header>
+      <p>La predicción escrita es que una parte importante del cambio de tumor frente a normal en colon también aparece en otros carcinomas. La refutación pide, a la vez, una fracción pan-carcinoma menor que 0,20 y una concordancia con el otro órgano más alto al menos 0,15 por debajo de la de colon.</p>
+      <p>De 624 proteínas clasificadas, 74 quedan pan-carcinoma. La fracción es 0,119. En el universo común de 29 genes, colon tiene concordancia 1,000 y el otro órgano más alto 0,931. La diferencia es 0,069. Hace falta una diferencia de al menos 0,15, junto con la fracción bajo 0,20, para refutar. El estado que escribió la corrida es sostiene. No se cumple la refutación preregistrada.</p>
+      <p>El submuestreo usa 200 repeticiones y 10 pares. La mediana de la fracción pan-carcinoma es 0,172, con percentiles 2,5 y 97,5 en 0,069 y 0,241. La fracción de repeticiones al mismo lado de 0,20 es 0,680. Carcinomas excluidos: UCEC: no tiene 8 pares con el mismo identificador.</p>
+      <table><thead><tr><th>Carcinoma</th><th>Mismo signo</th><th>Concordancia</th></tr></thead><tbody><tr><td>COAD</td><td>29/29</td><td>1,000</td></tr><tr><td>CCRCC</td><td>14/29</td><td>0,483</td></tr><tr><td>HNSCC</td><td>27/29</td><td>0,931</td></tr><tr><td>LSCC</td><td>26/29</td><td>0,897</td></tr><tr><td>LUAD</td><td>23/29</td><td>0,793</td></tr><tr><td>OV</td><td>27/29</td><td>0,931</td></tr><tr><td>PDAC</td><td>17/29</td><td>0,586</td></tr></tbody></table>
+    </article>
+  
+    <article id="r-controles">
+      <header><h3>Controles del tejido</h3><span class="estado e-pasa">pasa</span></header>
+      <p>El bloque pasa si hay al menos un control evaluable, ningún evaluable falla y el control de calidad de la mucosa pasa en el contraste principal. El veredicto de esta regla es pasa. La mucosa pasa el control de calidad en todos los participantes del contraste: sí.</p>
+      <p>CA1 baja en el tumor y también es marcador de eritrocito, así que su descenso no basta solo. AQP8 y GUCA2A no tienen fila. SLC26A3 tiene menos pares de los que la regla exige.</p>
+      <table><thead><tr><th>Gen</th><th>Estado</th><th>Pares</th><th>log2FC</th></tr></thead><tbody><tr><td>CA1</td><td>pasa</td><td>16</td><td>-2,314</td></tr><tr><td>AQP8</td><td>no_detectado</td><td>—</td><td>—</td></tr><tr><td>SLC26A3</td><td>no_evaluable_por_pares</td><td>4</td><td>—</td></tr><tr><td>GUCA2A</td><td>no_detectado</td><td>—</td><td>—</td></tr></tbody></table>
+    </article>
+  
+    <article id="r-h6">
+      <header><h3>H6. ¿La concordancia depende del tipo celular?</h3><span class="estado e-no_sostiene">no_sostiene</span></header>
+      <p>Fisher bilateral, alfa 0,05; el sentido no se predice. La clase sale de HPA RNA single cell type. Pelka queda no_comprobable_desde_esta_maquina: la matriz de esa referencia no está en este disco.</p>
+      <p>Se clasifican 20151 genes: 3101 epiteliales, 11549 no epiteliales y 5501 mixtos. Los mixtos no entran en la prueba. La tabla queda en 20 epiteliales y 98 no epiteliales con el mismo signo; 0 y 0 con signo distinto. La razón de odds no es finita cuando una de esas casillas es cero. El estado es no_sostiene.</p>
+    </article>
+  
+    <article id="r-h7">
+      <header><h3>H7. ¿Lo que se sabe del tejido predice el cambio en sangre?</h3><span class="estado e-refuta">refuta</span></header>
+      <p>Esta es la pregunta central. El modelo principal usa solo variables anteriores a la sangre: magnitud en el tejido, componente extracelular, membrana, exosoma, secretada a la sangre, concentración plasmática, especificidad tisular, intestino entre los tejidos elevados, clase pan-carcinoma, clase específica de colon, clase intermedia, abundancia en el tejido, origen epitelial, origen no epitelial, origen mixto, presencia en vesículas de tumor. El modelo está completo: sí. Faltantes: ninguna.</p>
+      <p>La regla de refutación es que el intervalo del AUC incluya 0,50 en todos los recursos. La de sostén pide el límite inferior por encima de 0,55 en al menos dos. La línea vertical de cada figura es el azar.</p>
+      
+    <figure class="auc">
+      <figcaption>alvez_2023 · AUC 0,460 · IC 95 % 0,362 a 0,563 · 53 con la etiqueta y 73 sin ella</figcaption>
+      <svg viewBox="0 0 100 16" role="img" aria-label="Intervalo del AUC de alvez_2023">
+        <line x1="50.0" y1="0" x2="50.0" y2="16" class="ref"/>
+        <line x1="15.45295942103904" y1="8" x2="65.86488756784695" y2="8" class="ic"/>
+        <circle cx="40.08141638666322" cy="8" r="2.2" class="punto"/>
+      </svg>
+      <p class="eje"><span>0,30</span><span>0,50 azar</span><span>0,70</span></p>
+    </figure>
+    <figure class="auc">
+      <figcaption>hpa_disease_blood_atlas · AUC 0,469 · IC 95 % 0,362 a 0,579 · 53 con la etiqueta y 63 sin ella</figcaption>
+      <svg viewBox="0 0 100 16" role="img" aria-label="Intervalo del AUC de hpa_disease_blood_atlas">
+        <line x1="50.0" y1="0" x2="50.0" y2="16" class="ref"/>
+        <line x1="15.440625935908947" y1="8" x2="69.73457622042524" y2="8" class="ic"/>
+        <circle cx="42.32554657082958" cy="8" r="2.2" class="punto"/>
+      </svg>
+      <p class="eje"><span>0,30</span><span>0,50 azar</span><span>0,70</span></p>
+    </figure>
+      <ul><li>papier_2024: no_evaluable, 1 con etiqueta y 125 sin ella.</li></ul>
+      <p>Los tres recursos no miden lo mismo.</p>
+      <ul><li>alvez_2023: colorrectal frente a los demás cánceres (Álvez 2023, métodos)</li><li>hpa_disease_blood_atlas: colorrectal frente a Healthy (Álvez 2025)</li><li>papier_2024: riesgo prospectivo (Cox) en UK Biobank</li></ul>
+      <p>El solapamiento de casos entre Álvez 2023 y el atlas HPA no está comprobado. Si lo hay, no son dos recursos independientes. Los casos no están comprobados como independientes. Los ficheros descargados no dicen si los casos de Álvez 2023 están en el atlas de 2025</p>
+      <ul><li>alvez_2023 con hpa_disease_blood_atlas: kappa 0,211 en 115 proteínas.</li><li>alvez_2023 con papier_2024: kappa 0,022 en 126 proteínas.</li><li>hpa_disease_blood_atlas con papier_2024: kappa 0,020 en 115 proteínas.</li></ul>
+      <p>El modelo secundario, en alvez_2023, pasa de AUC 0,460 a 0,4743. El incremento es 0,0140. El secundario añade ESM-2, con PCA de 5 dentro de cada pliegue, y las dos salidas de TMbed. No entra en el veredicto. Hay 668 genes con secuencia y 20 sin ella. ESM-2 y TMbed no entran en el modelo principal ni lo sustituyen.</p>
+      <p>La fase de Pepe de este resultado es 1.</p>
+    </article>
+  
+    <article id="r-multiverso">
+      <header><h3>Sangre. La rejilla y la celda escrita de antemano</h3><span class="estado e-calculado">calculado</span></header>
+      <p>El suero se reanaliza en 288 celdas. El aprendizaje, en 72. Hay 2 normalizaciones del tejido; la concordancia de la sensibilidad pasa de 1,0 a 1,0.</p>
+      <p>La celda preregistrada usa PG.MaxLFQ, contaminantes libreria_v3_3, paneles excluidos y presencia min_n_3. Sobre 284 proteínas hay 0 diferentes, 166 equivalentes y 118 indeterminadas entre cáncer y colonoscopia negativa.</p>
+    </article>
+    <article id="r-h8">
+      <header><h3>H8. ¿El estadio IV concentra proteínas del tumor?</h3><span class="estado e-no_evaluable">no_evaluable</span></header>
+      <p>report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto. La corrida unió 0 muestras al metadato. Mapa uno a uno: no.</p>
+    </article>
+    <article id="r-h9">
+      <header><h3>H9. Dirección con un instrumento genético</h3><span class="estado e-exploratorio">exploratorio</span></header>
+      <p>Wald con un instrumento por proteína. No decide la tesis. IVW, Egger y la mediana piden al menos tres. El estudio es GCST90255676. Proteínas exploradas: 3.</p>
+      <table><thead><tr><th>Proteína</th><th>Estado</th><th>Instrumento</th><th>Beta</th><th>p</th></tr></thead><tbody><tr><td>SAA1</td><td>no_medido</td><td>—</td><td>—</td><td>—</td></tr><tr><td>LBP</td><td>exploratorio</td><td>rs2232613</td><td>0,0129</td><td>0,319</td></tr><tr><td>LRG1</td><td>exploratorio</td><td>rs8105192</td><td>-0,0157</td><td>0,337</td></tr><tr><td>CEACAM5</td><td>exploratorio</td><td>rs9621</td><td>-0,0224</td><td>0,313</td></tr></tbody></table>
+    </article>
+    <article id="r-h10">
+      <header><h3>H10. Especificidad en el atlas de sangre</h3><span class="estado e-descriptiva">descriptiva</span></header>
+      <p>El preregistro no fijó umbral. Fijarlo después de ver 0/1165 sería elegir por resultado. Proteínas específicas de cáncer colorrectal: 5. El resto del conteo: 1074 no elevada frente a sanos, 80 no especifica, 6 especifica frente a enfermedades, 5 especifica crc. Fase de Pepe: 1.</p>
+    </article>
+    <article id="r-pre">
+      <header><h3>Orden de adquisición y triangulación</h3><span class="estado e-no_disponible">no_disponible</span></header>
+      <p>La preanalítica es exploratoria y no cambia el titular. Hacen falta los 60 crudos y ThermoRawFileParser en el PATH. No se inventan tiempos de adquisición. Crudos contados por la corrida: 120.</p>
+      <p>La triangulación es exploratoria post hoc, con 14 genes. La tabla lista los genes de la enmienda. Cada columna numérica se añade solo cuando su fichero de origen está en esta corrida. No añade una prueba nueva.</p>
+    </article>
+</section>
+<section id="figuras">
+  <h2>Figuras de la corrida v3.3</h2>
+  <p>Estas catorce figuras pertenecen a la corrida anterior, con su sello de v3.3. Sirven para ver el camino. La lectura vigente es la de arriba: en v3.4, H5 queda sostiene porque cambió la regla del universo, y H7 sigue en refuta. El título de una figura de v3.3 no sustituye el JSON de v3.4.</p>
+  <div class="galeria"><button class="figura" type="button" data-src="figuras/F1.png" data-titulo="La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra."><img src="figuras/F1.png" alt="La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra."><span>F1. La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra.</span></button><button class="figura" type="button" data-src="figuras/F10.png" data-titulo="La fracción pan-carcinoma es 0.119. H5 refuta."><img src="figuras/F10.png" alt="La fracción pan-carcinoma es 0.119. H5 refuta."><span>F10. La fracción pan-carcinoma es 0.119. H5 refuta.</span></button><button class="figura" type="button" data-src="figuras/F11.png" data-titulo="En la rejilla PG.MaxLFQ, 0.938 de 48 celdas dan sin_diferencia."><img src="figuras/F11.png" alt="En la rejilla PG.MaxLFQ, 0.938 de 48 celdas dan sin_diferencia."><span>F11. En la rejilla PG.MaxLFQ, 0.938 de 48 celdas dan sin_diferencia.</span></button><button class="figura" type="button" data-src="figuras/F12.png" data-titulo="H7 refuta: el intervalo incluye 0,50 en los dos recursos."><img src="figuras/F12.png" alt="H7 refuta: el intervalo incluye 0,50 en los dos recursos."><span>F12. H7 refuta: el intervalo incluye 0,50 en los dos recursos.</span></button><button class="figura" type="button" data-src="figuras/F13.png" data-titulo="Proteínas de partida medidas en el atlas: LBP no_elevada_frente_a_sanos."><img src="figuras/F13.png" alt="Proteínas de partida medidas en el atlas: LBP no_elevada_frente_a_sanos."><span>F13. Proteínas de partida medidas en el atlas: LBP no_elevada_frente_a_sanos.</span></button><button class="figura" type="button" data-src="figuras/F14.png" data-titulo="Los hallazgos de v3.3 están en la fase 1 de Pepe."><img src="figuras/F14.png" alt="Los hallazgos de v3.3 están en la fase 1 de Pepe."><span>F14. Los hallazgos de v3.3 están en la fase 1 de Pepe.</span></button><button class="figura" type="button" data-src="figuras/F2.png" data-titulo="De 897 grupos del report, el contraste principal usa 284."><img src="figuras/F2.png" alt="De 897 grupos del report, el contraste principal usa 284."><span>F2. De 897 grupos del report, el contraste principal usa 284.</span></button><button class="figura" type="button" data-src="figuras/F3.png" data-titulo="Los indicadores de calidad no son iguales entre cáncer, colonoscopia negativa y personas sanas."><img src="figuras/F3.png" alt="Los indicadores de calidad no son iguales entre cáncer, colonoscopia negativa y personas sanas."><span>F3. Los indicadores de calidad no son iguales entre cáncer, colonoscopia negativa y personas sanas.</span></button><button class="figura" type="button" data-src="figuras/F4.png" data-titulo="Ninguna proteína es diferente: 166 equivalentes y 118 indeterminadas."><img src="figuras/F4.png" alt="Ninguna proteína es diferente: 166 equivalentes y 118 indeterminadas."><span>F4. Ninguna proteína es diferente: 166 equivalentes y 118 indeterminadas.</span></button><button class="figura" type="button" data-src="figuras/F5.png" data-titulo="Al quitar las filas duplicadas, el AUC del contraste principal baja y el de la matriz humana también."><img src="figuras/F5.png" alt="Al quitar las filas duplicadas, el AUC del contraste principal baja y el de la matriz humana también."><span>F5. Al quitar las filas duplicadas, el AUC del contraste principal baja y el de la matriz humana también.</span></button><button class="figura" type="button" data-src="figuras/F6.png" data-titulo="En ruido, duplicar las filas sube el AUC de 0.475 a 0.93125."><img src="figuras/F6.png" alt="En ruido, duplicar las filas sube el AUC de 0.475 a 0.93125."><span>F6. En ruido, duplicar las filas sube el AUC de 0.475 a 0.93125.</span></button><button class="figura" type="button" data-src="figuras/F7.png" data-titulo="CA1 baja en el tumor. AQP8, SLC26A3 y GUCA2A no tienen un log2FC calculable."><img src="figuras/F7.png" alt="CA1 baja en el tumor. AQP8, SLC26A3 y GUCA2A no tienen un log2FC calculable."><span>F7. CA1 baja en el tumor. AQP8, SLC26A3 y GUCA2A no tienen un log2FC calculable.</span></button><button class="figura" type="button" data-src="figuras/F8.png" data-titulo="La mediana del log2FC pasa de 0.179 a 0.080. H1 frágil: no."><img src="figuras/F8.png" alt="La mediana del log2FC pasa de 0.179 a 0.080. H1 frágil: no."><span>F8. La mediana del log2FC pasa de 0.179 a 0.080. H1 frágil: no.</span></button><button class="figura" type="button" data-src="figuras/F9.png" data-titulo="De 688 proteínas certificadas, 5 salen específicas de cáncer colorrectal en el atlas."><img src="figuras/F9.png" alt="De 688 proteínas certificadas, 5 salen específicas de cáncer colorrectal en el atlas."><span>F9. De 688 proteínas certificadas, 5 salen específicas de cáncer colorrectal en el atlas.</span></button></div>
+</section>
+<section id="conclusion">
+  <h2>La conclusión de esta corrida</h2>
+  <article class="bloque">
+    <p>Con las variables del tejido que el preregistro fijó, el modelo no predice qué proteínas tumorales cambian en sangre: los intervalos de Álvez 2023 y del atlas HPA incluyen el azar, y Papier 2024 no se pudo evaluar. En el plasma de PXD055218, la celda escrita de antemano no encuentra proteínas diferentes entre cáncer y colonoscopia negativa.</p>
+    <p>H5 queda sostiene porque la refutación de especificidad de órgano no se cumple entera. H6 no muestra una diferencia entre proteínas epiteliales y no epiteliales en la prueba bilateral. H8 y el orden de adquisición quedan sin el cálculo que la enmienda pidió, y la página lo dice con el motivo de cada JSON.</p>
+    <p>Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+  </article>
+</section>
+<section id="certificado">
+  <h2>Certificado para publicar</h2>
+  <p>El estado publicable exige que ninguna casilla esté en rojo. Commit completo 3c3f666ddf57dbbb1e6f0c0fd03cfb3b0a1cfdd6.</p>
+  <table><thead><tr><th>Casilla</th><th>Estado</th><th>Qué se comprobó</th><th>Archivo</th></tr></thead><tbody><tr><td>h5_submuestreo</td><td><span class="estado e-verde">verde</span></td><td>200 repeticiones con n_sub</td><td>h5_especificidad_organo.json</td></tr><tr><td>h5_universo</td><td><span class="estado e-verde">verde</span></td><td>mismo denominador, potencia y sensibilidad sin OV</td><td>h5_especificidad_organo.json</td></tr><tr><td>controles_tejido</td><td><span class="estado e-verde">verde</span></td><td>comprobación física y los dos veredictos</td><td>controles_fisicos.tsv</td></tr><tr><td>h7_constructos</td><td><span class="estado e-verde">verde</span></td><td>el JSON trae constructo, independencia, kappa y modelo_completo</td><td>h7_visibilidad_en_sangre.json</td></tr><tr><td>h7_variables</td><td><span class="estado e-verde">verde</span></td><td>están las variables del preregistro</td><td>h7_visibilidad_en_sangre.json</td></tr><tr><td>h6</td><td><span class="estado e-verde">verde</span></td><td>Fisher bilateral, alfa 0,05; el sentido no se predice</td><td>h6_origen_celular.json</td></tr><tr><td>h8</td><td><span class="estado e-limitacion_declarada">limitacion_declarada</span></td><td>report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto.</td><td>h8_carga_tumoral.json</td></tr><tr><td>multiverso</td><td><span class="estado e-verde">verde</span></td><td>288, 72 y 2</td><td>multiverso_v3_4.json</td></tr><tr><td>h9</td><td><span class="estado e-verde">verde</span></td><td>exploratorio</td><td>hipotesis_v3_4.tsv</td></tr></tbody></table>
+</section>
+<footer>
+  <p><a href="v3_3.html">Página de la corrida v3.3.</a> <a href="datos/v3_4.json">JSON que alimenta esta página.</a> Lo escribe <code>scripts/v3/exportar_sitio_v3_4.py</code> desde <code>results/v3_4/</code>.</p>
+</footer>
 </main>
+<dialog id="visor"><img alt=""><p></p><form method="dialog"><button>Cerrar</button></form></dialog>
+<script>
+const visor = document.getElementById("visor");
+document.querySelectorAll(".figura").forEach((boton) => {
+  boton.addEventListener("click", () => {
+    visor.querySelector("img").src = boton.dataset.src;
+    visor.querySelector("img").alt = boton.dataset.titulo;
+    visor.querySelector("p").textContent = boton.dataset.titulo;
+    visor.showModal();
+  });
+});
+</script>
 </body>
 </html>

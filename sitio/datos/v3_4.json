@@ -73,42 +73,819 @@
     "fecha_utc": "2026-11-10T02:42:55Z",
     "etapa": "v3_4"
   },
-  "piezas": {
-    "h5": {
-      "estado": "sostiene"
+  "h5": {
+    "estado": "sostiene",
+    "n_clasificadas": 624,
+    "conteo": {
+      "pan_carcinoma": 74,
+      "especifica_colon": 127,
+      "intermedia": 423
     },
-    "h6": {
-      "estado": "no_sostiene",
-      "motivo": "Fisher bilateral, alfa 0,05; el sentido no se predice"
+    "fraccion_pan_carcinoma": 0.11858974358974358,
+    "concordancia_colon_tanaka": 1.0,
+    "concordancia_otros": {
+      "CCRCC": {
+        "estimacion": 0.4827586206896552,
+        "numerador": 14,
+        "denominador": 29,
+        "ci_low": 0.2944855829517784,
+        "ci_high": 0.6746850036389438
+      },
+      "HNSCC": {
+        "estimacion": 0.9310344827586207,
+        "numerador": 27,
+        "denominador": 29,
+        "ci_low": 0.7723381100551658,
+        "ci_high": 0.9915360377469982
+      },
+      "LSCC": {
+        "estimacion": 0.896551724137931,
+        "numerador": 26,
+        "denominador": 29,
+        "ci_low": 0.7264848021076974,
+        "ci_high": 0.9781362631701468
+      },
+      "LUAD": {
+        "estimacion": 0.7931034482758621,
+        "numerador": 23,
+        "denominador": 29,
+        "ci_low": 0.6027530507727604,
+        "ci_high": 0.9200581511240756
+      },
+      "OV": {
+        "estimacion": 0.9310344827586207,
+        "numerador": 27,
+        "denominador": 29,
+        "ci_low": 0.7723381100551658,
+        "ci_high": 0.9915360377469982
+      },
+      "PDAC": {
+        "estimacion": 0.5862068965517241,
+        "numerador": 17,
+        "denominador": 29,
+        "ci_low": 0.3893627913968056,
+        "ci_high": 0.7647597902471048
+      }
     },
-    "h7": {
-      "estado": "refuta"
+    "concordancias_universo_principal": {
+      "COAD": {
+        "estimacion": 1.0,
+        "numerador": 29,
+        "denominador": 29,
+        "ci_low": 0.8805551309302788,
+        "ci_high": 1.0
+      },
+      "CCRCC": {
+        "estimacion": 0.4827586206896552,
+        "numerador": 14,
+        "denominador": 29,
+        "ci_low": 0.2944855829517784,
+        "ci_high": 0.6746850036389438
+      },
+      "HNSCC": {
+        "estimacion": 0.9310344827586207,
+        "numerador": 27,
+        "denominador": 29,
+        "ci_low": 0.7723381100551658,
+        "ci_high": 0.9915360377469982
+      },
+      "LSCC": {
+        "estimacion": 0.896551724137931,
+        "numerador": 26,
+        "denominador": 29,
+        "ci_low": 0.7264848021076974,
+        "ci_high": 0.9781362631701468
+      },
+      "LUAD": {
+        "estimacion": 0.7931034482758621,
+        "numerador": 23,
+        "denominador": 29,
+        "ci_low": 0.6027530507727604,
+        "ci_high": 0.9200581511240756
+      },
+      "OV": {
+        "estimacion": 0.9310344827586207,
+        "numerador": 27,
+        "denominador": 29,
+        "ci_low": 0.7723381100551658,
+        "ci_high": 0.9915360377469982
+      },
+      "PDAC": {
+        "estimacion": 0.5862068965517241,
+        "numerador": 17,
+        "denominador": 29,
+        "ci_low": 0.3893627913968056,
+        "ci_high": 0.7647597902471048
+      }
     },
-    "h8": {
-      "estado": "no_evaluable",
-      "motivo": "report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto."
+    "universo_principal_n": 29,
+    "concordancias_sensibilidad": {
+      "n": 1230,
+      "concordancias": {
+        "COAD": {
+          "estimacion": 0.8056910569105691,
+          "numerador": 991,
+          "denominador": 1230,
+          "ci_low": 0.7824525771169811,
+          "ci_high": 0.8274578965279548
+        },
+        "CCRCC": {
+          "estimacion": 0.6195121951219512,
+          "numerador": 762,
+          "denominador": 1230,
+          "ci_low": 0.5917134669001393,
+          "ci_high": 0.6467380588969086
+        },
+        "HNSCC": {
+          "estimacion": 0.6601626016260163,
+          "numerador": 812,
+          "denominador": 1230,
+          "ci_low": 0.6329272874170218,
+          "ci_high": 0.686629831859657
+        },
+        "LSCC": {
+          "estimacion": 0.724390243902439,
+          "numerador": 891,
+          "denominador": 1230,
+          "ci_low": 0.6984966453965503,
+          "ci_high": 0.7492064790726634
+        },
+        "LUAD": {
+          "estimacion": 0.7195121951219512,
+          "numerador": 885,
+          "denominador": 1230,
+          "ci_low": 0.6934956088816069,
+          "ci_high": 0.7444749565002381
+        },
+        "OV": {
+          "estimacion": 0.7382113821138211,
+          "numerador": 908,
+          "denominador": 1230,
+          "ci_low": 0.7126866211376536,
+          "ci_high": 0.7625920314851423
+        },
+        "PDAC": {
+          "estimacion": 0.5097560975609756,
+          "numerador": 627,
+          "denominador": 1230,
+          "ci_low": 0.4814174494194659,
+          "ci_high": 0.5380480070489048
+        }
+      }
     },
-    "h9": {
-      "estado": "exploratorio",
-      "motivo": "Wald con un instrumento por proteína. No decide la tesis. IVW, Egger y la mediana piden al menos tres."
+    "concordancia_k1_referencia": {
+      "estimacion": 1.0,
+      "nota": "seleccionada por CPTAC; no entra en la regla"
     },
-    "h10": {
-      "estado": "descriptiva"
-    },
-    "multiverso": {
-      "n_celdas_suero": 288,
-      "n_celdas_ml": 72,
-      "n_r1": 2
-    },
-    "preanalitica": {
-      "estado": "no_disponible",
-      "motivo": "hacen falta los 60 crudos y ThermoRawFileParser en el PATH. No se inventan tiempos de adquisición.",
-      "n_crudos": 120
-    },
-    "secuencia": {
+    "maxima_concordancia_otro_organo": 0.9310344827586207,
+    "submuestreo": {
       "estado": "calculado",
-      "n_con_secuencia": 668,
-      "n_sin_secuencia": 20
+      "n_sub": 10,
+      "n_repeticiones": 200,
+      "fraccion_mismo_lado_0_20": 0.68,
+      "mediana_fraccion_pan": 0.1724137931034483,
+      "p2_5": 0.06896551724137931,
+      "p97_5": 0.2413793103448276,
+      "potencia_submuestreada": {
+        "COAD": {
+          "n_pares": 10,
+          "n_significativas_mediana": 179.0
+        },
+        "CCRCC": {
+          "n_pares": 10,
+          "n_significativas_mediana": 694.5
+        },
+        "HNSCC": {
+          "n_pares": 10,
+          "n_significativas_mediana": 180.0
+        },
+        "LSCC": {
+          "n_pares": 10,
+          "n_significativas_mediana": 901.5
+        },
+        "LUAD": {
+          "n_pares": 10,
+          "n_significativas_mediana": 347.0
+        },
+        "OV": {
+          "n_pares": 10,
+          "n_significativas_mediana": 70.0
+        },
+        "PDAC": {
+          "n_pares": 10,
+          "n_significativas_mediana": 46.5
+        }
+      }
+    },
+    "sensibilidad_sin_ov": {
+      "estado": "calculado",
+      "n_sub": 44,
+      "n_repeticiones": 200,
+      "fraccion_mismo_lado_0_20": 0.995,
+      "mediana_fraccion_pan": 0.13793103448275862,
+      "p2_5": 0.06896551724137931,
+      "p97_5": 0.1724137931034483,
+      "potencia_submuestreada": {
+        "COAD": {
+          "n_pares": 44,
+          "n_significativas_mediana": 559.0
+        },
+        "CCRCC": {
+          "n_pares": 44,
+          "n_significativas_mediana": 1397.5
+        },
+        "HNSCC": {
+          "n_pares": 44,
+          "n_significativas_mediana": 841.0
+        },
+        "LSCC": {
+          "n_pares": 44,
+          "n_significativas_mediana": 1872.5
+        },
+        "LUAD": {
+          "n_pares": 44,
+          "n_significativas_mediana": 936.0
+        },
+        "PDAC": {
+          "n_pares": 44,
+          "n_significativas_mediana": 728.0
+        }
+      },
+      "decide_el_veredicto": false
+    },
+    "potencia_por_carcinoma": {
+      "COAD": {
+        "n_pares": 96,
+        "n_significativas": 732,
+        "fraccion_significativas": 0.08091974353305328
+      },
+      "CCRCC": {
+        "n_pares": 80,
+        "n_significativas": 1617,
+        "fraccion_significativas": 0.14578074287774972
+      },
+      "HNSCC": {
+        "n_pares": 62,
+        "n_significativas": 996,
+        "fraccion_significativas": 0.08722304930379192
+      },
+      "LSCC": {
+        "n_pares": 99,
+        "n_significativas": 2289,
+        "fraccion_significativas": 0.18196994991652754
+      },
+      "LUAD": {
+        "n_pares": 101,
+        "n_significativas": 1221,
+        "fraccion_significativas": 0.09955968688845401
+      },
+      "OV": {
+        "n_pares": 10,
+        "n_significativas": 70,
+        "fraccion_significativas": 0.006696642112312255
+      },
+      "PDAC": {
+        "n_pares": 44,
+        "n_significativas": 728,
+        "fraccion_significativas": 0.06458481192334989
+      }
+    },
+    "fraccion_de_submuestreos_con_pan_al_mismo_lado_de_0_20": 0.68,
+    "n_submuestreos": 200,
+    "n_pares_colon": 96,
+    "sostiene_significa": "No se cumple la refutación preregistrada.",
+    "carcinomas_disponibles": [
+      "CCRCC",
+      "HNSCC",
+      "LSCC",
+      "LUAD",
+      "OV",
+      "PDAC"
+    ],
+    "carcinomas_excluidos": {
+      "UCEC": "no tiene 8 pares con el mismo identificador"
+    },
+    "diagnostico_pares": {
+      "COAD": {
+        "n_tumor": 97,
+        "n_normal": 100,
+        "n_comunes": 96,
+        "ejemplos_tumor": [
+          "01CO008",
+          "22CO006",
+          "05CO002"
+        ],
+        "ejemplos_normal": [
+          "11CO037",
+          "11CO051",
+          "05CO035"
+        ]
+      },
+      "CCRCC": {
+        "n_tumor": 103,
+        "n_normal": 80,
+        "n_comunes": 80,
+        "ejemplos_tumor": [
+          "C3L-00561",
+          "C3L-01287",
+          "C3L-01603"
+        ],
+        "ejemplos_normal": [
+          "C3L-01287",
+          "C3L-00561",
+          "C3N-01524"
+        ]
+      },
+      "HNSCC": {
+        "n_tumor": 108,
+        "n_normal": 62,
+        "n_comunes": 62,
+        "ejemplos_tumor": [
+          "C3L-00997",
+          "C3N-03849",
+          "C3N-03487"
+        ],
+        "ejemplos_normal": [
+          "C3N-01858",
+          "C3L-00997",
+          "C3N-03849"
+        ]
+      },
+      "LSCC": {
+        "n_tumor": 108,
+        "n_normal": 99,
+        "n_comunes": 99,
+        "ejemplos_tumor": [
+          "C3L-02665",
+          "C3L-01663",
+          "C3N-02575"
+        ],
+        "ejemplos_normal": [
+          "C3L-02665",
+          "C3L-01663",
+          "C3N-02575"
+        ]
+      },
+      "LUAD": {
+        "n_tumor": 110,
+        "n_normal": 101,
+        "n_comunes": 101,
+        "ejemplos_tumor": [
+          "C3N-01799",
+          "C3L-01890",
+          "C3N-00572"
+        ],
+        "ejemplos_normal": [
+          "C3N-01799",
+          "C3L-01890",
+          "C3N-00572"
+        ]
+      },
+      "OV": {
+        "n_tumor": 83,
+        "n_normal": 19,
+        "n_comunes": 10,
+        "ejemplos_tumor": [
+          "02OV032",
+          "04OV057",
+          "04OV028"
+        ],
+        "ejemplos_normal": [
+          "01OV007",
+          "17OV003",
+          "01OV023"
+        ]
+      },
+      "PDAC": {
+        "n_tumor": 105,
+        "n_normal": 44,
+        "n_comunes": 44,
+        "ejemplos_tumor": [
+          "C3N-03884",
+          "C3L-03123",
+          "C3L-01687"
+        ],
+        "ejemplos_normal": [
+          "C3L-03123",
+          "C3N-03884",
+          "C3L-03630"
+        ]
+      },
+      "UCEC": {
+        "n_tumor": 95,
+        "n_normal": 18,
+        "n_comunes": 0,
+        "ejemplos_tumor": [
+          "C3N-00858",
+          "C3L-01252",
+          "C3L-00947"
+        ],
+        "ejemplos_normal": [
+          "NX1",
+          "NX2",
+          "NX3"
+        ]
+      }
     }
-  }
+  },
+  "controles": {
+    "controles_fisicos": [
+      {
+        "gen": "CA1",
+        "antes_de_filtrar": 1,
+        "despues_de_filtrar": 1,
+        "n_obs": 16.0,
+        "log2fc": -2.314058303758073,
+        "estado": "pasa"
+      },
+      {
+        "gen": "AQP8",
+        "antes_de_filtrar": 0,
+        "despues_de_filtrar": 0,
+        "n_obs": null,
+        "log2fc": null,
+        "estado": "no_detectado"
+      },
+      {
+        "gen": "SLC26A3",
+        "antes_de_filtrar": 1,
+        "despues_de_filtrar": 1,
+        "n_obs": 4.0,
+        "log2fc": null,
+        "estado": "no_evaluable_por_pares"
+      },
+      {
+        "gen": "GUCA2A",
+        "antes_de_filtrar": 0,
+        "despues_de_filtrar": 0,
+        "n_obs": null,
+        "log2fc": null,
+        "estado": "no_detectado"
+      }
+    ],
+    "veredicto_v3_4": "pasa",
+    "veredicto_v3_3": "calculado",
+    "qc_mucosa_todos_pasan": true
+  },
+  "h6": {
+    "estado": "no_sostiene",
+    "motivo": "Fisher bilateral, alfa 0,05; el sentido no se predice",
+    "fuente": "HPA RNA single cell type",
+    "pelka": "no_comprobable_desde_esta_maquina",
+    "tipos_epiteliales": [
+      "colonocytes",
+      "enterocytes",
+      "goblet cells",
+      "paneth cells"
+    ],
+    "tipos_no_epiteliales": [
+      "b-cells",
+      "fibroblasts",
+      "macrophages",
+      "plasma cells",
+      "smooth muscle cells",
+      "t-cells",
+      "vascular endothelial cells"
+    ],
+    "n_genes": 20151,
+    "conteo": {
+      "no_epitelial": 11549,
+      "mixta": 5501,
+      "epitelial": 3101
+    },
+    "fisher": {
+      "motivo": "Fisher bilateral, alfa 0,05; el sentido no se predice",
+      "odds_ratio": null,
+      "p": 1.0,
+      "tabla_mismo_signo_luego_distinto": [
+        [
+          20,
+          0
+        ],
+        [
+          98,
+          0
+        ]
+      ]
+    },
+    "nota": "Pelka 2021 no tiene la matriz h5 en este disco. La clase sale del HPA y las células tumorales no están en ese atlas."
+  },
+  "h7": {
+    "estado": "refuta",
+    "por_recurso": {
+      "alvez_2023": {
+        "estado": "calculado",
+        "auc": 0.4603256655466529,
+        "ic95_bajo": 0.36181183768415615,
+        "ic95_alto": 0.5634595502713878,
+        "pendiente_calibracion": -0.17917292930497716,
+        "intercepto_calibracion": -0.5798371188849177,
+        "n_pos": 53,
+        "n_neg": 73
+      },
+      "hpa_disease_blood_atlas": {
+        "estado": "calculado",
+        "auc": 0.4693021862833183,
+        "ic95_bajo": 0.3617625037436358,
+        "ic95_alto": 0.578938304881701,
+        "pendiente_calibracion": -0.09753750347677476,
+        "intercepto_calibracion": -0.314481002078093,
+        "n_pos": 53,
+        "n_neg": 63
+      },
+      "papier_2024": {
+        "estado": "no_evaluable",
+        "n_pos": 1,
+        "n_neg": 125
+      }
+    },
+    "variables_usadas": [
+      "magnitud_en_tejido",
+      "go_extracelular",
+      "go_membrana",
+      "go_exosoma",
+      "hpa_secreted_to_blood",
+      "concentracion_plasmatica_hpa_log10",
+      "especificidad_tisular",
+      "intestino_entre_los_elevados",
+      "clase_h5_pan_carcinoma",
+      "clase_h5_especifica_colon",
+      "clase_h5_intermedia",
+      "abundancia_en_tejido",
+      "h6_epitelial",
+      "h6_no_epitelial",
+      "h6_mixta",
+      "presencia_en_vesiculas_pxd033236"
+    ],
+    "variables_faltantes": [],
+    "recursos": [
+      "alvez_2023",
+      "hpa_disease_blood_atlas",
+      "papier_2024"
+    ],
+    "modelo_secundario": {
+      "esm2": "calculado",
+      "tmbed": "calculado",
+      "n_con_secuencia": 668,
+      "n_sin_secuencia": 20,
+      "tmbed_fuente": "/Volumes/JANCODATA/OncoGO-CRC/external/modelos/h7_tmbed.pred",
+      "esm2_dim": 480,
+      "esm2_fuente": "/Volumes/JANCODATA/OncoGO-CRC/external/modelos/models--facebook--esm2_t12_35M_UR50D/snapshots/6fbf070e65b0b7291e7bbcd451118c216cff79d8",
+      "estado": "calculado",
+      "recurso": "alvez_2023",
+      "auc_principal": 0.4603256655466529,
+      "auc_secundario": 0.47428276040320494,
+      "incremento": 0.013957094856552055,
+      "nota": "El secundario añade ESM-2, con PCA de 5 dentro de cada pliegue, y las dos salidas de TMbed. No entra en el veredicto."
+    },
+    "nota_alvez_hpa": "El solapamiento de casos entre Álvez 2023 y el atlas HPA no está comprobado. Si lo hay, no son dos recursos independientes.",
+    "nota_tmbed": "ESM-2 y TMbed no entran en el modelo principal ni lo sustituyen.",
+    "nota_tripod": "TRIPOD+AI: no es una prueba diagnóstica. Validación fuera de recurso y fuera de proteína, 5 grupos, semilla h7_modelo.",
+    "fase_pepe": 1,
+    "constructo_por_recurso": {
+      "alvez_2023": "colorrectal frente a los demás cánceres (Álvez 2023, métodos)",
+      "hpa_disease_blood_atlas": "colorrectal frente a Healthy (Álvez 2025)",
+      "papier_2024": "riesgo prospectivo (Cox) en UK Biobank"
+    },
+    "independientes": {
+      "comprobado": false,
+      "motivo": "los ficheros descargados no dicen si los casos de Álvez 2023 están en el atlas de 2025"
+    },
+    "concordancia_de_etiquetas": [
+      {
+        "a": "alvez_2023",
+        "b": "hpa_disease_blood_atlas",
+        "n": 115,
+        "kappa": 0.21148864848392512
+      },
+      {
+        "a": "alvez_2023",
+        "b": "papier_2024",
+        "n": 126,
+        "kappa": 0.02179755150791296
+      },
+      {
+        "a": "hpa_disease_blood_atlas",
+        "b": "papier_2024",
+        "n": 115,
+        "kappa": 0.020314547837483543
+      }
+    ],
+    "modelo_completo": true
+  },
+  "h8": {
+    "estado": "no_evaluable",
+    "motivo": "report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto.",
+    "mapa_uno_a_uno": false,
+    "n_muestras_unidas": 0
+  },
+  "h9": {
+    "estado": "exploratorio",
+    "motivo": "Wald con un instrumento por proteína. No decide la tesis. IVW, Egger y la mediana piden al menos tres.",
+    "gwas": "GCST90255676",
+    "md5": "919638df0721391b4414e8873a2c87da",
+    "n_exploratorios": 3,
+    "proteinas": [
+      {
+        "proteina": "SAA1",
+        "estado": "no_medido",
+        "motivo": "no está en el descubrimiento de ST9"
+      },
+      {
+        "proteina": "LBP",
+        "rsid": "rs2232613",
+        "variante": "20:36997655:C:T:imp:v1",
+        "beta_exposicion": -1.18791,
+        "se_exposicion": 0.0137197,
+        "beta_desenlace_alineado": -0.0152757,
+        "se_desenlace": 0.0153125,
+        "estado": "exploratorio",
+        "beta": 0.012859307523297218,
+        "se": 0.012891141860904416,
+        "z": 0.9975305261589167,
+        "p": 0.31850706422075337
+      },
+      {
+        "proteina": "LRG1",
+        "rsid": "rs8105192",
+        "variante": "19:4547371:C:G:imp:v1",
+        "beta_exposicion": -0.55974,
+        "se_exposicion": 0.00738934,
+        "beta_desenlace_alineado": 0.00876029,
+        "se_desenlace": 0.00911834,
+        "estado": "exploratorio",
+        "beta": -0.015650641369207133,
+        "se": 0.016291623524777036,
+        "z": -0.9606557225806828,
+        "p": 0.3367253010540485
+      },
+      {
+        "proteina": "CEACAM5",
+        "rsid": "rs9621",
+        "variante": "19:42231159:G:A:imp:v1",
+        "beta_exposicion": 0.963008,
+        "se_exposicion": 0.0186498,
+        "beta_desenlace_alineado": -0.0215693,
+        "se_desenlace": 0.0213547,
+        "estado": "exploratorio",
+        "beta": -0.022397840931747192,
+        "se": 0.02217923945997809,
+        "z": -1.0098561301961486,
+        "p": 0.31256422338933576
+      }
+    ]
+  },
+  "h10": {
+    "estado": "descriptiva",
+    "fase_pepe": 1,
+    "motivo_estado": "El preregistro no fijó umbral. Fijarlo después de ver 0/1165 sería elegir por resultado.",
+    "valores_de_control": [
+      "All other diseases",
+      "Class",
+      "Healthy"
+    ],
+    "n_enfermedades": 59,
+    "n_enfermedades_en_el_catalogo": 60,
+    "nota_catalogo": "El catálogo incluye Healthy. n_enfermedades lo deja fuera.",
+    "alfa": 0.05,
+    "treat_lfc": 0.585,
+    "n_especificas_crc": 5,
+    "conteo": {
+      "no_elevada_frente_a_sanos": 1074,
+      "no_especifica": 80,
+      "especifica_frente_a_enfermedades": 6,
+      "especifica_crc": 5
+    }
+  },
+  "multiverso": {
+    "n_celdas_suero": 288,
+    "n_celdas_ml": 72,
+    "n_r1": 2,
+    "r1": {
+      "antes": 1.0,
+      "despues": 1.0
+    },
+    "r1_fuente": "/Volumes/JANCODATA/OncoGO-CRC/results/v3_3/k1_sensibilidad_normalizacion.json",
+    "celda_preregistrada": {
+      "cuantificacion": "PG.MaxLFQ",
+      "contaminantes": "libreria_v3_3",
+      "paneles": "excluidos",
+      "presencia": "min_n_3",
+      "lfc": 0.585,
+      "alfa": 0.05,
+      "es_la_celda_preregistrada": true,
+      "estado": "calculado",
+      "n": 284,
+      "diferente": 0,
+      "equivalente": 166,
+      "indeterminada": 118
+    }
+  },
+  "preanalitica": {
+    "estado": "no_disponible",
+    "n_crudos": 120,
+    "motivo": "hacen falta los 60 crudos y ThermoRawFileParser en el PATH. No se inventan tiempos de adquisición."
+  },
+  "secuencia": {
+    "estado": "calculado",
+    "n_con_secuencia": 668,
+    "n_sin_secuencia": 20,
+    "auc_principal": 0.4603256655466529,
+    "auc_secundario": 0.47428276040320494,
+    "incremento": 0.013957094856552055,
+    "nota": "El secundario añade ESM-2, con PCA de 5 dentro de cada pliegue, y las dos salidas de TMbed. No entra en el veredicto.",
+    "recurso": "alvez_2023"
+  },
+  "triangulacion": {
+    "tipo": "exploratoria_post_hoc",
+    "sin_pruebas_nuevas": true,
+    "n_genes": 14,
+    "nota": "La tabla lista los genes de la enmienda. Cada columna numérica se añade solo cuando su fichero de origen está en esta corrida."
+  },
+  "figuras": [
+    {
+      "id": "F1",
+      "titulo": "La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F10",
+      "titulo": "La fracción pan-carcinoma es 0.119. H5 refuta.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F11",
+      "titulo": "En la rejilla PG.MaxLFQ, 0.938 de 48 celdas dan sin_diferencia.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F12",
+      "titulo": "H7 refuta: el intervalo incluye 0,50 en los dos recursos.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F13",
+      "titulo": "Proteínas de partida medidas en el atlas: LBP no_elevada_frente_a_sanos.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F14",
+      "titulo": "Los hallazgos de v3.3 están en la fase 1 de Pepe.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F2",
+      "titulo": "De 897 grupos del report, el contraste principal usa 284.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F3",
+      "titulo": "Los indicadores de calidad no son iguales entre cáncer, colonoscopia negativa y personas sanas.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F4",
+      "titulo": "Ninguna proteína es diferente: 166 equivalentes y 118 indeterminadas.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F5",
+      "titulo": "Al quitar las filas duplicadas, el AUC del contraste principal baja y el de la matriz humana también.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F6",
+      "titulo": "En ruido, duplicar las filas sube el AUC de 0.475 a 0.93125.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F7",
+      "titulo": "CA1 baja en el tumor. AQP8, SLC26A3 y GUCA2A no tienen un log2FC calculable.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F8",
+      "titulo": "La mediana del log2FC pasa de 0.179 a 0.080. H1 frágil: no.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    },
+    {
+      "id": "F9",
+      "titulo": "De 688 proteínas certificadas, 5 salen específicas de cáncer colorrectal en el atlas.",
+      "etapa": "v3_3_figuras",
+      "fecha_utc": "2026-11-09T20:43:21Z"
+    }
+  ]
 }
