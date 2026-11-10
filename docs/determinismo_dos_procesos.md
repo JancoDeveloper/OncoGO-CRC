@@ -8,3 +8,5 @@ Números principales distintos: 0.
 
 Las diferencias de datos no están en los números principales: certificado.json, corrida.json, gsea_tejido.tsv, lecturas_v3_7.json, manifest_entradas.sha256, multiverso.json, multiverso_v3_4.json, procedencia.json, tests.txt.
 En `gsea_tejido.tsv` el NES, el FDR y el p coinciden si se ordena por cohorte y término. Cambia el orden de las filas.
+
+La comparación de esta corrida B con la corrida C, del mismo sello, está en `docs/determinismo_b_c.md`.

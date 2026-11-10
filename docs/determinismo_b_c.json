@@ -1,0 +1,20 @@
+{
+  "admitidos": [
+    "certificado.json",
+    "corrida.json",
+    "gsea_tejido.tsv",
+    "multiverso.json",
+    "multiverso_v3_4.json",
+    "procedencia.json",
+    "tests.txt"
+  ],
+  "bloquean": [
+    "h7_tabla_proteinas.tsv",
+    "h7_visibilidad_en_sangre.json"
+  ],
+  "h7_secundario": {
+    "b": 0.4773843370379944,
+    "c": 0.4882398552597571
+  },
+  "etiqueta": false
+}
