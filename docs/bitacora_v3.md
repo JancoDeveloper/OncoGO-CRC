@@ -292,3 +292,11 @@ Decisión. La página y `results/v3_4/` publican esos JSON. El Word añade la se
 Comando: `python scripts/v3/exportar_sitio_v3_4.py results/v3_4` y `pytest tests/test_v3_4_pendientes.py`.
 
 Resultado. 9 passed. La página deja de ser solo el checklist. Explica la pregunta, el orden de los ocho pasos, la razón de cada fuente, el resultado de H5, controles, H6, H7, la celda de suero, H8, H9 y H10, las catorce figuras de v3.3 y la conclusión. Las cifras salen de `results/v3_4/`. H7 sigue en refuta. H8 y la preanalítica siguen con el motivo de la corrida firmada `3c3f666`.
+
+## 2026-11-10 06:41 (UTC−5). v3.5, Fase 0
+
+Comando: `git checkout main`, `git pull --ff-only origin main`, `make regresion-v1`, comparación de manifiestos, `stat` de los seis crudos y lectura de `external/pxd055218_metadata/CN_02_DIA.json`.
+
+Resultado. Cabeza `bff0c5e`, árbol limpio, disco montado. Regresión v1: 4 passed en 9,90 s (688, 140, 28, 104/119, 226, 307). Manifiestos v3.2 (112), v3.3 (189) y v3.4 (50) coinciden. SHA-256 del report DIA-NN coincide. Los seis crudos rechazados tienen el tamaño de PRIDE. El campo de fecha es `Content Creation Date`. Hay 60 AppleDouble. Etiquetas `v3.2-final`, `v3.3-final` y `v3.4-final` (esta sobre `bff0c5e`) subidas a origin.
+
+Decisión. No se vuelven a descargar los seis crudos. La enmienda usa el campo de fecha leído en el disco.

@@ -135,3 +135,15 @@ ESM-2 y TMbed no entran en el modelo principal. La rejilla de regularización ti
 ## v3.4, H5
 
 `Fraccion` no tiene el atributo `ci_low`. El intervalo sale de `intervalo()`, que es Clopper–Pearson. El resto de `concordancias_mismo_universo` y de `submuestreo` sigue el encargo.
+
+## v3.5, comprobaciones del 10 de noviembre de 2026
+
+Los manifiestos de `results/v3_2/`, `results/v3_3/` y `results/v3_4/` coinciden con los ficheros: 0 hashes distintos y 0 extras. `make regresion-v1` pasa y conserva 688, 140, 28, 104/119, 226 y 307. El SHA-256 de `data/raw/plasma/DIA-NN_report.tsv` es `a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8`.
+
+`report.pr_matrix.tsv` de PXD064655 pesa 6300706 bytes, SHA-256 `b51a062c23a99cf93296ada8ba80061823289cdf0c5c872706e0e41bd005b025`. `Sample_Metadata.txt` pesa 3961 bytes, SHA-256 `c53e5d279118fff2b0a4891ed9873cafb12f4baec503ee2769522fdf36274862`.
+
+Los JSON de ThermoRawFileParser en el disco se llaman `CN_02_DIA.json`, no `<crudo>-metadata.json`. El campo de fecha es `FileProperties` → `Content Creation Date`, por ejemplo `10/02/2023 04:14:10`. El instrumento leído en `CN_02_DIA.json` es Orbitrap Fusion, serie `FSN10392`.
+
+Hay 60 crudos cuyo nombre cumple `(CP|CN|HC)_NN_DIA.raw` y 60 ficheros AppleDouble `._*`. Un glob `*.raw` cuenta 120. Los seis rechazados por el lector tienen el mismo tamaño que la API de PRIDE: CN_01 1049764670, CN_08 1000697970, CN_16 1205043346, CP_18 1226017242, HC_17 1065175806, HC_20 1088171988. El tamaño coincide, así que la descarga no quedó corta. El lector de Thermo, con `-l 1` sobre CN_01, escribió `RAW file is likely corrupted` y `OutOfMemoryException` al cargar MsDevice en el offset 973984150. Hoy no se vuelven a descargar.
+
+Wannberg está en `external/wannberg_2026/wannberg_2026_tabla_s5.tsv`.
