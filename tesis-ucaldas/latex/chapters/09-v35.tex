@@ -1,0 +1,25 @@
+\section{Corrida v3.5}
+% fuente: results/v3_5/certificado_v3_5.json
+% fuente: results/v3_5/multiverso_v3_4.json
+% fuente: results/v3_5/ml_celda_preregistrada.json
+% fuente: results/v3_5/h5_especificidad_organo.json
+% fuente: results/v3_5/h6_origen_celular.json
+% fuente: results/v3_5/h7_visibilidad_en_sangre.json
+% fuente: results/v3_5/h8_carga_tumoral.json
+% fuente: results/v3_5/h9_wald.json
+% fuente: results/v3_5/h10_especificidad.json
+% fuente: results/v3_5/preanalitica_v3_5.json
+% fuente: results/v3_5/triangulacion_v3_5.json
+Esta sección lee \texttt{results/v3\_5/}. El certificado queda en \VcincoEstado. Cada frase nombra su fichero y dice qué no demuestra.
+
+El contraste del suero, en \texttt{multiverso\_v3\_4.json}, tiene \VcincoSueroN\ proteínas: \VcincoSueroDif\ diferentes, \VcincoSueroEq\ equivalentes y \VcincoSueroInd\ indeterminadas. No demuestra un examen de sangre. La celda del modelo, en \texttt{ml\_celda\_preregistrada.json}, reproduce \VcincoMdos. El valor de la corrida anterior es una variación de semilla, no un resultado nuevo. La calidad sola, en \texttt{results/v3\_3/ml\_suero\_modelos.tsv}, da \VcincoMtres. Sin la calidad, el área cae a \VcincoMcinco\ (p = \VcincoMcincoP). Con contaminantes, la mediana del área sube a \VcincoAucContaminantes. Eso no demuestra una proteína del tumor. Muestra que dejar contaminantes cambia la separación.
+
+El tejido, en la corrida v3.3, coincide en signo en \VcincoTejido. No demuestra que cada etiqueta de tumor y de mucosa esté confirmada: de los controles, solo CA1 se comprueba.
+
+H5, en \texttt{h5\_especificidad\_organo.json}, queda en \VcincoHcinco. No demuestra que el colon tenga una dirección de cambio propia. H6, en \texttt{h6\_origen\_celular.json}, queda en \VcincoHseis\ y la tabla es degenerada. No es evidencia ni a favor ni en contra. No se escribe que el tipo celular no influye. H7, en \texttt{h7\_visibilidad\_en\_sangre.json}, queda en \VcincoHsiete. Con las variables del tejido fijadas de antemano no se anticipa qué proteínas tumorales cambian en sangre. No es una prueba diagnóstica.
+
+H8, en \texttt{h8\_carga\_tumoral.json}, queda en \VcincoHocho. El mapa une las corridas de muestra y deja fuera los estándares de lote. directLFQ se ejecutó \cite{ammar2023}. El universo no llega al mínimo de proteínas tumorales epiteliales. No demuestra que el estadio IV no lleve proteína del tumor. Es, sobre todo, un límite de profundidad de un DIA sin depleción. La preanalítica, en \texttt{preanalitica\_v3\_5.json}, cuenta \VcincoPreCrudos\ crudos y fecha en \VcincoPreFecha. El estado es \VcincoPreEstado\ porque la prueba escrita pedía todos los crudos. No se inventan los tiempos que faltan. Las corridas legibles van por bloques. Eso no cambia el titular del suero.
+
+H9, en \texttt{h9\_wald.json}, queda en \VcincoHnueve. Es un nulo con un instrumento por proteína y una desviación de procedimiento declarada. No decide la tesis. H10, en \texttt{h10\_especificidad.json}, queda en \VcincoHdiez\ y cuenta \VcincoHdiezN\ proteínas. CEACAM5 sube en el tejido y es específica en el atlas. Es una ilustración coherente con el seguimiento tras la cirugía \cite{locker2006}. No es un hallazgo nuevo. La triangulación reúne los genes de la enmienda y no tiene celdas vacías. No es una validación.
+
+\VcincoAdvertencia

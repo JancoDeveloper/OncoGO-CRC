@@ -1,33 +1,32 @@
 \chapter{Conclusiones y recomendaciones}
 
 \section{Conclusiones}
-Las conclusiones responden a los objetivos.
+% fuente: results/v3_5/multiverso_v3_4.json
+% fuente: results/v3_5/ml_celda_preregistrada.json
+% fuente: results/v3_3/ml_suero_modelos.tsv
+% fuente: results/v3_5/h5_especificidad_organo.json
+% fuente: results/v3_5/h6_origen_celular.json
+% fuente: results/v3_5/h7_visibilidad_en_sangre.json
+% fuente: results/v3_5/h8_carga_tumoral.json
+% fuente: results/v3_5/h9_wald.json
+% fuente: results/v3_5/h10_especificidad.json
+% fuente: results/v3_5/preanalitica_v3_5.json
+Cada conclusión responde a un objetivo y sale de \texttt{results/v3\_5/}.
 
 \begin{itemize}
-% fuente: results/v3_2/k1_etiquetas.json
-\item Entre las 688 proteínas certificadas, y tras excluir 237 filas de contaminante o señuelo, el primario de Tanaka coincide en signo con CPTAC en 89 de 90. El intervalo va de 0,940 a 0,9997. La metástasis hepática frente a la mucosa coincide en 69 de 82. La lectura anterior, con la metástasis leída como tumor, era 104 de 119 y se conserva con ese nombre. En el universo más amplio del 31 de octubre, 687 de 874 genes coinciden en signo y la correlación de Pearson es 0,83. Son cuentas distintas.
-% fuente: results/v3_2/suero_resumen.json
-% fuente: results/v3_2/k7_control_tecnico.json
-\item En el suero oficial, de 205 proteínas, ninguna separa el cáncer de la colonoscopia negativa con el corte de 1,5 veces. De ellas, 105 tienen ese cambio descartado y 100 quedan indeterminadas. SAA1 y LBP separan el cáncer de las personas sanas y se leen como respuesta del huésped. La piel y la coagulación difieren entre grupos. Los precursores no.
-% fuente: results/v3_2/k5_auc.json
-% fuente: results/v3_2/ml_suero_permutacion.json
-\item El máximo del área bajo la curva, sin contaminantes ni paneles, es 0,865 en SERPINA3, con p = 0,0464 frente a 10\,000 permutaciones. Antes de esa limpieza el máximo es 0,939, en FGB. La logística y la coagulación sola también separan los grupos. No es una prueba diagnóstica.
-\item Los procesos GO del tejido casi no están medidos en este suero. Los doce a trece términos del cierre del 31 de octubre no se han vuelto a evaluar con 10\,000 permutaciones. Esa cláusula queda en curso.
-\item Los péptidos mutados descritos por Rai, Xiang y Hembrough no se confirman ni se rechazan con esta matriz. El resultado de ese objetivo es el límite del método.
-\item H5 no se pudo calcular: el carcinoma de endometrio no tiene ocho pares con el mismo identificador. H10 cuenta cero proteínas específicas de 1\,165 en un atlas de 60 enfermedades, y el preregistro no fija un número para sostenerla o refutarla. H6, H7, H8 y H9 quedan sin número, cada una con su motivo.
+\item El tejido replica el signo del cambio tumoral en \VcincoTejido. No confirma todas las etiquetas: solo CA1 se comprueba entre los controles.
+\item En la celda del suero, \VcincoSueroDif\ de \VcincoSueroN\ proteínas separan el cáncer de la colonoscopia negativa. \VcincoSueroEq\ son equivalentes y \VcincoSueroInd\ indeterminadas. No se detecta una proteína del tumor. Eso no demuestra que no exista.
+\item El modelo reproduce un área de \VcincoMdos. La calidad sola da \VcincoMtres\ y, sin la calidad, el área cae a \VcincoMcinco\ (p = \VcincoMcincoP). La separación se asocia con la calidad de la muestra.
+\item La preanalítica queda en \VcincoPreEstado: hay fecha en \VcincoPreFecha\ de \VcincoPreCrudos\ crudos. No cambia el titular.
+\item H5 queda en \VcincoHcinco. El colon no se distingue por la dirección del cambio.
+\item H6 queda en \VcincoHseis. La tabla es degenerada. No es evidencia ni a favor ni en contra.
+\item H7 queda en \VcincoHsiete. Las variables del tejido no anticipan el cambio en sangre.
+\item H8 queda en \VcincoHocho. Falta profundidad para la prueba escrita.
+\item H9 queda en \VcincoHnueve. No decide la tesis.
+\item H10 queda en \VcincoHdiez, con \VcincoHdiezN\ proteínas. No es un hallazgo nuevo.
 \end{itemize}
 
-En conjunto, el cambio de proteínas del tumor se repite entre tejidos y en este suero no aparece como una señal propia del cáncer. El trabajo sirve para responder esa pregunta. No sirve para proponer un examen de sangre.
+En conjunto, el cambio de proteínas del tumor se repite entre tejidos. En este suero no aparece como una señal propia del cáncer. El trabajo responde esa pregunta. No sirve para decidir sobre un paciente.
 
 \section{Recomendaciones}
-Se recomienda repetir BAIAP3 en otra cohorte con colonoscopia negativa, con más de veinte personas por grupo y con el antígeno carcinoembrionario de la misma persona.
-
-Se recomienda copiar, del suplemento de Rai y colaboradores, las secuencias de los 19 péptidos y rebuscarlas en crudos independientes, con control de falsos por clase de péptido. Ese resultado no se anticipa con un número.
-
-Se recomienda medir CEACAM5 de forma dirigida en suero, que es la escala del panel de Ögren y colaboradores, no la de esta matriz DIA.
-
-Se recomienda emparejar la tabla de muestras de Lesur y colaboradores con las columnas de PXD036594 antes de usar ese plasma.
-
-Se recomienda aplicar el suplemento de origen tisular de Malmström y colaboradores cuando esté disponible como tabla. Hoy la ficha usa secreción y Gene Ontology.
-
-Se recomienda incorporar, cuando exista, tejido y sangre de la misma persona. Estas matrices no los traen juntos.
+Se recomienda repetir el contraste con más personas por grupo, con colonoscopia negativa y con el orden de adquisición aleatorizado. Se recomienda volver a descargar los crudos sin fecha y cerrar la prueba completa en una corrida posterior. Se recomienda medir CEACAM5 de forma dirigida si la pregunta es el seguimiento, no el cribado. Se recomienda no fusionar estas cohortes.

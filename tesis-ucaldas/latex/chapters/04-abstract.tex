@@ -1,14 +1,17 @@
 \begin{otherlanguage}{english}
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-% fuente: results/v3_3/certificado_v3_3.json
-% fuente: results/v3_3/suero_resumen.json
-% fuente: results/v3_3/k1_etiquetas.json
-The protein change of the colorectal tumor is already described in tissue. Run v3.3 asks whether that change reaches the blood and whether serum separates cancer from a negative colonoscopy. Cohorts were not merged. Missing values were not imputed in the contrast. The anchor is the 688 certified CPTAC proteins. The replicate is PXD034575, 16 patients. P is the primary tumor, M the liver metastasis and N the mucosa.
+% fuente: results/v3_5/multiverso_v3_4.json
+% fuente: results/v3_5/ml_celda_preregistrada.json
+% fuente: results/v3_3/ml_suero_modelos.tsv
+% fuente: results/v3_5/h5_especificidad_organo.json
+% fuente: results/v3_5/h7_visibilidad_en_sangre.json
+% fuente: results/v3_5/h8_carga_tumoral.json
+The question is whether proteins that change in a colon tumor leave a trace that blood can show. The design moves from tissue to blood and then to a model that tries to separate the groups. In the cell written beforehand, \VcincoSueroDif\ of \VcincoSueroN\ proteins separate cancer from a negative colonoscopy. \VcincoSueroEq\ have the preregistered fold change ruled out. \VcincoSueroInd\ stay indeterminate because the groups are small.
 
-The run drops 237 contaminant or decoy rows and requires at least eight pairs. Primary versus mucosa agrees in sign for 147/147, with an interval from 0,975 a 1 and Lin concordance 0,770. Metastasis versus mucosa agrees for 116/143, with Lin concordance 0,434. CA1 falls in the tumor. AQP8, SLC26A3 and GUCA2A have no log2 fold change, so the tissue labels are not confirmed.
+The model that mixes the proteins separates the groups. Its area under the curve is \VcincoMdos. Sample quality alone also separates them: \VcincoMtres. After removing quality, the value falls to \VcincoMcinco\ and the permutation gives \VcincoMcincoP. The separation tracks sample quality, not a tumor protein. Coagulation may come from the tube or from the cancer itself. Skin comes from handling.
 
-Serum is PXD055218, 20 people per group. The report has 897 groups. A 1\% protein false-discovery rate and the human species filter leave 312. The principal contrast has 284 proteins: 0 different, 166 equivalent and 118 indeterminate against the negative colonoscopy. Against healthy people the separated proteins are LRG1 (P02750), SAA1 (P0DJI8), LBP (P18428). The separation seen by the model is explained by sample quality. H5 is refuta and H7 is refuta. H10 is descriptiva and counts 5 specific proteins. The work does not propose a blood test.
+H5 is \VcincoHcinco: the colon tumor change is shared with other carcinomas. H7 is \VcincoHsiete: tissue variables fixed beforehand do not anticipate which tumor proteins change in blood. H8 is \VcincoHocho. H6 is evidence neither for nor against. This is Pepe phase 1. It does not propose a blood test.
 
 \noindent\textbf{Keywords:} colorectal cancer; proteomics; serum; specificity; sample quality.
 \end{otherlanguage}

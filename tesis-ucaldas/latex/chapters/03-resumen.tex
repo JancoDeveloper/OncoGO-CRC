@@ -1,14 +1,17 @@
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
-% fuente: results/v3_3/certificado_v3_3.json
-% fuente: results/v3_3/suero_resumen.json
-% fuente: results/v3_3/k1_etiquetas.json
-% fuente: results/v3_3/k4_crc_frente_a_sanos.tsv
-El cambio proteico del tumor colorrectal ya está descrito en el tejido. La corrida v3.3 pregunta si ese cambio llega a la sangre y si el suero separa el cáncer de la colonoscopia negativa. No se fusionaron cohortes. En el contraste no se imputaron ausencias. El ancla son las 688 proteínas certificadas de CPTAC. La réplica es PXD034575, con 16 pacientes. P es el tumor primario, M la metástasis hepática y N la mucosa.
+% fuente: results/v3_5/multiverso_v3_4.json
+% fuente: results/v3_5/ml_celda_preregistrada.json
+% fuente: results/v3_3/ml_suero_modelos.tsv
+% fuente: results/v3_5/h5_especificidad_organo.json
+% fuente: results/v3_5/h7_visibilidad_en_sangre.json
+% fuente: results/v3_5/h8_carga_tumoral.json
+% fuente: results/v3_5/h6_origen_celular.json
+La pregunta es si las proteínas que cambian en un tumor de colon dejan una huella que se pueda ver en la sangre. El diseño va del tejido a la sangre y después a un modelo que intenta separar los grupos. En la celda escrita de antemano, \VcincoSueroDif\ de \VcincoSueroN\ proteínas separan el cáncer de la colonoscopia negativa. \VcincoSueroEq\ tienen el cambio de la regla descartado. \VcincoSueroInd\ quedan indeterminadas: con pocas personas por grupo falta potencia.
 
-Se excluyen 237 filas de contaminante o señuelo y se piden al menos ocho pares. El primario frente a la mucosa coincide en signo en 147/147, con intervalo de 0,975 a 1 y concordancia de Lin de 0,770. La metástasis frente a la mucosa coincide en 116/143, con Lin de 0,434. CA1 baja en el tumor. AQP8, SLC26A3 y GUCA2A no tienen log2FC, así que las etiquetas no quedan confirmadas.
+El modelo que mezcla las proteínas separa los grupos. Su área bajo la curva es \VcincoMdos. La calidad de la muestra sola también los separa: \VcincoMtres. Al quitar la calidad, la separación cae a \VcincoMcinco\ y la permutación da \VcincoMcincoP. La separación se asocia con la calidad de la muestra, no con una proteína del tumor. La coagulación puede venir del tubo o del propio cáncer. La piel es de manipulación.
 
-El suero es PXD055218, con 20 personas por grupo. El informe trae 897 grupos. Con la tasa de descubrimientos falsos del 1\,\% y la especie humana quedan 312. El contraste principal tiene 284 proteínas: 0 diferentes, 166 equivalentes y 118 indeterminadas frente a la colonoscopia negativa. Frente a personas sanas se separan LRG1 (P02750), SAA1 (P0DJI8), LBP (P18428). La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra. H5 queda en refuta y H7 en refuta. H10 es descriptiva y cuenta 5 proteínas específicas. El trabajo no propone un examen de sangre.
+H5 queda en \VcincoHcinco. El cambio tumoral del colon se comparte con otros carcinomas. H7 queda en \VcincoHsiete. Con las variables del tejido fijadas de antemano no se anticipa qué proteínas tumorales cambian en sangre. H8 queda en \VcincoHocho. H6 no es evidencia ni a favor ni en contra. El trabajo corresponde a la fase 1 de Pepe y no propone un examen de sangre.
 
 \noindent\textbf{Palabras clave:} cáncer colorrectal; proteómica; suero; especificidad; calidad de muestra.
 \clearpage

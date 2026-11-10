@@ -51,5 +51,10 @@ No entran en las referencias, porque el 31 de octubre de 2026 el identificador n
 \section{Tablas de la corrida v3.2 del 6 de noviembre}
 Los números de esta versión salen de \texttt{results/v3\_2/}. El contraste de tejido está en \texttt{k1\_etiquetas.json}. Las clases del suero están en \texttt{suero\_resumen.json} y en los TSV \texttt{k4\_*.tsv}. Las matrices son \texttt{suero\_matriz\_principal.tsv} y \texttt{suero\_matriz\_humana\_fdr.tsv}. El nulo del área bajo la curva está en \texttt{k5\_auc.json}. La presencia está en \texttt{k6\_presencia.json}. El control técnico está en \texttt{k7\_control\_tecnico.json}. El modelo logístico está en \texttt{ml\_suero\_permutacion.json}. Las hipótesis están en \texttt{hipotesis\_v3\_2.tsv}. Los números de \texttt{results/v3/} quedan como la lectura anterior y no se reescriben. El preregistro es \texttt{config/preregistro\_v3.yaml}. La auditoría y las enmiendas están en \texttt{docs/auditoria\_v3.md} y \texttt{docs/enmiendas\_v3.md}.
 
+\section{Historial de corridas}
+Las secciones siguientes conservan las cifras de v3.3 y de v3.4. No se borran. Su motivo está en \texttt{docs/enmiendas\_v3.md}.
+\input{chapters/09-v33}
+\input{chapters/09-v34}
+
 \section{Nota sobre la correlación 0,104}
 La correlación 0,104, con 56\,\% de igual signo y 1\,993 proteínas, es una estadística anterior. Usó otra lectura de las columnas de PXD034575. La correlación 0,83 es la del primario, ya en log2, contra CPTAC, con 874 genes. Se citan juntas, cada una con su $n$. No se presenta 0,83 como la corrección de 0,104. Ninguna de las dos es tejido contra sangre. La concordancia de tejido hacia plasma de la versión certificada sigue siendo 0,488 (42 de 86).

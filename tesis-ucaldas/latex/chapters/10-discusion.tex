@@ -1,0 +1,27 @@
+\chapter{Discusión}
+% fuente: results/v3_5/ml_celda_preregistrada.json
+% fuente: results/v3_3/ml_suero_modelos.tsv
+% fuente: results/v3_5/preanalitica_v3_5.json
+% fuente: results/v3_5/h8_carga_tumoral.json
+% fuente: results/v3_5/h6_origen_celular.json
+% fuente: results/v3_5/h7_visibilidad_en_sangre.json
+
+\section{La preanalítica}
+La lección central está en la calidad de la muestra. La piel, la coagulación, los eritrocitos y las plaquetas separan grupos que el contraste de proteínas no separa \cite{geyer2019}. Un lote de adquisición puede producir la misma apariencia de biología \cite{leek2010}. En \texttt{preanalitica\_v3\_5.json} hay fecha para \VcincoPreFecha\ de \VcincoPreCrudos\ crudos. El estado es \VcincoPreEstado. Las corridas legibles van por bloques. Eso no demuestra que el titular del suero sea un efecto de lote, y tampoco lo descarta para los crudos sin fecha.
+
+La coagulación puede ser del tubo y del tiempo hasta centrifugar. También puede ser del cáncer, porque el tumor activa la coagulación. La piel es de manipulación. Esas dos lecturas no se pueden separar con estos ficheros.
+
+\section{El resultado negativo}
+\VcincoSueroDif\ de \VcincoSueroN\ proteínas separan el cáncer de la colonoscopia negativa. \VcincoSueroInd\ quedan indeterminadas. Con el tamaño de esta cohorte, no detectar una diferencia no equivale a demostrar que la diferencia no existe. Las \VcincoSueroEq\ equivalentes sí descartan el cambio que la regla fija. Esa distinción es la contribución del contraste.
+
+\section{Coherencia biológica}
+SAA1, LBP y LRG1 suben frente a personas sanas y no frente a la colonoscopia negativa. Son proteínas de fase aguda: señal de inflamación del huésped, no específica del tumor \cite{gabay1999}. CEACAM5 sube en el tejido y no aparece como diferencia en este suero. Su uso clínico es el seguimiento, no el cribado \cite{locker2006}. H8 queda en \VcincoHocho. Muchos casos de esa cohorte son estadio IV y las proteínas hepáticas salen por la lista de ruido. Un DIA sin depleción no alcanza la profundidad que la regla pide \cite{hermoso2026}.
+
+\section{Otros estudios}
+Álvez, Papier, Wannberg y Hermoso-Durán preguntan cosas distintas. Unos miden sangre de personas sanas o de riesgo prospectivo. Otro mide estadio en suero. No se comparan áreas bajo la curva entre diseños distintos. H7 queda en \VcincoHsiete\ dentro de sus propias reglas. El acuerdo entre recursos es bajo. Los recursos no miden lo mismo.
+
+\section{Limitaciones}
+El suero tiene un grupo pequeño y un solo centro. Las cohortes públicas no traen tejido y sangre de la misma persona. Parte de los controles del tejido no se detecta. La preanalítica tiene \VcincoPreFecha\ de \VcincoPreCrudos\ crudos. H6 tiene la tabla degenerada. La independencia de los recursos de H7 no está comprobada. H9 usa un instrumento por proteína. Ninguna de esas frases propone un examen.
+
+\section{Qué diseño lo evitaría}
+Un orden de adquisición aleatorizado, paneles de calidad escritos de antemano y una cohorte externa de personas con síntomas, con tejido y sangre de la misma persona. Eso sigue siendo fase 1 de Pepe hasta que una cohorte nueva, fijada de antemano, repita el resultado \cite{pepe2001}.

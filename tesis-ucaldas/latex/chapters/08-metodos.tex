@@ -45,5 +45,9 @@ El preregistro de la enmienda se fijó antes de recalcular. El contraste princip
 
 En el suero, una celda es la mediana de las filas con q del precursor y q del grupo de hasta 0,01. El grupo entra si su q global es de hasta 0,01 y el nombre es humano. El contraste oficial retira, enteras, la biblioteca de contaminantes y los paneles de eritrocitos, plaquetas y coagulación. Cada proteína recibe una clase: diferente, si pasa el corte; equivalente, si las dos pruebas unilaterales demuestran un cambio menor que 1,5 veces; indeterminada, en el resto. El nulo del máximo del área bajo la curva usa 10\,000 permutaciones de etiquetas. No se imputa en el contraste. La regresión logística imputa la mediana solo dentro del pliegue de entrenamiento.
 
+\section{Corrida v3.5}
+% fuente: config/preregistro_v3.yaml
+La agregación del suero de estadio usa directLFQ \cite{ammar2023}. El nombre de cada corrida se lee con la ruta de Windows cuando la columna trae barra invertida. Los estándares de lote no entran en el contraste. La fecha de adquisición sale de ThermoRawFileParser \cite{hulstaert2020}, del campo escrito en la enmienda. Un recurso de H7 sin el mínimo por clase no entra en el entrenamiento de los otros. La celda preregistrada del modelo usa las semillas de la corrida v3.3.
+
 \section{Lo que el método no puede hacer}
 No se buscan espectros de péptidos mutados. No se descarga el suplemento de origen tisular de Malmström como tabla aplicada paciente a paciente. No se parte PXD036594 en cáncer y control. No se estima un examen clínico.
