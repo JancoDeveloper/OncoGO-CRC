@@ -131,7 +131,10 @@ def agregar_directlfq(entrada: Path) -> tuple[Path, str]:
         tabla.to_csv(entrada, sep="\t", index=False, na_rep="0")
         usado = "cero"
         run_lfq(str(entrada))
-    nuevos = sorted(entrada.parent.glob("*protein_intensities.tsv"), key=lambda p: p.stat().st_mtime)
+    nuevos = sorted(
+        (p for p in entrada.parent.glob("*protein_intensities.tsv") if not p.name.startswith("._")),
+        key=lambda p: p.stat().st_mtime,
+    )
     if not nuevos:
         raise RuntimeError("directLFQ no escribió la tabla de proteínas")
     return nuevos[-1], usado
@@ -293,6 +296,8 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg=None) -> dict
     lfc = float(prereg.get("inferencia.treat_lfc"))
     alpha = float(prereg.get("inferencia.alpha"))
     contraste = _contraste(mat, iv, i_ii, lfc=lfc, alpha=alpha, nombre="pxd064655_iv_frente_a_i_ii")
+    if "protein_id" in contraste.columns:
+        contraste = contraste.set_index("protein_id")
     uni = _mapa_uniprot(settings.resolve("metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv"))
     genes = {}
     for _, fila in grupos.iterrows():
@@ -344,6 +349,15 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg=None) -> dict
             "lista_de_ruido": ";".join(listas),
         })
     tabla = pd.DataFrame(filas)
+    if tabla.empty or "en_universo" not in tabla.columns:
+        payload = base | {
+            "estado": "no_evaluable",
+            "motivo": "ninguna proteína cuantificada mapea a un gen único del contraste",
+            "n_proteinas_directlfq": int(mat.shape[0]),
+            "n_tras_presencia": int(len(contraste)),
+        }
+        volcar_json(payload, salida / "h8_carga_tumoral.json", sello)
+        return payload
     universo = tabla.loc[tabla["en_universo"] & tabla["lista_de_ruido"].eq("")]
     te = universo["tumoral_epitelial"]
     sube = universo["clase"].eq("diferente") & (universo["log2fc"] > 0)
