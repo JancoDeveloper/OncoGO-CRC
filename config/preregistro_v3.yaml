@@ -729,3 +729,58 @@ enmienda_v3_4:
     instrumentos: "cis-pQTL líder de la cohorte de descubrimiento en Sun 2023 ST9; la beta es respecto de A1"
     saa1: "no entra si no tiene fila cis en esa tabla de descubrimiento"
     calcula: "Wald exploratorio, un instrumento por proteína; no decide la tesis"
+
+# ------------------------------------------------- 17. Enmienda v3.5
+enmienda_v3_5:
+  fecha: "2026-11-10"
+  transparencia: >-
+    Los resultados v3.4 ya se habían visto. La revisión externa del
+    10-nov-2026 leyó el código de main@bff0c5e, los JSON de results/v3_4/
+    y el encabezado público de report.pr_matrix.tsv de PXD064655. No calculó
+    ningún contraste de PXD064655. No leyó los JSON de ThermoRawFileParser.
+    Ningún umbral de inferencia, de K4, de K5, del filtro principal, de los
+    pares mínimos, del ML, de H1, de H5, de H6, de H7 ni de H8 se mueve.
+  no_cambia: [inferencia, k4_suero, k5_auc, enmienda_v3_3.ml_suero, hipotesis.h5,
+              hipotesis.h7.sostiene, hipotesis.h7.refuta, enmienda_v3_4.h6, enmienda_v3_4.h8]
+  salida: "results/v3_5/"
+  v3_4_congelado: true
+  recalcula: [h6, h7, h8, preanalitica, controles, triangulacion, ml_celda_preregistrada, multiverso_resumen, certificado]
+  copia_de_v3_4_con_su_sello: [h5, h9, h10, multiverso_suero, multiverso_ml, secuencia]
+  h8:
+    mapa: "nombre de corrida = PureWindowsPath(col).name si hay barra invertida; fullmatch (SH_\\d+)\\.mzML; ST_ son estándares y se excluyen"
+    estadio: "columna que contiene 'stage' (sin distinguir mayúsculas), sin \\r ni espacios"
+    agregacion: "directLFQ 0.3.3, formato genérico .aq_reformat.tsv: protein = Protein.Group, ion = Precursor.Id, una columna por corrida SH_, intensidad lineal; parámetros por defecto"
+    resto: "lo fijado en enmienda_v3_4.h8"
+  preanalitica:
+    crudos: "fullmatch (CP|CN|HC)_\\d{2}_DIA\\.raw; los ._* no cuentan"
+    campo_fecha: "Content Creation Date"
+    con_menos_de_60: "se calculan el AUC y los Spearman con los legibles; estado no_evaluable; no se imputan tiempos"
+  h7:
+    recursos_entrenables: "un recurso con menos de 10 en alguna clase no entra en el entrenamiento de los otros y queda no_evaluable"
+    valor_anterior: "Papier 2024 (1/125) entraba en el entrenamiento de Álvez y del HPA"
+  h6:
+    tabla_degenerada: "si una columna de la tabla 2x2 es cero se marca tabla_degenerada; el estado lo sigue dando la regla escrita"
+  ml_celda_preregistrada:
+    semillas: "las de v3.3 (semilla_v33 ml_cv y ml_permutacion) y el mismo orden de muestras"
+    debe_reproducir: 0.88025
+  certificado:
+    limitaciones_aceptadas:
+      - {pieza: h8, estados: [no_evaluable], motivo: "decisión del autor del 10-nov-2026"}
+      - {pieza: preanalitica, estados: [no_evaluable], motivo: "54 de 60 crudos legibles; decisión del autor del 10-nov-2026"}
+      - {pieza: h7_recurso, estados: [no_evaluable, no_disponible], motivo: "un recurso sin 10 por clase o sin fichero"}
+      - {pieza: h6, estados: [no_evaluable], motivo: "sin leyenda verificable de Pelka ni del HPA"}
+      - {pieza: h9, estados: [requiere_acceso], motivo: "sin GWAS público verificado"}
+    casillas_nuevas: [preanalitica, triangulacion, ml_reproduccion, regresion_v1, manifiestos, h9_fuente]
+  desviacion_h9: >-
+    La enmienda v3.4 decía que H9 no se intentaba. El mismo día, después de
+    esa frase, se verificó GCST90255676 y el commit f5a26fb habilitó el Wald
+    exploratorio. Se declara como desviación de procedimiento. H9 no decide la tesis.
+  semillas:
+    desplazamientos: {h8_v3_5: 950, preanalitica_v3_5: 990}
+  decisiones_del_autor:
+    h8_si_sigue_no_evaluable: "limitación declarada; no vuelve rojo el certificado"
+    orden_de_adquisicion: "se calcula con los 54 crudos legibles; estado no_evaluable; no se inventan los 6 tiempos"
+    seis_crudos: "no se vuelven a descargar el 10-nov-2026"
+    firebase: "sí, solo si el certificado v3.5 queda publicable"
+    pdf: "zip de Overleaf. No se instala MacTeX."
+    h9: "exploratorio; no decide la tesis"

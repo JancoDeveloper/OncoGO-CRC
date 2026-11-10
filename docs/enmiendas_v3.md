@@ -113,3 +113,31 @@ El mismo día, después de esa frase, se verificó `GCST90255676`: europeos, sin
 Las preguntas iniciales se cierran con el valor por defecto: Firebase solo con el checklist en verde; el PDF como zip de Overleaf; ESM-2 y TMbed sí, porque el disco externo tiene más de 20 GB libres; los metadatos de adquisición sí cuando estén los 60 crudos.
 
 Las cifras v3.3 no se borran: pasan al anexo de historial con su motivo.
+
+## Enmienda v3.5 — 10 de noviembre de 2026
+
+No borra v3.4. Esos números quedan en `results/v3_4/` y en la etiqueta `v3.4-final`. Lo nuevo se calculará en `results/v3_5/`. Los resultados v3.4 ya se habían visto cuando se escribió esta enmienda. La revisión del 10-nov-2026 leyó el código de `bff0c5e`, los JSON de v3.4 y el encabezado de `report.pr_matrix.tsv`. No calculó el contraste de PXD064655 ni leyó los JSON de ThermoRawFileParser. Ningún umbral de inferencia, de K4, de K5, del filtro principal, de los pares mínimos, del ML, de H1, de H5, de H6, de H7 ni de H8 se mueve.
+
+H8, mapa. El valor anterior usaba `Path(columna).name` en macOS. Esa llamada no corta una ruta de Windows, el patrón no encontraba `SH_` y el mapa unía 0 de 100. El valor nuevo toma `PureWindowsPath` si hay barra invertida y `PurePosixPath` si no, y exige `SH_NN.mzML` completo. Las columnas `ST_` son estándares de lote: se excluyen y se cuentan. La columna de estadio es la que contiene `stage`, sin distinguir mayúsculas, sin retorno de carro ni espacios.
+
+H8, agregación. El valor anterior comprobaba que el paquete se pudiera importar y escribía que la agregación no se había ejecutado. El valor nuevo llama a directLFQ 0.3.3 con el formato genérico `protein` / `ion` y los parámetros por defecto. El Fisher, los filtros y las listas de ruido siguen siendo los de la enmienda v3.4. Si después de cablearlo el estado sigue siendo `no_evaluable`, queda como limitación declarada. No vuelve rojo el certificado. Lo decidió el autor el 10-nov-2026.
+
+Orden de adquisición. El valor anterior contaba `*.raw` (120, porque hay 60 ficheros AppleDouble) y, si encontraba el binario, decía que el analizador no estaba cableado. El valor nuevo cuenta solo `(CP|CN|HC)_NN_DIA.raw`. El campo de fecha, leído en un JSON del disco antes de esta frase, es `Content Creation Date`. Se calculan el AUC y los Spearman con los crudos que tienen fecha. Con menos de 60 el estado es `no_evaluable`. No se inventan tiempos. No cambia el titular y no vuelve rojo el certificado. Los seis crudos rechazados no se vuelven a descargar hoy. Si el autor los descarga otro día, una v3.6 cierra la prueba de 60.
+
+Certificado. El valor anterior aceptaba un `no_evaluable` si la lista contenía el texto `H6`, así que H8 pasaba con la regla de H6. La casilla de H9 apuntaba a `hipotesis_v3_4.tsv`, que no existe. El valor nuevo compara el identificador de la pieza y su estado con una lista estructurada. Añade casillas de preanalítica, triangulación, reproducción del ML, regresión v1, manifiestos y la fuente real de H9. Publicar exige que cada limitación declarada esté en esa lista y que exista cada fuente citada.
+
+H7. El valor anterior metía a Papier 2024, con 1 positivo y 125 negativos, en el entrenamiento de Álvez y del HPA. El valor nuevo saca de los recursos entrenables a quien tenga menos de 10 observaciones en alguna clase y lo deja `no_evaluable`, con su conteo. La regla de sostiene y de refuta no cambia. Se informan las dos versiones.
+
+H6. El valor anterior devolvía `no_sostiene` con una tabla sin signos distintos. El estado no se cambia después de ver el resultado: lo sigue dando la regla escrita. El valor nuevo añade `tabla_degenerada` cuando una columna de la tabla 2×2 es cero, y el motivo de que la prueba no puede detectar una diferencia. La lectura no puede decir que el tipo celular no influye.
+
+Aprendizaje. El valor anterior de la celda preregistrada en v3.4 usaba la semilla del multiverso y daba un AUC distinto de 0,88025. El valor nuevo, solo para esa celda, usa las semillas de v3.3 y el mismo orden de muestras. El resto de celdas conserva la semilla de v3.4. Si no reproduce 0,88025, la casilla queda en rojo.
+
+Controles. El valor anterior copiaba el estado `calculado` de v3.3. El veredicto de v3.3 era falla cuando `n_fallos` era mayor que cero. El valor nuevo lo deriva de `n_fallos`.
+
+Triangulación. El valor anterior dejaba solo la columna `gen`. El valor nuevo rellena las columnas de la enmienda con los ficheros que ya están en disco. Lo que falta se escribe `no_medida`. No hay pruebas nuevas.
+
+H9. La enmienda v3.4 decía que H9 no se intentaba. El mismo día, el commit `f5a26fb` habilitó el Wald exploratorio de `GCST90255676`. Se declara como desviación de procedimiento. H9 no decide la tesis. La frase anterior no se borra.
+
+Las preguntas del 10-nov-2026 quedan cerradas: Firebase solo si el certificado v3.5 es publicable; el PDF como zip de Overleaf, sin instalar MacTeX.
+
+Las cifras v3.4 no se borran: pasan al anexo de historial con su motivo.
