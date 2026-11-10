@@ -1,0 +1,46 @@
+\chapter{Desviaciones del preregistro y trabajo futuro}
+% fuente: config/preregistro_v3.yaml#enmienda_v3_7_cierre
+% fuente: config/correspondencia_propuesta.tsv
+
+Lo que no se ejecutó no se presenta como resultado. La enmienda \texttt{enmienda\_v3\_7\_cierre} lo dejó escrito antes de la corrida. \Advertencia
+
+\section{Correspondencia con la propuesta}
+La tabla sale de \texttt{config/correspondencia\_propuesta.tsv}. La tesis y la web leen ese fichero.
+
+{\small
+\input{correspondencia}
+}
+
+\section{Lo que no se ejecutó}
+
+\paragraph{Vías del suero.}
+El preregistro v3, sección 12, pedía el GSEA de CPTAC dentro de la corrida limpia. No se ejecutó. Haría falta recalcular ese GSEA en la misma corrida, no copiarlo de una anterior.
+
+\paragraph{Cláusula de vías de H1.}
+No se ejecutó. No cambia el veredicto: la cláusula de proteína ya deja H1 en \HunoVeredicto.
+
+\paragraph{Unión HC y XIC.}
+Hace falta convertir los \PreCrudos\ crudos y extraer el XIC. HC queda no evaluable a nivel de muestra. El report nombra esas corridas como \texttt{Normal\_} en un \texttt{.mzML} y el crudo se llama \texttt{HC\_}.
+
+\paragraph{Deriva del PRTC.}
+El depositante añadió 200~fmol de Pierce 88320 a cada muestra, según el protocolo de PRIDE. Medirlo exige el XIC de los péptidos pesados en los crudos. No se ejecutó. Se cita por nombre y número de catálogo, sin enlace de producto.
+
+\paragraph{Redes de coexpresión.}
+La hipótesis H2 del preregistro v2 no permite interpretar una red sin al menos 1000 redes reconectadas que conserven los grados. No se ejecutó.
+
+\paragraph{Catálogo de candidatas.}
+En \texttt{metadata/tesis/candidatas\_literatura.tsv} hay 35 de 37 fuentes sin verificar. Solo se auditaron las dos verificadas. BAIAP3 está entre los grupos del report y sale en el filtro global de 1~\%. CEACAM5 no aparece entre esos grupos. El recorrido está en \texttt{auditoria\_rai2025.tsv} \cite{rai2025}.
+
+\paragraph{Neoantígenos.}
+El report de DIA-NN se buscó solo contra UniProt humano. Hacen falta las secuencias del material suplementario de Rai y una búsqueda nueva \cite{rai2025}.
+
+\section{Lo que esta corrida sí deja dicho}
+
+El secundario de H7, con ESM-2 y TMbed, es \HsieteSec\ en \texttt{h7\_visibilidad\_en\_sangre.json}. No entra en el veredicto. No se usa como resultado estable entre versiones.
+
+H6 usó el respaldo del HPA porque Pelka 2021 no estaba disponible. La prueba quedó degenerada y el estado es \HseisEstado.
+
+H8 queda en \HochoEstado: \HochoTumorales\ tumorales epiteliales en un universo de \HochoUniverso.
+
+\section{Recomendación de diseño}
+Una cohorte futura necesita el orden de adquisición aleatorizado o equilibrado entre grupos, y controles sintomáticos. CN ya son pacientes con otra enfermedad intestinal, no personas sanas. Con el orden en bloques no se puede separar el grupo del lote.

@@ -179,11 +179,6 @@
     "fuente": "results/v3_7/preanalitica.json#calculado_con_legibles.auc.p_exacta_mann_whitney",
     "crudo": 1.4508889103849684e-11
   },
-  "PreCotaMax": {
-    "valor": "0,193",
-    "fuente": "results/v3_7/preanalitica.json#cota_con_60.auc_max",
-    "crudo": 0.1925
-  },
   "PreRhoPiel": {
     "valor": "−0,76",
     "fuente": "results/v3_7/preanalitica.json#spearman.piel.rho",
@@ -193,6 +188,56 @@
     "valor": "60",
     "fuente": "results/v3_7/preanalitica.json#n_con_fecha",
     "crudo": 60
+  },
+  "CoberturaNum": {
+    "valor": "147",
+    "fuente": "results/v3_7/k1_etiquetas.json#cobertura.numerador",
+    "crudo": 147
+  },
+  "CoberturaDen": {
+    "valor": "688",
+    "fuente": "results/v3_7/k1_etiquetas.json#cobertura.denominador",
+    "crudo": 688
+  },
+  "HunoVeredicto": {
+    "valor": "Rechaza H1",
+    "fuente": "results/v3_7/k1_etiquetas.json#h1_veredicto",
+    "crudo": "rechaza_h1"
+  },
+  "BhPrecursoresCn": {
+    "valor": "0,027",
+    "fuente": "results/v3_7/preanalitica.json#bh_descriptivo.q.CN:log2_n_precursores",
+    "crudo": 0.026514075346556504
+  },
+  "BhPielCn": {
+    "valor": "0,056",
+    "fuente": "results/v3_7/preanalitica.json#bh_descriptivo.q.CN:piel",
+    "crudo": 0.05551752132967296
+  },
+  "GoConNum": {
+    "valor": "16",
+    "fuente": "results/v3_7/go_tejido.json#concordancia_nes.numerador",
+    "crudo": 16
+  },
+  "GoConDen": {
+    "valor": "16",
+    "fuente": "results/v3_7/go_tejido.json#concordancia_nes.denominador",
+    "crudo": 16
+  },
+  "Priori5": {
+    "valor": "20",
+    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
+    "crudo": 20
+  },
+  "Priori6": {
+    "valor": "0",
+    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
+    "crudo": 0
+  },
+  "HsieteSec": {
+    "valor": "0,47738",
+    "fuente": "results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario",
+    "crudo": 0.4773843370379944
   },
   "PreCrudos": {
     "valor": "60",

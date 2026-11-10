@@ -40,9 +40,18 @@ Salen de `results/v3_7/` por `scripts/v3/exportar_cifras_v3_7.py`.
 | \PreEstado | Calculado | results/v3_7/preanalitica.json#estado |
 | \PreAuc | 0,000 | results/v3_7/preanalitica.json#calculado_con_legibles.auc.valor |
 | \PreP | 1,5 × 10⁻¹¹ | results/v3_7/preanalitica.json#calculado_con_legibles.auc.p_exacta_mann_whitney |
-| \PreCotaMax | 0,193 | results/v3_7/preanalitica.json#cota_con_60.auc_max |
 | \PreRhoPiel | −0,76 | results/v3_7/preanalitica.json#spearman.piel.rho |
 | \PreFecha | 60 | results/v3_7/preanalitica.json#n_con_fecha |
+| \CoberturaNum | 147 | results/v3_7/k1_etiquetas.json#cobertura.numerador |
+| \CoberturaDen | 688 | results/v3_7/k1_etiquetas.json#cobertura.denominador |
+| \HunoVeredicto | Rechaza H1 | results/v3_7/k1_etiquetas.json#h1_veredicto |
+| \BhPrecursoresCn | 0,027 | results/v3_7/preanalitica.json#bh_descriptivo.q.CN:log2_n_precursores |
+| \BhPielCn | 0,056 | results/v3_7/preanalitica.json#bh_descriptivo.q.CN:piel |
+| \GoConNum | 16 | results/v3_7/go_tejido.json#concordancia_nes.numerador |
+| \GoConDen | 16 | results/v3_7/go_tejido.json#concordancia_nes.denominador |
+| \Priori5 | 20 | results/v3_7/priorizacion_embudo.json#pasos |
+| \Priori6 | 0 | results/v3_7/priorizacion_embudo.json#pasos |
+| \HsieteSec | 0,47738 | results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario |
 | \PreCrudos | 60 | results/v3_7/preanalitica.json#n_crudos_validos |
 | \CalidadCoagP | 0,00099 | results/v3_7/k7_control_tecnico.json#coagulacion.p_kruskal |
 | \CalidadPielP | 3,4 × 10⁻⁶ | results/v3_7/k7_control_tecnico.json#piel.p_kruskal |
