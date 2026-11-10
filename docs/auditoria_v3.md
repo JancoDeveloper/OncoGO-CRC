@@ -147,3 +147,20 @@ Los JSON de ThermoRawFileParser en el disco se llaman `CN_02_DIA.json`, no `<cru
 Hay 60 crudos cuyo nombre cumple `(CP|CN|HC)_NN_DIA.raw` y 60 ficheros AppleDouble `._*`. Un glob `*.raw` cuenta 120. Los seis rechazados por el lector tienen el mismo tamaño que la API de PRIDE: CN_01 1049764670, CN_08 1000697970, CN_16 1205043346, CP_18 1226017242, HC_17 1065175806, HC_20 1088171988. El tamaño coincide, así que la descarga no quedó corta. El lector de Thermo, con `-l 1` sobre CN_01, escribió `RAW file is likely corrupted` y `OutOfMemoryException` al cargar MsDevice en el offset 973984150. Hoy no se vuelven a descargar.
 
 Wannberg está en `external/wannberg_2026/wannberg_2026_tabla_s5.tsv`.
+
+## v3.6, comprobaciones del 10 de noviembre de 2026
+
+ThermoRawFileParser disponible: `external/bin/trfp/ThermoRawFileParser`, versión `2.0.0.0`. No aparece otra instalación. La v3.6 hará un intento con esta versión sobre los seis crudos sin JSON, primero `-m 0` y, si falla, `-m 1`. No se descargan.
+
+Inventario de funciones que leen una corrida anterior, para el refactor de la etapa limpia:
+
+- `stages/v3_5.py`: copia `results/v3_4`, lee `results/v3_3` para el ML y para R1, y abre los manifiestos de v3.2 a v3.4.
+- `v3/h8.py`: `results/v3_3/k1_primario_frente_a_mucosa.tsv` y, si falta en la salida, `results/v3_4/h6_origen_celular.tsv`.
+- `v3/triangulacion.py`: K1 y K4 de v3.3, y H5 y H10 de v3.4.
+- `stages/v3_5_preanalitica.py`: `results/v3_3/suero_calidad_muestra.tsv`.
+- `v3/salida.py` `entrada_v3`: si el fichero no está en la salida, abre `results/v3_3`. Lo usan H5, H6 y H7, y el multiverso de v3.4.
+- `v3/secuencia_features.py`: escribe `tmbed_fuente` y `esm2_fuente` como ruta absoluta.
+
+`k1_primario_frente_a_mucosa.tsv` tiene 6587 filas. El código de H8 usa esa tabla entera, no el subconjunto de 147 concordantes. El embudo de v3.6 contará por qué el universo del suero es más pequeño.
+
+matplotlib 3.10.9 y Jinja2 3.1.6 ya están en el entorno. No se instala nada.

@@ -352,3 +352,11 @@ Prueba. Sin `sitio/index.html`, `pytest tests/test_sitio_v3_5.py` da 2 failed y 
 Lighthouse sobre `http://127.0.0.1:8765/index.html`: rendimiento 100, accesibilidad 100, buenas prácticas 96. El informe quedó en `/tmp/lh-v35.json`.
 
 Decisión. La página conserva `v3_3.html`, `lectura-31-oct.html` y copia la página anterior como `v3_4.html`. Cada cifra lleva `data-fuente`.
+
+## 2026-11-10 07:46 (UTC−5). v3.6, fase 0
+
+Comandos: `git checkout main`, `git fetch origin --tags`, `git pull --ff-only origin main`, `git status`, `pytest tests/test_regresion_v1.py` con `ONCOGO_REGRESION_V1=1`, y la comprobación de los cuatro manifiestos.
+
+Resultado. La cabeza es `ef7262f` y el árbol está limpio. El disco `/Volumes/JANCODATA/OncoGO-CRC` está montado. La regresión v1 da 4 passed en 9,69 s (`tests/test_regresion_v1.py`). Los manifiestos de `results/v3_2_manifest.sha256` (112), `results/v3_3_manifest.sha256` (189), `results/v3_4_manifest.sha256` (50) y `results/v3_5_manifest.sha256` (70) coinciden, con 0 hashes distintos. El SHA-256 de `data/raw/plasma/DIA-NN_report.tsv` en el disco es `a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8`. Las etiquetas locales y de GitHub son v3.2-final@c2be8e4, v3.3-final@4f85911, v3.4-final@bff0c5e y v3.5-final@ef7262f. ThermoRawFileParser en `external/bin/trfp/ThermoRawFileParser` informa `2.0.0.0`. No hay otra copia más reciente en el Mac.
+
+Decisión. Se sigue con la enmienda v3.6. El inventario de lecturas de corridas anteriores queda en `docs/auditoria_v3.md`.
