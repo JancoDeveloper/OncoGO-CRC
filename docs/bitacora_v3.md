@@ -278,3 +278,11 @@ Comando: el certificado de v3.3 sobre una H7 con variables faltantes, y `pytest 
 Resultado antes: `armar_certificado` de v3.3 devuelve estado `calculado` y `faltan` `[]`.
 
 Resultado después: 1 passed. El certificado queda `incompleto` y nombra `h7_variables` y `h7_constructos`.
+
+## 2026-11-09 21:58 (UTC−5). v3.4, publicación
+
+Comando: `make all-v3-4`, luego `python scripts/v3/exportar_sitio_v3_4.py` y `python scripts/v3/exportar_tesis_v3_4.py`.
+
+Resultado. La corrida firmada es el commit `3c3f666`, sello `2026-11-10T02:42:55Z`, árbol limpio. El certificado queda `publicable`. Las casillas verdes son H5, controles, H7, H6, multiverso (288, 72 y 2) y H9 (`exploratorio`). H8 queda `limitacion_declarada`: `report.pr_matrix.tsv` es una matriz de precursores y directLFQ no está instalado. H5 `sostiene`. H6 `no_sostiene`. H7 `refuta`, con el modelo principal completo. H10 `descriptiva`, 5 proteínas específicas. La preanalítica queda `no_disponible`. ESM-2 y TMbed entran solo en el modelo secundario: 668 genes con secuencia y 20 sin ella.
+
+Decisión. La página y `results/v3_4/` publican esos JSON. El Word añade la sección generada desde los mismos ficheros. Ninguna cifra de esta entrada se escribió a mano.

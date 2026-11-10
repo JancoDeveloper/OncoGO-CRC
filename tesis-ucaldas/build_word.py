@@ -28,6 +28,7 @@ ARCHIVOS = [
     "chapters/08-metodos.tex",
     "chapters/09-resultados.tex",
     "chapters/09-v33.tex",
+    "chapters/09-v34.tex",
     "chapters/90-conclusiones.tex",
     "chapters/91-anexos.tex",
 ]

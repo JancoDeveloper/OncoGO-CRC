@@ -1,0 +1,43 @@
+% Generado por scripts/v3/exportar_tesis_v3_4.py. No editar a mano.
+\section{Corrida v3.4}
+Esta sección sale de \texttt{results/v3\_4/}. No reutiliza las cifras de v3.3.
+
+El certificado queda en publicable. La corrida firmada es el commit 3c3f666ddf57dbbb1e6f0c0fd03cfb3b0a1cfdd6, 2026-11-10T02:42:55Z.
+
+\begin{tabular}{lll}
+\toprule
+Casilla & Estado & Motivo \\
+\midrule
+h5\_submuestreo & verde & 200 repeticiones con n\_sub \\
+h5\_universo & verde & mismo denominador, potencia y sensibilidad sin OV \\
+controles\_tejido & verde & comprobación física y los dos veredictos \\
+h7\_constructos & verde & el JSON trae constructo, independencia, kappa y modelo\_completo \\
+h7\_variables & verde & están las variables del preregistro \\
+h6 & verde & Fisher bilateral, alfa 0,05; el sentido no se predice \\
+h8 & limitacion\_declarada & report.pr\_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto. \\
+multiverso & verde & 288, 72 y 2 \\
+h9 & verde & exploratorio \\
+\bottomrule
+\end{tabular}
+
+H5 queda en sostiene. Clasifica 624 proteínas. El universo principal tiene 29 genes. La fracción pan-carcinoma es 0,119.
+
+Los controles físicos del tejido dan veredicto pasa. CA1 pasa, AQP8 no\_detectado, SLC26A3 no\_evaluable\_por\_pares, GUCA2A no\_detectado.
+
+H6 queda en no\_sostiene. Fisher bilateral, alfa 0,05; el sentido no se predice.
+
+H7 queda en refuta. El modelo principal está completo: True. alvez\_2023: AUC 0,460 (intervalo 0,362 a 0,563, 53 y 73) hpa\_disease\_blood\_atlas: AUC 0,469 (intervalo 0,362 a 0,579, 53 y 63) papier\_2024: no\_evaluable, 1 positivos y 125 negativos.
+
+El modelo secundario queda en calculado. AUC principal 0,460, AUC secundaria 0,474, incremento 0,0140. El secundario añade ESM-2, con PCA de 5 dentro de cada pliegue, y las dos salidas de TMbed. No entra en el veredicto. Hay secuencia para 668 genes y no la hay para 20.
+
+H8 queda en no\_evaluable. report.pr\_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto.
+
+H9 queda en exploratorio. Wald con un instrumento por proteína. No decide la tesis. IVW, Egger y la mediana piden al menos tres.
+
+H10 queda en descriptiva, con 5 proteínas específicas.
+
+El multiverso tiene 288 celdas de suero, 72 de aprendizaje y 2 normalizaciones.
+
+La preanalítica queda en no\_disponible, con 120 crudos contados. hacen falta los 60 crudos y ThermoRawFileParser en el PATH. No se inventan tiempos de adquisición.
+
+Ningún resultado de esta tesis sirve para decidir sobre un paciente.

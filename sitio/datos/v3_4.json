@@ -1,0 +1,114 @@
+{
+  "certificado": {
+    "estado": "publicable",
+    "faltan": [],
+    "limitaciones": [
+      {
+        "id": "h8",
+        "estado": "limitacion_declarada",
+        "motivo": "report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto.",
+        "fuente": "h8_carga_tumoral.json"
+      }
+    ],
+    "casillas": [
+      {
+        "id": "h5_submuestreo",
+        "estado": "verde",
+        "motivo": "200 repeticiones con n_sub",
+        "fuente": "h5_especificidad_organo.json"
+      },
+      {
+        "id": "h5_universo",
+        "estado": "verde",
+        "motivo": "mismo denominador, potencia y sensibilidad sin OV",
+        "fuente": "h5_especificidad_organo.json"
+      },
+      {
+        "id": "controles_tejido",
+        "estado": "verde",
+        "motivo": "comprobación física y los dos veredictos",
+        "fuente": "controles_fisicos.tsv"
+      },
+      {
+        "id": "h7_constructos",
+        "estado": "verde",
+        "motivo": "el JSON trae constructo, independencia, kappa y modelo_completo",
+        "fuente": "h7_visibilidad_en_sangre.json"
+      },
+      {
+        "id": "h7_variables",
+        "estado": "verde",
+        "motivo": "están las variables del preregistro",
+        "fuente": "h7_visibilidad_en_sangre.json"
+      },
+      {
+        "id": "h6",
+        "estado": "verde",
+        "motivo": "Fisher bilateral, alfa 0,05; el sentido no se predice",
+        "fuente": "h6_origen_celular.json"
+      },
+      {
+        "id": "h8",
+        "estado": "limitacion_declarada",
+        "motivo": "report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto.",
+        "fuente": "h8_carga_tumoral.json"
+      },
+      {
+        "id": "multiverso",
+        "estado": "verde",
+        "motivo": "288, 72 y 2",
+        "fuente": "multiverso_v3_4.json"
+      },
+      {
+        "id": "h9",
+        "estado": "verde",
+        "motivo": "exploratorio",
+        "fuente": "hipotesis_v3_4.tsv"
+      }
+    ],
+    "advertencia": "Ningún resultado de esta tesis sirve para decidir sobre un paciente."
+  },
+  "sello": {
+    "commit": "3c3f666ddf57dbbb1e6f0c0fd03cfb3b0a1cfdd6",
+    "fecha_utc": "2026-11-10T02:42:55Z",
+    "etapa": "v3_4"
+  },
+  "piezas": {
+    "h5": {
+      "estado": "sostiene"
+    },
+    "h6": {
+      "estado": "no_sostiene",
+      "motivo": "Fisher bilateral, alfa 0,05; el sentido no se predice"
+    },
+    "h7": {
+      "estado": "refuta"
+    },
+    "h8": {
+      "estado": "no_evaluable",
+      "motivo": "report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto."
+    },
+    "h9": {
+      "estado": "exploratorio",
+      "motivo": "Wald con un instrumento por proteína. No decide la tesis. IVW, Egger y la mediana piden al menos tres."
+    },
+    "h10": {
+      "estado": "descriptiva"
+    },
+    "multiverso": {
+      "n_celdas_suero": 288,
+      "n_celdas_ml": 72,
+      "n_r1": 2
+    },
+    "preanalitica": {
+      "estado": "no_disponible",
+      "motivo": "hacen falta los 60 crudos y ThermoRawFileParser en el PATH. No se inventan tiempos de adquisición.",
+      "n_crudos": 120
+    },
+    "secuencia": {
+      "estado": "calculado",
+      "n_con_secuencia": 668,
+      "n_sin_secuencia": 20
+    }
+  }
+}

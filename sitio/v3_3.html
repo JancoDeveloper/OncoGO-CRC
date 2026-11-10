@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OncoGO-CRC · corrida v3.3</title>
+<style>
+  :root { color-scheme: light; --ink:#142028; --paper:#f4f7f6; --card:#fff; --line:#c5d0cc; }
+  body { margin:0; font-family:"Avenir Next","Segoe UI",sans-serif; background:var(--paper); color:var(--ink); line-height:1.5; }
+  main { max-width:46rem; margin:0 auto; padding:1.5rem; }
+  figure { margin:1.5rem 0; background:var(--card); border:1px solid var(--line); padding:0.75rem; }
+  img { max-width:100%; height:auto; }
+  table { border-collapse:collapse; width:100%; font-size:0.9rem; }
+  td, th { border-bottom:1px solid var(--line); text-align:left; padding:0.3rem; vertical-align:top; }
+  a { color:#083f3b; }
+</style>
+</head>
+<body>
+<main>
+<p><a href="#contenido">Saltar al contenido</a></p>
+<h1 id="contenido">OncoGO-CRC, corrida v3.3</h1>
+<p>Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<p>No se detecta diferencia; 166 proteínas son equivalentes</p>
+<p>La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra.</p>
+<p>H1: rechaza_h1. Frágil a la normalización: False.</p>
+<p>H5: refuta. H7: refuta. H10: descriptiva, 5 proteínas específicas, fase 1.</p>
+<h2>Controles del tejido</h2>
+<ul><li>CA1: pasa, observado -2.314058303758073</li><li>AQP8: falla, observado no_evaluable</li><li>SLC26A3: falla, observado no_evaluable</li><li>GUCA2A: falla, observado no_evaluable</li></ul>
+<p>Con AQP8, SLC26A3 y GUCA2A en falla, las etiquetas de tumor y mucosa no quedan confirmadas.</p>
+<h2>Lo que esta corrida no cierra</h2>
+<ul>
+<li>Variables que H7 lista como faltantes: especificidad_tisular, origen_celular_h6, presencia_en_vesiculas_pxd033236, esm2_t12_35M_pca5, tmbed_helices_tm, tmbed_peptido_senal, papier_2024.</li>
+<li>El multiverso calculado tiene 48 celdas. H5, H7 y H10 no dependen de estas celdas del suero. No se recalculan en cada una.</li>
+</ul>
+<h2>Figuras</h2>
+<figure><img src="figuras/F1.png" alt="Resumen de la corrida"><figcaption>Resumen de la corrida. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F2.png" alt="Grupos que quedan en el contraste principal"><figcaption>Grupos que quedan en el contraste principal. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F3.png" alt="Indicadores de calidad por grupo"><figcaption>Indicadores de calidad por grupo. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F4.png" alt="log2FC del contraste principal"><figcaption>log2FC del contraste principal. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F5.png" alt="AUC de v3.2 y de v3.3"><figcaption>AUC de v3.2 y de v3.3. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F6.png" alt="AUC de ruido con y sin filas duplicadas"><figcaption>AUC de ruido con y sin filas duplicadas. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F7.png" alt="Controles del tejido"><figcaption>Controles del tejido. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F8.png" alt="log2FC antes y después del centrado"><figcaption>log2FC antes y después del centrado. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F9.png" alt="De las proteínas certificadas a las específicas"><figcaption>De las proteínas certificadas a las específicas. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F10.png" alt="Clases de H5"><figcaption>Clases de H5. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F11.png" alt="Rejilla del multiverso de K4"><figcaption>Rejilla del multiverso de K4. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F12.png" alt="Curvas de H7"><figcaption>Curvas de H7. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F13.png" alt="Proteínas de partida en el atlas"><figcaption>Proteínas de partida en el atlas. Fuente: results/v3_3.</figcaption></figure>
+<figure><img src="figuras/F14.png" alt="Fase de Pepe de esta corrida"><figcaption>Fase de Pepe de esta corrida. Fuente: results/v3_3.</figcaption></figure>
+<h2>Qué cambió frente a v3.2</h2>
+<table>
+<thead><tr><th>Cifra</th><th>v3.2</th><th>v3.3</th><th>Causa</th></tr></thead>
+<tbody><tr><td>n_principal</td><td>205</td><td>284</td><td>2.1</td></tr><tr><td>frase_suero</td><td>No se detecta diferencia; 105 proteínas son equivalentes</td><td>No se detecta diferencia; 166 proteínas son equivalentes</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_colonoscopia_negativa.n</td><td>205</td><td>284</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_colonoscopia_negativa.equivalente</td><td>105</td><td>166</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_colonoscopia_negativa.indeterminada</td><td>100</td><td>118</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_sanos.n</td><td>205</td><td>284</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_sanos.diferente</td><td>2</td><td>3</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_sanos.equivalente</td><td>104</td><td>154</td><td>2.1</td></tr><tr><td>principal.crc_frente_a_sanos.indeterminada</td><td>99</td><td>127</td><td>2.1</td></tr><tr><td>principal.colonoscopia_negativa_frente_a_sanos.n</td><td>205</td><td>284</td><td>2.1</td></tr><tr><td>principal.colonoscopia_negativa_frente_a_sanos.diferente</td><td>0</td><td>1</td><td>2.1</td></tr><tr><td>principal.colonoscopia_negativa_frente_a_sanos.equivalente</td><td>128</td><td>194</td><td>2.1</td></tr><tr><td>principal.colonoscopia_negativa_frente_a_sanos.indeterminada</td><td>77</td><td>89</td><td>2.1</td></tr><tr><td>primario_frente_a_mucosa</td><td>89/90</td><td>147/147</td><td>2.3</td></tr><tr><td>metastasis_hepatica_frente_a_mucosa</td><td>69/82</td><td>116/143</td><td>2.3</td></tr><tr><td>primario_frente_a_mucosa_no_pareado</td><td>95/98</td><td>155/157</td><td>2.3</td></tr><tr><td>h1_fragil_a_normalizacion</td><td>no_calculado</td><td>False</td><td>2.4</td></tr><tr><td>mediana_log2fc_pareado</td><td>no_calculado</td><td>0.1792660486145855</td><td>2.4</td></tr><tr><td>mediana_log2fc_pareado_centrado</td><td>0.1792660486145855</td><td>0.08045971886685321</td><td>2.4</td></tr><tr><td>deming_intercepto</td><td>0.771543426701222</td><td>0.6503090482500555</td><td>2.4</td></tr><tr><td>ml.M1_proteinas_filtrada_humana.auc_oof_media</td><td>0.99625</td><td>0.9466249999999998</td><td>2.2</td></tr><tr><td>ml.M2_proteinas_principal.auc_oof_media</td><td>0.9809375</td><td>0.88025</td><td>2.2</td></tr><tr><td>ml.M4_solo_coagulacion.auc_oof_media</td><td>0.81875</td><td>0.818375</td><td>2.2</td></tr><tr><td>ml.M4_solo_coagulacion.p_permutacion</td><td>0.000999000999000999</td><td>0.001998001998001998</td><td>2.2</td></tr><tr><td>titular_ml</td><td>no_calculado</td><td>separacion_explicada_por_calidad</td><td>2.2</td></tr><tr><td>h5.estado</td><td>no_disponible</td><td>refuta</td><td>2.5</td></tr><tr><td>h5.fraccion_pan_carcinoma</td><td>no_calculado</td><td>0.11858974358974358</td><td>2.5</td></tr><tr><td>h10.estado</td><td>calculado</td><td>descriptiva</td><td>2.6</td></tr><tr><td>h10.n_especificas_crc</td><td>0</td><td>5</td><td>2.6</td></tr><tr><td>h7.estado</td><td>no_evaluable</td><td>refuta</td><td>2.7</td></tr><tr><td>control.CA1.pasa</td><td>no_evaluable</td><td>pasa</td><td>2.3</td></tr><tr><td>control.AQP8.pasa</td><td>no_evaluable</td><td>falla</td><td>2.3</td></tr><tr><td>control.SLC26A3.pasa</td><td>no_evaluable</td><td>falla</td><td>2.3</td></tr><tr><td>control.GUCA2A.pasa</td><td>no_evaluable</td><td>falla</td><td>2.3</td></tr></tbody>
+</table>
+<p><a href="lectura-31-oct.html">Lectura del 31 de octubre, histórica.</a> <a href="simulador.html">Simulador del intervalo de una AUC.</a></p>
+<p>Los números de esta página los escribe <code>scripts/v3/exportar_sitio.py</code> desde <code>results/v3_3/</code>.</p>
+</main>
+</body>
+</html>

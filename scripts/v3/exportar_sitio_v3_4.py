@@ -21,6 +21,19 @@ def _html(texto: object) -> str:
     return str(texto).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+def _pieza_publica(pieza: dict) -> dict:
+    """Copia solo los campos que el JSON trae. Un ausente no se escribe como None."""
+    salida = {}
+    if pieza.get("estado") is not None:
+        salida["estado"] = pieza["estado"]
+    if pieza.get("motivo"):
+        salida["motivo"] = pieza["motivo"]
+    for clave in ("n_celdas_suero", "n_celdas_ml", "n_r1", "n_crudos", "n_con_secuencia", "n_sin_secuencia"):
+        if pieza.get(clave) is not None:
+            salida[clave] = pieza[clave]
+    return salida
+
+
 def _leer(base: Path, nombre: str) -> dict | None:
     ruta = base / nombre
     if not ruta.is_file():
@@ -50,11 +63,30 @@ def datos_publicos(base: Path) -> dict:
         "certificado": {clave: certificado[clave] for clave in certificado if clave != "sello"},
         "sello": {"commit": sello.get("commit"), "fecha_utc": sello.get("fecha_utc"), "etapa": sello.get("etapa")},
         "piezas": {
-            nombre: {"estado": pieza.get("estado"), "motivo": pieza.get("motivo")}
+            nombre: _pieza_publica(pieza)
             for nombre, pieza in piezas.items()
             if isinstance(pieza, dict)
         },
     }
+
+
+def _texto_pieza(pieza: dict) -> str:
+    partes = []
+    if pieza.get("estado") is not None:
+        partes.append(str(pieza["estado"]))
+    if pieza.get("motivo"):
+        partes.append(str(pieza["motivo"]))
+    for clave, etiqueta in (
+        ("n_celdas_suero", "celdas de suero"),
+        ("n_celdas_ml", "celdas de aprendizaje"),
+        ("n_r1", "normalizaciones"),
+        ("n_crudos", "crudos contados"),
+        ("n_con_secuencia", "genes con secuencia"),
+        ("n_sin_secuencia", "genes sin secuencia"),
+    ):
+        if pieza.get(clave) is not None:
+            partes.append(f"{pieza[clave]} {etiqueta}")
+    return ". ".join(str(parte).rstrip(".") for parte in partes)
 
 
 def pagina(datos: dict) -> str:
@@ -66,7 +98,7 @@ def pagina(datos: dict) -> str:
         for c in certificado["casillas"]
     )
     piezas = "".join(
-        f"<li>{_html(nombre)}: {_html(pieza.get('estado'))}. {_html(pieza.get('motivo') or '')}</li>"
+        f"<li>{_html(nombre)}: {_html(_texto_pieza(pieza))}</li>"
         for nombre, pieza in datos["piezas"].items()
     )
     sello = datos["sello"]

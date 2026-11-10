@@ -1,0 +1,23 @@
+{
+  "estado": "no_evaluable",
+  "motivo": "report.pr_matrix.tsv es una matriz de precursores. La enmienda pide directLFQ y ese paquete no está instalado. No se suma ni se promedia como sustituto.",
+  "mapa_uno_a_uno": false,
+  "n_muestras_unidas": 0,
+  "sello": {
+    "commit": "3c3f666ddf57dbbb1e6f0c0fd03cfb3b0a1cfdd6",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T02:42:55Z",
+    "sha256_preregistro": "8ebf50cc0ec82ba51d00fae819f5490d593a9f561c843b619571d47c7188cdb6",
+    "sha256_enmiendas": "13dd68ff742590f2eb1fb24f2db37d141a9c4863cdbce554b0cfa36c7fe4a89e",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_4"
+  }
+}

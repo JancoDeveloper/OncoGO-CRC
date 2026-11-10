@@ -1,0 +1,432 @@
+{
+  "estado": "sostiene",
+  "n_clasificadas": 624,
+  "conteo": {
+    "pan_carcinoma": 74,
+    "especifica_colon": 127,
+    "intermedia": 423
+  },
+  "fraccion_pan_carcinoma": 0.11858974358974358,
+  "concordancia_colon_tanaka": 1.0,
+  "concordancia_otros": {
+    "CCRCC": {
+      "estimacion": 0.4827586206896552,
+      "numerador": 14,
+      "denominador": 29,
+      "ci_low": 0.2944855829517784,
+      "ci_high": 0.6746850036389438
+    },
+    "HNSCC": {
+      "estimacion": 0.9310344827586207,
+      "numerador": 27,
+      "denominador": 29,
+      "ci_low": 0.7723381100551658,
+      "ci_high": 0.9915360377469982
+    },
+    "LSCC": {
+      "estimacion": 0.896551724137931,
+      "numerador": 26,
+      "denominador": 29,
+      "ci_low": 0.7264848021076974,
+      "ci_high": 0.9781362631701468
+    },
+    "LUAD": {
+      "estimacion": 0.7931034482758621,
+      "numerador": 23,
+      "denominador": 29,
+      "ci_low": 0.6027530507727604,
+      "ci_high": 0.9200581511240756
+    },
+    "OV": {
+      "estimacion": 0.9310344827586207,
+      "numerador": 27,
+      "denominador": 29,
+      "ci_low": 0.7723381100551658,
+      "ci_high": 0.9915360377469982
+    },
+    "PDAC": {
+      "estimacion": 0.5862068965517241,
+      "numerador": 17,
+      "denominador": 29,
+      "ci_low": 0.3893627913968056,
+      "ci_high": 0.7647597902471048
+    }
+  },
+  "concordancias_universo_principal": {
+    "COAD": {
+      "estimacion": 1.0,
+      "numerador": 29,
+      "denominador": 29,
+      "ci_low": 0.8805551309302788,
+      "ci_high": 1.0
+    },
+    "CCRCC": {
+      "estimacion": 0.4827586206896552,
+      "numerador": 14,
+      "denominador": 29,
+      "ci_low": 0.2944855829517784,
+      "ci_high": 0.6746850036389438
+    },
+    "HNSCC": {
+      "estimacion": 0.9310344827586207,
+      "numerador": 27,
+      "denominador": 29,
+      "ci_low": 0.7723381100551658,
+      "ci_high": 0.9915360377469982
+    },
+    "LSCC": {
+      "estimacion": 0.896551724137931,
+      "numerador": 26,
+      "denominador": 29,
+      "ci_low": 0.7264848021076974,
+      "ci_high": 0.9781362631701468
+    },
+    "LUAD": {
+      "estimacion": 0.7931034482758621,
+      "numerador": 23,
+      "denominador": 29,
+      "ci_low": 0.6027530507727604,
+      "ci_high": 0.9200581511240756
+    },
+    "OV": {
+      "estimacion": 0.9310344827586207,
+      "numerador": 27,
+      "denominador": 29,
+      "ci_low": 0.7723381100551658,
+      "ci_high": 0.9915360377469982
+    },
+    "PDAC": {
+      "estimacion": 0.5862068965517241,
+      "numerador": 17,
+      "denominador": 29,
+      "ci_low": 0.3893627913968056,
+      "ci_high": 0.7647597902471048
+    }
+  },
+  "universo_principal_n": 29,
+  "concordancias_sensibilidad": {
+    "n": 1230,
+    "concordancias": {
+      "COAD": {
+        "estimacion": 0.8056910569105691,
+        "numerador": 991,
+        "denominador": 1230,
+        "ci_low": 0.7824525771169811,
+        "ci_high": 0.8274578965279548
+      },
+      "CCRCC": {
+        "estimacion": 0.6195121951219512,
+        "numerador": 762,
+        "denominador": 1230,
+        "ci_low": 0.5917134669001393,
+        "ci_high": 0.6467380588969086
+      },
+      "HNSCC": {
+        "estimacion": 0.6601626016260163,
+        "numerador": 812,
+        "denominador": 1230,
+        "ci_low": 0.6329272874170218,
+        "ci_high": 0.686629831859657
+      },
+      "LSCC": {
+        "estimacion": 0.724390243902439,
+        "numerador": 891,
+        "denominador": 1230,
+        "ci_low": 0.6984966453965503,
+        "ci_high": 0.7492064790726634
+      },
+      "LUAD": {
+        "estimacion": 0.7195121951219512,
+        "numerador": 885,
+        "denominador": 1230,
+        "ci_low": 0.6934956088816069,
+        "ci_high": 0.7444749565002381
+      },
+      "OV": {
+        "estimacion": 0.7382113821138211,
+        "numerador": 908,
+        "denominador": 1230,
+        "ci_low": 0.7126866211376536,
+        "ci_high": 0.7625920314851423
+      },
+      "PDAC": {
+        "estimacion": 0.5097560975609756,
+        "numerador": 627,
+        "denominador": 1230,
+        "ci_low": 0.4814174494194659,
+        "ci_high": 0.5380480070489048
+      }
+    }
+  },
+  "concordancia_k1_referencia": {
+    "estimacion": 1.0,
+    "nota": "seleccionada por CPTAC; no entra en la regla"
+  },
+  "maxima_concordancia_otro_organo": 0.9310344827586207,
+  "submuestreo": {
+    "estado": "calculado",
+    "n_sub": 10,
+    "n_repeticiones": 200,
+    "fraccion_mismo_lado_0_20": 0.68,
+    "mediana_fraccion_pan": 0.1724137931034483,
+    "p2_5": 0.06896551724137931,
+    "p97_5": 0.2413793103448276,
+    "potencia_submuestreada": {
+      "COAD": {
+        "n_pares": 10,
+        "n_significativas_mediana": 179.0
+      },
+      "CCRCC": {
+        "n_pares": 10,
+        "n_significativas_mediana": 694.5
+      },
+      "HNSCC": {
+        "n_pares": 10,
+        "n_significativas_mediana": 180.0
+      },
+      "LSCC": {
+        "n_pares": 10,
+        "n_significativas_mediana": 901.5
+      },
+      "LUAD": {
+        "n_pares": 10,
+        "n_significativas_mediana": 347.0
+      },
+      "OV": {
+        "n_pares": 10,
+        "n_significativas_mediana": 70.0
+      },
+      "PDAC": {
+        "n_pares": 10,
+        "n_significativas_mediana": 46.5
+      }
+    }
+  },
+  "sensibilidad_sin_ov": {
+    "estado": "calculado",
+    "n_sub": 44,
+    "n_repeticiones": 200,
+    "fraccion_mismo_lado_0_20": 0.995,
+    "mediana_fraccion_pan": 0.13793103448275862,
+    "p2_5": 0.06896551724137931,
+    "p97_5": 0.1724137931034483,
+    "potencia_submuestreada": {
+      "COAD": {
+        "n_pares": 44,
+        "n_significativas_mediana": 559.0
+      },
+      "CCRCC": {
+        "n_pares": 44,
+        "n_significativas_mediana": 1397.5
+      },
+      "HNSCC": {
+        "n_pares": 44,
+        "n_significativas_mediana": 841.0
+      },
+      "LSCC": {
+        "n_pares": 44,
+        "n_significativas_mediana": 1872.5
+      },
+      "LUAD": {
+        "n_pares": 44,
+        "n_significativas_mediana": 936.0
+      },
+      "PDAC": {
+        "n_pares": 44,
+        "n_significativas_mediana": 728.0
+      }
+    },
+    "decide_el_veredicto": false
+  },
+  "potencia_por_carcinoma": {
+    "COAD": {
+      "n_pares": 96,
+      "n_significativas": 732,
+      "fraccion_significativas": 0.08091974353305328
+    },
+    "CCRCC": {
+      "n_pares": 80,
+      "n_significativas": 1617,
+      "fraccion_significativas": 0.14578074287774972
+    },
+    "HNSCC": {
+      "n_pares": 62,
+      "n_significativas": 996,
+      "fraccion_significativas": 0.08722304930379192
+    },
+    "LSCC": {
+      "n_pares": 99,
+      "n_significativas": 2289,
+      "fraccion_significativas": 0.18196994991652754
+    },
+    "LUAD": {
+      "n_pares": 101,
+      "n_significativas": 1221,
+      "fraccion_significativas": 0.09955968688845401
+    },
+    "OV": {
+      "n_pares": 10,
+      "n_significativas": 70,
+      "fraccion_significativas": 0.006696642112312255
+    },
+    "PDAC": {
+      "n_pares": 44,
+      "n_significativas": 728,
+      "fraccion_significativas": 0.06458481192334989
+    }
+  },
+  "fraccion_de_submuestreos_con_pan_al_mismo_lado_de_0_20": 0.68,
+  "n_submuestreos": 200,
+  "n_pares_colon": 96,
+  "sostiene_significa": "No se cumple la refutación preregistrada.",
+  "carcinomas_disponibles": [
+    "CCRCC",
+    "HNSCC",
+    "LSCC",
+    "LUAD",
+    "OV",
+    "PDAC"
+  ],
+  "carcinomas_excluidos": {
+    "UCEC": "no tiene 8 pares con el mismo identificador"
+  },
+  "diagnostico_pares": {
+    "COAD": {
+      "n_tumor": 97,
+      "n_normal": 100,
+      "n_comunes": 96,
+      "ejemplos_tumor": [
+        "01CO008",
+        "22CO006",
+        "05CO002"
+      ],
+      "ejemplos_normal": [
+        "11CO037",
+        "11CO051",
+        "05CO035"
+      ]
+    },
+    "CCRCC": {
+      "n_tumor": 103,
+      "n_normal": 80,
+      "n_comunes": 80,
+      "ejemplos_tumor": [
+        "C3L-00561",
+        "C3L-01287",
+        "C3L-01603"
+      ],
+      "ejemplos_normal": [
+        "C3L-01287",
+        "C3L-00561",
+        "C3N-01524"
+      ]
+    },
+    "HNSCC": {
+      "n_tumor": 108,
+      "n_normal": 62,
+      "n_comunes": 62,
+      "ejemplos_tumor": [
+        "C3L-00997",
+        "C3N-03849",
+        "C3N-03487"
+      ],
+      "ejemplos_normal": [
+        "C3N-01858",
+        "C3L-00997",
+        "C3N-03849"
+      ]
+    },
+    "LSCC": {
+      "n_tumor": 108,
+      "n_normal": 99,
+      "n_comunes": 99,
+      "ejemplos_tumor": [
+        "C3L-02665",
+        "C3L-01663",
+        "C3N-02575"
+      ],
+      "ejemplos_normal": [
+        "C3L-02665",
+        "C3L-01663",
+        "C3N-02575"
+      ]
+    },
+    "LUAD": {
+      "n_tumor": 110,
+      "n_normal": 101,
+      "n_comunes": 101,
+      "ejemplos_tumor": [
+        "C3N-01799",
+        "C3L-01890",
+        "C3N-00572"
+      ],
+      "ejemplos_normal": [
+        "C3N-01799",
+        "C3L-01890",
+        "C3N-00572"
+      ]
+    },
+    "OV": {
+      "n_tumor": 83,
+      "n_normal": 19,
+      "n_comunes": 10,
+      "ejemplos_tumor": [
+        "02OV032",
+        "04OV057",
+        "04OV028"
+      ],
+      "ejemplos_normal": [
+        "01OV007",
+        "17OV003",
+        "01OV023"
+      ]
+    },
+    "PDAC": {
+      "n_tumor": 105,
+      "n_normal": 44,
+      "n_comunes": 44,
+      "ejemplos_tumor": [
+        "C3N-03884",
+        "C3L-03123",
+        "C3L-01687"
+      ],
+      "ejemplos_normal": [
+        "C3L-03123",
+        "C3N-03884",
+        "C3L-03630"
+      ]
+    },
+    "UCEC": {
+      "n_tumor": 95,
+      "n_normal": 18,
+      "n_comunes": 0,
+      "ejemplos_tumor": [
+        "C3N-00858",
+        "C3L-01252",
+        "C3L-00947"
+      ],
+      "ejemplos_normal": [
+        "NX1",
+        "NX2",
+        "NX3"
+      ]
+    }
+  },
+  "sello": {
+    "commit": "3c3f666ddf57dbbb1e6f0c0fd03cfb3b0a1cfdd6",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T02:42:55Z",
+    "sha256_preregistro": "8ebf50cc0ec82ba51d00fae819f5490d593a9f561c843b619571d47c7188cdb6",
+    "sha256_enmiendas": "13dd68ff742590f2eb1fb24f2db37d141a9c4863cdbce554b0cfa36c7fe4a89e",
+    "sha256_manifest_entradas": "b68f2a37d8857c9f3f28a78e9f9d8a05092e04583e07e73e57dec1b64dc0f907",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_4"
+  }
+}
