@@ -285,6 +285,7 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg=None) -> dict
     valores = valores.replace(0, np.nan)
     log, escala = a_escala_log2(valores.to_numpy(dtype=float))
     mat = pd.DataFrame(log, index=valores.index.astype(str), columns=columnas_sh)
+    n_proteinas_directlfq = int(len(mat))
     estadio = mapa["estadio"]
     iv = [c for c in mat.columns if estadio.get(c) in _IV]
     i_ii = [c for c in mat.columns if estadio.get(c) in _I_II]
@@ -293,6 +294,7 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg=None) -> dict
         "i_ii": mat[i_ii].notna().mean(axis=1),
     })
     mat = mat.loc[(presencia["iv"] >= 0.70) & (presencia["i_ii"] >= 0.70)]
+    n_presencia = int(len(mat))
     lfc = float(prereg.get("inferencia.treat_lfc"))
     alpha = float(prereg.get("inferencia.alpha"))
     contraste = _contraste(mat, iv, i_ii, lfc=lfc, alpha=alpha, nombre="pxd064655_iv_frente_a_i_ii")
@@ -445,6 +447,17 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg=None) -> dict
         "sensibilidad_coagulacion": covariable,
         "sensibilidad_ordinal": "rho_estadio en h8_carga_tumoral.tsv; no decide",
         "ox_humano": HUMANO_OX,
+        "embudo_universo": {
+            "n_proteinas_directlfq": n_proteinas_directlfq,
+            "n_presencia_iv_y_i_ii": n_presencia,
+            "n_gen_unico": int(tabla["gen"].nunique()),
+            "n_con_log2fc_tanaka": int(tabla["en_universo"].sum()),
+            "n_suben_en_tanaka": int(tabla["gen"].str.upper().isin(sube_tejido).sum()),
+            "n_epiteliales": int(tabla["gen"].str.upper().isin(epitelial).sum()),
+            "n_fuera_de_listas_de_ruido": int(tabla["lista_de_ruido"].eq("").sum()),
+            "n_tumorales_epiteliales": int(tabla["tumoral_epitelial"].sum()),
+        },
+        "motivo_universo": "El universo es toda la tabla k1_primario_frente_a_mucosa.tsv. Entran las proteínas del suero con gen único que también tienen log2FC en esa tabla. El código no recorta a las proteínas concordantes ni a las 688 certificadas.",
         "lectura": "Un sostiene diría que el estadio IV lleva más proteína epitelial del tumor a la sangre. Un no_sostiene con pocas proteínas tumorales es, sobre todo, un límite de profundidad de un DIA sin depleción.",
     }
     volcar_json(payload, salida / "h8_carga_tumoral.json", sello)
