@@ -408,3 +408,11 @@ Comando: `python scripts/download/pxd055218_crudos.py --workspace /Volumes/JANCO
 Resultado. Sale con código 1: `PRIDE no publica SHA-1 para CN_01_DIA.raw`. `checksum.txt` tiene 4838 bytes y cada línea es `D:\Akhila\PhD\DIA\PRIDE\<crudo>`, tabulador y el SHA-1. El lector tomaba el texto que va detrás del hash, y ahí no hay nombre. La prueba nueva falla con `KeyError: CN_01_DIA.raw` y, con el lector corregido, `pytest tests/test_v3_7_crudos.py` da 2 passed.
 
 Decisión. Se relanza la pasada de los 60.
+
+## 2026-11-10 09:28 (UTC−5). v3.7, el crudo nuevo no cruza de disco
+
+Comando: la misma pasada. `CN_01_DIA.raw` se descargó entero (1001 MB) y su SHA-1 coincidió. Al moverlo del caché de APFS al volumen exFAT, `Path.replace` salió con `OSError: [Errno 18] Cross-device link`. El crudo viejo ya estaba en `cuarentena/` y el nuevo seguía en `~/Library/Caches/oncogo/`.
+
+Prueba. Antes del arreglo, `test_colocar_el_crudo_nuevo_deja_el_viejo_en_cuarentena` da `AttributeError`. Después, `pytest tests/test_v3_7_crudos.py` da 3 passed.
+
+Decisión. `shutil.move` hace la copia entre discos. Si el fichero del caché ya tiene el SHA-1 de PRIDE, no se vuelve a descargar.

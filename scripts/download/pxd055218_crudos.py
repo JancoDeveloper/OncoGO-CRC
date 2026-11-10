@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import re
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -59,12 +60,21 @@ def evaluar_crudo(crudo: Path, sha1_pride: str, bytes_pride: int | None) -> dict
     }
 
 
-def descargar(url: str, destino: Path) -> None:
+def descargar(url: str, destino: Path, reanudar: bool = True) -> None:
     destino.parent.mkdir(parents=True, exist_ok=True)
-    subprocess.run(
-        ["curl", "-fL", "--retry", "5", "-C", "-", "-o", str(destino), url],
-        check=True,
-    )
+    comando = ["curl", "-fL", "--retry", "5", "-o", str(destino), url]
+    if reanudar:
+        comando[4:4] = ["-C", "-"]
+    subprocess.run(comando, check=True)
+
+
+def colocar(temporal: Path, crudo: Path, fecha: str) -> None:
+    """Mueve el crudo verificado aunque el caché y el volumen sean discos distintos."""
+    cuarentena = crudo.parent / "cuarentena"
+    cuarentena.mkdir(exist_ok=True)
+    if crudo.exists():
+        crudo.rename(cuarentena / f"{crudo.name}.danado-{fecha}")
+    shutil.move(temporal, crudo)
 
 
 def main() -> None:
@@ -76,37 +86,40 @@ def main() -> None:
     cache = args.cache
     cache.mkdir(parents=True, exist_ok=True)
     checksum = raws / "checksum.txt"
-    descargar(f"{URL_BASE}/checksum.txt", cache / "checksum.txt")
+    descargar(f"{URL_BASE}/checksum.txt", cache / "checksum.txt", reanudar=False)
     texto = (cache / "checksum.txt").read_text(encoding="utf-8", errors="replace")
     if not checksum.is_file() or checksum.read_text(encoding="utf-8", errors="replace") != texto:
         checksum.write_text(texto, encoding="utf-8")
     tabla = parsear_checksum(texto)
+    fecha = "2026-11-10"
+    cuarentena = raws / "cuarentena"
+    if cuarentena.is_dir():
+        for viejo in cuarentena.glob("*.raw.danado"):
+            viejo.rename(viejo.with_name(f"{viejo.name}-{fecha}"))
     filas = []
-    for crudo in sorted(raws.glob("[CH][NPC]_*.raw")):
-        if crudo.name.startswith("._"):
-            continue
-        esperado = tabla.get(crudo.name)
-        if not esperado:
-            raise SystemExit(f"PRIDE no publica SHA-1 para {crudo.name}")
-        fila = evaluar_crudo(crudo, esperado, None)
+    for nombre in sorted(nombre for nombre in tabla if nombre.endswith(".raw")):
+        crudo = raws / nombre
+        esperado = tabla[nombre]
+        temporal = cache / nombre
+        if crudo.is_file():
+            fila = evaluar_crudo(crudo, esperado, None)
+        else:
+            fila = {"crudo": nombre, "bytes_local": 0, "bytes_pride": "", "sha1_local": "", "sha1_pride": esperado, "igual": False, "pide_redescarga": True, "redescargado": False, "intentos": 0}
         if fila["pide_redescarga"]:
             for intento in range(1, 4):
-                temporal = cache / crudo.name
-                if temporal.exists():
-                    temporal.unlink()
-                descargar(f"{URL_BASE}/{crudo.name}", temporal)
+                if not (temporal.is_file() and sha1_de(temporal) == esperado):
+                    if temporal.exists():
+                        temporal.unlink()
+                    descargar(f"{URL_BASE}/{nombre}", temporal)
                 fila["intentos"] = intento
                 if sha1_de(temporal) == esperado:
-                    cuarentena = raws / "cuarentena"
-                    cuarentena.mkdir(exist_ok=True)
-                    crudo.rename(cuarentena / f"{crudo.name}.danado")
-                    temporal.replace(crudo)
+                    colocar(temporal, crudo, fecha)
                     fila = evaluar_crudo(crudo, esperado, None)
                     fila["redescargado"] = True
                     fila["intentos"] = intento
                     break
             else:
-                raise SystemExit(f"{crudo.name} no coincide con PRIDE tras 3 descargas")
+                raise SystemExit(f"{nombre} no coincide con PRIDE tras 3 descargas")
         filas.append(fila)
     salida = Path("results") / "v3_7"
     salida.mkdir(parents=True, exist_ok=True)
