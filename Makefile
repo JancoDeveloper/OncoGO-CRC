@@ -228,3 +228,10 @@ all-v3-4: v3-4
 v3-5:
 	$(RUN) v3_5
 all-v3-5: v3-5
+
+# --------------------------------------------------------------------- v3.6
+# Recalcula cada pieza en results/v3_6/. No copia corridas anteriores.
+.PHONY: v3-6 all-v3-6
+v3-6:
+	$(RUN) v3_6
+all-v3-6: v3-6

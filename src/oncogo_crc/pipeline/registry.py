@@ -52,6 +52,7 @@ from oncogo_crc.stages import (
     v3_3_report,
     v3_4,
     v3_5,
+    v3_6,
     validate_inputs,
     version_inputs,
 )
@@ -109,6 +110,7 @@ STAGES: dict[str, StageFn] = {
     "v3_3_report": v3_3_report.run,
     "v3_4": v3_4.run,
     "v3_5": v3_5.run,
+    "v3_6": v3_6.run,
 }
 
 STAGE_ORDER = list(STAGES.keys())
@@ -142,5 +144,6 @@ EXCLUDED_FROM_ALL: frozenset[str] = frozenset(
         "v3_3_report",
         "v3_4",
         "v3_5",
+        "v3_6",
     }
 )
