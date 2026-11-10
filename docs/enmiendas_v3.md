@@ -108,6 +108,8 @@ Multiverso. El valor anterior calculó 48 celdas. El valor nuevo calcula las 288
 
 H9. No hay un GWAS de CRC descargable sin cuenta y verificado en el GWAS Catalog. Queda `requiere_acceso`.
 
+El mismo día, después de esa frase, se verificó `GCST90255676`: europeos, sin UK Biobank, GRCh37, md5 `919638df0721391b4414e8873a2c87da`. El condicional ya escrito —Wald con el cis-pQTL líder de Sun 2023— queda habilitado. SAA1 no entra si no tiene fila cis en la tabla de descubrimiento. El cálculo es exploratorio y no decide la tesis. La frase anterior no se borra.
+
 Las preguntas iniciales se cierran con el valor por defecto: Firebase solo con el checklist en verde; el PDF como zip de Overleaf; ESM-2 y TMbed sí, porque el disco externo tiene más de 20 GB libres; los metadatos de adquisición sí cuando estén los 60 crudos.
 
 Las cifras v3.3 no se borran: pasan al anexo de historial con su motivo.

@@ -16,7 +16,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 from oncogo_crc.settings import Settings
-from oncogo_crc.v3.salida import volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import entrada_v3, volcar_json, volcar_tsv
 from oncogo_crc.v3.suero_v32 import semilla_v33
 
 N_GRUPOS_PROTEINA = 5
@@ -110,6 +110,53 @@ def veredicto(por_recurso: dict[str, dict], umbral: float = 0.55, minimo: int = 
     return "no_concluyente"
 
 
+ESPECIFICIDAD = {
+    "tissue enriched": 3.0,
+    "group enriched": 2.0,
+    "tissue enhanced": 1.0,
+    "low tissue specificity": 0.0,
+    "not detected": float("nan"),
+}
+
+
+def _especificidad_tisular(settings: Settings, tabla: pd.DataFrame, variables: list[dict]) -> bool:
+    """HPA RNA tissue specificity, con la escala escrita en la enmienda v3.4."""
+    import zipfile
+    ruta = settings.resolve("external/hpa/proteinatlas.tsv.zip")
+    if not ruta.is_file():
+        return False
+    with zipfile.ZipFile(ruta) as zf:
+        atlas = pd.read_csv(
+            zf.open(zf.namelist()[0]), sep="\t",
+            usecols=["Gene", "RNA tissue specificity", "RNA tissue specific nTPM"],
+            dtype=str,
+        )
+    atlas["gen"] = atlas["Gene"].str.upper()
+    atlas = atlas.drop_duplicates("gen").set_index("gen")
+    texto = atlas["RNA tissue specificity"].str.lower().reindex(tabla.index)
+    tabla["especificidad_tisular"] = texto.map(ESPECIFICIDAD)
+    elevado = atlas["RNA tissue specific nTPM"].fillna("").str.lower().reindex(tabla.index)
+    tabla["intestino_entre_los_elevados"] = elevado.str.contains("colon|intestine|rectum", regex=True).astype(float)
+    variables.append({"variable": "especificidad_tisular", "fuente": str(ruta), "definicion": "enriched 3, group enriched 2, enhanced 1, low 0, not detected NaN"})
+    variables.append({"variable": "intestino_entre_los_elevados", "fuente": str(ruta), "definicion": "1 si colon, intestine o rectum está en RNA tissue specific nTPM"})
+    return True
+
+
+def _origen_h6(settings: Settings, salida: Path, tabla: pd.DataFrame, variables: list[dict]) -> bool:
+    ruta = entrada_v3(settings, salida, "h6_origen_celular.tsv")
+    if not ruta.is_file():
+        return False
+    clases = pd.read_csv(ruta, sep="\t", dtype=str)
+    if not {"gen", "clase"}.issubset(clases.columns):
+        return False
+    clases["gen"] = clases["gen"].str.upper()
+    mapa = clases.drop_duplicates("gen").set_index("gen")["clase"]
+    for clase in ("epitelial", "no_epitelial", "mixta"):
+        tabla[f"h6_{clase}"] = tabla.index.isin(set(mapa.index[mapa.eq(clase)])).astype(float)
+        variables.append({"variable": f"h6_{clase}", "fuente": str(ruta), "definicion": f"clase H6 {clase}"})
+    return True
+
+
 def _etiqueta(padj, signo_recurso, signo_cptac) -> float:
     if not np.isfinite(padj) or not np.isfinite(signo_recurso) or not np.isfinite(signo_cptac) or signo_cptac == 0:
         return float("nan")
@@ -155,9 +202,10 @@ def construir_tabla_h7(settings: Settings, salida: Path) -> tuple[pd.DataFrame, 
         variables.append({"variable": "concentracion_plasmatica_hpa_log10", "fuente": str(hpa), "definicion": "log10 de conc_sangre_ms_pg_l"})
     else:
         faltantes.extend(["hpa_secreted_to_blood", "concentracion_plasmatica_hpa_log10"])
-    faltantes.append("especificidad_tisular")
+    if not _especificidad_tisular(settings, tabla, variables):
+        faltantes.append("especificidad_tisular")
 
-    h5 = salida / "h5_especificidad_organo.tsv"
+    h5 = entrada_v3(settings, salida, "h5_especificidad_organo.tsv")
     if h5.is_file():
         clases = pd.read_csv(h5, sep="\t", dtype=str)
         if "gen" in clases.columns and "clase" in clases.columns:
@@ -171,7 +219,7 @@ def construir_tabla_h7(settings: Settings, salida: Path) -> tuple[pd.DataFrame, 
     else:
         faltantes.append("clase_h5")
 
-    k1 = salida / "k1_primario_frente_a_mucosa.tsv"
+    k1 = entrada_v3(settings, salida, "k1_primario_frente_a_mucosa.tsv")
     grupos = settings.resolve("data/raw/pride/Cohort1_proteinGroups.txt")
     uni = settings.resolve("metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv")
     matriz = settings.resolve("data/raw/pride/pride_crc_matrix.tsv")
@@ -191,7 +239,9 @@ def construir_tabla_h7(settings: Settings, salida: Path) -> tuple[pd.DataFrame, 
     else:
         faltantes.append("abundancia_en_tejido")
 
-    faltantes.extend(["origen_celular_h6", "presencia_en_vesiculas_pxd033236", "esm2_t12_35M_pca5", "tmbed_helices_tm", "tmbed_peptido_senal"])
+    if not _origen_h6(settings, salida, tabla, variables):
+        faltantes.append("origen_celular_h6")
+    faltantes.extend(["presencia_en_vesiculas_pxd033236", "esm2_t12_35M_pca5", "tmbed_helices_tm", "tmbed_peptido_senal"])
     return tabla, pd.DataFrame(variables), faltantes
 
 
@@ -228,14 +278,48 @@ def _recursos(settings: Settings, tabla: pd.DataFrame) -> list[str]:
             )
             for g in tabla.index
         ]
+    _anotar_papier(settings, tabla)
     return [r for r in ("alvez_2023", "hpa_disease_blood_atlas", "papier_2024") if f"y_{r}" in tabla.columns]
 
 
-def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
+def _anotar_papier(settings: Settings, tabla: pd.DataFrame) -> None:
+    """Supp Data 3 trae todas las asociaciones, incluidas las no significativas."""
+    ruta = settings.resolve("external/papier_2024/41467_2024_48017_MOESM4_ESM.xlsx")
+    if not ruta.is_file():
+        return
+    bloque = pd.read_excel(ruta, sheet_name="Supp Data 3", header=3)
+    bloque = bloque.loc[bloque["Cancer site"].eq("Colorectal Cancer")].copy()
+    bloque["gen"] = bloque["Protein"].astype(str).str.upper()
+    bloque = bloque.drop_duplicates("gen").set_index("gen")
+    p = pd.to_numeric(bloque["P-value"], errors="coerce")
+    hr = pd.to_numeric(bloque["Hazard Ratio"], errors="coerce")
+    if int((p > 0.05).sum()) == 0:
+        tabla.attrs["papier_estado"] = "no_disponible"
+        tabla.attrs["papier_motivo"] = "el suplemento solo trae asociaciones significativas"
+        return
+    umbral = 0.05 / 639
+    signo = np.sign(np.log(hr.where(hr > 0)))
+    etiquetas = []
+    for g in tabla.index:
+        if g not in bloque.index or not np.isfinite(p.get(g, np.nan)):
+            etiquetas.append(np.nan)
+            continue
+        signo_cptac = tabla.at[g, "log2fc_cptac"]
+        coincide = np.isfinite(signo.get(g, np.nan)) and np.isfinite(signo_cptac) and signo_cptac != 0 and np.sign(signo.at[g]) == np.sign(signo_cptac)
+        etiquetas.append(1.0 if float(p.at[g]) < umbral and coincide else 0.0)
+    tabla["y_papier_2024"] = etiquetas
+    tabla.attrs["papier_umbral"] = umbral
+    tabla.attrs["papier_n"] = int(len(bloque))
+    tabla.attrs["papier_n_no_significativas"] = int((p > 0.05).sum())
+
+
+def ejecutar(settings: Settings, salida: Path, sello: dict, prereg, semilla: int | None = None, semilla_b: int | None = None) -> dict:
     tabla, ficha, faltantes = construir_tabla_h7(settings, salida)
     recursos = _recursos(settings, tabla)
     if "papier_2024" not in recursos:
         faltantes.append("papier_2024")
+        if tabla.attrs.get("papier_motivo"):
+            faltantes.append(str(tabla.attrs["papier_motivo"]))
     variables = [c for c in ficha["variable"] if c in tabla.columns]
     volcar_tsv(ficha, salida / "h7_variables.tsv", sello)
     volcar_tsv(tabla.reset_index(names="gen"), salida / "h7_tabla_proteinas.tsv", sello)
@@ -251,8 +335,8 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
         }
         volcar_json(payload, salida / "h7_visibilidad_en_sangre.json", sello)
         return payload
-    semilla = semilla_v33(prereg, "h7_modelo")
-    semilla_b = semilla_v33(prereg, "h7_bootstrap")
+    semilla = semilla_v33(prereg, "h7_modelo") if semilla is None else semilla
+    semilla_b = semilla_v33(prereg, "h7_bootstrap") if semilla_b is None else semilla_b
     predicciones = []
     por_recurso = {}
     for recurso in recursos:

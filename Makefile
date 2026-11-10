@@ -214,3 +214,10 @@ v3-3-sitio:
 v3-3-tesis:
 	$(PY) scripts/v3/exportar_cifras_tesis.py
 all-v3-3: manifest-write v3-manifiestos regresion-v1 v3-3-suero v3-3-tejido v3-3-controles v3-3-hipotesis v3-3-multiverso v3-3-ml v3-3-report v3-3-figuras v3-3-sitio v3-3-tesis
+
+# --------------------------------------------------------------------- v3.4
+# Escribe solo bajo results/v3_4/. Exige el árbol de git limpio, como el resto de corridas firmadas.
+.PHONY: v3-4 all-v3-4
+v3-4:
+	$(RUN) v3_4
+all-v3-4: v3-4

@@ -17,7 +17,7 @@ from oncogo_crc.utils.moderated import moderate_table, paired_observed_stats
 from oncogo_crc.v3.concordancia import concordancia_de_signo
 from oncogo_crc.v3.genes_tanaka import gen_unico, mapa_genes
 from oncogo_crc.v3.prereg import PreregistroV3
-from oncogo_crc.v3.salida import volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import entrada_v3, volcar_json, volcar_tsv
 
 BASE = "https://cptac-pancancer-data.s3.us-west-2.amazonaws.com/data_freeze_v1.2_reorganized"
 HGNC_URL = "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt"
@@ -290,12 +290,12 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
     n = int(len(clasificadas))
     fraccion_pan = float(conteo.get("pan_carcinoma", 0) / n) if n else float("nan")
     import json
-    k1 = salida / "k1_etiquetas.json"
+    k1 = entrada_v3(settings, salida, "k1_etiquetas.json")
     concordancia_k1 = None
     if k1.is_file():
         bloque_k1 = json.loads(k1.read_text(encoding="utf-8"))["contrastes"]["primario_frente_a_mucosa"]
         concordancia_k1 = float(bloque_k1["estimacion"])
-    tanaka = pd.read_csv(salida / "k1_primario_frente_a_mucosa.tsv", sep="\t")
+    tanaka = pd.read_csv(entrada_v3(settings, salida, "k1_primario_frente_a_mucosa.tsv"), sep="\t")
     mapa_tejido = mapa_genes(
         settings.resolve("data/raw/pride/Cohort1_proteinGroups.txt"),
         settings.resolve("metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv"),

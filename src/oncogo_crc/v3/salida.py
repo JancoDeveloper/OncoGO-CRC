@@ -12,17 +12,31 @@ from oncogo_crc.utils.sello import escribir_sello
 from oncogo_crc.v3.rutas import rechazar_si_es_pipeline_antiguo
 
 VERSION_VIGENTE = "v3_3"
+VERSIONES_DE_ESCRITURA = ("v3_3", "v3_4")
 
 
 def carpeta(settings) -> Path:
     return settings.resolve("results") / VERSION_VIGENTE
 
 
+def carpeta_v34(settings) -> Path:
+    return settings.resolve("results") / "v3_4"
+
+
 def exigir_vigente(path: Path) -> None:
     texto = str(path).replace("\\", "/")
     rechazar_si_es_pipeline_antiguo(path)
-    if f"/results/{VERSION_VIGENTE}/" not in texto and not texto.endswith(f"/results/{VERSION_VIGENTE}"):
-        raise RuntimeError(f"{VERSION_VIGENTE} solo escribe bajo results/{VERSION_VIGENTE}: {path}")
+    if any(f"/results/{version}/" in texto or texto.endswith(f"/results/{version}") for version in VERSIONES_DE_ESCRITURA):
+        return
+    raise RuntimeError(f"v3 solo escribe bajo results/v3_3 o results/v3_4: {path}")
+
+
+def entrada_v3(settings, salida: Path, nombre: str) -> Path:
+    """La corrida v3.4 lee un resultado congelado de v3.3 si todavía no lo reescribió."""
+    local = salida / nombre
+    if local.is_file():
+        return local
+    return settings.resolve("results/v3_3") / nombre
 
 
 def manifiesto_congelado(settings) -> Path | None:

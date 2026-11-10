@@ -717,3 +717,15 @@ enmienda_v3_4:
   esm2_tmbed: "sí. El disco externo tiene más de 20 GB libres."
   orden_adquisicion: "sí si están los 60 crudos. En la Fase 0 había 4, así que la etapa queda no_disponible hasta que estén los 60."
   h9_decision: "no se intenta. Queda requiere_acceso."
+  h9_gwas_verificado:
+    fecha: "2026-11-09"
+    decision_anterior: "no se intenta. Queda requiere_acceso."
+    estudio: GCST90255676
+    archivo: external/gwas_crc/GCST90255676_buildGRCh37.tsv
+    md5: 919638df0721391b4414e8873a2c87da
+    asamblea: GRCh37
+    exclusion: "europeos, sin participantes de UK Biobank"
+    licencia: "académica, CC BY-NC 4.0 modificada; no es para una entidad con ánimo de lucro"
+    instrumentos: "cis-pQTL líder de la cohorte de descubrimiento en Sun 2023 ST9; la beta es respecto de A1"
+    saa1: "no entra si no tiene fila cis en esa tabla de descubrimiento"
+    calcula: "Wald exploratorio, un instrumento por proteína; no decide la tesis"

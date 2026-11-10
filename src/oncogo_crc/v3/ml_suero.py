@@ -131,10 +131,10 @@ def _auc_repetida(X, y, semilla, tipo) -> dict:
     }
 
 
-def _nulo(X, y, semilla, tipo) -> dict:
+def _nulo(X, y, semilla, tipo, n_permutaciones: int = N_PERMUTACIONES) -> dict:
     partes = StratifiedKFold(n_splits=N_SPLITS, shuffle=True, random_state=semilla)
     observada, permutaciones, p = permutation_test_score(
-        _tubo(semilla, tipo), X, y, cv=partes, n_permutations=N_PERMUTACIONES,
+        _tubo(semilla, tipo), X, y, cv=partes, n_permutations=n_permutaciones,
         scoring="roc_auc", random_state=semilla, n_jobs=-1,
     )
     return {
@@ -142,11 +142,11 @@ def _nulo(X, y, semilla, tipo) -> dict:
         "p_permutacion": float(p),
         "media_del_nulo": float(np.mean(permutaciones)),
         "percentil_95_del_nulo": float(np.quantile(permutaciones, 0.95)),
-        "n_permutaciones": N_PERMUTACIONES,
+        "n_permutaciones": int(n_permutaciones),
     }
 
 
-def evaluar(X, y, semilla_cv, semilla_nulo, tipo="proteinas") -> dict:
+def evaluar(X, y, semilla_cv, semilla_nulo, tipo="proteinas", n_permutaciones: int = N_PERMUTACIONES) -> dict:
     if X.shape[0] != len(y):
         raise RuntimeError("X e y no tienen el mismo número de filas")
     if len(np.unique(y)) < 2 or min(np.bincount(y.astype(int))) < N_SPLITS:
@@ -157,7 +157,7 @@ def evaluar(X, y, semilla_cv, semilla_nulo, tipo="proteinas") -> dict:
         "n": int(len(y)),
         "n_variables": int(X.shape[1]),
         **_auc_repetida(X, y, semilla_cv, tipo),
-        **_nulo(X, y, semilla_nulo, tipo),
+        **_nulo(X, y, semilla_nulo, tipo, n_permutaciones),
     }
 
 
