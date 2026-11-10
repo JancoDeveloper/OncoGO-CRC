@@ -310,3 +310,13 @@ Resultado antes: 1 error. `ImportError: cannot import name 'agregar_directlfq'`.
 Comando después: el mismo pytest.
 
 Resultado después: 4 passed. El mapa une 2 y excluye 1 estándar. directLFQ 0.3.3 escribe 2 proteínas y 4 columnas. Pandas entrega arrays de solo lectura; el cálculo copia el array antes de que directLFQ escriba encima. No se suman precursores.
+
+## 2026-11-10 06:52 (UTC−5). v3.5, orden de adquisición
+
+Comando antes: `pytest tests/test_v3_5_preanalitica.py`.
+
+Resultado antes: 1 error. `ModuleNotFoundError: No module named 'oncogo_crc.stages.v3_5_preanalitica'`.
+
+Comando después: el mismo pytest.
+
+Resultado después: 3 passed. Los `._*` no cuentan. El campo `Content Creation Date` se lee como fecha. Con 54 de 60 el estado es `no_evaluable` y el AUC queda en `calculado_con_legibles`.
