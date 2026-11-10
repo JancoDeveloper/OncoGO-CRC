@@ -300,3 +300,13 @@ Comando: `git checkout main`, `git pull --ff-only origin main`, `make regresion-
 Resultado. Cabeza `bff0c5e`, árbol limpio, disco montado. Regresión v1: 4 passed en 9,90 s (688, 140, 28, 104/119, 226, 307). Manifiestos v3.2 (112), v3.3 (189) y v3.4 (50) coinciden. SHA-256 del report DIA-NN coincide. Los seis crudos rechazados tienen el tamaño de PRIDE. El campo de fecha es `Content Creation Date`. Hay 60 AppleDouble. Etiquetas `v3.2-final`, `v3.3-final` y `v3.4-final` (esta sobre `bff0c5e`) subidas a origin.
 
 Decisión. No se vuelven a descargar los seis crudos. La enmienda usa el campo de fecha leído en el disco.
+
+## 2026-11-10 06:48 (UTC−5). v3.5, H8
+
+Comando antes del parche: `pytest tests/test_v3_5_h8.py`.
+
+Resultado antes: 1 error. `ImportError: cannot import name 'agregar_directlfq'`.
+
+Comando después: el mismo pytest.
+
+Resultado después: 4 passed. El mapa une 2 y excluye 1 estándar. directLFQ 0.3.3 escribe 2 proteínas y 4 columnas. Pandas entrega arrays de solo lectura; el cálculo copia el array antes de que directLFQ escriba encima. No se suman precursores.
