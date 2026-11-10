@@ -1,0 +1,42 @@
+{
+  "n_celdas_suero": 288,
+  "n_celdas_ml": 72,
+  "n_r1": 2,
+  "r1": {
+    "antes": 1.0,
+    "despues": 1.0
+  },
+  "r1_fuente": "results/v3_7/k1_sensibilidad_normalizacion.json",
+  "r1_sha256": "7352f2c9bb40c8871bb54a65552c3f79dac35845453509435fcee5925f666de6",
+  "celda_preregistrada": {
+    "cuantificacion": "PG.MaxLFQ",
+    "contaminantes": "libreria_v3_3",
+    "paneles": "excluidos",
+    "presencia": "min_n_3",
+    "lfc": 0.585,
+    "alfa": 0.05,
+    "es_la_celda_preregistrada": true,
+    "estado": "calculado",
+    "n": 284,
+    "diferente": 0,
+    "equivalente": 166,
+    "indeterminada": 118
+  },
+  "sello": {
+    "commit": "c1c22898e01fce3e40fd3ea678a86b0c27defe2b",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T18:31:55Z",
+    "sha256_preregistro": "91da7c35d9d2320ec5367aceec677a2da53ecd5c9e335962ff9f44ca5f052dea",
+    "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_7"
+  }
+}

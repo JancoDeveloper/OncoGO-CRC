@@ -1,0 +1,17 @@
+variable	fuente	definicion
+magnitud_en_tejido	results/certified/cptac_unshared_treat.tsv	valor absoluto del log2FC de CPTAC en las proteínas certificadas
+go_extracelular	metadata/gene_ontology/go_gene_long.tsv	GO:0005576
+go_membrana	metadata/gene_ontology/go_gene_long.tsv	GO:0005886
+go_exosoma	metadata/gene_ontology/go_gene_long.tsv	GO:0070062
+hpa_secreted_to_blood	external/hpa/hpa_concentracion_sangre.tsv	localizacion_secretoma == Secreted to blood
+concentracion_plasmatica_hpa_log10	external/hpa/hpa_concentracion_sangre.tsv	log10 de conc_sangre_ms_pg_l
+especificidad_tisular	external/hpa/proteinatlas.tsv.zip	enriched 3, group enriched 2, enhanced 1, low 0, not detected NaN
+intestino_entre_los_elevados	external/hpa/proteinatlas.tsv.zip	1 si colon, intestine o rectum está en RNA tissue specific nTPM
+clase_h5_pan_carcinoma	results/v3_7/h5_especificidad_organo.tsv	one-hot de la clase H5
+clase_h5_especifica_colon	results/v3_7/h5_especificidad_organo.tsv	one-hot de la clase H5
+clase_h5_intermedia	results/v3_7/h5_especificidad_organo.tsv	one-hot de la clase H5
+abundancia_en_tejido	data/raw/pride/pride_crc_matrix.tsv	mediana log2 en Tanaka, una fila por gen único
+h6_epitelial	results/v3_7/h6_origen_celular.tsv	clase H6 epitelial
+h6_no_epitelial	results/v3_7/h6_origen_celular.tsv	clase H6 no_epitelial
+h6_mixta	results/v3_7/h6_origen_celular.tsv	clase H6 mixta
+presencia_en_vesiculas_pxd033236	external/pxd033236	1 si el q-valor de proteína del pdResult no supera el umbral de FDR guardado en el archivo (0.01) y hay abundancia finita en un canal CoT

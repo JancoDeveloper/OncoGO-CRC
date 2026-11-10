@@ -1,0 +1,5 @@
+gen	antes_de_filtrar	despues_de_filtrar	n_obs	log2fc	estado
+CA1	1	1	16.0	-2.314058303758073	pasa
+AQP8	0	0			no_detectado
+SLC26A3	1	1	4.0		no_evaluable_por_pares
+GUCA2A	0	0			no_detectado

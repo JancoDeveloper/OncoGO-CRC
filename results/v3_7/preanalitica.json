@@ -1,0 +1,212 @@
+{
+  "estado": "calculado",
+  "motivo": "60 crudos con fecha",
+  "calculado_con_legibles": {
+    "auc": {
+      "valor": 0.0,
+      "ic95_ledell": null,
+      "motivo_ic": "separación completa; el IC de LeDell degenera",
+      "p_exacta_mann_whitney": 1.4508889103849684e-11,
+      "n_cp": 20,
+      "n_cn": 20
+    },
+    "n_con_fecha": 60,
+    "spearman": {
+      "eritrocitos": {
+        "rho": 0.1726078799249531,
+        "p": 0.2868438506517265,
+        "n": 40
+      },
+      "plaquetas": {
+        "rho": -0.2645403377110695,
+        "p": 0.0990285308879816,
+        "n": 40
+      },
+      "coagulacion": {
+        "rho": -0.5288930581613509,
+        "p": 0.0004504647583099869,
+        "n": 40
+      },
+      "piel": {
+        "rho": -0.7568480300187618,
+        "p": 1.5997161844926908e-08,
+        "n": 40
+      },
+      "log2_n_precursores": {
+        "rho": 0.17016885553470923,
+        "p": 0.2938121377801263,
+        "n": 40
+      }
+    }
+  },
+  "n_crudos_validos": 60,
+  "n_appledouble": 62,
+  "n_con_fecha": 60,
+  "sin_fecha": [],
+  "campo_fecha": "Content Creation Date",
+  "formato_fecha": "%m/%d/%Y %H:%M:%S",
+  "inicio": "2023-09-29T14:04:26",
+  "fin": "2023-10-07T10:31:40",
+  "corridas_por_dia": {
+    "2023-09-29": 5,
+    "2023-09-30": 8,
+    "2023-10-01": 7,
+    "2023-10-02": 9,
+    "2023-10-03": 4,
+    "2023-10-04": 8,
+    "2023-10-05": 7,
+    "2023-10-06": 9,
+    "2023-10-07": 3
+  },
+  "corridas_por_grupo": {
+    "CP": 20,
+    "CN": 20,
+    "HC": 20
+  },
+  "hc_dentro_del_rango_cp_cn": 0,
+  "posicion_hc": "aparte",
+  "instrumento": "Orbitrap Fusion",
+  "p_exacta_mann_whitney": 1.4508889103849684e-11,
+  "cota_con_60": {
+    "auc_min": 0.0,
+    "auc_max": 0.1925,
+    "n_parejas_conocidas": 323,
+    "n_parejas_desconocidas": 77
+  },
+  "posicion_por_grupo": {
+    "CN": {
+      "orden_min": 21,
+      "orden_max": 40,
+      "inicio": "2023-10-02T01:49:32",
+      "fin": "2023-10-04T15:10:19",
+      "n": 20
+    },
+    "CP": {
+      "orden_min": 1,
+      "orden_max": 20,
+      "inicio": "2023-09-29T14:04:26",
+      "fin": "2023-10-01T16:24:35",
+      "n": 20
+    },
+    "HC": {
+      "orden_min": 41,
+      "orden_max": 60,
+      "inicio": "2023-10-04T23:08:06",
+      "fin": "2023-10-07T10:31:40",
+      "n": 20
+    }
+  },
+  "bloques_perfectos": true,
+  "spearman_54": {
+    "estado": "no_evaluable",
+    "n_unidas": 40,
+    "n_con_fecha": 60,
+    "n_sin_union": 20,
+    "motivo": "hay crudos con fecha cuyo nombre no coincide con el sample_id de la tabla de calidad",
+    "en_las_unidas": {
+      "eritrocitos": {
+        "rho": 0.1726078799249531,
+        "p": 0.2868438506517265,
+        "n": 40
+      },
+      "plaquetas": {
+        "rho": -0.2645403377110695,
+        "p": 0.0990285308879816,
+        "n": 40
+      },
+      "coagulacion": {
+        "rho": -0.5288930581613509,
+        "p": 0.0004504647583099869,
+        "n": 40
+      },
+      "piel": {
+        "rho": -0.7568480300187618,
+        "p": 1.5997161844926908e-08,
+        "n": 40
+      },
+      "log2_n_precursores": {
+        "rho": 0.17016885553470923,
+        "p": 0.2938121377801263,
+        "n": 40
+      }
+    }
+  },
+  "spearman_por_grupo": {
+    "CN": {
+      "eritrocitos": {
+        "rho": 0.09624060150375939,
+        "p": 0.6864870716570239,
+        "n": 20
+      },
+      "plaquetas": {
+        "rho": -0.22857142857142856,
+        "p": 0.3323968570405121,
+        "n": 20
+      },
+      "coagulacion": {
+        "rho": -0.14586466165413534,
+        "p": 0.5394664944297438,
+        "n": 20
+      },
+      "piel": {
+        "rho": -0.5548872180451127,
+        "p": 0.011103504265934592,
+        "n": 20
+      },
+      "log2_n_precursores": {
+        "rho": 0.6345864661654135,
+        "p": 0.00265140753465565,
+        "n": 20
+      }
+    },
+    "CP": {
+      "eritrocitos": {
+        "rho": 0.23308270676691725,
+        "p": 0.3226780250046228,
+        "n": 20
+      },
+      "plaquetas": {
+        "rho": -0.06165413533834586,
+        "p": 0.7962393511384775,
+        "n": 20
+      },
+      "coagulacion": {
+        "rho": -0.12330827067669171,
+        "p": 0.604508830626885,
+        "n": 20
+      },
+      "piel": {
+        "rho": -0.09624060150375939,
+        "p": 0.6864870716570239,
+        "n": 20
+      },
+      "log2_n_precursores": {
+        "rho": -0.11278195488721804,
+        "p": 0.6359170579042354,
+        "n": 20
+      }
+    },
+    "HC": {
+      "estado": "no_evaluable",
+      "motivo": "el crudo no une con la tabla de calidad"
+    }
+  },
+  "lectura": "Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.",
+  "sello": {
+    "commit": "c1c22898e01fce3e40fd3ea678a86b0c27defe2b",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T18:31:55Z",
+    "sha256_preregistro": "91da7c35d9d2320ec5367aceec677a2da53ecd5c9e335962ff9f44ca5f052dea",
+    "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_7"
+  }
+}

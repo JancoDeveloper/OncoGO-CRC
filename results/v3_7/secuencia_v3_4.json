@@ -1,0 +1,25 @@
+{
+  "estado": "calculado",
+  "esm2": "external/modelos/models--facebook--esm2_t12_35M_UR50D/snapshots/6fbf070e65b0b7291e7bbcd451118c216cff79d8",
+  "tmbed": "external/modelos/h7_tmbed.pred",
+  "n_con_secuencia": 668,
+  "n_sin_secuencia": 20,
+  "nota": "El modelo principal no usa estas variables. El secundario sí, y no cambia el veredicto.",
+  "sello": {
+    "commit": "c1c22898e01fce3e40fd3ea678a86b0c27defe2b",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T18:31:55Z",
+    "sha256_preregistro": "91da7c35d9d2320ec5367aceec677a2da53ecd5c9e335962ff9f44ca5f052dea",
+    "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
+    "sha256_manifest_entradas": null,
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_7"
+  }
+}

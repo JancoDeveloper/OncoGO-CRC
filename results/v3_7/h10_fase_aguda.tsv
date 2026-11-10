@@ -1,0 +1,11 @@
+gen	clase	padj_sanos	padj_misma_clase	padj_todas_las_demas	logfc_sanos	logfc_misma_clase	logfc_todas_las_demas
+CEBPB	no_elevada_frente_a_sanos	4.51e-05	8.16e-10	7.38e-15	-0.149	-0.229	-0.351
+EPO	no_especifica	2.09e-12	0.015	0.0118	0.814	0.286	0.26
+IL10RB	no_elevada_frente_a_sanos	0.00134	1.08e-05	1.36e-08	0.117	-0.179	-0.205
+IL1RN	no_elevada_frente_a_sanos	1.51e-15	0.028	4.96e-06	0.517	-0.149	-0.42
+IL22RA1	no_elevada_frente_a_sanos	3.66e-08	6.67e-07	4.49e-12	-0.389	-0.199	-0.274
+IL6	no_especifica	5.85e-14	0.0455	2.87e-05	0.818	-0.259	-0.652
+IL6R	no_elevada_frente_a_sanos	0.00106	2.96e-05	2.86e-05	-0.135	-0.144	-0.165
+LBP	no_elevada_frente_a_sanos	5.16e-05	0.358	0.0547	0.33	0.073	-0.164
+LCN2	no_elevada_frente_a_sanos	0.0344	0.468	0.0234	0.111	0.038	-0.12
+TFRC	no_especifica	2.86e-27	1.86e-07	3.65e-07	0.65	0.247	0.236

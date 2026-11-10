@@ -1,0 +1,2 @@
+metrica	valor_v3	valor_v3_2	numerador	denominador	motivo	correccion
+R1_concordancia_de_signo_primario_frente_a_mucosa	no_leido_en_corrida_limpia	147/147	147	147	Se quitaron CON__, REV__ y las marcas de MaxQuant. El mínimo de pares vuelve a 8, el del cierre, por la enmienda y no por el recuento.	T1
