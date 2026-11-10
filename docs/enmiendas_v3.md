@@ -141,3 +141,17 @@ H9. La enmienda v3.4 decía que H9 no se intentaba. El mismo día, el commit `f5
 Las preguntas del 10-nov-2026 quedan cerradas: Firebase solo si el certificado v3.5 es publicable; el PDF como zip de Overleaf, sin instalar MacTeX.
 
 Las cifras v3.4 no se borran: pasan al anexo de historial con su motivo.
+
+## Enmienda v3.6 (definitiva), 10 de noviembre de 2026
+
+Corrida limpia. La v3.5 copió H5, H9, H10, el multiverso y la secuencia desde `results/v3_4/`, y la web citaba ficheros de `results/v3_3/`. La v3.6 recalcula cada pieza en `results/v3_6/` y no copia ninguna. Un vigilante registra cada apertura y falla si se lee una corrida anterior, salvo `results/certified/` y las excepciones de `config/entradas_v3_6.yaml`. No cambia ningún umbral ni ninguna regla de decisión.
+
+Presentación del orden de adquisición. El intervalo de LeDell queda en nulo cuando el AUC es 0 o 1, porque esa separación completa degenera el intervalo. Se añade la p exacta de Mann-Whitney y una cota descriptiva por si los crudos sin fecha se leyeran. Se describe la posición por grupo y si los bloques no se solapan. El estado lo sigue dando la regla escrita. La lectura obligatoria es que calidad, orden y grupo van juntos. La clave del titular sigue siendo `separacion_explicada_por_calidad`.
+
+Los seis crudos. Se hace un intento con la ThermoRawFileParser ya instalada, versión 2.0.0.0, primero metadatos en JSON y, si falla, en texto. No se descargan y no se imputa ninguna fecha. Si se leen los sesenta, la prueba preregistrada se aplica tal cual. Si no, el estado sigue `no_evaluable` y la cota queda escrita.
+
+H8. Se añade un embudo descriptivo del universo. El universo sigue siendo toda la tabla de Tanaka del contraste primario frente a mucosa, no un subconjunto de proteínas concordantes. Si el código ya cumple esa regla, el motivo explica el solapamiento. La regla de Fisher no se mueve.
+
+Formato. Tesis, web y figuras usan un solo módulo de formato. Los JSON guardan el valor completo.
+
+Las corridas v3.2 a v3.5 no se borran. Quedan con su etiqueta y su manifiesto.

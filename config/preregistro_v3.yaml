@@ -784,3 +784,39 @@ enmienda_v3_5:
     firebase: "sí, solo si el certificado v3.5 queda publicable"
     pdf: "zip de Overleaf. No se instala MacTeX."
     h9: "exploratorio; no decide la tesis"
+
+# ------------------------------------------------- 18. Enmienda v3.6 (definitiva)
+enmienda_v3_6:
+  fecha: "2026-11-10"
+  transparencia: >-
+    Los resultados v3.5 ya se habían visto, incluido el AUC 0 del orden de
+    adquisición. La revisión del 10-nov-2026 leyó results/v3_5/ y el código de
+    main@ef7262f. Esta enmienda no mueve ningún umbral ni ninguna regla de
+    decisión. Solo fija una corrida limpia, reglas de presentación y salidas
+    descriptivas que no deciden ninguna hipótesis.
+  no_cambia: [inferencia, k4_suero, k5_auc, enmienda_v3_3, enmienda_v3_4, enmienda_v3_5.h8,
+              enmienda_v3_5.h7, enmienda_v3_5.h6, enmienda_v3_5.ml_celda_preregistrada,
+              enmienda_v3_5.certificado.limitaciones_aceptadas]
+  salida: "results/v3_6/"
+  corrida_limpia:
+    recalcula: todo
+    copia_de_versiones_anteriores: ninguna
+    lecturas_permitidas: [config/, data/, external/, "results/certified/ (tras make regresion-v1 y con su manifiesto)"]
+    excepciones: "config/entradas_v3_6.yaml; cada una con ruta, SHA-256 y motivo"
+    vigilante: "sys.addaudithook registra cada open(); lecturas_v3_6.json"
+  preanalitica:
+    reintento: "un intento por crudo con la ThermoRawFileParser más reciente disponible; -m 0 y, si falla, -m 1; sin descargar"
+    con_60: "se aplica la prueba preregistrada tal cual"
+    con_menos_de_60: "no_evaluable; se informa cota_con_60 (descriptiva)"
+    ic_degenerado: "si AUC es 0 o 1, ic95_ledell = null y se informa p_exacta_mann_whitney"
+    descriptivos: [posicion_por_grupo, bloques_perfectos, spearman_54, spearman_por_grupo]
+  titular:
+    clave: separacion_explicada_por_calidad
+    lectura_adicional: "calidad de muestra, orden de adquisición y grupo van juntos; no se pueden separar"
+  h8:
+    embudo_universo: descriptivo
+    universo: "toda la tabla k1_primario_frente_a_mucosa.tsv, como dice enmienda_v3_4.h8"
+  presentacion:
+    formato_numerico: "src/oncogo_crc/formato.py"
+  semillas:
+    desplazamientos: "los mismos de cada pieza en su versión de origen; la celda preregistrada del ML con las semillas de v3.3"
