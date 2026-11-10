@@ -8,6 +8,7 @@ from pathlib import Path
 import pandas as pd
 
 from oncogo_crc.settings import Settings
+from oncogo_crc.v3.rutas_publicas import ruta_publica
 
 GN = re.compile(r"GN=([A-Za-z0-9]+)")
 MODELO_ESM = (
@@ -145,7 +146,8 @@ def anotar(settings: Settings, tabla: pd.DataFrame) -> dict:
         tabla["tmbed_helices_tm"] = tmbed["tmbed_helices_tm"].reindex(tabla.index)
         tabla["tmbed_peptido_senal"] = tmbed["tmbed_peptido_senal"].reindex(tabla.index)
         info["tmbed"] = "calculado"
-        info["tmbed_fuente"] = str(pred)
+        info["tmbed_fuente"] = ruta_publica(pred, settings)["ruta"]
+        info["tmbed_sha256"] = ruta_publica(pred, settings)["sha256"]
     else:
         info["tmbed"] = "no_disponible"
         info["tmbed_motivo"] = f"la predicción de TMbed tiene {len(tmbed)} proteínas y las secuencias son {len(secuencias)}"
@@ -167,5 +169,6 @@ def anotar(settings: Settings, tabla: pd.DataFrame) -> dict:
         tabla[columna] = emb[columna].reindex(tabla.index)
     info["esm2"] = "calculado"
     info["esm2_dim"] = 480
-    info["esm2_fuente"] = str(settings.resolve(MODELO_ESM))
+    info["esm2_fuente"] = ruta_publica(settings.resolve(MODELO_ESM), settings)["ruta"]
+    info["esm2_sha256"] = ruta_publica(settings.resolve(MODELO_ESM), settings)["sha256"]
     return info

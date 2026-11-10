@@ -21,6 +21,7 @@ from oncogo_crc.v3.genes_tanaka import filas_de_gen, mapa_genes
 from oncogo_crc.v3.ml_suero import _log2_si_hace_falta, evaluar
 from oncogo_crc.v3.prereg import PreregistroV3
 from oncogo_crc.v3.rejilla_v34 import celdas_ml, celdas_suero
+from oncogo_crc.v3.rutas_publicas import ruta_publica
 from oncogo_crc.v3.salida import carpeta_v34, entrada_v3, manifiesto_congelado, volcar_json, volcar_tsv
 from oncogo_crc.v3.suero_v32 import _contraste, _contraste_covariable, _grupos, _log2, _simbolos
 from oncogo_crc.stages.v3_3_suero import _sha256
@@ -204,7 +205,8 @@ def _multiverso(settings: Settings, salida: Path, sello: dict, prereg: Preregist
         "n_celdas_ml": len(ml),
         "n_r1": len(normalizaciones),
         "r1": {nombre: r1_json[nombre].get("r1_estimacion") for nombre in normalizaciones},
-        "r1_fuente": str(r1),
+        "r1_fuente": ruta_publica(r1, settings)["ruta"] if r1.is_file() else None,
+        "r1_sha256": ruta_publica(r1, settings)["sha256"] if r1.is_file() else None,
         "celda_preregistrada": next((fila for fila in filas if fila.get("es_la_celda_preregistrada")), {}),
     }
     volcar_tsv(pd.DataFrame(filas), salida / "multiverso_suero_v3_4.tsv", sello)
