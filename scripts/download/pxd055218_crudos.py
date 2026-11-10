@@ -95,6 +95,8 @@ def main() -> None:
     cuarentena = raws / "cuarentena"
     if cuarentena.is_dir():
         for viejo in cuarentena.glob("*.raw.danado"):
+            if viejo.name.startswith("._") or not viejo.is_file():
+                continue
             viejo.rename(viejo.with_name(f"{viejo.name}-{fecha}"))
     filas = []
     for nombre in sorted(nombre for nombre in tabla if nombre.endswith(".raw")):

@@ -416,3 +416,9 @@ Comando: la misma pasada. `CN_01_DIA.raw` se descargó entero (1001 MB) y su SHA
 Prueba. Antes del arreglo, `test_colocar_el_crudo_nuevo_deja_el_viejo_en_cuarentena` da `AttributeError`. Después, `pytest tests/test_v3_7_crudos.py` da 3 passed.
 
 Decisión. `shutil.move` hace la copia entre discos. Si el fichero del caché ya tiene el SHA-1 de PRIDE, no se vuelve a descargar.
+
+## 2026-11-10 09:29 (UTC−5). v3.7, AppleDouble en la cuarentena
+
+Comando: la pasada relanzada. Sale con `FileNotFoundError` al renombrar `cuarentena/._CN_01_DIA.raw.danado`. El crudo real ya se llama `CN_01_DIA.raw.danado-2026-11-10`. El fichero `._` es un AppleDouble y desaparece al renombrar el crudo.
+
+Decisión. Esos nombres se saltan. La pasada se relanza.
