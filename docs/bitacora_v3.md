@@ -360,3 +360,11 @@ Comandos: `git checkout main`, `git fetch origin --tags`, `git pull --ff-only or
 Resultado. La cabeza es `ef7262f` y el árbol está limpio. El disco `/Volumes/JANCODATA/OncoGO-CRC` está montado. La regresión v1 da 4 passed en 9,69 s (`tests/test_regresion_v1.py`). Los manifiestos de `results/v3_2_manifest.sha256` (112), `results/v3_3_manifest.sha256` (189), `results/v3_4_manifest.sha256` (50) y `results/v3_5_manifest.sha256` (70) coinciden, con 0 hashes distintos. El SHA-256 de `data/raw/plasma/DIA-NN_report.tsv` en el disco es `a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8`. Las etiquetas locales y de GitHub son v3.2-final@c2be8e4, v3.3-final@4f85911, v3.4-final@bff0c5e y v3.5-final@ef7262f. ThermoRawFileParser en `external/bin/trfp/ThermoRawFileParser` informa `2.0.0.0`. No hay otra copia más reciente en el Mac.
 
 Decisión. Se sigue con la enmienda v3.6. El inventario de lecturas de corridas anteriores queda en `docs/auditoria_v3.md`.
+
+## 2026-11-10 08:20 (UTC−5). v3.6, código de la corrida limpia
+
+Comandos: `pytest tests/test_v3_6_preanalitica.py tests/test_v3_5_preanalitica.py` y `pytest tests/test_v3_6_sin_mezcla.py tests/test_v3_6_preanalitica.py tests/test_formato_v3_6.py tests/test_v3_6_entradas.py`.
+
+Resultado. La primera prueba da 5 passed. La segunda da 7 passed. El formato había fallado en la colección (salida 2) antes de existir el módulo y después dio 3 passed, anotado en la fase del módulo.
+
+Decisión. Los commits `e33c1f7`, `76d14ef`, `1b5e0a7`, `80fb952` y `8eb0f4c` quedan en main antes de `make all-v3-6`. La corrida todavía no empieza en esta entrada.
