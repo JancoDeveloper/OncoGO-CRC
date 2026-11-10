@@ -31,3 +31,18 @@ RuntimeError: MPS backend out of memory (MPS allocated: 3.77 GiB, other allocati
 ```
 
 A partir de ahí fallan también las cortas (ILK, 452; HBB, 147), con el mismo mensaje y una petición de unos pocos KiB. El `continue` las deja fuera. Por eso B y C no traen el mismo subconjunto: depende de cuándo se llena la memoria.
+
+## Cálculo en CPU
+
+El script `scripts/v3/esm2_embeddings.py` corre en CPU con 4 hilos. Parte cada secuencia en ventanas de hasta 1022 residuos. El TSV queda en el volumen, `external/modelos/h7_esm2_embeddings.tsv`. El repositorio guarda el sello y el sha256.
+
+Los dos procesos dan el mismo sha256 del TSV: `2b1e48e3d90476bd1cd9f2c8a2091b18be9b0dd119c61c87ac912729bd64e6b7`. No hizo falta repetir con 1 hilo.
+
+| | Calculadas | Omitidas | Ventanas | Tiempo real | Memoria residente máxima | Pico de huella |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1, `logs/esm2_1.log` | 668 | 20 | 832 | 106,19 s | 1 389 969 408 | 1 074 432 064 |
+| 2, `logs/esm2_2.log` | 668 | 20 | 832 | 103,53 s | 1 488 437 248 | 1 235 912 840 |
+
+Las 20 omisiones tienen el mismo motivo, «sin secuencia en el FASTA revisado»: C10ORF99, C14ORF159, C15ORF48, C15ORF52, C1ORF123, C2ORF88, CENPJ, FAM129A, H1F0, H3F3A, HIST1H2BC, HIST1H2BO, IGKV4-1, MARC2, METTL7A, MRVI1, SAA2-SAA4, SEPT10, SEPT6, WISP2. Ninguna se quedó fuera por un error del modelo.
+
+`hw.memsize` es 17 179 869 184. La residente se quedó cerca de 1,5 GB, por debajo de la mitad. Torch 2.15.0 y transformers 5.22.2. El sello del segundo cálculo, que es el que lee la corrida, está en `external/modelos/h7_esm2_embeddings.tsv.sello.json`.
