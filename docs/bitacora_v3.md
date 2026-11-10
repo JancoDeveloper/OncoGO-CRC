@@ -367,4 +367,12 @@ Comandos: `pytest tests/test_v3_6_preanalitica.py tests/test_v3_5_preanalitica.p
 
 Resultado. La primera prueba da 5 passed. La segunda da 7 passed. El formato había fallado en la colección (salida 2) antes de existir el módulo y después dio 3 passed, anotado en la fase del módulo.
 
-Decisión. Los commits `e33c1f7`, `76d14ef`, `1b5e0a7`, `80fb952` y `8eb0f4c` quedan en main antes de `make all-v3-6`. La corrida todavía no empieza en esta entrada.
+Decisión. Los commits `e33c1f7`, `76d14ef`, `1b5e0a7`, `80fb952` y `8eb0f4c` quedan en main antes de `make all-v3-6`. La corrida todavía no empieza en esta entrada. La hora de esta entrada dice 08:20; el commit de la bitácora fue a las 07:57 (UTC−5).
+
+## 2026-11-10 08:46 (UTC−5). v3.6, tesis y página
+
+Comandos: `python scripts/v3/exportar_cifras_tesis.py`, `python scripts/v3/figuras_tesis_v3_6.py`, `python tesis-ucaldas/build_word.py`, `python scripts/v3/exportar_sitio_v3_6.py` y `pytest tests/test_tesis_v3_6.py tests/test_sitio_v3_6.py`.
+
+Resultado. El exportador escribe 49 macros. La prueba de la tesis da 3 passed y la del sitio da 2 passed, 5 passed en total. Chrome sin interfaz escribe `docs/capturas_v3_6/inicio-1440.png`, `inicio-390.png` y `resultados-1440.png`. El volcado del DOM de la portada sale con código 0. No se ejecutó Lighthouse: no está en las herramientas de esta corrida.
+
+Decisión. La tesis, el Word, el zip de Overleaf y la página quedan en el repositorio. La discusión y la introducción siguen con `% REDACTAR-AUTOR`. Los objetivos llevan `% REVISAR-AUTOR`.

@@ -1,6 +1,14 @@
 # OncoGO-CRC
 
-**OncoGO-CRC** es un entorno reproducible de bioinformática para integrar proteómica pública de cáncer colorrectal (CCR), usar **Gene Ontology como eje central** de interpretación (no solo como capa descriptiva final) y priorizar hallazgos con **modelos de aprendizaje automático interpretables**, alineado con el anteproyecto y el reajuste técnico descritos en la carpeta `Informacion/`.
+La corrida vigente es la **v3.6**. El certificado está en `results/v3_6/certificado.json` y la página pública es [oncogo-crc-tesis.web.app](https://oncogo-crc-tesis.web.app). Para repetirla:
+
+```bash
+make all-v3-6
+```
+
+La etiqueta `v3.6-final` marca esa corrida. Las carpetas `results/v3_2` a `results/v3_5` quedan congeladas.
+
+**OncoGO-CRC** es un entorno reproducible de bioinformática para integrar proteómica pública de cáncer colorrectal (CCR). El anteproyecto y el reajuste técnico están en la carpeta `Informacion/`.
 
 ## Documentación (raíz del repositorio)
 
