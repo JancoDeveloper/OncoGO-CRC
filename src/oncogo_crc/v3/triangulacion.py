@@ -23,7 +23,7 @@ def tabla_vacia(genes: list[str], columnas: list[str]) -> pd.DataFrame:
 def _poner(tabla: pd.DataFrame, gen: str, columna: str, valor) -> None:
     if valor is None or (isinstance(valor, float) and pd.isna(valor)):
         return
-    tabla.loc[tabla["gen"].eq(gen), columna] = valor
+    tabla.loc[tabla["gen"].eq(gen), columna] = str(valor)
 
 
 def _clase_por_gen(ruta: Path, columna_valor: str) -> dict[str, object]:
