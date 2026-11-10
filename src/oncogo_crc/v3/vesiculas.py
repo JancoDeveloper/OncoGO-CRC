@@ -16,6 +16,7 @@ import numpy as np
 import pandas as pd
 
 from oncogo_crc.settings import Settings
+from oncogo_crc.v3.rutas_publicas import ruta_publica
 
 ARCHIVOS = (
     ("2815_11plex_0miss_SPhuman_norm_final.pdResult", "Proteomic_profiling_PDresults2815_Study1.xlsx", 2275368960),
@@ -143,7 +144,7 @@ def anotar(settings: Settings, tabla: pd.DataFrame, variables: list[dict]) -> bo
     tabla["presencia_en_vesiculas_pxd033236"] = serie.reindex(tabla.index).fillna(0.0)
     variables.append({
         "variable": "presencia_en_vesiculas_pxd033236",
-        "fuente": str(base),
+        "fuente": ruta_publica(base, settings)["ruta"],
         "definicion": (
             "1 si el q-valor de proteína del pdResult no supera el umbral de FDR "
             f"guardado en el archivo ({umbrales[0]}) y hay abundancia finita en un canal CoT"

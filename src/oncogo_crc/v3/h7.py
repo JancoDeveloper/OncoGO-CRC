@@ -29,6 +29,11 @@ GO_COMPONENTE = {
 }
 
 
+def _fuente(settings: Settings, ruta) -> str:
+    from oncogo_crc.v3.rutas_publicas import ruta_publica
+    return ruta_publica(Path(ruta), settings)["ruta"]
+
+
 def tubo(variables: list[str], columnas_esm: list[str], semilla: int) -> Pipeline:
     bloques = [("var", Pipeline([
         ("imputar", SimpleImputer(strategy="median")),
@@ -137,8 +142,8 @@ def _especificidad_tisular(settings: Settings, tabla: pd.DataFrame, variables: l
     tabla["especificidad_tisular"] = texto.map(ESPECIFICIDAD)
     elevado = atlas["RNA tissue specific nTPM"].fillna("").str.lower().reindex(tabla.index)
     tabla["intestino_entre_los_elevados"] = elevado.str.contains("colon|intestine|rectum", regex=True).astype(float)
-    variables.append({"variable": "especificidad_tisular", "fuente": str(ruta), "definicion": "enriched 3, group enriched 2, enhanced 1, low 0, not detected NaN"})
-    variables.append({"variable": "intestino_entre_los_elevados", "fuente": str(ruta), "definicion": "1 si colon, intestine o rectum está en RNA tissue specific nTPM"})
+    variables.append({"variable": "especificidad_tisular", "fuente": _fuente(settings, ruta), "definicion": "enriched 3, group enriched 2, enhanced 1, low 0, not detected NaN"})
+    variables.append({"variable": "intestino_entre_los_elevados", "fuente": _fuente(settings, ruta), "definicion": "1 si colon, intestine o rectum está en RNA tissue specific nTPM"})
     return True
 
 
@@ -153,7 +158,7 @@ def _origen_h6(settings: Settings, salida: Path, tabla: pd.DataFrame, variables:
     mapa = clases.drop_duplicates("gen").set_index("gen")["clase"]
     for clase in ("epitelial", "no_epitelial", "mixta"):
         tabla[f"h6_{clase}"] = tabla.index.isin(set(mapa.index[mapa.eq(clase)])).astype(float)
-        variables.append({"variable": f"h6_{clase}", "fuente": str(ruta), "definicion": f"clase H6 {clase}"})
+        variables.append({"variable": f"h6_{clase}", "fuente": _fuente(settings, ruta), "definicion": f"clase H6 {clase}"})
     return True
 
 
@@ -186,7 +191,7 @@ def construir_tabla_h7(settings: Settings, salida: Path) -> tuple[pd.DataFrame, 
         for nombre, termino in GO_COMPONENTE.items():
             genes = set(anotacion.loc[anotacion["go_id"].eq(termino), "gene_symbol"].str.upper())
             tabla[nombre] = tabla.index.isin(genes).astype(float)
-            variables.append({"variable": nombre, "fuente": str(go), "definicion": termino})
+            variables.append({"variable": nombre, "fuente": _fuente(settings, go), "definicion": termino})
     else:
         faltantes.append("componente_celular_go")
 
@@ -198,8 +203,8 @@ def construir_tabla_h7(settings: Settings, salida: Path) -> tuple[pd.DataFrame, 
         tabla["hpa_secreted_to_blood"] = sangre["localizacion_secretoma"].eq("Secreted to blood").reindex(tabla.index).fillna(False).astype(float)
         conc = pd.to_numeric(sangre["conc_sangre_ms_pg_l"], errors="coerce").reindex(tabla.index)
         tabla["concentracion_plasmatica_hpa_log10"] = np.where(conc > 0, np.log10(conc), np.nan)
-        variables.append({"variable": "hpa_secreted_to_blood", "fuente": str(hpa), "definicion": "localizacion_secretoma == Secreted to blood"})
-        variables.append({"variable": "concentracion_plasmatica_hpa_log10", "fuente": str(hpa), "definicion": "log10 de conc_sangre_ms_pg_l"})
+        variables.append({"variable": "hpa_secreted_to_blood", "fuente": _fuente(settings, hpa), "definicion": "localizacion_secretoma == Secreted to blood"})
+        variables.append({"variable": "concentracion_plasmatica_hpa_log10", "fuente": _fuente(settings, hpa), "definicion": "log10 de conc_sangre_ms_pg_l"})
     else:
         faltantes.extend(["hpa_secreted_to_blood", "concentracion_plasmatica_hpa_log10"])
     if not _especificidad_tisular(settings, tabla, variables):
@@ -213,7 +218,7 @@ def construir_tabla_h7(settings: Settings, salida: Path) -> tuple[pd.DataFrame, 
             for clase in ("pan_carcinoma", "especifica_colon", "intermedia"):
                 miembros = set(clases.loc[clases["clase"].eq(clase), "gen"])
                 tabla[f"clase_h5_{clase}"] = tabla.index.isin(miembros).astype(float)
-                variables.append({"variable": f"clase_h5_{clase}", "fuente": str(h5), "definicion": "one-hot de la clase H5"})
+                variables.append({"variable": f"clase_h5_{clase}", "fuente": _fuente(settings, h5), "definicion": "one-hot de la clase H5"})
         else:
             faltantes.append("clase_h5")
     else:
@@ -235,7 +240,7 @@ def construir_tabla_h7(settings: Settings, salida: Path) -> tuple[pd.DataFrame, 
             if gen and gen not in abundancia:
                 abundancia[gen] = float(np.nanmedian(log2mat.loc[pid].to_numpy(dtype=float)))
         tabla["abundancia_en_tejido"] = pd.Series(abundancia).reindex(tabla.index)
-        variables.append({"variable": "abundancia_en_tejido", "fuente": str(matriz), "definicion": "mediana log2 en Tanaka, una fila por gen único"})
+        variables.append({"variable": "abundancia_en_tejido", "fuente": _fuente(settings, matriz), "definicion": "mediana log2 en Tanaka, una fila por gen único"})
     else:
         faltantes.append("abundancia_en_tejido")
 

@@ -81,16 +81,17 @@ def filas_de_independencia(estado: dict) -> list[dict]:
 
 
 def escribir_k2(settings: Settings, salida: Path, sello: dict) -> None:
+    from oncogo_crc.v3.rutas_publicas import ruta_publica
     ruta = settings.resolve("external/independencia/estado.json")
     if not ruta.is_file():
-        volcar_json({"estado": "no_disponible", "motivo": str(ruta)}, salida / "k2_independencia.json", sello)
+        volcar_json({"estado": "no_disponible", "motivo": ruta_publica(ruta, settings)["ruta"]}, salida / "k2_independencia.json", sello)
         return
     estado = json.loads(ruta.read_text(encoding="utf-8"))
     filas = filas_de_independencia(estado)
     volcar_tsv(pd.DataFrame(filas), salida / "k2_independencia.tsv", sello)
     volcar_json({
         "estado": "calculado",
-        "fuente": str(ruta),
+        "fuente": ruta_publica(ruta, settings)["ruta"],
         "fecha_de_la_fuente": estado.get("fecha_de_acceso"),
         "cohorte_del_contraste_de_tejido": "PXD034575",
         "no_se_fusiona": sorted({fila["par"] for fila in filas if fila["decision"] == "una_sola_cohorte"}),

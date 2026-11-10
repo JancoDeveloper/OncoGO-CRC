@@ -65,4 +65,5 @@ def excepciones_de(ruta: Path) -> tuple[str, ...]:
         return ()
     import yaml
     datos = yaml.safe_load(ruta.read_text(encoding="utf-8")) or {}
-    return tuple(str(item["ruta"]) for item in datos.get("excepciones", []) if "ruta" in item)
+    filas = datos.get("entradas") or datos.get("excepciones") or []
+    return tuple(str(item["ruta"]) for item in filas if isinstance(item, dict) and "ruta" in item)

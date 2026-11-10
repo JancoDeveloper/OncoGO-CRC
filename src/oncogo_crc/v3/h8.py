@@ -457,7 +457,12 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg=None) -> dict
             "n_fuera_de_listas_de_ruido": int(tabla["lista_de_ruido"].eq("").sum()),
             "n_tumorales_epiteliales": int(tabla["tumoral_epitelial"].sum()),
         },
-        "motivo_universo": "El universo es toda la tabla k1_primario_frente_a_mucosa.tsv. Entran las proteínas del suero con gen único que también tienen log2FC en esa tabla. El código no recorta a las proteínas concordantes ni a las 688 certificadas.",
+        "motivo_universo": (
+            f"De {int(tabla['gen'].nunique())} proteínas con gen único, "
+            f"{int(tabla['en_universo'].sum())} tienen log2FC en toda la tabla de Tanaka. "
+            f"Tras las listas de ruido el universo de la prueba tiene {int(len(universo))}. "
+            "El código no recorta a las proteínas concordantes ni a las 688 certificadas."
+        ),
         "lectura": "Un sostiene diría que el estadio IV lleva más proteína epitelial del tumor a la sangre. Un no_sostiene con pocas proteínas tumorales es, sobre todo, un límite de profundidad de un DIA sin depleción.",
     }
     volcar_json(payload, salida / "h8_carga_tumoral.json", sello)

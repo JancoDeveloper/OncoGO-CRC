@@ -164,3 +164,15 @@ Inventario de funciones que leen una corrida anterior, para el refactor de la et
 `k1_primario_frente_a_mucosa.tsv` tiene 6587 filas. El código de H8 usa esa tabla entera, no el subconjunto de 147 concordantes. El embudo de v3.6 contará por qué el universo del suero es más pequeño.
 
 matplotlib 3.10.9 y Jinja2 3.1.6 ya están en el entorno. No se instala nada.
+
+## v3.6, primera corrida incompleta
+
+La primera `make all-v3-6` dejó el certificado `incompleto` con dos casillas en rojo: `sin_mezcla` y `rutas_publicas`. El resto pasó, incluida la celda del suero y el AUC 0,88025.
+
+La lectura prohibida era `results/certification/certificado_resumen.json`. El YAML la lista bajo `entradas` y el vigilante buscaba `excepciones`. Se corrige el lector.
+
+Las rutas absolutas estaban en `k2_independencia.json`, en la columna `fuente` de `h7_variables.tsv` y en el mensaje de error de `preanalitica_intentos.tsv`. Los seis crudos siguieron sin JSON con ThermoRawFileParser 2.0.0.0. El reintento no se repite: la segunda corrida reutiliza ese intento.
+
+El universo de la prueba de H8 sigue en 33. El embudo cuenta, antes de las listas de ruido, las proteínas del suero con log2FC en toda la tabla de Tanaka. Esa cifra no es la del universo de la prueba.
+
+El Spearman preregistrado sigue en las 36 corridas de CP y CN que unen con la tabla de calidad. Los crudos HC no unen: el report los llama `Normal_` y el fichero `HC_`. El Spearman de los 54 queda `no_evaluable` por ese desajuste de nombres. No se inventa la correspondencia.

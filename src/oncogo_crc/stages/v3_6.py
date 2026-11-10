@@ -159,13 +159,16 @@ def run(settings: Settings) -> None:
         eventos, prohibidas = cerrar_vigilante()
         relativas = []
         for evento in eventos:
-            ruta = Path(evento["ruta"])
-            try:
-                relativa = str(ruta.resolve().relative_to(settings.data_workspace.resolve()))
-            except (ValueError, OSError):
-                relativa = str(ruta)
-            relativas.append({"ruta": relativa.replace("\\", "/"), "clase": evento["clase"]})
-        volcar_json({"lecturas": relativas, "prohibidas": prohibidas}, salida / "lecturas_v3_6.json", sello)
+            texto = str(evento["ruta"]).replace("\\", "/")
+            marca = texto.lower().find("/results/")
+            relativa = texto[marca + 1:] if marca >= 0 else Path(texto).name
+            relativas.append({"ruta": relativa, "clase": evento["clase"]})
+        prohibidas_rel = []
+        for ruta in prohibidas:
+            texto = str(ruta).replace("\\", "/")
+            marca = texto.lower().find("/results/")
+            prohibidas_rel.append(texto[marca + 1:] if marca >= 0 else Path(texto).name)
+        volcar_json({"lecturas": relativas, "prohibidas": prohibidas_rel}, salida / "lecturas_v3_6.json", sello)
         _procedencia(salida, sello)
         ml_json = json.loads((salida / "ml_celda_preregistrada.json").read_text(encoding="utf-8"))
         tri_tabla = pd.read_csv(salida / "triangulacion.tsv", sep="\t") if (salida / "triangulacion.tsv").is_file() else pd.DataFrame()

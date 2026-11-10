@@ -130,6 +130,18 @@ def intentar_crudo(binario: Path, crudo: Path, destino: Path) -> dict:
     return {"crudo": crudo.name, "version": version, "leido": False, "modo": "", "error": "\n".join(mensajes)}
 
 
+def _sin_ruta_local(texto: str) -> str:
+    limpio = str(texto).replace("\\", "/")
+    for marca in ("/Volumes/", "/Users/", "C:/"):
+        while marca in limpio:
+            inicio = limpio.find(marca)
+            fin = limpio.find(" ", inicio)
+            if fin < 0:
+                fin = len(limpio)
+            limpio = limpio[:inicio] + limpio[fin:]
+    return limpio.strip()
+
+
 def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
     campo = str(prereg.get("enmienda_v3_5.preanalitica.campo_fecha"))
     carpeta = settings.resolve("data/raw/plasma/pxd055218_raw")
@@ -140,12 +152,23 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
     intentos = []
     filas = []
     sin_fecha = []
+    previos: dict[str, dict] = {}
+    previo = salida / "preanalitica_intentos.tsv"
+    if previo.is_file():
+        viejo = pd.read_csv(previo, sep="\t")
+        if "crudo" in viejo.columns:
+            previos = {str(fila["crudo"]): fila.to_dict() for _, fila in viejo.iterrows()}
     for nombre in validos:
         crudo = carpeta / nombre
         json_path = metadatos / f"{crudo.stem}.json"
         tamaño = crudo.stat().st_size if crudo.is_file() else None
-        if not json_path.is_file() and binario.is_file() and crudo.is_file():
+        if not json_path.is_file() and nombre in previos:
+            intento = {clave: previos[nombre].get(clave, "") for clave in ("crudo", "version", "leido", "modo", "error")}
+            intento["error"] = _sin_ruta_local(intento["error"])
+            intentos.append(intento)
+        elif not json_path.is_file() and binario.is_file() and crudo.is_file():
             intento = intentar_crudo(binario, crudo, metadatos)
+            intento["error"] = _sin_ruta_local(intento["error"])
             intentos.append(intento)
             if json_path.is_file():
                 intento["leido"] = True
@@ -203,7 +226,7 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
     if not calidad.is_file() and not corrida_limpia():
         calidad = settings.resolve("results/v3_3/suero_calidad_muestra.tsv")
     if calidad.is_file() and len(con_fecha):
-        qc = pd.read_csv(calidad, sep="\t")
+        qc = pd.read_csv(calidad, sep="\t").rename(columns={"grupo": "grupo_calidad"})
         qc["crudo"] = qc["sample_id"].astype(str) + ".raw"
         unido = con_fecha.merge(qc, on="crudo", how="inner")
         if "n_precursores" in unido.columns:
@@ -226,10 +249,24 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
 
         cp_cn = unido.loc[unido["grupo"].isin(["CP", "CN"])] if "grupo" in unido.columns else unido
         spearman = _spearman_de(cp_cn)
-        spearman_54 = _spearman_de(unido)
+        n_sin_union = int(len(con_fecha) - len(unido))
+        if n_sin_union:
+            spearman_54 = {
+                "estado": "no_evaluable",
+                "n_unidas": int(len(unido)),
+                "n_con_fecha": int(len(con_fecha)),
+                "n_sin_union": n_sin_union,
+                "motivo": "hay crudos con fecha cuyo nombre no coincide con el sample_id de la tabla de calidad",
+                "en_las_unidas": _spearman_de(unido),
+            }
+        else:
+            spearman_54 = _spearman_de(unido)
         spearman_por_grupo = {
             str(grupo): _spearman_de(bloque) for grupo, bloque in unido.groupby("grupo")
         } if "grupo" in unido.columns else {}
+        if "grupo" in con_fecha.columns:
+            for grupo in con_fecha["grupo"].astype(str).unique():
+                spearman_por_grupo.setdefault(grupo, {"estado": "no_evaluable", "motivo": "el crudo no une con la tabla de calidad"})
     else:
         spearman_54 = {}
         spearman_por_grupo = {}
