@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Qué parte del tumor colorrectal se deja ver en la sangre"
+message: "Si usa esta corrida, cítela."
+type: software
+authors:
+  - family-names: Polanco Franco
+    given-names: Juan Diego
+version: "3.5"
+date-released: "2026-11-10"
+license: MIT
+repository-code: "https://github.com/JancoDeveloper/OncoGO-CRC"
+url: "https://oncogo-crc-tesis.web.app"
