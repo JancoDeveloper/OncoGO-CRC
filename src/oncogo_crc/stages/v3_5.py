@@ -170,11 +170,22 @@ def _resumen_multiverso(settings: Settings, salida: Path, sello: dict, prereg) -
         base = variantes.get(("PG.MaxLFQ", "libreria_v3_3", "excluidos"))
         con = variantes.get(("PG.MaxLFQ", "con_queratinas_epiteliales", "excluidos"))
         if base is not None and con is not None:
-            extra = sorted(set(con.index.astype(str)) - set(base.index.astype(str)))
+            extra = sorted(set(map(str, con.index)) - set(map(str, base.index)))
+            en_traza = traza.loc[traza["queratina_epitelial"].astype(bool)] if "queratina_epitelial" in traza.columns else traza.iloc[0:0]
+            ids = en_traza["protein_group"].astype(str).tolist() if "protein_group" in en_traza.columns else []
+            en_matriz = [i for i in ids if i in set(map(str, base.index)) or i in set(map(str, con.index))]
+            if not extra and ids and not en_matriz:
+                texto = "La traza cuenta esa queratina epitelial, pero no está en la matriz PG.MaxLFQ de ninguna variante. El eje no cambia el contraste porque no hay proteína que devolver."
+            elif extra:
+                texto = "El eje devuelve la queratina que la librería había sacado. Si el contraste no cambia, esa proteína no pasa la presencia o el panel."
+            else:
+                texto = "No hay queratina epitelial que separe las dos variantes."
             queratina = {
                 "proteinas_que_vuelven": extra,
-                "n_en_traza": int(traza["queratina_epitelial"].astype(bool).sum()) if "queratina_epitelial" in traza.columns else None,
-                "explicacion": "la queratina epitelial ya está en la librería de contaminantes. El eje la devuelve, y sale otra vez si no pasa la presencia o el panel.",
+                "ids_en_traza": ids,
+                "ids_en_matriz": en_matriz,
+                "n_en_traza": int(len(en_traza)),
+                "explicacion": texto,
             }
         calidad = entrada_v3(settings, salida, "suero_calidad_muestra.tsv")
         coag = pd.read_csv(calidad, sep="\t").set_index("sample_id")["coagulacion"] if calidad.is_file() else pd.Series(dtype=float)
