@@ -1,0 +1,80 @@
+{
+  "pasos": [
+    {
+      "paso": 1,
+      "nombre": "1. diferencial certificada en CPTAC (TREAT)",
+      "n": 688
+    },
+    {
+      "paso": 2,
+      "nombre": "2. medida en Tanaka P frente a N y con el mismo signo",
+      "n": 135
+    },
+    {
+      "paso": 3,
+      "nombre": "3. clase H5 (se informa; no elimina)",
+      "n": 135
+    },
+    {
+      "paso": 4,
+      "nombre": "4. HPA: secretada a sangre o con concentración plasmática conocida",
+      "n": 118
+    },
+    {
+      "paso": 5,
+      "nombre": "5. medida en la matriz principal del suero PXD055218",
+      "n": 20
+    },
+    {
+      "paso": 6,
+      "nombre": "6. K4 CP frente a CN: clase diferente con el mismo signo que el tejido",
+      "n": 0
+    },
+    {
+      "paso": 7,
+      "nombre": "7. H10: especifica_crc en el HPA Disease Blood Atlas",
+      "n": 0
+    }
+  ],
+  "nadie_pasa_el_paso_6": true,
+  "hipotesis_para_cohortes_futuras": [
+    "LUM",
+    "A2M",
+    "APOA4",
+    "AFM",
+    "SOD3",
+    "TF",
+    "SERPIND1",
+    "HP",
+    "APOA1",
+    "HPX",
+    "CP",
+    "SERPINA3",
+    "SERPINF2",
+    "KNG1",
+    "ORM2",
+    "APOA2",
+    "AHSG",
+    "S100A8",
+    "AZGP1",
+    "S100A9"
+  ],
+  "lectura": "Lista de hipótesis para cohortes futuras, no biomarcadores.",
+  "sello": {
+    "commit": "b7f8b8e844f6c484b72e19fecf5fb7d07f53c2ab",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T21:28:31Z",
+    "sha256_preregistro": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a",
+    "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
+    "sha256_manifest_entradas": "864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_7"
+  }
+}

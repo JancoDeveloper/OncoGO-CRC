@@ -55,6 +55,9 @@ def comparar(a: Path, b: Path) -> dict:
         if nombre.endswith(".json"):
             if _sin_sello(pa) != _sin_sello(pb):
                 distintos.append(nombre)
+        elif nombre.endswith(".sello.json"):
+            if _sha(pa) != _sha(pb):
+                distintos.append(nombre)
         elif _sha(pa) != _sha(pb):
             distintos.append(nombre)
     h7_distinto = "h7_visibilidad_en_sangre.json" in distintos
@@ -67,7 +70,8 @@ def comparar(a: Path, b: Path) -> dict:
         secundario = da == db and sa != sb
         if secundario:
             distintos.remove("h7_visibilidad_en_sangre.json")
-    principales = [nombre for nombre in distintos if nombre in PRINCIPALES or nombre.startswith("k4_") or nombre.startswith("suero_k4")]
+    datos = [nombre for nombre in distintos if not nombre.endswith(".sello.json")]
+    principales = [nombre for nombre in datos if nombre in PRINCIPALES or nombre.startswith("k4_") or nombre.startswith("suero_k4")]
     return {
         "distintos": distintos,
         "solo_en_a": solo_a,
@@ -87,12 +91,15 @@ def main() -> None:
     args = parser.parse_args()
     resultado = comparar(args.a, args.b)
     args.json.write_text(json.dumps(resultado, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    sellos = [nombre for nombre in resultado["distintos"] if nombre.endswith(".sello.json") or nombre == "sello_corrida.json"]
+    datos = [nombre for nombre in resultado["distintos"] if nombre not in sellos]
     lineas = [
         "# Determinismo de dos procesos",
         "",
         f"A: `{args.a}`. B: `{args.b}`.",
         "",
-        f"Ficheros distintos, sin contar el sello: {len(resultado['distintos'])}.",
+        f"Ficheros de datos distintos: {len(datos)}.",
+        f"Sellos distintos: {len(sellos)}. Cambian con el commit y con el hash del manifiesto.",
         f"Números principales distintos: {len(resultado['principales'])}.",
         "",
     ]
@@ -101,10 +108,12 @@ def main() -> None:
         lineas.append("")
     if resultado["principales"]:
         lineas.append("Principales distintos: " + ", ".join(resultado["principales"]) + ".")
-    elif not resultado["distintos"]:
-        lineas.append("No hay diferencias fuera del sello.")
+    elif not datos:
+        lineas.append("No hay diferencias en los ficheros de datos fuera del sello.")
     else:
-        lineas.append("Las diferencias no están en los números principales: " + ", ".join(resultado["distintos"]) + ".")
+        lineas.append("Las diferencias de datos no están en los números principales: " + ", ".join(datos) + ".")
+        if "gsea_tejido.tsv" in datos:
+            lineas.append("En `gsea_tejido.tsv` el NES, el FDR y el p coinciden si se ordena por cohorte y término. Cambia el orden de las filas.")
     args.md.write_text("\n".join(lineas) + "\n", encoding="utf-8")
     if resultado["principales"]:
         raise SystemExit(1)

@@ -1,0 +1,59 @@
+{
+  "veredicto_h1": "no_emite",
+  "gseapy": "1.2.1",
+  "parametros": {
+    "fdr": 0.25,
+    "minimo": 15,
+    "maximo": 500,
+    "permutaciones": 200,
+    "semilla": 42,
+    "ranking": "signed_neglog10_p"
+  },
+  "cohortes": {
+    "cptac_tumor_frente_a_normal": {
+      "estado": "calculado",
+      "n_genes": 7394,
+      "n_terminos_probados": 787,
+      "n_ora_significativos_suben": 17,
+      "n_ora_significativos_bajan": 63,
+      "n_gsea_fdr": 64,
+      "gsea_estado": "calculado",
+      "gsea_error": null
+    },
+    "tanaka_primario_frente_a_mucosa": {
+      "estado": "calculado",
+      "n_genes": 1386,
+      "n_terminos_probados": 101,
+      "n_ora_significativos_suben": 0,
+      "n_ora_significativos_bajan": 0,
+      "n_gsea_fdr": 21,
+      "gsea_estado": "calculado",
+      "gsea_error": null
+    }
+  },
+  "concordancia_nes": {
+    "numerador": 16,
+    "denominador": 16,
+    "ci_low": 0.7940927857921772,
+    "ci_high": 1.0,
+    "nota": "descriptiva, sin veredicto"
+  },
+  "limitaciones": "GO sin propagar, sin IEA, 200 permutaciones, p mínimo 1/201",
+  "sello": {
+    "commit": "b7f8b8e844f6c484b72e19fecf5fb7d07f53c2ab",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T21:28:31Z",
+    "sha256_preregistro": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a",
+    "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
+    "sha256_manifest_entradas": "864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_7"
+  }
+}

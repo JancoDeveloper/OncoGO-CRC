@@ -3,8 +3,8 @@
 Este archivo lo escribe `scripts/v3/exportar_cifras_v3_7.py` a partir de `results/v3_7/`.
 
 Certificado: Publicable.
-Sello: commit `c1c22898e01f`, fecha 2026-11-10T18:31:55Z.
-`sha256_manifest_entradas` en el sello: None.
+Sello: commit `b7f8b8e844f6`, fecha 2026-11-10T21:28:31Z.
+`sha256_manifest_entradas` en el sello: 864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a.
 
 ## Unión de los sanos
 
@@ -13,15 +13,14 @@ Las filas falsas son las corridas `Normal_` y la evidencia es «el report no nom
 
 ## Ficheros de la especificación que no están
 
+Presentes: `go_ora_tejido.tsv`, `manifest_entradas.sha256`.
 Ausentes:
 - `vias_suero.json`
 - `h1_vias.json`
-- `go_ora_tejido.tsv`
 - `catalogo_auditoria.tsv`
 - `neoantigenos.tsv`
 - `prtc_por_corrida.tsv`
-- `manifest_entradas.sha256`
 
-Esas piezas quedan pendientes. No hay un resultado que poner en su lugar.
+Esas ausencias están declaradas en `enmienda_v3_7_cierre`. No son un resultado.
 
-Qué falló en la ejecución: `make v3-7` salió con código 2 al empezar H9, sin traza de Python. H9, H10, la preanalítica, la triangulación y el certificado se calcularon después, con el mismo sello. `lecturas_v3_7.json` solo registra las lecturas de ese segundo proceso. `determinismo.json` solo repite M2.
+La corrida versionada terminó en un proceso. El certificado y el sello son los de `results/v3_7/certificado.json`. La comparación con la corrida archivada está en `docs/determinismo_dos_procesos.md`: los números principales coinciden. Los sellos no, porque la segunda corrida declara `results/certified/inference_audit.json`.

@@ -40,9 +40,18 @@ Cada valor lo formatea `src/oncogo_crc/formato.py` desde el fichero de esa corri
 | \PreEstado | No evaluable | Calculado | cambia |
 | \PreAuc | 0,000 | 0,000 | igual |
 | \PreP | 2,3 × 10⁻¹⁰ | 1,5 × 10⁻¹¹ | cambia |
-| \PreCotaMax | 0,193 | 0,193 | igual |
 | \PreRhoPiel | −0,78 | −0,76 | cambia |
 | \PreFecha | 54 | 60 | cambia |
+| \CoberturaNum | 147 | 147 | igual |
+| \CoberturaDen | 688 | 688 | igual |
+| \HunoVeredicto | Rechaza H1 | Rechaza H1 | igual |
+| \BhPrecursoresCn | no medido | 0,027 | cambia |
+| \BhPielCn | no medido | 0,056 | cambia |
+| \GoConNum | no medido | 16 | cambia |
+| \GoConDen | no medido | 16 | cambia |
+| \Priori5 | no medido | 20 | cambia |
+| \Priori6 | no medido | 0 | cambia |
+| \HsieteSec | 0,48591 | 0,47738 | cambia |
 | \PreCrudos | 60 | 60 | igual |
 | \CalidadCoagP | 0,00099 | 0,00099 | igual |
 | \CalidadPielP | 3,4 × 10⁻⁶ | 3,4 × 10⁻⁶ | igual |

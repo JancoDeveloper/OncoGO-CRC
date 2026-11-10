@@ -1,0 +1,45 @@
+........................................................................ [ 13%]
+........................................................................ [ 27%]
+........................................................................ [ 40%]
+........................................................................ [ 54%]
+...s.................................................................... [ 67%]
+........................................................................ [ 81%]
+........................................................................ [ 95%]
+..........................                                               [100%]
+=============================== warnings summary ===============================
+tests/test_certification_contract.py::test_association_score_is_forbidden_and_not_loaded
+  /Users/jancod/GitHub/OncoGO-CRC/src/oncogo_crc/utils/evidence_providers.py:58: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+    return "snapshot_" + _dt.datetime.utcfromtimestamp(path.stat().st_mtime).strftime("%Y%m%d")
+
+tests/test_cierre_v37.py: 2 warnings
+tests/test_v3_3_h7.py: 11 warnings
+tests/test_v3_3_ml.py: 15 warnings
+  /Users/jancod/GitHub/OncoGO-CRC/.venv/lib/python3.14/site-packages/sklearn/linear_model/_logistic.py:1780: FutureWarning: The default value for l1_ratios will change from None to (0.0,) in version 1.10. From version 1.10 onwards, only array-like with values in [0, 1] will be allowed, None will be forbidden. To avoid this warning, explicitly set a value, e.g. l1_ratios=(0,).
+    warnings.warn(
+
+tests/test_cierre_v37.py: 2 warnings
+tests/test_v3_3_h7.py: 11 warnings
+tests/test_v3_3_ml.py: 15 warnings
+  /Users/jancod/GitHub/OncoGO-CRC/.venv/lib/python3.14/site-packages/sklearn/linear_model/_logistic.py:1811: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratios' instead. Use l1_ratios=(0,) instead of penalty='l2'  and l1_ratios=(1,) instead of penalty='l1'.
+    warnings.warn(
+
+tests/test_cierre_v37.py: 2 warnings
+tests/test_v3_3_h7.py: 11 warnings
+tests/test_v3_3_ml.py: 15 warnings
+  /Users/jancod/GitHub/OncoGO-CRC/.venv/lib/python3.14/site-packages/sklearn/linear_model/_logistic.py:1823: FutureWarning: The fitted attributes of LogisticRegressionCV will be simplified in scikit-learn 1.10 to remove redundancy. Set`use_legacy_attributes=False` to enable the new behavior now, or set it to `True` to silence this warning during the transition period while keeping the deprecated behavior for the time being. The default value of use_legacy_attributes will change from True to False in scikit-learn 1.10. See the docstring of LogisticRegressionCV for more details.
+    warnings.warn(
+
+tests/test_phase1_qc_stats.py::test_paired_differential_mean_of_paired_diffs
+  /Users/jancod/GitHub/OncoGO-CRC/.venv/lib/python3.14/site-packages/scipy/stats/_axis_nan_policy.py:592: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+    res = hypotest_fun_out(*samples, **kwds)
+
+tests/test_v3_5_h8.py::test_directlfq_agrega_dos_proteinas_en_cuatro_corridas
+  /Users/jancod/GitHub/OncoGO-CRC/.venv/lib/python3.14/site-packages/directlfq/utils.py:19: UserWarning: Dependency 'dask' not installed. If you want to use its functionality, install directlfq with the 'dask' extra. Falling back to non-dask based processing.
+    warnings.warn("Dependency 'dask' not installed. If you want to use its functionality, install directlfq with the 'dask' extra. Falling back to non-dask based processing.")
+
+tests/test_v3_5_h8.py::test_directlfq_agrega_dos_proteinas_en_cuatro_corridas
+  /Users/jancod/GitHub/OncoGO-CRC/.venv/lib/python3.14/site-packages/multiprocess/popen_fork.py:70: DeprecationWarning: This process (pid=33149) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+529 passed, 1 skipped, 88 warnings in 85.20s (0:01:25)

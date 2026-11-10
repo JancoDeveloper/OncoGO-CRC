@@ -1,0 +1,3 @@
+gen	acceso	paso	motivo	n_precursores	fraccion_proteotipicos	global_pg_q
+BAIAP3	O94812	filtro_global_1pct	global_pg_q por encima de 0.01	55.0	0.0	0.0115942
+CEACAM5	P06731	no_esta_en_el_report	no aparece entre los grupos del report			

@@ -1,0 +1,1647 @@
+{
+  "lecturas": [
+    {
+      "ruta": "results/v3_7/manifest_entradas.sha256",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/manifest_entradas.sha256",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_metastasis_hepatica_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_metastasis_hepatica_frente_a_mucosa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_metastasis_hepatica_frente_a_primario.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_metastasis_hepatica_frente_a_primario.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa_no_pareado.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa_no_pareado.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/certified/cptac_unshared_treat.tsv",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/qc_etiquetas_higado.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/qc_etiquetas_higado.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/qc_etiquetas_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/qc_etiquetas_mucosa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/qc_sexo_por_participante.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/qc_sexo_por_participante.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_sensibilidad_etiquetas.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_sensibilidad_etiquetas.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa_centrado.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa_centrado.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_sensibilidad_normalizacion.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_sensibilidad_normalizacion.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_etiquetas.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_etiquetas.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/changelog_numeros.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/changelog_numeros.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k2_independencia.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k2_independencia.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k2_independencia.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k2_independencia.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k3_deming.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k3_deming.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_trazabilidad_grupos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_controles.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_controles.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_trazabilidad_grupos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/sello_corrida.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_principal.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_principal.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_humana_fdr.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_humana_fdr.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_especies.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_especies.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_entrapment.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_entrapment.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_muestra.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_muestra.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_pruebas.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_pruebas.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_crc_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_crc_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_colonoscopia_negativa_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_contaminantes_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_contaminantes_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_contaminantes_crc_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_contaminantes_crc_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_contaminantes_colonoscopia_negativa_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_contaminantes_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_queratinas_epiteliales_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_queratinas_epiteliales_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_queratinas_epiteliales_crc_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_queratinas_epiteliales_crc_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_queratinas_epiteliales_colonoscopia_negativa_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_con_queratinas_epiteliales_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_grupos_mixtos_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_grupos_mixtos_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_grupos_mixtos_crc_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_grupos_mixtos_crc_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_grupos_mixtos_colonoscopia_negativa_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_grupos_mixtos_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_contaminantes_con_paneles_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_contaminantes_con_paneles_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_contaminantes_con_paneles_crc_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_contaminantes_con_paneles_crc_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_contaminantes_con_paneles_colonoscopia_negativa_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_contaminantes_con_paneles_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_ajustado_coagulacion_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_ajustado_coagulacion_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_ajustado_coagulacion_crc_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_ajustado_coagulacion_crc_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_ajustado_coagulacion_colonoscopia_negativa_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_ajustado_coagulacion_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_crc_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_crc_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_colonoscopia_negativa_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_colonoscopia_negativa_frente_a_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_potencia.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_potencia.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k5_auc.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k5_auc.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k5_diferencia_auc.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k5_diferencia_auc.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k5_auc.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k5_auc.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k6_presencia.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k6_presencia.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k6_presencia.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k6_presencia.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k7_control_tecnico.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k7_control_tecnico.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k7_pruebas.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k7_pruebas.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_sin_contaminantes_con_paneles_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_resumen.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_resumen.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_trazabilidad_grupos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_principal.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k5_auc.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/qc_etiquetas_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles_fisicos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles_fisicos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles_v3_4.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles_v3_4.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles_tejido.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/controles_tejido.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_principal.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_humana_fdr.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_muestra.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_predicciones_oof.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_predicciones_oof.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_nulo_permutaciones.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_nulo_permutaciones.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_suero_permutacion.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_suero_permutacion.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_suero_modelos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_suero_modelos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_suero_modelos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_modelos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_modelos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_k4_crc_cn.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_k4_crc_cn.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_crc_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_k4_crc_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_k4_crc_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_colonoscopia_negativa_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_k4_cn_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_k4_cn_sanos.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_k4_crc_cn.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_controles.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_embudo.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_embudo.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k7_control_tecnico.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_modelos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_celda_preregistrada.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_celda_preregistrada.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_muestra.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_sensibilidad_normalizacion.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_sensibilidad_normalizacion.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_sensibilidad_normalizacion.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_suero_v3_4.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_suero_v3_4.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_ml_v3_4.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_ml_v3_4.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_v3_4.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_v3_4.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_suero_v3_4.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_suero.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_suero.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_ml_v3_4.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_ml.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_ml.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_v3_4.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_suero.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_ml.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_resumen.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/multiverso_resumen.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/certified/cptac_unshared_treat.tsv",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/k1_etiquetas.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h6_origen_celular.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h6_origen_celular.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/certified/cptac_unshared_treat.tsv",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h6_origen_celular.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h6_origen_celular.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/certified/cptac_unshared_treat.tsv",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h6_origen_celular.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h6_origen_celular.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h6_origen_celular.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h6_origen_celular.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_variables.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_variables.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_tabla_proteinas.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_tabla_proteinas.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_predicciones.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_predicciones.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_visibilidad_en_sangre.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_visibilidad_en_sangre.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_tabla_proteinas.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_visibilidad_en_sangre.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_visibilidad_en_sangre.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_visibilidad_en_sangre.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_visibilidad_en_sangre.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h6_origen_celular.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h8_qc_muestras.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h8_qc_muestras.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h8_carga_tumoral.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h8_carga_tumoral.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h8_carga_tumoral.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h8_carga_tumoral.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h9_wald.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h9_wald.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h9_wald.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h9_wald.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_proteinas_de_partida.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_proteinas_de_partida.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_fase_aguda.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_fase_aguda.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_especificidad.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_especificidad.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_especificidad.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_especificidad.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/report_runs.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/report_runs.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_muestra.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/union_crudos_calidad.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/union_crudos_calidad.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/crudos_integridad.tsv",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/crudos_integridad.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/crudos_integridad.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/preanalitica_orden.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/preanalitica_orden.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_muestra.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/union_crudos_calidad.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/preanalitica_v3_5.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/preanalitica_v3_5.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/preanalitica.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/preanalitica.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/certified/cptac_unshared_treat.tsv",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/certified/cptac_unshared_treat.tsv",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_especificidad.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_especificidad.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_especificidad.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_crc_frente_a_sanos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h8_carga_tumoral.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion_v3_5.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion_v3_5.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion_v3_5.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion_v3_5.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion_v3_5.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion_v3_5.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/triangulacion.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/certified/cptac_unshared_treat.tsv",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/go_ora_tejido.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/go_ora_tejido.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/gsea_tejido.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/gsea_tejido.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/go_tejido.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/go_tejido.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_principal.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_humana_fdr.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_muestra.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_trazabilidad_grupos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/preanalitica_orden.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_muestra.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_explicacion.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_explicacion.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_explicacion.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/ml_explicacion.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/certified/cptac_unshared_treat.tsv",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/k1_primario_frente_a_mucosa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h5_especificidad_organo.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_principal.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h10_especificidad.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/priorizacion.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/priorizacion.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/priorizacion_embudo.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/priorizacion_embudo.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_trazabilidad_grupos.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_principal.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/auditoria_rai2025.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/auditoria_rai2025.tsv.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/h7_visibilidad_en_sangre.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/secuencia_v3_4.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/secuencia_v3_4.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/secuencia.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/secuencia.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/certified/inference_audit.json",
+      "clase": "permitida",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/certification/certificado_resumen.json",
+      "clase": "excepcion",
+      "declarada": "entrada"
+    },
+    {
+      "ruta": "results/v3_7/regresion_v1.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/regresion_v1.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_principal.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_matriz_humana_fdr.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/suero_calidad_muestra.tsv",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/determinismo.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/determinismo.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/corrida.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/corrida.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    },
+    {
+      "ruta": "results/v3_7/corrida.json.sello.json",
+      "clase": "permitida",
+      "declarada": "salida"
+    }
+  ],
+  "prohibidas": [],
+  "sello": {
+    "commit": "b7f8b8e844f6c484b72e19fecf5fb7d07f53c2ab",
+    "arbol_limpio": true,
+    "fecha_utc": "2026-11-10T21:28:31Z",
+    "sha256_preregistro": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a",
+    "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
+    "sha256_manifest_entradas": "864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a",
+    "python": "3.14.3",
+    "paquetes": {
+      "numpy": "2.4.4",
+      "pandas": "3.0.2",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.8.0"
+    },
+    "semilla": 20260914,
+    "etapa": "v3_7"
+  }
+}

@@ -25,10 +25,10 @@
   ],
   "escala": "log2_de_intensidad_lineal",
   "sello": {
-    "commit": "c1c22898e01fce3e40fd3ea678a86b0c27defe2b",
+    "commit": "b7f8b8e844f6c484b72e19fecf5fb7d07f53c2ab",
     "arbol_limpio": true,
-    "fecha_utc": "2026-11-10T18:31:57Z",
-    "sha256_preregistro": "91da7c35d9d2320ec5367aceec677a2da53ecd5c9e335962ff9f44ca5f052dea",
+    "fecha_utc": "2026-11-10T21:28:32Z",
+    "sha256_preregistro": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a",
     "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
     "sha256_manifest_entradas": null,
     "python": "3.14.3",

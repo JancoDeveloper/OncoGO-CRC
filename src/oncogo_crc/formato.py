@@ -18,6 +18,8 @@ _ESTADOS = {
     "pasa": "Pasa",
     "falla": "Falla",
     "publicable": "Publicable",
+    "no_publicable": "No publicable",
+    "rechaza_h1": "Rechaza H1",
     "no_disponible": "No disponible",
     "no_detectado": "No detectado",
     "no_medida": "No medida",

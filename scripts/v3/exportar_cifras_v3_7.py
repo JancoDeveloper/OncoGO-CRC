@@ -62,6 +62,9 @@ def _entradas(carpeta: Path, version: str) -> list[tuple[str, object, str, str]]
     h9 = _json(carpeta, "h9_wald.json")
     h10 = _json(carpeta, "h10_especificidad.json")
     pre = _json(carpeta, "preanalitica.json")
+    tejido_raiz = _json(carpeta, "k1_etiquetas.json")
+    go = _json(carpeta, "go_tejido.json") if (carpeta / "go_tejido.json").is_file() else {"concordancia_nes": {"numerador": None, "denominador": None}}
+    priori = _json(carpeta, "priorizacion_embudo.json") if (carpeta / "priorizacion_embudo.json").is_file() else {"pasos": [{"paso": 5, "n": None}, {"paso": 6, "n": None}]}
     calidad = _json(carpeta, "k7_control_tecnico.json")["confusion_preanalitica"]
     certificado = _json(carpeta, "certificado.json")
     piel = {fila["indicador"]: fila for fila in calidad}
@@ -108,6 +111,16 @@ def _entradas(carpeta: Path, version: str) -> list[tuple[str, object, str, str]]
         ("PreP", auc["p_exacta_mann_whitney"], "p", f"{prefijo}/preanalitica.json#calculado_con_legibles.auc.p_exacta_mann_whitney"),
         ("PreRhoPiel", spearman["rho"], "rho", f"{prefijo}/preanalitica.json#spearman.piel.rho"),
         ("PreFecha", pre["n_con_fecha"], "entero", f"{prefijo}/preanalitica.json#n_con_fecha"),
+        ("CoberturaNum", (tejido_raiz.get("cobertura") or {}).get("numerador"), "entero", f"{prefijo}/k1_etiquetas.json#cobertura.numerador"),
+        ("CoberturaDen", (tejido_raiz.get("cobertura") or {}).get("denominador"), "entero", f"{prefijo}/k1_etiquetas.json#cobertura.denominador"),
+        ("HunoVeredicto", tejido_raiz.get("h1_veredicto"), "estado", f"{prefijo}/k1_etiquetas.json#h1_veredicto"),
+        ("BhPrecursoresCn", ((pre.get("bh_descriptivo") or {}).get("q") or {}).get("CN:log2_n_precursores"), "p", f"{prefijo}/preanalitica.json#bh_descriptivo.q.CN:log2_n_precursores"),
+        ("BhPielCn", ((pre.get("bh_descriptivo") or {}).get("q") or {}).get("CN:piel"), "p", f"{prefijo}/preanalitica.json#bh_descriptivo.q.CN:piel"),
+        ("GoConNum", (go.get("concordancia_nes") or {}).get("numerador"), "entero", f"{prefijo}/go_tejido.json#concordancia_nes.numerador"),
+        ("GoConDen", (go.get("concordancia_nes") or {}).get("denominador"), "entero", f"{prefijo}/go_tejido.json#concordancia_nes.denominador"),
+        ("Priori5", next((p["n"] for p in priori.get("pasos") or [] if p["paso"] == 5), None), "entero", f"{prefijo}/priorizacion_embudo.json#pasos"),
+        ("Priori6", next((p["n"] for p in priori.get("pasos") or [] if p["paso"] == 6), None), "entero", f"{prefijo}/priorizacion_embudo.json#pasos"),
+        ("HsieteSec", (h7.get("modelo_secundario") or {}).get("auc_secundario"), "auc_completo", f"{prefijo}/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario"),
         ("PreCrudos", pre["n_crudos_validos"], "entero", f"{prefijo}/preanalitica.json#n_crudos_validos"),
         ("CalidadCoagP", piel["coagulacion"]["p_kruskal"], "p", f"{prefijo}/k7_control_tecnico.json#coagulacion.p_kruskal"),
         ("CalidadPielP", piel["piel"]["p_kruskal"], "p", f"{prefijo}/k7_control_tecnico.json#piel.p_kruskal"),
@@ -140,10 +153,13 @@ def main() -> None:
         lineas.append(f"% fuente: {fuente}")
         lineas.append(f"\\newcommand{{\\{nombre}}}{{{_tex(texto)}}}")
         word[nombre] = {"valor": texto, "fuente": fuente, "crudo": valor}
-        anterior, tipo_anterior = viejas[nombre]
-        texto_anterior = formatear(anterior, tipo_anterior)
-        marca = "igual" if texto_anterior == texto else "cambia"
-        filas_cambio.append(f"| \\{nombre} | {texto_anterior} | {texto} | {marca} |")
+        if nombre not in viejas:
+            filas_cambio.append(f"| \\{nombre} | — | {texto} | nueva |")
+        else:
+            anterior, tipo_anterior = viejas[nombre]
+            texto_anterior = formatear(anterior, tipo_anterior)
+            marca = "igual" if texto_anterior == texto else "cambia"
+            filas_cambio.append(f"| \\{nombre} | {texto_anterior} | {texto} | {marca} |")
     lineas.append("% fuente: results/v3_7/h10_especificidad.tsv")
     lineas.append("\\newcommand{\\HdiezGenes}{" + _tex(", ".join(especificas)) + "}")
     word["HdiezGenes"] = {"valor": ", ".join(especificas), "fuente": "results/v3_7/h10_especificidad.tsv", "crudo": especificas}
@@ -213,9 +229,9 @@ def main() -> None:
     lineas_estado.extend(f"- `{nombre}`" for nombre in faltan)
     lineas_estado.extend([
         "",
-        "Esas piezas quedan pendientes. No hay un resultado que poner en su lugar.",
+        "Esas ausencias están declaradas en `enmienda_v3_7_cierre`. No son un resultado.",
         "",
-        "Qué falló en la ejecución: `make v3-7` salió con código 2 al empezar H9, sin traza de Python. H9, H10, la preanalítica, la triangulación y el certificado se calcularon después, con el mismo sello. `lecturas_v3_7.json` solo registra las lecturas de ese segundo proceso. `determinismo.json` solo repite M2.",
+        "La corrida versionada terminó en un proceso. El certificado y el sello son los de `results/v3_7/certificado.json`. La comparación con la corrida archivada está en `docs/determinismo_dos_procesos.md`: los números principales coinciden. Los sellos no, porque la segunda corrida declara `results/certified/inference_audit.json`.",
         "",
     ])
     ESTADO.write_text("\n".join(lineas_estado), encoding="utf-8")

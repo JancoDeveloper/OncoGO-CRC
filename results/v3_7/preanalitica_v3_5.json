@@ -67,12 +67,6 @@
   "posicion_hc": "aparte",
   "instrumento": "Orbitrap Fusion",
   "p_exacta_mann_whitney": 1.4508889103849684e-11,
-  "cota_con_60": {
-    "auc_min": 0.0,
-    "auc_max": 0.1925,
-    "n_parejas_conocidas": 323,
-    "n_parejas_desconocidas": 77
-  },
   "posicion_por_grupo": {
     "CN": {
       "orden_min": 21,
@@ -97,40 +91,6 @@
     }
   },
   "bloques_perfectos": true,
-  "spearman_54": {
-    "estado": "no_evaluable",
-    "n_unidas": 40,
-    "n_con_fecha": 60,
-    "n_sin_union": 20,
-    "motivo": "hay crudos con fecha cuyo nombre no coincide con el sample_id de la tabla de calidad",
-    "en_las_unidas": {
-      "eritrocitos": {
-        "rho": 0.1726078799249531,
-        "p": 0.2868438506517265,
-        "n": 40
-      },
-      "plaquetas": {
-        "rho": -0.2645403377110695,
-        "p": 0.0990285308879816,
-        "n": 40
-      },
-      "coagulacion": {
-        "rho": -0.5288930581613509,
-        "p": 0.0004504647583099869,
-        "n": 40
-      },
-      "piel": {
-        "rho": -0.7568480300187618,
-        "p": 1.5997161844926908e-08,
-        "n": 40
-      },
-      "log2_n_precursores": {
-        "rho": 0.17016885553470923,
-        "p": 0.2938121377801263,
-        "n": 40
-      }
-    }
-  },
   "spearman_por_grupo": {
     "CN": {
       "eritrocitos": {
@@ -191,14 +151,64 @@
       "motivo": "el crudo no une con la tabla de calidad"
     }
   },
-  "lectura": "Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.",
+  "lectura": "El orden de adquisición y el grupo están confundidos por completo: CP, CN y HC se midieron en bloques. El Spearman de CP y CN juntos no separa el uno del otro. Dentro de CP no hay deriva. Dentro de CN suben los precursores. HC no se evalúa por muestra porque la unión del report con el crudo sigue pendiente.",
+  "spearman_union": {
+    "estado": "no_evaluable",
+    "n_unidas": 40,
+    "n_con_fecha": 60,
+    "n_sin_union": 20,
+    "motivo": "hay crudos con fecha cuyo nombre no coincide con el sample_id de la tabla de calidad",
+    "en_las_unidas": {
+      "eritrocitos": {
+        "rho": 0.1726078799249531,
+        "p": 0.2868438506517265,
+        "n": 40
+      },
+      "plaquetas": {
+        "rho": -0.2645403377110695,
+        "p": 0.0990285308879816,
+        "n": 40
+      },
+      "coagulacion": {
+        "rho": -0.5288930581613509,
+        "p": 0.0004504647583099869,
+        "n": 40
+      },
+      "piel": {
+        "rho": -0.7568480300187618,
+        "p": 1.5997161844926908e-08,
+        "n": 40
+      },
+      "log2_n_precursores": {
+        "rho": 0.17016885553470923,
+        "p": 0.2938121377801263,
+        "n": 40
+      }
+    }
+  },
+  "bh_descriptivo": {
+    "estado": "calculado",
+    "n_pruebas": 10,
+    "q": {
+      "CP:plaquetas": 0.7962393511384775,
+      "CN:eritrocitos": 0.7627634129522488,
+      "CP:piel": 0.7627634129522488,
+      "CP:log2_n_precursores": 0.7627634129522488,
+      "CP:coagulacion": 0.7627634129522488,
+      "CN:coagulacion": 0.7627634129522488,
+      "CN:plaquetas": 0.7627634129522488,
+      "CP:eritrocitos": 0.7627634129522488,
+      "CN:piel": 0.05551752132967296,
+      "CN:log2_n_precursores": 0.026514075346556504
+    }
+  },
   "sello": {
-    "commit": "c1c22898e01fce3e40fd3ea678a86b0c27defe2b",
+    "commit": "b7f8b8e844f6c484b72e19fecf5fb7d07f53c2ab",
     "arbol_limpio": true,
-    "fecha_utc": "2026-11-10T18:31:55Z",
-    "sha256_preregistro": "91da7c35d9d2320ec5367aceec677a2da53ecd5c9e335962ff9f44ca5f052dea",
+    "fecha_utc": "2026-11-10T21:28:31Z",
+    "sha256_preregistro": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a",
     "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
-    "sha256_manifest_entradas": null,
+    "sha256_manifest_entradas": "864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a",
     "python": "3.14.3",
     "paquetes": {
       "numpy": "2.4.4",

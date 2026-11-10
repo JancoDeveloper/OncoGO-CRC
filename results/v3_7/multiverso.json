@@ -7,7 +7,7 @@
     "despues": 1.0
   },
   "r1_fuente": "results/v3_7/k1_sensibilidad_normalizacion.json",
-  "r1_sha256": "7352f2c9bb40c8871bb54a65552c3f79dac35845453509435fcee5925f666de6",
+  "r1_sha256": "7587edb1317f95f96ecdf632f0f291cc25c963fc3e575a4a68ff7b5eb97a3b71",
   "celda_preregistrada": {
     "cuantificacion": "PG.MaxLFQ",
     "contaminantes": "libreria_v3_3",
@@ -23,12 +23,12 @@
     "indeterminada": 118
   },
   "sello": {
-    "commit": "c1c22898e01fce3e40fd3ea678a86b0c27defe2b",
+    "commit": "b7f8b8e844f6c484b72e19fecf5fb7d07f53c2ab",
     "arbol_limpio": true,
-    "fecha_utc": "2026-11-10T18:31:55Z",
-    "sha256_preregistro": "91da7c35d9d2320ec5367aceec677a2da53ecd5c9e335962ff9f44ca5f052dea",
+    "fecha_utc": "2026-11-10T21:28:31Z",
+    "sha256_preregistro": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a",
     "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
-    "sha256_manifest_entradas": null,
+    "sha256_manifest_entradas": "864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a",
     "python": "3.14.3",
     "paquetes": {
       "numpy": "2.4.4",
