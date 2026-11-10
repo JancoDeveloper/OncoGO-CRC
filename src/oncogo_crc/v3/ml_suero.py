@@ -109,7 +109,7 @@ def ic_ledell(y: np.ndarray, s: np.ndarray, alfa: float = 0.05) -> tuple[float, 
     return auc, max(0.0, auc - z * se), min(1.0, auc + z * se)
 
 
-def _auc_repetida(X, y, semilla, tipo) -> dict:
+def _auc_repetida(X, y, semilla, tipo, traza: dict | None = None) -> dict:
     partes = RepeatedStratifiedKFold(n_splits=N_SPLITS, n_repeats=N_REPETICIONES, random_state=semilla)
     puntajes, oof = [], np.full((N_REPETICIONES, len(y)), np.nan)
     for k, (tr, te) in enumerate(partes.split(X, y)):
@@ -119,6 +119,9 @@ def _auc_repetida(X, y, semilla, tipo) -> dict:
         oof[k // N_SPLITS, te] = p
     auc_oof = [roc_auc_score(y, fila) for fila in oof]
     _, bajo, alto = ic_ledell(y, oof[0])
+    if traza is not None:
+        traza["oof"] = oof
+        traza["y"] = np.asarray(y)
     return {
         "auc_oof_media": float(np.mean(auc_oof)),
         "ic95_ledell_bajo": bajo,
@@ -131,12 +134,15 @@ def _auc_repetida(X, y, semilla, tipo) -> dict:
     }
 
 
-def _nulo(X, y, semilla, tipo, n_permutaciones: int = N_PERMUTACIONES) -> dict:
+def _nulo(X, y, semilla, tipo, n_permutaciones: int = N_PERMUTACIONES, traza: dict | None = None) -> dict:
     partes = StratifiedKFold(n_splits=N_SPLITS, shuffle=True, random_state=semilla)
     observada, permutaciones, p = permutation_test_score(
         _tubo(semilla, tipo), X, y, cv=partes, n_permutations=n_permutaciones,
         scoring="roc_auc", random_state=semilla, n_jobs=-1,
     )
+    if traza is not None:
+        traza["permutaciones"] = np.asarray(permutaciones, dtype=float)
+        traza["auc_observada"] = float(observada)
     return {
         "auc_observada_5_pliegues": float(observada),
         "p_permutacion": float(p),
@@ -146,18 +152,20 @@ def _nulo(X, y, semilla, tipo, n_permutaciones: int = N_PERMUTACIONES) -> dict:
     }
 
 
-def evaluar(X, y, semilla_cv, semilla_nulo, tipo="proteinas", n_permutaciones: int = N_PERMUTACIONES) -> dict:
+def evaluar(X, y, semilla_cv, semilla_nulo, tipo="proteinas", n_permutaciones: int = N_PERMUTACIONES, traza: dict | None = None) -> dict:
     if X.shape[0] != len(y):
         raise RuntimeError("X e y no tienen el mismo número de filas")
     if len(np.unique(y)) < 2 or min(np.bincount(y.astype(int))) < N_SPLITS:
         return {"estado": "no_evaluable", "motivo": "un pliegue estratificado de 5 necesita al menos 5 por clase"}
+    auc = _auc_repetida(X, y, semilla_cv, tipo, traza=traza)
+    nulo = _nulo(X, y, semilla_nulo, tipo, n_permutaciones, traza=traza)
     return {
         "estado": "calculado",
         "tipo": tipo,
         "n": int(len(y)),
         "n_variables": int(X.shape[1]),
-        **_auc_repetida(X, y, semilla_cv, tipo),
-        **_nulo(X, y, semilla_nulo, tipo, n_permutaciones),
+        **auc,
+        **nulo,
     }
 
 

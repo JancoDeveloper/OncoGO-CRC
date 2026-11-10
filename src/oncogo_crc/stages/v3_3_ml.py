@@ -23,14 +23,30 @@ def run(settings: Settings) -> None:
     humana_df = pd.read_csv(humana, sep="\t")
     calidad_df = pd.read_csv(calidad, sep="\t")
     bloques = matrices_de_suero(principal_df, humana_df, calidad_df, prereg)
+    muestras_modelo = _columnas_cp_cn(principal_df, humana_df)[0] + _columnas_cp_cn(principal_df, humana_df)[1]
     semilla_cv = semilla_v33(prereg, "ml_cv")
     semilla_nulo = semilla_v33(prereg, "ml_permutacion")
     versiones = {}
+    from oncogo_crc.v3.salida import corrida_limpia
+    oof_filas = []
+    nulo_filas = []
     for nombre, (x, y, tipo) in bloques.items():
         if x.shape[0] != 40 or int(np.sum(y)) != 20:
             raise RuntimeError(f"{nombre} no tiene 40 filas (20 CP y 20 CN)")
         print(f"[v3.3] ML {nombre}: validación cruzada y 1000 permutaciones")
-        versiones[nombre] = evaluar(x, y, semilla_cv, semilla_nulo, tipo)
+        traza = {} if corrida_limpia() and nombre in {"M2_proteinas_principal", "M3_solo_qc", "M5_principal_residualizada_qc"} else None
+        versiones[nombre] = evaluar(x, y, semilla_cv, semilla_nulo, tipo, traza=traza)
+        if traza:
+            muestras = muestras_modelo
+            grupos = ["CP" if valor == 1 else "CN" for valor in y]
+            for repeticion, fila in enumerate(traza["oof"], start=1):
+                for muestra, grupo, prob in zip(muestras, grupos, fila):
+                    oof_filas.append({"muestra": muestra, "grupo": grupo, "modelo": nombre, "repeticion": repeticion, "probabilidad": float(prob)})
+            for auc in traza["permutaciones"]:
+                nulo_filas.append({"modelo": nombre, "auc": float(auc)})
+    if oof_filas:
+        volcar_tsv(pd.DataFrame(oof_filas), salida / "ml_predicciones_oof.tsv", sello)
+        volcar_tsv(pd.DataFrame(nulo_filas), salida / "ml_nulo_permutaciones.tsv", sello)
     textos = prereg.get("enmienda_v3_3.ml_suero.titular.textos")
     decision = titular(
         versiones,
