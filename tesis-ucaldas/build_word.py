@@ -27,10 +27,12 @@ ARCHIVOS = [
     "chapters/07-marco-teorico.tex",
     "chapters/08-metodos.tex",
     "chapters/09-resultados.tex",
-    "chapters/09-v33.tex",
-    "chapters/09-v34.tex",
+    "chapters/09-v35.tex",
+    "chapters/10-discusion.tex",
     "chapters/90-conclusiones.tex",
     "chapters/91-anexos.tex",
+    "chapters/09-v33.tex",
+    "chapters/09-v34.tex",
 ]
 
 

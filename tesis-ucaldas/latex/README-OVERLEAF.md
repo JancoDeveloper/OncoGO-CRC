@@ -9,12 +9,14 @@ El archivo principal es `main.tex`. El compilador es **LuaLaTeX** y la bibliogra
 
 ## Subir el proyecto
 
-1. Comprima esta carpeta (`main.tex`, `ucaldas-tesis.cls`, `chapters/`, `references.bib`, `figures/`, `latexmkrc`). El zip ya armado está en `tesis-ucaldas/oncogo-crc-ucaldas-overleaf.zip`.
+1. Comprima esta carpeta (`main.tex`, `ucaldas-tesis.cls`, `chapters/`, `references.bib`, `figures/`, `cifras.tex`, `latexmkrc`). El zip de esta corrida está en `tesis-ucaldas/overleaf_v3_5.zip`.
 2. En [overleaf.com](https://www.overleaf.com): **New Project → Upload Project** y elija ese zip.
 3. Si el menú no queda en LuaLaTeX, ábralo y seleccione **LuaLaTeX**.
 4. Pulse **Recompile**. La tabla de contenido queda bien a la segunda compilación.
 
 No suba el repositorio de análisis ni el disco de datos. Overleaf solo necesita este documento.
+
+`python tesis-ucaldas/build_word.py` regenera `word/tesis-maestria-ucaldas.docx` desde los mismos capítulos. En esta corrida el Word tiene 7998 palabras y 1 figura insertada. Las figuras del LaTeX viven en `figures/` y Overleaf las incluye al compilar. No se instaló MacTeX.
 
 ## Qué imita y qué no
 
