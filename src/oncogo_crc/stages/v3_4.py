@@ -35,6 +35,13 @@ def _abrir(settings: Settings):
     return prereg, salida, sello
 
 
+def veredicto_desde_n_fallos(viejo: dict) -> str:
+    """v3.3 guardó estado calculado. El veredicto sale de n_fallos."""
+    if "n_fallos" not in viejo:
+        return str(viejo.get("estado", "no_disponible"))
+    return "falla" if int(viejo["n_fallos"]) > 0 else "pasa"
+
+
 def _controles(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV3) -> dict:
     grupos_path = settings.resolve("data/raw/pride/Cohort1_proteinGroups.txt")
     uni_path = settings.resolve("metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv")
@@ -83,7 +90,7 @@ def _controles(settings: Settings, salida: Path, sello: dict, prereg: Preregistr
     payload = {
         "controles_fisicos": filas,
         "veredicto_v3_4": veredicto,
-        "veredicto_v3_3": viejo.get("estado", "no_disponible"),
+        "veredicto_v3_3": veredicto_desde_n_fallos(viejo),
         "qc_mucosa_todos_pasan": bool(qc_pasa),
     }
     volcar_tsv(pd.DataFrame(filas), salida / "controles_fisicos.tsv", sello)
