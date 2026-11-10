@@ -304,14 +304,17 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg=None) -> dict
         gen = _gen_de_grupo(fila, uni)
         if gen:
             genes[str(fila["Protein.Group"])] = gen
-    tanaka_path = settings.resolve("results/v3_3/k1_primario_frente_a_mucosa.tsv")
+    from oncogo_crc.v3.salida import corrida_limpia
+    tanaka_path = salida / "k1_primario_frente_a_mucosa.tsv"
+    if not tanaka_path.is_file() and not corrida_limpia():
+        tanaka_path = settings.resolve("results/v3_3/k1_primario_frente_a_mucosa.tsv")
     tanaka = pd.read_csv(tanaka_path, sep="\t")
     tanaka["gen"] = tanaka["protein_id"].map(lambda pid: uni.get(acceso_base(str(pid).split(";")[0])))
     tanaka = tanaka.dropna(subset=["gen", "log2fc"])
     sube_tejido = set(tanaka.loc[tanaka["significant"].astype(bool) & (tanaka["log2fc"] > 0), "gen"].str.upper())
     con_log = set(tanaka["gen"].str.upper())
     h6_path = salida / "h6_origen_celular.tsv"
-    if not h6_path.is_file():
+    if not h6_path.is_file() and not corrida_limpia():
         h6_path = settings.resolve("results/v3_4/h6_origen_celular.tsv")
     h6 = pd.read_csv(h6_path, sep="\t")
     epitelial = set(h6.loc[h6["clase"].eq("epitelial"), "gen"].str.upper())

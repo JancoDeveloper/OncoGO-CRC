@@ -106,7 +106,10 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
             auc, bajo, alto = ic_ledell(y, pares["orden"].to_numpy(dtype=float))
             ic = [bajo, alto]
     spearman = {}
-    calidad = settings.resolve("results/v3_3/suero_calidad_muestra.tsv")
+    from oncogo_crc.v3.salida import corrida_limpia
+    calidad = salida / "suero_calidad_muestra.tsv"
+    if not calidad.is_file() and not corrida_limpia():
+        calidad = settings.resolve("results/v3_3/suero_calidad_muestra.tsv")
     if calidad.is_file() and len(con_fecha):
         qc = pd.read_csv(calidad, sep="\t")
         qc["crudo"] = qc["sample_id"].astype(str) + ".raw"

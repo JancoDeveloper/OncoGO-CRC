@@ -8,7 +8,7 @@ import pandas as pd
 
 from oncogo_crc.settings import Settings
 from oncogo_crc.utils.dia_nn_plasma import acceso_base
-from oncogo_crc.v3.salida import volcar_json, volcar_tsv
+from oncogo_crc.v3.salida import corrida_limpia, volcar_json, volcar_tsv
 
 NO_MEDIDA = "no_medida"
 
@@ -38,13 +38,20 @@ def _clase_por_gen(ruta: Path, columna_valor: str) -> dict[str, object]:
     return dict(zip(datos["gen"], datos[columna_valor], strict=False))
 
 
+def _de_esta_corrida(salida: Path, nombre: str, anterior: Path) -> Path:
+    local = salida / nombre
+    if local.is_file() or corrida_limpia():
+        return local
+    return anterior
+
+
 def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
     genes = [str(g) for g in prereg.get("enmienda_v3_4.triangulacion.genes")]
     columnas = [str(c) for c in prereg.get("enmienda_v3_4.triangulacion.columnas")]
     tabla = tabla_vacia(genes, columnas)
     buscados = set(genes)
 
-    tanaka = settings.resolve("results/v3_3/k1_primario_frente_a_mucosa.tsv")
+    tanaka = _de_esta_corrida(salida, "k1_primario_frente_a_mucosa.tsv", settings.resolve("results/v3_3/k1_primario_frente_a_mucosa.tsv"))
     uni = settings.resolve("metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv")
     if tanaka.is_file() and uni.is_file():
         mapa = pd.read_csv(uni, sep="\t", usecols=["gene_symbol", "uniprot_accession"], dtype=str).dropna()
@@ -71,13 +78,13 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
 
     for columna, ruta, campo in (
         ("clase_h5", salida / "h5_especificidad_organo.tsv", "clase"),
-        ("hpa_logfc_sanos", settings.resolve("results/v3_4/h10_especificidad.tsv"), "logfc_sanos"),
-        ("hpa_padj_sanos", settings.resolve("results/v3_4/h10_especificidad.tsv"), "padj_sanos"),
-        ("clase_h10", settings.resolve("results/v3_4/h10_especificidad.tsv"), "clase"),
-        ("pxd055218_k4_crc_sanos", settings.resolve("results/v3_3/k4_genes_maxlfq_crc_frente_a_sanos.tsv"), "clase"),
-        ("pxd055218_k4_crc_cn", settings.resolve("results/v3_3/k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv"), "clase"),
+        ("hpa_logfc_sanos", _de_esta_corrida(salida, "h10_especificidad.tsv", settings.resolve("results/v3_4/h10_especificidad.tsv")), "logfc_sanos"),
+        ("hpa_padj_sanos", _de_esta_corrida(salida, "h10_especificidad.tsv", settings.resolve("results/v3_4/h10_especificidad.tsv")), "padj_sanos"),
+        ("clase_h10", _de_esta_corrida(salida, "h10_especificidad.tsv", settings.resolve("results/v3_4/h10_especificidad.tsv")), "clase"),
+        ("pxd055218_k4_crc_sanos", _de_esta_corrida(salida, "k4_genes_maxlfq_crc_frente_a_sanos.tsv", settings.resolve("results/v3_3/k4_genes_maxlfq_crc_frente_a_sanos.tsv")), "clase"),
+        ("pxd055218_k4_crc_cn", _de_esta_corrida(salida, "k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv", settings.resolve("results/v3_3/k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv")), "clase"),
     ):
-        if ruta == salida / "h5_especificidad_organo.tsv" and not ruta.is_file():
+        if ruta == salida / "h5_especificidad_organo.tsv" and not ruta.is_file() and not corrida_limpia():
             ruta = settings.resolve("results/v3_4/h5_especificidad_organo.tsv")
         for gen, valor in _clase_por_gen(ruta, campo).items():
             if gen in buscados:

@@ -284,9 +284,10 @@ def run(settings: Settings) -> None:
         "cobertura": Fraccion("R1_cobertura", int(r1["denominador"] or 0), n_cert, "proteinas_unicas").to_dict(),
     }
     volcar_json(payload, salida / "k1_etiquetas.json", sello)
+    from oncogo_crc.v3.salida import corrida_limpia
     anterior = settings.resolve("results/v3/k1_etiquetas.json")
-    valor_v3 = "results/v3/k1_etiquetas.json"
-    if anterior.is_file():
+    valor_v3 = "no_leido_en_corrida_limpia" if corrida_limpia() else "results/v3/k1_etiquetas.json"
+    if anterior.is_file() and not corrida_limpia():
         import json
         viejo = json.loads(anterior.read_text(encoding="utf-8"))
         bloque = viejo.get("contrastes", {}).get("primario_frente_a_mucosa", {})
