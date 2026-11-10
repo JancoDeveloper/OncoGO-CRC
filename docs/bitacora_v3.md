@@ -391,4 +391,12 @@ Comando, antes de escribir la clave: `pytest tests/test_cronologia.py::test_enmi
 
 Resultado. 1 failed. `AssertionError: no aparece enmienda_v3_7 en el preregistro`. El texto de trabajo fechaba la revisión el 11-nov-2026. El commit es del 10-nov-2026 y así queda escrito en `config/preregistro_v3.yaml`. La diferencia está en `docs/auditoria_v3.md` no: queda en esta entrada.
 
-Decisión. La enmienda se escribe antes de cualquier fichero de `results/v3_7/`. No cambia umbrales.
+Decisión. La enmienda se escribe antes de cualquier fichero de `results/v3_7/`. No cambia umbrales. Después del commit `2b3c93d`, la misma prueba da 1 passed.
+
+## 2026-11-10 09:24 (UTC−5). v3.7, integridad de crudos
+
+Comando, antes del módulo: `pytest tests/test_v3_7_crudos.py`.
+
+Resultado. Salida 2 en la colección: `ModuleNotFoundError: No module named 'scripts.download.pxd055218_crudos'`. Con el módulo y la carga por ruta, 1 passed.
+
+Decisión. El comprobador compara el SHA-1 y pide redescarga si no coincide. La pasada sobre los 60 crudos reales empieza después de este commit.
