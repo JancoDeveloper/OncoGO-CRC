@@ -176,3 +176,15 @@ Las rutas absolutas estaban en `k2_independencia.json`, en la columna `fuente` d
 El universo de la prueba de H8 sigue en 33. El embudo cuenta, antes de las listas de ruido, las proteínas del suero con log2FC en toda la tabla de Tanaka. Esa cifra no es la del universo de la prueba.
 
 El Spearman preregistrado sigue en las 36 corridas de CP y CN que unen con la tabla de calidad. Los crudos HC no unen: el report los llama `Normal_` y el fichero `HC_`. El Spearman de los 54 queda `no_evaluable` por ese desajuste de nombres. No se inventa la correspondencia.
+
+## v3.7, inventario de lecturas en main@859b86b
+
+Funciones que leen una corrida anterior o conservan una ruta de respaldo. La etapa v3.7 no las usará para escribir `results/v3_7/`.
+
+- `stages/v3_5_preanalitica.py:227`: si no hay tabla de calidad en la salida, abre `results/v3_3/suero_calidad_muestra.tsv`.
+- `v3/h8.py:312` y `:320`: respaldo a `results/v3_3/k1_primario_frente_a_mucosa.tsv` y a `results/v3_4/h6_origen_celular.tsv`. El mapa de gen sigue siendo UniProt revisado, no `genes_tanaka.mapa_genes`.
+- `v3/triangulacion.py`: K1 y K4 de v3.3, H5 y H10 de v3.4, y el mismo mapa incompleto.
+- `v3/vigilante.py:22`: solo autoriza escrituras y lecturas de `results/v3_6/`.
+- `v3/salida.py`: `VERSIONES_DE_ESCRITURA` llega hasta v3.6 y `entrada_v3` cae en `results/v3_3`.
+- `stages/v3_5.py`, `stages/v3_6.py` y `stages/v3_6_report.py`: leen v3.3, v3.4 o v3.5 para copiar o para el certificado de su propia versión. No se reejecutan.
+- `stages/v3_3_ml.py`: la traza OOF solo se escribe si `corrida_limpia()` está activa.

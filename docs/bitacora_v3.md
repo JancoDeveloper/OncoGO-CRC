@@ -376,3 +376,11 @@ Comandos: `python scripts/v3/exportar_cifras_tesis.py`, `python scripts/v3/figur
 Resultado. El exportador escribe 49 macros. La prueba de la tesis da 3 passed y la del sitio da 2 passed, 5 passed en total. Chrome sin interfaz escribe `docs/capturas_v3_6/inicio-1440.png`, `inicio-390.png` y `resultados-1440.png`. El volcado del DOM de la portada sale con código 0. No se ejecutó Lighthouse: no está en las herramientas de esta corrida.
 
 Decisión. La tesis, el Word, el zip de Overleaf y la página quedan en el repositorio. La discusión y la introducción siguen con `% REDACTAR-AUTOR`. Los objetivos llevan `% REVISAR-AUTOR`.
+
+## 2026-11-10 09:20 (UTC−5). v3.7, fase 0
+
+Comandos: `git checkout main`, `git fetch origin --tags`, `git pull --ff-only origin main`, `git status`, `git tag -l`, `git ls-remote --tags origin`, la comprobación de los cinco manifiestos, `ONCOGO_REGRESION_V1=1 pytest tests/test_regresion_v1.py -q` y el SHA-256 y el SHA-1 de `data/raw/plasma/DIA-NN_report.tsv`.
+
+Resultado. La cabeza es `859b86b` y el árbol estaba limpio. El disco está montado. Las etiquetas locales y de GitHub son v3.2-final@c2be8e4, v3.3-final@4f85911, v3.4-final@bff0c5e, v3.5-final@ef7262f y v3.6-final@859b86b. Los manifiestos coinciden: v3.2 112, v3.3 189, v3.4 50, v3.5 70 y v3.6 210, con 0 hashes distintos. La regresión v1 da 4 passed en 11,54 s. El report pesa 213313241 bytes. Su SHA-256 es `a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8` y su SHA-1 es `ddf7f2a5d615a319577d0299754f186836881ad1`. Hay 60 crudos en `data/raw/plasma/pxd055218_raw/`. Python 3.14.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, scikit-learn 1.8.0, statsmodels 0.14.6, matplotlib 3.10.9, gseapy 1.2.1, directlfq 0.3.3, Pillow 12.2.0, Jinja2 3.1.6 y openpyxl 3.1.5. Chrome está instalado. No están Playwright, Lighthouse, latexmk, lualatex, conda ni pyteomics.
+
+Decisión. Se sigue. El inventario de lecturas queda en `docs/auditoria_v3.md`. Playwright y Chromium se instalan cuando llegue la comprobación visual. No se instala MacTeX. pyteomics queda POR VERIFICAR hasta el control del PRTC.
