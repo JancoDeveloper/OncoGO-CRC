@@ -857,3 +857,52 @@ enmienda_v3_7:
     vias_suero: "semillas.desplazamientos.g_permutacion_vias de v3 (670)"
     h1_clausula_vias: "semillas.desplazamientos.r5_permutacion_vias de v2 (101)"
     resto: "las de cada pieza en su versión de origen"
+
+# --------------------------------------- 20. Enmienda v3.7, cierre de alcance
+enmienda_v3_7_cierre:
+  fecha: "2026-11-10"
+  transparencia: >-
+    Ya se vieron los resultados de results/v3_7 (main@9af0d01) y las tablas
+    exploratorias de tesis-ucaldas/archivo/figuras-31-oct. No se mueve ningún
+    umbral ni ninguna regla de decisión.
+  no_cambia: [inferencia, k4_suero, k5_auc, hipotesis, vias_suero, c4_vias, c13_nulo_vias]
+  salida: "results/v3_7/"
+  no_se_ejecutan_en_esta_tesis:
+    vias_suero: "preregistro_v3 §12. Desviación declarada: no se ejecutó en la corrida certificada. Requiere recalcular el GSEA de CPTAC dentro de la corrida limpia."
+    h1_clausula_vias: "No cambia el veredicto: la cláusula de proteína ya rechaza H1 (tabla de verdad de preregistro_v2.hipotesis.h1). Se declara no ejecutada."
+    union_hc_xic: "Requiere convertir los 60 crudos y extraer XIC. HC queda no_evaluable a nivel de muestra."
+    prtc_deriva: "El depositante añadió 200 fmol de Pierce 88320 a cada muestra (protocolo de PRIDE), pero medirlo exige XIC de péptidos pesados en los crudos."
+    redes_coexpresion: "preregistro_v2.hipotesis.h2: ninguna red se interpreta sin al menos 1000 redes reconectadas que conserven los grados. No se ejecuta."
+    catalogo_candidatas: "35 de 37 fuentes sin verificar en metadata/tesis/candidatas_literatura.tsv. Solo se auditan las 2 verificadas (BAIAP3 y CEACAM5)."
+    neoantigenos: "El report de DIA-NN se buscó solo contra UniProt humano. Hacen falta las secuencias del material suplementario de Rai 2025 y una nueva búsqueda."
+  destino: "tesis, capítulo de trabajo futuro y lista de desviaciones del preregistro"
+  descriptivos_que_se_ejecutan:
+    nota: >-
+      Ninguno decide una hipótesis. Los parámetros se fijan aquí, antes de
+      ejecutarlos, y se toman de config/config.yaml o de piezas ya existentes.
+    go_ora_gsea_tejido:
+      cohortes: [cptac_tumor_frente_a_normal, tanaka_primario_frente_a_mucosa]
+      anotacion: "metadata/gene_ontology/go_gene_long.tsv (GOA humano sin IEA ni propagación; sha256 en el manifiesto)"
+      ontologia: BP
+      ora: "utils/go_utils.ora_fisher; suben y bajan por separado; universo = genes probados en esa cohorte; BH"
+      gsea: "gseapy prerank, parámetros de config.gsea: signed_neglog10_p, 200 permutaciones, semilla 42, tamaño 15-500, FDR <= 0,25"
+      tamano_terminos: "15 a 500 genes, como en config.gsea, también para ORA"
+      concordancia: "signo del NES en Tanaka para los términos con FDR <= 0,25 en CPTAC; descriptiva, sin veredicto"
+    ml_explicacion:
+      modelos: [M2_proteinas_principal, M3_solo_qc]
+      metodo: "SHAP lineal exacto del modelo logístico L2 ya ajustado en cada pliegue externo: coeficiente × (x − media del pliegue de entrenamiento), en la escala estandarizada"
+      comprobacion: "si el paquete shap está instalado, LinearExplainer debe coincidir con el cálculo exacto a 1e-8"
+      resumen: "media de |SHAP| fuera del pliegue; las 20 primeras proteínas"
+      anotacion: "para cada una: contaminante o panel (piel, coagulación), Spearman con cada métrica de calidad y con el orden de adquisición (n 40)"
+    priorizacion_secuencial:
+      universo: "proteínas certificadas de CPTAC tumor frente a normal"
+      pasos_en_orden:
+        - "1. diferencial certificada en CPTAC (TREAT)"
+        - "2. medida en Tanaka P frente a N y con el mismo signo"
+        - "3. clase H5 (se informa; no elimina)"
+        - "4. HPA: secretada a sangre o con concentración plasmática conocida"
+        - "5. medida en la matriz principal del suero PXD055218"
+        - "6. K4 CP frente a CN: clase diferente con el mismo signo que el tejido"
+        - "7. H10: especifica_crc en el HPA Disease Blood Atlas"
+      regla: "sin pesos ni puntajes: cada proteína guarda el último paso que supera. El orden dentro de un paso es el padj de CPTAC."
+      lectura: "lista de hipótesis para cohortes futuras, no biomarcadores"
