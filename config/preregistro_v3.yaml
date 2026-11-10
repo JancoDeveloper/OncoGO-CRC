@@ -820,3 +820,40 @@ enmienda_v3_6:
     formato_numerico: "src/oncogo_crc/formato.py"
   semillas:
     desplazamientos: "los mismos de cada pieza en su versión de origen; la celda preregistrada del ML con las semillas de v3.3"
+
+# ------------------------------------------------- 19. Enmienda v3.7 (definitiva)
+enmienda_v3_7:
+  fecha: "2026-11-10"
+  transparencia: >-
+    Los resultados v3.6 ya se habían visto. La revisión del 10-nov-2026 leyó
+    results/v3_6/, el código de main@859b86b y la web. El texto de trabajo
+    decía 11-nov-2026; el commit es del 10. Esta enmienda no mueve ningún
+    umbral ni ninguna regla de decisión. Corrige fallos de implementación,
+    ejecuta piezas preregistradas que no se habían ejecutado y añade
+    descriptivos que no deciden ninguna hipótesis.
+  no_cambia: [inferencia, k4_suero, k5_auc, hipotesis, vias_suero, enmienda_v3_3,
+              enmienda_v3_4, enmienda_v3_5, enmienda_v3_6.titular, enmienda_v3_6.presentacion]
+  salida: "results/v3_7/"
+  corrida_limpia:
+    recalcula: todo
+    lecturas_permitidas: [config/, data/, external/, metadata/, "results/certified/ (tras make regresion-v1 y con su manifiesto)"]
+    excepciones: "config/entradas_v3_7.yaml; cada una con ruta, SHA-256 y motivo"
+    manifiesto_entradas: "results/v3_7/manifest_entradas.sha256; su SHA-256 va en cada sello"
+  correcciones_de_implementacion:
+    union_hc: "tabla verificada crudo-sample_id (report o XIC con control positivo en CP y CN)"
+    mapa_tanaka: "genes_tanaka.mapa_genes en todas las piezas, también H8 y triangulación"
+    embudos: "secuenciales; cada paso es subconjunto del anterior"
+    determinismo: "todas las piezas, dos procesos, mismos SHA-256 sin el bloque sello"
+  crudos:
+    verificacion: "SHA-1 de checksum.txt de PRIDE para los 60"
+    distinto: "se vuelve a descargar hasta 3 veces"
+    igual_e_ilegible: "TRFP 2.0.0 y 1.4.5; lector de cabecera solo si coincide en 54 de 54"
+    sin_fecha_tras_todo: "dañado en origen; no_evaluable con la cota"
+  ejecuciones_preregistradas_pendientes:
+    vias_suero: "preregistro_v3 §12, con la referencia de tejido de stages/tesis_cierre.py::_vias_suero"
+    h1_clausula_vias: "preregistro_v2 c4_vias y c13_nulo_vias, con la réplica de hipotesis.h1 de v3 (Tanaka P frente a N)"
+  descriptivos_nuevos: [spearman_por_grupo_con_bh, prtc_deriva, go_ora_tejido, catalogo_candidatas, neoantigenos_frontera]
+  semillas:
+    vias_suero: "semillas.desplazamientos.g_permutacion_vias de v3 (670)"
+    h1_clausula_vias: "semillas.desplazamientos.r5_permutacion_vias de v2 (101)"
+    resto: "las de cada pieza en su versión de origen"

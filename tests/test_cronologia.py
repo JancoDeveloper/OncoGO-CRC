@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
-PREFIJOS = ("prereg", "fix", "feat", "docs", "test", "tesis", "sitio", "chore", "ci")
+PREFIJOS = ("prereg", "fix", "feat", "docs", "test", "tesis", "sitio", "chore", "ci", "datos")
 
 
 def _git(*args: str) -> str:
@@ -79,6 +79,14 @@ def test_enmienda_v3_4_es_anterior_a_sus_resultados():
     if resultados and not enmienda:
         raise AssertionError("hay results/v3_4 sin la enmienda v3.4")
     if enmienda and resultados:
+        assert _es_anterior(enmienda, resultados)
+
+
+def test_enmienda_v3_7_es_anterior_a_sus_resultados():
+    enmienda = _introduce_clave("enmienda_v3_7:")
+    resultados = _primero_que_anade("results/v3_7")
+    assert enmienda, "no aparece enmienda_v3_7 en el preregistro"
+    if resultados:
         assert _es_anterior(enmienda, resultados)
 
 

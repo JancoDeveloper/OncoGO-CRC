@@ -384,3 +384,11 @@ Comandos: `git checkout main`, `git fetch origin --tags`, `git pull --ff-only or
 Resultado. La cabeza es `859b86b` y el árbol estaba limpio. El disco está montado. Las etiquetas locales y de GitHub son v3.2-final@c2be8e4, v3.3-final@4f85911, v3.4-final@bff0c5e, v3.5-final@ef7262f y v3.6-final@859b86b. Los manifiestos coinciden: v3.2 112, v3.3 189, v3.4 50, v3.5 70 y v3.6 210, con 0 hashes distintos. La regresión v1 da 4 passed en 11,54 s. El report pesa 213313241 bytes. Su SHA-256 es `a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8` y su SHA-1 es `ddf7f2a5d615a319577d0299754f186836881ad1`. Hay 60 crudos en `data/raw/plasma/pxd055218_raw/`. Python 3.14.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, scikit-learn 1.8.0, statsmodels 0.14.6, matplotlib 3.10.9, gseapy 1.2.1, directlfq 0.3.3, Pillow 12.2.0, Jinja2 3.1.6 y openpyxl 3.1.5. Chrome está instalado. No están Playwright, Lighthouse, latexmk, lualatex, conda ni pyteomics.
 
 Decisión. Se sigue. El inventario de lecturas queda en `docs/auditoria_v3.md`. Playwright y Chromium se instalan cuando llegue la comprobación visual. No se instala MacTeX. pyteomics queda POR VERIFICAR hasta el control del PRTC.
+
+## 2026-11-10 09:22 (UTC−5). v3.7, enmienda
+
+Comando, antes de escribir la clave: `pytest tests/test_cronologia.py::test_enmienda_v3_7_es_anterior_a_sus_resultados`.
+
+Resultado. 1 failed. `AssertionError: no aparece enmienda_v3_7 en el preregistro`. El texto de trabajo fechaba la revisión el 11-nov-2026. El commit es del 10-nov-2026 y así queda escrito en `config/preregistro_v3.yaml`. La diferencia está en `docs/auditoria_v3.md` no: queda en esta entrada.
+
+Decisión. La enmienda se escribe antes de cualquier fichero de `results/v3_7/`. No cambia umbrales.

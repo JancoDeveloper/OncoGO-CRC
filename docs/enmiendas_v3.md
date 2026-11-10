@@ -155,3 +155,19 @@ H8. Se añade un embudo descriptivo del universo. El universo sigue siendo toda 
 Formato. Tesis, web y figuras usan un solo módulo de formato. Los JSON guardan el valor completo.
 
 Las corridas v3.2 a v3.5 no se borran. Quedan con su etiqueta y su manifiesto.
+
+## Enmienda v3.7 (definitiva), 10 de noviembre de 2026
+
+Qué cambia. La v3.7 recalcula todas las piezas en `results/v3_7/`. Corrige fallos de implementación que ya se habían visto en v3.6: la unión de los sanos con la tabla de calidad, el mapa de genes de Tanaka en H8 y en la triangulación, los embudos para que cada paso sea un subconjunto del anterior, y el sello, que pasa a llevar el SHA-256 del manifiesto de entradas y la etapa `v3_7`.
+
+Por qué. Esos fallos cambian qué filas entran en una prueba sin cambiar la regla. La v3.6 dejó el Spearman de los sanos en `no_evaluable` porque los crudos se llaman `HC_` y la tabla de calidad `Normal_`. H8 asignaba el gen con un mapa de UniProt revisado y dejaba fuera proteínas que el mapa de MaxQuant sí nombra. El embudo contaba cada paso sobre el mismo conjunto, no sobre el anterior.
+
+Qué no cambia. No se mueve la inferencia, el contraste del suero, el AUC de K5, las hipótesis, las vías del suero tal como se preregistraron, ni las enmiendas v3.3, v3.4 y v3.5. El titular y el formato numérico de la v3.6 se conservan.
+
+Crudos. Los 60 se comparan con el SHA-1 de `checksum.txt` de PRIDE. El que no coincida se vuelve a descargar hasta tres veces. El que coincida y siga ilegible se lee con ThermoRawFileParser 2.0.0 y con la 1.4.5. Un lector de cabecera solo se acepta si la fecha coincide en las 54 corridas que el lector oficial ya leyó. Si después de eso falta la fecha, el fichero se declara dañado en origen y el estado sigue `no_evaluable`, con la cota.
+
+Piezas que el preregistro ya pedía y no se habían ejecutado. Las vías del suero, con la semilla 670 y 10 000 permutaciones, y la cláusula de vías de H1, con la semilla 101 y Tanaka como réplica.
+
+Descriptivos que no deciden. La correlación dentro de cada grupo con su q de Benjamini-Hochberg, la deriva del estándar interno, la sobrerrepresentación de GO en el tejido, la auditoría del catálogo de candidatas y los neoantígenos como frontera.
+
+Las corridas v3.2 a v3.6 quedan congeladas con su etiqueta. Solo se leen después de la corrida, para el changelog.

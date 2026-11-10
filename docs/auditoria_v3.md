@@ -188,3 +188,5 @@ Funciones que leen una corrida anterior o conservan una ruta de respaldo. La eta
 - `v3/salida.py`: `VERSIONES_DE_ESCRITURA` llega hasta v3.6 y `entrada_v3` cae en `results/v3_3`.
 - `stages/v3_5.py`, `stages/v3_6.py` y `stages/v3_6_report.py`: leen v3.3, v3.4 o v3.5 para copiar o para el certificado de su propia versión. No se reejecutan.
 - `stages/v3_3_ml.py`: la traza OOF solo se escribe si `corrida_limpia()` está activa.
+
+El texto de trabajo de la enmienda v3.7 decía «11-nov-2026». La revisión y el commit son del 10-nov-2026. Se usa la fecha real.
