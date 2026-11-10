@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 from oncogo_crc.settings import Settings
+from oncogo_crc.v3.rutas_publicas import ruta_publica
 from oncogo_crc.utils.dia_nn_plasma import (
     BYTES_REPORT,
     PLASMA_CLASICO,
@@ -118,7 +119,7 @@ def run(settings: Settings) -> None:
             for fila in humanos_marcados.itertuples(index=False)
         ],
         "contaminantes_no_marcan_plasma_clasico": "pasa",
-        "matriz": str(destino_matriz),
+        "matriz": ruta_publica(destino_matriz, settings)["ruta"],
     }
     destino = salida / "suero_controles.json"
     _salida(destino)
