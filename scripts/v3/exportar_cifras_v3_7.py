@@ -21,6 +21,9 @@ WORD = REPO / "tesis-ucaldas" / "word" / "cifras.json"
 MD = REPO / "tesis-ucaldas" / "paquete-redaccion-v3_7" / "cifras-v3_7.md"
 CAMBIO = REPO / "docs" / "changelog_v3_6_frente_a_v3_7.md"
 ESTADO = REPO / "docs" / "estado_v3_7.md"
+CORRESPONDENCIA = REPO / "config" / "correspondencia_propuesta.tsv"
+CORRESPONDENCIA_TEX = REPO / "tesis-ucaldas" / "latex" / "correspondencia.tex"
+PASOS = ("", "Uno", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete")
 
 PENDIENTES = (
     "vias_suero.json",
@@ -47,6 +50,45 @@ def _tex(texto: str) -> str:
     )
 
 
+def _anexar(filas: list, version: str, nombre: str, valor: object, tipo: str, fuente: str) -> None:
+    if valor is None and version != "v3_7":
+        return
+    filas.append((nombre, valor, tipo, fuente))
+
+
+def _hc(carpeta: Path, tabla: str) -> tuple[int | None, list[str]]:
+    ruta = carpeta / tabla
+    traza_ruta = carpeta / "suero_trazabilidad_grupos.tsv"
+    if not ruta.is_file() or not traza_ruta.is_file():
+        return None, []
+    datos = pd.read_csv(ruta, sep="\t")
+    if "clase" not in datos.columns or "protein_id" not in datos.columns:
+        return None, []
+    dif = datos.loc[datos["clase"].eq("diferente")].copy()
+    if "padj" in dif.columns:
+        dif = dif.sort_values("padj")
+    traza = pd.read_csv(traza_ruta, sep="\t", usecols=["protein_group", "genes"])
+    mapa = traza.drop_duplicates("protein_group").set_index("protein_group")["genes"]
+    genes = [str(mapa.get(acceso, acceso)).split(";")[0] for acceso in dif["protein_id"].astype(str)]
+    return int(len(dif)), genes
+
+
+def _paso_cinco(carpeta: Path) -> tuple[int, list[str], list[str]] | None:
+    ruta = carpeta / "priorizacion.tsv"
+    if not ruta.is_file():
+        return None
+    tabla = pd.read_csv(ruta, sep="\t")
+    cinco = tabla.loc[pd.to_numeric(tabla["ultimo_paso"], errors="coerce") >= 5].copy()
+    fc = pd.to_numeric(cinco["log2fc_cptac"], errors="coerce")
+    if fc.isna().any():
+        raise SystemExit("log2fc_cptac vacío en el paso 5")
+    bajan = int((fc < 0).sum())
+    suben = cinco.loc[fc > 0, "gen"].astype(str).tolist()
+    if bajan + len(suben) != len(cinco):
+        raise SystemExit("hay un log2fc_cptac de cero en el paso 5")
+    return bajan, cinco["gen"].astype(str).tolist(), suben
+
+
 def _entradas(carpeta: Path, version: str) -> list[tuple[str, object, str, str]]:
     prefijo = f"results/{version}"
     embudo = _json(carpeta, "suero_embudo.json")
@@ -64,7 +106,8 @@ def _entradas(carpeta: Path, version: str) -> list[tuple[str, object, str, str]]
     pre = _json(carpeta, "preanalitica.json")
     tejido_raiz = _json(carpeta, "k1_etiquetas.json")
     go = _json(carpeta, "go_tejido.json") if (carpeta / "go_tejido.json").is_file() else {"concordancia_nes": {"numerador": None, "denominador": None}}
-    priori = _json(carpeta, "priorizacion_embudo.json") if (carpeta / "priorizacion_embudo.json").is_file() else {"pasos": [{"paso": 5, "n": None}, {"paso": 6, "n": None}]}
+    priori = _json(carpeta, "priorizacion_embudo.json") if (carpeta / "priorizacion_embudo.json").is_file() else {"pasos": []}
+    explicacion = _json(carpeta, "ml_explicacion.json") if (carpeta / "ml_explicacion.json").is_file() else {}
     calidad = _json(carpeta, "k7_control_tecnico.json")["confusion_preanalitica"]
     certificado = _json(carpeta, "certificado.json")
     piel = {fila["indicador"]: fila for fila in calidad}
@@ -72,7 +115,7 @@ def _entradas(carpeta: Path, version: str) -> list[tuple[str, object, str, str]]
     spearman = pre["calculado_con_legibles"]["spearman"]["piel"]
     primario = tejido["primario_frente_a_mucosa"]
     metastasis = tejido["metastasis_hepatica_frente_a_mucosa"]
-    return [
+    filas = [
         ("SueroN", celda["n"], "entero", f"{prefijo}/suero_embudo.json#celda_preregistrada.n"),
         ("SueroDif", celda["diferente"], "entero", f"{prefijo}/suero_embudo.json#celda_preregistrada.diferente"),
         ("SueroEq", celda["equivalente"], "entero", f"{prefijo}/suero_embudo.json#celda_preregistrada.equivalente"),
@@ -118,8 +161,6 @@ def _entradas(carpeta: Path, version: str) -> list[tuple[str, object, str, str]]
         ("BhPielCn", ((pre.get("bh_descriptivo") or {}).get("q") or {}).get("CN:piel"), "p", f"{prefijo}/preanalitica.json#bh_descriptivo.q.CN:piel"),
         ("GoConNum", (go.get("concordancia_nes") or {}).get("numerador"), "entero", f"{prefijo}/go_tejido.json#concordancia_nes.numerador"),
         ("GoConDen", (go.get("concordancia_nes") or {}).get("denominador"), "entero", f"{prefijo}/go_tejido.json#concordancia_nes.denominador"),
-        ("Priori5", next((p["n"] for p in priori.get("pasos") or [] if p["paso"] == 5), None), "entero", f"{prefijo}/priorizacion_embudo.json#pasos"),
-        ("Priori6", next((p["n"] for p in priori.get("pasos") or [] if p["paso"] == 6), None), "entero", f"{prefijo}/priorizacion_embudo.json#pasos"),
         ("HsieteSec", (h7.get("modelo_secundario") or {}).get("auc_secundario"), "auc_completo", f"{prefijo}/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario"),
         ("PreCrudos", pre["n_crudos_validos"], "entero", f"{prefijo}/preanalitica.json#n_crudos_validos"),
         ("CalidadCoagP", piel["coagulacion"]["p_kruskal"], "p", f"{prefijo}/k7_control_tecnico.json#coagulacion.p_kruskal"),
@@ -129,6 +170,93 @@ def _entradas(carpeta: Path, version: str) -> list[tuple[str, object, str, str]]
         ("MultiMl", multi["n_celdas_ml"], "entero", f"{prefijo}/multiverso_resumen.json#n_celdas_ml"),
         ("MultiDif", multi["n_con_diferente"], "entero", f"{prefijo}/multiverso_resumen.json#n_con_diferente"),
     ]
+    for paso in priori.get("pasos") or []:
+        nombre = PASOS[int(paso["paso"])] if 1 <= int(paso["paso"]) < len(PASOS) else ""
+        if nombre:
+            _anexar(filas, version, f"PrioriPaso{nombre}", paso.get("n"), "entero", f"{prefijo}/priorizacion_embudo.json#pasos")
+    paso5 = _paso_cinco(carpeta)
+    if paso5 is not None:
+        bajan, _genes, suben = paso5
+        _anexar(filas, version, "PrioriBajan", bajan, "entero", f"{prefijo}/priorizacion.tsv#log2fc_cptac")
+        _anexar(filas, version, "PrioriSuben", len(suben), "entero", f"{prefijo}/priorizacion.tsv#log2fc_cptac")
+    n_cp, _genes_cp = _hc(carpeta, "suero_k4_crc_sanos.tsv")
+    n_cn, _genes_cn = _hc(carpeta, "suero_k4_cn_sanos.tsv")
+    _anexar(filas, version, "HcCpDif", n_cp, "entero", f"{prefijo}/suero_k4_crc_sanos.tsv#clase")
+    _anexar(filas, version, "HcCnDif", n_cn, "entero", f"{prefijo}/suero_k4_cn_sanos.tsv#clase")
+    cohortes = go.get("cohortes") or {}
+    cptac = cohortes.get("cptac_tumor_frente_a_normal") or {}
+    tanaka = cohortes.get("tanaka_primario_frente_a_mucosa") or {}
+    for nombre, valor, campo in (
+        ("GoCptacTerminos", cptac.get("n_terminos_probados"), "cptac_tumor_frente_a_normal.n_terminos_probados"),
+        ("GoCptacSuben", cptac.get("n_ora_significativos_suben"), "cptac_tumor_frente_a_normal.n_ora_significativos_suben"),
+        ("GoCptacBajan", cptac.get("n_ora_significativos_bajan"), "cptac_tumor_frente_a_normal.n_ora_significativos_bajan"),
+        ("GoCptacGsea", cptac.get("n_gsea_fdr"), "cptac_tumor_frente_a_normal.n_gsea_fdr"),
+        ("GoTanakaTerminos", tanaka.get("n_terminos_probados"), "tanaka_primario_frente_a_mucosa.n_terminos_probados"),
+        ("GoTanakaSuben", tanaka.get("n_ora_significativos_suben"), "tanaka_primario_frente_a_mucosa.n_ora_significativos_suben"),
+        ("GoTanakaBajan", tanaka.get("n_ora_significativos_bajan"), "tanaka_primario_frente_a_mucosa.n_ora_significativos_bajan"),
+        ("GoTanakaGsea", tanaka.get("n_gsea_fdr"), "tanaka_primario_frente_a_mucosa.n_gsea_fdr"),
+    ):
+        _anexar(filas, version, nombre, valor, "entero", f"{prefijo}/go_tejido.json#{campo}")
+    concordancia = go.get("concordancia_nes") or {}
+    _anexar(filas, version, "GoCiBajo", concordancia.get("ci_low"), "auc", f"{prefijo}/go_tejido.json#concordancia_nes.ci_low")
+    _anexar(filas, version, "GoCiAlto", concordancia.get("ci_high"), "auc", f"{prefijo}/go_tejido.json#concordancia_nes.ci_high")
+    parametros = go.get("parametros") or {}
+    _anexar(filas, version, "GoFdr", parametros.get("fdr"), "p", f"{prefijo}/go_tejido.json#parametros.fdr")
+    _anexar(filas, version, "GoPerm", parametros.get("permutaciones"), "entero", f"{prefijo}/go_tejido.json#parametros.permutaciones")
+    comprobacion = (explicacion.get("comprobacion_shap") or {}).get("M2_proteinas_principal")
+    _anexar(filas, version, "ShapLineal", comprobacion, "entero", f"{prefijo}/ml_explicacion.json#comprobacion_shap.M2_proteinas_principal")
+    _anexar(filas, version, "ShapPiel", explicacion.get("n_piel_en_las_20"), "entero", f"{prefijo}/ml_explicacion.json#n_piel_en_las_20")
+    _anexar(filas, version, "ShapCoag", explicacion.get("n_coagulacion_en_las_20"), "entero", f"{prefijo}/ml_explicacion.json#n_coagulacion_en_las_20")
+    _anexar(filas, version, "ShapCalidad", explicacion.get("n_correlacionan_con_calidad_bh"), "entero", f"{prefijo}/ml_explicacion.json#n_correlacionan_con_calidad_bh")
+    if (carpeta / "ml_explicacion.tsv").is_file():
+        tabla = pd.read_csv(carpeta / "ml_explicacion.tsv", sep="\t")
+        n_top = int(tabla["modelo"].eq("M2_proteinas_principal").sum()) if "modelo" in tabla.columns else None
+        _anexar(filas, version, "ShapTop", n_top, "entero", f"{prefijo}/ml_explicacion.tsv#modelo")
+    return filas
+
+
+def _comando_texto(lineas: list[str], word: dict, nombre: str, texto: str, fuente: str) -> None:
+    lineas.append(f"% fuente: {fuente}")
+    lineas.append(f"\\newcommand{{\\{nombre}}}{{{_tex(texto)}}}")
+    word[nombre] = {"valor": texto, "fuente": fuente, "crudo": texto}
+
+
+def _escribir_correspondencia() -> None:
+    n_cp, _genes_cp = _hc(V37, "suero_k4_crc_sanos.tsv")
+    n_cn, _genes_cn = _hc(V37, "suero_k4_cn_sanos.tsv")
+    if n_cp is None or n_cn is None:
+        raise SystemExit("faltan los contrastes frente a HC")
+    frase = (
+        "Frente a CN ninguna proteína de la celda es diferente. CN no son personas sanas. "
+        f"Frente a HC salen {n_cp} (CP) y {n_cn} (CN), leídos de suero_k4_crc_sanos.tsv y suero_k4_cn_sanos.tsv."
+    )
+    lineas = CORRESPONDENCIA.read_text(encoding="utf-8").splitlines()
+    cabecera = lineas[0].split("\t")
+    punto = cabecera.index("punto")
+    explicacion = cabecera.index("explicacion")
+    salida = [lineas[0]]
+    filas = []
+    for linea in lineas[1:]:
+        if not linea.strip():
+            continue
+        celdas = linea.split("\t")
+        if celdas[punto] == "proteinas_diferenciales":
+            celdas[explicacion] = frase
+        salida.append("\t".join(celdas))
+        filas.append(dict(zip(cabecera, celdas)))
+    CORRESPONDENCIA.write_text("\n".join(salida) + "\n", encoding="utf-8")
+    cuerpo = [
+        "% Generado desde config/correspondencia_propuesta.tsv. No editar a mano.",
+        "\\begin{tabular}{p{3.2cm}p{3.4cm}p{7.2cm}}",
+        "\\textbf{Punto} & \\textbf{Estado} & \\textbf{Dónde está} \\\\",
+    ]
+    for fila in filas:
+        donde = fila.get("fichero") or fila.get("regla") or ""
+        if fila["punto"] == "proteinas_diferenciales":
+            donde = f"{fila['fichero']}. {fila['explicacion']}"
+        cuerpo.append(f"{_tex(fila['prometido'])} & {_tex(fila['estado'])} & {_tex(donde)} \\\\")
+    cuerpo.append("\\end{tabular}")
+    CORRESPONDENCIA_TEX.write_text("\n".join(cuerpo) + "\n", encoding="utf-8")
 
 
 def _listas(carpeta: Path) -> tuple[list[str], list[str]]:
@@ -166,6 +294,16 @@ def main() -> None:
     lineas.append("% fuente: results/v3_7/h9_wald.json")
     lineas.append("\\newcommand{\\HnueveGenes}{" + _tex(", ".join(genes)) + "}")
     word["HnueveGenes"] = {"valor": ", ".join(genes), "fuente": "results/v3_7/h9_wald.json", "crudo": genes}
+    paso5 = _paso_cinco(V37)
+    if paso5 is None:
+        raise SystemExit("falta priorizacion.tsv")
+    _bajan, genes_paso, suben = paso5
+    _comando_texto(lineas, word, "PrioriGenesPasoCinco", ", ".join(genes_paso), "results/v3_7/priorizacion.tsv#gen")
+    _comando_texto(lineas, word, "PrioriSubenGenes", ", ".join(suben), "results/v3_7/priorizacion.tsv#gen")
+    _n_cp, genes_cp = _hc(V37, "suero_k4_crc_sanos.tsv")
+    _n_cn, genes_cn = _hc(V37, "suero_k4_cn_sanos.tsv")
+    _comando_texto(lineas, word, "HcCpGenes", ", ".join(genes_cp), "results/v3_7/suero_k4_crc_sanos.tsv#protein_id")
+    _comando_texto(lineas, word, "HcCnGenes", ", ".join(genes_cn), "results/v3_7/suero_k4_cn_sanos.tsv#protein_id")
     lineas.append("\\newcommand{\\Advertencia}{Ningún resultado de esta tesis sirve para decidir sobre un paciente.}")
     word["Advertencia"] = {
         "valor": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.",
@@ -235,6 +373,7 @@ def main() -> None:
         "",
     ])
     ESTADO.write_text("\n".join(lineas_estado), encoding="utf-8")
+    _escribir_correspondencia()
     print(f"{len(word)} macros; cambios escritos")
 
 

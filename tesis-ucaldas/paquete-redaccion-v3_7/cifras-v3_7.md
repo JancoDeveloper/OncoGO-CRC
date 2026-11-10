@@ -49,8 +49,6 @@ Salen de `results/v3_7/` por `scripts/v3/exportar_cifras_v3_7.py`.
 | \BhPielCn | 0,056 | results/v3_7/preanalitica.json#bh_descriptivo.q.CN:piel |
 | \GoConNum | 16 | results/v3_7/go_tejido.json#concordancia_nes.numerador |
 | \GoConDen | 16 | results/v3_7/go_tejido.json#concordancia_nes.denominador |
-| \Priori5 | 20 | results/v3_7/priorizacion_embudo.json#pasos |
-| \Priori6 | 0 | results/v3_7/priorizacion_embudo.json#pasos |
 | \HsieteSec | 0,47738 | results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario |
 | \PreCrudos | 60 | results/v3_7/preanalitica.json#n_crudos_validos |
 | \CalidadCoagP | 0,00099 | results/v3_7/k7_control_tecnico.json#coagulacion.p_kruskal |
@@ -59,6 +57,38 @@ Salen de `results/v3_7/` por `scripts/v3/exportar_cifras_v3_7.py`.
 | \MultiSuero | 288 | results/v3_7/multiverso_resumen.json#n_celdas_suero |
 | \MultiMl | 72 | results/v3_7/multiverso_resumen.json#n_celdas_ml |
 | \MultiDif | 13 | results/v3_7/multiverso_resumen.json#n_con_diferente |
+| \PrioriPasoUno | 688 | results/v3_7/priorizacion_embudo.json#pasos |
+| \PrioriPasoDos | 135 | results/v3_7/priorizacion_embudo.json#pasos |
+| \PrioriPasoTres | 135 | results/v3_7/priorizacion_embudo.json#pasos |
+| \PrioriPasoCuatro | 118 | results/v3_7/priorizacion_embudo.json#pasos |
+| \PrioriPasoCinco | 20 | results/v3_7/priorizacion_embudo.json#pasos |
+| \PrioriPasoSeis | 0 | results/v3_7/priorizacion_embudo.json#pasos |
+| \PrioriPasoSiete | 0 | results/v3_7/priorizacion_embudo.json#pasos |
+| \PrioriBajan | 18 | results/v3_7/priorizacion.tsv#log2fc_cptac |
+| \PrioriSuben | 2 | results/v3_7/priorizacion.tsv#log2fc_cptac |
+| \HcCpDif | 3 | results/v3_7/suero_k4_crc_sanos.tsv#clase |
+| \HcCnDif | 1 | results/v3_7/suero_k4_cn_sanos.tsv#clase |
+| \GoCptacTerminos | 787 | results/v3_7/go_tejido.json#cptac_tumor_frente_a_normal.n_terminos_probados |
+| \GoCptacSuben | 17 | results/v3_7/go_tejido.json#cptac_tumor_frente_a_normal.n_ora_significativos_suben |
+| \GoCptacBajan | 63 | results/v3_7/go_tejido.json#cptac_tumor_frente_a_normal.n_ora_significativos_bajan |
+| \GoCptacGsea | 64 | results/v3_7/go_tejido.json#cptac_tumor_frente_a_normal.n_gsea_fdr |
+| \GoTanakaTerminos | 101 | results/v3_7/go_tejido.json#tanaka_primario_frente_a_mucosa.n_terminos_probados |
+| \GoTanakaSuben | 0 | results/v3_7/go_tejido.json#tanaka_primario_frente_a_mucosa.n_ora_significativos_suben |
+| \GoTanakaBajan | 0 | results/v3_7/go_tejido.json#tanaka_primario_frente_a_mucosa.n_ora_significativos_bajan |
+| \GoTanakaGsea | 21 | results/v3_7/go_tejido.json#tanaka_primario_frente_a_mucosa.n_gsea_fdr |
+| \GoCiBajo | 0,794 | results/v3_7/go_tejido.json#concordancia_nes.ci_low |
+| \GoCiAlto | 1,000 | results/v3_7/go_tejido.json#concordancia_nes.ci_high |
+| \GoFdr | 0,25 | results/v3_7/go_tejido.json#parametros.fdr |
+| \GoPerm | 200 | results/v3_7/go_tejido.json#parametros.permutaciones |
+| \ShapLineal | 0 | results/v3_7/ml_explicacion.json#comprobacion_shap.M2_proteinas_principal |
+| \ShapPiel | 0 | results/v3_7/ml_explicacion.json#n_piel_en_las_20 |
+| \ShapCoag | 0 | results/v3_7/ml_explicacion.json#n_coagulacion_en_las_20 |
+| \ShapCalidad | 13 | results/v3_7/ml_explicacion.json#n_correlacionan_con_calidad_bh |
+| \ShapTop | 20 | results/v3_7/ml_explicacion.tsv#modelo |
 | \HdiezGenes | ABHD14B, AGR2, BID, CASP8, CEACAM5 | results/v3_7/h10_especificidad.tsv |
 | \HnueveGenes | LBP, LRG1, CEACAM5 | results/v3_7/h9_wald.json |
+| \PrioriGenesPasoCinco | LUM, A2M, APOA4, AFM, SOD3, TF, SERPIND1, HP, APOA1, HPX, CP, SERPINA3, SERPINF2, KNG1, ORM2, APOA2, AHSG, S100A8, AZGP1, S100A9 | results/v3_7/priorizacion.tsv#gen |
+| \PrioriSubenGenes | S100A8, S100A9 | results/v3_7/priorizacion.tsv#gen |
+| \HcCpGenes | SAA1, LBP, LRG1 | results/v3_7/suero_k4_crc_sanos.tsv#protein_id |
+| \HcCnGenes | APOA4 | results/v3_7/suero_k4_cn_sanos.tsv#protein_id |
 | \Advertencia | Ningún resultado de esta tesis sirve para decidir sobre un paciente. | results/v3_7/certificado.json |

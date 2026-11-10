@@ -34,6 +34,20 @@ def test_cada_macro_definida_se_usa_y_cada_uso_esta_definido():
     assert not (usadas & {nombre for nombre in usadas if nombre.startswith("Vcinco")})
 
 
+def test_los_nombres_de_newcommand_solo_tienen_letras_y_las_de_chapters_estan_definidas():
+    cifras = (LATEX / "cifras.tex").read_text(encoding="utf-8")
+    nombres = re.findall(r"\\newcommand\{\\([^}]+)\}", cifras)
+    assert nombres
+    assert all(re.fullmatch(r"[A-Za-z]+", nombre) for nombre in nombres)
+    definidas = set(nombres)
+    for path in (LATEX / "chapters").glob("*.tex"):
+        texto = path.read_text(encoding="utf-8")
+        rotas = re.findall(r"\\([A-Za-z]+)[0-9]", texto)
+        assert not rotas, f"{path.name}: {rotas}"
+        for nombre in re.findall(r"\\([A-Z][A-Za-z]*)", texto):
+            assert nombre in definidas, f"{nombre} en {path.name}"
+
+
 def test_las_fuentes_de_las_macros_salen_de_v3_7():
     cifras = (LATEX / "cifras.tex").read_text(encoding="utf-8")
     fuentes = re.findall(r"% fuente: (\S+)", cifras)

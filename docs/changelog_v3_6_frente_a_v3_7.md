@@ -49,8 +49,6 @@ Cada valor lo formatea `src/oncogo_crc/formato.py` desde el fichero de esa corri
 | \BhPielCn | no medido | 0,056 | cambia |
 | \GoConNum | no medido | 16 | cambia |
 | \GoConDen | no medido | 16 | cambia |
-| \Priori5 | no medido | 20 | cambia |
-| \Priori6 | no medido | 0 | cambia |
 | \HsieteSec | 0,48591 | 0,47738 | cambia |
 | \PreCrudos | 60 | 60 | igual |
 | \CalidadCoagP | 0,00099 | 0,00099 | igual |
@@ -59,6 +57,34 @@ Cada valor lo formatea `src/oncogo_crc/formato.py` desde el fichero de esa corri
 | \MultiSuero | 288 | 288 | igual |
 | \MultiMl | 72 | 72 | igual |
 | \MultiDif | 13 | 13 | igual |
+| \PrioriPasoUno | — | 688 | nueva |
+| \PrioriPasoDos | — | 135 | nueva |
+| \PrioriPasoTres | — | 135 | nueva |
+| \PrioriPasoCuatro | — | 118 | nueva |
+| \PrioriPasoCinco | — | 20 | nueva |
+| \PrioriPasoSeis | — | 0 | nueva |
+| \PrioriPasoSiete | — | 0 | nueva |
+| \PrioriBajan | — | 18 | nueva |
+| \PrioriSuben | — | 2 | nueva |
+| \HcCpDif | 3 | 3 | igual |
+| \HcCnDif | 1 | 1 | igual |
+| \GoCptacTerminos | — | 787 | nueva |
+| \GoCptacSuben | — | 17 | nueva |
+| \GoCptacBajan | — | 63 | nueva |
+| \GoCptacGsea | — | 64 | nueva |
+| \GoTanakaTerminos | — | 101 | nueva |
+| \GoTanakaSuben | — | 0 | nueva |
+| \GoTanakaBajan | — | 0 | nueva |
+| \GoTanakaGsea | — | 21 | nueva |
+| \GoCiBajo | — | 0,794 | nueva |
+| \GoCiAlto | — | 1,000 | nueva |
+| \GoFdr | — | 0,25 | nueva |
+| \GoPerm | — | 200 | nueva |
+| \ShapLineal | — | 0 | nueva |
+| \ShapPiel | — | 0 | nueva |
+| \ShapCoag | — | 0 | nueva |
+| \ShapCalidad | — | 13 | nueva |
+| \ShapTop | — | 20 | nueva |
 | n de Spearman, piel | 36 | 40 | cambia |
 | rho de piel | −0,78 | −0,76 | cambia |
 | n de Spearman, coagulacion | 36 | 40 | cambia |

@@ -1,6 +1,6 @@
 punto	prometido	estado	fichero	campo	explicacion	regla
 integrar_proteomica	Integrar la proteómica de las tres cohortes	cumplido	suero_embudo.json	celda_preregistrada	CPTAC, Tanaka y PXD055218 entran en la misma corrida certificada.	
-proteinas_diferenciales	Proteínas diferenciales en suero	cumplido	suero_k4_crc_cn.tsv	clase	Frente a CN ninguna proteína de la celda es diferente. CN no son personas sanas.	
+proteinas_diferenciales	Proteínas diferenciales en suero	cumplido	suero_k4_crc_cn.tsv	clase	Frente a CN ninguna proteína de la celda es diferente. CN no son personas sanas. Frente a HC salen 3 (CP) y 1 (CN), leídos de suero_k4_crc_sanos.tsv y suero_k4_cn_sanos.tsv.	
 reproducibilidad	Reproducibilidad entre cohortes de tejido	cumplido_reformulado	k1_etiquetas.json	cobertura	La intersección se reporta como la cobertura de R1 y, aparte, la concordancia de signo. No es un biomarcador.	C15
 priorizacion	Priorización de candidatas	cumplido_reformulado	priorizacion_embudo.json	pasos	Siete pasos en orden, sin pesos. Si nadie pasa el paso 6, las del paso 5 quedan como hipótesis para cohortes futuras.	
 go_ora_gsea	GO ORA y GSEA del tejido	cumplido	go_tejido.json	concordancia_nes	Descriptivo. No emite un veredicto de H1. GO sin propagar, sin IEA y con 200 permutaciones.	

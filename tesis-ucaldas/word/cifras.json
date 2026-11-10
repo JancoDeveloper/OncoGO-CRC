@@ -224,16 +224,6 @@
     "fuente": "results/v3_7/go_tejido.json#concordancia_nes.denominador",
     "crudo": 16
   },
-  "Priori5": {
-    "valor": "20",
-    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
-    "crudo": 20
-  },
-  "Priori6": {
-    "valor": "0",
-    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
-    "crudo": 0
-  },
   "HsieteSec": {
     "valor": "0,47738",
     "fuente": "results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario",
@@ -274,6 +264,146 @@
     "fuente": "results/v3_7/multiverso_resumen.json#n_con_diferente",
     "crudo": 13
   },
+  "PrioriPasoUno": {
+    "valor": "688",
+    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
+    "crudo": 688
+  },
+  "PrioriPasoDos": {
+    "valor": "135",
+    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
+    "crudo": 135
+  },
+  "PrioriPasoTres": {
+    "valor": "135",
+    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
+    "crudo": 135
+  },
+  "PrioriPasoCuatro": {
+    "valor": "118",
+    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
+    "crudo": 118
+  },
+  "PrioriPasoCinco": {
+    "valor": "20",
+    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
+    "crudo": 20
+  },
+  "PrioriPasoSeis": {
+    "valor": "0",
+    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
+    "crudo": 0
+  },
+  "PrioriPasoSiete": {
+    "valor": "0",
+    "fuente": "results/v3_7/priorizacion_embudo.json#pasos",
+    "crudo": 0
+  },
+  "PrioriBajan": {
+    "valor": "18",
+    "fuente": "results/v3_7/priorizacion.tsv#log2fc_cptac",
+    "crudo": 18
+  },
+  "PrioriSuben": {
+    "valor": "2",
+    "fuente": "results/v3_7/priorizacion.tsv#log2fc_cptac",
+    "crudo": 2
+  },
+  "HcCpDif": {
+    "valor": "3",
+    "fuente": "results/v3_7/suero_k4_crc_sanos.tsv#clase",
+    "crudo": 3
+  },
+  "HcCnDif": {
+    "valor": "1",
+    "fuente": "results/v3_7/suero_k4_cn_sanos.tsv#clase",
+    "crudo": 1
+  },
+  "GoCptacTerminos": {
+    "valor": "787",
+    "fuente": "results/v3_7/go_tejido.json#cptac_tumor_frente_a_normal.n_terminos_probados",
+    "crudo": 787
+  },
+  "GoCptacSuben": {
+    "valor": "17",
+    "fuente": "results/v3_7/go_tejido.json#cptac_tumor_frente_a_normal.n_ora_significativos_suben",
+    "crudo": 17
+  },
+  "GoCptacBajan": {
+    "valor": "63",
+    "fuente": "results/v3_7/go_tejido.json#cptac_tumor_frente_a_normal.n_ora_significativos_bajan",
+    "crudo": 63
+  },
+  "GoCptacGsea": {
+    "valor": "64",
+    "fuente": "results/v3_7/go_tejido.json#cptac_tumor_frente_a_normal.n_gsea_fdr",
+    "crudo": 64
+  },
+  "GoTanakaTerminos": {
+    "valor": "101",
+    "fuente": "results/v3_7/go_tejido.json#tanaka_primario_frente_a_mucosa.n_terminos_probados",
+    "crudo": 101
+  },
+  "GoTanakaSuben": {
+    "valor": "0",
+    "fuente": "results/v3_7/go_tejido.json#tanaka_primario_frente_a_mucosa.n_ora_significativos_suben",
+    "crudo": 0
+  },
+  "GoTanakaBajan": {
+    "valor": "0",
+    "fuente": "results/v3_7/go_tejido.json#tanaka_primario_frente_a_mucosa.n_ora_significativos_bajan",
+    "crudo": 0
+  },
+  "GoTanakaGsea": {
+    "valor": "21",
+    "fuente": "results/v3_7/go_tejido.json#tanaka_primario_frente_a_mucosa.n_gsea_fdr",
+    "crudo": 21
+  },
+  "GoCiBajo": {
+    "valor": "0,794",
+    "fuente": "results/v3_7/go_tejido.json#concordancia_nes.ci_low",
+    "crudo": 0.7940927857921772
+  },
+  "GoCiAlto": {
+    "valor": "1,000",
+    "fuente": "results/v3_7/go_tejido.json#concordancia_nes.ci_high",
+    "crudo": 1.0
+  },
+  "GoFdr": {
+    "valor": "0,25",
+    "fuente": "results/v3_7/go_tejido.json#parametros.fdr",
+    "crudo": 0.25
+  },
+  "GoPerm": {
+    "valor": "200",
+    "fuente": "results/v3_7/go_tejido.json#parametros.permutaciones",
+    "crudo": 200
+  },
+  "ShapLineal": {
+    "valor": "0",
+    "fuente": "results/v3_7/ml_explicacion.json#comprobacion_shap.M2_proteinas_principal",
+    "crudo": 0.0
+  },
+  "ShapPiel": {
+    "valor": "0",
+    "fuente": "results/v3_7/ml_explicacion.json#n_piel_en_las_20",
+    "crudo": 0
+  },
+  "ShapCoag": {
+    "valor": "0",
+    "fuente": "results/v3_7/ml_explicacion.json#n_coagulacion_en_las_20",
+    "crudo": 0
+  },
+  "ShapCalidad": {
+    "valor": "13",
+    "fuente": "results/v3_7/ml_explicacion.json#n_correlacionan_con_calidad_bh",
+    "crudo": 13
+  },
+  "ShapTop": {
+    "valor": "20",
+    "fuente": "results/v3_7/ml_explicacion.tsv#modelo",
+    "crudo": 20
+  },
   "HdiezGenes": {
     "valor": "ABHD14B, AGR2, BID, CASP8, CEACAM5",
     "fuente": "results/v3_7/h10_especificidad.tsv",
@@ -293,6 +423,26 @@
       "LRG1",
       "CEACAM5"
     ]
+  },
+  "PrioriGenesPasoCinco": {
+    "valor": "LUM, A2M, APOA4, AFM, SOD3, TF, SERPIND1, HP, APOA1, HPX, CP, SERPINA3, SERPINF2, KNG1, ORM2, APOA2, AHSG, S100A8, AZGP1, S100A9",
+    "fuente": "results/v3_7/priorizacion.tsv#gen",
+    "crudo": "LUM, A2M, APOA4, AFM, SOD3, TF, SERPIND1, HP, APOA1, HPX, CP, SERPINA3, SERPINF2, KNG1, ORM2, APOA2, AHSG, S100A8, AZGP1, S100A9"
+  },
+  "PrioriSubenGenes": {
+    "valor": "S100A8, S100A9",
+    "fuente": "results/v3_7/priorizacion.tsv#gen",
+    "crudo": "S100A8, S100A9"
+  },
+  "HcCpGenes": {
+    "valor": "SAA1, LBP, LRG1",
+    "fuente": "results/v3_7/suero_k4_crc_sanos.tsv#protein_id",
+    "crudo": "SAA1, LBP, LRG1"
+  },
+  "HcCnGenes": {
+    "valor": "APOA4",
+    "fuente": "results/v3_7/suero_k4_cn_sanos.tsv#protein_id",
+    "crudo": "APOA4"
   },
   "Advertencia": {
     "valor": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.",

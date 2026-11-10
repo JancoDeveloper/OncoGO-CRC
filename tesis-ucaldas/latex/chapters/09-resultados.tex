@@ -24,7 +24,7 @@ Qué no demuestra. No confirma cada etiqueta de tumor y de mucosa. De los contro
 
 \section{Suero}
 % fuente: results/v3_7/suero_k4_crc_cn.tsv
-¿Alguna proteína separa el cáncer de la colonoscopia negativa? CN son pacientes con otra enfermedad intestinal y síntomas parecidos al cáncer, según el protocolo de PXD055218. No son personas sanas. HC son los sanos. La regla es diferencia y equivalencia con un cambio de 1,5 veces, escrita antes de mirar. En la celda hay \SueroDif\ diferentes, \SueroEq\ equivalentes y \SueroInd\ indeterminadas, sobre \SueroN. La figura~\ref{fig:equivalencia} reparte esas tres clases. Frente a HC hay tres proteínas diferentes, SAA1, LBP y LRG1. CN frente a HC deja una, APOA4.
+¿Alguna proteína separa el cáncer de la colonoscopia negativa? CN son pacientes con otra enfermedad intestinal y síntomas parecidos al cáncer, según el protocolo de PXD055218. No son personas sanas. HC son los sanos. La regla es diferencia y equivalencia con un cambio de 1,5 veces, escrita antes de mirar. En la celda hay \SueroDif\ diferentes, \SueroEq\ equivalentes y \SueroInd\ indeterminadas, sobre \SueroN. La figura~\ref{fig:equivalencia} reparte esas tres clases. Frente a HC, CP tiene \HcCpDif\ proteínas diferentes: \HcCpGenes. CN frente a HC tiene \HcCnDif: \HcCnGenes.
 
 \begin{figure}[ht]
 \centering
@@ -43,7 +43,7 @@ Qué no demuestra. La diferencia de coagulación puede ser del tubo o del tumor.
 
 \section{Orden de adquisición}
 % fuente: results/v3_7/preanalitica.json
-¿En qué orden se midieron las muestras? Hay \PreCrudos\ crudos válidos y fecha en \PreFecha. El estado es \PreEstado. El AUC del orden entre cáncer y colonoscopia negativa es \PreAuc, con p exacta \PreP. Con las \PreFecha\ fechas ese AUC es el del orden observado; no se usa una cota por fechas faltantes. El orden y el grupo están confundidos por completo, así que el Spearman de CP y CN juntos no separa uno del otro. Dentro de CP no hay deriva. Dentro de CN suben los precursores: el q de Benjamini--Hochberg, sobre los diez Spearman dentro de grupo, es \BhPrecursoresCn\ para los precursores y \BhPielCn\ para la piel. HC no se evalúa por muestra. La figura~\ref{fig:orden} sale de \texttt{results/v3\_7/preanalitica\_orden.tsv}.
+¿En qué orden se midieron las muestras? Hay \PreCrudos\ crudos válidos y fecha en \PreFecha. El estado es \PreEstado. El AUC del orden entre cáncer y colonoscopia negativa es \PreAuc, con p exacta \PreP. Con las \PreFecha\ fechas ese AUC es el del orden observado; no se usa una cota por fechas faltantes. El orden y el grupo están confundidos por completo, así que el Spearman de CP y CN juntos no separa uno del otro. Dentro de CP no hay deriva. Dentro de CN suben los precursores: el q de Benjamini--Hochberg, sobre los diez Spearman dentro de grupo, es \BhPrecursoresCn\ para los precursores y \BhPielCn\ para la piel. El Spearman de la piel con el orden es \PreRhoPiel. HC no se evalúa por muestra. La figura~\ref{fig:orden} sale de \texttt{results/v3\_7/preanalitica\_orden.tsv}.
 
 \begin{figure}[ht]
 \centering
@@ -100,4 +100,19 @@ El mapa de genes de Tanaka, el de esta corrida, deja el universo de H8 en \Hocho
 
 Los sesenta crudos coinciden con el SHA-1 de PRIDE y tienen fecha. El estado de la preanalítica es \PreEstado. Qué no demuestra: no une los sanos. El reporte nombra esas corridas como \texttt{Normal\_} dentro de un \texttt{.mzML}. El crudo se llama \texttt{HC\_}. \texttt{union\_crudos\_calidad.tsv} deja esa unión en falso. No se fabricó la igualdad por el número.
 
-El GO del tejido está en \texttt{go\_tejido.json}. La concordancia de signo del NES, para los términos con FDR de hasta 0,25 en CPTAC que también tienen NES en Tanaka, es \GoConNum\ de \GoConDen. Es descriptiva y no emite un veredicto de H1. La priorización secuencial deja \Priori6\ proteínas en el paso 6 y \Priori5\ en el paso 5: son hipótesis para cohortes futuras, no biomarcadores. BAIAP3 sale en el filtro global de 1~\% y CEACAM5 no está entre los grupos del report; el detalle está en \texttt{auditoria\_rai2025.tsv}. Las piezas que la enmienda declara no ejecutadas se leen en el capítulo de desviaciones. El certificado queda en \CertificadoEstado.
+% fuente: results/v3_7/ml_explicacion.json
+% fuente: results/v3_7/ml_explicacion.tsv
+% fuente: src/oncogo_crc/v3/ml_suero.py
+% fuente: src/oncogo_crc/v3/suero_v32.py
+De las \ShapTop\ proteínas de M2 con mayor valor absoluto de SHAP, \ShapCalidad\ correlacionan con la calidad tras Benjamini--Hochberg. La diferencia con LinearExplainer es \ShapLineal. M2 usa la matriz principal. Esa matriz excluye la biblioteca de contaminantes, el panel de piel y el panel de coagulación, así que \ShapPiel\ proteínas de piel y \ShapCoag\ de coagulación entre esas \ShapTop\ se deben a esa construcción y no son un hallazgo. M3, solo con la calidad, ya separa los grupos: la separación de M2 no se atribuye a la biología del tumor.
+
+% fuente: results/v3_7/go_tejido.json
+En CPTAC se probaron \GoCptacTerminos\ términos. El ORA deja \GoCptacSuben\ que suben y \GoCptacBajan\ que bajan, y el GSEA deja \GoCptacGsea\ con FDR de hasta \GoFdr. En Tanaka se probaron \GoTanakaTerminos\ términos, con ORA \GoTanakaSuben\ y \GoTanakaBajan, y \GoTanakaGsea\ de GSEA. La concordancia de signo del NES es \GoConNum\ de \GoConDen\ (IC \GoCiBajo--\GoCiAlto). Es descriptivo, con GO sin propagar, sin IEA y con \GoPerm\ permutaciones. No emite un veredicto de H1.
+
+% fuente: results/v3_7/priorizacion_embudo.json
+% fuente: results/v3_7/priorizacion.tsv
+La priorización secuencial, sin pesos, deja \PrioriPasoUno, \PrioriPasoDos, \PrioriPasoTres, \PrioriPasoCuatro, \PrioriPasoCinco, \PrioriPasoSeis\ y \PrioriPasoSiete\ proteínas en los pasos 1 a 7. El paso 6 queda en \PrioriPasoSeis. Las \PrioriPasoCinco\ del paso 5 son \PrioriGenesPasoCinco. De ellas, \PrioriBajan\ tienen el log2FC de CPTAC negativo y \PrioriSuben\ lo tienen positivo: \PrioriSubenGenes. Son hipótesis para cohortes futuras, no biomarcadores.
+
+Interpretación, no resultado: casi todas son proteínas abundantes del plasma (apolipoproteínas, serpinas, HP, HPX, TF, CP, AHSG, AFM, KNG1, ORM2), más bajas en el tumor que en la mucosa. El paso 5 favorece a lo que el DIA de suero sin depleción alcanza a medir, no a proteínas que salgan del tumor. \PrioriSubenGenes\ forman la calprotectina, de neutrófilos, que también sube en la enfermedad inflamatoria intestinal. Como CN incluye esos pacientes, no se espera que esa pareja separe CP de CN.
+
+BAIAP3 sale en el filtro global de 1~\% y CEACAM5 no está entre los grupos del report; el detalle está en \texttt{auditoria\_rai2025.tsv}. Las piezas que la enmienda declara no ejecutadas se leen en el capítulo de desviaciones. El certificado queda en \CertificadoEstado.
