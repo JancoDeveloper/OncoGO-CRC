@@ -1,125 +1,93 @@
-\chapter{Resultados y discusión}
+\chapter{Resultados}
+% fuente: results/v3_6/
 
-\section{El suero no separa el cáncer de la otra enfermedad}
-% fuente: results/v3_2/suero_resumen.json
-% fuente: results/v3_2/k4_crc_frente_a_colonoscopia_negativa.tsv
-% fuente: results/v3_2/k4_crc_frente_a_sanos.tsv
-PXD055218 tiene los tres grupos, veinte corridas cada uno. El informe trae 897 grupos de proteína. Con FDR de proteína del 1\,\% y especie humana quedan 312. En la corrida v3.2, el contraste quita la biblioteca de contaminantes y los paneles de calidad y se queda con 205 proteínas. La escala es log2 de intensidad lineal. El corte es la prueba t moderada frente a un cambio de 1,5 veces, con tasa de descubrimientos falsos de 0,05. Cáncer frente a colonoscopia negativa: cero proteínas diferentes, 105 equivalentes y 100 indeterminadas. Cáncer frente a personas sanas: dos, SAA1 y LBP. Colonoscopia negativa frente a personas sanas: cero diferentes, 128 equivalentes y 77 indeterminadas. La misma ausencia de proteínas diferentes frente a la colonoscopia negativa se repite con contaminantes, con los paneles, ajustando por coagulación y al nivel de gen. La figura~\ref{fig:suero} y la tabla que la sigue son la lectura del 31 de octubre, sobre 876 proteínas sin esos filtros. No son el contraste de la corrida v3.2. La corrida vigente es v3.3 y está en la sección siguiente.
+Cada sección dice la pregunta, la regla, el número, la figura y qué no demuestra. Las cifras salen de \texttt{results/v3\_6/}. \Advertencia
+
+\section{Integridad de los datos}
+% fuente: results/v3_6/suero_embudo.json
+¿Cuántas proteínas quedan para el contraste del suero? La regla pide q global de hasta 0,01, especie humana y la celda preregistrada. El informe parte de \EmbudoGrupos\ grupos, deja \EmbudoQ\ con ese q, \EmbudoHumanos\ humanas y \SueroN\ en la celda. La figura~\ref{fig:embudo} muestra el embudo.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.92\textwidth]{figures/figura-suero.png}
-\caption{Proteínas del suero PXD055218 que superan la tasa de descubrimientos falsos de 0,05 y el cambio mínimo de 1,5 veces}
-\label{fig:suero}
-\fuente{elaboración propia, corrida del 31 de octubre de 2026.}
+\includegraphics[width=0.82\textwidth]{figures/Fig4-1_embudo_suero.png}
+\caption{Embudo del suero. Fuente: \texttt{results/v3\_6/suero\_embudo.json}.}
+\label{fig:embudo}
 \end{figure}
 
-\begin{table}[ht]
-\caption{Proteínas de la matriz sin filtrar del 31 de octubre que pasan los dos cortes}
+Qué no demuestra. El embudo no dice que las proteínas que salen no existan en la sangre. Dice que no pasan la regla escrita.
+
+\section{Tejido}
+% fuente: results/v3_6/k1_etiquetas.json
+¿El cambio del tumor primario se repite entre Tanaka y CPTAC? El primario frente a la mucosa coincide en signo en \TejidoNum\ de \TejidoDen. La metástasis hepática frente a la mucosa coincide en \TejidoMetaNum\ de \TejidoMetaDen.
+
+Qué no demuestra. No confirma cada etiqueta de tumor y de mucosa. De los controles físicos, CA1 pasa. AQP8 y GUCA2A no se detectan. SLC26A3 no se evalúa por falta de pares.
+
+\section{Suero}
+% fuente: results/v3_6/suero_k4_crc_cn.tsv
+¿Alguna proteína separa el cáncer de la colonoscopia negativa? La regla es diferencia y equivalencia con un cambio de 1,5 veces, escrita antes de mirar. En la celda hay \SueroDif\ diferentes, \SueroEq\ equivalentes y \SueroInd\ indeterminadas, sobre \SueroN. La figura~\ref{fig:equivalencia} reparte esas tres clases. Frente a personas sanas hay tres proteínas diferentes, SAA1, LBP y LRG1. La colonoscopia negativa frente a sanos deja una, APOA4.
+
+\begin{figure}[ht]
 \centering
-\begin{tabular}{@{}p{2.2cm}p{2.3cm}p{4.4cm}p{1.8cm}p{1.8cm}p{2.2cm}@{}}
-\toprule
-Proteína & Acceso & Contraste & log2FC & FDR & $n$ \\
-\midrule
-SAA1 & P0DJI8 & Cáncer frente a sanos & 3,26 & 0,0002 & 40 \\
-LBP & P18428 & Cáncer frente a sanos & 1,25 & 0,007 & 40 \\
-CHMP4A & Q9BY43 & Cáncer frente a sanos & 5,42 & 3,4e-7 & 16 de 40 \\
-APOA4 & P06727 & Enfermedad frente a sanos & $-1{,}32$ & 0,022 & 40 \\
-\bottomrule
-\end{tabular}
-\fuente{elaboración propia, corrida del 31 de octubre de 2026. FDR: tasa de descubrimientos falsos.}
-\end{table}
+\includegraphics[width=0.72\textwidth]{figures/Fig4-3_equivalencia_suero.png}
+\caption{Clases del contraste de cáncer frente a colonoscopia negativa. Fuente: \texttt{results/v3\_6/suero\_k4\_crc\_cn.tsv}.}
+\label{fig:equivalencia}
+\end{figure}
 
-% fuente: results/v3_2/k4_crc_frente_a_sanos.tsv
-% fuente: results/v3_2/k6_presencia.json
-% fuente: results/v3_2/k7_control_tecnico.json
-% fuente: results/v3_2/suero_entrapment.json
-En el contraste oficial, SAA1 (P0DJI8) tiene log2FC 3,033, FDR 0,000483 y 38 observaciones. LBP (P18428) tiene log2FC 1,254, FDR 0,00220 y 40 observaciones. Las dos separan el cáncer de las personas sanas y no entran entre las diferentes frente a la colonoscopia negativa. La frase de ausencia solo cabe en las 105 equivalentes. CHMP4A no está entre las 312: su q global de grupo es 0,037. APOA4 está en la biblioteca de contaminantes, así que sale de las 205. En la versión que conserva contaminantes, APOA4 baja en la colonoscopia negativa frente a sanos (log2FC $-1{,}323$, FDR 0,00713). Esa fila no es el contraste oficial. Treinta y siete proteínas de la matriz filtrada se observan en menos del 70\,\% de las muestras. Un hueco no se convierte en cero.
+Qué no demuestra. Un nulo frente a la colonoscopia negativa no es un nulo limpio: un lote puede crear diferencias y también ocultarlas. No se detecta no quiere decir no existe.
 
-Los precursores por corrida van de 2\,934 a 5\,576. Las medianas son 4\,816,5 en cáncer, 4\,755,5 en colonoscopia negativa y 4\,766 en personas sanas. La profundidad no separa los grupos. Sí lo hacen la puntuación de piel (p = 3,37$\times$10$^{-6}$, diferencia de Hodges--Lehmann +1,193) y la de coagulación (p = 0,000991, diferencia +0,722). Las dos quedan como confusión preanalítica. La cota inferior de grupos de arrastre es 0,04: 13 junto a 312 humanos. La fracción no humana no difiere entre grupos (p = 0,113). El orden de corrida no está, porque el nombre no trae la fecha de adquisición y los crudos no se descargaron.
+\section{Calidad de la muestra}
+% fuente: results/v3_6/k7_control_tecnico.json
+¿La calidad de la muestra difiere entre grupos? La coagulación tiene p \CalidadCoagP\ y la piel tiene p \CalidadPielP.
 
-\section{El área bajo la curva es más laxa que el FDR}
-% fuente: results/v3_2/k5_auc.json
-% fuente: results/v3_2/k5_auc.tsv
-% fuente: results/v3_2/ml_suero_permutacion.json
-La tabla siguiente conserva la regla del 31 de octubre y no se recalculó en v3.2. El nulo vigente pliega el área bajo la curva y permuta las etiquetas 10\,000 veces. En la matriz humana filtrada el máximo es 0,939, en FGB, del panel de coagulación, con p = 0,00490. Le siguen KRT5, KRT9 y KRT10. Al quitar contaminantes y paneles el máximo baja a 0,865, en SERPINA3, con p = 0,0464. SERPINA3, en treat, tiene log2FC 0,564, FDR 1 y clase indeterminada. El área alta de una proteína no la declara distinta.
+Qué no demuestra. La diferencia de coagulación puede ser del tubo o del tumor. Con estos datos no se separan. La piel apunta a manipulación.
 
-La regresión logística, con penalización L2 y validación cruzada repetida, es la única pieza de aprendizaje automático. Sin contaminantes ni paneles el AUC medio es 0,981 y el nulo de 1\,000 permutaciones da p = 0,001. La coagulación sola da AUC 0,819 y el mismo p. Con 20 personas por grupo, el grupo y el proceso de la muestra van juntos. No es una prueba diagnóstica.
-Ocho candidatas de la literatura cumplen la regla de área bajo la curva. Cinco ya estaban en la lista de fase aguda: C9, LRG1, SERPINA1, CRP y HP. Tres no tienen esa marca y tampoco pasan el control de falsos: BAIAP3, FN1 y TPM4.
+\section{Orden de adquisición}
+% fuente: results/v3_6/preanalitica.json
+¿En qué orden se midieron las muestras? Hay \PreCrudos\ crudos válidos y fecha en \PreFecha. El estado es \PreEstado. El AUC del orden entre cáncer y colonoscopia negativa es \PreAuc, con p exacta \PreP. La cota si se leyeran los seis crudos sin fecha llega hasta \PreCotaMax. La correlación de Spearman de la piel con el orden, en cáncer y colonoscopia negativa, es \PreRhoPiel. Los rangos de los tres grupos no se solapan. La figura~\ref{fig:orden} lo muestra.
 
-\begin{table}[ht]
-\caption{Candidatas que cumplen la regla de área bajo la curva}
+\begin{figure}[ht]
 \centering
-\begin{tabular}{@{}p{2.4cm}p{4.2cm}p{4.4cm}p{3.6cm}@{}}
-\toprule
-Gen & AUC cáncer vs.\ enfermedad & Lectura & FDR del mismo contraste \\
-\midrule
-BAIAP3 & 0,82 & Sin marca de ruido & 0,20 \\
-FN1 & 0,70 & Sin marca de ruido & No pasa \\
-TPM4 & 0,80 & Sin marca de ruido & No pasa \\
-C9 & 0,81 & Fase aguda & No pasa \\
-LRG1 & 0,78 & Fase aguda & No pasa \\
-SERPINA1 & 0,73 & Fase aguda & No pasa \\
-CRP & 0,73 & Fase aguda & No pasa \\
-HP & 0,71 & Fase aguda & No pasa \\
-\bottomrule
-\end{tabular}
-\fuente{elaboración propia. AUC: área bajo la curva. El valor es el mayor entre el AUC y su complemento.}
-\end{table}
+\includegraphics[width=0.9\textwidth]{figures/Fig4-2_orden_adquisicion.png}
+\caption{Orden de adquisición por grupo. Fuente: \texttt{results/v3\_6/preanalitica\_orden.tsv}.}
+\label{fig:orden}
+\end{figure}
 
-BAIAP3, acceso O94812, es la proteína que Rai y colaboradores señalaron en suero. El log2FC frente a la colonoscopia negativa es 2,20, con 35 observaciones. El área bajo la curva pasa y la tasa de descubrimientos falsos no. Queda como candidata de otro estudio, con más personas. No es un hallazgo de esta tesis. FN1 en este suero está un poco más baja en cáncer que en personas sanas, log2FC $-0{,}27$, en la misma dirección que el plasma de \textcite{verathamjamras2023}. CEACAM5 no está medida en esta matriz DIA, así que el panel sérico de \textcite{ogren2026} no se puede auditar aquí.
+Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.
 
-\section{El tejido, leído con la leyenda del artículo}
-% fuente: results/v3_2/k1_etiquetas.json
-% fuente: results/v3_2/k2_independencia.json
-Entre las 688 proteínas certificadas en CPTAC, y después de excluir 237 filas de contaminante o señuelo, el primario frente a la mucosa coincide en signo en 89 de 90. El intervalo de Clopper--Pearson va de 0,940 a 0,9997. Spearman es 0,713 y la concordancia de Lin es 0,704. Hay 16 pares y el mínimo es de ocho. La metástasis hepática frente a la mucosa coincide en 69 de 82, con Spearman 0,680 y Lin 0,390. El mismo primario, sin parear, coincide en 95 de 98. H1 queda en rechaza\_h1: para sostenerla, el límite superior tenía que quedar por debajo de 0,70. La cobertura es 90 de 688. La lectura certificada anterior, que tomó la metástasis como tumor, era 104 de 119. Se conserva con ese nombre. Una cuenta previa, sin este filtro de filas, era 116 de 118. La detectabilidad por péptido único sigue en 226 de 688: la etiqueta de la columna no entra en esa cuenta. La cohorte del contraste es PXD034575. PXD031705 comparte ficheros con PXD019504 y no se funde con esta.
+Qué no demuestra. No atribuye la separación al tumor. Tampoco imputa la fecha de los crudos que el analizador no leyó.
 
-\section{La réplica amplia del 31 de octubre}
-Las dos tablas de esta sección salen del cierre del 31 de octubre, con un mínimo de ocho pares y con todos los genes que tenían efecto en las dos matrices. No son la cuenta de las 688 certificadas.
-PXD034575 tiene 16 pacientes y tres columnas por paciente. P es tumor primario, M es metástasis hepática y N es mucosa. Después de tratar el cero como ausencia y pasar a log2, la escala queda como logaritmo de intensidad lineal. CEACAM5 sube en el primario: log2FC 3,87, tasa de descubrimientos falsos 0,002, 13 pares. Esa dirección confirma que el contraste quedó orientado.
+\section{Modelo}
+% fuente: results/v3_6/ml_suero_permutacion.json
+¿Cuánto separa un modelo y por qué? La celda preregistrada, con todas las proteínas, tiene AUC \MlTodas. La matriz humana da \MlHumana. Solo la calidad da \MlCalidad. Solo la coagulación da \MlCoagulacion. Sin la calidad, el AUC cae a \MlSinCalidad\ y la permutación da p \MlSinCalidadP. El modelo con cinco componentes da \MlPca. Si no se quitan contaminantes, la mediana del AUC en el multiverso es \MlContaminantes.
 
-\begin{table}[ht]
-\caption{Contrastes pareados de PXD034575}
-\centering
-\begin{tabular}{@{}p{6.5cm}p{4cm}p{3.5cm}@{}}
-\toprule
-Contraste & Significativas & Probadas \\
-\midrule
-Primario frente a mucosa & 58 & 2490 \\
-Metástasis frente a mucosa & 160 & 2430 \\
-Metástasis frente a primario & 16 & 2710 \\
-\bottomrule
-\end{tabular}
-\fuente{cierre del 31 de octubre de 2026, después de convertir el cero en ausencia y la intensidad positiva en log2.}
-\end{table}
+Qué no demuestra. No es un examen. La separación puede venir del lote de adquisición tanto como de la manipulación de la muestra.
 
-\begin{table}[ht]
-\caption{Concordancia del tejido de Tanaka con CPTAC}
-\centering
-\begin{tabular}{@{}p{5.5cm}p{3.6cm}p{2.4cm}p{2.8cm}@{}}
-\toprule
-Comparación & Mismo signo & Genes & Correlación \\
-\midrule
-Primario frente a mucosa & 687 (78,6\,\%) & 874 & 0,83 \\
-Metástasis frente a mucosa & 597 (70,9\,\%) & 842 & 0,59 \\
-\bottomrule
-\end{tabular}
-\fuente{cierre del 31 de octubre de 2026, contra la tabla certificada de CPTAC.}
-\end{table}
+\section{Multiverso}
+% fuente: results/v3_6/multiverso_resumen.json
+¿El nulo depende de una sola forma de analizar? Hay \MultiSuero\ celdas de suero y \MultiMl\ de modelo. \MultiDif\ celdas tienen proteínas diferentes y todas dejan los contaminantes sin quitar.
 
-Entre primario y metástasis el signo coincide en 708 de 876 genes, el 80,8\,\%. Entre los que coinciden, solo el 46,2\,\% tiene magnitud menor en el primario. No queda un gradiente en el que el primario sea una versión pequeña de la metástasis. La correlación 0,104 y el 56\,\% de igual signo, sobre 1\,993 proteínas, pertenecen a un cálculo anterior, con la etiqueta vieja de columnas. Esa cifra se conserva. No se sustituye por 0,83. Ninguna de las dos mide tejido contra sangre.
+Qué no demuestra. No convierte esas celdas en un resultado del tumor. Muestra que el nulo de la celda preregistrada no es el de esas variantes.
 
-\section{Las vías del tumor casi no están en este suero}
-De los términos GO biológicos con tasa de descubrimientos falsos menor o igual a 0,25 en CPTAC, entran al suero los que tienen al menos diez genes medidos. Son 12 en cáncer frente a personas sanas, 13 en cáncer frente a enfermedad y 12 en enfermedad frente a personas sanas. La correlación de sus puntuaciones con el tejido es $-0{,}28$, $-0{,}31$ y $-0{,}04$. El nulo, con 200 permutaciones, da valores de p de 0,34, 0,30 y 0,93. Este suero no contiene el grueso de los procesos que el tumor altera. La corrida v3.2 tampoco repitió esa prueba con 10\,000 permutaciones. La cláusula queda en curso.
+\section{Hipótesis}
+% fuente: results/v3_6/h5_especificidad_organo.json
+H5 queda en \HcincoEstado. El universo común tiene \HcincoUniverso\ genes. La diferencia con el otro carcinoma de mayor concordancia es \HcincoDif. Qué no demuestra: no dice que el colon tenga una dirección de cambio propia.
 
-\section{Lo ya medido hacia la sangre, y los péptidos}
-Una corrida anterior, que no se rehizo en este cierre, comparó la dirección del cambio en tejido y en plasma: coincide en 42 de 86 proteínas, 0,488. Dentro de la ventana de concentración en la que el suero sí puede ver la proteína, coincide en 34 de 63, 0,540, con intervalo de 0,409 a 0,666. Ese intervalo incluye el azar. La falta de transferencia no se explica solo porque el suero no alcance a medir proteínas escasas.
+% fuente: results/v3_6/h6_origen_celular.json
+H6 queda en \HseisEstado. La tabla está degenerada: una columna queda vacía. Qué no demuestra: no informa si el tipo celular influye. No es evidencia ni a favor ni en contra.
 
-La tabla de péptidos fija un límite, no una lista descubierta. Los 19 péptidos de Rai y colaboradores, los 96 neoepítopos de Xiang y colaboradores y los cinco péptidos de Hembrough y colaboradores quedan fuera de las filas de abundancia. En tejido CPTAC, 33 candidatas del catálogo se detectan y siete repiten el signo de la literatura con el corte fijado: CEACAM5, CA1, SMPDL3A, HBB, HBD, LCN2 y TOP2A. CA1, HBB y HBD quedan marcadas como posible hemólisis. LCN2 queda marcada como compartida con inflamación intestinal. TOP2A sube en tejido y no tiene contraste evaluable en este suero.
+% fuente: results/v3_6/h7_visibilidad_en_sangre.json
+H7 queda en \HsieteEstado. Álvez da \HsieteAlvez\ y el atlas de sangre da \HsieteHpa. Papier no se evalúa. Qué no demuestra: no anticipa qué proteína tumoral se verá en sangre y no es una prueba diagnóstica.
 
-\section{Discusión}
-El resultado se lee en dos capas. En tejido, el cambio del primario se parece al de CPTAC cuando las columnas se nombran como el artículo las nombra. En suero, esa biología no aparece como señal propia del cáncer. Lo que el suero filtrado separa de una persona sana son SAA1 y LBP, las dos anotadas como secretadas y leídas como respuesta del huésped. Eso encaja con el atlas de \textcite{malmstrom2025} y con la señal de huésped descrita por \textcite{seo2026}. No encaja con usarlas como prueba de tumor.
+% fuente: results/v3_6/h8_carga_tumoral.json
+H8 queda en \HochoEstado. El universo de la prueba tiene \HochoUniverso\ proteínas y las tumorales epiteliales son \HochoTumorales. Las plaquetas difieren entre el estadio IV y los estadios I--II, con p \HochoPlaquetasP. Qué no demuestra: no dice que el estadio IV no lleve proteína del tumor. Un DIA de suero sin depleción ve sobre todo proteínas abundantes. El metadato dice plasma y el protocolo de PRIDE dice suero: se anota sin decidir. La diferencia de plaquetas no se explica por el orden, porque esas muestras se aleatorizaron. Puede ser del tubo o biológica, y con la cita disponible no se separan.
 
-\textcite{rai2025} combinaron proteínas con el antígeno carcinoembrionario y reportaron un área bajo la curva de 0,758 en su propio estudio. Esta matriz no trae ese inmunoensayo, así que no se puede preguntar si alguna proteína añade algo al marcador que ya se usa. BAIAP3 sobrevive a la regla de área bajo la curva sin marca de fase aguda y no sobrevive al control de falsos. Con veinte personas por grupo, eso es una candidata, no una validación.
+% fuente: results/v3_6/h9_wald.json
+H9 queda en \HnueveEstado. Las proteínas con resultado exploratorio son \HnueveGenes. Qué no demuestra: no decide la tesis.
 
-\textcite{xiang2026} miden presentación por MHC en el tumor. \textcite{hembrough2026} recuperan péptidos de una persona. Este trabajo mide grupos de proteínas. Las tres preguntas son vecinas y no son la misma. Afirmar un neoantígeno a partir de estas filas cruzaría ese límite.
+% fuente: results/v3_6/h10_especificidad.json
+H10 queda en \HdiezEstado, con \HdiezN\ proteínas específicas de cáncer colorrectal: \HdiezGenes. Qué no demuestra: no es un hallazgo nuevo. CEACAM5 ilustra el seguimiento tras la cirugía \cite{locker2006}.
+
+\section{Triangulación y certificado}
+% fuente: results/v3_6/triangulacion.tsv
+% fuente: results/v3_6/certificado.json
+La triangulación reúne los genes de la enmienda y no deja celdas vacías. Qué no demuestra: no valida un panel. El certificado queda en \CertificadoEstado. Las limitaciones aceptadas son H8 y la preanalítica.

@@ -1,17 +1,16 @@
 \begin{otherlanguage}{english}
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-% fuente: results/v3_5/multiverso_v3_4.json
-% fuente: results/v3_5/ml_celda_preregistrada.json
-% fuente: results/v3_3/ml_suero_modelos.tsv
-% fuente: results/v3_5/h5_especificidad_organo.json
-% fuente: results/v3_5/h7_visibilidad_en_sangre.json
-% fuente: results/v3_5/h8_carga_tumoral.json
-The question is whether proteins that change in a colon tumor leave a trace that blood can show. The design moves from tissue to blood and then to a model that tries to separate the groups. In the cell written beforehand, \VcincoSueroDif\ of \VcincoSueroN\ proteins separate cancer from a negative colonoscopy. \VcincoSueroEq\ have the preregistered fold change ruled out. \VcincoSueroInd\ stay indeterminate because the groups are small.
+% fuente: results/v3_6/suero_embudo.json
+% fuente: results/v3_6/ml_suero_permutacion.json
+% fuente: results/v3_6/h5_especificidad_organo.json
+% fuente: results/v3_6/h7_visibilidad_en_sangre.json
+% fuente: results/v3_6/h8_carga_tumoral.json
+The question is whether proteins that change in a colon tumor leave a trace that blood can show. The design moves from tissue to blood and then to a model that tries to separate the groups. In the cell written beforehand, \SueroDif\ of \SueroN\ proteins separate cancer from a negative colonoscopy. \SueroEq\ have the preregistered fold change ruled out. \SueroInd\ stay indeterminate because the groups are small.
 
-The model that mixes the proteins separates the groups. Its area under the curve is \VcincoMdos. Sample quality alone also separates them: \VcincoMtres. After removing quality, the value falls to \VcincoMcinco\ and the permutation gives \VcincoMcincoP. The separation tracks sample quality, not a tumor protein. Coagulation may come from the tube or from the cancer itself. Skin comes from handling.
+The model that mixes the proteins separates the groups. Its area under the curve is \MlTodas. Sample quality alone also separates them: \MlCalidad. After removing quality, the value falls to \MlSinCalidad\ and the permutation gives \MlSinCalidadP. The separation tracks sample quality, not a tumor protein. Coagulation may come from the tube or from the cancer itself. Skin comes from handling.
 
-H5 is \VcincoHcinco: the colon tumor change is shared with other carcinomas. H7 is \VcincoHsiete: tissue variables fixed beforehand do not anticipate which tumor proteins change in blood. H8 is \VcincoHocho. H6 is evidence neither for nor against. This is Pepe phase 1. It does not propose a blood test.
+H5 is \HcincoEstado: the colon tumor change is shared with other carcinomas. H7 is \HsieteEstado: tissue variables fixed beforehand do not anticipate which tumor proteins change in blood. H8 is \HochoEstado. H6 is evidence neither for nor against. This is Pepe phase 1. It does not propose a blood test.
 
 \noindent\textbf{Keywords:} colorectal cancer; proteomics; serum; specificity; sample quality.
 \end{otherlanguage}

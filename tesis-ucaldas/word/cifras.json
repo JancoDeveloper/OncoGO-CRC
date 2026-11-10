@@ -1,39 +1,257 @@
 {
-  "FraseSuero": "No se detecta diferencia; 166 proteínas son equivalentes",
-  "TitularMl": "La separación del suero entre cáncer y colonoscopia negativa se explica por la calidad de muestra.",
-  "ClaveTitular": "separacion_explicada_por_calidad",
-  "SueroN": 284,
-  "SueroDiferente": 0,
-  "SueroEquivalente": 166,
-  "SueroIndeterminada": 118,
-  "Huno": "rechaza_h1",
-  "Runo": "147/147",
-  "HunoFragil": false,
-  "Hcinco": "refuta",
-  "Hsiete": "refuta",
-  "Hdiez": "descriptiva",
-  "HdiezN": 5,
-  "Advertencia": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.",
-  "VcincoEstado": "publicable",
-  "VcincoSueroN": "284",
-  "VcincoSueroDif": "0",
-  "VcincoSueroEq": "166",
-  "VcincoSueroInd": "118",
-  "VcincoMdos": "0,88025",
-  "VcincoMtres": "0,9151250000000001",
-  "VcincoMcinco": "0,6467499999999999",
-  "VcincoMcincoP": "0,11888111888111888",
-  "VcincoHcinco": "sostiene",
-  "VcincoHseis": "no_sostiene",
-  "VcincoHsiete": "refuta",
-  "VcincoHocho": "no_evaluable",
-  "VcincoHnueve": "exploratorio",
-  "VcincoHdiez": "descriptiva",
-  "VcincoHdiezN": "5",
-  "VcincoPreCrudos": "60",
-  "VcincoPreFecha": "54",
-  "VcincoPreEstado": "no_evaluable",
-  "VcincoTejido": "147/147",
-  "VcincoAdvertencia": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.",
-  "VcincoAucContaminantes": "0,941625"
+  "SueroN": {
+    "valor": "284",
+    "fuente": "results/v3_6/suero_embudo.json#celda_preregistrada.n",
+    "crudo": 284
+  },
+  "SueroDif": {
+    "valor": "0",
+    "fuente": "results/v3_6/suero_embudo.json#celda_preregistrada.diferente",
+    "crudo": 0
+  },
+  "SueroEq": {
+    "valor": "166",
+    "fuente": "results/v3_6/suero_embudo.json#celda_preregistrada.equivalente",
+    "crudo": 166
+  },
+  "SueroInd": {
+    "valor": "118",
+    "fuente": "results/v3_6/suero_embudo.json#celda_preregistrada.indeterminada",
+    "crudo": 118
+  },
+  "EmbudoGrupos": {
+    "valor": "897",
+    "fuente": "results/v3_6/suero_embudo.json#controles.grupos",
+    "crudo": 897
+  },
+  "EmbudoQ": {
+    "valor": "329",
+    "fuente": "results/v3_6/suero_embudo.json#controles.grupos_global_pg_q_0_01",
+    "crudo": 329
+  },
+  "EmbudoHumanos": {
+    "valor": "312",
+    "fuente": "results/v3_6/suero_embudo.json#controles.humanos_pg_y_global",
+    "crudo": 312
+  },
+  "MlTodas": {
+    "valor": "0,880",
+    "fuente": "results/v3_6/ml_suero_permutacion.json#M2_proteinas_principal.auc_oof_media",
+    "crudo": 0.88025
+  },
+  "MlCalidad": {
+    "valor": "0,915",
+    "fuente": "results/v3_6/ml_suero_permutacion.json#M3_solo_qc.auc_oof_media",
+    "crudo": 0.9151250000000001
+  },
+  "MlSinCalidad": {
+    "valor": "0,647",
+    "fuente": "results/v3_6/ml_suero_permutacion.json#M5_principal_residualizada_qc.auc_oof_media",
+    "crudo": 0.6467499999999999
+  },
+  "MlSinCalidadP": {
+    "valor": "0,12",
+    "fuente": "results/v3_6/ml_suero_permutacion.json#M5_principal_residualizada_qc.p_permutacion",
+    "crudo": 0.11888111888111888
+  },
+  "MlHumana": {
+    "valor": "0,947",
+    "fuente": "results/v3_6/ml_suero_permutacion.json#M1_proteinas_filtrada_humana.auc_oof_media",
+    "crudo": 0.9466249999999998
+  },
+  "MlCoagulacion": {
+    "valor": "0,818",
+    "fuente": "results/v3_6/ml_suero_permutacion.json#M4_solo_coagulacion.auc_oof_media",
+    "crudo": 0.818375
+  },
+  "MlPca": {
+    "valor": "0,887",
+    "fuente": "results/v3_6/ml_suero_permutacion.json#M6_principal_pca5.auc_oof_media",
+    "crudo": 0.8875
+  },
+  "MlContaminantes": {
+    "valor": "0,942",
+    "fuente": "results/v3_6/multiverso_ml.tsv#sin_quitar.auc_oof_media",
+    "crudo": 0.9416249999999999
+  },
+  "TejidoNum": {
+    "valor": "147",
+    "fuente": "results/v3_6/k1_etiquetas.json#primario_frente_a_mucosa.numerador",
+    "crudo": 147
+  },
+  "TejidoDen": {
+    "valor": "147",
+    "fuente": "results/v3_6/k1_etiquetas.json#primario_frente_a_mucosa.denominador",
+    "crudo": 147
+  },
+  "TejidoMetaNum": {
+    "valor": "116",
+    "fuente": "results/v3_6/k1_etiquetas.json#metastasis_hepatica_frente_a_mucosa.numerador",
+    "crudo": 116
+  },
+  "TejidoMetaDen": {
+    "valor": "143",
+    "fuente": "results/v3_6/k1_etiquetas.json#metastasis_hepatica_frente_a_mucosa.denominador",
+    "crudo": 143
+  },
+  "HcincoEstado": {
+    "valor": "Sostiene",
+    "fuente": "results/v3_6/h5_especificidad_organo.json#estado",
+    "crudo": "sostiene"
+  },
+  "HcincoUniverso": {
+    "valor": "29",
+    "fuente": "results/v3_6/h5_especificidad_organo.json#universo_principal_n",
+    "crudo": 29
+  },
+  "HcincoDif": {
+    "valor": "0,069",
+    "fuente": "results/v3_6/h5_especificidad_organo.json#maxima_concordancia_otro_organo",
+    "crudo": 0.069
+  },
+  "HseisEstado": {
+    "valor": "No sostiene",
+    "fuente": "results/v3_6/h6_origen_celular.json#estado",
+    "crudo": "no_sostiene"
+  },
+  "HsieteEstado": {
+    "valor": "Refuta",
+    "fuente": "results/v3_6/h7_visibilidad_en_sangre.json#estado",
+    "crudo": "refuta"
+  },
+  "HsieteAlvez": {
+    "valor": "0,483",
+    "fuente": "results/v3_6/h7_visibilidad_en_sangre.json#por_recurso.alvez_2023.auc",
+    "crudo": 0.48281209614887566
+  },
+  "HsieteHpa": {
+    "valor": "0,464",
+    "fuente": "results/v3_6/h7_visibilidad_en_sangre.json#por_recurso.hpa_disease_blood_atlas.auc",
+    "crudo": 0.46391135070380357
+  },
+  "HochoEstado": {
+    "valor": "No evaluable",
+    "fuente": "results/v3_6/h8_carga_tumoral.json#estado",
+    "crudo": "no_evaluable"
+  },
+  "HochoUniverso": {
+    "valor": "33",
+    "fuente": "results/v3_6/h8_carga_tumoral.json#n_universo",
+    "crudo": 33
+  },
+  "HochoTumorales": {
+    "valor": "0",
+    "fuente": "results/v3_6/h8_carga_tumoral.json#n_tumorales_epiteliales",
+    "crudo": 0
+  },
+  "HochoPlaquetasP": {
+    "valor": "0,00095",
+    "fuente": "results/v3_6/h8_carga_tumoral.json#qc.plaquetas.p_kruskal",
+    "crudo": 0.0009478694934511714
+  },
+  "HnueveEstado": {
+    "valor": "Exploratorio",
+    "fuente": "results/v3_6/h9_wald.json#estado",
+    "crudo": "exploratorio"
+  },
+  "HdiezEstado": {
+    "valor": "Descriptiva",
+    "fuente": "results/v3_6/h10_especificidad.json#estado",
+    "crudo": "descriptiva"
+  },
+  "HdiezN": {
+    "valor": "5",
+    "fuente": "results/v3_6/h10_especificidad.json#n_especificas_crc",
+    "crudo": 5
+  },
+  "PreEstado": {
+    "valor": "No evaluable",
+    "fuente": "results/v3_6/preanalitica.json#estado",
+    "crudo": "no_evaluable"
+  },
+  "PreAuc": {
+    "valor": "0,000",
+    "fuente": "results/v3_6/preanalitica.json#calculado_con_legibles.auc.valor",
+    "crudo": 0.0
+  },
+  "PreP": {
+    "valor": "2,3 × 10⁻¹⁰",
+    "fuente": "results/v3_6/preanalitica.json#calculado_con_legibles.auc.p_exacta_mann_whitney",
+    "crudo": 2.3262585529839005e-10
+  },
+  "PreCotaMax": {
+    "valor": "0,193",
+    "fuente": "results/v3_6/preanalitica.json#cota_con_60.auc_max",
+    "crudo": 0.1925
+  },
+  "PreRhoPiel": {
+    "valor": "−0,78",
+    "fuente": "results/v3_6/preanalitica.json#spearman.piel.rho",
+    "crudo": -0.7791505791505792
+  },
+  "PreFecha": {
+    "valor": "54",
+    "fuente": "results/v3_6/preanalitica.json#n_con_fecha",
+    "crudo": 54
+  },
+  "PreCrudos": {
+    "valor": "60",
+    "fuente": "results/v3_6/preanalitica.json#n_crudos_validos",
+    "crudo": 60
+  },
+  "CalidadCoagP": {
+    "valor": "0,00099",
+    "fuente": "results/v3_6/k7_control_tecnico.json#coagulacion.p_kruskal",
+    "crudo": 0.0009909115846774195
+  },
+  "CalidadPielP": {
+    "valor": "3,4 × 10⁻⁶",
+    "fuente": "results/v3_6/k7_control_tecnico.json#piel.p_kruskal",
+    "crudo": 3.3681479278313017e-06
+  },
+  "CertificadoEstado": {
+    "valor": "Publicable",
+    "fuente": "results/v3_6/certificado.json#estado",
+    "crudo": "publicable"
+  },
+  "MultiSuero": {
+    "valor": "288",
+    "fuente": "results/v3_6/multiverso_resumen.json#n_celdas_suero",
+    "crudo": 288
+  },
+  "MultiMl": {
+    "valor": "72",
+    "fuente": "results/v3_6/multiverso_resumen.json#n_celdas_ml",
+    "crudo": 72
+  },
+  "MultiDif": {
+    "valor": "13",
+    "fuente": "results/v3_6/multiverso_resumen.json#n_con_diferente",
+    "crudo": 13
+  },
+  "HdiezGenes": {
+    "valor": "ABHD14B, AGR2, BID, CASP8, CEACAM5",
+    "fuente": "results/v3_6/h10_especificidad.tsv",
+    "crudo": [
+      "ABHD14B",
+      "AGR2",
+      "BID",
+      "CASP8",
+      "CEACAM5"
+    ]
+  },
+  "HnueveGenes": {
+    "valor": "LBP, LRG1, CEACAM5",
+    "fuente": "results/v3_6/h9_wald.json",
+    "crudo": [
+      "LBP",
+      "LRG1",
+      "CEACAM5"
+    ]
+  },
+  "Advertencia": {
+    "valor": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.",
+    "fuente": "results/v3_6/certificado.json",
+    "crudo": null
+  }
 }

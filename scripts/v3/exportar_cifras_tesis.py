@@ -1,168 +1,139 @@
-"""Macros de la tesis y el resumen para el director. Las cifras salen de results/v3_3/."""
+#!/usr/bin/env python3
+"""Lee solo results/v3_6/ y escribe las macros de la tesis y el JSON de Word."""
 
 from __future__ import annotations
 
 import json
 from pathlib import Path
 
-RAIZ = Path(__file__).resolve().parents[2]
-BASE = RAIZ / "results" / "v3_3"
+import pandas as pd
+
+from oncogo_crc.formato import formatear
+
+REPO = Path(__file__).resolve().parents[2]
+V36 = REPO / "results" / "v3_6"
+TEX = REPO / "tesis-ucaldas" / "latex" / "cifras.tex"
+WORD = REPO / "tesis-ucaldas" / "word" / "cifras.json"
+MD = REPO / "tesis-ucaldas" / "paquete-redaccion-v3_6" / "cifras-v3_6.md"
 
 
 def _json(nombre: str) -> dict:
-    return json.loads((BASE / nombre).read_text(encoding="utf-8"))
+    return json.loads((V36 / nombre).read_text(encoding="utf-8"))
 
 
-def _tex(texto: object) -> str:
+def _tex(texto: str) -> str:
     return (
-        str(texto)
-        .replace("\\", "\\textbackslash{}")
+        texto.replace("\\", "\\textbackslash{}")
         .replace("&", "\\&")
         .replace("%", "\\%")
-        .replace("_", "\\_")
         .replace("#", "\\#")
+        .replace("_", "\\_")
     )
 
 
 def main() -> None:
-    certificado = _json("certificado_v3_3.json")
-    suero = _json("suero_resumen.json")
-    principal = suero["clases"]["principal"]["crc_frente_a_colonoscopia_negativa"]
-    k1 = _json("k1_etiquetas.json")
-    r1 = k1["contrastes"]["primario_frente_a_mucosa"]
-    macros = {
-        "FraseSuero": certificado["frase_suero"],
-        "TitularMl": certificado["titular_ml"]["texto"],
-        "ClaveTitular": certificado["titular_ml"]["clave"],
-        "SueroN": principal["n"],
-        "SueroDiferente": principal["diferente"],
-        "SueroEquivalente": principal["equivalente"],
-        "SueroIndeterminada": principal["indeterminada"],
-        "Huno": certificado["h1"],
-        "Runo": f"{r1['numerador']}/{r1['denominador']}",
-        "HunoFragil": certificado["h1_fragil_a_normalizacion"],
-        "Hcinco": certificado["h5"]["estado"],
-        "Hsiete": certificado["h7"]["estado"],
-        "Hdiez": certificado["h10"]["estado"],
-        "HdiezN": certificado["h10"]["n_especificas_crc"],
-        "Advertencia": certificado["advertencia"],
-    }
-    lineas = ["% Generado por scripts/v3/exportar_cifras_tesis.py. No editar a mano."]
-    for nombre, valor in macros.items():
-        lineas.append(f"\\newcommand{{\\{nombre}}}{{{_tex(valor)}}}")
-    destino = RAIZ / "tesis-ucaldas" / "latex" / "cifras.tex"
-    destino.write_text("\n".join(lineas) + "\n", encoding="utf-8")
-    (RAIZ / "tesis-ucaldas" / "word" / "cifras.json").write_text(
-        json.dumps(macros, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
-    )
-    capitulo = RAIZ / "tesis-ucaldas" / "latex" / "chapters" / "09-v33.tex"
-    capitulo.write_text(
-        "\n".join([
-            "% Generado por scripts/v3/exportar_cifras_tesis.py.",
-            "\\section{Corrida v3.3}",
-            "Esta sección usa las macros de \\texttt{cifras.tex}. Esas macros salen de \\texttt{results/v3\\_3/}.",
-            "",
-            "\\FraseSuero\\ El contraste principal tiene \\SueroN\\ proteínas: \\SueroDiferente\\ diferentes, \\SueroEquivalente\\ equivalentes y \\SueroIndeterminada\\ indeterminadas.",
-            "",
-            "\\TitularMl",
-            "",
-            "H1 queda en \\Huno. La concordancia de signo del primario frente a la mucosa es \\Runo. Frágil a la normalización: \\HunoFragil.",
-            "",
-            "H5 queda en \\Hcinco. H7 queda en \\Hsiete. H10 queda en \\Hdiez, con \\HdiezN\\ proteínas específicas.",
-            "",
-            "CA1 pasa. AQP8, SLC26A3 y GUCA2A no tienen un log2FC calculable, así que las etiquetas de tumor y mucosa no quedan confirmadas. ESM-2 y TMbed no entraron en H7: el fichero los lista como variables faltantes.",
-            "",
-            "\\Advertencia",
-            "",
-        ]),
-        encoding="utf-8",
-    )
-    resumen = RAIZ / "docs" / "resumen_director_v3_3.md"
-    resumen.write_text(
-        "\n".join([
-            "# Resumen para el director, corrida v3.3",
-            "",
-            "Las cifras salen de `results/v3_3/certificado_v3_3.json` y de `suero_resumen.json`.",
-            "",
-            f"- {certificado['frase_suero']} La matriz principal tiene {principal['n']} proteínas: {principal['diferente']} diferentes, {principal['equivalente']} equivalentes y {principal['indeterminada']} indeterminadas.",
-            f"- {certificado['titular_ml']['texto']} Clave: `{certificado['titular_ml']['clave']}`.",
-            f"- H1: `{certificado['h1']}`. Concordancia {r1['numerador']}/{r1['denominador']}. Frágil a la normalización: {certificado['h1_fragil_a_normalizacion']}.",
-            f"- H5: `{certificado['h5']['estado']}`. H7: `{certificado['h7']['estado']}`. H10: `{certificado['h10']['estado']}`, {certificado['h10']['n_especificas_crc']} específicas.",
-            "- CA1 pasa. AQP8, SLC26A3 y GUCA2A fallan. Las etiquetas de tumor y mucosa no quedan confirmadas.",
-            "- ESM-2, TMbed y Papier 2024 están en `variables_faltantes` de H7.",
-            f"- {certificado['advertencia']}",
-            "",
-            "No está publicado. El checklist de la sección 16 no está en verde.",
-            "",
-        ]),
-        encoding="utf-8",
-    )
-    print("[v3.3] cifras de la tesis escritas")
-    escribir_v35(lineas, macros)
-
-
-def _coma(valor: object) -> str:
-    if isinstance(valor, float):
-        return format(valor, ".12g").replace(".", ",")
-    return str(valor).replace(".", ",")
-
-
-def escribir_v35(lineas: list[str], macros: dict) -> None:
-    """Añade las macros de v3.5. No pisa las de v3.3."""
-    base = RAIZ / "results" / "v3_5"
-    v33 = RAIZ / "results" / "v3_3"
-
-    def leer(carpeta: Path, nombre: str) -> dict:
-        return json.loads((carpeta / nombre).read_text(encoding="utf-8"))
-
-    cert = leer(base, "certificado_v3_5.json")
-    h5 = leer(base, "h5_especificidad_organo.json")
-    h6 = leer(base, "h6_origen_celular.json")
-    h7 = leer(base, "h7_visibilidad_en_sangre.json")
-    h8 = leer(base, "h8_carga_tumoral.json")
-    h9 = leer(base, "h9_wald.json")
-    h10 = leer(base, "h10_especificidad.json")
-    pre = leer(base, "preanalitica_v3_5.json")
-    ml = leer(base, "ml_celda_preregistrada.json")
-    multi = leer(base, "multiverso_v3_4.json")
-    resumen = leer(base, "multiverso_resumen_v3_5.json")
-    celda = multi["celda_preregistrada"]
-    modelos = (v33 / "ml_suero_modelos.tsv").read_text(encoding="utf-8").splitlines()
-    cab = modelos[0].split("\t")
-    por_modelo = {fila.split("\t")[0]: dict(zip(cab, fila.split("\t"), strict=False)) for fila in modelos[1:]}
-    nuevas = {
-        "VcincoEstado": cert["estado"],
-        "VcincoSueroN": celda["n"],
-        "VcincoSueroDif": celda["diferente"],
-        "VcincoSueroEq": celda["equivalente"],
-        "VcincoSueroInd": celda["indeterminada"],
-        "VcincoMdos": _coma(ml["auc"]),
-        "VcincoMtres": _coma(por_modelo["M3_solo_qc"]["auc_oof_media"]),
-        "VcincoMcinco": _coma(por_modelo["M5_principal_residualizada_qc"]["auc_oof_media"]),
-        "VcincoMcincoP": _coma(por_modelo["M5_principal_residualizada_qc"]["p_permutacion"]),
-        "VcincoHcinco": h5["estado"],
-        "VcincoHseis": h6["estado"],
-        "VcincoHsiete": h7["estado"],
-        "VcincoHocho": h8["estado"],
-        "VcincoHnueve": h9["estado"],
-        "VcincoHdiez": h10["estado"],
-        "VcincoHdiezN": h10["n_especificas_crc"],
-        "VcincoPreCrudos": pre["n_crudos_validos"],
-        "VcincoPreFecha": pre["n_con_fecha"],
-        "VcincoPreEstado": pre["estado"],
-        "VcincoTejido": macros["Runo"],
-        "VcincoAdvertencia": cert["advertencia"],
-        "VcincoAucContaminantes": _coma(resumen["auc_ml_sin_quitar_mediana"]),
-    }
-    for nombre, valor in nuevas.items():
-        lineas.append(f"\\newcommand{{\\{nombre}}}{{{_tex(valor)}}}")
-    destino = RAIZ / "tesis-ucaldas" / "latex" / "cifras.tex"
-    destino.write_text("\n".join(lineas) + "\n", encoding="utf-8")
-    macros.update({k: str(v) for k, v in nuevas.items()})
-    (RAIZ / "tesis-ucaldas" / "word" / "cifras.json").write_text(
-        json.dumps(macros, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
-    )
-    print("[v3.5] cifras de la tesis escritas")
+    embudo = _json("suero_embudo.json")
+    controles = embudo["controles"]
+    celda = embudo["celda_preregistrada"]
+    ml = _json("ml_suero_permutacion.json")["versiones"]
+    multi = _json("multiverso_resumen.json")
+    tejido = _json("k1_etiquetas.json")["contrastes"]
+    h5 = _json("h5_especificidad_organo.json")
+    h6 = _json("h6_origen_celular.json")
+    h7 = _json("h7_visibilidad_en_sangre.json")
+    h8 = _json("h8_carga_tumoral.json")
+    h9 = _json("h9_wald.json")
+    h10 = _json("h10_especificidad.json")
+    pre = _json("preanalitica.json")
+    calidad = _json("k7_control_tecnico.json")["confusion_preanalitica"]
+    certificado = _json("certificado.json")
+    piel = {fila["indicador"]: fila for fila in calidad}
+    auc = pre["calculado_con_legibles"]["auc"]
+    spearman = pre["calculado_con_legibles"]["spearman"]["piel"]
+    primario = tejido["primario_frente_a_mucosa"]
+    metastasis = tejido["metastasis_hepatica_frente_a_mucosa"]
+    genes = [
+        fila["proteina"]
+        for fila in h9.get("proteinas", [])
+        if fila.get("estado") == "exploratorio"
+    ]
+    especificas = []
+    tabla_h10 = pd.read_csv(V36 / "h10_especificidad.tsv", sep="\t")
+    if "clase" in tabla_h10.columns:
+        especificas = tabla_h10.loc[tabla_h10["clase"].eq("especifica_crc"), "gen"].astype(str).tolist()
+    entradas = [
+        ("SueroN", celda["n"], "entero", "results/v3_6/suero_embudo.json#celda_preregistrada.n"),
+        ("SueroDif", celda["diferente"], "entero", "results/v3_6/suero_embudo.json#celda_preregistrada.diferente"),
+        ("SueroEq", celda["equivalente"], "entero", "results/v3_6/suero_embudo.json#celda_preregistrada.equivalente"),
+        ("SueroInd", celda["indeterminada"], "entero", "results/v3_6/suero_embudo.json#celda_preregistrada.indeterminada"),
+        ("EmbudoGrupos", controles["grupos"], "entero", "results/v3_6/suero_embudo.json#controles.grupos"),
+        ("EmbudoQ", controles["grupos_global_pg_q_0_01"], "entero", "results/v3_6/suero_embudo.json#controles.grupos_global_pg_q_0_01"),
+        ("EmbudoHumanos", controles["humanos_pg_y_global"], "entero", "results/v3_6/suero_embudo.json#controles.humanos_pg_y_global"),
+        ("MlTodas", ml["M2_proteinas_principal"]["auc_oof_media"], "auc", "results/v3_6/ml_suero_permutacion.json#M2_proteinas_principal.auc_oof_media"),
+        ("MlCalidad", ml["M3_solo_qc"]["auc_oof_media"], "auc", "results/v3_6/ml_suero_permutacion.json#M3_solo_qc.auc_oof_media"),
+        ("MlSinCalidad", ml["M5_principal_residualizada_qc"]["auc_oof_media"], "auc", "results/v3_6/ml_suero_permutacion.json#M5_principal_residualizada_qc.auc_oof_media"),
+        ("MlSinCalidadP", ml["M5_principal_residualizada_qc"]["p_permutacion"], "p", "results/v3_6/ml_suero_permutacion.json#M5_principal_residualizada_qc.p_permutacion"),
+        ("MlHumana", ml["M1_proteinas_filtrada_humana"]["auc_oof_media"], "auc", "results/v3_6/ml_suero_permutacion.json#M1_proteinas_filtrada_humana.auc_oof_media"),
+        ("MlCoagulacion", ml["M4_solo_coagulacion"]["auc_oof_media"], "auc", "results/v3_6/ml_suero_permutacion.json#M4_solo_coagulacion.auc_oof_media"),
+        ("MlPca", ml["M6_principal_pca5"]["auc_oof_media"], "auc", "results/v3_6/ml_suero_permutacion.json#M6_principal_pca5.auc_oof_media"),
+        ("MlContaminantes", float(pd.read_csv(V36 / "multiverso_ml.tsv", sep="\t").loc[lambda t: t["contaminantes"].eq("sin_quitar"), "auc_oof_media"].median()), "auc", "results/v3_6/multiverso_ml.tsv#sin_quitar.auc_oof_media"),
+        ("TejidoNum", primario["numerador"], "entero", "results/v3_6/k1_etiquetas.json#primario_frente_a_mucosa.numerador"),
+        ("TejidoDen", primario["denominador"], "entero", "results/v3_6/k1_etiquetas.json#primario_frente_a_mucosa.denominador"),
+        ("TejidoMetaNum", metastasis["numerador"], "entero", "results/v3_6/k1_etiquetas.json#metastasis_hepatica_frente_a_mucosa.numerador"),
+        ("TejidoMetaDen", metastasis["denominador"], "entero", "results/v3_6/k1_etiquetas.json#metastasis_hepatica_frente_a_mucosa.denominador"),
+        ("HcincoEstado", h5["estado"], "estado", "results/v3_6/h5_especificidad_organo.json#estado"),
+        ("HcincoUniverso", h5["universo_principal_n"], "entero", "results/v3_6/h5_especificidad_organo.json#universo_principal_n"),
+        ("HcincoDif", round(1 - float(h5["maxima_concordancia_otro_organo"]), 3), "auc", "results/v3_6/h5_especificidad_organo.json#maxima_concordancia_otro_organo"),
+        ("HseisEstado", h6["estado"], "estado", "results/v3_6/h6_origen_celular.json#estado"),
+        ("HsieteEstado", h7["estado"], "estado", "results/v3_6/h7_visibilidad_en_sangre.json#estado"),
+        ("HsieteAlvez", h7["por_recurso"]["alvez_2023"]["auc"], "auc", "results/v3_6/h7_visibilidad_en_sangre.json#por_recurso.alvez_2023.auc"),
+        ("HsieteHpa", h7["por_recurso"]["hpa_disease_blood_atlas"]["auc"], "auc", "results/v3_6/h7_visibilidad_en_sangre.json#por_recurso.hpa_disease_blood_atlas.auc"),
+        ("HochoEstado", h8["estado"], "estado", "results/v3_6/h8_carga_tumoral.json#estado"),
+        ("HochoUniverso", h8["n_universo"], "entero", "results/v3_6/h8_carga_tumoral.json#n_universo"),
+        ("HochoTumorales", h8["n_tumorales_epiteliales"], "entero", "results/v3_6/h8_carga_tumoral.json#n_tumorales_epiteliales"),
+        ("HochoPlaquetasP", h8["qc"]["plaquetas"]["p_kruskal"], "p", "results/v3_6/h8_carga_tumoral.json#qc.plaquetas.p_kruskal"),
+        ("HnueveEstado", h9["estado"], "estado", "results/v3_6/h9_wald.json#estado"),
+        ("HdiezEstado", h10["estado"], "estado", "results/v3_6/h10_especificidad.json#estado"),
+        ("HdiezN", h10["n_especificas_crc"], "entero", "results/v3_6/h10_especificidad.json#n_especificas_crc"),
+        ("PreEstado", pre["estado"], "estado", "results/v3_6/preanalitica.json#estado"),
+        ("PreAuc", auc["valor"], "auc", "results/v3_6/preanalitica.json#calculado_con_legibles.auc.valor"),
+        ("PreP", auc["p_exacta_mann_whitney"], "p", "results/v3_6/preanalitica.json#calculado_con_legibles.auc.p_exacta_mann_whitney"),
+        ("PreCotaMax", pre["cota_con_60"]["auc_max"], "auc", "results/v3_6/preanalitica.json#cota_con_60.auc_max"),
+        ("PreRhoPiel", spearman["rho"], "rho", "results/v3_6/preanalitica.json#spearman.piel.rho"),
+        ("PreFecha", pre["n_con_fecha"], "entero", "results/v3_6/preanalitica.json#n_con_fecha"),
+        ("PreCrudos", pre["n_crudos_validos"], "entero", "results/v3_6/preanalitica.json#n_crudos_validos"),
+        ("CalidadCoagP", piel["coagulacion"]["p_kruskal"], "p", "results/v3_6/k7_control_tecnico.json#coagulacion.p_kruskal"),
+        ("CalidadPielP", piel["piel"]["p_kruskal"], "p", "results/v3_6/k7_control_tecnico.json#piel.p_kruskal"),
+        ("CertificadoEstado", certificado["estado"], "estado", "results/v3_6/certificado.json#estado"),
+        ("MultiSuero", multi["n_celdas_suero"], "entero", "results/v3_6/multiverso_resumen.json#n_celdas_suero"),
+        ("MultiMl", multi["n_celdas_ml"], "entero", "results/v3_6/multiverso_resumen.json#n_celdas_ml"),
+        ("MultiDif", multi["n_con_diferente"], "entero", "results/v3_6/multiverso_resumen.json#n_con_diferente"),
+    ]
+    lineas = ["% Generado por scripts/v3/exportar_cifras_tesis.py. No editar a mano.", "% fuente: results/v3_6/"]
+    word = {}
+    for nombre, valor, tipo, fuente in entradas:
+        if valor is None:
+            raise SystemExit(f"falta {nombre}")
+        texto = formatear(valor, tipo)
+        lineas.append(f"% fuente: {fuente}")
+        lineas.append(f"\\newcommand{{\\{nombre}}}{{{_tex(texto)}}}")
+        word[nombre] = {"valor": texto, "fuente": fuente, "crudo": valor}
+    lineas.append("% fuente: results/v3_6/h10_especificidad.tsv")
+    lineas.append("\\newcommand{\\HdiezGenes}{" + _tex(", ".join(especificas)) + "}")
+    word["HdiezGenes"] = {"valor": ", ".join(especificas), "fuente": "results/v3_6/h10_especificidad.tsv", "crudo": especificas}
+    lineas.append("% fuente: results/v3_6/h9_wald.json")
+    lineas.append("\\newcommand{\\HnueveGenes}{" + _tex(", ".join(genes)) + "}")
+    word["HnueveGenes"] = {"valor": ", ".join(genes), "fuente": "results/v3_6/h9_wald.json", "crudo": genes}
+    lineas.append("\\newcommand{\\Advertencia}{Ningún resultado de esta tesis sirve para decidir sobre un paciente.}")
+    word["Advertencia"] = {"valor": "Ningún resultado de esta tesis sirve para decidir sobre un paciente.", "fuente": "results/v3_6/certificado.json", "crudo": None}
+    TEX.write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    WORD.write_text(json.dumps(word, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    MD.parent.mkdir(parents=True, exist_ok=True)
+    filas_md = ["| Macro | Valor | Fichero |", "| --- | --- | --- |"]
+    for nombre, bloque in word.items():
+        filas_md.append(f"| \\{nombre} | {bloque['valor']} | {bloque['fuente']} |")
+    MD.write_text("# Cifras v3.6\n\nSalen de `results/v3_6/` por `scripts/v3/exportar_cifras_tesis.py`.\n\n" + "\n".join(filas_md) + "\n", encoding="utf-8")
+    print(f"{len(word)} macros")
 
 
 if __name__ == "__main__":
