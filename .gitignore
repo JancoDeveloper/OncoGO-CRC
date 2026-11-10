@@ -64,6 +64,9 @@ site/
 # Jupyter
 .ipynb_checkpoints/
 
+# Registro local de una corrida. No es un resultado.
+logs/
+
 # Demo exception: allow tiny demo outputs if committed — user may gitignore
 # Uncomment to ignore all demo-generated files:
 # data/**/demo_*
