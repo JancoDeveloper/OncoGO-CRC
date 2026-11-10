@@ -906,3 +906,26 @@ enmienda_v3_7_cierre:
         - "7. H10: especifica_crc en el HPA Disease Blood Atlas"
       regla: "sin pesos ni puntajes: cada proteína guarda el último paso que supera. El orden dentro de un paso es el padj de CPTAC."
       lectura: "lista de hipótesis para cohortes futuras, no biomarcadores"
+
+# --------------------------------------- 21. Enmienda v3.7, ESM-2 fuera de la corrida
+enmienda_v3_7_esm2:
+  fecha: "2026-11-10"
+  transparencia: >-
+    Ya se vieron B y C. En B, ESM-2 cubre 181 de 668 proteínas con secuencia
+    porque, al correr en MPS, los errores se omitían sin dejar registro. El
+    secundario de H7 no entra en ningún veredicto. No cambia ningún otro
+    cálculo ni umbral.
+  calculo: "scripts/v3/esm2_embeddings.py, fuera de la corrida, como TMbed"
+  salida: "external/modelos/h7_esm2_embeddings.tsv (gen, longitud, n_ventanas, esm2_000..esm2_479) y su .sello.json"
+  dispositivo: cpu
+  hilos: "fijos y anotados en el sello (4 por defecto); si dos cálculos no son idénticos, se repite con 1"
+  longitud_maxima: 1022
+  regla_largas: >-
+    Si una secuencia pasa de 1022 residuos, se parte en ventanas consecutivas
+    de hasta 1022, sin solapamiento. El vector es la media de las medias de
+    cada ventana, ponderada por su longitud. 1022 es el contexto de
+    entrenamiento de ESM-2: 1024 tokens menos los dos especiales.
+  omisiones: "toda proteína sin vector va a external/modelos/h7_esm2_omitidas.tsv con su motivo; ninguna se omite en silencio"
+  determinismo: "dos cálculos en procesos distintos deben dar el mismo sha256 del TSV"
+  corrida: "lee el TSV; si falta o no cuadra con el FASTA y el modelo, el secundario queda no_disponible, y nunca se calcula en la corrida"
+  esperado: "en config/esperado_v3_7.tsv cambian solo las métricas del secundario de H7, si están, y se anota el valor anterior"
