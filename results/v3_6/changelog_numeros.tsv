@@ -1,2 +1,28 @@
-metrica	valor_v3	valor_v3_2	numerador	denominador	motivo	correccion
-R1_concordancia_de_signo_primario_frente_a_mucosa	no_leido_en_corrida_limpia	147/147	147	147	Se quitaron CON__, REV__ y las marcas de MaxQuant. El mínimo de pares vuelve a 8, el del cierre, por la enmienda y no por el recuento.	T1
+cifra	valor_v3_5	valor_v3_6	relacion	causa	seccion
+grupos_report	897	897	igual		1.2
+grupos_q_global	329	329	igual		1.2
+celda_n	284	284	igual		1.2
+celda_diferente	0	0	igual		1.2
+celda_equivalente	166	166	igual		1.2
+celda_indeterminada	118	118	igual		1.2
+ml_m2	0.88025	0.88025	igual		1.2
+ml_m3	0.9151250000000001	0.9151250000000001	igual		1.2
+ml_m4	0.818375	0.818375	igual		1.2
+ml_m5	0.6467499999999999	0.6467499999999999	igual		1.2
+ml_m5_p	0.11888111888111888	0.11888111888111888	igual		1.2
+multiverso_suero	288	288	igual		1.2
+multiverso_ml	72	72	igual		1.2
+multiverso_con_diferente	13	13	igual		1.2
+h5_estado	sostiene	sostiene	igual		1.2
+h5_universo	29	29	igual		1.2
+h5_diferencia_con_el_otro_maximo	0.069	0.069	igual		1.2
+h6_estado	no_sostiene	no_sostiene	igual		1.2
+h6_tabla	[[20, 0], [98, 0]]	[[20, 0], [98, 0]]	igual		1.2
+h7_auc_secundario	0.4799689842336521	0.48591367278366504	cambia	La corrida limpia vuelve a calcular el modelo secundario, que añade ESM-2. El AUC principal de Álvez coincide. El veredicto sigue en refuta.	4.1
+h7_alvez	0.48281209614887566	0.48281209614887566	igual		1.2
+h8_universo	33	33	igual		1.2
+h8_estado	no_evaluable	no_evaluable	igual		1.2
+pre_auc	0.0	0.0	igual		1.2
+pre_n_con_fecha	54	54	igual		1.2
+pre_bloques		True	cambia	Descriptivo nuevo de la enmienda v3.6.	2.3
+pre_ic	[0.0, 0.0]		cambia	Con AUC 0 el IC de LeDell queda nulo. Es regla de presentación.	2.3
