@@ -37,3 +37,12 @@ def test_un_sha1_distinto_pide_redescarga(tmp_path):
     assert fila["igual"] is False
     assert fila["pide_redescarga"] is True
     assert fila["bytes_local"] == 3
+
+
+def test_la_cuarentena_marca_el_crudo_como_redescargado(tmp_path):
+    cuarentena = tmp_path / "cuarentena"
+    cuarentena.mkdir()
+    (cuarentena / "CN_01_DIA.raw.danado-2026-11-10").write_bytes(b"viejo")
+    fila = {"redescargado": False}
+    _MOD.anotar_redescarga(fila, cuarentena, "CN_01_DIA.raw", "2026-11-10")
+    assert fila["redescargado"] is True

@@ -422,3 +422,13 @@ Decisión. `shutil.move` hace la copia entre discos. Si el fichero del caché ya
 Comando: la pasada relanzada. Sale con `FileNotFoundError` al renombrar `cuarentena/._CN_01_DIA.raw.danado`. El crudo real ya se llama `CN_01_DIA.raw.danado-2026-11-10`. El fichero `._` es un AppleDouble y desaparece al renombrar el crudo.
 
 Decisión. Esos nombres se saltan. La pasada se relanza.
+
+## 2026-11-10 11:28 (UTC−5). v3.7, los 60 crudos coinciden con PRIDE
+
+Comandos: `ascp` 4.4.3 de IBM Aspera Connect, usuario `fasp-public`, puerto 33001, y `python scripts/download/pxd055218_crudos.py --workspace /Volumes/JANCODATA/OncoGO-CRC`.
+
+Resultado. HTTPS no entrega `CN_16_DIA.raw`: el objeto publicado pesa 4096 bytes. Aspera sí entrega el crudo de 1205043346 bytes y el SHA-1 `5ee92fddbb3603f60c4e07819031d06566c560d4`. `CP_17_DIA.raw` se cortó por HTTPS (curl, código 18) y se completó por Aspera. El primer envío de `HC_17_DIA.raw` pesaba 1065175806 bytes, el tamaño de PRIDE, pero el SHA-1 era `4c27517c8675f035a480d52bb42a0a905a4af493`. El segundo y el tercero dieron `0f40e8209011141ef37d6033f681b8a5620c4c6c`, el de `checksum.txt`. Se instaló el segundo. La pasada final imprime `60 crudos; distintos 0`. `results/v3_7/crudos_integridad.tsv` tiene 60 filas con `igual` verdadero. Doce quedaron `redescargado` verdadero porque el crudo viejo está en `cuarentena/`: CN_01, CN_08, CN_13, CN_15, CN_16, CP_10, CP_17, CP_18, HC_10, HC_11, HC_17 y HC_20.
+
+Prueba. Antes de `anotar_redescarga`, `pytest tests/test_v3_7_crudos.py::test_la_cuarentena_marca_el_crudo_como_redescargado` da 1 failed (`AttributeError`). Después, `pytest tests/test_v3_7_crudos.py` da 4 passed.
+
+Decisión. No es un fichero dañado en origen: el SHA-1 del que quedó en el volumen coincide con PRIDE. No se redacta el correo. `make all-v3-7` puede seguir. La clave de Aspera no entra al repositorio.

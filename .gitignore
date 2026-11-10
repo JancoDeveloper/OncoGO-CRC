@@ -41,6 +41,9 @@ data/processed/*.tsv
 !/results/v3_6/
 !/results/v3_6/**
 !/results/v3_6_manifest.sha256
+!/results/v3_7/
+!/results/v3_7/**
+!/results/v3_7_manifest.sha256
 /results/v3/crossref_cache/**
 /reports/**/*.md
 !/reports/**/.gitkeep

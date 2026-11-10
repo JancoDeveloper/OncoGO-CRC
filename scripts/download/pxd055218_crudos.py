@@ -68,6 +68,14 @@ def descargar(url: str, destino: Path, reanudar: bool = True) -> None:
     subprocess.run(comando, check=True)
 
 
+def anotar_redescarga(fila: dict, cuarentena: Path, nombre: str, fecha: str) -> dict:
+    """El crudo en su sitio ya es el verificado si el viejo está en cuarentena."""
+    marca = cuarentena / f"{nombre}.danado-{fecha}"
+    if marca.is_file() and not marca.name.startswith("._"):
+        fila["redescargado"] = True
+    return fila
+
+
 def colocar(temporal: Path, crudo: Path, fecha: str) -> None:
     """Mueve el crudo verificado aunque el caché y el volumen sean discos distintos."""
     cuarentena = crudo.parent / "cuarentena"
@@ -122,6 +130,7 @@ def main() -> None:
                     break
             else:
                 raise SystemExit(f"{nombre} no coincide con PRIDE tras 3 descargas")
+        anotar_redescarga(fila, cuarentena, nombre, fecha)
         filas.append(fila)
     salida = Path("results") / "v3_7"
     salida.mkdir(parents=True, exist_ok=True)

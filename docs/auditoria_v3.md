@@ -190,3 +190,7 @@ Funciones que leen una corrida anterior o conservan una ruta de respaldo. La eta
 - `stages/v3_3_ml.py`: la traza OOF solo se escribe si `corrida_limpia()` está activa.
 
 El texto de trabajo de la enmienda v3.7 decía «11-nov-2026». La revisión y el commit son del 10-nov-2026. Se usa la fecha real.
+
+## v3.7, crudos de PXD055218 el 10 de noviembre de 2026
+
+`checksum.txt` sigue siendo la referencia. La API deja el campo de checksum vacío. HTTPS entrega `CN_16_DIA.raw` como un objeto de 4096 bytes; el fichero del checksum pesa 1205043346 bytes y está en Aspera. El primer envío Aspera de `HC_17_DIA.raw` completó con el tamaño publicado y un SHA-1 distinto. Dos envíos siguientes coincidieron entre sí y con `checksum.txt`. El que está en el volumen es uno de esos dos. No se declara `dañado_en_origen` y no hay borrador de correo.
