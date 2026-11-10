@@ -4,7 +4,19 @@ from __future__ import annotations
 
 import json
 
-from oncogo_crc.stages.v3_5_preanalitica import contar_crudos, fecha_de_metadato, resumir_legibles
+from oncogo_crc.stages.v3_5_preanalitica import (
+    contar_crudos,
+    fecha_de_metadato,
+    intentos_previos,
+    resumir_legibles,
+)
+
+
+def test_un_tsv_de_intentos_vacio_no_se_lee_como_tabla(tmp_path):
+    vacio = tmp_path / "preanalitica_intentos.tsv"
+    vacio.write_bytes(b"\n")
+    assert intentos_previos(vacio) == {}
+    assert intentos_previos(tmp_path / "no_esta.tsv") == {}
 
 
 def test_el_conteo_ignora_appledouble():

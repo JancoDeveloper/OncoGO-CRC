@@ -142,6 +142,19 @@ def _sin_ruta_local(texto: str) -> str:
     return limpio.strip()
 
 
+def intentos_previos(ruta: Path) -> dict[str, dict]:
+    """Un TSV ausente o de un solo salto de línea no es una tabla de intentos."""
+    if not ruta.is_file() or ruta.stat().st_size <= 1:
+        return {}
+    try:
+        viejo = pd.read_csv(ruta, sep="\t")
+    except pd.errors.EmptyDataError:
+        return {}
+    if "crudo" not in viejo.columns:
+        return {}
+    return {str(fila["crudo"]): fila.to_dict() for _, fila in viejo.iterrows()}
+
+
 def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
     campo = str(prereg.get("enmienda_v3_5.preanalitica.campo_fecha"))
     carpeta = settings.resolve("data/raw/plasma/pxd055218_raw")
@@ -152,12 +165,8 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
     intentos = []
     filas = []
     sin_fecha = []
-    previos: dict[str, dict] = {}
     previo = salida / "preanalitica_intentos.tsv"
-    if previo.is_file():
-        viejo = pd.read_csv(previo, sep="\t")
-        if "crudo" in viejo.columns:
-            previos = {str(fila["crudo"]): fila.to_dict() for _, fila in viejo.iterrows()}
+    previos = intentos_previos(previo)
     for nombre in validos:
         crudo = carpeta / nombre
         json_path = metadatos / f"{crudo.stem}.json"
@@ -198,7 +207,10 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg) -> dict:
     else:
         con_fecha["orden"] = []
     volcar_tsv(con_fecha, salida / "preanalitica_orden.tsv", sello)
-    volcar_tsv(pd.DataFrame(intentos), salida / "preanalitica_intentos.tsv", sello)
+    if intentos:
+        volcar_tsv(pd.DataFrame(intentos), previo, sello)
+    elif previo.is_file() and previo.stat().st_size <= 1:
+        previo.unlink()
     auc = None
     ic = None
     n_cp = n_cn = 0

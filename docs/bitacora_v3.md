@@ -448,3 +448,13 @@ Comandos: `make v3-7` y, al cortarse, el tramo desde H9 con el sello ya escrito.
 Resultado. `make v3-7` salió con código 2 al imprimir `[v3.7] h9`, sin traza de Python. El mismo corte, también con código 2 y sin traza, había ocurrido antes al imprimir `[v3.7] h10`. H9, H10, la unión, la preanalítica, la triangulación, la repetición de M2 y el certificado se calcularon después con el sello `2026-11-10T18:31:55Z` del commit `c1c2289`. `results/v3_7/certificado.json` queda `publicable` y `rojas` está vacío. La limitación aceptada es H8. La celda sigue en 284, 0, 166 y 118. M2 sigue en 0,88025. H8 sigue `no_evaluable` y el universo pasa de 33 a 53. La preanalítica pasa de `no_evaluable` con 54 fechas a `calculado` con 60. `union_crudos_calidad.tsv` deja verificadas las 40 corridas CP y CN, y falsas las 20 `Normal_`, con la evidencia «el report no nombra ese crudo». `lecturas_v3_7.json` solo cubre el segundo proceso. `sha256_manifest_entradas` queda nulo. `determinismo.json` solo repite M2.
 
 Decisión. Se publican los ficheros de esta recálculo y la documentación dice qué cambió y qué no se calculó. No se etiqueta `v3.7-final` y no se despliega Firebase: faltan `vias_suero.json`, `h1_vias.json`, `go_ora_tejido.tsv`, `catalogo_auditoria.tsv`, `neoantigenos.tsv`, `prtc_por_corrida.tsv` y `manifest_entradas.sha256`. El detalle está en `docs/estado_v3_7.md` y `docs/changelog_v3_6_frente_a_v3_7.md`.
+
+## 2026-11-10 15:00 (UTC−5). v3.7, diagnóstico del corte
+
+Comando: `caffeinate -dims /usr/bin/time -l .venv/bin/python -X faulthandler -m oncogo_crc run --data-workspace /Volumes/JANCODATA/OncoGO-CRC --stage v3_7`.
+
+Resultado. El primer intento sale con `codigo_python=1` porque `logs/` deja el árbol sucio. Después de ignorar `logs/`, un solo proceso pasa H9 en 9,4 s y H10 en 1,2 s y muere en la preanalítica: `EmptyDataError` al leer `preanalitica_intentos.tsv`, que pesa 1 byte. `/usr/bin/time -l` da 858,27 s reales y 2 076 917 760 bytes de residente máximo. El disco se queda en 400 866 560 KiB libres. No hay jetsam de ese pid. Los cortes viejos, con código 2 y sin traza, no se repitieron: su causa sigue sin demostrar. El detalle está en `docs/diagnostico_corte_v3_7.md`.
+
+Prueba. Antes del arreglo, `pytest tests/test_v3_5_preanalitica.py::test_un_tsv_de_intentos_vacio_no_se_lee_como_tabla` da `ImportError: cannot import name 'intentos_previos'`. Después, `pytest tests/test_v3_5_preanalitica.py` da 4 passed.
+
+Decisión. Un TSV vacío no se lee como tabla y no se vuelve a escribir. La corrida que vale sigue pendiente: el certificado de `9af0d01` no cumple las casillas nuevas.
