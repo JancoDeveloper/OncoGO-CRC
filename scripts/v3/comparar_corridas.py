@@ -319,7 +319,7 @@ def main() -> None:
             "",
             f"D: `{args.a}`. E: `{args.b}`.",
             "",
-            "Las dos salidas salen del commit `95dae8d3e3c0c3723312113891f7c635fc20ee98`.",
+            f"Las dos salidas salen del commit `{json.loads((args.a / 'sello_corrida.json').read_text(encoding='utf-8')).get('commit', '')}`.",
             "",
             "Solo se admiten `fecha_utc`, el pid y las horas, los tiempos de `tests.txt` y el orden de filas de `gsea_tejido.tsv`. Un sha256 que cambia entra en esa lista cuando el fichero que resume solo cambia por la fecha o por el pid.",
             "",
