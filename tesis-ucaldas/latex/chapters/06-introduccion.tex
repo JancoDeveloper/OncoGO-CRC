@@ -1,46 +1,37 @@
-\mainmatter
-\chapter*{Introducción}
-\addcontentsline{toc}{chapter}{Introducción}
+\chapter{Introducción}
+\objetivo{Plantear el problema, la justificación, la pregunta y los objetivos, sin prometer un examen de sangre.}
+\todojd{Redacta de 2 a 4 páginas. La guía de 2022 deja el planteamiento, la justificación y los objetivos dentro de la introducción, no como capítulos propios. Por eso este andamiaje no abre un capítulo para cada uno.}
 
-\section*{Campo temático}
-\addcontentsline{toc}{section}{Campo temático}
-El cáncer colorrectal se ha medido durante años en el tejido. El proteoma del tumor y el de la mucosa del mismo estudio ya están publicados, entre ellos el de CPTAC \parencite{vasaikar2019}. La pregunta que este trabajo formula es otra: qué parte de ese cambio se deja ver cuando la muestra es suero, y qué parte de lo que aparece en el suero también aparece cuando el intestino está enfermo por otra causa.
-
-Comparar el cáncer solo con personas sanas enciende proteínas de respuesta del organismo. Esa comparación describe inflamación. La comparación que decide si una señal es propia del cáncer es la de cáncer frente a otra enfermedad intestinal. \textcite{rai2025} midieron suero en tres grupos: cáncer, colonoscopia negativa y personas sanas. Este trabajo usa esa matriz para auditar la especificidad, y usa el tejido para preguntar si el cambio del tumor se repite y si llega a la sangre.
-
-\section*{Planteamiento del problema}
-\addcontentsline{toc}{section}{Planteamiento del problema}
-Una proteína alterada en el tumor sería útil en sangre si el mismo cambio se pudiera medir en el suero y si otra enfermedad no lo produjera también. \textcite{malmstrom2025} describen el plasma como una mezcla cuyo origen es, sobre todo, el organismo y no la célula tumoral. \textcite{seo2026} encuentran, en vesículas, proteínas del huésped. Esa literatura prepara el resultado: lo que separa el cáncer de una persona sana puede ser respuesta del huésped.
-
-Las matrices públicas no traen tejido y sangre de la misma persona. Las plataformas tampoco son la misma: el tejido de anclaje está marcado con TMT, la réplica tisular es LFQ y el suero es DIA. Sumar las intensidades mezclaría técnicas y personas. El problema, entonces, no es construir un panel. Es medir, con una regla escrita antes del resultado, cuánto del cambio tisular se repite y cuánto de lo publicado en sangre separa el cáncer de una colonoscopia negativa.
-
-\section*{Justificación}
-\addcontentsline{toc}{section}{Justificación}
-Integrar proteomas públicos de cáncer colorrectal, de tejido y de biopsia líquida, ya está publicado \parencite{robles2024}. Este trabajo no reclama esa prioridad. El hueco que cierra es operativo. Con el umbral fijado de antemano, se mide la concordancia entre dos tejidos, la cobertura de los procesos del tumor en el suero y la especificidad de las candidatas publicadas.
-
-El hueco importa porque varias listas de proteínas de cáncer se arman contra controles sanos, se solapan con la fase aguda o con la hemólisis, y luego se leen como marcadores. Dejar el cero por escrito, con el control de enfermedad y sin relajar la tasa de descubrimientos falsos, evita esa lectura.
-
-\section*{Política pública}
-\addcontentsline{toc}{section}{Política pública}
-En Colombia, la Ley 1384 de 2010 ordena acciones para la atención integral del cáncer, incluida la detección temprana \parencite{ley1384}. Un examen de sangre sería, en ese marco, una herramienta deseable. Este trabajo no diseña ese examen. Lo que aporta a la discusión pública es el estándar de evidencia: una proteína que solo separa el cáncer de una persona sana no basta para una prueba de tamización. Hace falta que separe el cáncer de otra enfermedad del intestino, en una cohorte más grande que veinte personas por grupo y, a ser posible, junto al antígeno carcinoembrionario medido en la misma persona. El resultado de este suero dice que esa barra, hoy, no se cruza. No hay cohorte colombiana en estas matrices públicas.
-
-\section*{Objetivos}
-\addcontentsline{toc}{section}{Objetivos}
-\subsection*{Objetivo general}
-\addcontentsline{toc}{subsection}{Objetivo general}
-Cuantificar cuánto del cambio proteico del tumor colorrectal se repite en otro tejido y cuánto es visible y específico en suero, sin fusionar matrices de plataformas distintas y sin presentar como propio un resultado ya publicado.
-
-\subsection*{Objetivos específicos}
-\addcontentsline{toc}{subsection}{Objetivos específicos}
-% REVISAR-AUTOR: objetivos alineados con H5--H10 y con la preanalítica. El objetivo general se mantiene.
+\section{Campo y problema}
 \begin{itemize}
-\item Medir si el cambio proteico del tumor colorrectal se repite entre cohortes de tejido y si el colon se distingue de otros carcinomas.
-\item Contrastar el suero de cáncer, colonoscopia negativa y sanos con una regla escrita de antemano, y medir cuánto separa un modelo y por qué.
-\item Evaluar la calidad de la muestra y el orden de adquisición como explicación alternativa de la separación del suero.
-\item Probar si las características del tejido anticipan la visibilidad en sangre y si la carga tumoral del estadio IV aumenta la proteína tumoral en sangre.
-\item Explorar la genética de los niveles en sangre y la especificidad de las proteínas frente a otras enfermedades, sin presentarlo como hallazgo.
+\item El tejido publicado ya describe el tumor y la mucosa. \cite{vasaikar2019,zhang2014,tanaka2024}
+\item El suero es otra matriz y otras personas. El depósito que lee esta tesis es PXD055218. \cite{rai2025}
+\item CN no son personas sanas. HC se midió aparte y no decide la pregunta.
+\end{itemize}
+\todojd{Responde: qué se conoce del cáncer colorrectal en tejido y qué parte de ese problema aborda esta tesis. No localices las muestras en un segmento del colon.}
+
+\section{Justificación}
+\begin{itemize}
+\item La equivalencia estadística no es identidad biológica. El cero de la clase diferente no dice que el tumor no cambie en el tejido.
+\item No hay una cohorte nueva medida. Las redes de coexpresión no se calcularon.
+\end{itemize}
+\todojd{Escribe por qué la pregunta merece el trabajo y qué hueco no reclamas como prioridad.}
+
+\section{Pregunta}
+Qué parte del cambio del tumor se deja ver en la sangre cuando el contraste es otra enfermedad intestinal.
+\todojd{Deja la pregunta en una frase y, en otra, sus límites: matrices separadas, sin examen clínico.}
+
+\section{Objetivos}
+\todojd{Redacta un objetivo general y los específicos en infinitivo. Una conclusión del capítulo 6 debe poder responder a cada específico.}
+\begin{itemize}
+\item General, a partir de la pregunta de arriba. No lo dejes como una promesa diagnóstica.
+\item Específicos que el repo sí puede sostener: concordancia de signo en tejido (\TejidoNum\ de \TejidoDen); celda del suero (\SueroDif, \SueroEq, \SueroInd, de \SueroN); calidad de muestra y orden de adquisición; estado de H5 a H10.
 \end{itemize}
 
-\section*{Alcance y limitaciones}
-\addcontentsline{toc}{section}{Alcance y limitaciones}
-El trabajo es de bioinformática sobre datos públicos. No se reclutaron pacientes. No se fusionaron intensidades. No se presenta un panel para la consulta. Con veinte sueros por grupo el alcance es de cribado. La colonoscopia negativa agrupa otras enfermedades intestinales: no es una cohorte pura de enfermedad inflamatoria recién diagnosticada. Los neoantígenos no se rebuscaron en los crudos. Esas limitaciones se retoman en las conclusiones.
+\section{Alcance}
+\begin{itemize}
+\item Trabajo \textit{in silico} sobre datos públicos. No propone un examen clínico. \cite{pepe2001}
+\item Certificado: \CertificadoEstado. Sello \texttt{71b310a3fcaebe9267fac971156df3aab491e009}, 2026-11-11T00:48:45Z. Etiqueta \texttt{v3.7-final} en \texttt{595118ae09ea6006c744c86b28cb0a10d42e0442}.
+\end{itemize}
+Citas sugeridas: \cite{vasaikar2019,tanaka2024,rai2025,garciafoncillas2026,pepe2001}.
+Extensión orientativa: 2 a 4 páginas para todo el capítulo.

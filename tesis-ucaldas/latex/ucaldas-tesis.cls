@@ -57,13 +57,13 @@
 \fancyhf{}
 \fancyhead[LE]{\fontsize{11}{13}\selectfont\thepage}
 \fancyhead[RO]{\fontsize{11}{13}\selectfont\thepage}
-\fancyhead[C]{\fontsize{8}{10}\selectfont\textit{Versión para revisión, no citar}}
+\fancyhead[C]{\fontsize{8}{10}\selectfont\textit{Andamiaje, 11 de noviembre de 2026}}
 \renewcommand{\headrulewidth}{0pt}
 \fancypagestyle{plain}{%
   \fancyhf{}%
   \fancyhead[LE]{\fontsize{11}{13}\selectfont\thepage}%
   \fancyhead[RO]{\fontsize{11}{13}\selectfont\thepage}%
-  \fancyhead[C]{\fontsize{8}{10}\selectfont\textit{Versión para revisión, no citar}}%
+  \fancyhead[C]{\fontsize{8}{10}\selectfont\textit{Andamiaje, 11 de noviembre de 2026}}%
   \renewcommand{\headrulewidth}{0pt}%
 }
 
@@ -88,6 +88,8 @@
 \RequirePackage{amsmath}
 \RequirePackage{xcolor}
 \newcommand{\placeholder}[1]{\textcolor{gray}{\textit{[#1]}}}
+\newcommand{\todojd}[1]{\par\noindent\textcolor{gray}{\textit{\% TODO Juan Diego: #1}}\par}
+\newcommand{\objetivo}[1]{\par\noindent\textbf{Objetivo de la sección.} #1\par}
 
 \RequirePackage[
   backend=biber,
@@ -95,7 +97,7 @@
   sortcites=true,
   doi=true,
   isbn=false,
-  url=false
+  url=true
 ]{biblatex}
 % Para Vancouver, cambie style=apa por style=vancouver y vuelva a compilar con Biber.
 % La guía de 2022 no impone un estilo: APA 7 es el valor por defecto de este proyecto.

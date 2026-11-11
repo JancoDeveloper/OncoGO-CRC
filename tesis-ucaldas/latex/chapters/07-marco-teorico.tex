@@ -1,22 +1,40 @@
-\chapter{Marco teórico}
+\chapter{Marco teórico y estado del arte}
+\objetivo{Definir solo los conceptos que después se usan para leer un resultado, y separar el estado del arte verificado de lo que no se reabrió.}
+\todojd{Redacta este capítulo. Una subsección por concepto. No conviertas una definición en un hallazgo.}
 
-\section{Qué mide cada técnica}
-El tejido de CPTAC llega marcado con TMT. Varias muestras se comparan dentro del mismo experimento y el archivo ya está en log2 \parencite{vasaikar2019}. El tejido de \textcite{tanaka2024} es LFQ: la intensidad de cada proteína se estima en cada muestra por separado, con MaxQuant. El suero de \textcite{rai2025} es DIA: se intentan ver muchas proteínas a la vez, sin elegirlas de antemano, y el informe las entrega en grupos. El PRM de ese mismo estudio, cuatro péptidos, es una medición dirigida que aquí no se reanaliza. \textcite{lesur2023} miden un panel dirigido de plasma. Esas columnas no entran en el contraste, porque un orden alfabético de los archivos no es un diagnóstico.
+\section{Matrices que no se fusionan}
+\begin{itemize}
+\item Tejido TMT de CPTAC, estudio PDC000116. \cite{vasaikar2019,zhang2014}
+\item Réplica tisular LFQ, PXD034575: primario, metástasis hepática y mucosa. \cite{tanaka2024}
+\item Suero DIA, PXD055218. \cite{rai2025}
+\item El preregistro prohíbe fusionar cohortes y aplicar \textit{ComBat} entre estudios.
+\end{itemize}
+\todojd{Explica, con tus palabras, por qué tejido y suero se analizan por separado. No dibujes una proteína que sale del tumor y entra a la sangre.}
 
-\section{Cómo se lee un cambio de abundancia}
-En MaxQuant, el cero significa que la proteína no se identificó en esa muestra \parencite{cox2008}. Tratar el cero como cantidad cero hunde la mediana y hace creer que la matriz ya está en logaritmo. Por eso el cero se vuelve un hueco y solo la intensidad positiva pasa a log2. Un log2FC de 1 es el doble. Un log2FC de $-1$ es la mitad.
+\section{Cómo se declara un cambio}
+\begin{itemize}
+\item Alfa 0,05. Corrección de Benjamini-Hochberg. \cite{benjamini1995}
+\item Margen TREAT: cambio de 1,5 veces, \(\log_2(1{,}5)=0{,}585\). \cite{mccarthy2009}
+\item TOST declara que el cambio cabe en ese margen. \cite{lakens2017}
+\item No se imputan ausencias. El cero de MaxQuant y la ausencia en DIA-NN se tratan como ausencia.
+\end{itemize}
+\todojd{Define equivalente, diferente e indeterminada con las frases del preregistro, no con una paráfrasis que las vuelva «correspondencia identificada».}
 
-\textcite{smyth2004} modera la varianza entre proteínas para que una medición escasa no se declare distinta solo porque su desviación salió pequeña. \textcite{mccarthy2009} llaman treat a la prueba contra un cambio mínimo, no contra cero. \textcite{benjamini1995} controlan la fracción esperada de falsos entre las proteínas que se declaran distintas. El corte usado es 0,05. El área bajo la curva ordena personas: 0,50 es el azar. No dice si la proteína sube o baja y no sustituye a la tasa de descubrimientos falsos.
-
-En el tejido de Tanaka, tumor y mucosa son de la misma persona: el contraste resta dentro de la persona. En el suero, los grupos son personas distintas: el contraste compara grupos. Pedir pareo donde no hay pares inventaría una relación.
-
-\section{Gene Ontology y fichas}
-\textcite{ashburner2000} proponen Gene Ontology como vocabulario de procesos, componentes y funciones. \textcite{subramanian2005} proponen mirar si los genes de un proceso se acumulan al principio de un ranking, no solo si un gen pasa un corte. Un suero que mide pocos genes de cada proceso no puede declarar que el proceso del tumor está en la sangre.
-
-\textcite{uhlen2015} publican concentraciones de referencia en sangre. Esas concentraciones no son las de estos pacientes. \textcite{jumper2021} predicen un pliegue con AlphaFold. Un pliegue no demuestra que la cantidad haya cambiado. La ficha de cada proteína reúne el acceso de UniProt, los términos GO, la anotación de secreción y esos dos enlaces para que otra persona pueda verificar la fila.
-
-\section{Neoantígenos}
-Un neoantígeno es un péptido cuya secuencia cambió por una mutación y que el tumor puede presentar. \textcite{rai2025} describen 19 péptidos en suero y validan cuatro por PRM, uno de ellos neoantigénico. \textcite{xiang2026} identifican 96 neoepítopos mutados de MHC-I en tejido de diez pacientes; la mayoría proviene de regiones no codificantes. \textcite{hembrough2026}, en un resumen de congreso, recuperan cinco péptidos de una persona con cáncer colorrectal avanzado, desde vesículas de plasma. Ninguno de esos trabajos se convierte en una fila de abundancia de esta tesis. La matriz guarda grupos de proteínas, no la letra mutada.
+\section{Ontología y modelos}
+\begin{itemize}
+\item Gene Ontology: ORA sobre una lista con umbral y GSEA sobre el ranking. \cite{ashburner2000,subramanian2005}
+\item En tejido, la concordancia de NES es \GoConNum\ de \GoConDen. CPTAC prueba \GoCptacTerminos\ términos. Tanaka prueba \GoTanakaTerminos.
+\item Los modelos M1 a M6 están nombrados en \texttt{config/preregistro\_v3.yaml}. Un AUC interno no es rendimiento diagnóstico. \cite{pepe2001}
+\end{itemize}
 
 \section{Estado del arte que cambia la lectura}
-\textcite{tanaka2024} describen tripletes de tumor primario, metástasis hepática y mucosa. La columna P de esa matriz es el primario, no un pólipo. \textcite{ogren2026} publican un panel de plasma para cáncer colorrectal formado por CEACAM5, FLT1, IL19 y ferritina. \textcite{verathamjamras2023} encuentran la fibronectina más baja en plasma de cáncer que en personas sanas. \textcite{yu2026} proponen candidatas tempranas que este trabajo no descubre: las audita. \textcite{dhami2026} muestran proteínas elevadas a la vez en cáncer y en enfermedad inflamatoria intestinal. \textcite{garciafoncillas2026} revisan la biología molecular del cáncer colorrectal; es una revisión narrativa, no una evidencia de subtipos en proteína. \textcite{zhang2014} caracterizan otro proteoma de colon y recto, distinto de PDC000116. \textcite{li2024} perfilan el plasma durante el tratamiento con cetuximab: es respuesta a un fármaco, no un estudio de tamización.
+\todojd{Una subsección corta por trabajo que de verdad uses. Si no reabriste el PDF, no lo cites como evidencia de un resultado propio.}
+\begin{itemize}
+\item Rai 2025: suero DIA y el contraste con otra enfermedad intestinal. \cite{rai2025}
+\item Vasaikar 2019 y Zhang 2014: proteoma de tejido CPTAC. \cite{vasaikar2019,zhang2014}
+\item Tanaka 2024: la réplica tisular. \cite{tanaka2024}
+\item Xiang 2026 y Hembrough 2026: límite de los neoantígenos. No se rebuscaron péptidos. \cite{xiang2026,hembrough2026}
+\item \placeholder{PENDIENTE: decidir si Seo 2026, Dhami 2026, Yu 2026, Ögren 2026, Robles 2024 y Verathamjamras 2023 entran en el cuerpo o solo quedan en la bibliografía}
+\end{itemize}
+Citas sugeridas, además de las anteriores: \cite{geyer2019,leek2010,gabay1999,cox2008,smyth2004}.
+Extensión orientativa: 8 a 15 páginas.

@@ -1,18 +1,18 @@
 # Tesis de maestría, Universidad de Caldas
 
-Documento de Juan Diego Polanco Franco para optar al título de Magíster en Bioinformática y Biología Computacional. Esta copia es una versión para revisión, del 6 de noviembre de 2026, y lleva la marca «no citar». Incorpora la corrida v3 (etiquetas P, M y N, potencia y equivalencia del suero, AUC con nulo). Los números del cierre del 31 de octubre se conservan con ese nombre. Las tablas están en `results/v3/`. El formato sigue la guía de la Biblioteca (2022) y el orden de las tesis en español del programa.
+Documento de Juan Diego Polanco Franco para optar al título de Magíster en Bioinformática y Biología Computacional. El archivo de trabajo para la entrega es [word/tesis-maestria-ucaldas.docx](word/tesis-maestria-ucaldas.docx), actualizado el 11 de noviembre de 2026 con las cifras de `results/v3_7/`. El certificado es publicable. El sello es `71b310a3fcaebe9267fac971156df3aab491e009` (2026-11-11T00:48:45Z). La etiqueta `v3.7-final` está en `595118ae09ea6006c744c86b28cb0a10d42e0442` y no se movió.
 
 ## Abrir
 
-- Word, listo para editar: [word/tesis-maestria-ucaldas.docx](word/tesis-maestria-ucaldas.docx). Instrucciones: [word/INSTRUCCIONES-WORD.md](word/INSTRUCCIONES-WORD.md).
-- Overleaf: suba [oncogo-crc-ucaldas-overleaf.zip](oncogo-crc-ucaldas-overleaf.zip). Instrucciones: [latex/README-OVERLEAF.md](latex/README-OVERLEAF.md).
+- Word, andamiaje para completar: [word/tesis-maestria-ucaldas.docx](word/tesis-maestria-ucaldas.docx). Qué escribir en cada sección: [GUIA-DE-REDACCION.md](GUIA-DE-REDACCION.md). Cifras y figuras: [TRAZABILIDAD.md](TRAZABILIDAD.md).
+- LaTeX, el mismo cuerpo: [latex/main.tex](latex/main.tex). El paquete es [overleaf_v3_7.zip](overleaf_v3_7.zip). No se volvió a compilar en esta pasada.
 - Contraste con las fuentes oficiales: [VALIDACION-FORMATO.md](VALIDACION-FORMATO.md).
 
-Los dos documentos tienen la misma estructura, los mismos huecos en gris y los mismos resultados. En LaTeX la fuente es TeX Gyre Heros, porque Arial no viene en TeX Live. En Word la fuente es Arial.
+En LaTeX la fuente es TeX Gyre Heros, porque Arial no viene en TeX Live. En Word la fuente es Arial. El ZIP antiguo `oncogo-crc-ucaldas-overleaf.zip` no es el paquete de esta versión; el vigente es `overleaf_v3_7.zip`.
 
 ## Huecos que faltan por llenar
 
-Director, codirector, grupo y línea. Van entre corchetes, en gris. La dedicatoria y los agradecimientos se omitieron: la guía de 2022 los marca como opcionales.
+Director, codirector, grupo y línea. Van entre corchetes, en gris. La dedicatoria y los agradecimientos se omitieron: la guía de 2022 los marca como opcionales. No exporte el PDF mientras un corchete siga visible. La tabla de cifras de la corrida firmada está en [docs/entrega_tesis_11_nov.md](../docs/entrega_tesis_11_nov.md).
 
 ## Nombre del PDF
 
