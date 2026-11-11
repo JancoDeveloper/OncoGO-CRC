@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / C0HKE1;C0HKE2;C0HKE3;C0HKE4;C0HKE5;C0HKE6;C0HKE7;C0HKE8;P04908;P0C0S8;P20671;Q16777;Q64523;Q6FI13;Q6GSS7;Q7L7L0;Q8BFU2;Q8CGP5;Q8CGP6;Q8CGP7;Q93077;Q96KK5;Q99878;Q9BTM1</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,11 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>C0HKE1;C0HKE2;C0HKE3;C0HKE4;C0HKE5;C0HKE6;C0HKE7;C0HKE8;P04908;P0C0S8;P20671;Q16777;Q64523;Q6FI13;Q6GSS7;Q7L7L0;Q8BFU2;Q8CGP5;Q8CGP6;Q8CGP7;Q93077;Q96KK5;Q99878;Q9BTM1</h1>
+<p class="nombre-proteina">Histone H2A type 1-B</p>
 <h2 id="resumen">Resumen</h2><p>Histone H2A type 1-B Gen en la corrida: H2AC11, H2AC12, H2AC14, H2AC18, H2AC20, H2AC25, H2AC4, H2AC6, H2AC7, H2AJ, H2ac11, H2ac12, H2ac13, H2ac15, H2ac20, H2ac25, H2ac4, H2ac6, H2ac7, H2ac8, Hist1h2af, Hist1h2an, Hist1h2ao, Hist2h2aa1. Gen en UniProt: H2ac4. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><p>El grupo de la celda es C0HKE1;C0HKE2;C0HKE3;C0HKE4;C0HKE5;C0HKE6;C0HKE7;C0HKE8;P04908;P0C0S8;P20671;Q16777;Q64523;Q6FI13;Q6GSS7;Q7L7L0;Q8BFU2;Q8CGP5;Q8CGP6;Q8CGP7;Q93077;Q96KK5;Q99878;Q9BTM1. La ficha de UniProt es C0HKE1.</p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Core component of nucleosome. Nucleosomes wrap and compact DNA into chromatin, limiting DNA accessibility to the cellular machineries which require DNA as a template. Histones thereby play a central role in transcription regulation, DNA repair, DNA replication and chromosomal stability. DNA accessibility is regulated via a complex set of post-translational modifications of histones, also called histone code, and nucleosome remodeling.</p><p>Texto del campo Function, UniProt, acceso C0HKE1. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -158,6 +161,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -209,6 +218,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -227,8 +240,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

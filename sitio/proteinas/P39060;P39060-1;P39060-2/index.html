@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P39060;P39060-1;P39060-2</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P39060;P39060-1;P39060-2</h1>
+<p class="gen-ficha">COL18A1</p>
+<p class="nombre-proteina">Collagen alpha-1(XVIII) chain [Cleaved into: Endostatin; Non-collagenous domain 1</p>
 <h2 id="resumen">Resumen</h2><p>Collagen alpha-1(XVIII) chain [Cleaved into: Endostatin; Non-collagenous domain 1 (NC1)] Gen en la corrida: COL18A1. Gen en UniProt: COL18A1. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><p>El grupo de la celda es P39060;P39060-1;P39060-2. La ficha de UniProt es P39060.</p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Probably plays a major role in determining the retinal structure as well as in the closure of the neural tube. {ECO:0000269|PubMed:10942434}.; FUNCTION: [Non-collagenous domain 1]: May regulate extracellular matrix-dependent motility and morphogenesis of endothelial and non-endothelial cells; the function requires homotrimerization and implicates MAPK signaling. {ECO:0000269|PubMed:11257123}.; FUNCTION: [Endostatin]: Potently inhibits endothelial cell proliferation and angiogenesis (PubMed:9459295). May inhibit angiogenesis by binding to the heparan sulfate proteoglycans involved in growth factor signaling (By similarity). Inhibits VEGFA-induced endothelial cell proliferation and migration. Seems to inhibit VEGFA-mediated signaling by blocking the interaction of VEGFA to its receptor KDR/VEGFR2. Modulates endothelial cell migration in an integrin-dependent manner implicating integrin ITGA5:ITGB1 and to a lesser extent ITGAV:ITGB3 and ITGAV:ITGB5 (By similarity). May negatively regulate the activity of homotrimeric non-collagenous domain 1 (PubMed:11257123). {ECO:0000250|UniProtKB:P39061, ECO:0000269|PubMed:11257123, ECO:0000269|PubMed:9459295}.</p><p>Texto del campo Function, UniProt, acceso P39060. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -321,6 +325,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -372,6 +382,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -390,8 +404,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

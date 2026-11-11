@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P04196</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P04196</h1>
+<p class="gen-ficha">HRG</p>
+<p class="nombre-proteina">Histidine-rich glycoprotein</p>
 <h2 id="resumen">Resumen</h2><p>Histidine-rich glycoprotein (Histidine-proline-rich glycoprotein) (HPRG) Gen en la corrida: HRG. Gen en UniProt: HRG. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Plasma glycoprotein that binds a number of ligands such as heme, heparin, heparan sulfate, thrombospondin, plasminogen, and divalent metal ions. Binds heparin and heparin/glycosaminoglycans in a zinc-dependent manner. Binds heparan sulfate on the surface of liver, lung, kidney and heart endothelial cells. Binds to N-sulfated polysaccharide chains on the surface of liver endothelial cells. Inhibits rosette formation. Acts as an adapter protein and is implicated in regulating many processes such as immune complex and pathogen clearance, cell chemotaxis, cell adhesion, angiogenesis, coagulation and fibrinolysis. Mediates clearance of necrotic cells through enhancing the phagocytosis of necrotic cells in a heparan sulfate-dependent pathway. This process can be regulated by the presence of certain HRG ligands such as heparin and zinc ions. Binds to IgG subclasses of immunoglobins containing kappa and lambda light chains with different affinities regulating their clearance and inhibiting the formation of insoluble immune complexes. Tethers plasminogen to the cell surface. Binds T-cells and alters the cell morphology. Modulates angiogenesis by blocking the CD6-mediated antiangiongenic effect of thrombospondins, THBS1 and THBS2. Acts as a regulator of the vascular endothelial growth factor (VEGF) signaling pathway; inhibits endothelial cell motility by reducing VEGF-induced complex formation between PXN/paxillin and ILK/integrin-linked protein kinase and by promoting inhibition of VEGF-induced tyrosine phosphorylation of focal adhesion kinases and alpha-actinins in endothelial cells. Also plays a role in the regulation of tumor angiogenesis and tumor immune surveillance. Normalizes tumor vessels and promotes antitumor immunity by polarizing tumor-associated macrophages, leading to decreased tumor growth and metastasis. {ECO:0000269|PubMed:11134179, ECO:0000269|PubMed:12235005, ECO:0000269|PubMed:14744774, ECO:0000269|PubMed:15220341, ECO:0000269|PubMed:15313924, ECO:0000269|PubMed:16436387, ECO:0000269|PubMed:16489009, ECO:0000269|PubMed:19285951, ECO:0000269|PubMed:19535045, ECO:0000269|PubMed:19712047, ECO:0000269|PubMed:19903770, ECO:0000269|PubMed:20573803, ECO:0000269|PubMed:21215706, ECO:0000269|PubMed:21304106}.</p><p>Texto del campo Function, UniProt, acceso P04196. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -197,6 +201,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -248,6 +258,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -266,8 +280,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

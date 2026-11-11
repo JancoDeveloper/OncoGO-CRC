@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P63104</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P63104</h1>
+<p class="gen-ficha">YWHAZ</p>
+<p class="nombre-proteina">14-3-3 protein zeta/delta</p>
 <h2 id="resumen">Resumen</h2><p>14-3-3 protein zeta/delta (Protein kinase C inhibitor protein 1) (KCIP-1) Gen en la corrida: YWHAZ. Gen en UniProt: YWHAZ. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Adapter protein implicated in the regulation of a large spectrum of both general and specialized signaling pathways (PubMed:14578935, PubMed:15071501, PubMed:15644438, PubMed:16376338, PubMed:16959763, PubMed:31024343, PubMed:9360956). Binds to a large number of partners, usually by recognition of a phosphoserine or phosphothreonine motif (PubMed:35662396). Binding generally results in the modulation of the activity of the binding partner (PubMed:35662396). Promotes cytosolic retention and inactivation of TFEB transcription factor by binding to phosphorylated TFEB (PubMed:35662396). Induces ARHGEF7 activity on RAC1 as well as lamellipodia and membrane ruffle formation (PubMed:16959763). In neurons, regulates spine maturation through the modulation of ARHGEF7 activity (By similarity). {ECO:0000250|UniProtKB:O55043, ECO:0000269|PubMed:14578935, ECO:0000269|PubMed:15071501, ECO:0000269|PubMed:15644438, ECO:0000269|PubMed:16376338, ECO:0000269|PubMed:16959763, ECO:0000269|PubMed:31024343, ECO:0000269|PubMed:35662396, ECO:0000269|PubMed:9360956}.</p><p>Texto del campo Function, UniProt, acceso P63104. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -169,6 +173,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -220,6 +230,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -238,8 +252,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P01019;Q9GLN8</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P01019;Q9GLN8</h1>
+<p class="gen-ficha">AGT</p>
+<p class="nombre-proteina">Angiotensinogen</p>
 <h2 id="resumen">Resumen</h2><p>Angiotensinogen (Serpin A8) [Cleaved into: Angiotensin-1 (Angiotensin 1-10) (Angiotensin I) (Ang I); Angiotensin-2 (Angiotensin 1-8) (Angiotensin II) (Ang II); Angiotensin-3 (Angiotensin 2-8) (Angiotensin III) (Ang III) (Des-Asp[1]-angiotensin II); Angiotensin-4 (Angiotensin 3-8) (Angiotensin IV) (Ang IV); Angiotensin 1-9; Angiotensin 1-7; Angiotensin 1-5; Angiotensin 1-4] Gen en la corrida: AGT. Gen en UniProt: AGT. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><p>El grupo de la celda es P01019;Q9GLN8. La ficha de UniProt es P01019.</p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Essential component of the renin-angiotensin system (RAS), a potent regulator of blood pressure, body fluid and electrolyte homeostasis. {ECO:0000269|PubMed:10619573, ECO:0000269|PubMed:1132082, ECO:0000269|PubMed:17138938}.; FUNCTION: [Angiotensin-2]: Acts directly on vascular smooth muscle as a potent vasoconstrictor, affects cardiac contractility and heart rate through its action on the sympathetic nervous system, and alters renal sodium and water absorption through its ability to stimulate the zona glomerulosa cells of the adrenal cortex to synthesize and secrete aldosterone (PubMed:10619573, PubMed:17138938). Acts by binding to angiotensin receptors AGTR1 and AGTR2 (PubMed:1567413). Also binds the DEAR/FBXW7-AS1 receptor (By similarity). {ECO:0000250|UniProtKB:P01015, ECO:0000269|PubMed:10619573, ECO:0000269|PubMed:1567413, ECO:0000269|PubMed:17138938}.; FUNCTION: [Angiotensin-3]: Stimulates aldosterone release. {ECO:0000269|PubMed:1132082}.; FUNCTION: [Angiotensin 1-7]: Is a ligand for the G protein-coupled receptor MAS1 (By similarity). Has vasodilator and antidiuretic effects. Has an antithrombotic effect that involves MAS1-mediated release of nitric oxide from platelets (By similarity). {ECO:0000250|UniProtKB:P11859}.</p><p>Texto del campo Function, UniProt, acceso P01019. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -193,6 +197,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -244,6 +254,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -262,8 +276,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P09871</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P09871</h1>
+<p class="gen-ficha">C1S</p>
+<p class="nombre-proteina">Complement C1s subcomponent</p>
 <h2 id="resumen">Resumen</h2><p>Complement C1s subcomponent (EC 3.4.21.42) (C1 esterase) (Complement component 1 subcomponent s) [Cleaved into: Complement C1s subcomponent heavy chain (Complement C1s subcomponent chain A); Complement C1s subcomponent light chain (Complement C1s subcomponent chain B)] Gen en la corrida: C1S. Gen en UniProt: C1S. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Component of the complement C1 complex, a multiprotein complex that initiates the classical pathway of the complement system, a cascade of proteins that leads to phagocytosis and breakdown of pathogens and signaling that strengthens the adaptive immune system (PubMed:11445589, PubMed:16169853, PubMed:417728, PubMed:467643, PubMed:6271784, PubMed:6282646, PubMed:6319179, PubMed:70787, PubMed:9422791). C1S is activated following association of the C1 complex with immunoglobulins (IgG or IgM) complexed with antigens to form antigen-antibody complexes on the surface of pathogens (PubMed:34155115). C1S is cleaved and activated by C1R to generate C1s subcomponent heavy and light chains (PubMed:11445589, PubMed:6271784). C1s subcomponent light chain then cleaves and activates C2 and C4, the next components of the classical complement pathway (PubMed:16169853, PubMed:467643, PubMed:6282646, PubMed:6319179, PubMed:6906228, PubMed:70787, PubMed:9422791). {ECO:0000269|PubMed:11445589, ECO:0000269|PubMed:16169853, ECO:0000269|PubMed:34155115, ECO:0000269|PubMed:417728, ECO:0000269|PubMed:467643, ECO:0000269|PubMed:6271784, ECO:0000269|PubMed:6282646, ECO:0000269|PubMed:6319179, ECO:0000269|PubMed:6906228, ECO:0000269|PubMed:70787, ECO:0000269|PubMed:9422791}.; FUNCTION: [Complement C1s subcomponent light chain]: Serine protease component of the complement C1 complex, which catalyzes cleavage and activation of C2 and C4, the next components of the classical complement pathway (PubMed:16169853, PubMed:22949645, PubMed:417728, PubMed:467643, PubMed:6282646, PubMed:6319179, PubMed:70787, PubMed:9422791). Also able to cleave C1 inhibitor (SERPING1) in vitro; additional evidence is however required to confirm this result in vivo (PubMed:16169853). Also cleaves IGFBP5 and thereby inhibits the trophic effects of IGF1 (PubMed:18930415). {ECO:0000269|PubMed:16169853, ECO:0000269|PubMed:18930415, ECO:0000269|PubMed:22949645, ECO:0000269|PubMed:417728, ECO:0000269|PubMed:467643, ECO:0000269|PubMed:6282646, ECO:0000269|PubMed:6319179, ECO:0000269|PubMed:70787, ECO:0000269|PubMed:9422791}.</p><p>Texto del campo Function, UniProt, acceso P09871. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -213,6 +217,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -264,6 +274,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -282,8 +296,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

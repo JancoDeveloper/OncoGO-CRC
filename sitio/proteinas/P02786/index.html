@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P02786</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P02786</h1>
+<p class="gen-ficha">TFRC</p>
+<p class="nombre-proteina">Transferrin receptor protein 1</p>
 <h2 id="resumen">Resumen</h2><p>Transferrin receptor protein 1 (TR) (TfR) (TfR1) (Trfr) (T9) (Transferrin receptor 1) (p90) (CD antigen CD71) [Cleaved into: Transferrin receptor protein 1, serum form (sTfR)] Gen en la corrida: TFRC. Gen en UniProt: TFRC. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Cellular uptake of iron occurs via receptor-mediated endocytosis of ligand-occupied transferrin receptor into specialized endosomes (PubMed:26214738, PubMed:41772062). Endosomal acidification leads to iron release. The apotransferrin-receptor complex is then recycled to the cell surface with a return to neutral pH and the concomitant loss of affinity of apotransferrin for its receptor. Transferrin receptor is necessary for development of erythrocytes and the nervous system (By similarity). A second ligand, the hereditary hemochromatosis protein HFE, competes for binding with transferrin for an overlapping C-terminal binding site. Positively regulates T and B cell proliferation through iron uptake (PubMed:26642240). Acts as a lipid sensor that regulates mitochondrial fusion by regulating activation of the JNK pathway (PubMed:26214738). When dietary levels of stearate (C18:0) are low, promotes activation of the JNK pathway, resulting in HUWE1-mediated ubiquitination and subsequent degradation of the mitofusin MFN2 and inhibition of mitochondrial fusion (PubMed:26214738). When dietary levels of stearate (C18:0) are high, TFRC stearoylation inhibits activation of the JNK pathway and thus degradation of the mitofusin MFN2 (PubMed:26214738). Mediates uptake of NICOL1 into fibroblasts where it may regulate extracellular matrix production (By similarity). {ECO:0000250|UniProtKB:Q62351, ECO:0000269|PubMed:26214738, ECO:0000269|PubMed:26642240, ECO:0000269|PubMed:3568132}.; FUNCTION: (Microbial infection) Acts as a receptor for new-world arenaviruses: Guanarito, Junin and Machupo virus. {ECO:0000269|PubMed:17287727, ECO:0000269|PubMed:18268337}.; FUNCTION: (Microbial infection) Acts as a host entry factor for rabies virus that hijacks the endocytosis of TFRC to enter cells. {ECO:0000269|PubMed:36779762, ECO:0000269|PubMed:36779763}.; FUNCTION: (Microbial infection) Acts as a host entry factor for SARS-CoV, MERS-CoV and SARS-CoV-2 viruses that hijack the endocytosis of TFRC to enter cells. {ECO:0000269|PubMed:36779762}.; FUNCTION: (Microbial infection) Acts as a receptor for Plasmodium vivax. {ECO:0000269|PubMed:29302006}.</p><p>Texto del campo Function, UniProt, acceso P02786. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -220,6 +224,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -271,6 +281,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -289,8 +303,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

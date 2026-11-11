@@ -210,12 +210,17 @@ def lista_html(fichas: list[dict], meta: dict, cita) -> str:
     for ficha in sorted(fichas, key=lambda item: item["id"]):
         marca = " candidata" if ficha["candidata"] else ""
         nombre = ficha.get("nombre") or ""
+        corto = nombre.split(" (")[0]
+        if len(corto) > 72:
+            corto = corto[:69] + "…"
+        titulo = f' title="{e(nombre)}"' if nombre else ""
+        gen = ficha["gen"]
+        cabeza = f'<span class="gen">{e(gen)}</span>' if gen else ""
         filas.append(
-            f'<li data-buscar="{e(ficha["id"])} {e(ficha["gen"])} {e(nombre)}{marca}">'
-            f'<a href="{e(ficha["href"])}">{e(ficha["id"])}</a>'
-            f' <span>{e(ficha["gen"])}</span>'
-            + (f' <span class="nombre-proteina">{e(nombre)}</span>' if nombre else "")
-            + "</li>"
+            f'<li data-buscar="{e(ficha["id"])} {e(gen)} {e(nombre)}{marca}">'
+            f'<a href="{e(ficha["href"])}"{titulo}>{cabeza}'
+            + (f'<span class="nombre-proteina">{e(corto)}</span>' if corto else "")
+            + f'<span class="acceso">{e(ficha["id"])}</span></a></li>'
         )
     return (
         "<h1>Proteínas</h1>"
@@ -240,6 +245,11 @@ def cuerpo_de(ficha, uniprot, tablas, traza, prio, tri, shap, cita, vistas, docu
     representate = base_de(protein_id.split(";")[0])
     entrada = uniprot.loc[representate] if representate in uniprot.index else None
     partes = [f"<h1>{e(protein_id)}</h1>"]
+    if ficha.get("gen"):
+        partes.append(f'<p class="gen-ficha">{e(ficha["gen"])}</p>')
+    nombre = ficha.get("nombre") or ""
+    if nombre:
+        partes.append(f'<p class="nombre-proteina">{e(nombre.split(" (")[0])}</p>')
     if ficha["candidata"]:
         partes.append(f'<p class="etiqueta-candidata">{e(ETIQUETA)}</p>')
     if ficha["gen"] in {"S100A8", "S100A9"}:

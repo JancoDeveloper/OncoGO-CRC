@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / Comparador</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#vista-resumen">Resumen</a>
 
@@ -49,6 +50,7 @@
 <a href="#vista-estructura">Estructura</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>Comparador</h1><p>Describe conocimiento previo: secuencia, estructura, GO, dominios y vías. No es un resultado de la tesis. Compartir términos, dominios o secuencia no significa que dos proteínas se comporten igual en la sangre. Las proteínas más estudiadas tienen más anotaciones.</p><p><a href="/proteinas/candidatas">Las 20 candidatas</a>. <a href="/proteinas/comparar?p=P02749,P05155">Ejemplo P02749 y P05155</a>. <a href="/proteinas/comparar?p=P05109,P06702">Calprotectina (S100A8 y S100A9)</a>.</p><form action="/proteinas/comparar" method="get"><label for="p">De 2 a 4 accesos, separados por comas</label> <input id="p" name="p" value="P02749,P05155"> <button type="submit">Comparar</button></form><p>Sin JavaScript se muestra el par de ejemplo. Otro par se calcula en el navegador a partir de la anotación guardada.</p><nav class="pestanias" aria-label="Vistas de la comparación"><a href="#vista-resumen">Resumen</a><a href="#vista-go">GO</a><a href="#vista-secuencia">Secuencia</a><a href="#vista-dominios">Dominios</a><a href="#vista-estructura">Estructura</a></nav><div id="comparacion" data-par="P02749,P05155"><h2 id="vista-resumen">Resumen</h2><p>P02749 y P05155, lado a lado, en la anotación guardada.</p><h2 id="vista-go">GO</h2><p>Jaccard directo <data value="0.05714285714285714" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.directo">0,057</data><details class="evidencia"><summary>fuente</summary><p>sitio/fuentes/calculos_comparador.json#P02749|P05155.directo</p></details>. Jaccard propagado <data value="0.1576086956521739" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado">0,158</data><details class="evidencia"><summary>fuente</summary><p>sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span></p>
@@ -114,6 +116,12 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -165,6 +173,10 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -183,8 +195,14 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

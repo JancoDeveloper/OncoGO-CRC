@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P48740-4</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P48740-4</h1>
+<p class="gen-ficha">MASP1</p>
+<p class="nombre-proteina">Mannan-binding lectin serine protease 1</p>
 <h2 id="resumen">Resumen</h2><p>Mannan-binding lectin serine protease 1 (EC 3.4.21.-) (Complement-activating component of Ra-reactive factor) (Mannose-binding lectin-associated serine protease 1) (MASP-1) (Mannose-binding protein-associated serine protease) (Ra-reactive factor serine protease p100) (RaRF) (Serine protease 5) [Cleaved into: Mannan-binding lectin serine protease 1 heavy chain; Mannan-binding lectin serine protease 1 light chain] Gen en la corrida: MASP1. Gen en UniProt: MASP1. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Precursor of a serum protease that activates the complement pathway of the complement system, a cascade of proteins that leads to phagocytosis and breakdown of pathogens and signaling that strengthens the adaptive immune system. {ECO:0000269|PubMed:10946292, ECO:0000269|PubMed:11485744, ECO:0000269|PubMed:11527969, ECO:0000269|PubMed:12538697, ECO:0000269|PubMed:22691502, ECO:0000269|PubMed:22966085, ECO:0000269|PubMed:23386610, ECO:0000269|PubMed:9087411}.; FUNCTION: [Isoform MASP-1]: Serine protease that activates the lectin pathway of the complement system, a cascade of proteins that leads to phagocytosis and breakdown of pathogens and signaling that strengthens the adaptive immune system (PubMed:10946292, PubMed:11527969, PubMed:12538697, PubMed:22691502, PubMed:22966085, PubMed:9087411). The lectin complement system is activated following association of lectins, such as MBL2, FCN1, FCN2 or FCN3, to carbohydrates on the pathogen surface (PubMed:22854970, PubMed:22966085, PubMed:23386610, PubMed:9087411). Following autoproteolytic processing in response to lectin-binding to pathogen carbohydrates, catalyzes cleavage and activation of MASP2, the next component of the lectin complement pathway (PubMed:22691502, PubMed:22966085, PubMed:23386610). {ECO:0000269|PubMed:10946292, ECO:0000269|PubMed:11527969, ECO:0000269|PubMed:12538697, ECO:0000269|PubMed:22691502, ECO:0000269|PubMed:22854970, ECO:0000269|PubMed:22966085, ECO:0000269|PubMed:23386610, ECO:0000269|PubMed:9087411}.; FUNCTION: [Isoform MASP-3]: Serine protease that activates the alternative pathway of the complement system, a cascade of proteins that leads to phagocytosis and breakdown of pathogens and signaling that strengthens the adaptive immune system (PubMed:20038603, PubMed:23792966, PubMed:27535802). The alternative complement pathway acts as an amplification loop that enhances other complement pathways (PubMed:27535802). Isoform MASP-3 specifically catalyzes cleavage and activation of factor D (CFD), the protease that initiates the alternative complement pathway (PubMed:20038603, PubMed:27535802). {ECO:0000269|PubMed:20038603, ECO:0000269|PubMed:23792966, ECO:0000269|PubMed:27535802}.</p><p>Texto del campo Function, UniProt, acceso P48740. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -207,6 +211,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -258,6 +268,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -276,8 +290,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

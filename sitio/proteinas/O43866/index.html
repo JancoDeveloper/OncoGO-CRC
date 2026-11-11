@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / O43866</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>O43866</h1>
+<p class="gen-ficha">CD5L</p>
+<p class="nombre-proteina">CD5 antigen-like</p>
 <h2 id="resumen">Resumen</h2><p>CD5 antigen-like (Apoptosis inhibitor expressed by macrophages) (hAIM) (CT-2) (IgM-associated peptide) (SP-alpha) Gen en la corrida: CD5L. Gen en UniProt: CD5L. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Secreted protein that acts as a key regulator of lipid synthesis: mainly expressed by macrophages in lymphoid and inflamed tissues and regulates mechanisms in inflammatory responses, such as infection or atherosclerosis. Able to inhibit lipid droplet size in adipocytes. Following incorporation into mature adipocytes via CD36-mediated endocytosis, associates with cytosolic FASN, inhibiting fatty acid synthase activity and leading to lipolysis, the degradation of triacylglycerols into glycerol and free fatty acids (FFA). CD5L-induced lipolysis occurs with progression of obesity: participates in obesity-associated inflammation following recruitment of inflammatory macrophages into adipose tissues, a cause of insulin resistance and obesity-related metabolic disease. Regulation of intracellular lipids mediated by CD5L has a direct effect on transcription regulation mediated by nuclear receptors ROR-gamma (RORC). Acts as a key regulator of metabolic switch in T-helper Th17 cells. Regulates the expression of pro-inflammatory genes in Th17 cells by altering the lipid content and limiting synthesis of cholesterol ligand of RORC, the master transcription factor of Th17-cell differentiation. CD5L is mainly present in non-pathogenic Th17 cells, where it decreases the content of polyunsaturated fatty acyls (PUFA), affecting two metabolic proteins MSMO1 and CYP51A1, which synthesize ligands of RORC, limiting RORC activity and expression of pro-inflammatory genes. Participates in obesity-associated autoimmunity via its association with IgM, interfering with the binding of IgM to Fcalpha/mu receptor and enhancing the development of long-lived plasma cells that produce high-affinity IgG autoantibodies (By similarity). Also acts as an inhibitor of apoptosis in macrophages: promotes macrophage survival from the apoptotic effects of oxidized lipids in case of atherosclerosis (PubMed:24295828). Involved in early response to microbial infection against various pathogens by acting as a pattern recognition receptor and by promoting autophagy (PubMed:16030018, PubMed:24223991, PubMed:24583716, PubMed:25713983). Promotes recovery from acute kidney injury (AKI) by accumulating on necrotic cell debris within the kidney proximal tubules following AKI and interacting with HAVCR1 expressed on the surface of injured kidney tubular epithelial cells (PubMed:26726878). This enhances HAVCR1-mediated phagocytosis of intraluminal necrotic debris and contributes to kidney tissue repair (PubMed:26726878). Also enhances necrotic debris uptake by kidney macrophages in a HAVCR1-independent manner (By similarity). {ECO:0000250|UniProtKB:Q9QWK4, ECO:0000269|PubMed:16030018, ECO:0000269|PubMed:24223991, ECO:0000269|PubMed:24295828, ECO:0000269|PubMed:24583716, ECO:0000269|PubMed:25713983, ECO:0000269|PubMed:26726878}.</p><p>Texto del campo Function, UniProt, acceso O43866. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -179,6 +183,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -230,6 +240,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -248,8 +262,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

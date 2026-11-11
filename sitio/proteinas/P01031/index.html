@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P01031</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P01031</h1>
+<p class="gen-ficha">C5</p>
+<p class="nombre-proteina">Complement C5</p>
 <h2 id="resumen">Resumen</h2><p>Complement C5 (C3 and PZP-like alpha-2-macroglobulin domain-containing protein 4) [Cleaved into: Complement C5 beta chain; Complement C5 alpha chain; C5a anaphylatoxin; Complement C5b (Complement C5 alpha&#x27; chain)] Gen en la corrida: C5. Gen en UniProt: C5. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Precursor of the C5a anaphylatoxin and complement C5b components of the complement pathways, which consist in a cascade of proteins that leads to phagocytosis and breakdown of pathogens and signaling that strengthens the adaptive immune system (PubMed:12878586, PubMed:18204047, PubMed:30643019, PubMed:6554279). Activated downstream of classical, alternative, lectin and GZMK complement pathways (PubMed:12878586, PubMed:18204047, PubMed:30643019, PubMed:39914456, PubMed:39814882, PubMed:6554279). {ECO:0000269|PubMed:12878586, ECO:0000269|PubMed:18204047, ECO:0000269|PubMed:30643019, ECO:0000269|PubMed:39814882, ECO:0000269|PubMed:39914456, ECO:0000269|PubMed:6554279}.; FUNCTION: [Complement C5b]: Component of the membrane attack complex (MAC), a multiprotein complex activated by the complement cascade, which inserts into a target cell membrane and forms a pore, leading to target cell membrane rupture and cell lysis (PubMed:26841837, PubMed:27052168, PubMed:30552328, PubMed:30643019). Complement C5b is generated following cleavage by C5 convertase and initiates formation of the MAC complex: C5b binds sequentially C6, C7, C8 and multiple copies of the pore-forming subunit C9 (PubMed:30552328, PubMed:30643019). During MAC complex assembly, the C5b6 subcomplex, composed of complement C5b and C6, associates with the outer leaflet of target cell membrane, reducing the energy for membrane bending (PubMed:30552328, PubMed:32569291). {ECO:0000269|PubMed:26841837, ECO:0000269|PubMed:27052168, ECO:0000269|PubMed:30552328, ECO:0000269|PubMed:30643019, ECO:0000269|PubMed:32569291}.; FUNCTION: [C5a anaphylatoxin]: Mediator of local inflammatory process released following cleavage by C5 convertase (PubMed:8182049, PubMed:9553099). Acts by binding to its receptor (C5AR1 or C5AR2), activating G protein-coupled receptor signaling and inducing a variety of responses including intracellular calcium release, contraction of smooth muscle, increased vascular permeability, and histamine release from mast cells and basophilic leukocytes (PubMed:36806352, PubMed:37852260, PubMed:37169960, PubMed:8182049, PubMed:9553099). C5a is also a potent chemokine which stimulates the locomotion of polymorphonuclear leukocytes and directs their migration toward sites of inflammation (PubMed:342601, PubMed:37852260, PubMed:37169960, PubMed:5765461, PubMed:8182049, PubMed:9553099). {ECO:0000269|PubMed:342601, ECO:0000269|PubMed:36806352, ECO:0000269|PubMed:37169960, ECO:0000269|PubMed:37852260, ECO:0000269|PubMed:5765461, ECO:0000269|PubMed:8182049, ECO:0000269|PubMed:9553099}.</p><p>Texto del campo Function, UniProt, acceso P01031. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -312,6 +316,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -363,6 +373,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -381,8 +395,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

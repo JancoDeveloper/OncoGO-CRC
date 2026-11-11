@@ -27,12 +27,14 @@
 </header>
 <p class="aviso">{{ aviso }}</p>
 <div class="disposicion">
+{% if migas %}<p class="migas">{{ migas }}</p>{% endif %}
+{% if indice %}
 <nav class="indice" aria-label="En esta página">
-<p class="migas">{{ migas }}</p>
 {% for ancla in indice %}
 <a href="#{{ ancla.id }}">{{ ancla.texto }}</a>
 {% endfor %}
 </nav>
+{% endif %}
 <main id="contenido">
 {% if hermanas %}
 <nav class="hermanas" aria-label="En esta sección">

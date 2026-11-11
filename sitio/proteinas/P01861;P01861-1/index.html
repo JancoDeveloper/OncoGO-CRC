@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P01861;P01861-1</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P01861;P01861-1</h1>
+<p class="gen-ficha">IGHG4</p>
+<p class="nombre-proteina">Immunoglobulin heavy constant gamma 4</p>
 <h2 id="resumen">Resumen</h2><p>Immunoglobulin heavy constant gamma 4 (Ig gamma-4 chain C region) Gen en la corrida: IGHG4. Gen en UniProt: IGHG4. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><p>El grupo de la celda es P01861;P01861-1. La ficha de UniProt es P01861.</p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Constant region of immunoglobulin (Ig) heavy chains. Igs are membrane-bound or secreted glycoproteins produced by B lymphocytes. In the recognition phase of humoral immunity, the membrane-bound Igs serve as receptors, which upon binding to a specific antigen trigger the clonal expansion and differentiation of B lymphocytes into Ig-secreting plasma cells. Secreted Igs known as antibodies mediate the effector phase of humoral immunity by blocking the interaction of infectious antigens with cellular receptors (via the antigen-binding region) and eliciting effector mechanisms that lead to pathogen neutralization (via the constant region) (PubMed:17576170, PubMed:20176268, PubMed:22158414). The antigen-binding region is formed by the variable domain of one heavy chain paired with the variable domain of its associated light chain. Each Ig molecule has two antigen-binding sites with remarkable affinity for a particular antigen due to V-(D)-J rearrangement, somatic hypermutations and affinity maturation of the variable domains upon antigen exposure (PubMed:17576170, PubMed:20176268, PubMed:22158414). The constant region defines the Ig isotype that perform distinct sets of effector functions. B cells diversify and rearrange their Ig constant regions through class-switch recombination, a process by which the constant region is switched from one Ig isotype to another, namely from IgM and IgD to IgG, IgA and IgE (PubMed:17576170, PubMed:20176268, PubMed:22158414). The constant region interacts (via the fragment crystallizable, Fc) with the Fc receptors on innate immune cells to mediate humoral effector functions. Ig gamma-4 (IgG4) isotype does not elicit antibody-dependent cellular cytotoxicity (ADDC) or complement-dependent cytotoxicity (CDC). Instead it is likely involved in immune tolerance mechanisms to allergens and parasites either by blocking IgE-antigen complex formation or by directly inhibiting mast cell degranulation through Fc receptor signaling. In the context of tumorigenesis, it may participate in immunosuppressive mechanisms. {ECO:0000269|PubMed:16219319, ECO:0000269|PubMed:28566370, ECO:0000269|PubMed:33563762, ECO:0000303|PubMed:17576170, ECO:0000303|PubMed:20176268, ECO:0000303|PubMed:22158414, ECO:0000303|PubMed:37095254}.</p><p>Texto del campo Function, UniProt, acceso P01861. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -185,6 +189,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -236,6 +246,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -254,8 +268,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

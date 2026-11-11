@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P59665;P59666</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,11 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P59665;P59666</h1>
+<p class="nombre-proteina">Neutrophil defensin 1</p>
 <h2 id="resumen">Resumen</h2><p>Neutrophil defensin 1 (Defensin, alpha 1) (HNP-1) (HP-1) (HP1) [Cleaved into: HP 1-56; Neutrophil defensin 2 (HNP-2) (HP-2) (HP2)] Gen en la corrida: DEFA1, DEFA3. Gen en UniProt: DEFA1; DEFA1B. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><p>El grupo de la celda es P59665;P59666. La ficha de UniProt es P59665.</p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Effector molecule of the innate immune system that acts via antibiotic-like properties against a broad array of infectious agents including bacteria, fungi, and viruses or by promoting the activation and maturation of some APCs (PubMed:15616305, PubMed:17142766, PubMed:20220136, PubMed:24236072). Interacts with the essential precursor of cell wall synthesis lipid II to inhibit bacterial cell wall synthesis (PubMed:20214904). Inhibits adenovirus infection via inhibition of viral disassembly at the vertex region, thereby restricting the release of internal capsid protein pVI, which is required for endosomal membrane penetration during cell entry (PubMed:18191790). In addition, interaction with adenovirus capsid leads to the redirection of viral particles to TLR4 thereby promoting a NLRP3-mediated inflammasome response and interleukin 1-beta (IL-1beta) release (PubMed:35080426). Induces the production of pro-inflammatory cytokines including type I interferon (IFN) in plasmacytoid dendritic cells (pDCs) by triggering the degradation of NFKBIA and nuclear translocation of IRF1, both of which are required for activation of pDCs (PubMed:27031443). {ECO:0000269|PubMed:15616305, ECO:0000269|PubMed:17142766, ECO:0000269|PubMed:17452329, ECO:0000269|PubMed:18191790, ECO:0000269|PubMed:20214904, ECO:0000269|PubMed:20220136, ECO:0000269|PubMed:24236072, ECO:0000269|PubMed:27031443, ECO:0000269|PubMed:35080426}.</p><p>Texto del campo Function, UniProt, acceso P59665. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -155,6 +158,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -206,6 +215,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -224,8 +237,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

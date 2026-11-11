@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P00751</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P00751</h1>
+<p class="gen-ficha">CFB</p>
+<p class="nombre-proteina">Complement factor B</p>
 <h2 id="resumen">Resumen</h2><p>Complement factor B (EC 3.4.21.47) (C3/C5 convertase) (Glycine-rich beta glycoprotein) (GBG) (PBF2) (Properdin factor B) [Cleaved into: Complement factor B Ba (Ba); Complement factor B Bb (Bb)] Gen en la corrida: CFB. Gen en UniProt: CFB. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Precursor of the catalytic component of the C3 and C5 convertase complexes of the alternative pathway of the complement system, a cascade of proteins that leads to phagocytosis and breakdown of pathogens and signaling that strengthens the adaptive immune system (PubMed:3638964, PubMed:624565, PubMed:6554279, PubMed:6919543, PubMed:9748277). The alternative complement pathway acts as an amplification loop that enhances other complement pathways (classical, lectin and GZMK) by promoting formation of additional C3 and C5 convertases (PubMed:3638964, PubMed:624565, PubMed:6554279, PubMed:6919543, PubMed:9748277). CFB is cleaved and activated by CFD to generate Ba and Bb chains; Bb chain constituting the catalytic component of the C3 and C5 convertases (PubMed:6769474, PubMed:9748277). {ECO:0000269|PubMed:3638964, ECO:0000269|PubMed:624565, ECO:0000269|PubMed:6554279, ECO:0000269|PubMed:6769474, ECO:0000269|PubMed:6919543, ECO:0000269|PubMed:9748277}.; FUNCTION: [Complement factor B Bb]: Serine protease component of the complement C3 and C5 convertase complexes of the alternative complement pathway (PubMed:30643019, PubMed:3638964, PubMed:624565, PubMed:6554279, PubMed:6919543). Following cleavage and activation by factor D (CFD), forms the C3 convertase together with complement C3b (PubMed:3638964, PubMed:624565, PubMed:6554279, PubMed:6919543, PubMed:9748277). As part of the C3 convertase, cleaves and activates C3 into C3a anaphylatoxin and C3b opsonin, the next components of the complement pathways (PubMed:3638964, PubMed:624565, PubMed:6554279, PubMed:6919543, PubMed:9748277). When an additional complement C3b molecule binds to the C3 convertase, forms the C5 convertase, which cleaves and activates C5 into C5a anaphylatoxin and C5b component of the membrane attack complex (PubMed:30643019, PubMed:624565, PubMed:6554279). {ECO:0000269|PubMed:30643019, ECO:0000269|PubMed:3638964, ECO:0000269|PubMed:624565, ECO:0000269|PubMed:6554279, ECO:0000269|PubMed:6919543, ECO:0000269|PubMed:9748277}.; FUNCTION: [Complement factor B Ba]: Involved in proliferation and differentiation of preactivated B-lymphocytes, rapid spreading of peripheral blood monocytes, stimulation of lymphocyte blastogenesis and lysis of erythrocytes. {ECO:0000269|PubMed:3486249}.</p><p>Texto del campo Function, UniProt, acceso P00751. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -221,6 +225,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -272,6 +282,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -290,8 +304,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });

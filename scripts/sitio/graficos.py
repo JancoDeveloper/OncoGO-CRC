@@ -134,8 +134,8 @@ def _shap_calor(mod, tabla: pd.DataFrame) -> str:
             raya = "0" if float(valor) >= 0 else "3 2"
             fuente = f"results/v3_7/ml_explicacion.tsv#modelo=M2_proteinas_principal|variable={fila['variable']}.{col}"
             cuerpo.append(
-                f'<rect x="{120 + j * 70}" y="{16 + i * 16}" width="64" height="14" fill="none" '
-                f'stroke="rgb({tono},{tono},{tono})" stroke-width="4" stroke-dasharray="{raya}" '
+                f'<rect x="{120 + j * 70}" y="{16 + i * 16}" width="64" height="14" '
+                f'fill="rgb({tono},{tono},{tono})" stroke="#4e5d6c" stroke-width="1" stroke-dasharray="{raya}" '
                 f'data-value="{format(float(valor), ".16g")}" data-fuente="{mod.e(fuente)}" tabindex="0" '
                 f'data-tip="{mod.e(gen)} {mod.e(col)}"/>'
             )

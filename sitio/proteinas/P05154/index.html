@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
+<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,8 +35,9 @@
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 <div class="disposicion">
-<nav class="indice" aria-label="En esta página">
 <p class="migas">Inicio / Proteínas / P05154</p>
+
+<nav class="indice" aria-label="En esta página">
 
 <a href="#resumen">Resumen</a>
 
@@ -59,9 +60,12 @@
 <a href="#dominios">Dominios</a>
 
 </nav>
+
 <main id="contenido">
 
 <h1>P05154</h1>
+<p class="gen-ficha">SERPINA5</p>
+<p class="nombre-proteina">Plasma serine protease inhibitor</p>
 <h2 id="resumen">Resumen</h2><p>Plasma serine protease inhibitor (Acrosomal serine protease inhibitor) (Plasminogen activator inhibitor 3) (PAI-3) (PAI3) (Protein C inhibitor) (PCI) (Serpin A5) Gen en la corrida: SERPINA5. Gen en UniProt: SERPINA5. Revisada: reviewed. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p><h3>Función</h3><p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p><p>FUNCTION: Heparin-dependent serine protease inhibitor acting in body fluids and secretions. Inactivates serine proteases by binding irreversibly to their serine activation site. Involved in the regulation of intravascular and extravascular proteolytic activities. Plays hemostatic roles in the blood plasma. Acts as a procoagulant and pro-inflammatory factor by inhibiting the anticoagulant activated protein C factor as well as the generation of activated protein C factor by the thrombin/thrombomodulin complex. Acts as an anticoagulant factor by inhibiting blood coagulation factors like prothrombin, factor XI, factor Xa, plasma kallikrein and fibrinolytic enzymes such as tissue- and urinary-type plasminogen activators. In seminal plasma, inactivates several serine proteases implicated in the reproductive system. Inhibits the serpin acrosin; indirectly protects component of the male genital tract from being degraded by excessive released acrosin. Inhibits tissue- and urinary-type plasminogen activator, prostate-specific antigen and kallikrein activities; has a control on the sperm motility and fertilization. Inhibits the activated protein C-catalyzed degradation of SEMG1 and SEMG2; regulates the degradation of semenogelin during the process of transfer of spermatozoa from the male reproductive tract into the female tract. In urine, inhibits urinary-type plasminogen activator and kallikrein activities. Inactivates membrane-anchored serine proteases activities such as MPRSS7 and TMPRSS11E. Inhibits urinary-type plasminogen activator-dependent tumor cell invasion and metastasis. May also play a non-inhibitory role in seminal plasma and urine as a hydrophobic hormone carrier by its binding to retinoic acid. {ECO:0000269|PubMed:10340997, ECO:0000269|PubMed:11722589, ECO:0000269|PubMed:14696115, ECO:0000269|PubMed:15140131, ECO:0000269|PubMed:15328353, ECO:0000269|PubMed:15853774, ECO:0000269|PubMed:1725227, ECO:0000269|PubMed:18467335, ECO:0000269|PubMed:2844223, ECO:0000269|PubMed:3501295, ECO:0000269|PubMed:6323392, ECO:0000269|PubMed:7521127, ECO:0000269|PubMed:7548057, ECO:0000269|PubMed:8536714, ECO:0000269|PubMed:8665956, ECO:0000269|PubMed:9473218, ECO:0000269|PubMed:9510955, ECO:0000269|PubMed:9556620}.</p><p>Texto del campo Function, UniProt, acceso P05154. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="suero">Suero</h2>
 <p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
@@ -185,6 +189,12 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  var path = location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".menu a").forEach(function (enlace) {
+    var href = enlace.getAttribute("href");
+    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
+    if (activo) enlace.setAttribute("aria-current", "page");
+  });
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {
@@ -236,6 +246,10 @@
     var cargador = document.createElement("script");
     cargador.src = boton.getAttribute("data-script");
     cargador.onload = function () {
+      if (!window.molstar || !molstar.Viewer) {
+        destino.textContent = "El visor no está disponible en esta página. La cifra de pLDDT sigue en el texto.";
+        return;
+      }
       var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
       archivos.forEach(function (archivo) {
         var caja = document.createElement("div");
@@ -254,8 +268,14 @@
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
           return visor.loadStructureFromUrl(archivo, "mmcif", true);
+        }).catch(function () {
+          caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
+      destino.scrollIntoView({ block: "nearest" });
+    };
+    cargador.onerror = function () {
+      destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";
     };
     document.body.appendChild(cargador);
   });
