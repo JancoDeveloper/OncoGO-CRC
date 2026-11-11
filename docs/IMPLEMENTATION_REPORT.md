@@ -1,6 +1,6 @@
 # Informe de la implementación
 
-Fecha: 2026-11-11. Publicado. Hosting `161f72104d6d9530`, liberada el 2026-11-11T16:19:47.041Z, sitio `e77d0e1`. La comprobación en vivo está en `docs/despliegue_sitio_v4.md`.
+Fecha: 2026-11-11. Publicado. Hosting `50c23bee344597f5`, liberada el 2026-11-11T16:33:07.356Z, sitio `4b525f4`. La comprobación en vivo está en `docs/despliegue_sitio_v4.md`.
 
 ## Qué se modificó
 
@@ -42,4 +42,4 @@ Después de añadir las matrices, el embudo en `details` y la hoja `v4.a1fc0bd2e
 
 ## Publicación
 
-Hosting `161f72104d6d9530`. La comprobación con `?v=4` pasó: las páginas nuevas en 200 con el aviso dos veces, las 16 rutas viejas en 301, el archivo v3.7 y v3.6 en 200, y las cinco fichas con su `log2fc`. El detalle está en `docs/despliegue_sitio_v4.md`.
+Hosting `50c23bee344597f5`. La comprobación con `?v=5` pasó en la portada, resultados, proteínas y metodología: aviso dos veces, la barra de la celda y el filtro del listado. Las 16 rutas viejas siguieron en 301. El detalle está en `docs/despliegue_sitio_v4.md`.

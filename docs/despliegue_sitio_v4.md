@@ -4,15 +4,17 @@ Sitio: https://oncogo-crc-tesis.web.app
 
 Proyecto de Firebase Hosting: `oncogo-crc-tesis`.
 
-Versión de Hosting: `161f72104d6d9530`.
+Versión de Hosting: `50c23bee344597f5`.
 
-Hora de la versión en vivo: 2026-11-11T16:19:47.041Z (11:19:47 en UTC−5). `createTime` 2026-11-11T16:19:39.993489Z. `finalizeTime` 2026-11-11T16:19:47.252250Z.
+Hora de la versión en vivo: 2026-11-11T16:33:07.356Z (11:33:07 en UTC−5). `createTime` 2026-11-11T16:33:03.447739Z. `finalizeTime` 2026-11-11T16:33:07.513386Z.
 
-El comando fue `firebase deploy --only hosting --project oncogo-crc-tesis -m "web documental, resultados v3.7-final 595118a, sitio e77d0e1"`. El recurso de la versión no guarda ese mensaje: `labels` solo tiene `deployment-tool=cli-firebase`. La configuración publicada tiene 16 redirecciones. El directorio público sigue siendo `sitio`. No hay React.
+El comando fue `firebase deploy --only hosting --project oncogo-crc-tesis -m "web documental, resultados v3.7-final 595118a, sitio 4b525f4"`. El recurso de la versión no guarda ese mensaje: `labels` solo tiene `deployment-tool=cli-firebase`. La configuración publicada tiene 16 redirecciones. El directorio público sigue siendo `sitio`. No hay React.
 
-El commit desplegado es `e77d0e16ea8a14b0b5a8e4963b6f90ea6bc448dc`. La etiqueta `v3.7-final` no se movió y sigue en `595118ae09ea6006c744c86b28cb0a10d42e0442`.
+El commit desplegado es `4b525f42212d3f76eddd64063aca64337880147b`. La etiqueta `v3.7-final` no se movió y sigue en `595118ae09ea6006c744c86b28cb0a10d42e0442`.
 
-La versión anterior de esta web documental, `0fe6e84d75d1c6df`, quedó liberada el 2026-11-11T15:42:46.751Z con el sitio `e4b8c81`. Sigue en el historial de Hosting. No se copió a otra carpeta. La v3.7 anterior sigue archivada en `/archivo/v3_7`.
+La versión anterior, `161f72104d6d9530`, quedó liberada el 2026-11-11T16:19:47.041Z con el sitio `e77d0e1`. Sigue en el historial de Hosting. La v3.7 anterior sigue archivada en `/archivo/v3_7`.
+
+En esta versión, con `?v=5`, `/`, `/resultados`, `/proteinas`, `/proteinas/P02749` y `/metodos/proteomica` respondieron 200, con el aviso dos veces y la hoja `/css/v4.`. La portada trae «Metodología», «Explorar proteínas», «TOST cabe en el margen», «Ilustración conceptual», la barra `apilada` y «no localiza un tumor». `/proteinas` trae el filtro y un nombre de UniProt. Las 16 redirecciones siguieron en 301.
 
 Antes de publicar, en el emulador `127.0.0.1:5002` y con los mismos ficheros, Lighthouse 13.6.0 dio rendimiento, accesibilidad y buenas prácticas: `/` escritorio 100/100/96 y móvil 100/100/96; `/metodos/proteomica` 100/100/96 en los dos; `/proteinas/P02749` 100/100/96 en los dos. La portada, ya con `v4.a1fc0bd2e5.css`, no tuvo violaciones serious ni critical de axe. Esas medidas son del emulador, no de la URL pública.
 
