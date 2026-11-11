@@ -4,13 +4,17 @@ Sitio: https://oncogo-crc-tesis.web.app
 
 Proyecto de Firebase Hosting: `oncogo-crc-tesis`.
 
-Versión de Hosting: `0fe6e84d75d1c6df`.
+Versión de Hosting: `161f72104d6d9530`.
 
-Hora de la versión en vivo: 2026-11-11T15:42:46.751Z (10:42:46 en UTC−5). `createTime` 2026-11-11T15:42:38.616358Z. `finalizeTime` 2026-11-11T15:42:46.954118Z.
+Hora de la versión en vivo: 2026-11-11T16:19:47.041Z (11:19:47 en UTC−5). `createTime` 2026-11-11T16:19:39.993489Z. `finalizeTime` 2026-11-11T16:19:47.252250Z.
 
-El comando fue `firebase deploy --only hosting --project oncogo-crc-tesis -m "web documental, resultados v3.7-final 595118a, sitio e4b8c81"`. El recurso de la versión no guarda ese mensaje: `labels` solo tiene `deployment-tool=cli-firebase`. La configuración publicada tiene 16 redirecciones.
+El comando fue `firebase deploy --only hosting --project oncogo-crc-tesis -m "web documental, resultados v3.7-final 595118a, sitio e77d0e1"`. El recurso de la versión no guarda ese mensaje: `labels` solo tiene `deployment-tool=cli-firebase`. La configuración publicada tiene 16 redirecciones. El directorio público sigue siendo `sitio`. No hay React.
 
-El commit desplegado es `e4b8c8100f40e644d44c0c1c84fb47ca2b1328ab`. La etiqueta `v3.7-final` no se movió y sigue en `595118ae09ea6006c744c86b28cb0a10d42e0442`.
+El commit desplegado es `e77d0e16ea8a14b0b5a8e4963b6f90ea6bc448dc`. La etiqueta `v3.7-final` no se movió y sigue en `595118ae09ea6006c744c86b28cb0a10d42e0442`.
+
+La versión anterior de esta web documental, `0fe6e84d75d1c6df`, quedó liberada el 2026-11-11T15:42:46.751Z con el sitio `e4b8c81`. Sigue en el historial de Hosting. No se copió a otra carpeta. La v3.7 anterior sigue archivada en `/archivo/v3_7`.
+
+Antes de publicar, en el emulador `127.0.0.1:5002` y con los mismos ficheros, Lighthouse 13.6.0 dio rendimiento, accesibilidad y buenas prácticas: `/` escritorio 100/100/96 y móvil 100/100/96; `/metodos/proteomica` 100/100/96 en los dos; `/proteinas/P02749` 100/100/96 en los dos. La portada, ya con `v4.a1fc0bd2e5.css`, no tuvo violaciones serious ni critical de axe. Esas medidas son del emulador, no de la URL pública.
 
 ## Comprobación en vivo, con `?v=4`
 
@@ -78,3 +82,5 @@ Cinco fichas, muestra `random.Random(20261111)` sobre `suero_k4_crc_cn.tsv`. El 
 | `P59665;P59666` | -0.1436413247840597 |
 
 `/proteinas/candidatas` nombra los 20 genes con `ultimo_paso` 5 en `priorizacion.tsv`. No falta ninguno.
+
+La portada trae `no localiza un tumor` seis veces, `Las dos pistas no se unen` una vez, el embudo y las dos matrices. Los n del embudo están en `value`: 688, 135, 118, 20 y 0. Las cinco fichas de arriba incluyen «Resultado calculado».
