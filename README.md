@@ -4,18 +4,19 @@ La versión vigente es la **v3.7**. El certificado de [results/v3_7/certificado.
 
 No se ejecutaron, y no son un resultado: las vías del suero, la cláusula de vías de H1, la unión de HC por XIC, la deriva del PRTC, las redes de coexpresión, el catálogo de candidatas y los neoantígenos. El GO del tejido sí está calculado.
 
-La página pública es la web documental del commit `49187b3`, en [oncogo-crc-tesis.web.app](https://oncogo-crc-tesis.web.app). La versión de Hosting es `407c7edbcdbf1e2d`, liberada el 2026-11-11T18:40:25.881Z. El detalle está en [docs/despliegue_sitio_v4.md](docs/despliegue_sitio_v4.md) y [docs/sitio_v4.md](docs/sitio_v4.md). La etiqueta `v3.7-final` no se movió. Para repetir la corrida, con los 60 crudos ya verificados, `make v3-7`. Para citar, [CITATION.cff](CITATION.cff). La etiqueta `v3.6-final` marca la corrida anterior. Las carpetas `results/v3_2` a `results/v3_6` quedan congeladas.
+La página pública es la web documental, en [oncogo-crc-tesis.web.app](https://oncogo-crc-tesis.web.app). La versión de Hosting es `ddf208b4f7131e46`, liberada el 2026-11-11T18:56:59.186Z, publicada desde el árbol de trabajo después del commit `49187b3`. El detalle está en [docs/despliegue_sitio_v4.md](docs/despliegue_sitio_v4.md) y [docs/sitio_v4.md](docs/sitio_v4.md). La etiqueta `v3.7-final` no se movió. Para repetir la corrida, con los 60 crudos ya verificados, `make v3-7`. Para citar, [CITATION.cff](CITATION.cff). La etiqueta `v3.6-final` marca la corrida anterior. Las carpetas `results/v3_2` a `results/v3_6` quedan congeladas.
 
 **OncoGO-CRC** es un entorno reproducible de bioinformática para integrar proteómica pública de cáncer colorrectal (CCR). El anteproyecto y el reajuste técnico están en la carpeta `Informacion/`.
 
 ## Documentación
 
-El punto de entrada de la tesis v3.7 es [docs/estado_v3_7.md](docs/estado_v3_7.md) y [tesis-ucaldas/latex/main.tex](tesis-ucaldas/latex/main.tex). El paquete para Overleaf es [tesis-ucaldas/overleaf_v3_7.zip](tesis-ucaldas/overleaf_v3_7.zip).
+El punto de entrada de la tesis v3.7 es [docs/estado_v3_7.md](docs/estado_v3_7.md), [tesis-ucaldas/word/tesis-maestria-ucaldas.docx](tesis-ucaldas/word/tesis-maestria-ucaldas.docx) y [tesis-ucaldas/latex/main.tex](tesis-ucaldas/latex/main.tex). El archivo para completar y entregar es el Word. Faltan director, codirector, grupo y línea. El paquete para Overleaf es [tesis-ucaldas/overleaf_v3_7.zip](tesis-ucaldas/overleaf_v3_7.zip).
 
 | Archivo | Contenido |
 |-----------|-----------|
 | [docs/estado_v3_7.md](docs/estado_v3_7.md) | Estado de la versión vigente. |
-| [tesis-ucaldas/latex/main.tex](tesis-ucaldas/latex/main.tex) | Texto de la tesis. |
+| [tesis-ucaldas/word/tesis-maestria-ucaldas.docx](tesis-ucaldas/word/tesis-maestria-ucaldas.docx) | Texto para completar y entregar. Cifras de `results/v3_7/`. |
+| [tesis-ucaldas/latex/main.tex](tesis-ucaldas/latex/main.tex) | El mismo cuerpo en LaTeX. |
 | [CATALOGO_DATASETS_Y_ESTADO.md](CATALOGO_DATASETS_Y_ESTADO.md) | Fuente, contenido, utilidad y estado funcional (remoto) de cada dataset. |
 | [GUIA_CONFIGURACION.md](GUIA_CONFIGURACION.md) | Parámetros YAML y convención de rutas. |
 | [ESTRUCTURA_DEL_PROYECTO.md](ESTRUCTURA_DEL_PROYECTO.md) | Árbol de carpetas y responsabilidad de cada módulo Python. |

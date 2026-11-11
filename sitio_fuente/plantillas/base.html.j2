@@ -12,12 +12,8 @@
 <body{% if portada %} class="portada"{% endif %}>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
+<button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
-<nav class="menu" aria-label="Principal">
-{% for item in menu %}
-<a href="{{ item.ruta }}">{{ item.nombre }}</a>
-{% endfor %}
-</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
 <label class="saltar" for="q">Buscar</label>
 <input id="q" name="q" type="search" placeholder="Proteína, término o página" value="{{ consulta }}">
@@ -26,9 +22,23 @@
 <button type="button" id="tema">Tema</button>
 </header>
 <p class="aviso">{{ aviso }}</p>
-<div class="disposicion">
+<div class="marco">
+<aside id="exploracion" class="lateral" aria-label="Principal">
+<p class="lateral-etiqueta">Explorar la investigación</p>
+<a class="lateral-inicio" href="/">Inicio</a>
+{% for grupo in exploracion %}
+<nav class="lateral-grupo" aria-label="{{ grupo.grupo }}">
+<p>{{ grupo.grupo }}</p>
+{% for item in grupo.enlaces %}
+<a href="{{ item.ruta }}">{{ item.nombre }}</a>
+{% endfor %}
+</nav>
+{% endfor %}
+</aside>
+<div class="velo" id="velo" hidden></div>
+<div class="columna">
 {% if migas %}<p class="migas">{{ migas }}</p>{% endif %}
-{% if indice %}
+{% if indice and not portada %}
 <nav class="indice" aria-label="En esta página">
 {% for ancla in indice %}
 <a href="#{{ ancla.id }}">{{ ancla.texto }}</a>
@@ -55,6 +65,7 @@
 </details>
 {% endif %}
 </main>
+</div>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">

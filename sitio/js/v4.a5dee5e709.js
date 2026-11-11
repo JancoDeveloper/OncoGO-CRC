@@ -19,11 +19,59 @@
     });
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
-  document.querySelectorAll(".menu a").forEach(function (enlace) {
-    var href = enlace.getAttribute("href");
-    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
-    if (activo) enlace.setAttribute("aria-current", "page");
-  });
+  function marcarLateral() {
+    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+      var href = enlace.getAttribute("href") || "";
+      var activo = false;
+      if (href.indexOf("#") !== -1) {
+        activo = path === "/" && location.hash === href.slice(href.indexOf("#"));
+      } else if (href === "/proteinas") {
+        activo = path === "/proteinas" || (path.indexOf("/proteinas/") === 0 && path.indexOf("/proteinas/comparar") !== 0 && path.indexOf("/proteinas/candidatas") !== 0);
+      } else if (href === "/") {
+        activo = path === "/" && !location.hash;
+      } else {
+        activo = path === href || path.indexOf(href + "/") === 0;
+      }
+      if (activo) enlace.setAttribute("aria-current", "page");
+      else enlace.removeAttribute("aria-current");
+    });
+  }
+  marcarLateral();
+  window.addEventListener("hashchange", marcarLateral);
+  var abrir = document.getElementById("abrir-exploracion");
+  var panel = document.getElementById("exploracion");
+  var velo = document.getElementById("velo");
+  if (abrir && panel && velo) {
+    var cerrar = function () {
+      var estaba = panel.classList.contains("abierto");
+      panel.classList.remove("abierto");
+      abrir.setAttribute("aria-expanded", "false");
+      velo.hidden = true;
+      document.body.classList.remove("drawer-abierto");
+      if (estaba) abrir.focus();
+    };
+    var abrirDrawer = function () {
+      panel.classList.add("abierto");
+      abrir.setAttribute("aria-expanded", "true");
+      velo.hidden = false;
+      document.body.classList.add("drawer-abierto");
+      var primero = panel.querySelector("a");
+      if (primero) primero.focus();
+    };
+    abrir.addEventListener("click", function () {
+      if (panel.classList.contains("abierto")) cerrar();
+      else abrirDrawer();
+    });
+    velo.addEventListener("click", cerrar);
+    panel.querySelectorAll("a").forEach(function (enlace) {
+      enlace.addEventListener("click", function () {
+        if (window.matchMedia("(max-width: 900px)").matches) cerrar();
+      });
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  }
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {

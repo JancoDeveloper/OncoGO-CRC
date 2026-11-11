@@ -98,10 +98,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .marca { font-weight: 600; text-decoration: none; color: var(--tinta); }
 .menu { display: flex; flex-wrap: wrap; gap: 0.35rem 0.4rem; }
-.buscar { display: flex; gap: 0.4rem; margin-left: auto; }
+.buscar { display: flex; flex: 1 1 12rem; gap: 0.4rem; min-width: 0; max-width: 24rem; margin-left: auto; }
 .buscar input {
-  width: 11rem;
-  min-width: 8rem;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
   border: 1px solid var(--linea);
   border-radius: var(--radio);
   padding: 0.45rem 0.7rem;
@@ -116,27 +117,74 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   color: var(--aviso-tinta);
 }
 .migas { color: var(--tinta-suave); font-size: 0.92rem; }
-.disposicion {
-  display: block;
-  max-width: 52rem;
-  margin: 0 auto;
-  padding: 1.25rem 1rem 3rem;
+.disposicion, .columna { min-width: 0; }
+.marco {
+  display: grid;
+  grid-template-columns: clamp(14.5rem, 18vw, 16.25rem) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  width: 100%;
+  padding: clamp(1rem, 2vw, 1.75rem) clamp(1rem, 3vw, 2.5rem) 3rem;
+  align-items: start;
 }
+.lateral {
+  position: sticky;
+  top: 4.6rem;
+  max-height: calc(100vh - 5.4rem);
+  overflow: auto;
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 0.9rem 0.7rem 1.1rem;
+}
+.lateral-etiqueta {
+  margin: 0.2rem 0.6rem 0.7rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+.lateral-inicio, .lateral a {
+  display: block;
+  padding: 0.38rem 0.7rem;
+  border-left: 3px solid transparent;
+  text-decoration: none;
+  color: var(--tinta);
+}
+.lateral-grupo p {
+  margin: 0.95rem 0.7rem 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--marca);
+}
+.lateral a[aria-current="page"] {
+  border-left-color: var(--marca);
+  background: var(--papel);
+  color: var(--marca);
+  font-weight: 600;
+}
+#abrir-exploracion, .velo { display: none; }
+body.drawer-abierto { overflow: hidden; }
 .indice {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0.5rem;
-  position: sticky;
-  top: 4.3rem;
-  z-index: 3;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.1rem;
   margin: 0 0 1.2rem;
-  padding: 0.45rem 0;
-  background: var(--papel);
-  border-bottom: 1px solid var(--linea);
 }
-.indice a, .hermanas a, .menu a { text-decoration: none; padding: 0.2rem 0.65rem; border-radius: 999px; white-space: nowrap; }
-.menu a[aria-current="page"], .indice a[aria-current="true"] { background: var(--marca); color: var(--sobre-marca); }
-main h1, main h2, main h3 { font-family: var(--fuente-titulo); line-height: 1.25; }
+.indice a {
+  display: block;
+  text-decoration: none;
+  padding: 0.3rem 0.7rem;
+  border-left: 3px solid transparent;
+  white-space: normal;
+}
+.indice a[aria-current="true"] { border-left-color: var(--marca); color: var(--marca); font-weight: 600; }
+.hermanas { display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; }
+.hermanas a, .menu a { text-decoration: none; padding: 0.2rem 0.65rem; border-radius: 999px; }
+.menu a[aria-current="page"] { background: var(--marca); color: var(--sobre-marca); }
+main { min-width: 0; }
+main p { max-width: 75ch; }
+main h1, main h2, main h3 { font-family: var(--fuente-titulo); line-height: 1.25; overflow-wrap: break-word; }
 main h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
 .tarjeta, .grafico, .entrada {
   background: var(--tarjeta);
@@ -148,8 +196,9 @@ main h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
 .tarjetas, .pasos { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.8rem; }
 .pregunta {
   font-family: var(--fuente-titulo);
-  font-size: 2rem;
+  font-size: clamp(1.45rem, 3vw, 2rem);
   margin: 0.2rem 0 0.6rem;
+  overflow-wrap: break-word;
 }
 .resultado { font-size: 1.15rem; }
 table { border-collapse: collapse; width: 100%; }
@@ -158,7 +207,7 @@ th, td { border-bottom: 1px solid var(--linea); text-align: left; padding: 0.35r
 .evidencia summary { display: inline; cursor: pointer; color: var(--tinta-suave); font-size: 0.75rem; margin-left: 0.35rem; }
 .comparacion { margin: 1.5rem 0 2rem; }
 .comparacion figcaption, .lamina figcaption, .colon figcaption { color: var(--tinta-suave); font-size: 0.95rem; }
-.clases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; list-style: none; padding: 0; margin: 1rem 0; }
+.clases { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 0.8rem; list-style: none; padding: 0; margin: 1rem 0; }
 .clase { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: var(--radio); padding: 0.9rem; }
 .clase-equivalente { border-top: 4px solid var(--clase-equivalente); }
 .clase-indeterminada { border-top: 4px solid var(--clase-indeterminada); }
@@ -199,7 +248,7 @@ th, td { border-bottom: 1px solid var(--linea); text-align: left; padding: 0.35r
 .lamina svg, .colon-lienzo { width: min(100%, 22rem); height: auto; color: var(--marca); }
 .hermanas, .filtro-proteinas, .paginas { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; }
 .hermanas a { text-decoration: none; }
-.filtro-proteinas input { min-width: 16rem; padding: 0.45rem 0.6rem; border: 1px solid var(--linea); border-radius: var(--radio); font: inherit; }
+.filtro-proteinas input { flex: 1 1 12rem; width: min(100%, 22rem); min-width: 0; padding: 0.45rem 0.6rem; border: 1px solid var(--linea); border-radius: var(--radio); font: inherit; }
 .transparencia { margin-top: 2.5rem; }
 .transparencia summary { cursor: pointer; color: var(--tinta-suave); }
 .cita-ventana, .definicion-corta {
@@ -267,7 +316,7 @@ th, td { border-bottom: 1px solid var(--linea); text-align: left; padding: 0.35r
 .embudo summary { display: grid; grid-template-columns: minmax(12rem, 1.4fr) minmax(4rem, 3fr) auto; gap: 0.6rem; align-items: center; cursor: pointer; }
 .embudo-riel, .pista-riel { display: block; height: 0.7rem; background: var(--linea); border-radius: 4px; overflow: hidden; }
 .embudo-barra, .pista { display: block; height: 100%; width: 100%; background: var(--marca); transform-origin: left center; transform: scaleX(var(--meta)); }
-.matrices { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.matrices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem; }
 .matrices article { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: var(--radio); padding: 0.9rem; }
 .matrices-nota { grid-column: 1 / -1; margin: 0; }
 .segmento { margin-top: 0.4rem; }
@@ -278,11 +327,40 @@ th, td { border-bottom: 1px solid var(--linea); text-align: left; padding: 0.35r
 .secundario { display: flex; flex-wrap: wrap; gap: 0.7rem 1rem; }
 .secundario a { color: var(--tinta); }
 data { font-family: var(--fuente-mono); }
-@media (max-width: 800px) {
-  .embudo summary, .matrices, .clases { grid-template-columns: 1fr; }
+img, svg, .lienzo-svg { max-width: 100%; }
+@media (max-width: 900px) {
+  .embudo summary { grid-template-columns: 1fr; }
   .matrices-nota { grid-column: auto; }
-
-  .disposicion { grid-template-columns: 1fr; }
+  .marco { display: block; padding: 1rem; }
+  #abrir-exploracion {
+    display: inline-flex;
+    font: inherit;
+    color: var(--marca);
+    background: var(--tarjeta);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    padding: 0.35rem 0.7rem;
+  }
+  .lateral {
+    position: fixed;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(18rem, 86vw);
+    max-height: none;
+    border-radius: 0;
+    transform: translateX(-105%);
+  }
+  .lateral.abierto { transform: none; }
+  .velo {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    background: rgba(20, 24, 31, 0.35);
+  }
+  .velo[hidden] { display: none; }
   .indice { position: static; }
   .buscar { margin-left: 0; width: 100%; }
   .buscar input { flex: 1; min-width: 0; }
@@ -292,7 +370,7 @@ data { font-family: var(--fuente-mono); }
   .embudo.animar.listo .embudo-barra, .matrices.animar.listo .pista { transform: scaleX(var(--meta)); transition: transform 0.8s ease; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .trazo, .embudo-barra, .pista { animation: none !important; transition: none !important; }
+  .trazo, .embudo-barra, .pista, .lateral { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
 @media print {

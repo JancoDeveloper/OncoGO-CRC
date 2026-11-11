@@ -1,0 +1,67 @@
+{
+  "consulta": "2026-11-11",
+  "nota": "No hay carpeta public/ ni src/. El equivalente es sitio_fuente/ilustraciones/, copiada a sitio/ilustraciones/.",
+  "recursos": [
+    {
+      "id": "colon",
+      "nombre": "Intestino grueso",
+      "archivo": "colon.png",
+      "fuente": "Servier Medical Art",
+      "url": "https://smart.servier.com/wp-content/uploads/2016/10/colon.png",
+      "autor": "Laboratoires Servier",
+      "licencia": "CC BY 4.0",
+      "atribucion": "Image provided by Servier Medical Art (https://smart.servier.com/), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+      "uso": "Inicio, colon como contexto",
+      "verificacion": "Ficha pública de Servier. PNG, no SVG: el banco no publica SVG.",
+      "marca_de_agua": false
+    },
+    {
+      "id": "tejido",
+      "nombre": "Epitelio cilíndrico con célula caliciforme",
+      "archivo": "tejido.png",
+      "fuente": "Servier Medical Art",
+      "url": "https://smart.servier.com/wp-content/uploads/2016/10/Epi_cylindrique_goblet_03.png",
+      "autor": "Laboratoires Servier",
+      "licencia": "CC BY 4.0",
+      "atribucion": "Image provided by Servier Medical Art (https://smart.servier.com/), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+      "uso": "Inicio, panel de tejido",
+      "verificacion": "Ficha de epitelio cilíndrico simple. No es un corte de esta tesis.",
+      "marca_de_agua": false
+    },
+    {
+      "id": "suero",
+      "nombre": "Tubo de sangre",
+      "archivo": "suero.png",
+      "fuente": "Servier Medical Art",
+      "url": "https://smart.servier.com/wp-content/uploads/2016/10/Tube_plein_6.png",
+      "autor": "Laboratoires Servier",
+      "licencia": "CC BY 4.0",
+      "atribucion": "Image provided by Servier Medical Art (https://smart.servier.com/), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+      "uso": "Inicio, panel de suero",
+      "verificacion": "Tubo de sangre. El suero medido es la fracción líquida.",
+      "marca_de_agua": false
+    }
+  ],
+  "no_incorporados": [
+    {
+      "fuente": "NIAID BioArt",
+      "url": "https://bioart.niaid.nih.gov/",
+      "motivo": "No se descargó una ficha concreta con licencia leída en esta pasada. No se usa un enlace remoto."
+    },
+    {
+      "fuente": "NCI Visuals Online",
+      "url": "https://visualsonline.cancer.gov/",
+      "motivo": "Cada lámina tiene su crédito. No había una ficha comprobada que mejorara la anatomía ya atribuida, y una imagen de tumor localizaría un hallazgo que la tesis no localiza."
+    },
+    {
+      "fuente": "BioRender",
+      "url": "https://www.biorender.com/",
+      "motivo": "La publicación web exige una licencia que este proyecto no tiene. No se exportó ninguna figura."
+    },
+    {
+      "fuente": "LottieFiles",
+      "url": "https://lottiefiles.com/",
+      "motivo": "La licencia es por archivo y el reproductor sería un script de tercero. La barra de la celda no usa animación decorativa."
+    }
+  ]
+}

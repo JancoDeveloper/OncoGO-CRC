@@ -7,25 +7,13 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.f2805e2457.css">
+<link rel="stylesheet" href="/css/v4.4fa9f694d6.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
+<button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
-<nav class="menu" aria-label="Principal">
-
-<a href="/">Inicio</a>
-
-<a href="/investigacion/contexto">Investigación</a>
-
-<a href="/metodos/proteomica">Metodología</a>
-
-<a href="/resultados">Resultados</a>
-
-<a href="/proteinas">Explorar proteínas</a>
-
-</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
 <label class="saltar" for="q">Buscar</label>
 <input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
@@ -34,7 +22,60 @@
 <button type="button" id="tema">Tema</button>
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<div class="disposicion">
+<div class="marco">
+<aside id="exploracion" class="lateral" aria-label="Principal">
+<p class="lateral-etiqueta">Explorar la investigación</p>
+<a class="lateral-inicio" href="/">Inicio</a>
+
+<nav class="lateral-grupo" aria-label="Investigación">
+<p>Investigación</p>
+
+<a href="/#qu-problema-se-midi">El problema</a>
+
+<a href="/investigacion/pregunta-e-hipotesis">La pregunta</a>
+
+<a href="/#qu-no-demuestra-este-resultado">Alcance</a>
+
+</nav>
+
+<nav class="lateral-grupo" aria-label="Recorrido">
+<p>Recorrido</p>
+
+<a href="/metodos/proteomica">Metodología</a>
+
+<a href="/#qu-muestra-cada-matriz">Las dos matrices</a>
+
+<a href="/#el-colon-como-contexto">El colon como contexto</a>
+
+</nav>
+
+<nav class="lateral-grupo" aria-label="Resultados">
+<p>Resultados</p>
+
+<a href="/resultados">Resultados principales</a>
+
+<a href="/proteinas">Explorar proteínas</a>
+
+<a href="/proteinas/comparar">Comparador</a>
+
+<a href="/proteinas/candidatas">Candidatas</a>
+
+</nav>
+
+<nav class="lateral-grupo" aria-label="Consulta">
+<p>Consulta</p>
+
+<a href="/glosario">Glosario</a>
+
+<a href="/bibliografia">Bibliografía</a>
+
+<a href="/entregables">Entregables</a>
+
+</nav>
+
+</aside>
+<div class="velo" id="velo" hidden></div>
+<div class="columna">
 <p class="migas">Inicio / Proteínas / P09871</p>
 
 <nav class="indice" aria-label="En esta página">
@@ -178,6 +219,7 @@
 
 </main>
 </div>
+</div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
 
@@ -223,11 +265,59 @@
     });
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
-  document.querySelectorAll(".menu a").forEach(function (enlace) {
-    var href = enlace.getAttribute("href");
-    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
-    if (activo) enlace.setAttribute("aria-current", "page");
-  });
+  function marcarLateral() {
+    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+      var href = enlace.getAttribute("href") || "";
+      var activo = false;
+      if (href.indexOf("#") !== -1) {
+        activo = path === "/" && location.hash === href.slice(href.indexOf("#"));
+      } else if (href === "/proteinas") {
+        activo = path === "/proteinas" || (path.indexOf("/proteinas/") === 0 && path.indexOf("/proteinas/comparar") !== 0 && path.indexOf("/proteinas/candidatas") !== 0);
+      } else if (href === "/") {
+        activo = path === "/" && !location.hash;
+      } else {
+        activo = path === href || path.indexOf(href + "/") === 0;
+      }
+      if (activo) enlace.setAttribute("aria-current", "page");
+      else enlace.removeAttribute("aria-current");
+    });
+  }
+  marcarLateral();
+  window.addEventListener("hashchange", marcarLateral);
+  var abrir = document.getElementById("abrir-exploracion");
+  var panel = document.getElementById("exploracion");
+  var velo = document.getElementById("velo");
+  if (abrir && panel && velo) {
+    var cerrar = function () {
+      var estaba = panel.classList.contains("abierto");
+      panel.classList.remove("abierto");
+      abrir.setAttribute("aria-expanded", "false");
+      velo.hidden = true;
+      document.body.classList.remove("drawer-abierto");
+      if (estaba) abrir.focus();
+    };
+    var abrirDrawer = function () {
+      panel.classList.add("abierto");
+      abrir.setAttribute("aria-expanded", "true");
+      velo.hidden = false;
+      document.body.classList.add("drawer-abierto");
+      var primero = panel.querySelector("a");
+      if (primero) primero.focus();
+    };
+    abrir.addEventListener("click", function () {
+      if (panel.classList.contains("abierto")) cerrar();
+      else abrirDrawer();
+    });
+    velo.addEventListener("click", cerrar);
+    panel.querySelectorAll("a").forEach(function (enlace) {
+      enlace.addEventListener("click", function () {
+        if (window.matchMedia("(max-width: 900px)").matches) cerrar();
+      });
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  }
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {

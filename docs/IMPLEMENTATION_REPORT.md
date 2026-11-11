@@ -1,6 +1,6 @@
 # Informe de la implementación
 
-Fecha: 2026-11-11. Publicado. Hosting `407c7edbcdbf1e2d`, liberada el 2026-11-11T18:40:25.881Z, sitio `49187b3`. La comprobación en vivo está en `docs/despliegue_sitio_v4.md`.
+Fecha: 2026-11-11. Publicado. Hosting `ddf208b4f7131e46`, liberada el 2026-11-11T18:56:59.186Z. La navegación en vivo es la barra lateral. El detalle está en `docs/despliegue_sitio_v4.md`. El apartado de abajo describe la versión anterior, `407c7edbcdbf1e2d`.
 
 ## Qué se modificó
 
@@ -42,4 +42,4 @@ Después de añadir las matrices, el embudo en `details` y la hoja `v4.a1fc0bd2e
 
 ## Publicación
 
-Hosting `407c7edbcdbf1e2d`. Con `?v=8`, la ficha A0A075B6H9 enlaza el comparador y el visor queda en su recuadro. El aviso aparece dos veces. La versión anterior, `ed65f62acbad33dc`, queda en el historial. El detalle está en `docs/despliegue_sitio_v4.md`.
+La versión en vivo es Hosting `ddf208b4f7131e46`. La anterior de este informe, `407c7edbcdbf1e2d`, queda en el historial. Con `?v=8` sobre aquella versión, la ficha A0A075B6H9 enlazaba el comparador y el visor quedaba en su recuadro. El aviso aparece dos veces. El detalle está en `docs/despliegue_sitio_v4.md`.

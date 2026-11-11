@@ -7,25 +7,13 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.f2805e2457.css">
+<link rel="stylesheet" href="/css/v4.4fa9f694d6.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
+<button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
-<nav class="menu" aria-label="Principal">
-
-<a href="/">Inicio</a>
-
-<a href="/investigacion/contexto">Investigación</a>
-
-<a href="/metodos/proteomica">Metodología</a>
-
-<a href="/resultados">Resultados</a>
-
-<a href="/proteinas">Explorar proteínas</a>
-
-</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
 <label class="saltar" for="q">Buscar</label>
 <input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
@@ -34,7 +22,60 @@
 <button type="button" id="tema">Tema</button>
 </header>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<div class="disposicion">
+<div class="marco">
+<aside id="exploracion" class="lateral" aria-label="Principal">
+<p class="lateral-etiqueta">Explorar la investigación</p>
+<a class="lateral-inicio" href="/">Inicio</a>
+
+<nav class="lateral-grupo" aria-label="Investigación">
+<p>Investigación</p>
+
+<a href="/#qu-problema-se-midi">El problema</a>
+
+<a href="/investigacion/pregunta-e-hipotesis">La pregunta</a>
+
+<a href="/#qu-no-demuestra-este-resultado">Alcance</a>
+
+</nav>
+
+<nav class="lateral-grupo" aria-label="Recorrido">
+<p>Recorrido</p>
+
+<a href="/metodos/proteomica">Metodología</a>
+
+<a href="/#qu-muestra-cada-matriz">Las dos matrices</a>
+
+<a href="/#el-colon-como-contexto">El colon como contexto</a>
+
+</nav>
+
+<nav class="lateral-grupo" aria-label="Resultados">
+<p>Resultados</p>
+
+<a href="/resultados">Resultados principales</a>
+
+<a href="/proteinas">Explorar proteínas</a>
+
+<a href="/proteinas/comparar">Comparador</a>
+
+<a href="/proteinas/candidatas">Candidatas</a>
+
+</nav>
+
+<nav class="lateral-grupo" aria-label="Consulta">
+<p>Consulta</p>
+
+<a href="/glosario">Glosario</a>
+
+<a href="/bibliografia">Bibliografía</a>
+
+<a href="/entregables">Entregables</a>
+
+</nav>
+
+</aside>
+<div class="velo" id="velo" hidden></div>
+<div class="columna">
 <p class="migas">Inicio / Bibliografía</p>
 
 <main id="contenido">
@@ -42,6 +83,7 @@
 <h1>Bibliografía</h1><article id="ashburner2000" class="entrada"><h2>Ashburner 2000</h2><p class="titulo-citado">Gene Ontology: tool for the unification of biology</p><p><a href="https://doi.org/10.1038/75556">https://doi.org/10.1038/75556</a></p></article><article id="benjamini1995" class="entrada"><h2>Benjamini 1995</h2><p class="titulo-citado">Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing</p><p><a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">https://doi.org/10.1111/j.2517-6161.1995.tb02031.x</a></p></article><article id="blum2025" class="entrada"><h2>Blum 2025</h2><p class="titulo-citado">InterPro: the protein sequence classification resource in 2025</p><p><a href="https://doi.org/10.1093/nar/gkae1082">https://doi.org/10.1093/nar/gkae1082</a></p></article><article id="cock2009" class="entrada"><h2>Cock 2009</h2><p class="titulo-citado">Biopython: freely available Python tools for computational molecular biology and bioinformatics</p><p><a href="https://doi.org/10.1093/bioinformatics/btp163">https://doi.org/10.1093/bioinformatics/btp163</a></p></article><article id="demichev2020" class="entrada"><h2>Demichev 2020</h2><p class="titulo-citado">DIA-NN: neural networks and interference correction enable deep proteome coverage in high throughput</p><p><a href="https://doi.org/10.1038/s41592-019-0638-x">https://doi.org/10.1038/s41592-019-0638-x</a></p></article><article id="deutsch2023" class="entrada"><h2>Deutsch 2023</h2><p class="titulo-citado">The ProteomeXchange consortium at 10 years: 2023 update</p><p><a href="https://doi.org/10.1093/nar/gkac1040">https://doi.org/10.1093/nar/gkac1040</a></p></article><article id="frankenfield2022" class="entrada"><h2>Frankenfield 2022</h2><p class="titulo-citado">Protein Contaminants Matter: Building Universal Protein Contaminant Libraries for DDA and DIA Proteomics</p><p><a href="https://doi.org/10.1021/acs.jproteome.2c00145">https://doi.org/10.1021/acs.jproteome.2c00145</a></p></article><article id="gabay1999" class="entrada"><h2>Gabay 1999</h2><p class="titulo-citado">Acute-Phase Proteins and Other Systemic Responses to Inflammation</p><p><a href="https://doi.org/10.1056/NEJM199902113400607">https://doi.org/10.1056/NEJM199902113400607</a></p></article><article id="garciafoncillas2026" class="entrada"><h2>Garcia-Foncillas 2026</h2><p class="titulo-citado">Biología molecular del cáncer colorrectal</p><p><a href="https://doi.org/10.51643/22562915.853">https://doi.org/10.51643/22562915.853</a></p></article><article id="geyer2019" class="entrada"><h2>Geyer 2019</h2><p class="titulo-citado">Plasma Proteome Profiling to detect and avoid sample-related biases in biomarker studies</p><p><a href="https://doi.org/10.15252/emmm.201910427">https://doi.org/10.15252/emmm.201910427</a></p></article><article id="goconsortium2023" class="entrada"><h2>The Gene Ontology Consortium 2023</h2><p class="titulo-citado">The Gene Ontology knowledgebase in 2023</p><p><a href="https://doi.org/10.1093/genetics/iyad031">https://doi.org/10.1093/genetics/iyad031</a></p></article><article id="henikoff1992" class="entrada"><h2>Henikoff 1992</h2><p class="titulo-citado">Amino acid substitution matrices from protein blocks.</p><p><a href="https://doi.org/10.1073/pnas.89.22.10915">https://doi.org/10.1073/pnas.89.22.10915</a></p></article><article id="hermoso2026" class="entrada"><h2>Hermoso-Dur\&#x27;an 2026</h2><p class="titulo-citado">Integrating thermal liquid biopsy, clinical data, and mass spectrometry for early diagnosis and biomarker discovery in colorectal cancer</p><p><a href="https://doi.org/10.1016/j.isci.2026.114751">https://doi.org/10.1016/j.isci.2026.114751</a></p></article><article id="jumper2021" class="entrada"><h2>Jumper 2021</h2><p class="titulo-citado">Highly accurate protein structure prediction with AlphaFold</p><p><a href="https://doi.org/10.1038/s41586-021-03819-2">https://doi.org/10.1038/s41586-021-03819-2</a></p></article><article id="lakens2017" class="entrada"><h2>Lakens 2017</h2><p class="titulo-citado">Equivalence Tests</p><p><a href="https://doi.org/10.1177/1948550617697177">https://doi.org/10.1177/1948550617697177</a></p></article><article id="leek2010" class="entrada"><h2>Leek 2010</h2><p class="titulo-citado">Tackling the widespread and critical impact of batch effects in high-throughput data</p><p><a href="https://doi.org/10.1038/nrg2825">https://doi.org/10.1038/nrg2825</a></p></article><article id="liberzon2015" class="entrada"><h2>Liberzon 2015</h2><p class="titulo-citado">The Molecular Signatures Database Hallmark Gene Set Collection</p><p><a href="https://doi.org/10.1016/j.cels.2015.12.004">https://doi.org/10.1016/j.cels.2015.12.004</a></p></article><article id="lin2023" class="entrada"><h2>Lin 2023</h2><p class="titulo-citado">Evolutionary-scale prediction of atomic-level protein structure with a language model</p><p><a href="https://doi.org/10.1126/science.ade2574">https://doi.org/10.1126/science.ade2574</a></p></article><article id="locker2006" class="entrada"><h2>Locker 2006</h2><p class="titulo-citado">ASCO 2006 Update of Recommendations for the Use of Tumor Markers in Gastrointestinal Cancer</p><p><a href="https://doi.org/10.1200/jco.2006.08.2644">https://doi.org/10.1200/jco.2006.08.2644</a></p></article><article id="lundberg2017" class="entrada"><h2>Lundberg 2017</h2><p class="titulo-citado">A Unified Approach to Interpreting Model Predictions</p><p><a href="https://doi.org/10.48550/arXiv.1705.07874">https://doi.org/10.48550/arXiv.1705.07874</a></p></article><article id="mccarthy2009" class="entrada"><h2>McCarthy 2009</h2><p class="titulo-citado">Testing significance relative to a fold-change threshold is a TREAT</p><p><a href="https://doi.org/10.1093/bioinformatics/btp053">https://doi.org/10.1093/bioinformatics/btp053</a></p></article><article id="milacic2024" class="entrada"><h2>Milacic 2024</h2><p class="titulo-citado">The Reactome Pathway Knowledgebase 2024</p><p><a href="https://doi.org/10.1093/nar/gkad1025">https://doi.org/10.1093/nar/gkad1025</a></p></article><article id="needleman1970" class="entrada"><h2>Needleman 1970</h2><p class="titulo-citado">A general method applicable to the search for similarities in the amino acid sequence of two proteins</p><p><a href="https://doi.org/10.1016/0022-2836(70)90057-4">https://doi.org/10.1016/0022-2836(70)90057-4</a></p></article><article id="pepe2001" class="entrada"><h2>Pepe 2001</h2><p class="titulo-citado">Phases of Biomarker Development for Early Detection of Cancer</p><p><a href="https://doi.org/10.1093/jnci/93.14.1054">https://doi.org/10.1093/jnci/93.14.1054</a></p></article><article id="perezriverol2025" class="entrada"><h2>Perez-Riverol 2025</h2><p class="titulo-citado">The PRIDE database at 20 years: 2025 update</p><p><a href="https://doi.org/10.1093/nar/gkae1011">https://doi.org/10.1093/nar/gkae1011</a></p></article><article id="phipson2010" class="entrada"><h2>Phipson 2010</h2><p class="titulo-citado">Permutation P-values Should Never Be Zero: Calculating Exact P-values When Permutations Are Randomly Drawn</p><p><a href="https://doi.org/10.2202/1544-6115.1585">https://doi.org/10.2202/1544-6115.1585</a></p></article><article id="rai2025" class="entrada"><h2>Rai 2025</h2><p class="titulo-citado">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</p><p><a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></p></article><article id="ritchie2015" class="entrada"><h2>Ritchie 2015</h2><p class="titulo-citado">limma powers differential expression analyses for RNA-sequencing and microarray studies</p><p><a href="https://doi.org/10.1093/nar/gkv007">https://doi.org/10.1093/nar/gkv007</a></p></article><article id="sehnal2021" class="entrada"><h2>Sehnal 2021</h2><p class="titulo-citado">Mol* Viewer: modern web app for 3D visualization and analysis of large biomolecular structures</p><p><a href="https://doi.org/10.1093/nar/gkab314">https://doi.org/10.1093/nar/gkab314</a></p></article><article id="smyth2004" class="entrada"><h2>Smyth 2004</h2><p class="titulo-citado">Linear Models and Empirical Bayes Methods for Assessing Differential Expression in Microarray Experiments</p><p><a href="https://doi.org/10.2202/1544-6115.1027">https://doi.org/10.2202/1544-6115.1027</a></p></article><article id="subramanian2005" class="entrada"><h2>Subramanian 2005</h2><p class="titulo-citado">Gene set enrichment analysis: A knowledge-based approach for interpreting genome-wide expression profiles</p><p><a href="https://doi.org/10.1073/pnas.0506580102">https://doi.org/10.1073/pnas.0506580102</a></p></article><article id="szklarczyk2023" class="entrada"><h2>Szklarczyk 2023</h2><p class="titulo-citado">The STRING database in 2023: protein–protein association networks and functional enrichment analyses for any sequenced genome of interest</p><p><a href="https://doi.org/10.1093/nar/gkac1000">https://doi.org/10.1093/nar/gkac1000</a></p></article><article id="tanaka2024" class="entrada"><h2>Tanaka 2024</h2><p class="titulo-citado">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures</p><p><a href="https://doi.org/10.1016/j.celrep.2024.113810">https://doi.org/10.1016/j.celrep.2024.113810</a></p></article><article id="uhlen2015" class="entrada"><h2>Uhlén 2015</h2><p class="titulo-citado">Tissue-based map of the human proteome</p><p><a href="https://doi.org/10.1126/science.1260419">https://doi.org/10.1126/science.1260419</a></p></article><article id="uniprot2025" class="entrada"><h2>The UniProt Consortium 2025</h2><p class="titulo-citado">UniProt: the Universal Protein Knowledgebase in 2025</p><p><a href="https://doi.org/10.1093/nar/gkae1010">https://doi.org/10.1093/nar/gkae1010</a></p></article><article id="varadi2024" class="entrada"><h2>Varadi 2024</h2><p class="titulo-citado">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences</p><p><a href="https://doi.org/10.1093/nar/gkad1011">https://doi.org/10.1093/nar/gkad1011</a></p></article><article id="vasaikar2019" class="entrada"><h2>Vasaikar 2019</h2><p class="titulo-citado">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities</p><p><a href="https://doi.org/10.1016/j.cell.2019.03.030">https://doi.org/10.1016/j.cell.2019.03.030</a></p></article><article id="zhang2014" class="entrada"><h2>CPTAC 2014</h2><p class="titulo-citado">Proteogenomic characterization of human colon and rectal cancer</p><p><a href="https://doi.org/10.1038/nature13438">https://doi.org/10.1038/nature13438</a></p></article>
 
 </main>
+</div>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
@@ -88,11 +130,59 @@
     });
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
-  document.querySelectorAll(".menu a").forEach(function (enlace) {
-    var href = enlace.getAttribute("href");
-    var activo = href === "/" ? path === "/" : path === href || path.indexOf(href + "/") === 0;
-    if (activo) enlace.setAttribute("aria-current", "page");
-  });
+  function marcarLateral() {
+    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+      var href = enlace.getAttribute("href") || "";
+      var activo = false;
+      if (href.indexOf("#") !== -1) {
+        activo = path === "/" && location.hash === href.slice(href.indexOf("#"));
+      } else if (href === "/proteinas") {
+        activo = path === "/proteinas" || (path.indexOf("/proteinas/") === 0 && path.indexOf("/proteinas/comparar") !== 0 && path.indexOf("/proteinas/candidatas") !== 0);
+      } else if (href === "/") {
+        activo = path === "/" && !location.hash;
+      } else {
+        activo = path === href || path.indexOf(href + "/") === 0;
+      }
+      if (activo) enlace.setAttribute("aria-current", "page");
+      else enlace.removeAttribute("aria-current");
+    });
+  }
+  marcarLateral();
+  window.addEventListener("hashchange", marcarLateral);
+  var abrir = document.getElementById("abrir-exploracion");
+  var panel = document.getElementById("exploracion");
+  var velo = document.getElementById("velo");
+  if (abrir && panel && velo) {
+    var cerrar = function () {
+      var estaba = panel.classList.contains("abierto");
+      panel.classList.remove("abierto");
+      abrir.setAttribute("aria-expanded", "false");
+      velo.hidden = true;
+      document.body.classList.remove("drawer-abierto");
+      if (estaba) abrir.focus();
+    };
+    var abrirDrawer = function () {
+      panel.classList.add("abierto");
+      abrir.setAttribute("aria-expanded", "true");
+      velo.hidden = false;
+      document.body.classList.add("drawer-abierto");
+      var primero = panel.querySelector("a");
+      if (primero) primero.focus();
+    };
+    abrir.addEventListener("click", function () {
+      if (panel.classList.contains("abierto")) cerrar();
+      else abrirDrawer();
+    });
+    velo.addEventListener("click", cerrar);
+    panel.querySelectorAll("a").forEach(function (enlace) {
+      enlace.addEventListener("click", function () {
+        if (window.matchMedia("(max-width: 900px)").matches) cerrar();
+      });
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  }
   var caja = document.getElementById("q");
   if (caja && document.querySelector("[data-buscar]")) {
     var aplicar = function () {

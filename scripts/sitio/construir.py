@@ -547,6 +547,32 @@ def menu_principal() -> list[dict]:
     ]
 
 
+def exploracion() -> list[dict]:
+    return [
+        {"grupo": "Investigación", "enlaces": [
+            {"nombre": "El problema", "ruta": "/#qu-problema-se-midi"},
+            {"nombre": "La pregunta", "ruta": "/investigacion/pregunta-e-hipotesis"},
+            {"nombre": "Alcance", "ruta": "/#qu-no-demuestra-este-resultado"},
+        ]},
+        {"grupo": "Recorrido", "enlaces": [
+            {"nombre": "Metodología", "ruta": "/metodos/proteomica"},
+            {"nombre": "Las dos matrices", "ruta": "/#qu-muestra-cada-matriz"},
+            {"nombre": "El colon como contexto", "ruta": "/#el-colon-como-contexto"},
+        ]},
+        {"grupo": "Resultados", "enlaces": [
+            {"nombre": "Resultados principales", "ruta": "/resultados"},
+            {"nombre": "Explorar proteínas", "ruta": "/proteinas"},
+            {"nombre": "Comparador", "ruta": "/proteinas/comparar"},
+            {"nombre": "Candidatas", "ruta": "/proteinas/candidatas"},
+        ]},
+        {"grupo": "Consulta", "enlaces": [
+            {"nombre": "Glosario", "ruta": "/glosario"},
+            {"nombre": "Bibliografía", "ruta": "/bibliografia"},
+            {"nombre": "Entregables", "ruta": "/entregables"},
+        ]},
+    ]
+
+
 def menu_secundario(paginas: list[dict]) -> list[dict]:
     cubiertas = {"Inicio", "Investigación", "Métodos", "Resultados", "Proteínas"}
     vistos = []
@@ -685,6 +711,7 @@ def main() -> None:
         "franja_estado": estado,
         "franja_sello": sello,
         "menu": menu,
+        "exploracion": exploracion(),
         "secundario": secundario,
         "js_extra": "",
         "molstar_js": molstar_js,

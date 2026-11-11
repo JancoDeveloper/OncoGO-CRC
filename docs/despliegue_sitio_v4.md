@@ -4,15 +4,17 @@ Sitio: https://oncogo-crc-tesis.web.app
 
 Proyecto de Firebase Hosting: `oncogo-crc-tesis`.
 
-Versión de Hosting: `407c7edbcdbf1e2d`.
+Versión de Hosting: `ddf208b4f7131e46`.
 
-Hora de la versión en vivo: 2026-11-11T18:40:25.881Z (13:40:25 en UTC−5). `createTime` 2026-11-11T18:40:21.509824Z. `finalizeTime` 2026-11-11T18:40:26.139537Z.
+Hora de la versión en vivo: 2026-11-11T18:56:59.186Z (13:56:59 en UTC−5). `createTime` 2026-11-11T18:56:56.976012Z. `finalizeTime` 2026-11-11T18:56:59.427634Z.
 
-El comando fue `firebase deploy --only hosting --project oncogo-crc-tesis -m "web documental, resultados v3.7-final 595118a, sitio 49187b3"`. El recurso de la versión no guarda ese mensaje: `labels` solo tiene `deployment-tool=cli-firebase`. La configuración publicada tiene 16 redirecciones. El directorio público sigue siendo `sitio`. No hay React.
+El comando fue `firebase deploy --only hosting --project oncogo-crc-tesis -m "web documental, barra lateral, cache de la portada no-cache, resultados v3.7-final 595118a"`. El recurso de la versión no guarda ese mensaje: `labels` solo tiene `deployment-tool=cli-firebase`. La configuración publicada tiene 16 redirecciones. El directorio público sigue siendo `sitio`. No hay React.
 
-El commit desplegado es `49187b3a975323f6bba0bd7f2f04ac88f8590bf4`. La etiqueta `v3.7-final` no se movió y sigue en `595118ae09ea6006c744c86b28cb0a10d42e0442`.
+La navegación principal es la barra lateral, `aside.lateral`. La portada no incluye `nav.indice`. Por debajo de 900 px la barra es el botón Menú. La hoja es `/css/v4.4fa9f694d6.css`. Con una lectura directa de `/`, el HTML trae `class="lateral"`, no trae `class="indice"` y responde `Cache-Control: no-cache`. Los archivos `js`, `css`, `svg`, `json` y `csv` responden `public, max-age=31536000, immutable`.
 
-La versión anterior, `ed65f62acbad33dc`, quedó liberada el 2026-11-11T18:31:00.695Z con el sitio `ae7416e`. Sigue en el historial de Hosting. La v3.7 anterior sigue archivada en `/archivo/v3_7`.
+Esta versión se publicó desde el árbol de trabajo, después del commit `49187b3a975323f6bba0bd7f2f04ac88f8590bf4`. El cambio de la barra lateral todavía no tiene commit. La etiqueta `v3.7-final` no se movió y sigue en `595118ae09ea6006c744c86b28cb0a10d42e0442`.
+
+La versión anterior, `407c7edbcdbf1e2d`, quedó liberada el 2026-11-11T18:40:25.881Z con el sitio `49187b3`. Sigue en el historial de Hosting. La v3.7 anterior sigue archivada en `/archivo/v3_7`.
 
 Con `?v=8`, la ficha A0A075B6H9 enlaza «Comparar hallazgos», guarda el visor en `marco-estructura` y no muestra la etiqueta suelta «Origen». El aviso aparece dos veces.
 
