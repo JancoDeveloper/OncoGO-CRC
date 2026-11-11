@@ -43,6 +43,11 @@
 </main>
 </div>
 <footer class="pie">
+<nav class="secundario" aria-label="Más páginas">
+{% for item in secundario %}
+<a href="{{ item.ruta }}">{{ item.nombre }}</a>
+{% endfor %}
+</nav>
 <p>Resultados v3.7-final · certificado {{ franja_estado | safe }} · sello {{ franja_sello | safe }}.</p>
 <p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
 <p class="aviso">{{ aviso }}</p>

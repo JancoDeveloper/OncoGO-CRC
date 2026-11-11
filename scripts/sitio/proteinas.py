@@ -263,13 +263,17 @@ def resumen(ficha, protein_id, representate, entrada, cita) -> str:
         f"Gen en UniProt: {e(gen_up or 'sin gen')}. Revisada: {e(revisada)}. {cita('rai2025')}</p>"
         + grupo
         + "<h3>Función</h3>"
+        + "<p>Texto de UniProt, no un resultado de la corrida. Si más abajo aparece la etiqueta de candidata, esa etiqueta es una hipótesis.</p>"
         + funcion_html
         + f'<p>Texto del campo Function, UniProt, acceso {e(representate)}. {cita("rai2025")}</p>'
     )
 
 
 def suero(protein_id, tablas, cita) -> str:
-    bloques = ['<h2 id="suero">Suero</h2>', f"<p>Tres contrastes, sin mezclar las matrices. {cita('rai2025')}</p>"]
+    bloques = [
+        '<h2 id="suero">Suero</h2>',
+        f"<p>Resultado calculado de la corrida. Tres contrastes, sin mezclar las matrices. {cita('rai2025')}</p>",
+    ]
     for titulo, nombre in CONTRASTES:
         tabla = tablas[nombre]
         if protein_id not in tabla.index:
@@ -312,7 +316,7 @@ def tejido(ficha, tri, cita) -> str:
         fuente = f"results/v3_7/triangulacion.tsv#gen={gen}.{columna}"
         celdas.append(f"<tr><th>{e(columna)}</th><td>{cifra(fila[columna], fuente, columna)}</td></tr>")
     return (
-        f'<h2 id="tejido">Tejido</h2><p>Una fila, el gen {e(gen)}. {cita("vasaikar2019")} {cita("tanaka2024")}</p>'
+        f'<h2 id="tejido">Tejido</h2><p>Resultado calculado. Una fila, el gen {e(gen)}. {cita("vasaikar2019")} {cita("tanaka2024")}</p>'
         f"<table><tbody>{''.join(celdas)}</tbody></table>"
     )
 

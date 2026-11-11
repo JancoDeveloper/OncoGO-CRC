@@ -84,6 +84,22 @@
     };
     document.body.appendChild(cargador);
   });
+  document.querySelectorAll("[data-segmento]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var id = boton.getAttribute("aria-controls");
+      document.querySelectorAll("[data-segmento]").forEach(function (otro) {
+        otro.setAttribute("aria-pressed", otro === boton ? "true" : "false");
+      });
+      document.querySelectorAll(".segmento").forEach(function (panel) {
+        panel.hidden = panel.id !== id;
+      });
+    });
+  });
+  document.querySelectorAll(".embudo, .matrices").forEach(function (bloque) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    bloque.classList.add("animar");
+    window.requestAnimationFrame(function () { bloque.classList.add("listo"); });
+  });
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

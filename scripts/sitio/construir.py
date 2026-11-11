@@ -133,9 +133,158 @@ def ancla_de(texto: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", texto.casefold()).strip("-") or "seccion"
 
 
+def llamadas_html() -> str:
+    return (
+        '<p class="llamadas"><a class="boton" href="/investigacion/contexto">Explorar la investigación</a>'
+        '<a class="boton boton-secundario" href="/resultados">Descubrir resultados</a></p>'
+    )
+
+
+def celda_html(contador) -> str:
+    base = "results/v3_7/suero_embudo.json#celda_preregistrada."
+    return (
+        '<ul class="cifras">'
+        f'<li><strong>{dato_html(base + "diferente", contador)}</strong> diferentes frente a CN</li>'
+        f'<li><strong>{dato_html(base + "equivalente", contador)}</strong> equivalentes</li>'
+        f'<li><strong>{dato_html(base + "indeterminada", contador)}</strong> indeterminadas</li>'
+        f'<li><strong>{dato_html(base + "n", contador)}</strong> proteínas en la celda</li>'
+        "</ul>"
+    )
+
+
+def embudo_html(ident: str, contador) -> str:
+    if ident != "priorizacion":
+        raise SystemExit(f"embudo sin definición: {ident}")
+    datos = json.loads((V37 / "priorizacion_embudo.json").read_text(encoding="utf-8"))
+    pasos = datos["pasos"]
+    mayor = max(int(paso["n"]) for paso in pasos) or 1
+    filas = []
+    for i, paso in enumerate(pasos):
+        ancho = 100 * int(paso["n"]) / mayor
+        fuente = f"results/v3_7/priorizacion_embudo.json#pasos.{i}.n"
+        filas.append(
+            "<li><details>"
+            "<summary>"
+            f'<span class="embudo-nombre">{e(paso["nombre"])}</span>'
+            f'<span class="embudo-barra" style="--meta:{ancho:.4f}%"></span>'
+            f"{dato_html(fuente, contador)}"
+            "</summary>"
+            f"<p>Definición guardada en el JSON: {e(paso['nombre'])}. "
+            f"El n es el de {e(fuente)}. No hay otra frase para este paso.</p>"
+            "</details></li>"
+        )
+    return '<ol class="embudo">' + "".join(filas) + "</ol>"
+
+
+def _hecho_estudio(contador) -> str:
+    return (
+        "<p>Lo que sigue es del estudio, no de este segmento. "
+        "En tejido, el signo del tumor primario frente a la mucosa coincide en "
+        f'{dato_html("results/v3_7/k1_etiquetas.json#contrastes.primario_frente_a_mucosa.numerador", contador)}'
+        " de "
+        f'{dato_html("results/v3_7/k1_etiquetas.json#contrastes.primario_frente_a_mucosa.denominador", contador)}'
+        ". En suero, "
+        f'{dato_html("results/v3_7/suero_embudo.json#celda_preregistrada.diferente", contador)}'
+        " de "
+        f'{dato_html("results/v3_7/suero_embudo.json#celda_preregistrada.n", contador)}'
+        " separan el cáncer de la colonoscopia negativa. "
+        "Eso no localiza un tumor en este segmento y no muestra una proteína saliendo del tumor.</p>"
+    )
+
+
+def anatomia_html(contador) -> str:
+    nota = "Información no disponible en las fuentes del proyecto. Esta tesis no asigna muestras a un segmento del colon."
+    regiones = [
+        ("ciego", "Ciego"),
+        ("ascendente", "Colon ascendente"),
+        ("transverso", "Colon transverso"),
+        ("descendente", "Colon descendente"),
+        ("sigmoide", "Colon sigmoide"),
+        ("recto", "Recto"),
+    ]
+    botones = []
+    for ident, nombre in regiones:
+        botones.append(
+            "<li>"
+            f'<button type="button" data-segmento aria-controls="seg-{ident}" aria-pressed="false">{e(nombre)}</button>'
+            f'<div class="segmento" id="seg-{ident}"><p><strong>{e(nombre)}.</strong> {e(nota)}</p>'
+            f"{_hecho_estudio(contador)}</div>"
+            "</li>"
+        )
+    return (
+        '<figure class="colon">'
+        '<svg class="colon-lienzo" viewBox="0 0 280 360" role="img">'
+        "<title>Esquema del colon</title>"
+        "<desc>Esquema didáctico, no a escala. No localiza las muestras de esta tesis.</desc>"
+        '<path d="M80 300 C80 80 200 80 200 300" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round"/>'
+        '<text x="150" y="40" text-anchor="middle" fill="currentColor" font-size="14">transverso</text>'
+        '<text x="8" y="180" fill="currentColor" font-size="14">ascendente</text>'
+        '<text x="214" y="180" fill="currentColor" font-size="14">descendente</text>'
+        "</svg>"
+        "<ul class=\"segmentos\">" + "".join(botones) + "</ul></figure>"
+    )
+
+
+def matrices_html(contador) -> str:
+    etiquetas = json.loads((V37 / "k1_etiquetas.json").read_text(encoding="utf-8"))
+    contraste = etiquetas["contrastes"]["primario_frente_a_mucosa"]
+    tejido_ancho = 100 * int(contraste["numerador"]) / int(contraste["denominador"])
+    celda = json.loads((V37 / "suero_embudo.json").read_text(encoding="utf-8"))["celda_preregistrada"]
+    suero_ancho = 100 * int(celda["diferente"]) / int(celda["n"])
+    tejido = (
+        "<h3>Tejido</h3>"
+        "<p>Resultado calculado. Tumor y mucosa. El signo coincide en "
+        f'{dato_html("results/v3_7/k1_etiquetas.json#contrastes.primario_frente_a_mucosa.numerador", contador)}'
+        " de "
+        f'{dato_html("results/v3_7/k1_etiquetas.json#contrastes.primario_frente_a_mucosa.denominador", contador)}'
+        ". La barra es ese cociente.</p>"
+        f'<span class="pista" style="--meta:{tejido_ancho:.4f}%"></span>'
+    )
+    suero = (
+        "<h3>Suero</h3>"
+        "<p>Resultado calculado. Otra matriz y otras personas. Frente a CN hay "
+        f'{dato_html("results/v3_7/suero_embudo.json#celda_preregistrada.diferente", contador)}'
+        " diferentes de "
+        f'{dato_html("results/v3_7/suero_embudo.json#celda_preregistrada.n", contador)}'
+        ". La barra es ese cociente.</p>"
+        f'<span class="pista" style="--meta:{suero_ancho:.4f}%"></span>'
+    )
+    return (
+        '<div class="matrices">'
+        f"<article>{tejido}</article><article>{suero}</article>"
+        "<p>Las dos pistas no se unen. La tesis no fusiona las matrices y no muestra una proteína que salga del tumor hacia la sangre.</p>"
+        "</div>"
+    )
+
+
+def explorar_html(paginas: list[dict]) -> str:
+    queridas = [
+        "/metodos/proteomica",
+        "/resultados",
+        "/proteinas",
+        "/metodos/aprendizaje-automatico",
+        "/conclusiones",
+        "/bibliografia",
+    ]
+    por_ruta = {pagina["ruta"]: pagina for pagina in paginas}
+    tarjetas = []
+    for ruta in queridas:
+        if ruta == "/bibliografia":
+            titulo, resumen = "Bibliografía", "Referencias comprobadas contra su DOI."
+        else:
+            pagina = por_ruta[ruta]
+            titulo, resumen = pagina["titulo"], pagina["resumen"]
+        tarjetas.append(
+            f'<a class="tarjeta" href="{e(ruta)}"><h2>{e(titulo)}</h2><p>{e(resumen)}</p></a>'
+        )
+    return '<div class="tarjetas">' + "".join(tarjetas) + "</div>"
+
+
 def md_inline(texto: str, bib, glosario, contador) -> str:
     patron = re.compile(
-        r"\{\{dato:([^}]+)\}\}|\{\{termino:([^}]+)\}\}|\{\{diagrama:([^}]+)\}\}|\{\{figura:([^}]+)\}\}|\[@([^\]]+)\]"
+        r"\{\{dato:([^}]+)\}\}|\{\{termino:([^}]+)\}\}|\{\{diagrama:([^}]+)\}\}|\{\{figura:([^}]+)\}\}|"
+        r"\{\{embudo:([^}]+)\}\}|\{\{anatomia:([^}]+)\}\}|\{\{matrices\}\}|"
+        r"\{\{celda\}\}|\{\{llamadas\}\}|\{\{explorar\}\}|\[@([^\]]+)\]"
     )
     piezas = []
     pos = 0
@@ -151,8 +300,22 @@ def md_inline(texto: str, bib, glosario, contador) -> str:
             if hallado.group(4) not in FIGURAS:
                 raise SystemExit(f"figura sin datos: {hallado.group(4)}")
             piezas.append(FIGURAS[hallado.group(4)])
+        elif hallado.group(5):
+            piezas.append(embudo_html(hallado.group(5), contador))
+        elif hallado.group(6):
+            if hallado.group(6) != "colon":
+                raise SystemExit(f"anatomía sin definición: {hallado.group(6)}")
+            piezas.append(anatomia_html(contador))
+        elif hallado.group(0) == "{{matrices}}":
+            piezas.append(matrices_html(contador))
+        elif hallado.group(0) == "{{celda}}":
+            piezas.append(celda_html(contador))
+        elif hallado.group(0) == "{{llamadas}}":
+            piezas.append(llamadas_html())
+        elif hallado.group(0) == "{{explorar}}":
+            piezas.append('<div class="tarjetas" id="explorar"></div>')
         else:
-            piezas.append(cita_html(hallado.group(5), bib))
+            piezas.append(cita_html(hallado.group(7), bib))
         pos = hallado.end()
     piezas.append(e(texto[pos:]))
     return "".join(piezas)
@@ -164,7 +327,7 @@ def md_a_html(texto: str, bib, glosario, contador) -> tuple[str, list[dict]]:
     piezas = []
     for bloque in bloques:
         lineas = bloque.splitlines()
-        if bloque.strip().startswith(("{{diagrama:", "{{figura:")):
+        if bloque.strip().startswith(("{{diagrama:", "{{figura:", "{{embudo:", "{{anatomia:", "{{matrices}}", "{{celda}}", "{{llamadas}}", "{{explorar}}")):
             piezas.append(md_inline(bloque.strip(), bib, glosario, contador))
         elif bloque.startswith("# "):
             piezas.append(f"<h1>{md_inline(bloque[2:].strip(), bib, glosario, contador)}</h1>")
@@ -271,15 +434,27 @@ def leer_paginas() -> list[dict]:
     return paginas
 
 
-def menu_de(paginas: list[dict]) -> list[dict]:
+def menu_principal() -> list[dict]:
+    return [
+        {"nombre": "Inicio", "ruta": "/"},
+        {"nombre": "La investigación", "ruta": "/investigacion/contexto"},
+        {"nombre": "¿Cómo funciona?", "ruta": "/metodos/proteomica"},
+        {"nombre": "Explorar resultados", "ruta": "/resultados"},
+        {"nombre": "Aprende", "ruta": "/ayuda"},
+    ]
+
+
+def menu_secundario(paginas: list[dict]) -> list[dict]:
+    primarias = {item["ruta"] for item in menu_principal()}
     vistos = []
     for pagina in paginas:
-        if pagina["seccion"] == "Inicio":
+        if pagina["ruta"] in primarias or pagina["seccion"] == "Inicio":
             continue
         if not any(item["nombre"] == pagina["seccion"] for item in vistos):
             vistos.append({"nombre": pagina["seccion"], "ruta": pagina["ruta"]})
-    vistos.append({"nombre": "Glosario", "ruta": "/glosario"})
-    vistos.append({"nombre": "Bibliografía", "ruta": "/bibliografia"})
+    for nombre, ruta in (("Glosario", "/glosario"), ("Bibliografía", "/bibliografia")):
+        if not any(item["ruta"] == ruta for item in vistos):
+            vistos.append({"nombre": nombre, "ruta": ruta})
     return vistos
 
 
@@ -385,7 +560,8 @@ def main() -> None:
     spec.loader.exec_module(graficos)
     FIGURAS = graficos.generar()
     paginas = leer_paginas()
-    menu = [{"nombre": "Inicio", "ruta": "/"}] + menu_de(paginas)
+    menu = menu_principal()
+    secundario = menu_secundario(paginas)
     env = Environment(
         loader=FileSystemLoader(FUENTE / "plantillas"),
         autoescape=select_autoescape(["html", "j2"]),
@@ -398,21 +574,19 @@ def main() -> None:
         "franja_estado": estado,
         "franja_sello": sello,
         "menu": menu,
+        "secundario": secundario,
         "js_extra": "",
         "molstar_js": molstar_js,
         "molstar_css": molstar_css,
     }
     for pagina in paginas:
         cuerpo, indice = md_a_html(pagina["cuerpo"], bib, glosario, contador)
-        if pagina["ruta"] == "/":
-            tarjetas = []
-            for item in menu:
-                if item["ruta"] == "/":
-                    continue
-                tarjetas.append(
-                    f'<a class="tarjeta" href="{e(item["ruta"])}"><h2>{e(item["nombre"])}</h2></a>'
-                )
-            cuerpo = cuerpo.replace("</h1>", "</h1>" + '<div class="tarjetas">' + "".join(tarjetas) + "</div>", 1)
+        if pagina["ruta"] == "/" and 'id="explorar"' in cuerpo:
+            cuerpo = cuerpo.replace(
+                '<div class="tarjetas" id="explorar"></div>',
+                explorar_html(paginas),
+                1,
+            )
         migas = "Inicio" if pagina["ruta"] == "/" else f'Inicio / {pagina["seccion"]} / {pagina["titulo"]}'
         html_pagina = render(
             env, "base.html.j2",

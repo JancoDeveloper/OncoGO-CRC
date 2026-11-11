@@ -171,6 +171,19 @@ def test_las_284_fichas_son_la_celda():
         assert (SITIO / "proteinas" / href.removeprefix("/proteinas/") / "index.html").is_file()
 
 
+def test_la_portada_usa_la_celda_y_no_localiza_el_colon():
+    pagina = (SITIO / "index.html").read_text(encoding="utf-8")
+    assert 'data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente"' in pagina
+    assert 'data-fuente="results/v3_7/priorizacion_embudo.json#pasos.5.n"' in pagina
+    assert "Información no disponible en las fuentes del proyecto" in pagina
+    assert 'aria-label="Principal"' in pagina
+    assert "¿Cómo funciona?" in pagina
+    embudo = json.loads((REPO / "results" / "v3_7" / "priorizacion_embudo.json").read_text(encoding="utf-8"))
+    for i, paso in enumerate(embudo["pasos"]):
+        assert f'results/v3_7/priorizacion_embudo.json#pasos.{i}.n' in pagina
+        assert f'value="{paso["n"]}"' in pagina
+
+
 def test_d1_tiene_tabla_y_sello():
     pagina = (SITIO / "index.html").read_text(encoding="utf-8")
     assert 'role="img"' in pagina and "<title>" in pagina and "<desc>" in pagina

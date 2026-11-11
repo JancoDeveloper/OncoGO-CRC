@@ -20,6 +20,14 @@ Una cita enlaza a la bibliografía. Al enfocarla se ve el título del artículo.
 
 No es una herramienta para decidir sobre un paciente. {{termino:CN}} son pacientes sintomáticos con otra enfermedad intestinal. [@rai2025]
 
+## Comprobar una lectura
+
+Una lectura falsa diría que ese grupo no tiene enfermedad. {{termino:CN}} son pacientes sintomáticos con otra enfermedad intestinal. [@rai2025]
+
+¿Alguien pasa el paso 6? El fichero dice {{dato:results/v3_7/priorizacion_embudo.json#nadie_pasa_el_paso_6}}. [@rai2025]
+
+¿H7 se sostiene? El estado guardado es {{dato:results/v3_7/h7_visibilidad_en_sangre.json#estado}}. [@rai2025]
+
 ## Dónde sigue la lectura
 
 La discusión, las conclusiones y los entregables están en el menú. El documento de la tesis sigue en revisión y esta web no publica el PDF. [@rai2025]

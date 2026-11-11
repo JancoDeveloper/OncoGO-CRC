@@ -22,21 +22,22 @@
 }
 
 :root {
-  --papel: #f7f4ee;
-  --tinta: #1b2430;
-  --tinta-suave: #3a4654;
-  --marca: #0c4a52;
-  --sobre-marca: #f7f4ee;
-  --linea: #d9d3c7;
-  --tarjeta: #fffdf8;
-  --aviso-fondo: #f6e7e0;
+  --papel: #f5f7fa;
+  --tinta: #142d4e;
+  --tinta-suave: #34506e;
+  --marca: #0e4d6e;
+  --sobre-marca: #f5f7fa;
+  --linea: #d5dde6;
+  --tarjeta: #ffffff;
+  --aviso-fondo: #f8ebe3;
   --aviso-tinta: #6a2c18;
-  --foco: #0b4f55;
-  --sombra: 0 1px 2px rgba(27, 36, 48, 0.08);
+  --foco: #0e4d6e;
+  --sombra: 0 1px 2px rgba(20, 45, 78, 0.08);
   --radio: 8px;
   --espacio: 1rem;
   --fuente: "Source Sans 3", "Segoe UI", sans-serif;
   --fuente-titulo: "Source Serif 4", Georgia, serif;
+  --fuente-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --medida: 72rem;
 }
 

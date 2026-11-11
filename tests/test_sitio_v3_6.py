@@ -41,8 +41,9 @@ def test_el_estado_v3_7_coincide_con_sus_ficheros():
         datos = json.loads((RAIZ / ruta).read_text(encoding="utf-8"))
         actual = datos
         for parte in campo.split("."):
-            actual = actual[parte]
-        assert str(actual) == valor, fuente
+            actual = actual[int(parte)] if isinstance(actual, list) else actual[parte]
+        esperado = str(actual).lower() if isinstance(actual, bool) else str(actual)
+        assert esperado == valor, fuente
 
 
 def test_cada_cifra_tiene_fuente_de_v3_6():
