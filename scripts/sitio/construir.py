@@ -426,8 +426,11 @@ def main() -> None:
     (SITIO / "bibliografia" / "index.html").write_text(bibliografia, encoding="utf-8")
 
     grupos = []
-    for item in menu:
-        grupos.append(f'<li data-buscar="{e(item["nombre"])}"><a href="{e(item["ruta"])}">{e(item["nombre"])}</a></li>')
+    for pagina in paginas:
+        grupos.append(
+            f'<li data-buscar="{e(pagina["titulo"])} {e(pagina["seccion"])}">'
+            f'<a href="{e(pagina["ruta"])}">{e(pagina["titulo"])}</a></li>'
+        )
     for item in glosario:
         grupos.append(
             f'<li data-buscar="{e(item["termino"])} {e(item.get("sigla", ""))}">'
