@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ titulo }} · OncoGO-CRC</title>
+<link rel="stylesheet" href="/css/{{ css }}">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="barra">
+<a class="marca" href="/">OncoGO-CRC</a>
+<nav class="menu" aria-label="Principal">
+{% for item in menu %}
+<a href="{{ item.ruta }}">{{ item.nombre }}</a>
+{% endfor %}
+</nav>
+<form class="buscar" action="/buscar" method="get" role="search">
+<label class="saltar" for="q">Buscar</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="{{ consulta }}">
+<button type="submit">Buscar</button>
+</form>
+<button type="button" id="tema">Tema</button>
+</header>
+<p class="aviso">{{ aviso }}</p>
+<div class="disposicion">
+<nav class="indice" aria-label="En esta página">
+<p class="migas">{{ migas }}</p>
+{% for ancla in indice %}
+<a href="#{{ ancla.id }}">{{ ancla.texto }}</a>
+{% endfor %}
+</nav>
+<main id="contenido">
+{{ cuerpo | safe }}
+{% if fuentes %}
+<h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
+<ul>
+{% for fuente in fuentes %}
+<li><a href="{{ fuente.href }}">{{ fuente.texto }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+</main>
+</div>
+<footer class="pie">
+<p>Resultados v3.7-final · certificado {{ franja_estado | safe }} · sello {{ franja_sello | safe }}.</p>
+<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
+<p class="aviso">{{ aviso }}</p>
+</footer>
+<script>{{ js | safe }}</script>
+</body>
+</html>

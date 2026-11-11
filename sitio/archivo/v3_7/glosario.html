@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glosario · OncoGO-CRC</title>
+<link rel="stylesheet" href="/archivo/v3_7/css/v37.140eba33a5.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="barra">
+<a href="/">OncoGO-CRC</a>
+<nav><a href="/">Inicio</a><a href="/lo-prometido">Lo prometido</a><a href="/datos">Datos</a><a href="/tejido">Tejido</a><a href="/suero">Suero</a><a href="/aprendizaje-automatico">Aprendizaje</a><a href="/preanalitica">Preanalítica</a><a href="/hipotesis">Hipótesis</a><a href="/priorizacion">Priorización</a><a href="/desviaciones">Desviaciones</a><a href="/reproducir">Reproducir</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/aprende">Aprende</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/historial">Historial</a><a href="/archivo/">Archivo</a></nav>
+<button type="button" id="tema">Tema</button>
+</header>
+<p class="franja" role="status">Certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">Publicable</data>. Commit del sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>. Etiqueta v3.7-final.</p>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<main id="contenido" class="pagina">
+<h1>Glosario</h1><dl><dt id="g1">AUC</dt><dd>Área bajo la curva de una clasificación. Resume una separación, no decide un tratamiento.</dd><dt id="g2">FDR</dt><dd>Tasa esperada de falsos hallazgos cuando se miran muchas proteínas a la vez.</dd><dt id="g3">BH</dt><dd>Corrección de Benjamini-Hochberg. Controla el FDR dentro del grupo que se declara.</dd><dt id="g4">CN</dt><dd>Pacientes sintomáticos con otra enfermedad intestinal. No son el grupo de comparación sano.</dd><dt id="g5">CP</dt><dd>Grupo de cáncer colorrectal en el suero de esta tesis.</dd><dt id="g6">HC</dt><dd>Grupo de personas sanas del suero. Se adquirió aparte de CP y de CN.</dd><dt id="g7">Celda</dt><dd>La matriz principal del suero, después de los filtros escritos antes de mirar.</dd><dt id="g8">Diferente</dt><dd>La proteína pasa el contraste con el efecto mínimo y el FDR del preregistro.</dd><dt id="g9">Equivalente</dt><dd>La proteína queda dentro del margen de equivalencia del contraste.</dd><dt id="g10">Indeterminada</dt><dd>Ni diferente ni equivalente. El estudio no la resuelve.</dd><dt id="g11">log2FC</dt><dd>Logaritmo en base dos del cambio entre dos grupos.</dd><dt id="g12">Treat</dt><dd>Umbral de magnitud. Un cambio pequeño puede ser significativo y no pasar treat.</dd><dt id="g13">GO</dt><dd>Gene Ontology. Vocabulario de funciones, usado aquí sin propagar y sin IEA.</dd><dt id="g14">ORA</dt><dd>Análisis de sobrerrepresentación. Pregunta si un término acumula genes de una lista.</dd><dt id="g15">GSEA</dt><dd>Enriquecimiento sobre una lista ordenada, no sobre un corte.</dd><dt id="g16">NES</dt><dd>Puntuación de enriquecimiento normalizada de GSEA.</dd><dt id="g17">SHAP</dt><dd>Reparto aditivo del valor de un modelo ya ajustado. No es una proteína nueva.</dd><dt id="g18">DIA</dt><dd>Adquisición independiente de datos. El espectrómetro no elige un precursor por su intensidad.</dd><dt id="g19">Precursor</dt><dd>El ion del péptido antes de fragmentarlo. Su recuento habla de la profundidad de la corrida.</dd><dt id="g20">Sello</dt><dd>Bloque con el commit, la fecha y los hash de las entradas de una salida.</dd><dt id="g21">Certificado</dt><dd>Lista de casillas. Publicable significa que las casillas exigidas pasan o están declaradas.</dd><dt id="g22">Multiverso</dt><dd>Las mismas proteínas leídas con otras reglas de cuantificación, contaminantes y presencia.</dd><dt id="g23">Preregistro</dt><dd>Lo que se escribió antes de calcular: umbrales, semillas y qué no se iba a ejecutar.</dd><dt id="g24">Enmienda</dt><dd>Un cambio posterior, con fecha y con el valor anterior. No reescribe el preregistro en silencio.</dd><dt id="g25">Semilla</dt><dd>El entero que fija el azar de permutaciones y pliegues.</dd><dt id="g26">Determinismo</dt><dd>Dos procesos, con el mismo código y las mismas entradas, dejan los mismos números.</dd><dt id="g27">Contaminante</dt><dd>Proteína que no viene de la muestra. La biblioteca se declara y se puede dejar fuera.</dd><dt id="g28">Cohorte</dt><dd>Un conjunto de muestras medido con un diseño propio. Aquí no se fusionan cohortes.</dd><dt id="g29">Tejido</dt><dd>Las comparaciones de tumor, mucosa y metástasis. No es el suero.</dd><dt id="g30">Suero</dt><dd>La matriz de PXD055218. CP, CN y HC no se interpretan como la misma pregunta.</dd><dt id="g31">Mucosa</dt><dd>El tejido no tumoral pareado en el diseño de Tanaka.</dd><dt id="g32">Metástasis</dt><dd>La muestra hepática del mismo diseño. No sustituye al tumor primario.</dd><dt id="g33">Colonoscopia</dt><dd>La exploración que define el grupo CN cuando no muestra este cáncer.</dd><dt id="g34">Fase aguda</dt><dd>Respuesta del organismo que sube proteínas abundantes. No identifica el tumor.</dd><dt id="g35">Imputación</dt><dd>Rellenar un hueco. Esta corrida no imputa la matriz principal.</dd><dt id="g36">ESM-2</dt><dd>Modelo de lenguaje de proteínas. En esta tesis el vector se lee de un fichero ya calculado.</dd><dt id="g37">TMbed</dt><dd>Predicción de hélices transmembrana y péptido señal. También se lee de un fichero.</dd><dt id="g38">Ventana</dt><dd>Un trozo consecutivo de una secuencia larga. El vector final promedia las ventanas.</dd><dt id="g39">Veredicto</dt><dd>La palabra que la regla escrita asigna a una hipótesis. El secundario de H7 no entra en el suyo.</dd><dt id="g40">Desviación</dt><dd>Una pieza anunciada que no se ejecutó, y que se declara en vez de presentarse como resultado.</dd><dt id="g41">Réplica</dt><dd>La segunda cohorte con la que se contrasta un hallazgo de la primera.</dd><dt id="g42">Cobertura</dt><dd>Qué fracción de las proteínas de la primera cohorte llega a medirse en la segunda.</dd></dl>
+</main>
+<p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<script>
+(function () {
+  var reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var boton = document.getElementById("tema");
+  if (boton) boton.addEventListener("click", function () {
+    var actual = document.documentElement.getAttribute("data-tema");
+    document.documentElement.setAttribute("data-tema", actual === "oscuro" ? "claro" : "oscuro");
+  });
+  document.querySelectorAll("table.ordenable").forEach(function (tabla) {
+    var filas = Array.prototype.slice.call(tabla.tBodies[0].rows);
+    Array.prototype.forEach.call(tabla.tHead.rows[0].cells, function (th, indice) {
+      th.tabIndex = 0;
+      function ordenar() {
+        var abajo = th.getAttribute("aria-sort") !== "ascending";
+        filas.sort(function (a, b) {
+          var x = a.cells[indice].textContent.trim();
+          var y = b.cells[indice].textContent.trim();
+          var nx = parseFloat(x.replace(",", "."));
+          var ny = parseFloat(y.replace(",", "."));
+          var cmp = (isFinite(nx) && isFinite(ny)) ? nx - ny : x.localeCompare(y, "es");
+          return abajo ? cmp : -cmp;
+        });
+        filas.forEach(function (fila) { tabla.tBodies[0].appendChild(fila); });
+        th.setAttribute("aria-sort", abajo ? "ascending" : "descending");
+      }
+      th.addEventListener("click", ordenar);
+      th.addEventListener("keydown", function (ev) { if (ev.key === "Enter") ordenar(); });
+    });
+  });
+  document.querySelectorAll("[data-filtro]").forEach(function (botonFiltro) {
+    botonFiltro.addEventListener("click", function () {
+      var campo = botonFiltro.getAttribute("data-filtro");
+      var valor = botonFiltro.getAttribute("data-valor");
+      document.querySelectorAll(".celda-multi").forEach(function (celda) {
+        var ocultar = valor !== "todas" && celda.getAttribute(campo) !== valor;
+        if (ocultar) celda.setAttribute("hidden", "");
+        else celda.removeAttribute("hidden");
+      });
+    });
+  });
+  if (!reducido) {
+    document.querySelectorAll("data.contador").forEach(function (nodo) {
+      var fin = parseFloat(nodo.getAttribute("value"));
+      if (!isFinite(fin)) return;
+      var t0 = performance.now();
+      function paso(ahora) {
+        var t = Math.min(1, (ahora - t0) / 1200);
+        nodo.textContent = String(Math.round(fin * t));
+        if (t < 1) requestAnimationFrame(paso);
+        else nodo.textContent = nodo.getAttribute("data-visible");
+      }
+      requestAnimationFrame(paso);
+    });
+  }
+})();
+</script>
+</body>
+</html>

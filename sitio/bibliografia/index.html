@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bibliografía · OncoGO-CRC</title>
+<link rel="stylesheet" href="/css/v4.af8fbc90bb.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="barra">
+<a class="marca" href="/">OncoGO-CRC</a>
+<nav class="menu" aria-label="Principal">
+
+<a href="/">Inicio</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/ayuda">Ayuda</a>
+
+<a href="/glosario">Glosario</a>
+
+<a href="/bibliografia">Bibliografía</a>
+
+</nav>
+<form class="buscar" action="/buscar" method="get" role="search">
+<label class="saltar" for="q">Buscar</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<button type="submit">Buscar</button>
+</form>
+<button type="button" id="tema">Tema</button>
+</header>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<div class="disposicion">
+<nav class="indice" aria-label="En esta página">
+<p class="migas">Inicio / Bibliografía</p>
+
+</nav>
+<main id="contenido">
+<h1>Bibliografía</h1><article id="rai2025" class="entrada"><h2>Rai 2025</h2><p class="titulo-citado">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</p><p><a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></p></article><article id="tanaka2024" class="entrada"><h2>Tanaka 2024</h2><p class="titulo-citado">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures</p><p><a href="https://doi.org/10.1016/j.celrep.2024.113810">https://doi.org/10.1016/j.celrep.2024.113810</a></p></article><article id="vasaikar2019" class="entrada"><h2>Vasaikar 2019</h2><p class="titulo-citado">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities</p><p><a href="https://doi.org/10.1016/j.cell.2019.03.030">https://doi.org/10.1016/j.cell.2019.03.030</a></p></article><article id="zhang2014" class="entrada"><h2>CPTAC 2014</h2><p class="titulo-citado">Proteogenomic characterization of human colon and rectal cancer</p><p><a href="https://doi.org/10.1038/nature13438">https://doi.org/10.1038/nature13438</a></p></article>
+
+</main>
+</div>
+<footer class="pie">
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data><details class="evidencia"><summary>fuente</summary><p id="ev1">results/v3_7/certificado.json#estado</p></details> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data><details class="evidencia"><summary>fuente</summary><p id="ev2">results/v3_7/certificado.json#sello.commit</p></details>.</p>
+<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+</footer>
+<script>(function () {
+  var raiz = document.documentElement;
+  var guardado = null;
+  try { guardado = localStorage.getItem("tema"); } catch (error) { guardado = null; }
+  if (guardado === "oscuro" || guardado === "claro") raiz.setAttribute("data-tema", guardado);
+  var boton = document.getElementById("tema");
+  if (boton) {
+    boton.addEventListener("click", function () {
+      var siguiente = raiz.getAttribute("data-tema") === "oscuro" ? "claro" : "oscuro";
+      raiz.setAttribute("data-tema", siguiente);
+      try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
+    });
+  }
+  var caja = document.getElementById("q");
+  if (caja && document.querySelector("[data-buscar]")) {
+    var aplicar = function () {
+      var consulta = caja.value.toLowerCase();
+      document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
+        var texto = nodo.getAttribute("data-buscar").toLowerCase();
+        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+      });
+    };
+    caja.addEventListener("input", aplicar);
+    if (caja.value) aplicar();
+  }
+  var secciones = Array.prototype.slice.call(document.querySelectorAll("main h2[id]"));
+  var enlaces = Array.prototype.slice.call(document.querySelectorAll(".indice a"));
+  if (secciones.length && enlaces.length && "IntersectionObserver" in window) {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) return;
+        enlaces.forEach(function (enlace) {
+          var activo = enlace.getAttribute("href") === "#" + entrada.target.id;
+          if (activo) enlace.setAttribute("aria-current", "true");
+          else enlace.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    secciones.forEach(function (seccion) { observador.observe(seccion); });
+  }
+})();
+</script>
+</body>
+</html>

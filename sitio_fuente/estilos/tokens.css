@@ -1,0 +1,55 @@
+/* Identidad propia. No usa la marca ni las hojas de UniProt. */
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fuentes/source-sans-3-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fuentes/source-sans-3-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fuentes/source-serif-4-400.woff2") format("woff2");
+}
+
+:root {
+  --papel: #f7f4ee;
+  --tinta: #1b2430;
+  --tinta-suave: #3a4654;
+  --marca: #0c4a52;
+  --sobre-marca: #f7f4ee;
+  --linea: #d9d3c7;
+  --tarjeta: #fffdf8;
+  --aviso-fondo: #f6e7e0;
+  --aviso-tinta: #6a2c18;
+  --foco: #0b4f55;
+  --sombra: 0 1px 2px rgba(27, 36, 48, 0.08);
+  --radio: 8px;
+  --espacio: 1rem;
+  --fuente: "Source Sans 3", "Segoe UI", sans-serif;
+  --fuente-titulo: "Source Serif 4", Georgia, serif;
+  --medida: 72rem;
+}
+
+[data-tema="oscuro"] {
+  --papel: #14181f;
+  --tinta: #f3efe6;
+  --tinta-suave: #d2cdc2;
+  --marca: #9fd4d8;
+  --sobre-marca: #102124;
+  --linea: #2c3440;
+  --tarjeta: #1c222b;
+  --aviso-fondo: #3a241c;
+  --aviso-tinta: #f6d5c8;
+  --foco: #9fd4d8;
+  --sombra: none;
+}

@@ -1,0 +1,8 @@
+nodo	fuente
+Pregunta	rai2025
+Datos	vasaikar2019
+Métodos	tanaka2024
+Resultados	results/v3_7/suero_embudo.json
+pregunta → datos	rai2025
+datos → metodos	tanaka2024
+metodos → resultados	results/v3_7/suero_embudo.json

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lo prometido · OncoGO-CRC</title>
+<link rel="stylesheet" href="/archivo/v3_7/css/v37.140eba33a5.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="barra">
+<a href="/">OncoGO-CRC</a>
+<nav><a href="/">Inicio</a><a href="/lo-prometido">Lo prometido</a><a href="/datos">Datos</a><a href="/tejido">Tejido</a><a href="/suero">Suero</a><a href="/aprendizaje-automatico">Aprendizaje</a><a href="/preanalitica">Preanalítica</a><a href="/hipotesis">Hipótesis</a><a href="/priorizacion">Priorización</a><a href="/desviaciones">Desviaciones</a><a href="/reproducir">Reproducir</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/aprende">Aprende</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/historial">Historial</a><a href="/archivo/">Archivo</a></nav>
+<button type="button" id="tema">Tema</button>
+</header>
+<p class="franja" role="status">Certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">Publicable</data>. Commit del sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>. Etiqueta v3.7-final.</p>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<main id="contenido" class="pagina">
+<h1>Lo prometido</h1><article class="tarjeta tarjeta-prometida"><h2>Integrar la proteómica de las tres cohortes</h2><p>Estado <data value="cumplido" data-fuente="config/correspondencia_propuesta.tsv#punto=integrar_proteomica.estado">cumplido</data>.</p><p>CPTAC, Tanaka y PXD055218 entran en la misma corrida certificada.</p><p class="mono">suero_embudo.json</p><figure class="grafico" id="p01">
+<h3>Proteínas de la celda</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Proteínas de la celda</title><desc>Proteínas de la celda</desc><text x="40" y="180" fill="currentColor" font-size="28">284</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n" tabindex="0" data-tip="celda"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>celda</td><td>284</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p01.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p01.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">origen results/v3_7/suero_embudo.json</a></p>
+</figure></article><article class="tarjeta tarjeta-prometida"><h2>Proteínas diferenciales en suero</h2><p>Estado <data value="cumplido" data-fuente="config/correspondencia_propuesta.tsv#punto=proteinas_diferenciales.estado">cumplido</data>.</p><p>Frente a CN ninguna proteína de la celda es diferente. CN no son personas sanas. Frente a HC salen 3 (CP) y 1 (CN), leídos de suero_k4_crc_sanos.tsv y suero_k4_cn_sanos.tsv.</p><p class="mono">suero_k4_crc_cn.tsv</p><figure class="grafico" id="p02">
+<h3>Diferentes frente a CN</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Diferentes frente a CN</title><desc>Diferentes frente a CN</desc><text x="40" y="180" fill="currentColor" font-size="28">0</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente" tabindex="0" data-tip="diferente"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>diferente</td><td>0</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p02.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p02.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">origen results/v3_7/suero_embudo.json</a></p>
+</figure></article><article class="tarjeta tarjeta-prometida"><h2>Reproducibilidad entre cohortes de tejido</h2><p>Estado <data value="cumplido_reformulado" data-fuente="config/correspondencia_propuesta.tsv#punto=reproducibilidad.estado">cumplido_reformulado</data>.</p><p>La intersección se reporta como la cobertura de R1 y, aparte, la concordancia de signo. No es un biomarcador.</p><p class="mono">k1_etiquetas.json</p><figure class="grafico" id="p03">
+<h3>Cobertura de R1</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Cobertura de R1</title><desc>Cobertura de R1</desc><text x="40" y="180" fill="currentColor" font-size="28">147</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="147" data-fuente="results/v3_7/k1_etiquetas.json#cobertura.numerador" tabindex="0" data-tip="cobertura"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>cobertura</td><td>147</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p03.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p03.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/k1_etiquetas.json">origen results/v3_7/k1_etiquetas.json</a></p>
+</figure></article><article class="tarjeta tarjeta-prometida"><h2>Priorización de candidatas</h2><p>Estado <data value="cumplido_reformulado" data-fuente="config/correspondencia_propuesta.tsv#punto=priorizacion.estado">cumplido_reformulado</data>.</p><p>Siete pasos en orden, sin pesos. Si nadie pasa el paso 6, las del paso 5 quedan como hipótesis para cohortes futuras.</p><p class="mono">priorizacion_embudo.json</p><figure class="grafico" id="p04">
+<h3>Paso 5</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Paso 5</title><desc>Paso 5</desc><text x="40" y="180" fill="currentColor" font-size="28">20</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="20" data-fuente="results/v3_7/priorizacion_embudo.json#pasos.4.n" tabindex="0" data-tip="paso5"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>paso5</td><td>20</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p04.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p04.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/priorizacion_embudo.json">origen results/v3_7/priorizacion_embudo.json</a></p>
+</figure></article><article class="tarjeta tarjeta-prometida"><h2>GO ORA y GSEA del tejido</h2><p>Estado <data value="cumplido" data-fuente="config/correspondencia_propuesta.tsv#punto=go_ora_gsea.estado">cumplido</data>.</p><p>Descriptivo. No emite un veredicto de H1. GO sin propagar, sin IEA y con 200 permutaciones.</p><p class="mono">go_tejido.json</p><figure class="grafico" id="p05">
+<h3>Concordancia de NES</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Concordancia de NES</title><desc>Concordancia de NES</desc><text x="40" y="180" fill="currentColor" font-size="28">16</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.numerador" tabindex="0" data-tip="nes"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>nes</td><td>16</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p05.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p05.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">origen results/v3_7/go_tejido.json</a></p>
+</figure></article><article class="tarjeta tarjeta-prometida"><h2>Redes de coexpresión</h2><p>Estado <data value="desviacion_declarada" data-fuente="config/correspondencia_propuesta.tsv#punto=redes.estado">desviacion_declarada</data>.</p><p>No se interpreta ninguna red.</p><p>Esta fila no tiene fichero de resultado.</p><figure class="grafico" id="p06">
+<h3>Redes</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Redes</title><desc>Redes</desc><text x="40" y="180" fill="currentColor" font-size="28">desviacion_declarada</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="desviacion_declarada" data-fuente="config/correspondencia_propuesta.tsv#punto=redes.estado" tabindex="0" data-tip="redes"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>redes</td><td>desviacion_declarada</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p06.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p06.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/correspondencia_propuesta.tsv">origen config/correspondencia_propuesta.tsv</a></p>
+</figure></article><article class="tarjeta tarjeta-prometida"><h2>Aprendizaje automático interpretable</h2><p>Estado <data value="cumplido" data-fuente="config/correspondencia_propuesta.tsv#punto=ml_interpretable.estado">cumplido</data>.</p><p>SHAP lineal del modelo ya ajustado. M3, solo calidad, ya separa los grupos.</p><p class="mono">ml_explicacion.json</p><figure class="grafico" id="p07">
+<h3>AUC de M3</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>AUC de M3</title><desc>AUC de M3</desc><text x="40" y="180" fill="currentColor" font-size="28">0,915</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="0.9151250000000001" data-fuente="results/v3_7/ml_suero_permutacion.json#versiones.M3_solo_qc.auc_oof_media" tabindex="0" data-tip="m3"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>m3</td><td>0.9151250000000001</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p07.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p07.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/ml_suero_permutacion.json">origen results/v3_7/ml_suero_permutacion.json</a></p>
+</figure></article><article class="tarjeta tarjeta-prometida"><h2>Score de candidatas</h2><p>Estado <data value="cumplido_reformulado" data-fuente="config/correspondencia_propuesta.tsv#punto=score.estado">cumplido_reformulado</data>.</p><p>El score se presenta como la priorización por criterios secuenciales, sin pesos ni puntaje.</p><p class="mono">priorizacion.tsv</p><figure class="grafico" id="p08">
+<h3>Paso 6</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Paso 6</title><desc>Paso 6</desc><text x="40" y="180" fill="currentColor" font-size="28">0</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="0" data-fuente="results/v3_7/priorizacion_embudo.json#pasos.5.n" tabindex="0" data-tip="paso6"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>paso6</td><td>0</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p08.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p08.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/priorizacion_embudo.json">origen results/v3_7/priorizacion_embudo.json</a></p>
+</figure></article><article class="tarjeta tarjeta-prometida"><h2>Ampliar cohortes</h2><p>Estado <data value="no_cumplido" data-fuente="config/correspondencia_propuesta.tsv#punto=ampliar_cohortes.estado">no_cumplido</data>.</p><p>No hay una cohorte nueva medida en esta tesis.</p><p>Esta fila no tiene fichero de resultado.</p><figure class="grafico" id="p09">
+<h3>Cohortes nuevas</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Cohortes nuevas</title><desc>Cohortes nuevas</desc><text x="40" y="180" fill="currentColor" font-size="28">no_cumplido</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="no_cumplido" data-fuente="config/correspondencia_propuesta.tsv#punto=ampliar_cohortes.estado" tabindex="0" data-tip="cohortes"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>cohortes</td><td>no_cumplido</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p09.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p09.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/correspondencia_propuesta.tsv">origen config/correspondencia_propuesta.tsv</a></p>
+</figure></article><article class="tarjeta tarjeta-prometida"><h2>Robustecer la validación</h2><p>Estado <data value="cumplido" data-fuente="config/correspondencia_propuesta.tsv#punto=robustecer_validacion.estado">cumplido</data>.</p><p>Cada casilla cita su fichero y su sha256. Dos procesos comparados en docs/determinismo_dos_procesos.md.</p><p class="mono">certificado.json</p><figure class="grafico" id="p10">
+<h3>Certificado</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Certificado</title><desc>Certificado</desc><text x="40" y="180" fill="currentColor" font-size="28">Publicable</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" data-value="publicable" data-fuente="results/v3_7/certificado.json#estado" tabindex="0" data-tip="certificado"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>certificado</td><td>publicable</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/archivo/v3_7/figuras/p10.svg" download>Descargar SVG</a>
+<a href="/archivo/v3_7/figuras/p10.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/certificado.json">origen results/v3_7/certificado.json</a></p>
+</figure></article>
+</main>
+<p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<script>
+(function () {
+  var reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var boton = document.getElementById("tema");
+  if (boton) boton.addEventListener("click", function () {
+    var actual = document.documentElement.getAttribute("data-tema");
+    document.documentElement.setAttribute("data-tema", actual === "oscuro" ? "claro" : "oscuro");
+  });
+  document.querySelectorAll("table.ordenable").forEach(function (tabla) {
+    var filas = Array.prototype.slice.call(tabla.tBodies[0].rows);
+    Array.prototype.forEach.call(tabla.tHead.rows[0].cells, function (th, indice) {
+      th.tabIndex = 0;
+      function ordenar() {
+        var abajo = th.getAttribute("aria-sort") !== "ascending";
+        filas.sort(function (a, b) {
+          var x = a.cells[indice].textContent.trim();
+          var y = b.cells[indice].textContent.trim();
+          var nx = parseFloat(x.replace(",", "."));
+          var ny = parseFloat(y.replace(",", "."));
+          var cmp = (isFinite(nx) && isFinite(ny)) ? nx - ny : x.localeCompare(y, "es");
+          return abajo ? cmp : -cmp;
+        });
+        filas.forEach(function (fila) { tabla.tBodies[0].appendChild(fila); });
+        th.setAttribute("aria-sort", abajo ? "ascending" : "descending");
+      }
+      th.addEventListener("click", ordenar);
+      th.addEventListener("keydown", function (ev) { if (ev.key === "Enter") ordenar(); });
+    });
+  });
+  document.querySelectorAll("[data-filtro]").forEach(function (botonFiltro) {
+    botonFiltro.addEventListener("click", function () {
+      var campo = botonFiltro.getAttribute("data-filtro");
+      var valor = botonFiltro.getAttribute("data-valor");
+      document.querySelectorAll(".celda-multi").forEach(function (celda) {
+        var ocultar = valor !== "todas" && celda.getAttribute(campo) !== valor;
+        if (ocultar) celda.setAttribute("hidden", "");
+        else celda.removeAttribute("hidden");
+      });
+    });
+  });
+  if (!reducido) {
+    document.querySelectorAll("data.contador").forEach(function (nodo) {
+      var fin = parseFloat(nodo.getAttribute("value"));
+      if (!isFinite(fin)) return;
+      var t0 = performance.now();
+      function paso(ahora) {
+        var t = Math.min(1, (ahora - t0) / 1200);
+        nodo.textContent = String(Math.round(fin * t));
+        if (t < 1) requestAnimationFrame(paso);
+        else nodo.textContent = nodo.getAttribute("data-visible");
+      }
+      requestAnimationFrame(paso);
+    });
+  }
+})();
+</script>
+</body>
+</html>

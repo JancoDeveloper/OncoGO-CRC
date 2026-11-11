@@ -1,0 +1,31 @@
+id: D1
+titulo: Mapa de la investigación
+desc: La pregunta usa el suero de Rai y el tejido de Vasaikar y de Tanaka. El resultado de la celda no se presenta como una prueba para un paciente.
+pregunta: ¿Cómo se recorre el estudio?
+nodos:
+  - id: pregunta
+    texto: Pregunta
+    href: /
+    fuente: rai2025
+  - id: datos
+    texto: Datos
+    href: /metodos/proteomica
+    fuente: vasaikar2019
+  - id: metodos
+    texto: Métodos
+    href: /metodos/proteomica
+    fuente: tanaka2024
+  - id: resultados
+    texto: Resultados
+    href: /
+    fuente: results/v3_7/suero_embudo.json
+aristas:
+  - origen: pregunta
+    destino: datos
+    fuente: rai2025
+  - origen: datos
+    destino: metodos
+    fuente: tanaka2024
+  - origen: metodos
+    destino: resultados
+    fuente: results/v3_7/suero_embudo.json

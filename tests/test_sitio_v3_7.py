@@ -14,7 +14,7 @@ import pytest
 import yaml
 
 REPO = Path(__file__).resolve().parents[1]
-SITIO = REPO / "sitio"
+SITIO = REPO / "sitio" / "archivo" / "v3_7"
 AVISO = "Ningún resultado de esta tesis sirve para decidir sobre un paciente."
 
 
@@ -174,8 +174,13 @@ def test_tarjetas_glosario_y_enlaces():
                 externos.add(href.split("#")[0])
             elif href.startswith("/") and not href.startswith("//"):
                 limpio = href.split("#")[0].split("?")[0]
-                if limpio.startswith("/figuras/") or limpio.startswith("/css/") or limpio.startswith("/archivo/v3_6"):
-                    assert (SITIO / limpio.lstrip("/")).exists() or (SITIO / (limpio.lstrip("/") + "/index.html")).exists()
+                if limpio.startswith("/archivo/v3_7/"):
+                    rel = limpio[len("/archivo/v3_7/"):]
+                    assert (SITIO / rel).exists() or (SITIO / (rel + "/index.html")).exists(), href
+                    continue
+                if limpio.startswith("/figuras/") or limpio.startswith("/css/") or limpio.startswith("/archivo/v3_6") or limpio.startswith("/archivo/v3_3") or limpio.startswith("/archivo/v3_4"):
+                    destino = REPO / "sitio" / limpio.lstrip("/")
+                    assert destino.exists() or (destino.parent / (destino.name + ".html")).exists() or (destino / "index.html").exists(), href
                     continue
                 candidato = SITIO / (limpio.lstrip("/") + ".html")
                 indice = SITIO / limpio.lstrip("/") / "index.html"

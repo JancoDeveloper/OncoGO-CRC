@@ -1,0 +1,63 @@
+- termino: CN
+  sigla: CN
+  sinonimos: [colonoscopia negativa]
+  definicion: Pacientes sintomáticos con otra enfermedad intestinal, usados como contraste del cáncer en el suero.
+  en_palabras_simples: Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.
+  rol_en_bioinformatica: Es la etiqueta del grupo contra el que se decide si una proteína del suero es específica del cáncer.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [CP, HC]
+  fuentes: [rai2025]
+- termino: CP
+  sigla: CP
+  sinonimos: []
+  definicion: Grupo de cáncer colorrectal en el suero de esta tesis.
+  en_palabras_simples: Las muestras de suero de personas con este cáncer.
+  rol_en_bioinformatica: Es una de las tres etiquetas de columna de la matriz de suero.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [CN, HC]
+  fuentes: [rai2025]
+- termino: HC
+  sigla: HC
+  sinonimos: []
+  definicion: Grupo de personas sanas del suero, adquirido en otras corridas del mismo instrumento.
+  en_palabras_simples: El contraste con personas sanas existe, pero no es el que decide la pregunta.
+  rol_en_bioinformatica: Permite ver qué proteínas cambian cuando el contraste no es otra enfermedad intestinal.
+  como_se_uso_aqui: /
+  relacionados: [CN, CP]
+  fuentes: [rai2025]
+- termino: DIA
+  sigla: DIA
+  sinonimos: [adquisición independiente de datos]
+  definicion: Modo de adquisición en el que el espectrómetro fragmenta ventanas de precursores en lugar de elegir un ion por su intensidad.
+  en_palabras_simples: Una forma de medir muchas proteínas del suero en la misma corrida.
+  rol_en_bioinformatica: El informe de DIA-NN es la matriz de la que parte el cálculo del suero.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [suero]
+  fuentes: [rai2025]
+- termino: proteoma
+  sigla: ""
+  sinonimos: []
+  definicion: El conjunto de proteínas medido en una muestra, aquí tejido o suero.
+  en_palabras_simples: La lista de proteínas que el experimento alcanzó a cuantificar.
+  rol_en_bioinformatica: Cada cohorte entrega su propio proteoma; no se suman intensidades de plataformas distintas.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [suero]
+  fuentes: [vasaikar2019]
+- termino: suero
+  sigla: ""
+  sinonimos: []
+  definicion: La matriz de PXD055218, con los grupos CP, CN y HC.
+  en_palabras_simples: La parte líquida de la sangre que se midió en el estudio de Rai y otros.
+  rol_en_bioinformatica: Es la matriz sobre la que se calcula la celda y los contrastes.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [CN, DIA]
+  fuentes: [rai2025]
+- termino: celda
+  sigla: ""
+  sinonimos: []
+  definicion: La matriz principal del suero después de los filtros escritos antes de mirar el resultado.
+  en_palabras_simples: Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.
+  rol_en_bioinformatica: Es el universo sobre el que se cuentan las clases diferente, equivalente e indeterminada.
+  como_se_uso_aqui: /
+  relacionados: [suero, CN]
+  fuentes: [rai2025]
