@@ -4,17 +4,17 @@ Sitio: https://oncogo-crc-tesis.web.app
 
 Proyecto de Firebase Hosting: `oncogo-crc-tesis`.
 
-Versión de Hosting: `ed65f62acbad33dc`.
+Versión de Hosting: `407c7edbcdbf1e2d`.
 
-Hora de la versión en vivo: 2026-11-11T18:31:00.695Z (13:31:00 en UTC−5). `createTime` 2026-11-11T18:30:56.586803Z. `finalizeTime` 2026-11-11T18:31:00.917162Z.
+Hora de la versión en vivo: 2026-11-11T18:40:25.881Z (13:40:25 en UTC−5). `createTime` 2026-11-11T18:40:21.509824Z. `finalizeTime` 2026-11-11T18:40:26.139537Z.
 
-El comando fue `firebase deploy --only hosting --project oncogo-crc-tesis -m "web documental, resultados v3.7-final 595118a, sitio ae7416e"`. El recurso de la versión no guarda ese mensaje: `labels` solo tiene `deployment-tool=cli-firebase`. La configuración publicada tiene 16 redirecciones. El directorio público sigue siendo `sitio`. No hay React.
+El comando fue `firebase deploy --only hosting --project oncogo-crc-tesis -m "web documental, resultados v3.7-final 595118a, sitio 49187b3"`. El recurso de la versión no guarda ese mensaje: `labels` solo tiene `deployment-tool=cli-firebase`. La configuración publicada tiene 16 redirecciones. El directorio público sigue siendo `sitio`. No hay React.
 
-El commit desplegado es `ae7416e2f0eb962f78930f9d40da43ae82607233`. La etiqueta `v3.7-final` no se movió y sigue en `595118ae09ea6006c744c86b28cb0a10d42e0442`.
+El commit desplegado es `49187b3a975323f6bba0bd7f2f04ac88f8590bf4`. La etiqueta `v3.7-final` no se movió y sigue en `595118ae09ea6006c744c86b28cb0a10d42e0442`.
 
-La versión anterior, `1e365b023d3e7804`, quedó liberada el 2026-11-11T16:41:51.391Z con el sitio `9660345`. Sigue en el historial de Hosting. La v3.7 anterior sigue archivada en `/archivo/v3_7`.
+La versión anterior, `ed65f62acbad33dc`, quedó liberada el 2026-11-11T18:31:00.695Z con el sitio `ae7416e`. Sigue en el historial de Hosting. La v3.7 anterior sigue archivada en `/archivo/v3_7`.
 
-Con `?v=7`, la portada muestra 166, 118 y 0, los porcentajes 58,5 % y 41,5 %, y no la etiqueta suelta «fuente». El aviso aparece dos veces. `colon.png`, `tejido.png`, `suero.png` y `colon-respaldo.svg` responden 200.
+Con `?v=8`, la ficha A0A075B6H9 enlaza «Comparar hallazgos», guarda el visor en `marco-estructura` y no muestra la etiqueta suelta «Origen». El aviso aparece dos veces.
 
 En esta versión, con `?v=5`, `/`, `/resultados`, `/proteinas`, `/proteinas/P02749` y `/metodos/proteomica` respondieron 200, con el aviso dos veces y la hoja `/css/v4.`. La portada trae «Metodología», «Explorar proteínas», «TOST cabe en el margen», «Ilustración conceptual», la barra `apilada` y «no localiza un tumor». `/proteinas` trae el filtro y un nombre de UniProt. Las 16 redirecciones siguieron en 301.
 

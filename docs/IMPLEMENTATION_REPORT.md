@@ -1,6 +1,6 @@
 # Informe de la implementación
 
-Fecha: 2026-11-11. Publicado. Hosting `ed65f62acbad33dc`, liberada el 2026-11-11T18:31:00.695Z, sitio `ae7416e`. La comprobación en vivo está en `docs/despliegue_sitio_v4.md`.
+Fecha: 2026-11-11. Publicado. Hosting `407c7edbcdbf1e2d`, liberada el 2026-11-11T18:40:25.881Z, sitio `49187b3`. La comprobación en vivo está en `docs/despliegue_sitio_v4.md`.
 
 ## Qué se modificó
 
@@ -42,4 +42,4 @@ Después de añadir las matrices, el embudo en `details` y la hoja `v4.a1fc0bd2e
 
 ## Publicación
 
-Hosting `ed65f62acbad33dc`. Con `?v=7`, la portada muestra 166, 118 y 0, sin la etiqueta suelta «fuente», y las tres ilustraciones responden 200. La versión anterior, `1e365b023d3e7804`, queda en el historial. El detalle está en `docs/despliegue_sitio_v4.md`.
+Hosting `407c7edbcdbf1e2d`. Con `?v=8`, la ficha A0A075B6H9 enlaza el comparador y el visor queda en su recuadro. El aviso aparece dos veces. La versión anterior, `ed65f62acbad33dc`, queda en el historial. El detalle está en `docs/despliegue_sitio_v4.md`.

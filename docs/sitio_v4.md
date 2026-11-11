@@ -1,6 +1,6 @@
 # Web documental
 
-La página pública sale de `sitio_fuente/` con `scripts/sitio/construir.py`. El commit desplegado es `ae7416e`. La corrida que cita es la v3.7-final, etiqueta en `595118ae09ea6006c744c86b28cb0a10d42e0442`. No se volvió a correr la ciencia ni se recompiló la tesis.
+La página pública sale de `sitio_fuente/` con `scripts/sitio/construir.py`. El commit desplegado es `49187b3`. La corrida que cita es la v3.7-final, etiqueta en `595118ae09ea6006c744c86b28cb0a10d42e0442`. No se volvió a correr la ciencia ni se recompiló la tesis.
 
 El generador escribió 39 páginas de markdown. Hay 284 fichas, una por `protein_id` de `results/v3_7/suero_k4_crc_cn.tsv`. Los 65 grupos que llevan `;` enlazan esa carpeta sin codificar el punto y coma: el emulador devolvía 404 o 500 si la ruta iba con `%3B`.
 
