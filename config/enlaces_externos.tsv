@@ -1,25 +1,25 @@
-id	url	que_es	fecha_verificacion	estado_http	titulo_esperado
-pride_pxd055218	https://www.ebi.ac.uk/pride/archive/projects/PXD055218	PRIDE PXD055218, suero PXD055218	2026-11-11	200	PXD055218
-pride_pxd034575	https://www.ebi.ac.uk/pride/archive/projects/PXD034575	PRIDE PXD034575, tejido Tanaka	2026-11-11	200	PXD034575
-pdc_pdc000116	https://pdc.cancer.gov/pdc/study/PDC000116	PDC PDC000116, CPTAC colon	2026-11-11	200	PDC000116
-linkedomics	https://kb.linkedomics.org/	LinkedOmicsKB	2026-11-11	200	LinkedOmics
-hpa_descarga	https://www.proteinatlas.org/about/download	Human Protein Atlas, descarga	2026-11-11	200	Protein Atlas
-hpa_sangre	https://www.proteinatlas.org/humanproteome/blood	Human Protein Atlas, proteoma de sangre	2026-11-11	200	Blood
-goa_humano	https://www.ebi.ac.uk/GOA/human_release	GOA humano	2026-11-11	200	GOA
-go_descargas	https://geneontology.org/docs/download-go-annotations/downloads/	Descarga de anotaciones GO	2026-11-11	200	annotations
-reactome	https://reactome.org/download-data	Reactome, descarga	2026-11-11	200	Reactome
-msigdb	https://www.gsea-msigdb.org/gsea/msigdb/human/collections.jsp	MSigDB, colecciones humanas	2026-11-11	200	MSigDB
-contaminantes_repo	https://github.com/HaoGroup-ProtContLib/Protein-Contaminant-Libraries-for-DDA-and-DIA-Proteomics	Biblioteca de contaminantes	2026-11-11	200	Contaminant
-diann	https://github.com/vdemichev/DiaNN	DIA-NN	2026-11-11	200	DiaNN
-thermoraw	https://github.com/compomics/ThermoRawFileParser	ThermoRawFileParser	2026-11-11	200	ThermoRawFileParser
-gseapy	https://gseapy.readthedocs.io/	gseapy	2026-11-11	200	GSEApy
-shap	https://shap.readthedocs.io/	SHAP	2026-11-11	200	SHAP
-repositorio	https://github.com/JancoDeveloper/OncoGO-CRC	Repositorio OncoGO-CRC	2026-11-11	200	OncoGO-CRC
-rai_europepmc	https://europepmc.org/article/MED/40652393	Rai 2025 en Europe PMC	2026-11-11	no_200	40652393
-doi_rai	https://doi.org/10.1021/acs.jproteome.5c00285	DOI Rai 2025	2026-11-11	no_200	Proteome
-doi_tanaka	https://doi.org/10.1016/j.celrep.2024.113810	DOI Tanaka 2024	2026-11-11	no_200	Cell
-doi_vasaikar	https://doi.org/10.1016/j.cell.2019.03.030	DOI Vasaikar 2019	2026-11-11	no_200	Cell
-doi_zhang	https://doi.org/10.1038/nature13438	DOI Zhang 2014	2026-11-11	200	Nature
-doi_diann	https://doi.org/10.1038/s41592-019-0638-x	DOI DIA-NN	2026-11-11	200	Nature
-doi_contaminantes	https://doi.org/10.1021/acs.jproteome.2c00145	DOI de la biblioteca de contaminantes	2026-11-11	no_200	Proteome
-doi_garcia	https://doi.org/10.51643/22562915.853	DOI García-Foncillas 2026	2026-11-11	200	colorrectal
+id	url	que_es	metodo	fecha_verificacion	estado_http	titulo_esperado	doi_esperado
+pride_pxd055218	https://www.ebi.ac.uk/pride/archive/projects/PXD055218	PRIDE PXD055218, suero PXD055218	pagina	2026-11-11	200	PXD055218	
+pride_pxd034575	https://www.ebi.ac.uk/pride/archive/projects/PXD034575	PRIDE PXD034575, tejido Tanaka	pagina	2026-11-11	200	PXD034575	
+pdc_pdc000116	https://pdc.cancer.gov/pdc/study/PDC000116	PDC PDC000116, CPTAC colon	pagina	2026-11-11	200	PDC000116	
+linkedomics	https://kb.linkedomics.org/	LinkedOmicsKB	pagina	2026-11-11	200	LinkedOmics	
+hpa_descarga	https://www.proteinatlas.org/about/download	Human Protein Atlas, descarga	pagina	2026-11-11	200	Protein Atlas	
+hpa_sangre	https://www.proteinatlas.org/humanproteome/blood	Human Protein Atlas, proteoma de sangre	pagina	2026-11-11	200	Blood	
+goa_humano	https://www.ebi.ac.uk/GOA/human_release	GOA humano	pagina	2026-11-11	200	GOA	
+go_descargas	https://geneontology.org/docs/download-go-annotations/downloads/	Descarga de anotaciones GO	pagina	2026-11-11	200	annotations	
+reactome	https://reactome.org/download-data	Reactome, descarga	pagina	2026-11-11	200	Reactome	
+msigdb	https://www.gsea-msigdb.org/gsea/msigdb/human/collections.jsp	MSigDB, colecciones humanas	pagina	2026-11-11	200	MSigDB	
+contaminantes_repo	https://github.com/HaoGroup-ProtContLib/Protein-Contaminant-Libraries-for-DDA-and-DIA-Proteomics	Biblioteca de contaminantes	pagina	2026-11-11	200	Contaminant	
+diann	https://github.com/vdemichev/DiaNN	DIA-NN	pagina	2026-11-11	200	DiaNN	
+thermoraw	https://github.com/compomics/ThermoRawFileParser	ThermoRawFileParser	pagina	2026-11-11	200	ThermoRawFileParser	
+gseapy	https://gseapy.readthedocs.io/	gseapy	pagina	2026-11-11	200	GSEApy	
+shap	https://shap.readthedocs.io/	SHAP	pagina	2026-11-11	200	SHAP	
+repositorio	https://github.com/JancoDeveloper/OncoGO-CRC	Repositorio OncoGO-CRC	pagina	2026-11-11	200	OncoGO-CRC	
+rai_europepmc	https://europepmc.org/article/MED/40652393	Rai 2025 en Europe PMC	europepmc	2026-11-11	200	Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases	10.1021/acs.jproteome.5c00285
+doi_rai	https://doi.org/10.1021/acs.jproteome.5c00285	DOI Rai 2025	doi	2026-11-11	200	Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases	
+doi_tanaka	https://doi.org/10.1016/j.celrep.2024.113810	DOI Tanaka 2024	doi	2026-11-11	200	Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures	
+doi_vasaikar	https://doi.org/10.1016/j.cell.2019.03.030	DOI Vasaikar 2019	doi	2026-11-11	200	Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities	
+doi_zhang	https://doi.org/10.1038/nature13438	DOI Zhang 2014	doi	2026-11-11	200	Proteogenomic characterization of human colon and rectal cancer	
+doi_diann	https://doi.org/10.1038/s41592-019-0638-x	DOI DIA-NN	doi	2026-11-11	200	DIA-NN: neural networks and interference correction enable deep proteome coverage in high throughput	
+doi_contaminantes	https://doi.org/10.1021/acs.jproteome.2c00145	DOI de la biblioteca de contaminantes	doi	2026-11-11	200	Protein Contaminants Matter: Building Universal Protein Contaminant Libraries for DDA and DIA Proteomics	
+doi_garcia	https://doi.org/10.51643/22562915.853	DOI García-Foncillas 2026	doi	2026-11-11	200	Biología molecular del cáncer colorrectal	
