@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.a1fc0bd2e5.css">
+<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -17,13 +17,13 @@
 
 <a href="/">Inicio</a>
 
-<a href="/investigacion/contexto">La investigación</a>
+<a href="/investigacion/contexto">Investigación</a>
 
-<a href="/metodos/proteomica">¿Cómo funciona?</a>
+<a href="/metodos/proteomica">Metodología</a>
 
-<a href="/resultados">Explorar resultados</a>
+<a href="/resultados">Resultados</a>
 
-<a href="/ayuda">Aprende</a>
+<a href="/proteinas">Explorar proteínas</a>
 
 </nav>
 <form class="buscar" action="/buscar" method="get" role="search">
@@ -40,8 +40,29 @@
 
 </nav>
 <main id="contenido">
+
+<nav class="hermanas" aria-label="En esta sección">
+
+<a href="/resultados">Resultados</a>
+
+<a href="/resultados/tejido">Tejido</a>
+
+<a href="/resultados/suero">Suero</a>
+
+<a href="/resultados/aprendizaje">Aprendizaje</a>
+
+<a href="/resultados/preanalitica">Preanalítica</a>
+
+<a href="/resultados/go">Gene Ontology, resultados</a>
+
+<a href="/resultados/shap">SHAP</a>
+
+<a href="/resultados/priorizacion">Priorización, resultado</a>
+
+</nav>
+
 <h1>Hipótesis, veredictos</h1>
-<p>H5 está en <data value="sostiene" data-fuente="results/v3_7/h5_especificidad_organo.json#estado">sostiene</data><details class="evidencia"><summary>fuente</summary><p id="ev129">results/v3_7/h5_especificidad_organo.json#estado</p></details>. H7 está en <data value="refuta" data-fuente="results/v3_7/h7_visibilidad_en_sangre.json#estado">refuta</data><details class="evidencia"><summary>fuente</summary><p id="ev130">results/v3_7/h7_visibilidad_en_sangre.json#estado</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<p>H5 está en <data value="sostiene" data-fuente="results/v3_7/h5_especificidad_organo.json#estado">sostiene</data><details class="evidencia"><summary>fuente</summary><p id="ev141">results/v3_7/h5_especificidad_organo.json#estado</p></details>. H7 está en <data value="refuta" data-fuente="results/v3_7/h7_visibilidad_en_sangre.json#estado">refuta</data><details class="evidencia"><summary>fuente</summary><p id="ev142">results/v3_7/h7_visibilidad_en_sangre.json#estado</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <figure class="grafico" id="n11">
 <h3>¿Cuál es el veredicto de cada hipótesis?</h3>
 <svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Tablero de H1 a H10</title><desc>Cada celda copia el estado del fichero de esa hipótesis. H3 no está en el preregistro v3. H4 muestra el umbral, no un veredicto.</desc><rect x="20" y="40" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" data-value="rechaza_h1" data-fuente="results/v3_7/k1_etiquetas.json#h1_veredicto" tabindex="0" data-tip="H1 Rechaza H1"/><text x="28" y="78" fill="currentColor">H1</text><text x="28" y="100" fill="currentColor" font-size="11">Rechaza H1</text><rect x="142" y="40" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" data-value="no_evaluada" data-fuente="config/preregistro_v3.yaml#hipotesis.h2.estado_heredado" tabindex="0" data-tip="H2 no_evaluada"/><text x="150" y="78" fill="currentColor">H2</text><text x="150" y="100" fill="currentColor" font-size="11">no_evaluada</text><rect x="264" y="40" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" tabindex="0" data-tip="H3 el preregistro v3 no tiene h3"/><text x="272" y="78" fill="currentColor">H3</text><text x="272" y="100" fill="currentColor" font-size="11">el preregistro v3 </text><rect x="386" y="40" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" data-value="0.9" data-fuente="config/preregistro_v3.yaml#hipotesis.h4.umbral" tabindex="0" data-tip="H4 0,900"/><text x="394" y="78" fill="currentColor">H4</text><text x="394" y="100" fill="currentColor" font-size="11">0,900</text><rect x="508" y="40" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" data-value="sostiene" data-fuente="results/v3_7/h5_especificidad_organo.json#estado" tabindex="0" data-tip="H5 Sostiene"/><text x="516" y="78" fill="currentColor">H5</text><text x="516" y="100" fill="currentColor" font-size="11">Sostiene</text><rect x="20" y="160" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" data-value="no_sostiene" data-fuente="results/v3_7/h6_origen_celular.json#estado" tabindex="0" data-tip="H6 No sostiene"/><text x="28" y="198" fill="currentColor">H6</text><text x="28" y="220" fill="currentColor" font-size="11">No sostiene</text><rect x="142" y="160" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" data-value="refuta" data-fuente="results/v3_7/h7_visibilidad_en_sangre.json#estado" tabindex="0" data-tip="H7 Refuta"/><text x="150" y="198" fill="currentColor">H7</text><text x="150" y="220" fill="currentColor" font-size="11">Refuta</text><rect x="264" y="160" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" data-value="no_evaluable" data-fuente="results/v3_7/h8_carga_tumoral.json#estado" tabindex="0" data-tip="H8 No evaluable"/><text x="272" y="198" fill="currentColor">H8</text><text x="272" y="220" fill="currentColor" font-size="11">No evaluable</text><rect x="386" y="160" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" data-value="exploratorio" data-fuente="results/v3_7/h9_wald.json#estado" tabindex="0" data-tip="H9 Exploratorio"/><text x="394" y="198" fill="currentColor">H9</text><text x="394" y="220" fill="currentColor" font-size="11">Exploratorio</text><rect x="508" y="160" width="112" height="90" fill="none" stroke="currentColor" stroke-width="2" data-value="descriptiva" data-fuente="results/v3_7/h10_especificidad.json#estado" tabindex="0" data-tip="H10 Descriptiva"/><text x="516" y="198" fill="currentColor">H10</text><text x="516" y="220" fill="currentColor" font-size="11">Descriptiva</text></svg>
@@ -54,7 +75,8 @@
 </figure>
 <p>H3 no está en el preregistro de esta versión. H4 muestra el umbral, no un veredicto. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
 
-<h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
 <ul>
 
 <li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h5_especificidad_organo.json">results/v3_7/h5_especificidad_organo.json#estado</a></li>
@@ -82,21 +104,14 @@
 <li><a href="https://doi.org/10.1016/j.celrep.2024.113810">tanaka2024 · 10.1016/j.celrep.2024.113810</a></li>
 
 </ul>
+</details>
 
 </main>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
 
-<a href="/investigacion/pregunta-e-hipotesis">Investigación</a>
-
 <a href="/datos">Datos</a>
-
-<a href="/metodos/canalizacion">Métodos</a>
-
-<a href="/resultados/tejido">Resultados</a>
-
-<a href="/proteinas">Proteínas</a>
 
 <a href="/discusion">Discusion</a>
 
@@ -105,6 +120,8 @@
 <a href="/entregables">Entregables</a>
 
 <a href="/archivo">Archivo</a>
+
+<a href="/ayuda">Ayuda</a>
 
 <a href="/glosario">Glosario</a>
 
@@ -133,6 +150,7 @@
     var aplicar = function () {
       var consulta = caja.value.toLowerCase();
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
+        if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
         nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
       });
@@ -217,6 +235,53 @@
     bloque.classList.add("animar");
     window.requestAnimationFrame(function () { bloque.classList.add("listo"); });
   });
+  var lista = document.querySelector(".explorador");
+  if (lista) {
+    var items = Array.prototype.slice.call(lista.querySelectorAll("li"));
+    var filtro = document.getElementById("filtro-proteinas");
+    var solo = document.getElementById("solo-paso-5");
+    var pagina = 0;
+    var tam = 24;
+    var estado = document.createElement("p");
+    var controles = document.createElement("p");
+    controles.className = "paginas";
+    var anterior = document.createElement("button");
+    var siguiente = document.createElement("button");
+    anterior.type = "button";
+    siguiente.type = "button";
+    anterior.textContent = "Anterior";
+    siguiente.textContent = "Siguiente";
+    controles.appendChild(anterior);
+    controles.appendChild(siguiente);
+    lista.after(estado, controles);
+    function visibles() {
+      var q = filtro && filtro.value ? filtro.value.trim().toLowerCase() : "";
+      var paso = solo && solo.checked;
+      return items.filter(function (li) {
+        var texto = (li.getAttribute("data-buscar") || "").toLowerCase();
+        if (paso && texto.indexOf("candidata") === -1) return false;
+        return !q || texto.indexOf(q) !== -1;
+      });
+    }
+    function pintar() {
+      var listaVisible = visibles();
+      var paginas = Math.max(1, Math.ceil(listaVisible.length / tam));
+      if (pagina >= paginas) pagina = paginas - 1;
+      if (pagina < 0) pagina = 0;
+      items.forEach(function (li) { li.hidden = true; });
+      listaVisible.slice(pagina * tam, pagina * tam + tam).forEach(function (li) { li.hidden = false; });
+      var desde = listaVisible.length ? pagina * tam + 1 : 0;
+      var hasta = Math.min(listaVisible.length, (pagina + 1) * tam);
+      estado.textContent = desde + "–" + hasta + " de " + listaVisible.length;
+      anterior.disabled = pagina === 0;
+      siguiente.disabled = pagina >= paginas - 1;
+    }
+    anterior.addEventListener("click", function () { pagina -= 1; pintar(); });
+    siguiente.addEventListener("click", function () { pagina += 1; pintar(); });
+    if (filtro) filtro.addEventListener("input", function () { pagina = 0; pintar(); });
+    if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
+    pintar();
+  }
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

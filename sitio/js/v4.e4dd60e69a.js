@@ -16,6 +16,7 @@
     var aplicar = function () {
       var consulta = caja.value.toLowerCase();
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
+        if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
         nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
       });
@@ -100,6 +101,53 @@
     bloque.classList.add("animar");
     window.requestAnimationFrame(function () { bloque.classList.add("listo"); });
   });
+  var lista = document.querySelector(".explorador");
+  if (lista) {
+    var items = Array.prototype.slice.call(lista.querySelectorAll("li"));
+    var filtro = document.getElementById("filtro-proteinas");
+    var solo = document.getElementById("solo-paso-5");
+    var pagina = 0;
+    var tam = 24;
+    var estado = document.createElement("p");
+    var controles = document.createElement("p");
+    controles.className = "paginas";
+    var anterior = document.createElement("button");
+    var siguiente = document.createElement("button");
+    anterior.type = "button";
+    siguiente.type = "button";
+    anterior.textContent = "Anterior";
+    siguiente.textContent = "Siguiente";
+    controles.appendChild(anterior);
+    controles.appendChild(siguiente);
+    lista.after(estado, controles);
+    function visibles() {
+      var q = filtro && filtro.value ? filtro.value.trim().toLowerCase() : "";
+      var paso = solo && solo.checked;
+      return items.filter(function (li) {
+        var texto = (li.getAttribute("data-buscar") || "").toLowerCase();
+        if (paso && texto.indexOf("candidata") === -1) return false;
+        return !q || texto.indexOf(q) !== -1;
+      });
+    }
+    function pintar() {
+      var listaVisible = visibles();
+      var paginas = Math.max(1, Math.ceil(listaVisible.length / tam));
+      if (pagina >= paginas) pagina = paginas - 1;
+      if (pagina < 0) pagina = 0;
+      items.forEach(function (li) { li.hidden = true; });
+      listaVisible.slice(pagina * tam, pagina * tam + tam).forEach(function (li) { li.hidden = false; });
+      var desde = listaVisible.length ? pagina * tam + 1 : 0;
+      var hasta = Math.min(listaVisible.length, (pagina + 1) * tam);
+      estado.textContent = desde + "–" + hasta + " de " + listaVisible.length;
+      anterior.disabled = pagina === 0;
+      siguiente.disabled = pagina >= paginas - 1;
+    }
+    anterior.addEventListener("click", function () { pagina -= 1; pintar(); });
+    siguiente.addEventListener("click", function () { pagina += 1; pintar(); });
+    if (filtro) filtro.addEventListener("input", function () { pagina = 0; pintar(); });
+    if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
+    pintar();
+  }
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

@@ -9,7 +9,7 @@
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/{{ css }}">
 </head>
-<body>
+<body{% if portada %} class="portada"{% endif %}>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <a class="marca" href="/">OncoGO-CRC</a>
@@ -34,14 +34,23 @@
 {% endfor %}
 </nav>
 <main id="contenido">
+{% if hermanas %}
+<nav class="hermanas" aria-label="En esta sección">
+{% for item in hermanas %}
+<a href="{{ item.ruta }}">{{ item.nombre }}</a>
+{% endfor %}
+</nav>
+{% endif %}
 {{ cuerpo | safe }}
 {% if fuentes %}
-<h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
 <ul>
 {% for fuente in fuentes %}
 <li><a href="{{ fuente.href }}">{{ fuente.texto }}</a></li>
 {% endfor %}
 </ul>
+</details>
 {% endif %}
 </main>
 </div>

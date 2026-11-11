@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.a1fc0bd2e5.css">
+<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -17,13 +17,13 @@
 
 <a href="/">Inicio</a>
 
-<a href="/investigacion/contexto">La investigación</a>
+<a href="/investigacion/contexto">Investigación</a>
 
-<a href="/metodos/proteomica">¿Cómo funciona?</a>
+<a href="/metodos/proteomica">Metodología</a>
 
-<a href="/resultados">Explorar resultados</a>
+<a href="/resultados">Resultados</a>
 
-<a href="/ayuda">Aprende</a>
+<a href="/proteinas">Explorar proteínas</a>
 
 </nav>
 <form class="buscar" action="/buscar" method="get" role="search">
@@ -40,12 +40,36 @@
 
 </nav>
 <main id="contenido">
+
+<nav class="hermanas" aria-label="En esta sección">
+
+<a href="/datos">Datos</a>
+
+<a href="/datos/pxd055218">PXD055218</a>
+
+<a href="/datos/pxd034575">PXD034575</a>
+
+<a href="/datos/hpa">Human Protein Atlas</a>
+
+<a href="/datos/gene-ontology">Gene Ontology</a>
+
+<a href="/datos/linkedomics">LinkedOmicsKB</a>
+
+<a href="/datos/pxd064655">PXD064655</a>
+
+<a href="/datos/bases-de-datos">Bases de datos</a>
+
+<a href="/datos/herramientas">Herramientas</a>
+
+</nav>
+
 <h1>PDC000116</h1>
-<p>El registro de datasets guarda este identificador: <data value="PDC000116" data-fuente="config/datasets.yaml#datasets.cptac_colorectal.download_real.pdc_study_submitter_id">PDC000116</data><details class="evidencia"><summary>fuente</summary><p id="ev76">config/datasets.yaml#datasets.cptac_colorectal.download_real.pdc_study_submitter_id</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
+<p>El registro de datasets guarda este identificador: <data value="PDC000116" data-fuente="config/datasets.yaml#datasets.cptac_colorectal.download_real.pdc_study_submitter_id">PDC000116</data><details class="evidencia"><summary>fuente</summary><p id="ev82">config/datasets.yaml#datasets.cptac_colorectal.download_real.pdc_study_submitter_id</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
 <p>El manifiesto de la corrida incluye `results/certified/cptac_unshared_treat.tsv`. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
 <p>Ese fichero es la entrada certificada del contraste de tejido. No se vuelve a describir aquí el instrumento ni el emparejamiento. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span></p>
 
-<h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
 <ul>
 
 <li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/datasets.yaml">config/datasets.yaml#datasets.cptac_colorectal.download_real.pdc_study_submitter_id</a></li>
@@ -55,21 +79,14 @@
 <li><a href="https://doi.org/10.1038/nature13438">zhang2014 · 10.1038/nature13438</a></li>
 
 </ul>
+</details>
 
 </main>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
 
-<a href="/investigacion/pregunta-e-hipotesis">Investigación</a>
-
 <a href="/datos">Datos</a>
-
-<a href="/metodos/canalizacion">Métodos</a>
-
-<a href="/resultados/tejido">Resultados</a>
-
-<a href="/proteinas">Proteínas</a>
 
 <a href="/discusion">Discusion</a>
 
@@ -78,6 +95,8 @@
 <a href="/entregables">Entregables</a>
 
 <a href="/archivo">Archivo</a>
+
+<a href="/ayuda">Ayuda</a>
 
 <a href="/glosario">Glosario</a>
 
@@ -106,6 +125,7 @@
     var aplicar = function () {
       var consulta = caja.value.toLowerCase();
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
+        if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
         nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
       });
@@ -190,6 +210,53 @@
     bloque.classList.add("animar");
     window.requestAnimationFrame(function () { bloque.classList.add("listo"); });
   });
+  var lista = document.querySelector(".explorador");
+  if (lista) {
+    var items = Array.prototype.slice.call(lista.querySelectorAll("li"));
+    var filtro = document.getElementById("filtro-proteinas");
+    var solo = document.getElementById("solo-paso-5");
+    var pagina = 0;
+    var tam = 24;
+    var estado = document.createElement("p");
+    var controles = document.createElement("p");
+    controles.className = "paginas";
+    var anterior = document.createElement("button");
+    var siguiente = document.createElement("button");
+    anterior.type = "button";
+    siguiente.type = "button";
+    anterior.textContent = "Anterior";
+    siguiente.textContent = "Siguiente";
+    controles.appendChild(anterior);
+    controles.appendChild(siguiente);
+    lista.after(estado, controles);
+    function visibles() {
+      var q = filtro && filtro.value ? filtro.value.trim().toLowerCase() : "";
+      var paso = solo && solo.checked;
+      return items.filter(function (li) {
+        var texto = (li.getAttribute("data-buscar") || "").toLowerCase();
+        if (paso && texto.indexOf("candidata") === -1) return false;
+        return !q || texto.indexOf(q) !== -1;
+      });
+    }
+    function pintar() {
+      var listaVisible = visibles();
+      var paginas = Math.max(1, Math.ceil(listaVisible.length / tam));
+      if (pagina >= paginas) pagina = paginas - 1;
+      if (pagina < 0) pagina = 0;
+      items.forEach(function (li) { li.hidden = true; });
+      listaVisible.slice(pagina * tam, pagina * tam + tam).forEach(function (li) { li.hidden = false; });
+      var desde = listaVisible.length ? pagina * tam + 1 : 0;
+      var hasta = Math.min(listaVisible.length, (pagina + 1) * tam);
+      estado.textContent = desde + "–" + hasta + " de " + listaVisible.length;
+      anterior.disabled = pagina === 0;
+      siguiente.disabled = pagina >= paginas - 1;
+    }
+    anterior.addEventListener("click", function () { pagina -= 1; pintar(); });
+    siguiente.addEventListener("click", function () { pagina += 1; pintar(); });
+    if (filtro) filtro.addEventListener("input", function () { pagina = 0; pintar(); });
+    if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
+    pintar();
+  }
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

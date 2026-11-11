@@ -63,11 +63,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   margin: 0 auto;
   padding: 1.25rem 1rem 3rem;
 }
+.portada .disposicion { display: block; max-width: 48rem; }
+.portada .indice { display: none; }
 .indice { position: sticky; top: 4.5rem; align-self: start; }
 .indice a { display: block; padding: 0.2rem 0; text-decoration: none; }
 .indice a[aria-current="true"] { font-weight: 600; }
 main h1, main h2, main h3 { font-family: var(--fuente-titulo); line-height: 1.25; }
-main h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); }
+main h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
 .tarjeta, .grafico, .entrada {
   background: var(--tarjeta);
   border: 1px solid var(--linea);
@@ -85,7 +87,28 @@ main h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); }
 table { border-collapse: collapse; width: 100%; }
 th, td { border-bottom: 1px solid var(--linea); text-align: left; padding: 0.35rem 0.45rem; vertical-align: top; }
 .evidencia { display: inline; }
-.evidencia summary { display: inline; cursor: pointer; color: var(--marca); }
+.evidencia summary { display: inline; cursor: pointer; color: var(--tinta-suave); font-size: 0.75rem; margin-left: 0.35rem; }
+.cifras .evidencia, .comparacion .evidencia { display: block; margin: 0.2rem 0 0; }
+.comparacion { margin: 1.5rem 0 2rem; }
+.comparacion figcaption, .lamina figcaption, .colon figcaption { color: var(--tinta-suave); font-size: 0.95rem; }
+.apilada { display: flex; height: 0.9rem; background: var(--linea); border-radius: 999px; overflow: hidden; margin: 0.8rem 0 1rem; }
+.trozo { display: block; height: 100%; }
+.trozo-equivalente { background: var(--clase-equivalente); }
+.trozo-indeterminada { background: var(--clase-indeterminada); }
+.trozo-diferente { background: var(--clase-diferente); }
+.muestra { display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 2px; margin-right: 0.4rem; vertical-align: middle; }
+.muestra-equivalente { background: var(--clase-equivalente); }
+.muestra-indeterminada { background: var(--clase-indeterminada); }
+.muestra-diferente { background: var(--clase-diferente); }
+.comparacion ul, .explorador { list-style: none; padding: 0; }
+.comparacion li, .explorador li { margin: 0.55rem 0; }
+.lamina svg, .colon-lienzo { width: min(100%, 22rem); height: auto; color: var(--marca); }
+.hermanas, .filtro-proteinas, .paginas { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; }
+.hermanas a { text-decoration: none; }
+.filtro-proteinas input { min-width: 16rem; padding: 0.45rem 0.6rem; border: 1px solid var(--linea); border-radius: var(--radio); font: inherit; }
+.nombre-proteina { color: var(--tinta-suave); }
+.transparencia { margin-top: 2.5rem; }
+.transparencia summary { cursor: pointer; color: var(--tinta-suave); }
 .cita-ventana, .definicion-corta {
   display: none;
   position: absolute;

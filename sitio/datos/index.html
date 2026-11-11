@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.a1fc0bd2e5.css">
+<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -17,13 +17,13 @@
 
 <a href="/">Inicio</a>
 
-<a href="/investigacion/contexto">La investigación</a>
+<a href="/investigacion/contexto">Investigación</a>
 
-<a href="/metodos/proteomica">¿Cómo funciona?</a>
+<a href="/metodos/proteomica">Metodología</a>
 
-<a href="/resultados">Explorar resultados</a>
+<a href="/resultados">Resultados</a>
 
-<a href="/ayuda">Aprende</a>
+<a href="/proteinas">Explorar proteínas</a>
 
 </nav>
 <form class="buscar" action="/buscar" method="get" role="search">
@@ -40,13 +40,37 @@
 
 </nav>
 <main id="contenido">
+
+<nav class="hermanas" aria-label="En esta sección">
+
+<a href="/datos/pxd055218">PXD055218</a>
+
+<a href="/datos/pxd034575">PXD034575</a>
+
+<a href="/datos/pdc000116">PDC000116</a>
+
+<a href="/datos/hpa">Human Protein Atlas</a>
+
+<a href="/datos/gene-ontology">Gene Ontology</a>
+
+<a href="/datos/linkedomics">LinkedOmicsKB</a>
+
+<a href="/datos/pxd064655">PXD064655</a>
+
+<a href="/datos/bases-de-datos">Bases de datos</a>
+
+<a href="/datos/herramientas">Herramientas</a>
+
+</nav>
+
 <h1>Datos</h1>
 <p>Cada página nombra el acceso que está en el preregistro o en el registro de datasets, y el fichero que `results/v3_7/manifest_entradas.sha256` incluye. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
 <p>El instrumento, el número de muestras y la composición de los grupos no se escriben: no hay una respuesta de API guardada en `sitio_fuente/fuentes/`. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <p>Las matrices no se fusionan. El tejido y el <a class="termino" href="/glosario#suero">suero<span class="definicion-corta">La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span></a> se leen por separado. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
 <figure class="grafico" id="D3"><h3>¿Qué fichero alimenta el resultado?</h3><svg viewBox="0 0 1152 180" role="img" class="lienzo-svg"><title>Linaje de los ficheros de entrada</title><desc>Cada nodo es un fichero del manifiesto de la corrida o el resumen del suero. Al pulsar un nodo se marca el tramo que sale o llega a él.</desc><g data-id="cptac"><title>CPTAC</title><rect x="24" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="40" y="108" fill="currentColor" font-size="16">CPTAC</text><g data-id="tanaka"><title>Tanaka</title><rect x="212" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="228" y="108" fill="currentColor" font-size="16">Tanaka</text><g data-id="rai"><title>Suero</title><rect x="400" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="416" y="108" fill="currentColor" font-size="16">Suero</text><g data-id="hpa"><title>HPA</title><rect x="588" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="604" y="108" fill="currentColor" font-size="16">HPA</text><g data-id="go"><title>GO</title><rect x="776" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="792" y="108" fill="currentColor" font-size="16">GO</text><g data-id="celda"><title>Celda</title><rect x="964" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="980" y="108" fill="currentColor" font-size="16">Celda</text><line data-origen="cptac" data-destino="celda" x1="184" y1="36" x2="964" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="tanaka" data-destino="celda" x1="372" y1="36" x2="964" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="rai" data-destino="celda" x1="560" y1="36" x2="964" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="hpa" data-destino="celda" x1="748" y1="36" x2="964" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="go" data-destino="celda" x1="936" y1="102" x2="964" y2="102" stroke="currentColor" stroke-width="2"/></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>fuente</th></tr></thead><tbody><tr><td><a href="/datos/pdc000116">CPTAC</a></td><td>results/certified/cptac_unshared_treat.tsv</td></tr><tr><td><a href="/datos/pxd034575">Tanaka</a></td><td>data/raw/pride/Cohort1_proteinGroups.txt</td></tr><tr><td><a href="/datos/pxd055218">Suero</a></td><td>data/raw/plasma/DIA-NN_report.tsv</td></tr><tr><td><a href="/datos/hpa">HPA</a></td><td>external/hpa/hpa_concentracion_sangre.tsv</td></tr><tr><td><a href="/datos/gene-ontology">GO</a></td><td>metadata/gene_ontology/go_gene_long.tsv</td></tr><tr><td><a href="/metodos/expresion-diferencial">Celda</a></td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>cptac → celda</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>tanaka → celda</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>rai → celda</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>hpa → celda</td><td>results/v3_7/h7_visibilidad_en_sangre.json</td></tr><tr><td>go → celda</td><td>results/v3_7/go_tejido.json</td></tr></tbody></table></details><p><a href="/figuras/D3.svg" download>Descargar SVG</a> <a href="/figuras/D3.tsv" download>Descargar TSV</a></p></figure>
 
-<h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
 <ul>
 
 <li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
@@ -58,21 +82,14 @@
 <li><a href="https://doi.org/10.1016/j.celrep.2024.113810">tanaka2024 · 10.1016/j.celrep.2024.113810</a></li>
 
 </ul>
+</details>
 
 </main>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
 
-<a href="/investigacion/pregunta-e-hipotesis">Investigación</a>
-
 <a href="/datos">Datos</a>
-
-<a href="/metodos/canalizacion">Métodos</a>
-
-<a href="/resultados/tejido">Resultados</a>
-
-<a href="/proteinas">Proteínas</a>
 
 <a href="/discusion">Discusion</a>
 
@@ -81,6 +98,8 @@
 <a href="/entregables">Entregables</a>
 
 <a href="/archivo">Archivo</a>
+
+<a href="/ayuda">Ayuda</a>
 
 <a href="/glosario">Glosario</a>
 
@@ -109,6 +128,7 @@
     var aplicar = function () {
       var consulta = caja.value.toLowerCase();
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
+        if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
         nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
       });
@@ -193,6 +213,53 @@
     bloque.classList.add("animar");
     window.requestAnimationFrame(function () { bloque.classList.add("listo"); });
   });
+  var lista = document.querySelector(".explorador");
+  if (lista) {
+    var items = Array.prototype.slice.call(lista.querySelectorAll("li"));
+    var filtro = document.getElementById("filtro-proteinas");
+    var solo = document.getElementById("solo-paso-5");
+    var pagina = 0;
+    var tam = 24;
+    var estado = document.createElement("p");
+    var controles = document.createElement("p");
+    controles.className = "paginas";
+    var anterior = document.createElement("button");
+    var siguiente = document.createElement("button");
+    anterior.type = "button";
+    siguiente.type = "button";
+    anterior.textContent = "Anterior";
+    siguiente.textContent = "Siguiente";
+    controles.appendChild(anterior);
+    controles.appendChild(siguiente);
+    lista.after(estado, controles);
+    function visibles() {
+      var q = filtro && filtro.value ? filtro.value.trim().toLowerCase() : "";
+      var paso = solo && solo.checked;
+      return items.filter(function (li) {
+        var texto = (li.getAttribute("data-buscar") || "").toLowerCase();
+        if (paso && texto.indexOf("candidata") === -1) return false;
+        return !q || texto.indexOf(q) !== -1;
+      });
+    }
+    function pintar() {
+      var listaVisible = visibles();
+      var paginas = Math.max(1, Math.ceil(listaVisible.length / tam));
+      if (pagina >= paginas) pagina = paginas - 1;
+      if (pagina < 0) pagina = 0;
+      items.forEach(function (li) { li.hidden = true; });
+      listaVisible.slice(pagina * tam, pagina * tam + tam).forEach(function (li) { li.hidden = false; });
+      var desde = listaVisible.length ? pagina * tam + 1 : 0;
+      var hasta = Math.min(listaVisible.length, (pagina + 1) * tam);
+      estado.textContent = desde + "–" + hasta + " de " + listaVisible.length;
+      anterior.disabled = pagina === 0;
+      siguiente.disabled = pagina >= paginas - 1;
+    }
+    anterior.addEventListener("click", function () { pagina -= 1; pintar(); });
+    siguiente.addEventListener("click", function () { pagina += 1; pintar(); });
+    if (filtro) filtro.addEventListener("input", function () { pagina = 0; pintar(); });
+    if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
+    pintar();
+  }
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

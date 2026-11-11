@@ -137,7 +137,7 @@ def ancla_de(texto: str) -> str:
 def llamadas_html() -> str:
     return (
         '<p class="llamadas"><a class="boton" href="/investigacion/contexto">Explorar la investigación</a>'
-        '<a class="boton boton-secundario" href="/resultados">Descubrir resultados</a></p>'
+        '<a class="boton boton-secundario" href="/resultados">Ver resultados</a></p>'
     )
 
 
@@ -225,7 +225,42 @@ def anatomia_html(contador) -> str:
         '<text x="8" y="180" fill="currentColor" font-size="14">ascendente</text>'
         '<text x="214" y="180" fill="currentColor" font-size="14">descendente</text>'
         "</svg>"
+        "<figcaption>Ilustración conceptual. No corresponde a una imagen experimental de esta investigación. "
+        "No está a escala y no localiza las muestras.</figcaption>"
         "<ul class=\"segmentos\">" + "".join(botones) + "</ul></figure>"
+    )
+
+
+def comparacion_html(contador) -> str:
+    celda = json.loads((V37 / "suero_embudo.json").read_text(encoding="utf-8"))["celda_preregistrada"]
+    total = int(celda["n"])
+    clases = [
+        ("equivalente", "Equivalentes", "TOST cabe en el margen de 1,5 veces."),
+        ("indeterminada", "Indeterminadas", "Quedan fuera de las otras dos clases. No ver un cambio, con esta potencia, no las vuelve equivalentes."),
+        ("diferente", "Diferentes", "TREAT pasa el corte en el sentido observado."),
+    ]
+    if sum(int(celda[clave]) for clave, _, _ in clases) != total:
+        raise SystemExit("la celda del suero no suma el total")
+    base = "results/v3_7/suero_embudo.json#celda_preregistrada."
+    trozos = []
+    filas = []
+    for clave, nombre, frase in clases:
+        valor = int(celda[clave])
+        ancho = 100 * valor / total
+        porcentaje = f"{ancho:.1f}".replace(".", ",") + " %"
+        trozos.append(f'<span class="trozo trozo-{clave}" style="width:{ancho:.4f}%"></span>')
+        filas.append(
+            f'<li><span class="muestra muestra-{clave}"></span>'
+            f"<strong>{e(nombre)}</strong> {e(frase)} "
+            f"{dato_html(base + clave, contador)} de {dato_html(base + 'n', contador)}. "
+            f"El porcentaje, {e(porcentaje)}, es 100 × esta clase / el total.</li>"
+        )
+    return (
+        '<figure class="comparacion">'
+        "<figcaption>Clases de la celda del suero, frente a CN. Las tres cuentas suman el total. "
+        "No es un gráfico de una cohorte nueva.</figcaption>"
+        f'<div class="apilada" role="img" aria-label="Composición de la celda">'
+        + "".join(trozos) + "</div><ul>" + "".join(filas) + "</ul></figure>"
     )
 
 
@@ -255,6 +290,16 @@ def matrices_html(contador) -> str:
     )
     return (
         '<div class="matrices">'
+        '<figure class="lamina"><svg viewBox="0 0 320 150" role="img">'
+        "<title>Tejido y suero, por separado</title>"
+        "<desc>Ilustración conceptual. No corresponde a una imagen experimental de esta investigación.</desc>"
+        '<rect x="28" y="28" width="112" height="78" rx="18" fill="none" stroke="currentColor" stroke-width="3"/>'
+        '<text x="84" y="74" text-anchor="middle" fill="currentColor" font-size="16">Tejido</text>'
+        '<rect x="196" y="34" width="64" height="70" rx="32" fill="none" stroke="currentColor" stroke-width="3"/>'
+        '<text x="228" y="76" text-anchor="middle" fill="currentColor" font-size="16">Suero</text>'
+        "</svg>"
+        "<figcaption>Ilustración conceptual. No corresponde a una imagen experimental de esta investigación. "
+        "No representa una biopsia ni una extracción.</figcaption></figure>"
         f"<article>{tejido}</article><article>{suero}</article>"
         "<p>Las dos pistas no se unen. La tesis no fusiona las matrices y no muestra una proteína que salga del tumor hacia la sangre.</p>"
         "</div>"
@@ -287,7 +332,7 @@ def explorar_html(paginas: list[dict]) -> str:
 def md_inline(texto: str, bib, glosario, contador) -> str:
     patron = re.compile(
         r"\{\{dato:([^}]+)\}\}|\{\{termino:([^}]+)\}\}|\{\{diagrama:([^}]+)\}\}|\{\{figura:([^}]+)\}\}|"
-        r"\{\{embudo:([^}]+)\}\}|\{\{anatomia:([^}]+)\}\}|\{\{matrices\}\}|"
+        r"\{\{embudo:([^}]+)\}\}|\{\{anatomia:([^}]+)\}\}|\{\{matrices\}\}|\{\{comparacion\}\}|"
         r"\{\{celda\}\}|\{\{llamadas\}\}|\{\{explorar\}\}|\[@([^\]]+)\]"
     )
     piezas = []
@@ -312,6 +357,8 @@ def md_inline(texto: str, bib, glosario, contador) -> str:
             piezas.append(anatomia_html(contador))
         elif hallado.group(0) == "{{matrices}}":
             piezas.append(matrices_html(contador))
+        elif hallado.group(0) == "{{comparacion}}":
+            piezas.append(comparacion_html(contador))
         elif hallado.group(0) == "{{celda}}":
             piezas.append(celda_html(contador))
         elif hallado.group(0) == "{{llamadas}}":
@@ -331,7 +378,7 @@ def md_a_html(texto: str, bib, glosario, contador) -> tuple[str, list[dict]]:
     piezas = []
     for bloque in bloques:
         lineas = bloque.splitlines()
-        if bloque.strip().startswith(("{{diagrama:", "{{figura:", "{{embudo:", "{{anatomia:", "{{matrices}}", "{{celda}}", "{{llamadas}}", "{{explorar}}")):
+        if bloque.strip().startswith(("{{diagrama:", "{{figura:", "{{embudo:", "{{anatomia:", "{{matrices}}", "{{comparacion}}", "{{celda}}", "{{llamadas}}", "{{explorar}}")):
             piezas.append(md_inline(bloque.strip(), bib, glosario, contador))
         elif bloque.startswith("# "):
             piezas.append(f"<h1>{md_inline(bloque[2:].strip(), bib, glosario, contador)}</h1>")
@@ -441,18 +488,18 @@ def leer_paginas() -> list[dict]:
 def menu_principal() -> list[dict]:
     return [
         {"nombre": "Inicio", "ruta": "/"},
-        {"nombre": "La investigación", "ruta": "/investigacion/contexto"},
-        {"nombre": "¿Cómo funciona?", "ruta": "/metodos/proteomica"},
-        {"nombre": "Explorar resultados", "ruta": "/resultados"},
-        {"nombre": "Aprende", "ruta": "/ayuda"},
+        {"nombre": "Investigación", "ruta": "/investigacion/contexto"},
+        {"nombre": "Metodología", "ruta": "/metodos/proteomica"},
+        {"nombre": "Resultados", "ruta": "/resultados"},
+        {"nombre": "Explorar proteínas", "ruta": "/proteinas"},
     ]
 
 
 def menu_secundario(paginas: list[dict]) -> list[dict]:
-    primarias = {item["ruta"] for item in menu_principal()}
+    cubiertas = {"Inicio", "Investigación", "Métodos", "Resultados", "Proteínas"}
     vistos = []
     for pagina in paginas:
-        if pagina["ruta"] in primarias or pagina["seccion"] == "Inicio":
+        if pagina["seccion"] in cubiertas:
             continue
         if not any(item["nombre"] == pagina["seccion"] for item in vistos):
             vistos.append({"nombre": pagina["seccion"], "ruta": pagina["ruta"]})
@@ -546,6 +593,8 @@ def archivar_v37() -> None:
 
 
 def render(env, plantilla, **datos) -> str:
+    datos.setdefault("hermanas", [])
+    datos.setdefault("portada", False)
     return env.get_template("base.html.j2").render(**datos)
 
 
@@ -592,6 +641,11 @@ def main() -> None:
                 1,
             )
         migas = "Inicio" if pagina["ruta"] == "/" else f'Inicio / {pagina["seccion"]} / {pagina["titulo"]}'
+        hermanas = [
+            {"nombre": otra["titulo"], "ruta": otra["ruta"]}
+            for otra in paginas
+            if otra["seccion"] == pagina["seccion"] and otra["ruta"] != pagina["ruta"] and pagina["seccion"] != "Inicio"
+        ]
         html_pagina = render(
             env, "base.html.j2",
             titulo=pagina["titulo"],
@@ -599,6 +653,8 @@ def main() -> None:
             indice=indice,
             migas=migas,
             fuentes=fuentes_de(cuerpo, bib),
+            hermanas=hermanas,
+            portada=pagina["ruta"] == "/",
             **comunes,
         )
         destino = SITIO / "index.html" if pagina["ruta"] == "/" else SITIO / pagina["ruta"].strip("/") / "index.html"

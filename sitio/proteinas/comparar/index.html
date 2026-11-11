@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.a1fc0bd2e5.css">
+<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -17,13 +17,13 @@
 
 <a href="/">Inicio</a>
 
-<a href="/investigacion/contexto">La investigación</a>
+<a href="/investigacion/contexto">Investigación</a>
 
-<a href="/metodos/proteomica">¿Cómo funciona?</a>
+<a href="/metodos/proteomica">Metodología</a>
 
-<a href="/resultados">Explorar resultados</a>
+<a href="/resultados">Resultados</a>
 
-<a href="/ayuda">Aprende</a>
+<a href="/proteinas">Explorar proteínas</a>
 
 </nav>
 <form class="buscar" action="/buscar" method="get" role="search">
@@ -50,6 +50,7 @@
 
 </nav>
 <main id="contenido">
+
 <h1>Comparador</h1><p>Describe conocimiento previo: secuencia, estructura, GO, dominios y vías. No es un resultado de la tesis. Compartir términos, dominios o secuencia no significa que dos proteínas se comporten igual en la sangre. Las proteínas más estudiadas tienen más anotaciones.</p><p><a href="/proteinas/candidatas">Las 20 candidatas</a>. <a href="/proteinas/comparar?p=P02749,P05155">Ejemplo P02749 y P05155</a>. <a href="/proteinas/comparar?p=P05109,P06702">Calprotectina (S100A8 y S100A9)</a>.</p><form action="/proteinas/comparar" method="get"><label for="p">De 2 a 4 accesos, separados por comas</label> <input id="p" name="p" value="P02749,P05155"> <button type="submit">Comparar</button></form><p>Sin JavaScript se muestra el par de ejemplo. Otro par se calcula en el navegador a partir de la anotación guardada.</p><nav class="pestanias" aria-label="Vistas de la comparación"><a href="#vista-resumen">Resumen</a><a href="#vista-go">GO</a><a href="#vista-secuencia">Secuencia</a><a href="#vista-dominios">Dominios</a><a href="#vista-estructura">Estructura</a></nav><div id="comparacion" data-par="P02749,P05155"><h2 id="vista-resumen">Resumen</h2><p>P02749 y P05155, lado a lado, en la anotación guardada.</p><h2 id="vista-go">GO</h2><p>Jaccard directo <data value="0.05714285714285714" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.directo">0,057</data><details class="evidencia"><summary>fuente</summary><p>sitio/fuentes/calculos_comparador.json#P02749|P05155.directo</p></details>. Jaccard propagado <data value="0.1576086956521739" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado">0,158</data><details class="evidencia"><summary>fuente</summary><p>sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span></p>
 <h3>Proceso</h3><p>Solo P02749: 15. Compartidos: 0. Solo P05155: 2.</p>
 <h3>Función</h3><p>Solo P02749: 5. Compartidos: 0. Solo P05155: 1.</p>
@@ -65,27 +66,21 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
 <p><button type="button" data-ver-estructura="visor-ejemplo" data-modelos="/fuentes/modelos/AF-P02749-F1.bcif,/fuentes/modelos/AF-P05155-F1.bcif" data-script="/js/molstar.0dba8aea4c.js" data-estilo="/css/molstar.bea8d630b6.css">Ver estructuras</button></p><div id="visor-ejemplo"></div>
 <p>No se superponen estructuras: no hay un método de superposición citado.</p></div><p>UniProt 2026_04, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span> AlphaFold DB, CC BY 4.0. Suma de BinaryCIF alojados: 59.205 MB. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> InterPro y Pfam, por las referencias cruzadas de UniProt, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> Gene Ontology, obo releases/2026-07-26, que no es el de la tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span> Reactome, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span> PDB, CC0: solo la lista, sin ficheros. Los términos y las evidencias salen de UniProt. go_gene_long.tsv está en el manifiesto de la corrida y no trae códigos de evidencia, y la corrida no guardó el obo. La propagación usa go-basic.obo descargado aparte. No es la ontología de la tesis.</p>
 
-<h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
 <ul>
 
 <li><a href="/fuentes/comparador.json">Anotación para el comparador</a></li>
 
 </ul>
+</details>
 
 </main>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
 
-<a href="/investigacion/pregunta-e-hipotesis">Investigación</a>
-
 <a href="/datos">Datos</a>
-
-<a href="/metodos/canalizacion">Métodos</a>
-
-<a href="/resultados/tejido">Resultados</a>
-
-<a href="/proteinas">Proteínas</a>
 
 <a href="/discusion">Discusion</a>
 
@@ -94,6 +89,8 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
 <a href="/entregables">Entregables</a>
 
 <a href="/archivo">Archivo</a>
+
+<a href="/ayuda">Ayuda</a>
 
 <a href="/glosario">Glosario</a>
 
@@ -122,6 +119,7 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
     var aplicar = function () {
       var consulta = caja.value.toLowerCase();
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
+        if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
         nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
       });
@@ -206,6 +204,53 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
     bloque.classList.add("animar");
     window.requestAnimationFrame(function () { bloque.classList.add("listo"); });
   });
+  var lista = document.querySelector(".explorador");
+  if (lista) {
+    var items = Array.prototype.slice.call(lista.querySelectorAll("li"));
+    var filtro = document.getElementById("filtro-proteinas");
+    var solo = document.getElementById("solo-paso-5");
+    var pagina = 0;
+    var tam = 24;
+    var estado = document.createElement("p");
+    var controles = document.createElement("p");
+    controles.className = "paginas";
+    var anterior = document.createElement("button");
+    var siguiente = document.createElement("button");
+    anterior.type = "button";
+    siguiente.type = "button";
+    anterior.textContent = "Anterior";
+    siguiente.textContent = "Siguiente";
+    controles.appendChild(anterior);
+    controles.appendChild(siguiente);
+    lista.after(estado, controles);
+    function visibles() {
+      var q = filtro && filtro.value ? filtro.value.trim().toLowerCase() : "";
+      var paso = solo && solo.checked;
+      return items.filter(function (li) {
+        var texto = (li.getAttribute("data-buscar") || "").toLowerCase();
+        if (paso && texto.indexOf("candidata") === -1) return false;
+        return !q || texto.indexOf(q) !== -1;
+      });
+    }
+    function pintar() {
+      var listaVisible = visibles();
+      var paginas = Math.max(1, Math.ceil(listaVisible.length / tam));
+      if (pagina >= paginas) pagina = paginas - 1;
+      if (pagina < 0) pagina = 0;
+      items.forEach(function (li) { li.hidden = true; });
+      listaVisible.slice(pagina * tam, pagina * tam + tam).forEach(function (li) { li.hidden = false; });
+      var desde = listaVisible.length ? pagina * tam + 1 : 0;
+      var hasta = Math.min(listaVisible.length, (pagina + 1) * tam);
+      estado.textContent = desde + "–" + hasta + " de " + listaVisible.length;
+      anterior.disabled = pagina === 0;
+      siguiente.disabled = pagina >= paginas - 1;
+    }
+    anterior.addEventListener("click", function () { pagina -= 1; pintar(); });
+    siguiente.addEventListener("click", function () { pagina += 1; pintar(); });
+    if (filtro) filtro.addEventListener("input", function () { pagina = 0; pintar(); });
+    if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
+    pintar();
+  }
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

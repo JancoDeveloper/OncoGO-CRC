@@ -117,11 +117,18 @@ def escribir(render, env, comunes, cita) -> list[dict]:
         fila_traza = traza.loc[protein_id] if protein_id in traza.index else None
         genes = genes_de(None if fila_traza is None else fila_traza["genes"])
         gen = genes[0] if len(genes) == 1 else ""
+        representate = base_de(protein_id.split(";")[0])
+        nombre = ""
+        if representate in uniprot.index:
+            bruto = str(uniprot.loc[representate].get("Protein names", ""))
+            if bruto not in {"nan", "None", ""}:
+                nombre = bruto
         fichas.append({
             "id": protein_id,
             "href": "/proteinas/" + quote(protein_id, safe="-;"),
             "genes": genes,
             "gen": gen,
+            "nombre": nombre,
             "candidata": len(genes) == 1 and gen in paso5,
         })
     indice = [
@@ -202,9 +209,13 @@ def lista_html(fichas: list[dict], meta: dict, cita) -> str:
     filas = []
     for ficha in sorted(fichas, key=lambda item: item["id"]):
         marca = " candidata" if ficha["candidata"] else ""
+        nombre = ficha.get("nombre") or ""
         filas.append(
-            f'<li data-buscar="{e(ficha["id"])} {e(ficha["gen"])}{marca}">'
-            f'<a href="{e(ficha["href"])}">{e(ficha["id"])}</a> {e(ficha["gen"])}</li>'
+            f'<li data-buscar="{e(ficha["id"])} {e(ficha["gen"])} {e(nombre)}{marca}">'
+            f'<a href="{e(ficha["href"])}">{e(ficha["id"])}</a>'
+            f' <span>{e(ficha["gen"])}</span>'
+            + (f' <span class="nombre-proteina">{e(nombre)}</span>' if nombre else "")
+            + "</li>"
         )
     return (
         "<h1>Proteínas</h1>"
@@ -212,10 +223,15 @@ def lista_html(fichas: list[dict], meta: dict, cita) -> str:
         f'la misma en los tres contrastes del suero. '
         f'UniProt {e(meta["x_uniprot_release"])}, descargado el {e(meta["fecha_utc"])}. '
         f'Ninguna consulta volvió inactiva. {cita("rai2025")}</p>'
-        "<p>Una ficha lleva la etiqueta de candidata cuando su único gen tiene ultimo_paso 5 en priorizacion.tsv."
+        "<p>El nombre sale de UniProt cuando la descarga lo trajo. "
+        "Una ficha lleva la etiqueta de candidata cuando su único gen tiene ultimo_paso 5 en priorizacion.tsv. "
+        "Esa etiqueta es una hipótesis para cohortes futuras."
         f"{e(nota_repetidos)} {cita('tanaka2024')}</p>"
         '<p><a href="/proteinas/comparar">Comparador</a> · <a href="/proteinas/candidatas">Candidatas</a></p>'
-        "<ul>" + "".join(filas) + "</ul>"
+        '<p class="filtro-proteinas"><label for="filtro-proteinas">Buscar en esta lista por identificador, gen o nombre</label>'
+        '<input id="filtro-proteinas" type="search" autocomplete="off">'
+        '<label><input id="solo-paso-5" type="checkbox"> Solo el paso 5, hipótesis para cohortes futuras</label></p>'
+        '<ul class="explorador">' + "".join(filas) + "</ul>"
     )
 
 

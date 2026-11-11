@@ -22,18 +22,21 @@
 }
 
 :root {
-  --papel: #f5f7fa;
-  --tinta: #142d4e;
-  --tinta-suave: #34506e;
-  --marca: #0e4d6e;
-  --sobre-marca: #f5f7fa;
-  --linea: #d5dde6;
+  --papel: #fafaf8;
+  --tinta: #202b36;
+  --tinta-suave: #4e5d6c;
+  --marca: #2563a6;
+  --sobre-marca: #fafaf8;
+  --linea: #e7e9ec;
   --tarjeta: #ffffff;
   --aviso-fondo: #f8ebe3;
   --aviso-tinta: #6a2c18;
-  --foco: #0e4d6e;
-  --sombra: 0 1px 2px rgba(20, 45, 78, 0.08);
-  --radio: 8px;
+  --foco: #1e4e86;
+  --clase-diferente: #b94a48;
+  --clase-equivalente: #239d9a;
+  --clase-indeterminada: #c58b35;
+  --sombra: 0 1px 2px rgba(32, 43, 54, 0.06);
+  --radio: 12px;
   --espacio: 1rem;
   --fuente: "Source Sans 3", "Segoe UI", sans-serif;
   --fuente-titulo: "Source Serif 4", Georgia, serif;

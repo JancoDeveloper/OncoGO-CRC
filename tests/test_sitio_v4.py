@@ -177,7 +177,8 @@ def test_la_portada_usa_la_celda_y_no_localiza_el_colon():
     assert 'data-fuente="results/v3_7/priorizacion_embudo.json#pasos.5.n"' in pagina
     assert "Información no disponible en las fuentes del proyecto" in pagina
     assert 'aria-label="Principal"' in pagina
-    assert "¿Cómo funciona?" in pagina
+    assert "Metodología" in pagina
+    assert "Explorar proteínas" in pagina
     embudo = json.loads((REPO / "results" / "v3_7" / "priorizacion_embudo.json").read_text(encoding="utf-8"))
     for i, paso in enumerate(embudo["pasos"]):
         assert f'results/v3_7/priorizacion_embudo.json#pasos.{i}.n' in pagina

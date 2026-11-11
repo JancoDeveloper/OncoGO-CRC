@@ -14,6 +14,8 @@ El tejido publicado ya describe el tumor y la mucosa. [@vasaikar2019] [@tanaka20
 
 {{celda}}
 
+{{comparacion}}
+
 {{termino:CN}} son pacientes sintomáticos con otra enfermedad intestinal. {{termino:HC}} es otro grupo, medido aparte, y no es el contraste que decide la pregunta. [@rai2025]
 
 ## El problema

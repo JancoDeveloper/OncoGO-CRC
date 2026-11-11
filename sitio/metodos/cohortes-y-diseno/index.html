@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.a1fc0bd2e5.css">
+<link rel="stylesheet" href="/css/v4.b4f75563f1.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -17,13 +17,13 @@
 
 <a href="/">Inicio</a>
 
-<a href="/investigacion/contexto">La investigación</a>
+<a href="/investigacion/contexto">Investigación</a>
 
-<a href="/metodos/proteomica">¿Cómo funciona?</a>
+<a href="/metodos/proteomica">Metodología</a>
 
-<a href="/resultados">Explorar resultados</a>
+<a href="/resultados">Resultados</a>
 
-<a href="/ayuda">Aprende</a>
+<a href="/proteinas">Explorar proteínas</a>
 
 </nav>
 <form class="buscar" action="/buscar" method="get" role="search">
@@ -52,13 +52,34 @@
 
 </nav>
 <main id="contenido">
+
+<nav class="hermanas" aria-label="En esta sección">
+
+<a href="/metodos/proteomica">Proteómica</a>
+
+<a href="/metodos/canalizacion">Canalización</a>
+
+<a href="/metodos/expresion-diferencial">Expresión diferencial</a>
+
+<a href="/metodos/enriquecimiento">Enriquecimiento</a>
+
+<a href="/metodos/aprendizaje-automatico">Aprendizaje automático</a>
+
+<a href="/metodos/preanalitica-y-calidad">Preanalítica y calidad</a>
+
+<a href="/metodos/priorizacion">Priorización</a>
+
+<a href="/metodos/hipotesis">Hipótesis</a>
+
+</nav>
+
 <h1>Cohortes y diseño</h1>
 <h2 id="qu-entra">Qué entra</h2>
-<p>El descubrimiento de tejido, la réplica <data value="PXD034575" data-fuente="config/preregistro_v3.yaml#k1_etiquetas.accesion">PXD034575</data><details class="evidencia"><summary>fuente</summary><p id="ev90">config/preregistro_v3.yaml#k1_etiquetas.accesion</p></details> y el <a class="termino" href="/glosario#suero">suero<span class="definicion-corta">La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span></a> <data value="PXD055218" data-fuente="config/preregistro_v3.yaml#k4_suero.accesion">PXD055218</data><details class="evidencia"><summary>fuente</summary><p id="ev91">config/preregistro_v3.yaml#k4_suero.accesion</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<p>El descubrimiento de tejido, la réplica <data value="PXD034575" data-fuente="config/preregistro_v3.yaml#k1_etiquetas.accesion">PXD034575</data><details class="evidencia"><summary>fuente</summary><p id="ev96">config/preregistro_v3.yaml#k1_etiquetas.accesion</p></details> y el <a class="termino" href="/glosario#suero">suero<span class="definicion-corta">La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span></a> <data value="PXD055218" data-fuente="config/preregistro_v3.yaml#k4_suero.accesion">PXD055218</data><details class="evidencia"><summary>fuente</summary><p id="ev97">config/preregistro_v3.yaml#k4_suero.accesion</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="qu-se-hace">Qué se hace</h2>
-<p>En tejido el contraste principal es <data value="primario_frente_a_mucosa" data-fuente="config/preregistro_v3.yaml#k1_etiquetas.contraste_principal.nombre">primario_frente_a_mucosa</data><details class="evidencia"><summary>fuente</summary><p id="ev92">config/preregistro_v3.yaml#k1_etiquetas.contraste_principal.nombre</p></details>, <data value="pareado_por_participante" data-fuente="config/preregistro_v3.yaml#k1_etiquetas.contraste_principal.diseno">pareado_por_participante</data><details class="evidencia"><summary>fuente</summary><p id="ev93">config/preregistro_v3.yaml#k1_etiquetas.contraste_principal.diseno</p></details>. En suero el diseño es <data value="no_pareado" data-fuente="config/preregistro_v3.yaml#k4_suero.diseno">no_pareado</data><details class="evidencia"><summary>fuente</summary><p id="ev94">config/preregistro_v3.yaml#k4_suero.diseno</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<p>En tejido el contraste principal es <data value="primario_frente_a_mucosa" data-fuente="config/preregistro_v3.yaml#k1_etiquetas.contraste_principal.nombre">primario_frente_a_mucosa</data><details class="evidencia"><summary>fuente</summary><p id="ev98">config/preregistro_v3.yaml#k1_etiquetas.contraste_principal.nombre</p></details>, <data value="pareado_por_participante" data-fuente="config/preregistro_v3.yaml#k1_etiquetas.contraste_principal.diseno">pareado_por_participante</data><details class="evidencia"><summary>fuente</summary><p id="ev99">config/preregistro_v3.yaml#k1_etiquetas.contraste_principal.diseno</p></details>. En suero el diseño es <data value="no_pareado" data-fuente="config/preregistro_v3.yaml#k4_suero.diseno">no_pareado</data><details class="evidencia"><summary>fuente</summary><p id="ev100">config/preregistro_v3.yaml#k4_suero.diseno</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="qu-sale">Qué sale</h2>
-<p>K2 registra la cohorte de tejido como <data value="PXD034575" data-fuente="results/v3_7/k2_independencia.json#cohorte_del_contraste_de_tejido">PXD034575</data><details class="evidencia"><summary>fuente</summary><p id="ev95">results/v3_7/k2_independencia.json#cohorte_del_contraste_de_tejido</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
+<p>K2 registra la cohorte de tejido como <data value="PXD034575" data-fuente="results/v3_7/k2_independencia.json#cohorte_del_contraste_de_tejido">PXD034575</data><details class="evidencia"><summary>fuente</summary><p id="ev101">results/v3_7/k2_independencia.json#cohorte_del_contraste_de_tejido</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
 <h2 id="por-qu-as">Por qué así</h2>
 <p>Si no se puede descartar que dos depósitos comparten personas, no se cuentan como dos cohortes. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span></p>
 <h2 id="qu-tiene-que-ver-con-la-bioinform-tica">Qué tiene que ver con la bioinformática</h2>
@@ -67,7 +88,8 @@
 <p>Un diseño correcto no convierte el cero del suero en una prueba de que el tumor no cambia en el tejido. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <figure class="grafico" id="D7"><h3>¿Qué grupos no se suman?</h3><svg viewBox="0 0 964 180" role="img" class="lienzo-svg"><title>Cohortes que la corrida separa</title><desc>Tejido de descubrimiento, réplica y los tres grupos del suero. No se escribe el tamaño de HC porque el JSON de preanalítica no lo trae.</desc><g data-id="cptac"><title>CPTAC</title><rect x="24" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="40" y="108" fill="currentColor" font-size="16">CPTAC</text><g data-id="tanaka"><title>Tanaka</title><rect x="212" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="228" y="108" fill="currentColor" font-size="16">Tanaka</text><g data-id="cp"><title>CP</title><rect x="400" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="416" y="108" fill="currentColor" font-size="16">CP</text><g data-id="cn"><title>CN</title><rect x="588" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="604" y="108" fill="currentColor" font-size="16">CN</text><g data-id="hc"><title>HC</title><rect x="776" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="792" y="108" fill="currentColor" font-size="16">HC</text><line data-origen="cptac" data-destino="tanaka" x1="184" y1="102" x2="212" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="tanaka" data-destino="cp" x1="372" y1="102" x2="400" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="cp" data-destino="cn" x1="560" y1="102" x2="588" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="cn" data-destino="hc" x1="748" y1="102" x2="776" y2="102" stroke="currentColor" stroke-width="2"/></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>fuente</th></tr></thead><tbody><tr><td><a href="/datos/pdc000116">CPTAC</a></td><td>results/certified/cptac_unshared_treat.tsv</td></tr><tr><td><a href="/datos/pxd034575">Tanaka</a></td><td>data/raw/pride/Cohort1_proteinGroups.txt</td></tr><tr><td><a href="/datos/pxd055218">CP</a></td><td>results/v3_7/preanalitica.json</td></tr><tr><td><a href="/datos/pxd055218">CN</a></td><td>results/v3_7/preanalitica.json</td></tr><tr><td><a href="/datos/pxd055218">HC</a></td><td>config/preregistro_v3.yaml</td></tr><tr><td>cptac → tanaka</td><td>config/preregistro_v3.yaml</td></tr><tr><td>tanaka → cp</td><td>results/v3_7/preanalitica.json</td></tr><tr><td>cp → cn</td><td>results/v3_7/preanalitica.json</td></tr><tr><td>cn → hc</td><td>config/preregistro_v3.yaml</td></tr></tbody></table></details><p><a href="/figuras/D7.svg" download>Descargar SVG</a> <a href="/figuras/D7.tsv" download>Descargar TSV</a></p></figure>
 
-<h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
 <ul>
 
 <li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/preregistro_v3.yaml">config/preregistro_v3.yaml#k1_etiquetas.accesion</a></li>
@@ -91,21 +113,14 @@
 <li><a href="https://doi.org/10.1038/nature13438">zhang2014 · 10.1038/nature13438</a></li>
 
 </ul>
+</details>
 
 </main>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
 
-<a href="/investigacion/pregunta-e-hipotesis">Investigación</a>
-
 <a href="/datos">Datos</a>
-
-<a href="/metodos/canalizacion">Métodos</a>
-
-<a href="/resultados/tejido">Resultados</a>
-
-<a href="/proteinas">Proteínas</a>
 
 <a href="/discusion">Discusion</a>
 
@@ -114,6 +129,8 @@
 <a href="/entregables">Entregables</a>
 
 <a href="/archivo">Archivo</a>
+
+<a href="/ayuda">Ayuda</a>
 
 <a href="/glosario">Glosario</a>
 
@@ -142,6 +159,7 @@
     var aplicar = function () {
       var consulta = caja.value.toLowerCase();
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
+        if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
         nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
       });
@@ -226,6 +244,53 @@
     bloque.classList.add("animar");
     window.requestAnimationFrame(function () { bloque.classList.add("listo"); });
   });
+  var lista = document.querySelector(".explorador");
+  if (lista) {
+    var items = Array.prototype.slice.call(lista.querySelectorAll("li"));
+    var filtro = document.getElementById("filtro-proteinas");
+    var solo = document.getElementById("solo-paso-5");
+    var pagina = 0;
+    var tam = 24;
+    var estado = document.createElement("p");
+    var controles = document.createElement("p");
+    controles.className = "paginas";
+    var anterior = document.createElement("button");
+    var siguiente = document.createElement("button");
+    anterior.type = "button";
+    siguiente.type = "button";
+    anterior.textContent = "Anterior";
+    siguiente.textContent = "Siguiente";
+    controles.appendChild(anterior);
+    controles.appendChild(siguiente);
+    lista.after(estado, controles);
+    function visibles() {
+      var q = filtro && filtro.value ? filtro.value.trim().toLowerCase() : "";
+      var paso = solo && solo.checked;
+      return items.filter(function (li) {
+        var texto = (li.getAttribute("data-buscar") || "").toLowerCase();
+        if (paso && texto.indexOf("candidata") === -1) return false;
+        return !q || texto.indexOf(q) !== -1;
+      });
+    }
+    function pintar() {
+      var listaVisible = visibles();
+      var paginas = Math.max(1, Math.ceil(listaVisible.length / tam));
+      if (pagina >= paginas) pagina = paginas - 1;
+      if (pagina < 0) pagina = 0;
+      items.forEach(function (li) { li.hidden = true; });
+      listaVisible.slice(pagina * tam, pagina * tam + tam).forEach(function (li) { li.hidden = false; });
+      var desde = listaVisible.length ? pagina * tam + 1 : 0;
+      var hasta = Math.min(listaVisible.length, (pagina + 1) * tam);
+      estado.textContent = desde + "–" + hasta + " de " + listaVisible.length;
+      anterior.disabled = pagina === 0;
+      siguiente.disabled = pagina >= paginas - 1;
+    }
+    anterior.addEventListener("click", function () { pagina -= 1; pintar(); });
+    siguiente.addEventListener("click", function () { pagina += 1; pintar(); });
+    if (filtro) filtro.addEventListener("input", function () { pagina = 0; pintar(); });
+    if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
+    pintar();
+  }
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");
