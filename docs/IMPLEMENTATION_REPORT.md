@@ -1,6 +1,6 @@
 # Informe de la implementación
 
-Fecha: 2026-11-11. Publicado. Hosting `50c23bee344597f5`, liberada el 2026-11-11T16:33:07.356Z, sitio `4b525f4`. La comprobación en vivo está en `docs/despliegue_sitio_v4.md`.
+Fecha: 2026-11-11. Publicado. Hosting `1e365b023d3e7804`, liberada el 2026-11-11T16:41:51.391Z, sitio `9660345`. La comprobación en vivo está en `docs/despliegue_sitio_v4.md`.
 
 ## Qué se modificó
 
@@ -42,4 +42,4 @@ Después de añadir las matrices, el embudo en `details` y la hoja `v4.a1fc0bd2e
 
 ## Publicación
 
-Hosting `50c23bee344597f5`. La comprobación con `?v=5` pasó en la portada, resultados, proteínas y metodología: aviso dos veces, la barra de la celda y el filtro del listado. Las 16 rutas viejas siguieron en 301. El detalle está en `docs/despliegue_sitio_v4.md`.
+Hosting `1e365b023d3e7804`. Con `?v=6`, la portada, `/proteinas` y `/proteinas/P02749` sirven el mismo menú y el aviso dos veces. La versión anterior, `50c23bee344597f5`, queda en el historial. El detalle está en `docs/despliegue_sitio_v4.md`.
