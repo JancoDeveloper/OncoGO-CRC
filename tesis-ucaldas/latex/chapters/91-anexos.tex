@@ -1,60 +1,25 @@
 \chapter{Anexos}
+\objetivo{Dejar el código, el entorno y las tablas suplementarias localizables, sin convertir un fichero ausente en un resultado.}
+\todojd{Elige qué tablas suplementarias vas a pegar. No pegues una corrida anterior como si fuera la v3.7.}
 
-\section{Fuentes confirmadas}
-La tabla~\ref{tab:fuentes} lista las fuentes cuyo DOI se confirmó en Crossref el 31 de octubre de 2026. El título del registro coincide con la cita. La referencia completa, en APA 7, está al final del documento. Si la tabla pasa de página, se repite el encabezado y la leyenda de continuación.
+\section{Correspondencia con la propuesta}
+La tabla sale de \texttt{config/correspondencia\_propuesta.tsv}. La palabra «cumplido» es la etiqueta de ese fichero. No la conviertas en un biomarcador ni en una cohorte nueva.
 
-\begin{longtable}{@{}p{6.2cm}p{1.6cm}p{6.4cm}@{}}
-\caption{Fuentes confirmadas en Crossref el 31 de octubre de 2026}
-\label{tab:fuentes}\\
-\toprule
-Fuente & Año & DOI \\
-\midrule
-\endfirsthead
-\caption*{Tabla \thetable: (Continuación)}\\
-\toprule
-Fuente & Año & DOI \\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-Ashburner et al. & 2000 & 10.1038/75556 \\
-Benjamini y Hochberg & 1995 & 10.1111/j.2517-6161.1995.tb02031.x \\
-Congreso de la República de Colombia & 2010 & Ley 1384 de 2010 \\
-Cox y Mann & 2008 & 10.1038/nbt.1511 \\
-Dhami et al. & 2026 & 10.1002/prca.70041 \\
-García-Foncillas et al. & 2026 & 10.51643/22562915.853 \\
-Hembrough et al. & 2026 & 10.1158/1538-7445.am2026-7710 \\
-Jumper et al. & 2021 & 10.1038/s41586-021-03819-2 \\
-Lesur et al. & 2023 & 10.1021/acs.jproteome.2c00575 \\
-Li et al. & 2024 & 10.1038/s41467-024-44911-1 \\
-Malmström et al. & 2025 & 10.1016/j.cell.2025.03.013 \\
-McCarthy y Smyth & 2009 & 10.1093/bioinformatics/btp053 \\
-Ögren et al. & 2026 & 10.1186/s12943-026-02654-1 \\
-Rai et al. & 2025 & 10.1021/acs.jproteome.5c00285 \\
-Robles et al. & 2024 & 10.1371/journal.pcbi.1011828 \\
-Seo et al. & 2026 & 10.1002/jev2.70278 \\
-Smyth & 2004 & 10.2202/1544-6115.1027 \\
-Subramanian et al. & 2005 & 10.1073/pnas.0506580102 \\
-Tanaka et al. & 2024 & 10.1016/j.celrep.2024.113810 \\
-Uhlén et al. & 2015 & 10.1126/science.1260419 \\
-Vasaikar et al. & 2019 & 10.1016/j.cell.2019.03.030 \\
-Verathamjamras et al. & 2023 & 10.1186/s12014-023-09407-y \\
-Xiang et al. & 2026 & 10.1016/j.xgen.2025.101062 \\
-Yu et al. & 2026 & 10.1186/s12885-026-15547-9 \\
-Zhang et al. & 2014 & 10.1038/nature13438 \\
-\end{longtable}
-\fuente{Crossref, consulta del 31 de octubre de 2026. La Ley 1384 de 2010 no tiene DOI.}
+{\small
+\input{correspondencia}
+}
 
-\section{Identificadores que no entran}
-No entran en las referencias, porque el 31 de octubre de 2026 el identificador no abrió un artículo: 10.1016/j.xcrm.2025.101689, la cita mal formada de ENCODE y el identificador 10.64898/2026.08.30.26361622. Los preprints de Lee, Tan y Ramsbottom pueden ir a un anexo futuro, marcados como no revisados por pares. No se usan como evidencia de un resultado.
+\section{Entorno y código}
+\begin{itemize}
+\item Certificado: \texttt{results/v3\_7/certificado.json}. Estado \CertificadoEstado.
+\item Sello: \texttt{71b310a3fcaebe9267fac971156df3aab491e009}, 2026-11-11T00:48:45Z.
+\item Etiqueta: \texttt{v3.7-final}, commit \texttt{595118ae09ea6006c744c86b28cb0a10d42e0442}.
+\item Preregistro: \texttt{config/preregistro\_v3.yaml}.
+\item Cifras de este PDF: \texttt{tesis-ucaldas/latex/cifras.tex}, generado por \texttt{scripts/v3/exportar\_cifras\_v3\_7.py}.
+\item Figuras \texttt{f01} a \texttt{f09}: \texttt{scripts/v3/exportar\_sitio\_v3\_7.py}. Copias en \texttt{tesis-ucaldas/figures/} y en \texttt{tesis-ucaldas/latex/figures/}.
+\item No hay PNG a 300 dpi: en esta máquina no están cairosvg ni Inkscape. El PDF usa los vectoriales y los SVG quedan en \texttt{tesis-ucaldas/figures/}.
+\item Figuras \texttt{F1} a \texttt{F14}: el sello de \texttt{F1} dice etapa \texttt{v3\_3\_figuras}, 2026-11-09. No entran en este andamiaje como cifras de la corrida firmada.
+\end{itemize}
 
-\section{Tablas de la corrida v3.2 del 6 de noviembre}
-Los números de esta versión salen de \texttt{results/v3\_2/}. El contraste de tejido está en \texttt{k1\_etiquetas.json}. Las clases del suero están en \texttt{suero\_resumen.json} y en los TSV \texttt{k4\_*.tsv}. Las matrices son \texttt{suero\_matriz\_principal.tsv} y \texttt{suero\_matriz\_humana\_fdr.tsv}. El nulo del área bajo la curva está en \texttt{k5\_auc.json}. La presencia está en \texttt{k6\_presencia.json}. El control técnico está en \texttt{k7\_control\_tecnico.json}. El modelo logístico está en \texttt{ml\_suero\_permutacion.json}. Las hipótesis están en \texttt{hipotesis\_v3\_2.tsv}. Los números de \texttt{results/v3/} quedan como la lectura anterior y no se reescriben. El preregistro es \texttt{config/preregistro\_v3.yaml}. La auditoría y las enmiendas están en \texttt{docs/auditoria\_v3.md} y \texttt{docs/enmiendas\_v3.md}.
-
-\section{Historial de corridas}
-Las secciones siguientes conservan las cifras de v3.3 y de v3.4. No se borran. Su motivo está en \texttt{docs/enmiendas\_v3.md}. El volcado de la corrida v3.5 salió del cuerpo y quedó en \texttt{tesis-ucaldas/archivo/09-v35.tex}. Gene Ontology, las vías del suero y los neoantígenos no tienen pieza en \texttt{results/v3\_7/}. Quedan pendientes. No se redacta un resultado para ellos.
-\input{chapters/09-v33}
-\input{chapters/09-v34}
-
-\section{Nota sobre la correlación 0,104}
-La correlación 0,104, con 56\,\% de igual signo y 1\,993 proteínas, es una estadística anterior. Usó otra lectura de las columnas de PXD034575. La correlación 0,83 es la del primario, ya en log2, contra CPTAC, con 874 genes. Se citan juntas, cada una con su $n$. No se presenta 0,83 como la corrección de 0,104. Ninguna de las dos es tejido contra sangre. La concordancia de tejido hacia plasma de la versión certificada sigue siendo 0,488 (42 de 86).
+\section{Ficheros que la especificación nombra y no están}
+\texttt{vias\_suero.json}, \texttt{h1\_vias.json}, \texttt{catalogo\_auditoria.tsv}, \texttt{neoantigenos.tsv} y \texttt{prtc\_por\_corrida.tsv}. La ausencia está declarada. No es un resultado. Fuente: \texttt{docs/estado\_v3\_7.md}.

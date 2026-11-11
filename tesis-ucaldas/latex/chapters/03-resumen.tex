@@ -1,16 +1,27 @@
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
-% fuente: results/v3_7/suero_embudo.json
-% fuente: results/v3_7/ml_suero_permutacion.json
-% fuente: results/v3_7/h5_especificidad_organo.json
-% fuente: results/v3_7/h6_origen_celular.json
-% fuente: results/v3_7/h7_visibilidad_en_sangre.json
-% fuente: results/v3_7/h8_carga_tumoral.json
-La pregunta es si las proteínas que cambian en un tumor de colon dejan una huella que se pueda ver en la sangre. El diseño va del tejido a la sangre y después a un modelo que intenta separar los grupos. En la celda escrita de antemano, \SueroDif\ de \SueroN\ proteínas separan el cáncer de la colonoscopia negativa. \SueroEq\ tienen el cambio de la regla descartado. \SueroInd\ quedan indeterminadas: con pocas personas por grupo falta potencia.
+\objetivo{Un resumen analítico de máximo 250 palabras, con objetivo, diseño, métodos, resultados y conclusión, y de 3 a 7 palabras clave.}
+\todojd{Redacta el resumen. No copies estas viñetas. Máximo 250 palabras.}
 
-El modelo que mezcla las proteínas separa los grupos. Su área bajo la curva es \MlTodas. La calidad de la muestra sola también los separa: \MlCalidad. Al quitar la calidad, la separación cae a \MlSinCalidad\ y la permutación da \MlSinCalidadP. La separación se asocia con la calidad de la muestra, no con una proteína del tumor. La coagulación puede venir del tubo o del propio cáncer. La piel es de manipulación.
+Datos que sí están en \texttt{results/v3\_7/}:
+\begin{itemize}
+\item Pregunta: qué parte del cambio del tumor se deja ver en la sangre cuando el contraste es otra enfermedad intestinal. \cite{rai2025,vasaikar2019,tanaka2024}
+\item Celda del suero, CP frente a CN: \SueroN\ proteínas; \SueroDif\ diferentes; \SueroEq\ equivalentes; \SueroInd\ indeterminadas.
+\item Concordancia de signo del tumor primario, Tanaka y CPTAC: \TejidoNum\ de \TejidoDen.
+\item Modelos: todas las proteínas, AUC \MlTodas; solo calidad, \MlCalidad; sin la calidad, \MlSinCalidad\ (p de permutación \MlSinCalidadP).
+\item H5, \HcincoEstado. H6, \HseisEstado. H7, \HsieteEstado. H8, \HochoEstado. H9, \HnueveEstado. H10, \HdiezEstado.
+\item El certificado está en \CertificadoEstado. No es un examen de sangre. \cite{pepe2001}
+\end{itemize}
 
-H5 queda en \HcincoEstado. El cambio tumoral del colon se comparte con otros carcinomas. H7 queda en \HsieteEstado. Con las variables del tejido fijadas de antemano no se anticipa qué proteínas tumorales cambian en sangre. H8 queda en \HochoEstado. H6 no es evidencia ni a favor ni en contra. El trabajo corresponde a la fase 1 de Pepe y no propone un examen de sangre.
+Preguntas guía:
+\begin{itemize}
+\item ¿Qué se preguntó y qué contraste decide esa pregunta?
+\item ¿Qué salió en la celda y qué no demuestra el cero de la clase diferente?
+\item ¿Por qué la separación del modelo no se presenta como una proteína del tumor?
+\end{itemize}
+
+Extensión orientativa: 200 a 250 palabras. Citas sugeridas: \cite{vasaikar2019,tanaka2024,rai2025,lakens2017,pepe2001}.
 
 \noindent\textbf{Palabras clave:} cáncer colorrectal; proteómica; suero; especificidad; calidad de muestra.
+\todojd{Deja entre 3 y 7 palabras clave. Revisa si «calidad de muestra» es la quinta que quieres conservar.}
 \clearpage

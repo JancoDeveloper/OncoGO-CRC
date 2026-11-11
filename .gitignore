@@ -69,6 +69,22 @@ logs/
 firebase-debug.log
 .firebase/
 
+# LaTeX, productos de la compilación
+*.aux
+*.log
+*.bcf
+*.run.xml
+*.toc
+*.lof
+*.lot
+*.out
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.synctex.gz
+*.xdv
+
 # Demo exception: allow tiny demo outputs if committed — user may gitignore
 # Uncomment to ignore all demo-generated files:
 # data/**/demo_*

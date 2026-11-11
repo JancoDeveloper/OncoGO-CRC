@@ -1,56 +1,53 @@
 \chapter{Materiales y métodos}
+\objetivo{Describir datos, reglas fijadas antes de leer el resultado, y el entorno, de forma que otra persona pueda repetir la corrida.}
+\todojd{Lo que sigue es descriptivo y sale del preregistro y del certificado. Revísalo y reescríbelo con tus palabras. No cambies un umbral.}
 
 \section{Cohortes}
-Cada cohorte se contrasta dentro de sí. No hay corrección de lote entre estudios. No hay personas compartidas que autoricen una fusión. La configuración que declara PXD015163 descarga, en la práctica, el informe DIA-NN de PXD055218. Se nombra el archivo analizado.
-
 \begin{table}[ht]
-\caption{Cohortes y papel de cada una}
-\centering
-\begin{tabular}{@{}p{2.6cm}p{4.2cm}p{3.6cm}p{3.4cm}@{}}
+\caption{Matrices leídas por la corrida v3.7}
+\label{tab:cohortes}
+\begin{tabular}{p{3.2cm}p{2.6cm}p{7.6cm}}
 \toprule
-Accesión & Qué es & Papel & Fuente \\
+Matriz & Acceso & Papel en esta tesis \\
 \midrule
-PDC000116 & Tejido, TMT, ya en log2 & Ancla tumoral & Vasaikar et al., 2019 \\
-PXD034575 & 16 pacientes; P primario, M metástasis, N mucosa & Réplica tisular & Tanaka et al., 2024 \\
-PXD055218 & Suero DIA, 20 + 20 + 20 & Especificidad & Rai et al., 2025 \\
-PXD065161 & PRM de cuatro péptidos & No reanalizado & Rai et al., 2025 \\
-PXD036594 & Plasma dirigido & Excluido: sin etiqueta clínica usable & Lesur et al., 2023 \\
+Tejido TMT, CPTAC & PDC000116 & Tumor frente a normal publicado. Fuente: \texttt{config/datasets.yaml}. \cite{vasaikar2019} \\
+Tejido LFQ & PXD034575 & Primario, metástasis hepática y mucosa. Fuente: \texttt{k1\_etiquetas}. \cite{tanaka2024} \\
+Suero DIA & PXD055218 & Celda CP frente a CN. Fuente: \texttt{k4\_suero}. \cite{rai2025} \\
+Suero de otro depósito & PXD064655 & No se calculó su contraste proteómico. H8 queda \HochoEstado. \\
 \bottomrule
 \end{tabular}
-\fuente{elaboración propia a partir de los depósitos públicos y de los artículos citados.}
 \end{table}
+\fuente{\texttt{config/preregistro\_v3.yaml} y \texttt{config/datasets.yaml}.}
 
-\section{Reglas fijadas antes de leer el suero}
-La tasa de descubrimientos falsos de Benjamini--Hochberg es 0,05 y el valor absoluto del log2FC es mayor que el umbral de la ecuación~\eqref{eq:umbral}. Los dos cortes se exigen juntos. No se imputan ausencias. En el tejido de Tanaka se piden al menos ocho pares. El cero de MaxQuant es ausencia. La intensidad positiva se transforma a log2.
+\section{Reglas de inferencia}
+\begin{itemize}
+\item Alfa 0,05. Benjamini-Hochberg. Margen \(\log_2(1{,}5)=0{,}585\). Mínimo de pares observados: 3. Mínimo por grupo en suero: 8. Fracción mínima observada: 0,70.
+\item No se fusionan matrices. No se imputa. No se aplica un segundo \(\log_2\) a CPTAC.
+\item Celda preregistrada del multiverso: PG.MaxLFQ, librería v3.3, paneles excluidos, mínimo \(n=3\), margen 0,585, alfa 0,05, sin normalización de tejido.
+\item Clases del suero: diferente si TREAT pasa el corte en el sentido observado; equivalente si TOST cabe en el margen; indeterminada si queda fuera de las otras dos.
+\end{itemize}
+\todojd{Confirma en el código si los desplazamientos 720, 721, 840 y 841 se suman a la semilla base. El JSON de la corrida guarda la semilla \texttt{20260914} en \texttt{ml\_suero\_permutacion.json} y en \texttt{h7\_visibilidad\_en\_sangre.json}.}
 
-\begin{equation}
-\log_{2}(1{,}5) = 0{,}585
-\label{eq:umbral}
-\end{equation}
+\section{Modelos y priorización}
+\begin{itemize}
+\item M1 a M6, con los nombres de la enmienda: matriz humana, matriz principal, solo calidad, solo coagulación, principal residualizada por la calidad, y cinco componentes dentro del pliegue.
+\item Validación escrita: 5 pliegues estratificados, 20 repeticiones, nulo de 1000 permutaciones.
+\item Regla titular: si M2 no pasa la permutación, no hay separación detectable; si M2 y M5 pasan y el AUC de M5 es al menos 0,70, la señal va más allá de la calidad; en otro caso la separación se explica por la calidad.
+\item Embudo de priorización, en este orden: \PrioriPasoUno, \PrioriPasoDos, \PrioriPasoTres, \PrioriPasoCuatro, \PrioriPasoCinco, \PrioriPasoSeis, \PrioriPasoSiete. Nadie pasa el paso 6.
+\end{itemize}
 
-La especificidad exige tres condiciones a la vez: área bajo la curva de cáncer frente a colonoscopia negativa mayor que 0,70, límite inferior del intervalo bootstrap mayor que 0,50, y ese valor mayor que el de enfermedad frente a personas sanas. Se usaron dos mil remuestreos, con semilla 20261031. La marca de fase aguda, hemólisis o enfermedad inflamatoria se escribió en el catálogo antes del contraste. No baja el umbral. Cambia la lectura.
+\section{Lo que el método no hizo}
+\begin{itemize}
+\item Vías del suero, cláusula de vías de H1, unión de HC por XIC, deriva del PRTC, redes de coexpresión, catálogo de candidatas y neoantígenos. Están declarados como no ejecutados. No son un resultado.
+\item H8: 0 tumorales epiteliales en un universo de \HochoUniverso. directLFQ 0.3.3 figura en el JSON. \cite{ammar2023}
+\end{itemize}
 
-Para las vías se tomaron términos biológicos con tasa de descubrimientos falsos de hasta 0,25 en el tejido de CPTAC, al menos diez genes medidos en el suero y 200 permutaciones del ranking.
+\section{Entorno}
+Python 3.14.3. numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, scikit-learn 1.8.0. Semilla registrada en el sello: 20260914. Fuente: \texttt{results/v3\_7/certificado.json}.
 
-\section{Contraste y fichas}
-El suero usa los prefijos de corrida CP, CN y Normal. Si esas columnas existen, no se usa otra etiqueta. El tejido de Tanaka se lee por el sufijo de la columna, no por la etiqueta «pólipo» que una versión anterior del pipeline había asignado a P. Esa versión certificada no se reescribe: sus números quedan como otra estadística.
+\section{Uso de herramientas de inteligencia artificial}
+\todojd{Ajusta este párrafo. La versión de Cursor y la fecha de SciSpace ya están en la declaración.}
+Se utilizó Cursor (Anysphere) como asistente de programación para escribir y depurar código, y SciSpace como apoyo para buscar y hacer un primer filtro de literatura científica. El código, los resultados y las fuentes fueron revisados, ejecutados y validados por el autor, quien asume la responsabilidad total del contenido. \cite{cursor2026,scispace2026}
 
-La concordancia con CPTAC empareja genes y calcula el mismo signo y la correlación de Pearson de los log2FC. Las fichas reúnen proteínas que pasan la tasa de descubrimientos falsos o que tienen una lectura de área bajo la curva evaluable, y les añaden términos GO de 15 a 300 genes, la anotación de secreción y los enlaces a UniProt y AlphaFold. El origen de cada fila es literatura o resultado de esta corrida.
-
-\section{Flujo del tejido y del suero}
-% fuente: config/preregistro_v3.yaml
-% fuente: results/v3_7/suero_embudo.json
-% fuente: results/v3_7/k1_etiquetas.json
-El preregistro de la enmienda se fijó antes de recalcular. El contraste principal de PXD034575 es el primario frente a la mucosa, pareado, con al menos ocho pares. Se excluyen las filas con prefijo CON\_\_ o REV\_\_ y las que MaxQuant marca como reverso, contaminante o solo identificadas por sitio. La metástasis frente a la mucosa queda como contraste con nombre propio. La concordancia usa las 688 proteínas certificadas y se acompaña de Spearman y de la concordancia de Lin.
-
-En el suero, una celda es la mediana de las filas con q del precursor y q del grupo de hasta 0,01. El grupo entra si su q global es de hasta 0,01 y el nombre es humano. El contraste oficial retira, enteras, la biblioteca de contaminantes y los paneles de eritrocitos, plaquetas y coagulación. Cada proteína recibe una clase: diferente, si pasa el corte; equivalente, si las dos pruebas unilaterales demuestran un cambio menor que 1,5 veces; indeterminada, en el resto. El nulo del máximo del área bajo la curva usa 10\,000 permutaciones de etiquetas. No se imputa en el contraste. La regresión logística imputa la mediana solo dentro del pliegue de entrenamiento.
-
-% fuente: pip show shap
-La explicación de M2 y de M3 es el SHAP lineal del modelo logístico L2 ya ajustado en cada pliegue externo: el coeficiente por la diferencia de la variable respecto de la media del pliegue de entrenamiento, en la escala estandarizada. M2 toma la matriz principal, que ya excluye contaminantes, piel y coagulación. La igualdad con LinearExplainer se comprobó con shap 0.51.0.
-
-\section{Hipótesis, modelo y orden de adquisición}
-% fuente: config/preregistro_v3.yaml
-La agregación del suero de estadio usa directLFQ \cite{ammar2023}. El nombre de cada corrida se lee con la ruta de Windows cuando la columna trae barra invertida. Los estándares de lote no entran en el contraste. La fecha de adquisición sale de ThermoRawFileParser \cite{hulstaert2020}, del campo escrito en la enmienda. Un recurso de H7 sin el mínimo por clase no entra en el entrenamiento de los otros. ESM-2 35M se calcula una vez, fuera de la corrida, en CPU y con 4 hilos. Si la secuencia pasa de 1022 residuos, se parte en ventanas consecutivas de hasta 1022, sin solaparse, y el vector es la media de las medias de cada ventana ponderada por su longitud. 1022 es el contexto de entrenamiento: 1024 tokens menos los dos especiales. Toda proteína sin vector queda en un fichero de omisiones, con el motivo. La corrida solo lee ese fichero. Si falta o no coincide con el FASTA y con el modelo, el secundario queda no disponible y no se calcula dentro de la corrida. No entra en el veredicto. La celda preregistrada del modelo usa las semillas de la corrida v3.3.
-
-\section{Lo que el método no puede hacer}
-No se buscan espectros de péptidos mutados. No se descarga el suplemento de origen tisular de Malmström como tabla aplicada paciente a paciente. No se parte PXD036594 en cáncer y control. No se estima un examen clínico.
+Cursor y SciSpace no se citan como fuente de un hecho científico.
+Extensión orientativa: 8 a 12 páginas.

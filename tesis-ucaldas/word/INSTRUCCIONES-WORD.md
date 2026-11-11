@@ -1,5 +1,7 @@
 # Word
 
+El archivo `tesis-maestria-ucaldas.docx` es el andamiaje del 11 de noviembre de 2026, no la prosa final. Cada párrafo gris que empieza por «TODO Juan Diego» es lo que hay que completar. El orden y las cifras están en `../GUIA-DE-REDACCION.md`.
+
 El archivo es `tesis-maestria-ucaldas.docx`. Se partió de la guía oficial:
 
 https://biblio.ucaldas.edu.co/wp-content/uploads/2022/07/guia-presentacion-tesis-trabajos-grado.docx
@@ -9,8 +11,12 @@ Se conservó el papel carta y se aplicaron los estilos que la propia guía escri
 ## Al abrirlo
 
 1. Si Word pregunta si actualiza los campos, acepte.
-2. Clic derecho en la tabla de contenido, en la lista de tablas y en la lista de figuras, y elija **Actualizar campos → Actualizar toda la tabla**.
-3. Los textos en gris y cursiva son huecos: director, codirector, grupo y línea. La dedicatoria y los agradecimientos no están: la guía de 2022 los deja como opcionales.
+2. Lea la hoja «Qué completar antes de exportar el PDF», justo después de la portada.
+3. Sustituya los cuatro corchetes grises: director, codirector, grupo y línea. El repositorio no tiene esos nombres.
+4. Clic derecho en la tabla de contenido, en la lista de tablas y en la lista de figuras, y elija **Actualizar campos → Actualizar toda la tabla**.
+5. Los textos en gris y cursiva que queden son huecos. La dedicatoria y los agradecimientos no están: la guía de 2022 los deja como opcionales. Si se escriben, usan Título 1 y empiezan en página impar.
+
+No exporte el PDF mientras un corchete de la portada siga visible. Las cifras del apartado 6.7 son las de `results/v3_7/`, sello `71b310a3fcaebe9267fac971156df3aab491e009`. No las cambie por las de `results/v3_3/` ni `results/v3_4/`.
 
 ## Estilos
 

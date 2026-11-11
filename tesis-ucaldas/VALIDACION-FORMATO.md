@@ -1,5 +1,28 @@
 # Validación de formato
 
+## Chequeo del andamiaje, 11 de noviembre de 2026
+
+La guía oficial sigue siendo `tesis-ucaldas/assets/guia-presentacion-tesis.docx`, descargada de la Biblioteca. La tabla de abajo, del 6 de noviembre, no se borró. Este bloque dice qué se volvió a comprobar hoy sobre el andamiaje.
+
+| Requisito | Estado en este andamiaje |
+|---|---|
+| Papel carta 21,59 × 27,94 cm | LaTeX: `letterpaper` y geometry. Word: las secciones del .docx miden 21,59 × 27,94 cm |
+| Márgenes 2,54 cm y 3,60 cm interior | LaTeX: `inner=3.60cm`, `outer=2.54cm`, `top` y `bottom` 2,54 cm. Word: 3,60 cm a un lado y 2,54 cm al otro |
+| Arial 11, interlineado 1,5 | Word: estilo Normal del archivo que salió de la guía. LaTeX: TeX Gyre Heros 11 pt, porque Arial no está en TeX Live. Desviación ya anotada |
+| Título de capítulo en 20 pt, página impar | LaTeX: `titlesec` 20 pt y `openright`. Word: Título 1 y salto `ODD_PAGE` antes de cada capítulo numerado |
+| Preliminares en romanos; arábigos desde la Introducción | LaTeX: romanos desde `\AtBeginDocument` y `\mainmatter` justo antes de la Introducción |
+| Cubierta y portada sin número, contadas | LaTeX: `\thispagestyle{empty}` |
+| Resumen ≤ 250 palabras y 3 a 7 palabras clave | No hay prosa de resumen. El hueco está marcado para que lo escriba el autor |
+| Seis capítulos como máximo | Introducción, Marco, Métodos, Resultados, Discusión, Conclusiones. Las desviaciones pasaron a una sección de la Discusión |
+| APA 7 | `biblatex` `style=apa`. Los 33 DOI se consultaron en Crossref el 11 de noviembre de 2026 y el título coincidió |
+| PDF/A `JuanDiego_PolancoFranco_2026.pdf` | No se exportó. El PDF compilado es `latex/main.pdf`, 53 páginas, LuaLaTeX y Biber, sin citas indefinidas. No es el PDF/A de entrega |
+| Codirector | Eliminado, porque no hay |
+| Director, grupo y línea | Director: Jorge Alberto Jaramillo Garzón. Grupo: GITIR. Línea: Modelos Computacionales y Bioinformática. Sin nota de confirmación |
+| Dedicatoria y agradecimientos | Eliminados del `main.tex` y del Word |
+| PNG a 300 dpi de f01–f09 | No hay cairosvg ni Inkscape. LaTeX incluye los PDF vectoriales. Los SVG quedan en `tesis-ucaldas/figures/`. El Word no incrusta esas figuras |
+
+El detalle del 6 de noviembre sigue debajo.
+
 Se leyeron, el 6 de noviembre de 2026, los archivos guardados en `tesis-ucaldas/assets/`. Si la prosa de la guía y el estilo de fábrica del mismo .docx no coincidían, se siguió lo que el ejemplo muestra en pantalla y lo que la guía escribe como sugerencia. La guía dice «se sugiere»: no es un reglamento rígido.
 
 | Requisito | Fuente | Word | LaTeX | Notas |

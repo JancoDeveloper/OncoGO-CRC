@@ -1,16 +1,10 @@
 \begin{otherlanguage}{english}
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-% fuente: results/v3_7/suero_embudo.json
-% fuente: results/v3_7/ml_suero_permutacion.json
-% fuente: results/v3_7/h5_especificidad_organo.json
-% fuente: results/v3_7/h7_visibilidad_en_sangre.json
-% fuente: results/v3_7/h8_carga_tumoral.json
-The question is whether proteins that change in a colon tumor leave a trace that blood can show. The design moves from tissue to blood and then to a model that tries to separate the groups. In the cell written beforehand, \SueroDif\ of \SueroN\ proteins separate cancer from a negative colonoscopy. \SueroEq\ have the preregistered fold change ruled out. \SueroInd\ stay indeterminate because the groups are small.
+\objetivo{Traducir el resumen al inglés, con las mismas cifras y sin añadir un resultado.}
+\todojd{Write the abstract from your Spanish summary. Do not translate these bullets as the final paragraph. At most 250 words.}
 
-The model that mixes the proteins separates the groups. Its area under the curve is \MlTodas. Sample quality alone also separates them: \MlCalidad. After removing quality, the value falls to \MlSinCalidad\ and the permutation gives \MlSinCalidadP. The separation tracks sample quality, not a tumor protein. Coagulation may come from the tube or from the cancer itself. Skin comes from handling.
-
-H5 is \HcincoEstado: the colon tumor change is shared with other carcinomas. H7 is \HsieteEstado: tissue variables fixed beforehand do not anticipate which tumor proteins change in blood. H8 is \HochoEstado. H6 is evidence neither for nor against. This is Pepe phase 1. It does not propose a blood test.
+Facts already in \texttt{results/v3\_7/}: serum cell \SueroDif\ different, \SueroEq\ equivalent and \SueroInd\ indeterminate out of \SueroN; tissue sign concordance \TejidoNum\ of \TejidoDen; AUC \MlTodas, \MlCalidad\ and \MlSinCalidad\ (permutation p \MlSinCalidadP); H7 is \HsieteEstado; the certificate is \CertificadoEstado. This is not a blood test.
 
 \noindent\textbf{Keywords:} colorectal cancer; proteomics; serum; specificity; sample quality.
 \end{otherlanguage}

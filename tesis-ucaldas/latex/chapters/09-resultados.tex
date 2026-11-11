@@ -1,118 +1,141 @@
 \chapter{Resultados}
-% fuente: results/v3_7/
+\objetivo{Mostrar cada cifra con su figura o su tabla, y decir en la misma página qué no demuestra.}
+\todojd{Redacta el puente entre la figura y la cifra. El caption de abajo es técnico y provisional.}
 
-Cada sección dice la pregunta, la regla, el número, la figura y qué no demuestra. Las cifras salen de \texttt{results/v3\_7/}. La figura del orden se trazó de nuevo desde \texttt{results/v3\_7/preanalitica\_orden.tsv}. Las demás figuras de este capítulo conservan el dibujo de la v3.6 cuando el conteo no cambió. \Advertencia
-
-\section{Integridad de los datos}
-% fuente: results/v3_7/suero_embudo.json
-¿Cuántas proteínas quedan para el contraste del suero? La regla pide q global de hasta 0,01, especie humana y la celda preregistrada. El informe parte de \EmbudoGrupos\ grupos, deja \EmbudoQ\ con ese q, \EmbudoHumanos\ humanas y \SueroN\ en la celda. La figura~\ref{fig:embudo} muestra el embudo.
-
+\section{Mapa de la corrida}
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.82\textwidth]{figures/Fig4-1_embudo_suero.png}
-\caption{Embudo del suero. Dibujo de la v3.6. El mismo conteo está en \texttt{results/v3\_7/suero\_embudo.json}.}
-\label{fig:embudo}
+\includegraphics[width=0.92\textwidth]{figures/f01.pdf}
+\caption{Cuatro bloques de la corrida: tejido, suero, hipótesis y priorización. El trazo une el orden de lectura. No representa una proteína que pasa del tumor a la sangre.}
+\label{fig:mapa}
 \end{figure}
-
-Qué no demuestra. El embudo no dice que las proteínas que salen no existan en la sangre. Dice que no pasan la regla escrita.
+\fuente{\texttt{scripts/v3/exportar\_sitio\_v3\_7.py}, figura \texttt{f01}, a partir de \texttt{results/v3\_7/}.}
+\todojd{escribe tu interpretación de la figura \ref{fig:mapa}.}
 
 \section{Tejido}
-% fuente: results/v3_7/k1_etiquetas.json
-¿El cambio del tumor primario se repite entre Tanaka y CPTAC? El primario frente a la mucosa coincide en signo en \TejidoNum\ de \TejidoDen. Esa concordancia está condicionada a que la réplica detecte la proteína: cubre \CoberturaNum\ de \CoberturaDen\ certificadas. Por la regla C15 se reporta así, no como una intersección sobre todo el universo. H1 queda en \HunoVeredicto\ por la cláusula de proteína. La cláusula de vías no se ejecutó y no cambia ese veredicto. La metástasis hepática frente a la mucosa coincide en \TejidoMetaNum\ de \TejidoMetaDen.
+\begin{itemize}
+\item Signo del tumor primario, Tanaka frente a CPTAC: \TejidoNum\ de \TejidoDen.
+\item Metástasis hepática frente a mucosa: \TejidoMetaNum\ de \TejidoMetaDen.
+\item Cobertura: \CoberturaNum\ de \CoberturaDen. Veredicto de H1: \HunoVeredicto.
+\item Concordancia de NES: \GoConNum\ de \GoConDen.
+\end{itemize}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.84\textwidth]{figures/f05.pdf}
+\caption{Cada punto es un gen de la tabla de H7 medido también en Tanaka. El eje horizontal es el \(\log_2\)FC de CPTAC y el vertical, el de Tanaka.}
+\label{fig:tejido}
+\end{figure}
+\fuente{\texttt{results/v3\_7/}, figura \texttt{f05}.}
+\todojd{escribe tu interpretación de la figura \ref{fig:tejido}. No afirmes que el signo compartido localiza una muestra.}
 
-Qué no demuestra. No confirma cada etiqueta de tumor y de mucosa. De los controles físicos, CA1 pasa. AQP8 y GUCA2A no se detectan. SLC26A3 no se evalúa por falta de pares. Son controles no medibles en la réplica. \texttt{controles\_tejido.json} deja \texttt{veredicto\_v3\_4} en pasa.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.84\textwidth]{figures/f07.pdf}
+\caption{Cada punto es un término con FDR de CPTAC dentro del umbral y con NES en Tanaka.}
+\label{fig:go}
+\end{figure}
+\fuente{\texttt{results/v3\_7/go\_tejido.json}, figura \texttt{f07}.}
+\todojd{escribe tu interpretación de la figura \ref{fig:go}. Un ORA de cero términos en Tanaka no es ausencia de biología: Tanaka tiene \GoTanakaSuben\ términos ORA que suben y \GoTanakaBajan\ que bajan, y \GoTanakaGsea\ con GSEA.}
 
 \section{Suero}
-% fuente: results/v3_7/suero_k4_crc_cn.tsv
-¿Alguna proteína separa el cáncer de la colonoscopia negativa? CN son pacientes con otra enfermedad intestinal y síntomas parecidos al cáncer, según el protocolo de PXD055218. No son personas sanas. HC son los sanos. La regla es diferencia y equivalencia con un cambio de 1,5 veces, escrita antes de mirar. En la celda hay \SueroDif\ diferentes, \SueroEq\ equivalentes y \SueroInd\ indeterminadas, sobre \SueroN. La figura~\ref{fig:equivalencia} reparte esas tres clases. Frente a HC, CP tiene \HcCpDif\ proteínas diferentes: \HcCpGenes. CN frente a HC tiene \HcCnDif: \HcCnGenes.
+\begin{table}[ht]
+\caption{Celda preregistrada del suero, CP frente a CN}
+\label{tab:celda}
+\begin{tabular}{lr}
+\toprule
+Clase & Proteínas \\
+\midrule
+Diferentes & \SueroDif \\
+Equivalentes & \SueroEq \\
+Indeterminadas & \SueroInd \\
+Total & \SueroN \\
+\bottomrule
+\end{tabular}
+\end{table}
+\fuente{\texttt{results/v3\_7/suero\_embudo.json}, campo \texttt{celda\_preregistrada}.}
+\todojd{El cero no lleva un segmento inventado. No escribas que la equivalencia estadística es identidad biológica.}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.72\textwidth]{figures/Fig4-3_equivalencia_suero.png}
-\caption{Clases del contraste de cáncer frente a colonoscopia negativa. Dibujo de la v3.6. El mismo conteo está en \texttt{results/v3\_7/suero\_k4\_crc\_cn.tsv}.}
-\label{fig:equivalencia}
+\includegraphics[width=0.92\textwidth]{figures/f02.pdf}
+\caption{Embudo del suero. Alturas: \EmbudoGrupos\ grupos, \EmbudoQ\ con el filtro global, \EmbudoHumanos\ humanas y la celda de \SueroN.}
+\label{fig:embudo}
 \end{figure}
-
-Qué no demuestra. Un nulo frente a la colonoscopia negativa no es un nulo limpio: un lote puede crear diferencias y también ocultarlas. No se detecta no quiere decir no existe.
-
-\section{Calidad de la muestra}
-% fuente: results/v3_7/k7_control_tecnico.json
-¿La calidad de la muestra difiere entre grupos? La coagulación tiene p \CalidadCoagP\ y la piel tiene p \CalidadPielP.
-
-Qué no demuestra. La diferencia de coagulación puede ser del tubo o del tumor. Con estos datos no se separan. La piel apunta a manipulación.
-
-\section{Orden de adquisición}
-% fuente: results/v3_7/preanalitica.json
-¿En qué orden se midieron las muestras? Hay \PreCrudos\ crudos válidos y fecha en \PreFecha. El estado es \PreEstado. El AUC del orden entre cáncer y colonoscopia negativa es \PreAuc, con p exacta \PreP. Con las \PreFecha\ fechas ese AUC es el del orden observado; no se usa una cota por fechas faltantes. El orden y el grupo están confundidos por completo, así que el Spearman de CP y CN juntos no separa uno del otro. Dentro de CP no hay deriva. Dentro de CN suben los precursores: el q de Benjamini--Hochberg, sobre los diez Spearman dentro de grupo, es \BhPrecursoresCn\ para los precursores y \BhPielCn\ para la piel. El Spearman de la piel con el orden es \PreRhoPiel. HC no se evalúa por muestra. La figura~\ref{fig:orden} sale de \texttt{results/v3\_7/preanalitica\_orden.tsv}.
+\fuente{\texttt{results/v3\_7/suero\_embudo.json}, figura \texttt{f02}.}
+\todojd{escribe tu interpretación de la figura \ref{fig:embudo}.}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.9\textwidth]{figures/Fig4-2_orden_adquisicion.png}
-\caption{Orden de adquisición de las \PreFecha\ muestras con fecha. CP, luego CN y al final HC. Fuente: \texttt{results/v3\_7/preanalitica\_orden.tsv}.}
-\label{fig:orden}
+\includegraphics[width=0.84\textwidth]{figures/f03.pdf}
+\caption{La barra superior es CP frente a CN. Las de abajo son los contrastes con HC, medido aparte: \HcCpDif\ diferentes en CP y \HcCnDif\ en CN. HC no decide la pregunta.}
+\label{fig:hc}
 \end{figure}
+\fuente{\texttt{suero\_k4\_crc\_sanos.tsv} y \texttt{suero\_k4\_cn\_sanos.tsv}, figura \texttt{f03}.}
+\todojd{escribe tu interpretación de la figura \ref{fig:hc}. No llames sanos a CN.}
 
-Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final HC. El Spearman de CP y CN juntos no separa el orden del grupo. Dentro de CP no hay deriva. Dentro de CN suben los precursores. Eso no crea una proteína del tumor: la separación del suero no se atribuye al tumor. Las diferencias frente a HC comparan también bloques de adquisición distintos.
+\section{Calidad, orden y modelos}
+\begin{itemize}
+\item Preanalítica: estado \PreEstado. Crudos válidos: \PreCrudos. Con fecha: \PreFecha. AUC del orden: \PreAuc. p exacta de Mann-Whitney: \(1{,}5\times 10^{-11}\). Es el valor de \texttt{cifras.tex} (\texttt{\textbackslash PreP}); va en fórmula porque la fuente no tiene el signo de exponente.
+\item M2, todas las proteínas: AUC \MlTodas. M3, solo calidad: \MlCalidad. M5, sin la calidad: \MlSinCalidad, p \MlSinCalidadP.
+\item M1: \MlHumana. M4, coagulación: \MlCoagulacion. M6: \MlPca.
+\end{itemize}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.84\textwidth]{figures/f08.pdf}
+\caption{AUC fuera de pliegue de M1 a M6. La línea discontinua es el percentil 95 del nulo de K5.}
+\label{fig:auc}
+\end{figure}
+\fuente{\texttt{results/v3\_7/ml\_suero\_permutacion.json}, figura \texttt{f08}.}
+\todojd{escribe tu interpretación de la figura \ref{fig:auc}. No presentes el AUC como sensibilidad ni como especificidad de un examen.}
 
-Qué no demuestra. No atribuye la separación al tumor. No imputa fechas: las que faltaban se leyeron del crudo cuyo SHA-1 coincide con PRIDE.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.78\textwidth]{figures/f09.pdf}
+\caption{Media del valor absoluto de SHAP en M2 y en M3. M3 usa las variables de calidad que trae el fichero.}
+\label{fig:shap}
+\end{figure}
+\fuente{Figura \texttt{f09}.}
+\todojd{escribe tu interpretación de la figura \ref{fig:shap}.}
 
-\section{Modelo}
-% fuente: results/v3_7/ml_suero_permutacion.json
-¿Cuánto separa un modelo y por qué? La celda preregistrada, con todas las proteínas, tiene AUC \MlTodas. La matriz humana da \MlHumana. Solo la calidad da \MlCalidad. Solo la coagulación da \MlCoagulacion. Sin la calidad, el AUC cae a \MlSinCalidad\ y la permutación da p \MlSinCalidadP. El modelo con cinco componentes da \MlPca. Si no se quitan contaminantes, la mediana del AUC en el multiverso es \MlContaminantes.
+\section{Hipótesis y priorización}
+\begin{table}[ht]
+\caption{Estado de las hipótesis en la corrida firmada}
+\label{tab:hipotesis}
+\begin{tabular}{llp{7.2cm}}
+\toprule
+Hipótesis & Estado & Cifra que sí está \\
+\midrule
+H5 & \HcincoEstado & \HcincoUniverso\ genes en el universo principal. Fracción pan-carcinoma 0,119. Clasifica 624 proteínas. \\
+H6 & \HseisEstado & No informa a favor ni en contra. \\
+H7 & \HsieteEstado & Álvez 2023: AUC \HsieteAlvez. HPA: AUC \HsieteHpa. Secundario: \HsieteSec, con vector en \HsieteNEsm\ y \HsieteOmitidas\ omitidas. \\
+H8 & \HochoEstado & \HochoTumorales\ tumorales epiteliales en \HochoUniverso. \\
+H9 & \HnueveEstado & No decide la tesis. \\
+H10 & \HdiezEstado & \HdiezN\ proteínas. \\
+\bottomrule
+\end{tabular}
+\end{table}
+\fuente{JSON \texttt{h5} a \texttt{h10} de \texttt{results/v3\_7/}.}
+\todojd{El intervalo de Álvez es 0,381 a 0,584 (53 y 73) y el del HPA es 0,353 a 0,573 (53 y 63). Papier 2024 queda no evaluable: 1 y 125. Escribe eso solo si usas H7.}
 
-Qué no demuestra. No es un examen. La separación puede venir del lote de adquisición tanto como de la manipulación de la muestra.
+\begin{itemize}
+\item Pasos de priorización: \PrioriPasoUno, \PrioriPasoDos, \PrioriPasoTres, \PrioriPasoCuatro, \PrioriPasoCinco, \PrioriPasoSeis\ y \PrioriPasoSiete.
+\item Del paso 5, \PrioriBajan\ bajan en CPTAC y \PrioriSuben\ suben.
+\item Multiverso: \MultiSuero\ celdas de suero, \MultiMl\ de aprendizaje, \MultiDif\ con alguna proteína diferente.
+\end{itemize}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.84\textwidth]{figures/f04.pdf}
+\caption{Rejilla de \MultiSuero\ celdas. El trazo discontinuo marca las que tienen alguna proteína diferente. No es una cohorte nueva.}
+\label{fig:multi}
+\end{figure}
+\fuente{\texttt{results/v3\_7/multiverso\_resumen.json}, figura \texttt{f04}.}
+\todojd{escribe tu interpretación de la figura \ref{fig:multi}.}
 
-\section{Multiverso}
-% fuente: results/v3_7/multiverso_resumen.json
-¿El nulo depende de una sola forma de analizar? Hay \MultiSuero\ celdas de suero y \MultiMl\ de modelo. \MultiDif\ celdas tienen proteínas diferentes y todas dejan los contaminantes sin quitar.
-
-Qué no demuestra. No convierte esas celdas en un resultado del tumor. Muestra que el nulo de la celda preregistrada no es el de esas variantes.
-
-\section{Hipótesis}
-% fuente: results/v3_7/h5_especificidad_organo.json
-H5 queda en \HcincoEstado. El universo común tiene \HcincoUniverso\ genes. La diferencia con el otro carcinoma de mayor concordancia es \HcincoDif. Qué no demuestra: no dice que el colon tenga una dirección de cambio propia.
-
-% fuente: results/v3_7/h6_origen_celular.json
-H6 queda en \HseisEstado. La tabla está degenerada: una columna queda vacía. Qué no demuestra: no informa si el tipo celular influye. No es evidencia ni a favor ni en contra.
-
-% fuente: results/v3_7/h7_visibilidad_en_sangre.json
-H7 queda en \HsieteEstado. Álvez da \HsieteAlvez\ y el atlas de sangre da \HsieteHpa. Papier no se evalúa. El secundario, con ESM-2 y TMbed, queda en \HsieteSec\ y no entra en el veredicto. Qué no demuestra: no anticipa qué proteína tumoral se verá en sangre y no es una prueba diagnóstica.
-
-% fuente: results/v3_7/h8_carga_tumoral.json
-H8 queda en \HochoEstado. El universo de la prueba tiene \HochoUniverso\ proteínas y las tumorales epiteliales son \HochoTumorales. Las plaquetas difieren entre el estadio IV y los estadios I--II, con p \HochoPlaquetasP. Qué no demuestra: no dice que el estadio IV no lleve proteína del tumor. Un DIA de suero sin depleción ve sobre todo proteínas abundantes. El metadato dice plasma y el protocolo de PRIDE dice suero: se anota sin decidir. La diferencia de plaquetas no se explica por el orden, porque esas muestras se aleatorizaron. Puede ser del tubo o biológica, y con la cita disponible no se separan.
-
-% fuente: results/v3_7/h9_wald.json
-H9 queda en \HnueveEstado. Las proteínas con resultado exploratorio son \HnueveGenes. Qué no demuestra: no decide la tesis.
-
-% fuente: results/v3_7/h10_especificidad.json
-H10 queda en \HdiezEstado, con \HdiezN\ proteínas específicas de cáncer colorrectal: \HdiezGenes. Qué no demuestra: no es un hallazgo nuevo. CEACAM5 ilustra el seguimiento tras la cirugía \cite{locker2006}.
-
-\section{Triangulación y certificado}
-% fuente: results/v3_7/triangulacion.tsv
-% fuente: results/v3_7/certificado.json
-La triangulación reúne los genes de la enmienda y no deja celdas vacías. Qué no demuestra: no valida un panel. El certificado queda en \CertificadoEstado. La limitación aceptada es H8. La preanalítica queda en \PreEstado.
-
-\section{Qué cambió y qué queda pendiente}
-% fuente: results/v3_7/h8_carga_tumoral.json
-% fuente: results/v3_7/preanalitica.json
-% fuente: results/v3_7/union_crudos_calidad.tsv
-El mapa de genes de Tanaka, el de esta corrida, deja el universo de H8 en \HochoUniverso\ proteínas. Sigue en \HochoEstado\ y las tumorales epiteliales siguen en \HochoTumorales. Qué no demuestra: un universo más grande no convierte la pieza en evidencia de carga tumoral en sangre.
-
-Los sesenta crudos coinciden con el SHA-1 de PRIDE y tienen fecha. El estado de la preanalítica es \PreEstado. Qué no demuestra: no une los sanos. El reporte nombra esas corridas como \texttt{Normal\_} dentro de un \texttt{.mzML}. El crudo se llama \texttt{HC\_}. \texttt{union\_crudos\_calidad.tsv} deja esa unión en falso. No se fabricó la igualdad por el número.
-
-% fuente: results/v3_7/ml_explicacion.json
-% fuente: results/v3_7/ml_explicacion.tsv
-% fuente: src/oncogo_crc/v3/ml_suero.py
-% fuente: src/oncogo_crc/v3/suero_v32.py
-De las \ShapTop\ proteínas de M2 con mayor valor absoluto de SHAP, \ShapCalidad\ correlacionan con la calidad tras Benjamini--Hochberg. La diferencia con LinearExplainer es \ShapLineal. M2 usa la matriz principal. Esa matriz excluye la biblioteca de contaminantes, el panel de piel y el panel de coagulación, así que \ShapPiel\ proteínas de piel y \ShapCoag\ de coagulación entre esas \ShapTop\ se deben a esa construcción y no son un hallazgo. M3, solo con la calidad, ya separa los grupos: la separación de M2 no se atribuye a la biología del tumor.
-
-% fuente: results/v3_7/go_tejido.json
-En CPTAC se probaron \GoCptacTerminos\ términos. El ORA deja \GoCptacSuben\ que suben y \GoCptacBajan\ que bajan, y el GSEA deja \GoCptacGsea\ con FDR de hasta \GoFdr. En Tanaka se probaron \GoTanakaTerminos\ términos, con ORA \GoTanakaSuben\ y \GoTanakaBajan, y \GoTanakaGsea\ de GSEA. La concordancia de signo del NES es \GoConNum\ de \GoConDen\ (IC \GoCiBajo--\GoCiAlto). Es descriptivo, con GO sin propagar, sin IEA y con \GoPerm\ permutaciones. No emite un veredicto de H1.
-
-% fuente: results/v3_7/priorizacion_embudo.json
-% fuente: results/v3_7/priorizacion.tsv
-La priorización secuencial, sin pesos, deja \PrioriPasoUno, \PrioriPasoDos, \PrioriPasoTres, \PrioriPasoCuatro, \PrioriPasoCinco, \PrioriPasoSeis\ y \PrioriPasoSiete\ proteínas en los pasos 1 a 7. El paso 6 queda en \PrioriPasoSeis. Las \PrioriPasoCinco\ del paso 5 son \PrioriGenesPasoCinco. De ellas, \PrioriBajan\ tienen el log2FC de CPTAC negativo y \PrioriSuben\ lo tienen positivo: \PrioriSubenGenes. Son hipótesis para cohortes futuras, no biomarcadores.
-
-Interpretación, no resultado: casi todas son proteínas abundantes del plasma (apolipoproteínas, serpinas, HP, HPX, TF, CP, AHSG, AFM, KNG1, ORM2), más bajas en el tumor que en la mucosa. El paso 5 favorece a lo que el DIA de suero sin depleción alcanza a medir, no a proteínas que salgan del tumor. \PrioriSubenGenes\ forman la calprotectina, de neutrófilos, que también sube en la enfermedad inflamatoria intestinal. Como CN incluye esos pacientes, no se espera que esa pareja separe CP de CN.
-
-BAIAP3 sale en el filtro global de 1~\% y CEACAM5 no está entre los grupos del report; el detalle está en \texttt{auditoria\_rai2025.tsv}. Las piezas que la enmienda declara no ejecutadas se leen en el capítulo de desviaciones. El certificado queda en \CertificadoEstado.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/f06.pdf}
+\caption{Controles de tejido no medibles. AQP8, GUCA2A y SLC26A3 quedan con trazo discontinuo porque el fichero no los da para la prueba.}
+\label{fig:controles}
+\end{figure}
+\fuente{Figura \texttt{f06}. [PENDIENTE: verificar en \texttt{results/v3\_7/} el veredicto de CA1 antes de escribirlo en la prosa. El anexo viejo decía «CA1 pasa» y no se copió aquí.]}
+\todojd{escribe tu interpretación de la figura \ref{fig:controles} solo con el fichero que abras.}

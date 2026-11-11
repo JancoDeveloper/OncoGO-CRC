@@ -1,41 +1,32 @@
 \chapter{Discusión}
-% REDACTAR-AUTOR: ampliar cada sección. Los párrafos de abajo son la base, con las cifras de results/v3_7/ y las citas ya verificadas.
-% REDACTAR-AUTOR: el universo de H8 cambió al usar el mapa de genes de esta corrida. El GO del tejido sí tiene fichero y es descriptivo. Siguen sin fichero las vías del suero, la cláusula de vías de H1, el catálogo, los neoantígenos y el PRTC. No redactar un resultado para esas piezas.
+\objetivo{Interpretar los resultados, incluir las limitaciones y no convertir una desviación en un hallazgo.}
+\todojd{Redacta la discusión. Las viñetas son el material, no el párrafo.}
 
-\section{El diseño en bloques}
-% fuente: results/v3_7/preanalitica.json
-Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos. Hay fecha en \PreFecha\ de \PreCrudos\ crudos y el estado es \PreEstado. El AUC del orden es \PreAuc. La piel y la coagulación cambian a lo largo de una corrida cuando el manejo de la muestra no está fijo \cite{geyer2019}. Un lote puede producir la apariencia de una diferencia biológica \cite{leek2010}.
-
-% REDACTAR-AUTOR: contar con más detalle por qué un bloque confunde grupo y lote, y por qué el nulo frente a la colonoscopia negativa tampoco queda protegido.
-
-\section{Coagulación: tubo o tumor}
-% fuente: results/v3_7/k7_control_tecnico.json
-La coagulación difiere entre cáncer y colonoscopia negativa, con p \CalidadCoagP. El cáncer activa la coagulación, y el tubo y el tiempo hasta centrifugar también la cambian. Con estos datos no se separan. La piel, con p \CalidadPielP, apunta a manipulación.
-
-% REDACTAR-AUTOR: decidir si se cita trombocitosis solo con una fuente verificada en Crossref. Si no, dejar escrito que no se separa el tubo de la biología.
-
-\section{El resultado negativo}
-% fuente: results/v3_7/suero_embudo.json
-\SueroDif\ de \SueroN\ proteínas separan el cáncer de la colonoscopia negativa. \SueroEq\ son equivalentes: descartan el cambio de la regla. \SueroInd\ quedan indeterminadas. Con este tamaño, no detectar una diferencia no equivale a demostrar que no existe.
-
-% REDACTAR-AUTOR: desarrollar la potencia con veinte personas por grupo, sin presentar el nulo como limpio.
-
-\section{Coherencia biológica}
-SAA1, LBP y LRG1 suben frente a personas sanas y forman parte de la respuesta de fase aguda \cite{gabay1999}. Esa lectura es plausible y no se separa del lote, porque los sanos se midieron al final. CEACAM5 se usa en el seguimiento, no como cribado \cite{locker2006}. H8 queda en \HochoEstado: un DIA sin depleción no alcanza las proteínas tumorales epiteliales \cite{hermoso2026}.
-
-% REDACTAR-AUTOR: cerrar el párrafo de fase aguda con lo que el autor quiera conservar de la literatura.
-
-\section{Otros estudios}
-Álvez, Papier, Wannberg y Hermoso-Durán preguntan cosas distintas y usan diseños distintos. No se comparan áreas bajo la curva entre diseños. H7 queda en \HsieteEstado\ dentro de sus propias reglas.
-
-% REDACTAR-AUTOR: una frase por estudio, con su diseño y sin comparar AUC.
+\section{Qué se puede leer}
+\begin{itemize}
+\item En tejido, el signo del tumor primario coincide en \TejidoNum\ de \TejidoDen. Eso no confirma todas las etiquetas de tumor y mucosa.
+\item En suero, \SueroDif\ de \SueroN\ separan el cáncer de la colonoscopia negativa. \SueroEq\ son equivalentes y \SueroInd\ indeterminadas.
+\item El modelo con todas las proteínas da \MlTodas, la calidad sola da \MlCalidad\ y sin la calidad el área cae a \MlSinCalidad\ (p \MlSinCalidadP).
+\item H7 queda en \HsieteEstado. Las variables del tejido fijadas de antemano no anticipan el cambio en sangre.
+\end{itemize}
+\todojd{Responde: ¿la separación de los grupos es una proteína del tumor o va con la calidad de la muestra? Cita \cite{leek2010,rai2025,pepe2001}.}
 
 \section{Limitaciones}
-El suero es de un solo centro y de grupos pequeños. No hay tejido y sangre de la misma persona. Parte de los controles del tejido no se detecta. La preanalítica queda en \PreEstado. H6 queda en \HseisEstado, con la tabla degenerada. H9 queda en \HnueveEstado\ y no decide la tesis.
+\begin{itemize}
+\item Es trabajo \textit{in silico}. No propone un examen clínico.
+\item No hay tejido y sangre de la misma persona en las matrices usadas.
+\item CP, CN y HC se midieron en bloques. El orden y el grupo no se pueden separar. Estado de la preanalítica: \PreEstado.
+\item H8 queda en \HochoEstado. Eso no dice que el estadio IV no lleve proteína del tumor a la sangre.
+\item El cero de la clase diferente no dice que el tumor no cambie en el tejido.
+\item \placeholder{PENDIENTE: si vas a afirmar que no hay población latinoamericana en estos depósitos, cita el fichero que lo diga. Aquí no se inventa esa frase.}
+\end{itemize}
 
-% REDACTAR-AUTOR: convertir esta lista en la tabla de limitaciones.
-
-\section{Qué diseño lo evitaría}
-Aleatorizar el orden de adquisición, intercalar los grupos y los controles de calidad, usar paneles de calidad escritos de antemano y validar en una cohorte externa de personas con síntomas. Sigue siendo la fase 1 de Pepe \cite{pepe2001}.
-
-% REDACTAR-AUTOR: dejar el diseño futuro en el tono de la maestría, sin prometer un examen.
+\section{Desviaciones del preregistro}
+\todojd{Esta sección absorbe el antiguo capítulo de desviaciones para dejar la tesis en seis capítulos. El detalle escrito sigue en \texttt{chapters/11-desviaciones.tex}, que ya no entra en \texttt{main.tex}.}
+\begin{itemize}
+\item No se ejecutaron las vías del suero, la cláusula de vías de H1, la unión de HC por XIC, la deriva del PRTC, las redes, el catálogo de candidatas ni los neoantígenos.
+\item H9 queda en \HnueveEstado. El preregistro lo declara como desviación de procedimiento y dice que no decide la tesis.
+\item El paso 5 deja \PrioriPasoCinco\ genes como hipótesis para cohortes futuras. El paso 6 queda en \PrioriPasoSeis.
+\end{itemize}
+Citas sugeridas: \cite{rai2025,xiang2026,hembrough2026,lakens2017,mccarthy2009}.
+Extensión orientativa: 6 a 10 páginas.
