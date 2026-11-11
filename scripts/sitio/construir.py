@@ -68,10 +68,11 @@ def dato_html(fuente: str, contador: list[int]) -> str:
         visible = formatear(valor, "entero") if isinstance(valor, int) else bruto
     contador[0] += 1
     ident = f"ev{contador[0]}"
+    dato = f'<data value="{e(bruto)}" data-fuente="{e(fuente)}">{e(visible)}</data>'
     return (
-        f'<data value="{e(bruto)}" data-fuente="{e(fuente)}">{e(visible)}</data>'
-        f'<details class="evidencia"><summary>fuente</summary>'
-        f'<p id="{ident}">{e(fuente)}</p></details>'
+        dato
+        + f'<details class="evidencia"><summary>fuente</summary>'
+        + f'<p id="{ident}">{e(fuente)}</p></details>'
     )
 
 
@@ -162,13 +163,16 @@ def embudo_html(ident: str, contador) -> str:
     for i, paso in enumerate(pasos):
         ancho = 100 * int(paso["n"]) / mayor
         fuente = f"results/v3_7/priorizacion_embudo.json#pasos.{i}.n"
+        pieza = dato_html(fuente, contador)
+        numero, separador, resto = pieza.partition("<details")
         filas.append(
             "<li><details>"
             "<summary>"
             f'<span class="embudo-nombre">{e(paso["nombre"])}</span>'
-            f'<span class="embudo-barra" style="--meta:{ancho:.4f}%"></span>'
-            f"{dato_html(fuente, contador)}"
+            f'<span class="embudo-riel"><span class="embudo-barra" style="--meta:{ancho / 100:.6f}"></span></span>'
+            f"{numero}"
             "</summary>"
+            f"{separador}{resto}"
             f"<p>Definición guardada en el JSON: {e(paso['nombre'])}. "
             f"El n es el de {e(fuente)}. No hay otra frase para este paso.</p>"
             "</details></li>"
@@ -238,7 +242,7 @@ def matrices_html(contador) -> str:
         " de "
         f'{dato_html("results/v3_7/k1_etiquetas.json#contrastes.primario_frente_a_mucosa.denominador", contador)}'
         ". La barra es ese cociente.</p>"
-        f'<span class="pista" style="--meta:{tejido_ancho:.4f}%"></span>'
+        f'<span class="pista-riel"><span class="pista" style="--meta:{tejido_ancho / 100:.6f}"></span></span>'
     )
     suero = (
         "<h3>Suero</h3>"
@@ -247,7 +251,7 @@ def matrices_html(contador) -> str:
         " diferentes de "
         f'{dato_html("results/v3_7/suero_embudo.json#celda_preregistrada.n", contador)}'
         ". La barra es ese cociente.</p>"
-        f'<span class="pista" style="--meta:{suero_ancho:.4f}%"></span>'
+        f'<span class="pista-riel"><span class="pista" style="--meta:{suero_ancho / 100:.6f}"></span></span>'
     )
     return (
         '<div class="matrices">'
