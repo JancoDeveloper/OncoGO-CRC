@@ -48,5 +48,6 @@
 <p class="aviso">{{ aviso }}</p>
 </footer>
 <script>{{ js | safe }}</script>
+{% if js_extra %}<script>{{ js_extra | safe }}</script>{% endif %}
 </body>
 </html>

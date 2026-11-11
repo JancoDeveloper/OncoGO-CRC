@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>P02749 · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/v4.91f668dadf.css">
+<link rel="stylesheet" href="/css/v4.4448135229.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -55,6 +55,14 @@
 
 <a href="#shap">SHAP</a>
 
+<a href="#secuencia">Secuencia</a>
+
+<a href="#estructura">Estructura</a>
+
+<a href="#go">GO</a>
+
+<a href="#dominios">Dominios</a>
+
 </nav>
 <main id="contenido">
 <h1>P02749</h1>
@@ -68,6 +76,62 @@
 <h2 id="tejido">Tejido</h2><p>Una fila, el gen APOH. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p><table><tbody><tr><th>tanaka_log2fc</th><td><data value="-0.0710458197965169" data-fuente="results/v3_7/triangulacion.tsv#gen=APOH.tanaka_log2fc">−0,07</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=APOH.tanaka_log2fc</p></details></td></tr><tr><th>cptac_coad_log2fc</th><td><data value="-0.6246172885130078" data-fuente="results/v3_7/triangulacion.tsv#gen=APOH.cptac_coad_log2fc">−0,62</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=APOH.cptac_coad_log2fc</p></details></td></tr><tr><th>clase_h5</th><td><data value="no_medida" data-fuente="results/v3_7/triangulacion.tsv#gen=APOH.clase_h5">no_medida</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=APOH.clase_h5</p></details></td></tr></tbody></table>
 <h2 id="priorizacion">Priorización</h2><table><tbody><tr><th>ultimo_paso</th><td><data value="0" data-fuente="results/v3_7/priorizacion.tsv#gen=APOH.ultimo_paso">0</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=APOH.ultimo_paso</p></details></td></tr><tr><th>motivo_no_pasa_el_siguiente</th><td><data value="no es diferencial certificada en CPTAC" data-fuente="results/v3_7/priorizacion.tsv#gen=APOH.motivo_no_pasa_el_siguiente">no es diferencial certificada en CPTAC</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=APOH.motivo_no_pasa_el_siguiente</p></details></td></tr><tr><th>clase_h5</th><td><data value="no_informada" data-fuente="results/v3_7/priorizacion.tsv#gen=APOH.clase_h5">no_informada</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=APOH.clase_h5</p></details></td></tr></tbody></table>
 <h2 id="shap">SHAP</h2><p>Media del valor absoluto en M2: <data value="0.1402654869053996" data-fuente="results/v3_7/ml_explicacion.tsv#modelo=M2_proteinas_principal|variable=P02749.media_abs_shap">0,14027</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/ml_explicacion.tsv#modelo=M2_proteinas_principal|variable=P02749.media_abs_shap</p></details></p>
+<h2 id="secuencia">Secuencia</h2>
+<p>Longitud <data value="345" data-fuente="sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P02749.longitud">345</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P02749.longitud</p></details>. Masa <data value="38298" data-fuente="sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P02749.masa">38 298</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P02749.masa</p></details>. <a href="/fuentes/fasta/P02749.fasta">FASTA</a>. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span></p>
+<p>El fondo marca el péptido señal. El subrayado marca un dominio de la entrada.</p>
+<p class="secuencia"><span class="num">   1</span> <span class="signal">MISPVLILFS</span>
+<span class="num">  11</span> <span class="signal">SFLCHVAIA</span>G
+<span class="num">  21</span> <span class="domain">RTCPKPDDLP</span>
+<span class="num">  31</span> <span class="domain">FSTVVPLKTF</span>
+<span class="num">  41</span> <span class="domain">YEPGEEITYS</span>
+<span class="num">  51</span> <span class="domain">CKPGYVSRGG</span>
+<span class="num">  61</span> <span class="domain">MRKFICPLTG</span>
+<span class="num">  71</span> <span class="domain">LWPINTLKCT</span>
+<span class="num">  81</span> <span class="domain">PRVCPFAGIL</span>
+<span class="num">  91</span> <span class="domain">ENGAVRYTTF</span>
+<span class="num"> 101</span> <span class="domain">EYPNTISFSC</span>
+<span class="num"> 111</span> <span class="domain">NTGFYLNGAD</span>
+<span class="num"> 121</span> <span class="domain">SAKCTEEGKW</span>
+<span class="num"> 131</span> <span class="domain">SPELPVCAPI</span>
+<span class="num"> 141</span> <span class="domain">ICPPPSIPTF</span>
+<span class="num"> 151</span> <span class="domain">ATLRVYKPSA</span>
+<span class="num"> 161</span> <span class="domain">GNNSLYRDTA</span>
+<span class="num"> 171</span> <span class="domain">VFECLPQHAM</span>
+<span class="num"> 181</span> <span class="domain">FGNDTITCTT</span>
+<span class="num"> 191</span> <span class="domain">HGNWTKLPEC</span>
+<span class="num"> 201</span> <span class="domain">REVKCPFPSR</span>
+<span class="num"> 211</span> <span class="domain">PDNGFVNYPA</span>
+<span class="num"> 221</span> <span class="domain">KPTLYYKDKA</span>
+<span class="num"> 231</span> <span class="domain">TFGCHDGYSL</span>
+<span class="num"> 241</span> <span class="domain">DGPEEIECTK</span>
+<span class="num"> 251</span> <span class="domain">LGNWSAMPSC</span>
+<span class="num"> 261</span> <span class="domain">KA</span>SCKVPVKK
+<span class="num"> 271</span> ATVVYQGERV
+<span class="num"> 281</span> KIQEKFKNGM
+<span class="num"> 291</span> LHGDKVSFFC
+<span class="num"> 301</span> KNKEKKCSYT
+<span class="num"> 311</span> EDAQCIDGTI
+<span class="num"> 321</span> EVPKCFKEHS
+<span class="num"> 331</span> SLAFWKTDAS
+<span class="num"> 341</span> DVKPC
+</p>
+<h2 id="estructura">Estructura</h2>
+<p>Es una predicción. Un pLDDT bajo, por debajo de 70, indica una zona poco fiable: no se lee como un dominio bien resuelto. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#sehnal2021">Sehnal 2021</a><span class="cita-ventana">Mol* Viewer: modern web app for 3D visualization and analysis of large biomolecular structures 10.1093/nar/gkab314</span></span></p>
+<p>pLDDT medio <data value="93.12" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.globalMetricValue">93,120</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.globalMetricValue</p></details>. Muy alto <data value="0.901" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.fractionPlddtVeryHigh">0,901</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.fractionPlddtVeryHigh</p></details>. Fiable <data value="0.023" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.fractionPlddtConfident">0,023</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.fractionPlddtConfident</p></details>. Bajo <data value="0.038" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.fractionPlddtLow">0,038</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.fractionPlddtLow</p></details>. Muy bajo <data value="0.038" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.fractionPlddtVeryLow">0,038</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P02749.json#0.fractionPlddtVeryLow</p></details>.</p>
+<p><button type="button" data-ver-estructura="visor-P02749" data-modelos="/fuentes/modelos/AF-P02749-F1.bcif" data-script="/js/molstar.0dba8aea4c.js" data-estilo="/css/molstar.bea8d630b6.css">Ver estructura</button></p><div id="visor-P02749"></div><p>Sin JavaScript queda la cifra de pLDDT. El visor no forma parte de la página hasta ese botón.</p>
+<table><thead><tr><th>PDB</th><th>Método</th><th>Resolución</th><th>Cadenas</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/1C1Z">1C1Z</a> <a href="https://www.rcsb.org/structure/1C1Z">RCSB</a></td><td>X-ray</td><td>2.87 A</td><td>A=20-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/1G4F">1G4F</a> <a href="https://www.rcsb.org/structure/1G4F">RCSB</a></td><td>NMR</td><td>-</td><td>A=260-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/1G4G">1G4G</a> <a href="https://www.rcsb.org/structure/1G4G">RCSB</a></td><td>NMR</td><td>-</td><td>A=260-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/1QUB">1QUB</a> <a href="https://www.rcsb.org/structure/1QUB">RCSB</a></td><td>X-ray</td><td>2.70 A</td><td>A=20-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/2KRI">2KRI</a> <a href="https://www.rcsb.org/structure/2KRI">RCSB</a></td><td>NMR</td><td>-</td><td>A=263-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/3OP8">3OP8</a> <a href="https://www.rcsb.org/structure/3OP8">RCSB</a></td><td>X-ray</td><td>1.90 A</td><td>A/B=263-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/4JHS">4JHS</a> <a href="https://www.rcsb.org/structure/4JHS">RCSB</a></td><td>X-ray</td><td>3.00 A</td><td>A=203-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6V06">6V06</a> <a href="https://www.rcsb.org/structure/6V06">RCSB</a></td><td>X-ray</td><td>2.40 A</td><td>A=20-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6V08">6V08</a> <a href="https://www.rcsb.org/structure/6V08">RCSB</a></td><td>X-ray</td><td>2.58 A</td><td>A=20-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6V09">6V09</a> <a href="https://www.rcsb.org/structure/6V09">RCSB</a></td><td>X-ray</td><td>2.99 A</td><td>A=20-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6XSD">6XSD</a> <a href="https://www.rcsb.org/structure/6XSD">RCSB</a></td><td>X-ray</td><td>2.54 A</td><td>A=20-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6XST">6XST</a> <a href="https://www.rcsb.org/structure/6XST">RCSB</a></td><td>X-ray</td><td>2.92 A</td><td>A=20-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7JIK">7JIK</a> <a href="https://www.rcsb.org/structure/7JIK">RCSB</a></td><td>X-ray</td><td>2.69 A</td><td>A=20-345</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7KG4">7KG4</a> <a href="https://www.rcsb.org/structure/7KG4">RCSB</a></td><td>X-ray</td><td>3.30 A</td><td>A/B=20-345</td></tr></tbody></table>
+<h2 id="go">Términos GO</h2>
+<p>La vista directa exige una evidencia distinta de IEA. La propagación añade ancestros is_a del obo descargado, que no es el de la tesis.</p>
+<h3>Proceso</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0007597">GO:0007597</a></td><td>blood coagulation, intrinsic pathway</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034371">GO:0034371</a></td><td>chylomicron remodeling</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0016525">GO:0016525</a></td><td>negative regulation of angiogenesis</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0030195">GO:0030195</a></td><td>negative regulation of blood coagulation</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0010596">GO:0010596</a></td><td>negative regulation of endothelial cell migration</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0001937">GO:0001937</a></td><td>negative regulation of endothelial cell proliferation</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0051918">GO:0051918</a></td><td>negative regulation of fibrinolysis</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0033033">GO:0033033</a></td><td>negative regulation of myeloid cell apoptotic process</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034392">GO:0034392</a></td><td>negative regulation of smooth muscle cell apoptotic process</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0031639">GO:0031639</a></td><td>plasminogen activation</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0030194">GO:0030194</a></td><td>positive regulation of blood coagulation</td><td>TAS:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0090208">GO:0090208</a></td><td>positive regulation of triglyceride metabolic process</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0051917">GO:0051917</a></td><td>regulation of fibrinolysis</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034197">GO:0034197</a></td><td>triglyceride transport</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034372">GO:0034372</a></td><td>very-low-density lipoprotein particle remodeling</td><td>IDA:BHF-UCL</td></tr></tbody></table>
+<h3>Función</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0042802">GO:0042802</a></td><td>identical protein binding</td><td>IPI:IntAct</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0035473">GO:0035473</a></td><td>lipase binding</td><td>IPI:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0008289">GO:0008289</a></td><td>lipid binding</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0060230">GO:0060230</a></td><td>lipoprotein lipase activator activity</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005543">GO:0005543</a></td><td>phospholipid binding</td><td>IDA:BHF-UCL</td></tr></tbody></table>
+<h3>Componente</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0009986">GO:0009986</a></td><td>cell surface</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0042627">GO:0042627</a></td><td>chylomicron</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0070062">GO:0070062</a></td><td>extracellular exosome</td><td>HDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005576">GO:0005576</a></td><td>extracellular region</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005794">GO:0005794</a></td><td>Golgi apparatus</td><td>IDA:HPA</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034364">GO:0034364</a></td><td>high-density lipoprotein particle</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0031089">GO:0031089</a></td><td>platelet dense granule lumen</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034361">GO:0034361</a></td><td>very-low-density lipoprotein particle</td><td>IDA:BHF-UCL</td></tr></tbody></table>
+<p>Términos en la vista propagada, contando los directos: 151.</p>
+<h2 id="dominios">Dominios y vías</h2>
+<p><span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span></p>
+<h3>InterPro</h3><table><tbody><tr><td>IPR035976</td><td>Sushi/SCR/CCP_sf</td></tr><tr><td>IPR015104</td><td>Sushi_2</td></tr><tr><td>IPR000436</td><td>Sushi_SCR_CCP_dom</td></tr></tbody></table>
+<h3>Pfam</h3><table><tbody><tr><td>PF00084</td><td>Sushi</td></tr><tr><td>PF09014</td><td>Sushi_2</td></tr></tbody></table>
+<h3>Reactome</h3><table><tbody><tr><td>R-HSA-114608</td><td>Platelet degranulation</td></tr></tbody></table>
+<p>UniProt 2026_04, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span> AlphaFold DB, CC BY 4.0. Suma de BinaryCIF alojados: 59.205 MB. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> InterPro y Pfam, por las referencias cruzadas de UniProt, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> Gene Ontology, obo releases/2026-07-26, que no es el de la tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span> Reactome, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span> PDB, CC0: solo la lista, sin ficheros. Los términos y las evidencias salen de UniProt. go_gene_long.tsv está en el manifiesto de la corrida y no trae códigos de evidencia, y la corrida no guardó el obo. La propagación usa go-basic.obo descargado aparte. No es la ontología de la tesis.</p>
 
 <h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
 <ul>
@@ -135,6 +199,42 @@
       });
     });
   });
+  document.body.addEventListener("click", function (evento) {
+    var boton = evento.target.closest ? evento.target.closest("[data-ver-estructura]") : null;
+    if (!boton) return;
+    var destino = document.getElementById(boton.getAttribute("data-ver-estructura"));
+    if (!destino || destino.getAttribute("data-listo") === "1") return;
+    destino.setAttribute("data-listo", "1");
+    var estilo = document.createElement("link");
+    estilo.rel = "stylesheet";
+    estilo.href = boton.getAttribute("data-estilo");
+    document.head.appendChild(estilo);
+    var cargador = document.createElement("script");
+    cargador.src = boton.getAttribute("data-script");
+    cargador.onload = function () {
+      var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
+      archivos.forEach(function (archivo) {
+        var caja = document.createElement("div");
+        caja.className = "visor";
+        destino.appendChild(caja);
+        molstar.Viewer.create(caja, {
+          layoutIsExpanded: false,
+          layoutShowControls: false,
+          layoutShowSequence: true,
+          layoutShowLog: false,
+          layoutShowLeftPanel: false,
+          viewportShowExpand: false,
+          viewportShowSettings: false,
+          viewportShowSelectionMode: false,
+          viewportShowAnimation: false,
+          viewportShowTrajectoryControls: false
+        }).then(function (visor) {
+          return visor.loadStructureFromUrl(archivo, "bcif", true);
+        });
+      });
+    };
+    document.body.appendChild(cargador);
+  });
   document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");
@@ -150,5 +250,6 @@
   });
 })();
 </script>
+
 </body>
 </html>

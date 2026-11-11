@@ -72,9 +72,17 @@ def test_cifras_aviso_y_lenguaje():
     assert "titulo-citado" in bib
 
 
+def texto_bib() -> str:
+    partes = [(REPO / "tesis-ucaldas" / "latex" / "references.bib").read_text(encoding="utf-8")]
+    extra = REPO / "sitio_fuente" / "referencias_sitio.bib"
+    if extra.is_file():
+        partes.append(extra.read_text(encoding="utf-8"))
+    return "\n".join(partes)
+
+
 def test_las_citas_estan_verificadas():
     enlaces = (REPO / "docs" / "web_enlaces.tsv").read_text(encoding="utf-8")
-    bib = (REPO / "tesis-ucaldas" / "latex" / "references.bib").read_text(encoding="utf-8")
+    bib = texto_bib()
     for pagina in paginas():
         for clave in re.findall(r'href="/bibliografia#([^"]+)"', pagina.read_text(encoding="utf-8")):
             assert "@" in bib and clave in bib
@@ -134,7 +142,10 @@ def test_las_284_fichas_son_la_celda():
         for nombre in ("suero_k4_crc_sanos.tsv", "suero_k4_cn_sanos.tsv")
     ]
     assert set(celda["protein_id"].astype(str)) == otras[0] == otras[1]
-    paginas_proteina = list((SITIO / "proteinas").glob("*/index.html"))
+    paginas_proteina = [
+        ruta for ruta in (SITIO / "proteinas").glob("*/index.html")
+        if ruta.parent.name not in {"comparar", "candidatas"}
+    ]
     assert len(paginas_proteina) == len(celda)
     meta = json.loads((REPO / "sitio_fuente" / "fuentes" / "uniprot_284.meta.json").read_text(encoding="utf-8"))
     tsv = (REPO / "sitio_fuente" / "fuentes" / "uniprot_284.tsv").read_bytes()
@@ -171,3 +182,92 @@ def test_los_terminos_usados_tienen_fuente():
     for ruta in (REPO / "sitio_fuente" / "contenido").rglob("*.md"):
         for nombre in re.findall(r"\{\{termino:([^}]+)\}\}", ruta.read_text(encoding="utf-8")):
             assert nombre.casefold() in nombres
+
+
+def test_la_anotacion_coincide_con_el_manifiesto():
+    manifiesto = json.loads((REPO / "sitio_fuente" / "fuentes" / "anotacion_manifest.json").read_text(encoding="utf-8"))
+    for entrada in manifiesto["entradas"]:
+        if entrada.get("estado") != "ok" or not entrada.get("fichero"):
+            continue
+        ruta = REPO / "sitio_fuente" / "fuentes" / entrada["fichero"]
+        assert ruta.is_file(), entrada["id"]
+        assert hashlib.sha256(ruta.read_bytes()).hexdigest() == entrada["sha256"]
+    fichas = json.loads((REPO / "sitio_fuente" / "fuentes" / "anotacion" / "fichas.json").read_text(encoding="utf-8"))
+    for registro in fichas["por_acceso"].values():
+        assert registro.get("estado") in {"ok", "no_disponible"}
+        if registro.get("estado") != "ok":
+            assert registro.get("motivo")
+            continue
+        assert len(registro.get("secuencia") or "") == registro.get("longitud")
+        for termino in registro.get("go_directo") or []:
+            assert not str(termino.get("evidencia", "")).startswith("IEA")
+
+
+def test_el_jaccard_de_diez_parejas():
+    fichas = json.loads((REPO / "sitio_fuente" / "fuentes" / "anotacion" / "fichas.json").read_text(encoding="utf-8"))
+    muestra = json.loads((SITIO / "fuentes" / "jaccard_muestra.json").read_text(encoding="utf-8"))
+    assert len(muestra) == 10
+
+    def conjunto(acceso):
+        return {item["id"] for item in fichas["por_acceso"][acceso].get("go_directo") or []}
+
+    for par in muestra:
+        a, b = conjunto(par["a"]), conjunto(par["b"])
+        union = a | b
+        esperado = 0 if not union else len(a & b) / len(union)
+        assert abs(esperado - par["directo"]) < 1e-12
+
+
+def test_el_alineamiento_js_coincide_con_biopython():
+    import random
+    import subprocess
+    import tempfile
+    from Bio.Align import PairwiseAligner, substitution_matrices
+
+    fichas = json.loads((REPO / "sitio_fuente" / "fuentes" / "anotacion" / "fichas.json").read_text(encoding="utf-8"))
+    alfabeto = set("ARNDCQEGHILKMFPSTWYVBZX*")
+    secuencias = [
+        registro["secuencia"][:80]
+        for registro in fichas["por_acceso"].values()
+        if registro.get("estado") == "ok"
+        and len(registro.get("secuencia") or "") >= 80
+        and set(registro["secuencia"][:80]) <= alfabeto
+    ]
+    rng = random.Random(20260914)
+    pares = [rng.sample(secuencias, 2) for _ in range(30)]
+    script = (
+        "const fs=require('fs');"
+        "eval(fs.readFileSync(process.argv[1],'utf8'));"
+        "const pares=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));"
+        "process.stdout.write(JSON.stringify(pares.map(p => Alineamiento.alinear(p[0], p[1]))));"
+    )
+    ruta = REPO / "sitio_fuente" / "js" / "alineamiento.js"
+    with tempfile.TemporaryDirectory() as carpeta:
+        entrada = Path(carpeta) / "pares.json"
+        entrada.write_text(json.dumps(pares), encoding="utf-8")
+        proc = subprocess.run(
+            ["node", "-e", script, str(ruta), str(entrada)],
+            text=True, capture_output=True, check=True,
+        )
+    resultados = json.loads(proc.stdout)
+    matriz = substitution_matrices.load("BLOSUM62")
+    aligner = PairwiseAligner(mode="global", substitution_matrix=matriz, open_gap_score=-10, extend_gap_score=-0.5)
+    for (a, b), resultado in zip(pares, resultados):
+        aln = next(iter(aligner.align(a, b)))
+        cuentas = aln.counts()
+        assert abs(resultado["puntuacion"] - aligner.score(a, b)) < 1e-6
+        assert resultado["identidades"] == cuentas.identities
+        assert resultado["huecos"] == cuentas.gaps
+
+
+def test_la_atribucion_esta_y_el_visor_no_se_carga_solo():
+    for pagina in paginas():
+        texto = pagina.read_text(encoding="utf-8")
+        assert "<script src" not in texto
+    p02749 = next(ruta for ruta in (SITIO / "proteinas").glob("P02749/index.html"))
+    texto = p02749.read_text(encoding="utf-8")
+    assert "CC BY 4.0" in texto and "CC0" in texto
+    candidatas = (SITIO / "proteinas" / "candidatas" / "index.html").read_text(encoding="utf-8")
+    assert "CC BY 4.0" in candidatas
+    assert candidatas.count("Candidata (paso 5): hipótesis para cohortes futuras, no biomarcador") >= 1
+

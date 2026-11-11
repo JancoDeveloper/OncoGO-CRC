@@ -76,7 +76,11 @@ def dato_html(fuente: str, contador: list[int]) -> str:
 
 
 def leer_bib() -> dict[str, dict]:
-    texto = BIB.read_text(encoding="utf-8")
+    textos = [BIB.read_text(encoding="utf-8")]
+    extra = FUENTE / "referencias_sitio.bib"
+    if extra.is_file():
+        textos.append(extra.read_text(encoding="utf-8"))
+    texto = "\n".join(textos)
     entradas = {}
     for bloque in re.split(r"\n(?=@)", texto):
         cabeza = re.match(r"@\w+\{([^,]+),", bloque.strip())
@@ -290,7 +294,18 @@ def fuentes_de(cuerpo: str, bib) -> list[dict]:
     return salida
 
 
-def escribir_estaticos() -> tuple[str, str]:
+def _publicar_hash(origen: Path, carpeta: Path, prefijo: str) -> str:
+    datos = origen.read_bytes()
+    nombre = prefijo + hashlib.sha256(datos).hexdigest()[:10] + origen.suffix
+    carpeta.mkdir(parents=True, exist_ok=True)
+    for viejo in carpeta.glob(prefijo + "*" + origen.suffix):
+        if viejo.name != nombre:
+            viejo.unlink()
+    (carpeta / nombre).write_bytes(datos)
+    return nombre
+
+
+def escribir_estaticos() -> tuple[str, str, str, str]:
     css = (FUENTE / "estilos" / "tokens.css").read_text(encoding="utf-8")
     css += "\n" + (FUENTE / "estilos" / "componentes.css").read_text(encoding="utf-8")
     js = (FUENTE / "js" / "sitio.js").read_text(encoding="utf-8")
@@ -306,12 +321,15 @@ def escribir_estaticos() -> tuple[str, str]:
         if viejo.name != js_nombre:
             viejo.unlink()
     (SITIO / "js" / js_nombre).write_text(js, encoding="utf-8")
+    molstar_js = _publicar_hash(FUENTE / "js" / "molstar" / "molstar.js", SITIO / "js", "molstar.")
+    molstar_css = _publicar_hash(FUENTE / "js" / "molstar" / "molstar.css", SITIO / "css", "molstar.")
+    shutil.copy2(FUENTE / "js" / "molstar" / "LICENSE", SITIO / "js" / "molstar-LICENSE.txt")
     destino_fuentes = SITIO / "fuentes"
     destino_fuentes.mkdir(parents=True, exist_ok=True)
     for archivo in (FUENTE / "estilos" / "fuentes").glob("*"):
         if archivo.suffix in {".woff2", ".txt"}:
             shutil.copy2(archivo, destino_fuentes / archivo.name)
-    return css_nombre, js
+    return css_nombre, js, molstar_js, molstar_css
 
 
 def archivar_v37() -> None:
@@ -352,7 +370,7 @@ def main() -> None:
     archivar_v37()
     bib = leer_bib()
     glosario = cargar_glosario()
-    css_nombre, js = escribir_estaticos()
+    css_nombre, js, molstar_js, molstar_css = escribir_estaticos()
     cert = json.loads((V37 / "certificado.json").read_text(encoding="utf-8"))
     contador = [0]
     estado = dato_html("results/v3_7/certificado.json#estado", contador)
@@ -376,6 +394,9 @@ def main() -> None:
         "franja_estado": estado,
         "franja_sello": sello,
         "menu": menu,
+        "js_extra": "",
+        "molstar_js": molstar_js,
+        "molstar_css": molstar_css,
     }
     for pagina in paginas:
         cuerpo, indice = md_a_html(pagina["cuerpo"], bib, glosario, contador)
@@ -468,6 +489,8 @@ def main() -> None:
             f'<li data-buscar="{e(ficha["id"])} {e(ficha["gen"])}">'
             f'<a href="{e(ficha["href"])}">{e(ficha["id"])}</a></li>'
         )
+    for titulo, ruta in (("Comparador", "/proteinas/comparar"), ("Candidatas", "/proteinas/candidatas")):
+        grupos.append(f'<li data-buscar="{e(titulo)}"><a href="{ruta}">{e(titulo)}</a></li>')
     for item in glosario:
         grupos.append(
             f'<li data-buscar="{e(item["termino"])} {e(item.get("sigla", ""))}">'

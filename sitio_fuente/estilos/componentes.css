@@ -101,6 +101,15 @@ th, td { border-bottom: 1px solid var(--linea); text-align: left; padding: 0.35r
 .termino:hover .definicion-corta, .termino:focus-within .definicion-corta { display: block; }
 .lienzo-svg { width: 100%; height: auto; }
 .lienzo-svg a.resaltado rect, .lienzo-svg line.resaltado { stroke-width: 4; }
+.secuencia { font-family: ui-monospace, monospace; white-space: pre-wrap; line-height: 1.7; }
+.secuencia .num { color: var(--tinta-suave); }
+.secuencia .signal { background: var(--aviso-fondo); color: var(--aviso-tinta); }
+.secuencia .domain { text-decoration: underline; }
+.pestanias { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0.6rem 0 1rem; }
+.visor { height: 24rem; margin: 0.6rem 0; border: 1px solid var(--linea); }
+.nodo-equivalente { stroke: var(--marca); }
+.nodo-indeterminada { stroke: var(--aviso-tinta); }
+.nodo-diferente { stroke: var(--tinta); }
 .pie {
   border-top: 1px solid var(--linea);
   padding: 1rem;

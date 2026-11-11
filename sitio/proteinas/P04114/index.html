@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>P04114 · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/v4.91f668dadf.css">
+<link rel="stylesheet" href="/css/v4.4448135229.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -55,6 +55,14 @@
 
 <a href="#shap">SHAP</a>
 
+<a href="#secuencia">Secuencia</a>
+
+<a href="#estructura">Estructura</a>
+
+<a href="#go">GO</a>
+
+<a href="#dominios">Dominios</a>
+
 </nav>
 <main id="contenido">
 <h1>P04114</h1>
@@ -68,6 +76,483 @@
 <h2 id="tejido">Tejido</h2><p>Una fila, el gen APOB. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p><table><tbody><tr><th>tanaka_log2fc</th><td><data value="-0.8836025631003301" data-fuente="results/v3_7/triangulacion.tsv#gen=APOB.tanaka_log2fc">−0,88</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=APOB.tanaka_log2fc</p></details></td></tr><tr><th>cptac_coad_log2fc</th><td><data value="-0.7683739378232518" data-fuente="results/v3_7/triangulacion.tsv#gen=APOB.cptac_coad_log2fc">−0,77</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=APOB.cptac_coad_log2fc</p></details></td></tr><tr><th>clase_h5</th><td><data value="no_medida" data-fuente="results/v3_7/triangulacion.tsv#gen=APOB.clase_h5">no_medida</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=APOB.clase_h5</p></details></td></tr></tbody></table>
 <h2 id="priorizacion">Priorización</h2><table><tbody><tr><th>ultimo_paso</th><td><data value="0" data-fuente="results/v3_7/priorizacion.tsv#gen=APOB.ultimo_paso">0</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=APOB.ultimo_paso</p></details></td></tr><tr><th>motivo_no_pasa_el_siguiente</th><td><data value="no es diferencial certificada en CPTAC" data-fuente="results/v3_7/priorizacion.tsv#gen=APOB.motivo_no_pasa_el_siguiente">no es diferencial certificada en CPTAC</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=APOB.motivo_no_pasa_el_siguiente</p></details></td></tr><tr><th>clase_h5</th><td><data value="no_informada" data-fuente="results/v3_7/priorizacion.tsv#gen=APOB.clase_h5">no_informada</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=APOB.clase_h5</p></details></td></tr></tbody></table>
 <h2 id="shap">SHAP</h2><p>APOB no está en la explicación de M2.</p>
+<h2 id="secuencia">Secuencia</h2>
+<p>Longitud <data value="4563" data-fuente="sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P04114.longitud">4 563</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P04114.longitud</p></details>. Masa <data value="515545" data-fuente="sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P04114.masa">515 545</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P04114.masa</p></details>. <a href="/fuentes/fasta/P04114.fasta">FASTA</a>. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span></p>
+<p>El fondo marca el péptido señal. El subrayado marca un dominio de la entrada.</p>
+<p class="secuencia"><span class="num">   1</span> <span class="signal">MDPPRPALLA</span>
+<span class="num">  11</span> <span class="signal">LLALPALLLL</span>
+<span class="num">  21</span> <span class="signal">LLAGARA</span>EEE
+<span class="num">  31</span> MLENVSLVCP
+<span class="num">  41</span> KDATR<span class="domain">FKHLR</span>
+<span class="num">  51</span> <span class="domain">KYTYNYEAES</span>
+<span class="num">  61</span> <span class="domain">SSGVPGTADS</span>
+<span class="num">  71</span> <span class="domain">RSATRINCKV</span>
+<span class="num">  81</span> <span class="domain">ELEVPQLCSF</span>
+<span class="num">  91</span> <span class="domain">ILKTSQCTLK</span>
+<span class="num"> 101</span> <span class="domain">EVYGFNPEGK</span>
+<span class="num"> 111</span> <span class="domain">ALLKKTKNSE</span>
+<span class="num"> 121</span> <span class="domain">EFAAAMSRYE</span>
+<span class="num"> 131</span> <span class="domain">LKLAIPEGKQ</span>
+<span class="num"> 141</span> <span class="domain">VFLYPEKDEP</span>
+<span class="num"> 151</span> <span class="domain">TYILNIKRGI</span>
+<span class="num"> 161</span> <span class="domain">ISALLVPPET</span>
+<span class="num"> 171</span> <span class="domain">EEAKQVLFLD</span>
+<span class="num"> 181</span> <span class="domain">TVYGNCSTHF</span>
+<span class="num"> 191</span> <span class="domain">TVKTRKGNVA</span>
+<span class="num"> 201</span> <span class="domain">TEISTERDLG</span>
+<span class="num"> 211</span> <span class="domain">QCDRFKPIRT</span>
+<span class="num"> 221</span> <span class="domain">GISPLALIKG</span>
+<span class="num"> 231</span> <span class="domain">MTRPLSTLIS</span>
+<span class="num"> 241</span> <span class="domain">SSQSCQYTLD</span>
+<span class="num"> 251</span> <span class="domain">AKRKHVAEAI</span>
+<span class="num"> 261</span> <span class="domain">CKEQHLFLPF</span>
+<span class="num"> 271</span> <span class="domain">SYKNKYGMVA</span>
+<span class="num"> 281</span> <span class="domain">QVTQTLKLED</span>
+<span class="num"> 291</span> <span class="domain">TPKINSRFFG</span>
+<span class="num"> 301</span> <span class="domain">EGTKKMGLAF</span>
+<span class="num"> 311</span> <span class="domain">ESTKSTSPPK</span>
+<span class="num"> 321</span> <span class="domain">QAEAVLKTLQ</span>
+<span class="num"> 331</span> <span class="domain">ELKKLTISEQ</span>
+<span class="num"> 341</span> <span class="domain">NIQRANLFNK</span>
+<span class="num"> 351</span> <span class="domain">LVTELRGLSD</span>
+<span class="num"> 361</span> <span class="domain">EAVTSLLPQL</span>
+<span class="num"> 371</span> <span class="domain">IEVSSPITLQ</span>
+<span class="num"> 381</span> <span class="domain">ALVQCGQPQC</span>
+<span class="num"> 391</span> <span class="domain">STHILQWLKR</span>
+<span class="num"> 401</span> <span class="domain">VHANPLLIDV</span>
+<span class="num"> 411</span> <span class="domain">VTYLVALIPE</span>
+<span class="num"> 421</span> <span class="domain">PSAQQLREIF</span>
+<span class="num"> 431</span> <span class="domain">NMARDQRSRA</span>
+<span class="num"> 441</span> <span class="domain">TLYALSHAVN</span>
+<span class="num"> 451</span> <span class="domain">NYHKTNPTGT</span>
+<span class="num"> 461</span> <span class="domain">QELLDIANYL</span>
+<span class="num"> 471</span> <span class="domain">MEQIQDDCTG</span>
+<span class="num"> 481</span> <span class="domain">DEDYTYLILR</span>
+<span class="num"> 491</span> <span class="domain">VIGNMGQTME</span>
+<span class="num"> 501</span> <span class="domain">QLTPELKSSI</span>
+<span class="num"> 511</span> <span class="domain">LKCVQSTKPS</span>
+<span class="num"> 521</span> <span class="domain">LMIQKAAIQA</span>
+<span class="num"> 531</span> <span class="domain">LRKMEPKDKD</span>
+<span class="num"> 541</span> <span class="domain">QEVLLQTFLD</span>
+<span class="num"> 551</span> <span class="domain">DASPGDKRLA</span>
+<span class="num"> 561</span> <span class="domain">AYLMLMRSPS</span>
+<span class="num"> 571</span> <span class="domain">QADINKIVQI</span>
+<span class="num"> 581</span> <span class="domain">LPWEQNEQVK</span>
+<span class="num"> 591</span> <span class="domain">NFVASHIANI</span>
+<span class="num"> 601</span> <span class="domain">LNSEELDIQD</span>
+<span class="num"> 611</span> <span class="domain">LKKLVKEALK</span>
+<span class="num"> 621</span> <span class="domain">ESQLPTVMDF</span>
+<span class="num"> 631</span> <span class="domain">RKFSRNYQLY</span>
+<span class="num"> 641</span> <span class="domain">KSVSLPSLDP</span>
+<span class="num"> 651</span> <span class="domain">ASAKIEGNLI</span>
+<span class="num"> 661</span> <span class="domain">FDPNNYLPKE</span>
+<span class="num"> 671</span> <span class="domain">SM</span>LKTTLTAF
+<span class="num"> 681</span> GFASADLIEI
+<span class="num"> 691</span> GLEGKGFEPT
+<span class="num"> 701</span> LEALFGKQGF
+<span class="num"> 711</span> FPDSVNKALY
+<span class="num"> 721</span> WVNGQVPDGV
+<span class="num"> 731</span> SKVLVDHFGY
+<span class="num"> 741</span> TKDDKHEQDM
+<span class="num"> 751</span> VNGIMLSVEK
+<span class="num"> 761</span> LIKDLKSKEV
+<span class="num"> 771</span> PEARAYLRIL
+<span class="num"> 781</span> GEELGFASLH
+<span class="num"> 791</span> DLQLLGKLLL
+<span class="num"> 801</span> MGARTLQGIP
+<span class="num"> 811</span> QMIGEVIRKG
+<span class="num"> 821</span> SKNDFFLHYI
+<span class="num"> 831</span> FMENAFELPT
+<span class="num"> 841</span> GAGLQLQISS
+<span class="num"> 851</span> SGVIAPGAKA
+<span class="num"> 861</span> GVKLEVANMQ
+<span class="num"> 871</span> AELVAKPSVS
+<span class="num"> 881</span> VEFVTNMGII
+<span class="num"> 891</span> IPDFARSGVQ
+<span class="num"> 901</span> MNTNFFHESG
+<span class="num"> 911</span> LEAHVALKAG
+<span class="num"> 921</span> KLKFIIPSPK
+<span class="num"> 931</span> RPVKLLSGGN
+<span class="num"> 941</span> TLHLVSTTKT
+<span class="num"> 951</span> EVIPPLIENR
+<span class="num"> 961</span> QSWSVCKQVF
+<span class="num"> 971</span> PGLNYCTSGA
+<span class="num"> 981</span> YSNASSTDSA
+<span class="num"> 991</span> SYYPLTGDTR
+<span class="num">1001</span> LELELRPTGE
+<span class="num">1011</span> IEQYSVSATY
+<span class="num">1021</span> ELQREDRALV
+<span class="num">1031</span> DTLKFVTQAE
+<span class="num">1041</span> GAKQTEATMT
+<span class="num">1051</span> FKYNRQSMTL
+<span class="num">1061</span> SSEVQIPDFD
+<span class="num">1071</span> VDLGTILRVN
+<span class="num">1081</span> DESTEGKTSY
+<span class="num">1091</span> RLTLDIQNKK
+<span class="num">1101</span> ITEVALMGHL
+<span class="num">1111</span> SCDTKEERKI
+<span class="num">1121</span> KGVISIPRLQ
+<span class="num">1131</span> AEARSEILAH
+<span class="num">1141</span> WSPAKLLLQM
+<span class="num">1151</span> DSSATAYGST
+<span class="num">1161</span> VSKRVAWHYD
+<span class="num">1171</span> EEKIEFEWNT
+<span class="num">1181</span> GTNVDTKKMT
+<span class="num">1191</span> SNFPVDLSDY
+<span class="num">1201</span> PKSLHMYANR
+<span class="num">1211</span> LLDHRVPQTD
+<span class="num">1221</span> MTFRHVGSKL
+<span class="num">1231</span> IVAMSSWLQK
+<span class="num">1241</span> ASGSLPYTQT
+<span class="num">1251</span> LQDHLNSLKE
+<span class="num">1261</span> FNLQNMGLPD
+<span class="num">1271</span> FHIPENLFLK
+<span class="num">1281</span> SDGRVKYTLN
+<span class="num">1291</span> KNSLKIEIPL
+<span class="num">1301</span> PFGGKSSRDL
+<span class="num">1311</span> KMLETVRTPA
+<span class="num">1321</span> LHFKSVGFHL
+<span class="num">1331</span> PSREFQVPTF
+<span class="num">1341</span> TIPKLYQLQV
+<span class="num">1351</span> PLLGVLDLST
+<span class="num">1361</span> NVYSNLYNWS
+<span class="num">1371</span> ASYSGGNTST
+<span class="num">1381</span> DHFSLRARYH
+<span class="num">1391</span> MKADSVVDLL
+<span class="num">1401</span> SYNVQGSGET
+<span class="num">1411</span> TYDHKNTFTL
+<span class="num">1421</span> SCDGSLRHKF
+<span class="num">1431</span> LDSNIKFSHV
+<span class="num">1441</span> EKLGNNPVSK
+<span class="num">1451</span> GLLIFDASSS
+<span class="num">1461</span> WGPQMSASVH
+<span class="num">1471</span> LDSKKKQHLF
+<span class="num">1481</span> VKEVKIDGQF
+<span class="num">1491</span> RVSSFYAKGT
+<span class="num">1501</span> YGLSCQRDPN
+<span class="num">1511</span> TGRLNGESNL
+<span class="num">1521</span> RFNSSYLQGT
+<span class="num">1531</span> NQITGRYEDG
+<span class="num">1541</span> TLSLTSTSDL
+<span class="num">1551</span> QSGIIKNTAS
+<span class="num">1561</span> LKYENYELTL
+<span class="num">1571</span> KSDTNGKYKN
+<span class="num">1581</span> FATSNKMDMT
+<span class="num">1591</span> FSKQNALLRS
+<span class="num">1601</span> EYQADYESLR
+<span class="num">1611</span> FFSLLSGSLN
+<span class="num">1621</span> SHGLELNADI
+<span class="num">1631</span> LGTDKINSGA
+<span class="num">1641</span> HKATLRIGQD
+<span class="num">1651</span> GISTSATTNL
+<span class="num">1661</span> KCSLLVLENE
+<span class="num">1671</span> LNAELGLSGA
+<span class="num">1681</span> SMKLTTNGRF
+<span class="num">1691</span> REHNAKFSLD
+<span class="num">1701</span> GKAALTELSL
+<span class="num">1711</span> GSAYQAMILG
+<span class="num">1721</span> VDSKNIFNFK
+<span class="num">1731</span> VSQEGLKLSN
+<span class="num">1741</span> DMMGSYAEMK
+<span class="num">1751</span> FDHTNSLNIA
+<span class="num">1761</span> GLSLDFSSKL
+<span class="num">1771</span> DNIYSSDKFY
+<span class="num">1781</span> KQTVNLQLQP
+<span class="num">1791</span> YSLVTTLNSD
+<span class="num">1801</span> LKYNALDLTN
+<span class="num">1811</span> NGKLRLEPLK
+<span class="num">1821</span> LHVAGNLKGA
+<span class="num">1831</span> YQNNEIKHIY
+<span class="num">1841</span> AISSAALSAS
+<span class="num">1851</span> YKADTVAKVQ
+<span class="num">1861</span> GVEFSHRLNT
+<span class="num">1871</span> DIAGLASAID
+<span class="num">1881</span> MSTNYNSDSL
+<span class="num">1891</span> HFSNVFRSVM
+<span class="num">1901</span> APFTMTIDAH
+<span class="num">1911</span> TNGNGKLALW
+<span class="num">1921</span> GEHTGQLYSK
+<span class="num">1931</span> FLLKAEPLAF
+<span class="num">1941</span> TFSHDYKGST
+<span class="num">1951</span> SHHLVSRKSI
+<span class="num">1961</span> SAALEHKVSA
+<span class="num">1971</span> LLTPAEQTGT
+<span class="num">1981</span> WKLKTQFNNN
+<span class="num">1991</span> EYSQDLDAYN
+<span class="num">2001</span> TKDKIGVELT
+<span class="num">2011</span> GRTLADLTLL
+<span class="num">2021</span> DSPIKVPLLL
+<span class="num">2031</span> SEPINIIDAL
+<span class="num">2041</span> EMRDAVEKPQ
+<span class="num">2051</span> EFTIVAFVKY
+<span class="num">2061</span> DKNQDVHSIN
+<span class="num">2071</span> LPFFETLQEY
+<span class="num">2081</span> FERNRQTIIV
+<span class="num">2091</span> VLENVQRNLK
+<span class="num">2101</span> HINIDQFVRK
+<span class="num">2111</span> YRAALGKLPQ
+<span class="num">2121</span> QANDYLNSFN
+<span class="num">2131</span> WERQVSHAKE
+<span class="num">2141</span> KLTALTKKYR
+<span class="num">2151</span> ITENDIQIAL
+<span class="num">2161</span> DDAKINFNEK
+<span class="num">2171</span> LSQLQTYMIQ
+<span class="num">2181</span> FDQYIKDSYD
+<span class="num">2191</span> LHDLKIAIAN
+<span class="num">2201</span> IIDEIIEKLK
+<span class="num">2211</span> SLDEHYHIRV
+<span class="num">2221</span> NLVKTIHDLH
+<span class="num">2231</span> LFIENIDFNK
+<span class="num">2241</span> SGSSTASWIQ
+<span class="num">2251</span> NVDTKYQIRI
+<span class="num">2261</span> QIQEKLQQLK
+<span class="num">2271</span> RHIQNIDIQH
+<span class="num">2281</span> LAGKLKQHIE
+<span class="num">2291</span> AIDVRVLLDQ
+<span class="num">2301</span> LGTTISFERI
+<span class="num">2311</span> NDILEHVKHF
+<span class="num">2321</span> VINLIGDFEV
+<span class="num">2331</span> AEKINAFRAK
+<span class="num">2341</span> VHELIERYEV
+<span class="num">2351</span> DQQIQVLMDK
+<span class="num">2361</span> LVELAHQYKL
+<span class="num">2371</span> KETIQKLSNV
+<span class="num">2381</span> LQQVKIKDYF
+<span class="num">2391</span> EKLVGFIDDA
+<span class="num">2401</span> VKKLNELSFK
+<span class="num">2411</span> TFIEDVNKFL
+<span class="num">2421</span> DMLIKKLKSF
+<span class="num">2431</span> DYHQFVDETN
+<span class="num">2441</span> DKIREVTQRL
+<span class="num">2451</span> NGEIQALELP
+<span class="num">2461</span> QKAEALKLFL
+<span class="num">2471</span> EETKATVAVY
+<span class="num">2481</span> LESLQDTKIT
+<span class="num">2491</span> LIINWLQEAL
+<span class="num">2501</span> SSASLAHMKA
+<span class="num">2511</span> KFRETLEDTR
+<span class="num">2521</span> DRMYQMDIQQ
+<span class="num">2531</span> ELQRYLSLVG
+<span class="num">2541</span> QVYSTLVTYI
+<span class="num">2551</span> SDWWTLAAKN
+<span class="num">2561</span> LTDFAEQYSI
+<span class="num">2571</span> QDWAKRMKAL
+<span class="num">2581</span> VEQGFTVPEI
+<span class="num">2591</span> KTILGTMPAF
+<span class="num">2601</span> EVSLQALQKA
+<span class="num">2611</span> TFQTPDFIVP
+<span class="num">2621</span> LTDLRIPSVQ
+<span class="num">2631</span> INFKDLKNIK
+<span class="num">2641</span> IPSRFSTPEF
+<span class="num">2651</span> TILNTFHIPS
+<span class="num">2661</span> FTIDFVEMKV
+<span class="num">2671</span> KIIRTIDQML
+<span class="num">2681</span> NSELQWPVPD
+<span class="num">2691</span> IYLRDLKVED
+<span class="num">2701</span> IPLARITLPD
+<span class="num">2711</span> FRLPEIAIPE
+<span class="num">2721</span> FIIPTLNLND
+<span class="num">2731</span> FQVPDLHIPE
+<span class="num">2741</span> FQLPHISHTI
+<span class="num">2751</span> EVPTFGKLYS
+<span class="num">2761</span> ILKIQSPLFT
+<span class="num">2771</span> LDANADIGNG
+<span class="num">2781</span> TTSANEAGIA
+<span class="num">2791</span> ASITAKGESK
+<span class="num">2801</span> LEVLNFDFQA
+<span class="num">2811</span> NAQLSNPKIN
+<span class="num">2821</span> PLALKESVKF
+<span class="num">2831</span> SSKYLRTEHG
+<span class="num">2841</span> SEMLFFGNAI
+<span class="num">2851</span> EGKSNTVASL
+<span class="num">2861</span> HTEKNTLELS
+<span class="num">2871</span> NGVIVKINNQ
+<span class="num">2881</span> LTLDSNTKYF
+<span class="num">2891</span> HKLNIPKLDF
+<span class="num">2901</span> SSQADLRNEI
+<span class="num">2911</span> KTLLKAGHIA
+<span class="num">2921</span> WTSSGKGSWK
+<span class="num">2931</span> WACPRFSDEG
+<span class="num">2941</span> THESQISFTI
+<span class="num">2951</span> EGPLTSFGLS
+<span class="num">2961</span> NKINSKHLRV
+<span class="num">2971</span> NQNLVYESGS
+<span class="num">2981</span> LNFSKLEIQS
+<span class="num">2991</span> QVDSQHVGHS
+<span class="num">3001</span> VLTAKGMALF
+<span class="num">3011</span> GEGKAEFTGR
+<span class="num">3021</span> HDAHLNGKVI
+<span class="num">3031</span> GTLKNSLFFS
+<span class="num">3041</span> AQPFEITAST
+<span class="num">3051</span> NNEGNLKVRF
+<span class="num">3061</span> PLRLTGKIDF
+<span class="num">3071</span> LNNYALFLSP
+<span class="num">3081</span> SAQQASWQVS
+<span class="num">3091</span> ARFNQYKYNQ
+<span class="num">3101</span> NFSAGNNENI
+<span class="num">3111</span> MEAHVGINGE
+<span class="num">3121</span> ANLDFLNIPL
+<span class="num">3131</span> TIPEMRLPYT
+<span class="num">3141</span> IITTPPLKDF
+<span class="num">3151</span> SLWEKTGLKE
+<span class="num">3161</span> FLKTTKQSFD
+<span class="num">3171</span> LSVKAQYKKN
+<span class="num">3181</span> KHRHSITNPL
+<span class="num">3191</span> AVLCEFISQS
+<span class="num">3201</span> IKSFDRHFEK
+<span class="num">3211</span> NRNNALDFVT
+<span class="num">3221</span> KSYNETKIKF
+<span class="num">3231</span> DKYKAEKSHD
+<span class="num">3241</span> ELPRTFQIPG
+<span class="num">3251</span> YTVPVVNVEV
+<span class="num">3261</span> SPFTIEMSAF
+<span class="num">3271</span> GYVFPKAVSM
+<span class="num">3281</span> PSFSILGSDV
+<span class="num">3291</span> RVPSYTLILP
+<span class="num">3301</span> SLELPVLHVP
+<span class="num">3311</span> RNLKLSLPDF
+<span class="num">3321</span> KELCTISHIF
+<span class="num">3331</span> IPAMGNITYD
+<span class="num">3341</span> FSFKSSVITL
+<span class="num">3351</span> NTNAELFNQS
+<span class="num">3361</span> DIVAHLLSSS
+<span class="num">3371</span> SSVIDALQYK
+<span class="num">3381</span> LEGTTRLTRK
+<span class="num">3391</span> RGLKLATALS
+<span class="num">3401</span> LSNKFVEGSH
+<span class="num">3411</span> NSTVSLTTKN
+<span class="num">3421</span> MEVSVATTTK
+<span class="num">3431</span> AQIPILRMNF
+<span class="num">3441</span> KQELNGNTKS
+<span class="num">3451</span> KPTVSSSMEF
+<span class="num">3461</span> KYDFNSSMLY
+<span class="num">3471</span> STAKGAVDHK
+<span class="num">3481</span> LSLESLTSYF
+<span class="num">3491</span> SIESSTKGDV
+<span class="num">3501</span> KGSVLSREYS
+<span class="num">3511</span> GTIASEANTY
+<span class="num">3521</span> LNSKSTRSSV
+<span class="num">3531</span> KLQGTSKIDD
+<span class="num">3541</span> IWNLEVKENF
+<span class="num">3551</span> AGEATLQRIY
+<span class="num">3561</span> SLWEHSTKNH
+<span class="num">3571</span> LQLEGLFFTN
+<span class="num">3581</span> GEHTSKATLE
+<span class="num">3591</span> LSPWQMSALV
+<span class="num">3601</span> QVHASQPSSF
+<span class="num">3611</span> HDFPDLGQEV
+<span class="num">3621</span> ALNANTKNQK
+<span class="num">3631</span> IRWKNEVRIH
+<span class="num">3641</span> SGSFQSQVEL
+<span class="num">3651</span> SNDQEKAHLD
+<span class="num">3661</span> IAGSLEGHLR
+<span class="num">3671</span> FLKNIILPVY
+<span class="num">3681</span> DKSLWDFLKL
+<span class="num">3691</span> DVTTSIGRRQ
+<span class="num">3701</span> HLRVSTAFVY
+<span class="num">3711</span> TKNPNGYSFS
+<span class="num">3721</span> IPVKVLADKF
+<span class="num">3731</span> IIPGLKLNDL
+<span class="num">3741</span> NSVLVMPTFH
+<span class="num">3751</span> VPFTDLQVPS
+<span class="num">3761</span> CKLDFREIQI
+<span class="num">3771</span> YKKLRTSSFA
+<span class="num">3781</span> LNLPTLPEVK
+<span class="num">3791</span> FPEVDVLTKY
+<span class="num">3801</span> SQPEDSLIPF
+<span class="num">3811</span> FEITVPESQL
+<span class="num">3821</span> TVSQFTLPKS
+<span class="num">3831</span> VSDGIAALDL
+<span class="num">3841</span> NAVANKIADF
+<span class="num">3851</span> ELPTIIVPEQ
+<span class="num">3861</span> TIEIPSIKFS
+<span class="num">3871</span> VPAGIVIPSF
+<span class="num">3881</span> QALTARFEVD
+<span class="num">3891</span> SPVYNATWSA
+<span class="num">3901</span> SLKNKADYVE
+<span class="num">3911</span> TVLDSTCSST
+<span class="num">3921</span> VQFLEYELNV
+<span class="num">3931</span> LGTHKIEDGT
+<span class="num">3941</span> LASKTKGTFA
+<span class="num">3951</span> HRDFSAEYEE
+<span class="num">3961</span> DGKYEGLQEW
+<span class="num">3971</span> EGKAHLNIKS
+<span class="num">3981</span> PAFTDLHLRY
+<span class="num">3991</span> QKDKKGISTS
+<span class="num">4001</span> AASPAVGTVG
+<span class="num">4011</span> MDMDEDDDFS
+<span class="num">4021</span> KWNFYYSPQS
+<span class="num">4031</span> SPDKKLTIFK
+<span class="num">4041</span> TELRVRESDE
+<span class="num">4051</span> ETQIKVNWEE
+<span class="num">4061</span> EAASGLLTSL
+<span class="num">4071</span> KDNVPKATGV
+<span class="num">4081</span> LYDYVNKYHW
+<span class="num">4091</span> EHTGLTLREV
+<span class="num">4101</span> SSKLRRNLQN
+<span class="num">4111</span> NAEWVYQGAI
+<span class="num">4121</span> RQIDDIDVRF
+<span class="num">4131</span> QKAASGTTGT
+<span class="num">4141</span> YQEWKDKAQN
+<span class="num">4151</span> LYQELLTQEG
+<span class="num">4161</span> QASFQGLKDN
+<span class="num">4171</span> VFDGLVRVTQ
+<span class="num">4181</span> EFHMKVKHLI
+<span class="num">4191</span> DSLIDFLNFP
+<span class="num">4201</span> RFQFPGKPGI
+<span class="num">4211</span> YTREELCTMF
+<span class="num">4221</span> IREVGTVLSQ
+<span class="num">4231</span> VYSKVHNGSE
+<span class="num">4241</span> ILFSYFQDLV
+<span class="num">4251</span> ITLPFELRKH
+<span class="num">4261</span> KLIDVISMYR
+<span class="num">4271</span> ELLKDLSKEA
+<span class="num">4281</span> QEVFKAIQSL
+<span class="num">4291</span> KTTEVLRNLQ
+<span class="num">4301</span> DLLQFIFQLI
+<span class="num">4311</span> EDNIKQLKEM
+<span class="num">4321</span> KFTYLINYIQ
+<span class="num">4331</span> DEINTIFSDY
+<span class="num">4341</span> IPYVFKLLKE
+<span class="num">4351</span> NLCLNLHKFN
+<span class="num">4361</span> EFIQNELQEA
+<span class="num">4371</span> SQELQQIHQY
+<span class="num">4381</span> IMALREEYFD
+<span class="num">4391</span> PSIVGWTVKY
+<span class="num">4401</span> YELEEKIVSL
+<span class="num">4411</span> IKNLLVALKD
+<span class="num">4421</span> FHSEYIVSAS
+<span class="num">4431</span> NFTSQLSSQV
+<span class="num">4441</span> EQFLHRNIQE
+<span class="num">4451</span> YLSILTDPDG
+<span class="num">4461</span> KGKEKIAELS
+<span class="num">4471</span> ATAQEIIKSQ
+<span class="num">4481</span> AIATKKIISD
+<span class="num">4491</span> YHQQFRYKLQ
+<span class="num">4501</span> DFSDQLSDYY
+<span class="num">4511</span> EKFIAESKRL
+<span class="num">4521</span> IDLSIQNYHT
+<span class="num">4531</span> FLIYITELLK
+<span class="num">4541</span> KLQSTTVMNP
+<span class="num">4551</span> YMKLAPGELT
+<span class="num">4561</span> IIL
+</p>
+<h2 id="estructura">Estructura</h2>
+<p>Es una predicción. Un pLDDT bajo, por debajo de 70, indica una zona poco fiable: no se lee como un dominio bien resuelto. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#sehnal2021">Sehnal 2021</a><span class="cita-ventana">Mol* Viewer: modern web app for 3D visualization and analysis of large biomolecular structures 10.1093/nar/gkab314</span></span></p>
+<p>AlphaFold no tiene modelo para P04114. sin modelo</p>
+<table><thead><tr><th>PDB</th><th>Método</th><th>Resolución</th><th>Cadenas</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9BD1">9BD1</a> <a href="https://www.rcsb.org/structure/9BD1">RCSB</a></td><td>EM</td><td>5.40 A</td><td>A=1-4563</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9BD8">9BD8</a> <a href="https://www.rcsb.org/structure/9BD8">RCSB</a></td><td>EM</td><td>4.80 A</td><td>A=1-4563</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9BDE">9BDE</a> <a href="https://www.rcsb.org/structure/9BDE">RCSB</a></td><td>EM</td><td>4.18 A</td><td>A=1-4563</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9BDT">9BDT</a> <a href="https://www.rcsb.org/structure/9BDT">RCSB</a></td><td>EM</td><td>5.40 A</td><td>A=1-4563</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9COO">9COO</a> <a href="https://www.rcsb.org/structure/9COO">RCSB</a></td><td>EM</td><td>3.73 A</td><td>A=1-4563</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9E9R">9E9R</a> <a href="https://www.rcsb.org/structure/9E9R">RCSB</a></td><td>EM</td><td>9.00 A</td><td>A=1-4563</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9EA7">9EA7</a> <a href="https://www.rcsb.org/structure/9EA7">RCSB</a></td><td>EM</td><td>9.00 A</td><td>A=1-4563</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9EAG">9EAG</a> <a href="https://www.rcsb.org/structure/9EAG">RCSB</a></td><td>EM</td><td>9.00 A</td><td>A=1-4563</td></tr></tbody></table>
+<h2 id="go">Términos GO</h2>
+<p>La vista directa exige una evidencia distinta de IEA. La propagación añade ancestros is_a del obo descargado, que no es el de la tesis.</p>
+<h3>Proceso</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0071402">GO:0071402</a></td><td>cellular response to lipoprotein particle stimulus</td><td>IDA:UniProt</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0042632">GO:0042632</a></td><td>cholesterol homeostasis</td><td>IMP:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0008203">GO:0008203</a></td><td>cholesterol metabolic process</td><td>IMP:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0030301">GO:0030301</a></td><td>cholesterol transport</td><td>IMP:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0042953">GO:0042953</a></td><td>lipoprotein transport</td><td>IBA:GO_Central</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034383">GO:0034383</a></td><td>low-density lipoprotein particle clearance</td><td>IMP:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034374">GO:0034374</a></td><td>low-density lipoprotein particle remodeling</td><td>IMP:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0010886">GO:0010886</a></td><td>positive regulation of cholesterol storage</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0010884">GO:0010884</a></td><td>positive regulation of lipid storage</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0010744">GO:0010744</a></td><td>positive regulation of macrophage derived foam cell differentiation</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0009615">GO:0009615</a></td><td>response to virus</td><td>IEP:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0006642">GO:0006642</a></td><td>triglyceride mobilization</td><td>IBA:GO_Central</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034379">GO:0034379</a></td><td>very-low-density lipoprotein particle assembly</td><td>IDA:BHF-UCL</td></tr></tbody></table>
+<h3>Función</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0120020">GO:0120020</a></td><td>cholesterol transfer activity</td><td>IMP:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0008201">GO:0008201</a></td><td>heparin binding</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0035473">GO:0035473</a></td><td>lipase binding</td><td>IPI:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0050750">GO:0050750</a></td><td>low-density lipoprotein particle receptor binding</td><td>IMP:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005543">GO:0005543</a></td><td>phospholipid binding</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0048018">GO:0048018</a></td><td>receptor ligand activity</td><td>IDA:UniProt</td></tr></tbody></table>
+<h3>Componente</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0042627">GO:0042627</a></td><td>chylomicron</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034360">GO:0034360</a></td><td>chylomicron remnant</td><td>TAS:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0030669">GO:0030669</a></td><td>clathrin-coated endocytic vesicle membrane</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005737">GO:0005737</a></td><td>cytoplasm</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005829">GO:0005829</a></td><td>cytosol</td><td>IDA:HPA</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005769">GO:0005769</a></td><td>early endosome</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0071682">GO:0071682</a></td><td>endocytic vesicle lumen</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0070971">GO:0070971</a></td><td>endoplasmic reticulum exit site</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005788">GO:0005788</a></td><td>endoplasmic reticulum lumen</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005789">GO:0005789</a></td><td>endoplasmic reticulum membrane</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0031904">GO:0031904</a></td><td>endosome lumen</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0010008">GO:0010008</a></td><td>endosome membrane</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0070062">GO:0070062</a></td><td>extracellular exosome</td><td>HDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005576">GO:0005576</a></td><td>extracellular region</td><td>EXP:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034363">GO:0034363</a></td><td>intermediate-density lipoprotein particle</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0043231">GO:0043231</a></td><td>intracellular membrane-bounded organelle</td><td>TAS:ProtInc</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005811">GO:0005811</a></td><td>lipid droplet</td><td>EXP:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034362">GO:0034362</a></td><td>low-density lipoprotein particle</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0043202">GO:0043202</a></td><td>lysosomal lumen</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034359">GO:0034359</a></td><td>mature chylomicron</td><td>IDA:BHF-UCL</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0043025">GO:0043025</a></td><td>neuronal cell body</td><td>IDA:MGI</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005886">GO:0005886</a></td><td>plasma membrane</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005790">GO:0005790</a></td><td>smooth endoplasmic reticulum</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0034361">GO:0034361</a></td><td>very-low-density lipoprotein particle</td><td>IDA:BHF-UCL</td></tr></tbody></table>
+<p>Términos en la vista propagada, contando los directos: 161.</p>
+<h2 id="dominios">Dominios y vías</h2>
+<p><span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span></p>
+<h3>InterPro</h3><table><tbody><tr><td>IPR063421</td><td>ApoB100_4ins</td></tr><tr><td>IPR062040</td><td>ApoB100_6ins</td></tr><tr><td>IPR062041</td><td>ApoB100_8ins</td></tr><tr><td>IPR063504</td><td>ApoB100_arm_9ins</td></tr><tr><td>IPR063333</td><td>ApoB100_beta_belt1_3</td></tr><tr><td>IPR063258</td><td>ApoB100_beta_belt2_2</td></tr><tr><td>IPR063254</td><td>ApoB100_beta_belt3</td></tr><tr><td>IPR022176</td><td>ApoB100_C</td></tr><tr><td>IPR052418</td><td>Apolipoprotein_B</td></tr><tr><td>IPR016024</td><td>ARM-type_fold</td></tr><tr><td>IPR015819</td><td>Lipid_transp_b-sht_shell</td></tr><tr><td>IPR009454</td><td>Lipid_transpt_open_b-sht</td></tr><tr><td>IPR011030</td><td>Lipovitellin_superhlx_dom</td></tr><tr><td>IPR015816</td><td>Vitellinogen_b-sht_N</td></tr><tr><td>IPR015255</td><td>Vitellinogen_open_b-sht</td></tr><tr><td>IPR015817</td><td>Vitellinogen_open_b-sht_sub1</td></tr><tr><td>IPR001747</td><td>Vitellogenin_M</td></tr><tr><td>IPR063611</td><td>Vitellogenin_N</td></tr></tbody></table>
+<h3>Pfam</h3><table><tbody><tr><td>PF30436</td><td>ApoB100_4ins</td></tr><tr><td>PF30435</td><td>ApoB100_6ins</td></tr><tr><td>PF30433</td><td>ApoB100_8ins</td></tr><tr><td>PF30406</td><td>ApoB100_arm_9ins</td></tr><tr><td>PF30444</td><td>ApoB100_beta_belt1</td></tr><tr><td>PF30454</td><td>ApoB100_beta_belt2</td></tr><tr><td>PF30460</td><td>ApoB100_beta_belt3</td></tr><tr><td>PF12491</td><td>ApoB100_C</td></tr><tr><td>PF06448</td><td>DUF1081</td></tr><tr><td>PF01347</td><td>TPR_Vitellogenin</td></tr><tr><td>PF09172</td><td>Vit_open_b-sht</td></tr><tr><td>PF29934</td><td>Vitellogenin_N</td></tr></tbody></table>
+<h3>Reactome</h3><table><tbody><tr><td>R-HSA-202733</td><td>Cell surface interactions at the vascular wall</td></tr><tr><td>R-HSA-3000471</td><td>Scavenging by Class B Receptors</td></tr><tr><td>R-HSA-3000480</td><td>Scavenging by Class A Receptors</td></tr><tr><td>R-HSA-3000484</td><td>Scavenging by Class F Receptors</td></tr><tr><td>R-HSA-3000497</td><td>Scavenging by Class H Receptors</td></tr><tr><td>R-HSA-381426</td><td>Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)</td></tr><tr><td>R-HSA-432142</td><td>Platelet sensitization by LDL</td></tr><tr><td>R-HSA-5686938</td><td>Regulation of TLR by endogenous ligand</td></tr><tr><td>R-HSA-8856825</td><td>Cargo recognition for clathrin-mediated endocytosis</td></tr><tr><td>R-HSA-8856828</td><td>Clathrin-mediated endocytosis</td></tr><tr><td>R-HSA-8866423</td><td>VLDL assembly</td></tr><tr><td>R-HSA-8957275</td><td>Post-translational protein phosphorylation</td></tr><tr><td>R-HSA-8963888</td><td>Chylomicron assembly</td></tr><tr><td>R-HSA-8963901</td><td>Chylomicron remodeling</td></tr><tr><td>R-HSA-8964026</td><td>Chylomicron clearance</td></tr><tr><td>R-HSA-8964038</td><td>LDL clearance</td></tr><tr><td>R-HSA-8964041</td><td>LDL remodeling</td></tr><tr><td>R-HSA-8964046</td><td>VLDL clearance</td></tr><tr><td>R-HSA-9707616</td><td>Heme signaling</td></tr><tr><td>R-HSA-975634</td><td>Retinoid metabolism and transport</td></tr></tbody></table>
+<p>UniProt 2026_04, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span> AlphaFold DB, CC BY 4.0. Suma de BinaryCIF alojados: 59.205 MB. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> InterPro y Pfam, por las referencias cruzadas de UniProt, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> Gene Ontology, obo releases/2026-07-26, que no es el de la tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span> Reactome, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span> PDB, CC0: solo la lista, sin ficheros. Los términos y las evidencias salen de UniProt. go_gene_long.tsv está en el manifiesto de la corrida y no trae códigos de evidencia, y la corrida no guardó el obo. La propagación usa go-basic.obo descargado aparte. No es la ontología de la tesis.</p>
 
 <h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
 <ul>
@@ -135,6 +620,42 @@
       });
     });
   });
+  document.body.addEventListener("click", function (evento) {
+    var boton = evento.target.closest ? evento.target.closest("[data-ver-estructura]") : null;
+    if (!boton) return;
+    var destino = document.getElementById(boton.getAttribute("data-ver-estructura"));
+    if (!destino || destino.getAttribute("data-listo") === "1") return;
+    destino.setAttribute("data-listo", "1");
+    var estilo = document.createElement("link");
+    estilo.rel = "stylesheet";
+    estilo.href = boton.getAttribute("data-estilo");
+    document.head.appendChild(estilo);
+    var cargador = document.createElement("script");
+    cargador.src = boton.getAttribute("data-script");
+    cargador.onload = function () {
+      var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
+      archivos.forEach(function (archivo) {
+        var caja = document.createElement("div");
+        caja.className = "visor";
+        destino.appendChild(caja);
+        molstar.Viewer.create(caja, {
+          layoutIsExpanded: false,
+          layoutShowControls: false,
+          layoutShowSequence: true,
+          layoutShowLog: false,
+          layoutShowLeftPanel: false,
+          viewportShowExpand: false,
+          viewportShowSettings: false,
+          viewportShowSelectionMode: false,
+          viewportShowAnimation: false,
+          viewportShowTrajectoryControls: false
+        }).then(function (visor) {
+          return visor.loadStructureFromUrl(archivo, "bcif", true);
+        });
+      });
+    };
+    document.body.appendChild(cargador);
+  });
   document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");
@@ -150,5 +671,6 @@
   });
 })();
 </script>
+
 </body>
 </html>

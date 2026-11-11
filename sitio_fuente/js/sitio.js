@@ -48,6 +48,42 @@
       });
     });
   });
+  document.body.addEventListener("click", function (evento) {
+    var boton = evento.target.closest ? evento.target.closest("[data-ver-estructura]") : null;
+    if (!boton) return;
+    var destino = document.getElementById(boton.getAttribute("data-ver-estructura"));
+    if (!destino || destino.getAttribute("data-listo") === "1") return;
+    destino.setAttribute("data-listo", "1");
+    var estilo = document.createElement("link");
+    estilo.rel = "stylesheet";
+    estilo.href = boton.getAttribute("data-estilo");
+    document.head.appendChild(estilo);
+    var cargador = document.createElement("script");
+    cargador.src = boton.getAttribute("data-script");
+    cargador.onload = function () {
+      var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
+      archivos.forEach(function (archivo) {
+        var caja = document.createElement("div");
+        caja.className = "visor";
+        destino.appendChild(caja);
+        molstar.Viewer.create(caja, {
+          layoutIsExpanded: false,
+          layoutShowControls: false,
+          layoutShowSequence: true,
+          layoutShowLog: false,
+          layoutShowLeftPanel: false,
+          viewportShowExpand: false,
+          viewportShowSettings: false,
+          viewportShowSelectionMode: false,
+          viewportShowAnimation: false,
+          viewportShowTrajectoryControls: false
+        }).then(function (visor) {
+          return visor.loadStructureFromUrl(archivo, "bcif", true);
+        });
+      });
+    };
+    document.body.appendChild(cargador);
+  });
   document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

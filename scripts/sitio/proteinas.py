@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import math
 import numbers
@@ -130,9 +131,15 @@ def escribir(render, env, comunes, cita) -> list[dict]:
         {"id": "tejido", "texto": "Tejido"},
         {"id": "priorizacion", "texto": "Priorización"},
         {"id": "shap", "texto": "SHAP"},
+        {"id": "secuencia", "texto": "Secuencia"},
+        {"id": "estructura", "texto": "Estructura"},
+        {"id": "go", "texto": "GO"},
+        {"id": "dominios", "texto": "Dominios"},
     ]
+    vistas = _vistas()
+    documento = vistas.cargar()
     for ficha in fichas:
-        cuerpo = cuerpo_de(ficha, uniprot, tablas, traza, prio, tri, shap, cita)
+        cuerpo = cuerpo_de(ficha, uniprot, tablas, traza, prio, tri, shap, cita, vistas, documento, comunes)
         html_pagina = render(
             env, "base.html.j2",
             titulo=ficha["id"],
@@ -161,7 +168,17 @@ def escribir(render, env, comunes, cita) -> list[dict]:
     salida.mkdir(parents=True, exist_ok=True)
     for nombre in ("uniprot_284.tsv", "uniprot_284.meta.json"):
         (salida / nombre).write_bytes((FUENTE / nombre).read_bytes())
+    vistas.cerrar(render, env, comunes, cita, fichas)
     return fichas
+
+
+def _vistas():
+    spec = importlib.util.spec_from_file_location(
+        "vistas_proteina", Path(__file__).with_name("vistas_proteina.py")
+    )
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
 
 
 def fuentes_de(meta: dict) -> list[dict]:
@@ -197,11 +214,12 @@ def lista_html(fichas: list[dict], meta: dict, cita) -> str:
         f'Ninguna consulta volvió inactiva. {cita("rai2025")}</p>'
         "<p>Una ficha lleva la etiqueta de candidata cuando su único gen tiene ultimo_paso 5 en priorizacion.tsv."
         f"{e(nota_repetidos)} {cita('tanaka2024')}</p>"
+        '<p><a href="/proteinas/comparar">Comparador</a> · <a href="/proteinas/candidatas">Candidatas</a></p>'
         "<ul>" + "".join(filas) + "</ul>"
     )
 
 
-def cuerpo_de(ficha, uniprot, tablas, traza, prio, tri, shap, cita) -> str:
+def cuerpo_de(ficha, uniprot, tablas, traza, prio, tri, shap, cita, vistas, documento, comunes) -> str:
     protein_id = ficha["id"]
     representate = base_de(protein_id.split(";")[0])
     entrada = uniprot.loc[representate] if representate in uniprot.index else None
@@ -216,6 +234,7 @@ def cuerpo_de(ficha, uniprot, tablas, traza, prio, tri, shap, cita) -> str:
     partes.append(tejido(ficha, tri, cita))
     partes.append(priorizacion(ficha, prio))
     partes.append(explicacion(ficha, shap))
+    partes.append(vistas.secciones(ficha, documento, cita, comunes))
     return "\n".join(partes)
 
 

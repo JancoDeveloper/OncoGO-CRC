@@ -15,3 +15,9 @@ No se adopta el azul institucional, el logotipo de puntos, la cesta, BLAST ni la
 ## Esta fase
 
 La fase 1 deja la portada, la página de proteómica, el glosario de los términos que esas páginas usan, la bibliografía de esas citas y el diagrama D1. El sitio anterior queda en `sitio/archivo/v3_7/`.
+
+## Umbral del panorama de las candidatas
+
+Quedó fijado el 2026-11-11, antes de calcular el mapa.
+
+La vista directa es el conjunto de términos GO con al menos una evidencia distinta de IEA, juntando los tres aspectos. La vista propagada añade los ancestros `is_a` de ese conjunto. Si los dos conjuntos están vacíos, el índice de Jaccard es 0. Una arista de la red existe cuando el Jaccard de la vista directa es mayor o igual que 0,15. Un BinaryCIF de muestra (P02749, versión que devolvió la API) pesa 160133 bytes. Con ese tamaño, el corte de 40 MB que se había apuntado dejaría fuera el conjunto. Antes de descargar el resto, el corte pasa a 80 MB: si la suma de los BinaryCIF queda por debajo, se alojan; si no, no entran al sitio y queda el motivo. El mapa de calor ordena las hojas con enlace promedio (UPGMA) y distancia 1 menos ese Jaccard. Si dos hojas empatan, manda el acceso en orden alfabético.

@@ -23,3 +23,14 @@ doi_zhang	https://doi.org/10.1038/nature13438	DOI Zhang 2014	doi	2026-11-11	200	
 doi_diann	https://doi.org/10.1038/s41592-019-0638-x	DOI DIA-NN	doi	2026-11-11	200	DIA-NN: neural networks and interference correction enable deep proteome coverage in high throughput	
 doi_contaminantes	https://doi.org/10.1021/acs.jproteome.2c00145	DOI de la biblioteca de contaminantes	doi	2026-11-11	200	Protein Contaminants Matter: Building Universal Protein Contaminant Libraries for DDA and DIA Proteomics	
 doi_garcia	https://doi.org/10.51643/22562915.853	DOI García-Foncillas 2026	doi	2026-11-11	200	Biología molecular del cáncer colorrectal	
+doi_jumper	https://doi.org/10.1038/s41586-021-03819-2	DOI Jumper 2021	doi	2026-11-11	200	Highly accurate protein structure prediction with AlphaFold	
+doi_varadi	https://doi.org/10.1093/nar/gkad1011	DOI Varadi AlphaFold DB	doi	2026-11-11	200	AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences	
+doi_blum	https://doi.org/10.1093/nar/gkae1082	DOI Blum InterPro	doi	2026-11-11	200	InterPro: the protein sequence classification resource in 2025	
+doi_sehnal	https://doi.org/10.1093/nar/gkab314	DOI Sehnal Mol*	doi	2026-11-11	200	Mol* Viewer: modern web app for 3D visualization and analysis of large biomolecular structures	
+doi_needleman	https://doi.org/10.1016/0022-2836(70)90057-4	DOI Needleman y Wunsch 1970	doi	2026-11-11	200	A general method applicable to the search for similarities in the amino acid sequence of two proteins	
+doi_henikoff	https://doi.org/10.1073/pnas.89.22.10915	DOI Henikoff BLOSUM	doi	2026-11-11	200	Amino acid substitution matrices from protein blocks.	
+doi_cock	https://doi.org/10.1093/bioinformatics/btp163	DOI Cock Biopython	doi	2026-11-11	200	Biopython: freely available Python tools for computational molecular biology and bioinformatics	
+doi_uniprot	https://doi.org/10.1093/nar/gkae1010	DOI UniProt 2025	doi	2026-11-11	200	UniProt: the Universal Protein Knowledgebase in 2025	
+doi_go	https://doi.org/10.1093/genetics/iyad031	DOI Gene Ontology 2023	doi	2026-11-11	200	The Gene Ontology knowledgebase in 2023	
+doi_milacic	https://doi.org/10.1093/nar/gkad1025	DOI Milacic Reactome	doi	2026-11-11	200	The Reactome Pathway Knowledgebase 2024	
+doi_szklarczyk	https://doi.org/10.1093/nar/gkac1000	DOI Szklarczyk STRING	doi	2026-11-11	200	The STRING database in 2023: protein–protein association networks and functional enrichment analyses for any sequenced genome of interest	

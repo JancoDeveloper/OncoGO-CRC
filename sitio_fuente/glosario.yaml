@@ -61,3 +61,85 @@
   como_se_uso_aqui: /
   relacionados: [suero, CN]
   fuentes: [rai2025]
+- termino: secuencia de aminoácidos
+  sigla: ""
+  sinonimos: []
+  definicion: El orden de aminoácidos de una proteína, tal como lo publica UniProt para ese acceso.
+  en_palabras_simples: La cadena de letras que describe la proteína.
+  rol_en_bioinformatica: Es la entrada del alineamiento y de la predicción de estructura.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [alineamiento global]
+  fuentes: [uniprot2025]
+- termino: alineamiento global
+  sigla: ""
+  sinonimos: [Needleman-Wunsch]
+  definicion: Alineamiento de dos secuencias completas con hueco de apertura 10, extensión 0,5 y BLOSUM62.
+  en_palabras_simples: Se comparan las dos cadenas de punta a punta y se cuentan las letras iguales.
+  rol_en_bioinformatica: Da una puntuación y un porcentaje de identidad que no dicen nada del suero.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [BLOSUM62, secuencia de aminoácidos]
+  fuentes: [needleman1970, cock2009]
+- termino: BLOSUM62
+  sigla: ""
+  sinonimos: []
+  definicion: Matriz de sustitución que puntúa el cambio de un aminoácido por otro a partir de bloques conservados.
+  en_palabras_simples: Un cuadro que dice qué tan parecidos son dos aminoácidos.
+  rol_en_bioinformatica: Es la matriz del alineamiento global de esta web.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [alineamiento global]
+  fuentes: [henikoff1992]
+- termino: InterPro
+  sigla: ""
+  sinonimos: []
+  definicion: Recurso que clasifica familias y dominios de proteínas.
+  en_palabras_simples: El catálogo de las partes reconocibles de una proteína.
+  rol_en_bioinformatica: La ficha lista las entradas que UniProt cruza con InterPro.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [Pfam]
+  fuentes: [blum2025]
+- termino: AlphaFold
+  sigla: ""
+  sinonimos: []
+  definicion: Modelo que predice la estructura de una proteína a partir de su secuencia.
+  en_palabras_simples: Un dibujo calculado de cómo podría plegarse la cadena, no una foto del experimento.
+  rol_en_bioinformatica: Aporta el pLDDT y, cuando cabe, el modelo alojado en el sitio.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [pLDDT]
+  fuentes: [jumper2021, varadi2024]
+- termino: pLDDT
+  sigla: pLDDT
+  sinonimos: []
+  definicion: Confianza local de la predicción de AlphaFold, de 0 a 100. Por debajo de 70 la zona es poco fiable.
+  en_palabras_simples: Un número que dice cuánto se puede creer cada tramo del modelo.
+  rol_en_bioinformatica: Se muestra junto al modelo y no se interpreta como una medida del suero.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [AlphaFold]
+  fuentes: [jumper2021]
+- termino: índice de Jaccard
+  sigla: ""
+  sinonimos: []
+  definicion: Tamaño de la intersección de dos conjuntos dividido por el tamaño de su unión. Si ambos están vacíos, aquí vale 0.
+  en_palabras_simples: Cuánto se parecen dos listas, en una escala de cero a uno.
+  rol_en_bioinformatica: Compara los términos GO directos y los propagados. La red usa el umbral 0,15 fijado de antemano.
+  como_se_uso_aqui: /proteinas/candidatas
+  relacionados: [IEA]
+  fuentes: [goconsortium2023]
+- termino: IEA
+  sigla: IEA
+  sinonimos: [evidencia electrónica]
+  definicion: Código de evidencia de GO asignado por un método electrónico, sin revisión de un curador.
+  en_palabras_simples: Una anotación automática, no una lectura hecha por una persona.
+  rol_en_bioinformatica: La vista directa de esta web la deja fuera.
+  como_se_uso_aqui: /proteinas/candidatas
+  relacionados: [índice de Jaccard]
+  fuentes: [goconsortium2023]
+- termino: STRING
+  sigla: ""
+  sinonimos: []
+  definicion: Base de asociaciones entre proteínas, humana en esta web, con puntuación combinada de al menos 0,7 e incluyendo minería de texto.
+  en_palabras_simples: Un mapa de relaciones ya publicadas, no un experimento de esta tesis.
+  rol_en_bioinformatica: Se muestra solo entre las veinte del paso 5 y no se trata como resultado.
+  como_se_uso_aqui: /proteinas/candidatas
+  relacionados: []
+  fuentes: [szklarczyk2023]
+

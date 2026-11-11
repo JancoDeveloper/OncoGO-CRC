@@ -40,3 +40,5 @@ r03	/resultados/suero	suero_k4_cn_sanos.tsv	Volcán CN frente a HC, con interval
 r04	/resultados/go	gsea_tejido.tsv; go_tejido.json	Puntos de NES en CPTAC
 r05	/resultados/shap	ml_explicacion.tsv	Correlación de M2 con la calidad
 r06	/resultados/priorizacion	suero_k4_crc_cn.tsv; priorizacion.tsv; gene_uniprot_human_reviewed_bulk.tsv	Bosque de las 20 del paso 5
+r07	/proteinas/candidatas	sitio_fuente/fuentes/anotacion/fichas.json	Jaccard GO directo de las 20, agrupado por enlace promedio
+r08	/proteinas/candidatas	sitio_fuente/fuentes/anotacion/fichas.json	Red de Jaccard directo mayor o igual que 0,15

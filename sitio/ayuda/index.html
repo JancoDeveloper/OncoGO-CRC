@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ayuda · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/v4.91f668dadf.css">
+<link rel="stylesheet" href="/css/v4.4448135229.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -49,6 +49,8 @@
 
 <a href="#qu-no-es-esta-web">Qué no es esta web</a>
 
+<a href="#licencias-de-la-anotaci-n">Licencias de la anotación</a>
+
 </nav>
 <main id="contenido">
 <h1>Ayuda</h1>
@@ -58,6 +60,8 @@
 <p>Una cita enlaza a la bibliografía. Al enfocarla se ve el título del artículo. El título se comprueba contra el registro del DOI y no se reescribe. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
 <h2 id="qu-no-es-esta-web">Qué no es esta web</h2>
 <p>No es una herramienta para decidir sobre un paciente. <a class="termino" href="/glosario#cn">CN<span class="definicion-corta">Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span></a> son pacientes sintomáticos con otra enfermedad intestinal. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<h2 id="licencias-de-la-anotaci-n">Licencias de la anotación</h2>
+<p>UniProt, AlphaFold DB, InterPro y STRING permiten el uso con la licencia CC BY 4.0. PDB usa CC0. El visor Mol* está en el sitio, con licencia MIT, y el navegador solo lo pide al pulsar «Ver estructura». <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#sehnal2021">Sehnal 2021</a><span class="cita-ventana">Mol* Viewer: modern web app for 3D visualization and analysis of large biomolecular structures 10.1093/nar/gkab314</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#szklarczyk2023">Szklarczyk 2023</a><span class="cita-ventana">The STRING database in 2023: protein–protein association networks and functional enrichment analyses for any sequenced genome of interest 10.1093/nar/gkac1000</span></span></p>
 
 <h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
 <ul>
@@ -65,6 +69,18 @@
 <li><a href="https://doi.org/10.1021/acs.jproteome.5c00285">rai2025 · 10.1021/acs.jproteome.5c00285</a></li>
 
 <li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
+
+<li><a href="https://doi.org/10.1093/nar/gkae1010">uniprot2025 · 10.1093/nar/gkae1010</a></li>
+
+<li><a href="https://doi.org/10.1038/s41586-021-03819-2">jumper2021 · 10.1038/s41586-021-03819-2</a></li>
+
+<li><a href="https://doi.org/10.1093/nar/gkad1011">varadi2024 · 10.1093/nar/gkad1011</a></li>
+
+<li><a href="https://doi.org/10.1093/nar/gkae1082">blum2025 · 10.1093/nar/gkae1082</a></li>
+
+<li><a href="https://doi.org/10.1093/nar/gkab314">sehnal2021 · 10.1093/nar/gkab314</a></li>
+
+<li><a href="https://doi.org/10.1093/nar/gkac1000">szklarczyk2023 · 10.1093/nar/gkac1000</a></li>
 
 </ul>
 
@@ -125,6 +141,42 @@
       });
     });
   });
+  document.body.addEventListener("click", function (evento) {
+    var boton = evento.target.closest ? evento.target.closest("[data-ver-estructura]") : null;
+    if (!boton) return;
+    var destino = document.getElementById(boton.getAttribute("data-ver-estructura"));
+    if (!destino || destino.getAttribute("data-listo") === "1") return;
+    destino.setAttribute("data-listo", "1");
+    var estilo = document.createElement("link");
+    estilo.rel = "stylesheet";
+    estilo.href = boton.getAttribute("data-estilo");
+    document.head.appendChild(estilo);
+    var cargador = document.createElement("script");
+    cargador.src = boton.getAttribute("data-script");
+    cargador.onload = function () {
+      var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
+      archivos.forEach(function (archivo) {
+        var caja = document.createElement("div");
+        caja.className = "visor";
+        destino.appendChild(caja);
+        molstar.Viewer.create(caja, {
+          layoutIsExpanded: false,
+          layoutShowControls: false,
+          layoutShowSequence: true,
+          layoutShowLog: false,
+          layoutShowLeftPanel: false,
+          viewportShowExpand: false,
+          viewportShowSettings: false,
+          viewportShowSelectionMode: false,
+          viewportShowAnimation: false,
+          viewportShowTrajectoryControls: false
+        }).then(function (visor) {
+          return visor.loadStructureFromUrl(archivo, "bcif", true);
+        });
+      });
+    };
+    document.body.appendChild(cargador);
+  });
   document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");
@@ -140,5 +192,6 @@
   });
 })();
 </script>
+
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>P0DJI8 · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/v4.91f668dadf.css">
+<link rel="stylesheet" href="/css/v4.4448135229.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -55,6 +55,14 @@
 
 <a href="#shap">SHAP</a>
 
+<a href="#secuencia">Secuencia</a>
+
+<a href="#estructura">Estructura</a>
+
+<a href="#go">GO</a>
+
+<a href="#dominios">Dominios</a>
+
 </nav>
 <main id="contenido">
 <h1>P0DJI8</h1>
@@ -68,6 +76,40 @@
 <h2 id="tejido">Tejido</h2><p>Una fila, el gen SAA1. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p><table><tbody><tr><th>tanaka_log2fc</th><td><data value="no_medida" data-fuente="results/v3_7/triangulacion.tsv#gen=SAA1.tanaka_log2fc">no_medida</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=SAA1.tanaka_log2fc</p></details></td></tr><tr><th>cptac_coad_log2fc</th><td><data value="-0.218053016573273" data-fuente="results/v3_7/triangulacion.tsv#gen=SAA1.cptac_coad_log2fc">−0,22</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=SAA1.cptac_coad_log2fc</p></details></td></tr><tr><th>clase_h5</th><td><data value="no_medida" data-fuente="results/v3_7/triangulacion.tsv#gen=SAA1.clase_h5">no_medida</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=SAA1.clase_h5</p></details></td></tr></tbody></table>
 <h2 id="priorizacion">Priorización</h2><table><tbody><tr><th>ultimo_paso</th><td><data value="0" data-fuente="results/v3_7/priorizacion.tsv#gen=SAA1.ultimo_paso">0</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=SAA1.ultimo_paso</p></details></td></tr><tr><th>motivo_no_pasa_el_siguiente</th><td><data value="no es diferencial certificada en CPTAC" data-fuente="results/v3_7/priorizacion.tsv#gen=SAA1.motivo_no_pasa_el_siguiente">no es diferencial certificada en CPTAC</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=SAA1.motivo_no_pasa_el_siguiente</p></details></td></tr><tr><th>clase_h5</th><td><data value="no_informada" data-fuente="results/v3_7/priorizacion.tsv#gen=SAA1.clase_h5">no_informada</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=SAA1.clase_h5</p></details></td></tr></tbody></table>
 <h2 id="shap">SHAP</h2><p>SAA1 no está en la explicación de M2.</p>
+<h2 id="secuencia">Secuencia</h2>
+<p>Longitud <data value="122" data-fuente="sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P0DJI8.longitud">122</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P0DJI8.longitud</p></details>. Masa <data value="13546" data-fuente="sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P0DJI8.masa">13 546</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P0DJI8.masa</p></details>. <a href="/fuentes/fasta/P0DJI8.fasta">FASTA</a>. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span></p>
+<p>El fondo marca el péptido señal. El subrayado marca un dominio de la entrada.</p>
+<p class="secuencia"><span class="num">   1</span> <span class="signal">MKLLTGLVFC</span>
+<span class="num">  11</span> <span class="signal">SLVLGVSS</span>RS
+<span class="num">  21</span> FFSFLGEAFD
+<span class="num">  31</span> GARDMWRAYS
+<span class="num">  41</span> DMREANYIGS
+<span class="num">  51</span> DKYFHARGNY
+<span class="num">  61</span> DAAKRGPGGA
+<span class="num">  71</span> WAAEVITDAR
+<span class="num">  81</span> ENIQRFFGHG
+<span class="num">  91</span> AEDSLADQAA
+<span class="num"> 101</span> NEWGRSGKDP
+<span class="num"> 111</span> NHFRPAGLPE
+<span class="num"> 121</span> KY
+</p>
+<h2 id="estructura">Estructura</h2>
+<p>Es una predicción. Un pLDDT bajo, por debajo de 70, indica una zona poco fiable: no se lee como un dominio bien resuelto. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#sehnal2021">Sehnal 2021</a><span class="cita-ventana">Mol* Viewer: modern web app for 3D visualization and analysis of large biomolecular structures 10.1093/nar/gkab314</span></span></p>
+<p>pLDDT medio <data value="93.5" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.globalMetricValue">93,500</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.globalMetricValue</p></details>. Muy alto <data value="0.82" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.fractionPlddtVeryHigh">0,820</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.fractionPlddtVeryHigh</p></details>. Fiable <data value="0.172" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.fractionPlddtConfident">0,172</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.fractionPlddtConfident</p></details>. Bajo <data value="0.008" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.fractionPlddtLow">0,008</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.fractionPlddtLow</p></details>. Muy bajo <data value="0" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.fractionPlddtVeryLow">0,000</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P0DJI8.json#0.fractionPlddtVeryLow</p></details>.</p>
+<p><button type="button" data-ver-estructura="visor-P0DJI8" data-modelos="/fuentes/modelos/AF-P0DJI8-F1.bcif" data-script="/js/molstar.0dba8aea4c.js" data-estilo="/css/molstar.bea8d630b6.css">Ver estructura</button></p><div id="visor-P0DJI8"></div><p>Sin JavaScript queda la cifra de pLDDT. El visor no forma parte de la página hasta ese botón.</p>
+<table><thead><tr><th>PDB</th><th>Método</th><th>Resolución</th><th>Cadenas</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/4IP8">4IP8</a> <a href="https://www.rcsb.org/structure/4IP8">RCSB</a></td><td>X-ray</td><td>2.19 A</td><td>A/B/C/D=19-122</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/4IP9">4IP9</a> <a href="https://www.rcsb.org/structure/4IP9">RCSB</a></td><td>X-ray</td><td>2.50 A</td><td>A/B=19-122</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6MST">6MST</a> <a href="https://www.rcsb.org/structure/6MST">RCSB</a></td><td>EM</td><td>2.70 A</td><td>A/B/C/D/E/F/G/H/I/J/K/L=20-85</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7ZKY">7ZKY</a> <a href="https://www.rcsb.org/structure/7ZKY">RCSB</a></td><td>EM</td><td>2.56 A</td><td>A/B/C/D/E/F/G/H/I/J/K/L=20-87</td></tr></tbody></table>
+<h2 id="go">Términos GO</h2>
+<p>La vista directa exige una evidencia distinta de IEA. La propagación añade ancestros is_a del obo descargado, que no es el de la tesis.</p>
+<h3>Proceso</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0048247">GO:0048247</a></td><td>lymphocyte chemotaxis</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0048246">GO:0048246</a></td><td>macrophage chemotaxis</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0050728">GO:0050728</a></td><td>negative regulation of inflammatory response</td><td>NAS:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0030593">GO:0030593</a></td><td>neutrophil chemotaxis</td><td>NAS:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0030168">GO:0030168</a></td><td>platelet activation</td><td>NAS:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0045785">GO:0045785</a></td><td>positive regulation of cell adhesion</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0001819">GO:0001819</a></td><td>positive regulation of cytokine production</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0007204">GO:0007204</a></td><td>positive regulation of cytosolic calcium ion concentration</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0032732">GO:0032732</a></td><td>positive regulation of interleukin-1 production</td><td>NAS:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0050708">GO:0050708</a></td><td>regulation of protein secretion</td><td>NAS:UniProtKB</td></tr></tbody></table>
+<h3>Función</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0001664">GO:0001664</a></td><td>G protein-coupled receptor binding</td><td>IDA:UniProtKB</td></tr></tbody></table>
+<h3>Componente</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005881">GO:0005881</a></td><td>cytoplasmic microtubule</td><td>IDA:CACAO</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0071682">GO:0071682</a></td><td>endocytic vesicle lumen</td><td>TAS:Reactome</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0070062">GO:0070062</a></td><td>extracellular exosome</td><td>HDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005576">GO:0005576</a></td><td>extracellular region</td><td>TAS:Reactome</td></tr></tbody></table>
+<p>Términos en la vista propagada, contando los directos: 92.</p>
+<h2 id="dominios">Dominios y vías</h2>
+<p><span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span></p>
+<h3>InterPro</h3><table><tbody><tr><td>IPR000096</td><td>Serum_amyloid_A</td></tr><tr><td>IPR052464</td><td>Synovial_Prolif_Regulator</td></tr></tbody></table>
+<h3>Pfam</h3><table><tbody><tr><td>PF00277</td><td>SAA</td></tr></tbody></table>
+<h3>Reactome</h3><table><tbody><tr><td>R-HSA-3000471</td><td>Scavenging by Class B Receptors</td></tr><tr><td>R-HSA-416476</td><td>G alpha (q) signalling events</td></tr><tr><td>R-HSA-418594</td><td>G alpha (i) signalling events</td></tr><tr><td>R-HSA-444473</td><td>Formyl peptide receptors bind formyl peptides and many other ligands</td></tr><tr><td>R-HSA-445989</td><td>TAK1-dependent IKK and NF-kappa-B activation</td></tr><tr><td>R-HSA-6785807</td><td>Interleukin-4 and Interleukin-13 signaling</td></tr><tr><td>R-HSA-879415</td><td>Advanced glycosylation endproduct receptor signaling</td></tr><tr><td>R-HSA-933542</td><td>TRAF6 mediated NF-kB activation</td></tr><tr><td>R-HSA-977225</td><td>Amyloid fiber formation</td></tr></tbody></table>
+<p>UniProt 2026_04, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span> AlphaFold DB, CC BY 4.0. Suma de BinaryCIF alojados: 59.205 MB. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> InterPro y Pfam, por las referencias cruzadas de UniProt, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> Gene Ontology, obo releases/2026-07-26, que no es el de la tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span> Reactome, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span> PDB, CC0: solo la lista, sin ficheros. Los términos y las evidencias salen de UniProt. go_gene_long.tsv está en el manifiesto de la corrida y no trae códigos de evidencia, y la corrida no guardó el obo. La propagación usa go-basic.obo descargado aparte. No es la ontología de la tesis.</p>
 
 <h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
 <ul>
@@ -135,6 +177,42 @@
       });
     });
   });
+  document.body.addEventListener("click", function (evento) {
+    var boton = evento.target.closest ? evento.target.closest("[data-ver-estructura]") : null;
+    if (!boton) return;
+    var destino = document.getElementById(boton.getAttribute("data-ver-estructura"));
+    if (!destino || destino.getAttribute("data-listo") === "1") return;
+    destino.setAttribute("data-listo", "1");
+    var estilo = document.createElement("link");
+    estilo.rel = "stylesheet";
+    estilo.href = boton.getAttribute("data-estilo");
+    document.head.appendChild(estilo);
+    var cargador = document.createElement("script");
+    cargador.src = boton.getAttribute("data-script");
+    cargador.onload = function () {
+      var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
+      archivos.forEach(function (archivo) {
+        var caja = document.createElement("div");
+        caja.className = "visor";
+        destino.appendChild(caja);
+        molstar.Viewer.create(caja, {
+          layoutIsExpanded: false,
+          layoutShowControls: false,
+          layoutShowSequence: true,
+          layoutShowLog: false,
+          layoutShowLeftPanel: false,
+          viewportShowExpand: false,
+          viewportShowSettings: false,
+          viewportShowSelectionMode: false,
+          viewportShowAnimation: false,
+          viewportShowTrajectoryControls: false
+        }).then(function (visor) {
+          return visor.loadStructureFromUrl(archivo, "bcif", true);
+        });
+      });
+    };
+    document.body.appendChild(cargador);
+  });
   document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");
@@ -150,5 +228,6 @@
   });
 })();
 </script>
+
 </body>
 </html>

@@ -1,0 +1,9 @@
+{
+  "fuentes": [
+    "sitio_fuente/fuentes/anotacion/fichas.json"
+  ],
+  "svg_sha256": "5b35ffe89250a8efab63dcf854c2be8d704d8dfa283a3003af69e0aeda241e23",
+  "generador": "scripts/sitio/vistas_proteina.py",
+  "umbral_jaccard": 0.15,
+  "agrupamiento": "enlace promedio, distancia 1 menos Jaccard directo"
+}

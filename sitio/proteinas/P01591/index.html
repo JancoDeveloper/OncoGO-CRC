@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>P01591 · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/v4.91f668dadf.css">
+<link rel="stylesheet" href="/css/v4.4448135229.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -55,6 +55,14 @@
 
 <a href="#shap">SHAP</a>
 
+<a href="#secuencia">Secuencia</a>
+
+<a href="#estructura">Estructura</a>
+
+<a href="#go">GO</a>
+
+<a href="#dominios">Dominios</a>
+
 </nav>
 <main id="contenido">
 <h1>P01591</h1>
@@ -68,6 +76,43 @@
 <h2 id="tejido">Tejido</h2><p>Una fila, el gen JCHAIN. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p><table><tbody><tr><th>tanaka_log2fc</th><td><data value="no_medida" data-fuente="results/v3_7/triangulacion.tsv#gen=JCHAIN.tanaka_log2fc">no_medida</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=JCHAIN.tanaka_log2fc</p></details></td></tr><tr><th>cptac_coad_log2fc</th><td><data value="-1.565447930226041" data-fuente="results/v3_7/triangulacion.tsv#gen=JCHAIN.cptac_coad_log2fc">−1,57</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=JCHAIN.cptac_coad_log2fc</p></details></td></tr><tr><th>clase_h5</th><td><data value="intermedia" data-fuente="results/v3_7/triangulacion.tsv#gen=JCHAIN.clase_h5">intermedia</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/triangulacion.tsv#gen=JCHAIN.clase_h5</p></details></td></tr></tbody></table>
 <h2 id="priorizacion">Priorización</h2><table><tbody><tr><th>ultimo_paso</th><td><data value="1" data-fuente="results/v3_7/priorizacion.tsv#gen=JCHAIN.ultimo_paso">1</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=JCHAIN.ultimo_paso</p></details></td></tr><tr><th>motivo_no_pasa_el_siguiente</th><td><data value="no está medida en Tanaka primario frente a mucosa" data-fuente="results/v3_7/priorizacion.tsv#gen=JCHAIN.motivo_no_pasa_el_siguiente">no está medida en Tanaka primario frente a mucosa</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=JCHAIN.motivo_no_pasa_el_siguiente</p></details></td></tr><tr><th>clase_h5</th><td><data value="intermedia" data-fuente="results/v3_7/priorizacion.tsv#gen=JCHAIN.clase_h5">intermedia</data><details class="evidencia"><summary>fuente</summary><p>results/v3_7/priorizacion.tsv#gen=JCHAIN.clase_h5</p></details></td></tr></tbody></table>
 <h2 id="shap">SHAP</h2><p>JCHAIN no está en la explicación de M2.</p>
+<h2 id="secuencia">Secuencia</h2>
+<p>Longitud <data value="159" data-fuente="sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P01591.longitud">159</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P01591.longitud</p></details>. Masa <data value="18099" data-fuente="sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P01591.masa">18 099</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/fichas.json#por_acceso.P01591.masa</p></details>. <a href="/fuentes/fasta/P01591.fasta">FASTA</a>. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span></p>
+<p>El fondo marca el péptido señal. El subrayado marca un dominio de la entrada.</p>
+<p class="secuencia"><span class="num">   1</span> <span class="signal">MKNHLLFWGV</span>
+<span class="num">  11</span> <span class="signal">LAVFIKAVHV</span>
+<span class="num">  21</span> <span class="signal">KA</span>QEDERIVL
+<span class="num">  31</span> VDNKCKCARI
+<span class="num">  41</span> TSRIIRSSED
+<span class="num">  51</span> PNEDIVERNI
+<span class="num">  61</span> RIIVPLNNRE
+<span class="num">  71</span> NISDPTSPLR
+<span class="num">  81</span> TRFVYHLSDL
+<span class="num">  91</span> CKKCDPTEVE
+<span class="num"> 101</span> LDNQIVTATQ
+<span class="num"> 111</span> SNICDEDSAT
+<span class="num"> 121</span> ETCYTYDRNK
+<span class="num"> 131</span> CYTAVVPLVY
+<span class="num"> 141</span> GGETKMVETA
+<span class="num"> 151</span> LTPDACYPD
+</p>
+<h2 id="estructura">Estructura</h2>
+<p>Es una predicción. Un pLDDT bajo, por debajo de 70, indica una zona poco fiable: no se lee como un dominio bien resuelto. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#sehnal2021">Sehnal 2021</a><span class="cita-ventana">Mol* Viewer: modern web app for 3D visualization and analysis of large biomolecular structures 10.1093/nar/gkab314</span></span></p>
+<p>pLDDT medio <data value="87.06" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.globalMetricValue">87,060</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.globalMetricValue</p></details>. Muy alto <data value="0.597" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.fractionPlddtVeryHigh">0,597</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.fractionPlddtVeryHigh</p></details>. Fiable <data value="0.308" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.fractionPlddtConfident">0,308</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.fractionPlddtConfident</p></details>. Bajo <data value="0.094" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.fractionPlddtLow">0,094</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.fractionPlddtLow</p></details>. Muy bajo <data value="0" data-fuente="sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.fractionPlddtVeryLow">0,000</data><details class="evidencia"><summary>fuente</summary><p>sitio_fuente/fuentes/anotacion/alfafold/P01591.json#0.fractionPlddtVeryLow</p></details>.</p>
+<p><button type="button" data-ver-estructura="visor-P01591" data-modelos="/fuentes/modelos/AF-P01591-F1.bcif" data-script="/js/molstar.0dba8aea4c.js" data-estilo="/css/molstar.bea8d630b6.css">Ver estructura</button></p><div id="visor-P01591"></div><p>Sin JavaScript queda la cifra de pLDDT. El visor no forma parte de la página hasta ese botón.</p>
+<table><thead><tr><th>PDB</th><th>Método</th><th>Resolución</th><th>Cadenas</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6KXS">6KXS</a> <a href="https://www.rcsb.org/structure/6KXS">RCSB</a></td><td>EM</td><td>3.40 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6LX3">6LX3</a> <a href="https://www.rcsb.org/structure/6LX3">RCSB</a></td><td>EM</td><td>3.15 A</td><td>J=1-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6LXW">6LXW</a> <a href="https://www.rcsb.org/structure/6LXW">RCSB</a></td><td>EM</td><td>3.27 A</td><td>J=1-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6UE7">6UE7</a> <a href="https://www.rcsb.org/structure/6UE7">RCSB</a></td><td>EM</td><td>2.90 A</td><td>D=23-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6UE8">6UE8</a> <a href="https://www.rcsb.org/structure/6UE8">RCSB</a></td><td>EM</td><td>3.00 A</td><td>D=23-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6UE9">6UE9</a> <a href="https://www.rcsb.org/structure/6UE9">RCSB</a></td><td>EM</td><td>2.90 A</td><td>D=23-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6UEA">6UEA</a> <a href="https://www.rcsb.org/structure/6UEA">RCSB</a></td><td>EM</td><td>3.00 A</td><td>D=23-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7K0C">7K0C</a> <a href="https://www.rcsb.org/structure/7K0C">RCSB</a></td><td>EM</td><td>3.30 A</td><td>D=23-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7Y09">7Y09</a> <a href="https://www.rcsb.org/structure/7Y09">RCSB</a></td><td>EM</td><td>3.71 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7Y0H">7Y0H</a> <a href="https://www.rcsb.org/structure/7Y0H">RCSB</a></td><td>EM</td><td>3.56 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7Y0J">7Y0J</a> <a href="https://www.rcsb.org/structure/7Y0J">RCSB</a></td><td>EM</td><td>3.62 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7YG2">7YG2</a> <a href="https://www.rcsb.org/structure/7YG2">RCSB</a></td><td>EM</td><td>3.32 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7YSG">7YSG</a> <a href="https://www.rcsb.org/structure/7YSG">RCSB</a></td><td>EM</td><td>3.18 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7YTC">7YTC</a> <a href="https://www.rcsb.org/structure/7YTC">RCSB</a></td><td>EM</td><td>3.39 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/7YTD">7YTD</a> <a href="https://www.rcsb.org/structure/7YTD">RCSB</a></td><td>EM</td><td>3.71 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8ADY">8ADY</a> <a href="https://www.rcsb.org/structure/8ADY">RCSB</a></td><td>EM</td><td>5.20 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8ADZ">8ADZ</a> <a href="https://www.rcsb.org/structure/8ADZ">RCSB</a></td><td>EM</td><td>6.70 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8AE0">8AE0</a> <a href="https://www.rcsb.org/structure/8AE0">RCSB</a></td><td>EM</td><td>7.10 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8AE2">8AE2</a> <a href="https://www.rcsb.org/structure/8AE2">RCSB</a></td><td>EM</td><td>8.50 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8AE3">8AE3</a> <a href="https://www.rcsb.org/structure/8AE3">RCSB</a></td><td>EM</td><td>6.80 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8BPE">8BPE</a> <a href="https://www.rcsb.org/structure/8BPE">RCSB</a></td><td>EM</td><td>3.63 A</td><td>J=1-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8BPF">8BPF</a> <a href="https://www.rcsb.org/structure/8BPF">RCSB</a></td><td>EM</td><td>3.50 A</td><td>J=1-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8GZN">8GZN</a> <a href="https://www.rcsb.org/structure/8GZN">RCSB</a></td><td>EM</td><td>3.60 A</td><td>J=24-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8R83">8R83</a> <a href="https://www.rcsb.org/structure/8R83">RCSB</a></td><td>EM</td><td>3.57 A</td><td>J=1-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8R84">8R84</a> <a href="https://www.rcsb.org/structure/8R84">RCSB</a></td><td>EM</td><td>3.60 A</td><td>J=1-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8SKU">8SKU</a> <a href="https://www.rcsb.org/structure/8SKU">RCSB</a></td><td>EM</td><td>3.20 A</td><td>J=23-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8SKV">8SKV</a> <a href="https://www.rcsb.org/structure/8SKV">RCSB</a></td><td>EM</td><td>3.10 A</td><td>J=23-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8WYR">8WYR</a> <a href="https://www.rcsb.org/structure/8WYR">RCSB</a></td><td>EM</td><td>3.39 A</td><td>J=1-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/8WYS">8WYS</a> <a href="https://www.rcsb.org/structure/8WYS">RCSB</a></td><td>EM</td><td>3.41 A</td><td>J=1-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9ARV">9ARV</a> <a href="https://www.rcsb.org/structure/9ARV">RCSB</a></td><td>EM</td><td>3.60 A</td><td>J=1-159</td></tr><tr><td><a href="https://www.ebi.ac.uk/pdbe/entry/pdb/9MBZ">9MBZ</a> <a href="https://www.rcsb.org/structure/9MBZ">RCSB</a></td><td>EM</td><td>3.30 A</td><td>J=1-159</td></tr></tbody></table>
+<h2 id="go">Términos GO</h2>
+<p>La vista directa exige una evidencia distinta de IEA. La propagación añade ancestros is_a del obo descargado, que no es el de la tesis.</p>
+<h3>Proceso</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0002250">GO:0002250</a></td><td>adaptive immune response</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0019731">GO:0019731</a></td><td>antibacterial humoral response</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0003094">GO:0003094</a></td><td>glomerular filtration</td><td>IMP:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0006959">GO:0006959</a></td><td>humoral immune response</td><td>IBA:GO_Central</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0006955">GO:0006955</a></td><td>immune response</td><td>NAS:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0045087">GO:0045087</a></td><td>innate immune response</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0060267">GO:0060267</a></td><td>positive regulation of respiratory burst</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0065003">GO:0065003</a></td><td>protein-containing complex assembly</td><td>IMP:UniProtKB</td></tr></tbody></table>
+<h3>Función</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0003823">GO:0003823</a></td><td>antigen binding</td><td>NAS:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0019862">GO:0019862</a></td><td>IgA binding</td><td>IMP:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0042803">GO:0042803</a></td><td>protein homodimerization activity</td><td>IDA:UniProtKB</td></tr></tbody></table>
+<h3>Componente</h3><table><thead><tr><th>Término</th><th>Nombre</th><th>Evidencia</th></tr></thead><tbody><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0072562">GO:0072562</a></td><td>blood microparticle</td><td>HDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0071750">GO:0071750</a></td><td>dimeric IgA immunoglobulin complex</td><td>IMP:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0070062">GO:0070062</a></td><td>extracellular exosome</td><td>HDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0005576">GO:0005576</a></td><td>extracellular region</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0071748">GO:0071748</a></td><td>monomeric IgA immunoglobulin complex</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0071756">GO:0071756</a></td><td>pentameric IgM immunoglobulin complex</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0071752">GO:0071752</a></td><td>secretory dimeric IgA immunoglobulin complex</td><td>IDA:UniProtKB</td></tr><tr><td><a href="https://www.ebi.ac.uk/QuickGO/term/GO:0071751">GO:0071751</a></td><td>secretory IgA immunoglobulin complex</td><td>IDA:UniProtKB</td></tr></tbody></table>
+<p>Términos en la vista propagada, contando los directos: 75.</p>
+<h2 id="dominios">Dominios y vías</h2>
+<p><span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span></p>
+<h3>InterPro</h3><table><tbody><tr><td>IPR024110</td><td>Ig_J</td></tr></tbody></table>
+<h3>Pfam</h3><table><tbody><tr><td>PF15097</td><td>Ig_J_chain</td></tr></tbody></table>
+<h3>Reactome</h3><table><tbody><tr><td>R-HSA-202733</td><td>Cell surface interactions at the vascular wall</td></tr><tr><td>R-HSA-2168880</td><td>Scavenging of heme from plasma</td></tr></tbody></table>
+<p>UniProt 2026_04, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span> AlphaFold DB, CC BY 4.0. Suma de BinaryCIF alojados: 59.205 MB. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> InterPro y Pfam, por las referencias cruzadas de UniProt, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> Gene Ontology, obo releases/2026-07-26, que no es el de la tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span> Reactome, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span> PDB, CC0: solo la lista, sin ficheros. Los términos y las evidencias salen de UniProt. go_gene_long.tsv está en el manifiesto de la corrida y no trae códigos de evidencia, y la corrida no guardó el obo. La propagación usa go-basic.obo descargado aparte. No es la ontología de la tesis.</p>
 
 <h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
 <ul>
@@ -135,6 +180,42 @@
       });
     });
   });
+  document.body.addEventListener("click", function (evento) {
+    var boton = evento.target.closest ? evento.target.closest("[data-ver-estructura]") : null;
+    if (!boton) return;
+    var destino = document.getElementById(boton.getAttribute("data-ver-estructura"));
+    if (!destino || destino.getAttribute("data-listo") === "1") return;
+    destino.setAttribute("data-listo", "1");
+    var estilo = document.createElement("link");
+    estilo.rel = "stylesheet";
+    estilo.href = boton.getAttribute("data-estilo");
+    document.head.appendChild(estilo);
+    var cargador = document.createElement("script");
+    cargador.src = boton.getAttribute("data-script");
+    cargador.onload = function () {
+      var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
+      archivos.forEach(function (archivo) {
+        var caja = document.createElement("div");
+        caja.className = "visor";
+        destino.appendChild(caja);
+        molstar.Viewer.create(caja, {
+          layoutIsExpanded: false,
+          layoutShowControls: false,
+          layoutShowSequence: true,
+          layoutShowLog: false,
+          layoutShowLeftPanel: false,
+          viewportShowExpand: false,
+          viewportShowSettings: false,
+          viewportShowSelectionMode: false,
+          viewportShowAnimation: false,
+          viewportShowTrajectoryControls: false
+        }).then(function (visor) {
+          return visor.loadStructureFromUrl(archivo, "bcif", true);
+        });
+      });
+    };
+    document.body.appendChild(cargador);
+  });
   document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");
@@ -150,5 +231,6 @@
   });
 })();
 </script>
+
 </body>
 </html>
