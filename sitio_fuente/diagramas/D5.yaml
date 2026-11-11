@@ -1,0 +1,45 @@
+id: D5
+titulo: Del tubo a la matriz del suero
+desc: El recorrido es el del artículo del suero. Esta tesis no repitió la digestión ni la adquisición.
+pregunta: ¿Cómo se llega a la matriz?
+nodos:
+  - id: suero
+    texto: Suero
+    href: /datos/pxd055218
+    fuente: rai2025
+  - id: digestion
+    texto: Digestión
+    href: /metodos/proteomica
+    fuente: rai2025
+  - id: lcms
+    texto: LC-MS/MS
+    href: /metodos/proteomica
+    fuente: rai2025
+  - id: dia
+    texto: DIA
+    href: /metodos/proteomica
+    fuente: rai2025
+  - id: diann
+    texto: DIA-NN
+    href: /datos/herramientas
+    fuente: rai2025
+  - id: matriz
+    texto: Matriz
+    href: /metodos/canalizacion
+    fuente: data/raw/plasma/DIA-NN_report.tsv
+aristas:
+  - origen: suero
+    destino: digestion
+    fuente: rai2025
+  - origen: digestion
+    destino: lcms
+    fuente: rai2025
+  - origen: lcms
+    destino: dia
+    fuente: rai2025
+  - origen: dia
+    destino: diann
+    fuente: rai2025
+  - origen: diann
+    destino: matriz
+    fuente: data/raw/plasma/DIA-NN_report.tsv

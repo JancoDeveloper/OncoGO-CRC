@@ -1,0 +1,31 @@
+id: D10
+titulo: Modelos del suero y el nulo
+desc: M1, M2 y M3 están en ml_modelos.tsv. El nulo está en las permutaciones. No se copian los AUC en el dibujo.
+pregunta: ¿Qué se compara con el azar?
+nodos:
+  - id: m1
+    texto: M1
+    href: /metodos/aprendizaje-automatico
+    fuente: results/v3_7/ml_modelos.tsv
+  - id: m2
+    texto: M2
+    href: /metodos/aprendizaje-automatico
+    fuente: results/v3_7/ml_modelos.tsv
+  - id: m3
+    texto: M3
+    href: /metodos/aprendizaje-automatico
+    fuente: results/v3_7/ml_modelos.tsv
+  - id: nulo
+    texto: Nulo
+    href: /metodos/aprendizaje-automatico
+    fuente: results/v3_7/ml_nulo_permutaciones.tsv
+aristas:
+  - origen: m1
+    destino: nulo
+    fuente: results/v3_7/ml_nulo_permutaciones.tsv
+  - origen: m2
+    destino: nulo
+    fuente: results/v3_7/ml_nulo_permutaciones.tsv
+  - origen: m3
+    destino: nulo
+    fuente: results/v3_7/ml_nulo_permutaciones.tsv

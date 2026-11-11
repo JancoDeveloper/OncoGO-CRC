@@ -31,3 +31,5 @@ El modelo comprime variables de anotación. No crea una medición nueva de la sa
 ## Qué no demuestra
 
 Un AUC cercano a un medio no es una prueba diagnóstica. El propio preregistro lo marca: {{dato:config/preregistro_v3.yaml#hipotesis.h7.no_es_prueba_diagnostica}}. [@rai2025]
+
+{{diagrama:D10}}

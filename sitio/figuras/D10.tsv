@@ -1,0 +1,8 @@
+nodo	fuente
+M1	results/v3_7/ml_modelos.tsv
+M2	results/v3_7/ml_modelos.tsv
+M3	results/v3_7/ml_modelos.tsv
+Nulo	results/v3_7/ml_nulo_permutaciones.tsv
+m1 → nulo	results/v3_7/ml_nulo_permutaciones.tsv
+m2 → nulo	results/v3_7/ml_nulo_permutaciones.tsv
+m3 → nulo	results/v3_7/ml_nulo_permutaciones.tsv

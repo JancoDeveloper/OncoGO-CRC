@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aprendizaje automático · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/v4.af8fbc90bb.css">
+<link rel="stylesheet" href="/css/v4.91f668dadf.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -66,6 +66,7 @@
 <p>El modelo comprime variables de anotación. No crea una medición nueva de la sangre. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
 <h2 id="qu-no-demuestra">Qué no demuestra</h2>
 <p>Un AUC cercano a un medio no es una prueba diagnóstica. El propio preregistro lo marca: <data value="true" data-fuente="config/preregistro_v3.yaml#hipotesis.h7.no_es_prueba_diagnostica">true</data><details class="evidencia"><summary>fuente</summary><p id="ev61">config/preregistro_v3.yaml#hipotesis.h7.no_es_prueba_diagnostica</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<figure class="grafico" id="D10"><h3>¿Qué se compara con el azar?</h3><svg viewBox="0 0 776 180" role="img" class="lienzo-svg"><title>Modelos del suero y el nulo</title><desc>M1, M2 y M3 están en ml_modelos.tsv. El nulo está en las permutaciones. No se copian los AUC en el dibujo.</desc><a href="/metodos/aprendizaje-automatico" data-id="m1"><rect x="24" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="40" y="108" fill="currentColor" font-size="16">M1</text><a href="/metodos/aprendizaje-automatico" data-id="m2"><rect x="212" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="228" y="108" fill="currentColor" font-size="16">M2</text><a href="/metodos/aprendizaje-automatico" data-id="m3"><rect x="400" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="416" y="108" fill="currentColor" font-size="16">M3</text><a href="/metodos/aprendizaje-automatico" data-id="nulo"><rect x="588" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="604" y="108" fill="currentColor" font-size="16">Nulo</text><line data-origen="m1" data-destino="nulo" x1="184" y1="36" x2="588" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="m2" data-destino="nulo" x1="372" y1="36" x2="588" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="m3" data-destino="nulo" x1="560" y1="102" x2="588" y2="102" stroke="currentColor" stroke-width="2"/></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>fuente</th></tr></thead><tbody><tr><td>M1</td><td>results/v3_7/ml_modelos.tsv</td></tr><tr><td>M2</td><td>results/v3_7/ml_modelos.tsv</td></tr><tr><td>M3</td><td>results/v3_7/ml_modelos.tsv</td></tr><tr><td>Nulo</td><td>results/v3_7/ml_nulo_permutaciones.tsv</td></tr><tr><td>m1 → nulo</td><td>results/v3_7/ml_nulo_permutaciones.tsv</td></tr><tr><td>m2 → nulo</td><td>results/v3_7/ml_nulo_permutaciones.tsv</td></tr><tr><td>m3 → nulo</td><td>results/v3_7/ml_nulo_permutaciones.tsv</td></tr></tbody></table></details><p><a href="/figuras/D10.svg" download>Descargar SVG</a> <a href="/figuras/D10.tsv" download>Descargar TSV</a></p></figure>
 
 <h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
 <ul>
@@ -137,6 +138,19 @@
     }, { rootMargin: "-20% 0px -70% 0px" });
     secciones.forEach(function (seccion) { observador.observe(seccion); });
   }
+  document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
+    nodo.addEventListener("click", function () {
+      var svg = nodo.closest("svg");
+      svg.querySelectorAll(".resaltado").forEach(function (el) { el.classList.remove("resaltado"); });
+      nodo.classList.add("resaltado");
+      svg.querySelectorAll("line").forEach(function (linea) {
+        var id = nodo.getAttribute("data-id");
+        if (linea.getAttribute("data-origen") === id || linea.getAttribute("data-destino") === id) {
+          linea.classList.add("resaltado");
+        }
+      });
+    });
+  });
 })();
 </script>
 </body>

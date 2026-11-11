@@ -31,3 +31,5 @@ La prueba se calcula sobre la matriz, con el error estándar y los grados de lib
 ## Qué no demuestra
 
 La clase equivalente no dice que la proteína esté ausente, ni que el resultado sirva para un paciente. [@rai2025]
+
+{{diagrama:D8}}

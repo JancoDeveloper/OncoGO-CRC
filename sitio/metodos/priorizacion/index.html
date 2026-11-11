@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Priorización · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/v4.af8fbc90bb.css">
+<link rel="stylesheet" href="/css/v4.91f668dadf.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -143,6 +143,19 @@
     }, { rootMargin: "-20% 0px -70% 0px" });
     secciones.forEach(function (seccion) { observador.observe(seccion); });
   }
+  document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
+    nodo.addEventListener("click", function () {
+      var svg = nodo.closest("svg");
+      svg.querySelectorAll(".resaltado").forEach(function (el) { el.classList.remove("resaltado"); });
+      nodo.classList.add("resaltado");
+      svg.querySelectorAll("line").forEach(function (linea) {
+        var id = nodo.getAttribute("data-id");
+        if (linea.getAttribute("data-origen") === id || linea.getAttribute("data-destino") === id) {
+          linea.classList.add("resaltado");
+        }
+      });
+    });
+  });
 })();
 </script>
 </body>

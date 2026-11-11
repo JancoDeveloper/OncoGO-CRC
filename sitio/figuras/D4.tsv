@@ -1,0 +1,10 @@
+nodo	fuente
+PDC000116	config/datasets.yaml
+PXD034575	config/preregistro_v3.yaml
+PXD055218	config/preregistro_v3.yaml
+HPA	external/hpa/hpa_concentracion_sangre.tsv
+GO	metadata/gene_ontology/go_gene_long.tsv
+pdc → pxd034575	config/preregistro_v3.yaml
+pxd034575 → pxd055218	config/preregistro_v3.yaml
+pxd055218 → hpa	external/hpa/hpa_concentracion_sangre.tsv
+hpa → ontologia	metadata/gene_ontology/go_gene_long.tsv

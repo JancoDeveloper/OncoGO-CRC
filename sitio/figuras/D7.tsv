@@ -1,0 +1,10 @@
+nodo	fuente
+CPTAC	results/certified/cptac_unshared_treat.tsv
+Tanaka	data/raw/pride/Cohort1_proteinGroups.txt
+CP	results/v3_7/preanalitica.json
+CN	results/v3_7/preanalitica.json
+HC	config/preregistro_v3.yaml
+cptac → tanaka	config/preregistro_v3.yaml
+tanaka → cp	results/v3_7/preanalitica.json
+cp → cn	results/v3_7/preanalitica.json
+cn → hc	config/preregistro_v3.yaml

@@ -1,0 +1,45 @@
+id: D3
+titulo: Linaje de los ficheros de entrada
+desc: Cada nodo es un fichero del manifiesto de la corrida o el resumen del suero. Al pulsar un nodo se marca el tramo que sale o llega a él.
+pregunta: ¿Qué fichero alimenta el resultado?
+nodos:
+  - id: cptac
+    texto: CPTAC
+    href: /datos/pdc000116
+    fuente: results/certified/cptac_unshared_treat.tsv
+  - id: tanaka
+    texto: Tanaka
+    href: /datos/pxd034575
+    fuente: data/raw/pride/Cohort1_proteinGroups.txt
+  - id: rai
+    texto: Suero
+    href: /datos/pxd055218
+    fuente: data/raw/plasma/DIA-NN_report.tsv
+  - id: hpa
+    texto: HPA
+    href: /datos/hpa
+    fuente: external/hpa/hpa_concentracion_sangre.tsv
+  - id: go
+    texto: GO
+    href: /datos/gene-ontology
+    fuente: metadata/gene_ontology/go_gene_long.tsv
+  - id: celda
+    texto: Celda
+    href: /metodos/expresion-diferencial
+    fuente: results/v3_7/suero_embudo.json
+aristas:
+  - origen: cptac
+    destino: celda
+    fuente: results/v3_7/suero_embudo.json
+  - origen: tanaka
+    destino: celda
+    fuente: results/v3_7/suero_embudo.json
+  - origen: rai
+    destino: celda
+    fuente: results/v3_7/suero_embudo.json
+  - origen: hpa
+    destino: celda
+    fuente: results/v3_7/h7_visibilidad_en_sangre.json
+  - origen: go
+    destino: celda
+    fuente: results/v3_7/go_tejido.json

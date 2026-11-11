@@ -13,3 +13,5 @@ Cada página nombra el acceso que está en el preregistro o en el registro de da
 El instrumento, el número de muestras y la composición de los grupos no se escriben: no hay una respuesta de API guardada en `sitio_fuente/fuentes/`. [@rai2025]
 
 Las matrices no se fusionan. El tejido y el {{termino:suero}} se leen por separado. [@zhang2014] [@tanaka2024]
+
+{{diagrama:D3}}

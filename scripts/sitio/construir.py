@@ -185,19 +185,31 @@ def diagrama_html(ident: str, bib) -> str:
     ancho = 160
     cuerpo = []
     filas = []
+    lugar = {}
     for i, nodo in enumerate(nodos):
         x = 24 + i * (ancho + 28)
+        lugar[nodo["id"]] = x
         cuerpo.append(
-            f'<a href="{e(nodo["href"])}"><rect x="{x}" y="70" width="{ancho}" height="64" rx="8" '
+            f'<a href="{e(nodo["href"])}" data-id="{e(nodo["id"])}"><rect x="{x}" y="70" width="{ancho}" height="64" rx="8" '
             f'fill="none" stroke="currentColor" stroke-width="2"/></a>'
             f'<text x="{x + 16}" y="108" fill="currentColor" font-size="16">{e(nodo["texto"])}</text>'
         )
-        if i:
-            cuerpo.append(
-                f'<line x1="{x - 28}" y1="102" x2="{x}" y2="102" stroke="currentColor" stroke-width="2"/>'
-            )
         filas.append({"nodo": nodo["texto"], "fuente": nodo["fuente"]})
-    for arista in datos.get("aristas", []):
+    aristas = datos.get("aristas") or []
+    if not aristas:
+        aristas = [
+            {"origen": nodos[i]["id"], "destino": nodos[i + 1]["id"], "fuente": nodos[i + 1]["fuente"]}
+            for i in range(len(nodos) - 1)
+        ]
+    indice = {nodo["id"]: i for i, nodo in enumerate(nodos)}
+    for arista in aristas:
+        x1 = lugar[arista["origen"]] + ancho
+        x2 = lugar[arista["destino"]]
+        y = 102 if abs(indice[arista["origen"]] - indice[arista["destino"]]) == 1 else 36
+        cuerpo.append(
+            f'<line data-origen="{e(arista["origen"])}" data-destino="{e(arista["destino"])}" '
+            f'x1="{x1}" y1="{y}" x2="{x2}" y2="{y}" stroke="currentColor" stroke-width="2"/>'
+        )
         filas.append({"nodo": f'{arista["origen"]} → {arista["destino"]}', "fuente": arista["fuente"]})
     alto = 180
     largo = 24 + len(nodos) * (ancho + 28)
@@ -391,7 +403,7 @@ def main() -> None:
     glosario_html = render(
         env, "base.html.j2",
         titulo="Glosario",
-        cuerpo="<h1>Glosario</h1><dl>" + "".join(entradas) + "</dl>",
+        cuerpo="<h1>Glosario</h1><dl>" + "".join(entradas) + "</dl>" + diagrama_html("D11", bib),
         indice=[],
         migas="Inicio / Glosario",
         fuentes=[{"href": "/bibliografia", "texto": "Bibliografía"}],

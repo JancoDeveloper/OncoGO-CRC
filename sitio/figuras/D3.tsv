@@ -1,0 +1,12 @@
+nodo	fuente
+CPTAC	results/certified/cptac_unshared_treat.tsv
+Tanaka	data/raw/pride/Cohort1_proteinGroups.txt
+Suero	data/raw/plasma/DIA-NN_report.tsv
+HPA	external/hpa/hpa_concentracion_sangre.tsv
+GO	metadata/gene_ontology/go_gene_long.tsv
+Celda	results/v3_7/suero_embudo.json
+cptac → celda	results/v3_7/suero_embudo.json
+tanaka → celda	results/v3_7/suero_embudo.json
+rai → celda	results/v3_7/suero_embudo.json
+hpa → celda	results/v3_7/h7_visibilidad_en_sangre.json
+go → celda	results/v3_7/go_tejido.json

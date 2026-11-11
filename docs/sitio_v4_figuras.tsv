@@ -1,0 +1,12 @@
+id	pagina	fuentes	muestra
+D1	/	rai2025; vasaikar2019; tanaka2024; results/v3_7/suero_embudo.json	Pregunta, datos, métodos y resultado
+D2	/investigacion/historia	sitio/archivo/v3_3.html; sitio/archivo/v3_4.html; sitio/archivo/v3_6/index.html; results/v3_7/certificado.json	Archivo v3.3, v3.4, v3.6 y certificado v3.7
+D3	/datos	results/certified/cptac_unshared_treat.tsv; data/raw/pride/Cohort1_proteinGroups.txt; data/raw/plasma/DIA-NN_report.tsv; external/hpa/hpa_concentracion_sangre.tsv; metadata/gene_ontology/go_gene_long.tsv; results/v3_7/suero_embudo.json	Ficheros del manifiesto hasta la celda
+D4	/datos/bases-de-datos	config/datasets.yaml; config/preregistro_v3.yaml; external/hpa/hpa_concentracion_sangre.tsv; metadata/gene_ontology/go_gene_long.tsv	Bases que tienen página
+D5	/metodos/proteomica	rai2025; data/raw/plasma/DIA-NN_report.tsv	Suero, digestión, LC-MS/MS, DIA, DIA-NN y matriz
+D6	/metodos/canalizacion	src/oncogo_crc/stages/v3_7.py	Tejido, suero, modelos, hipótesis y priorización
+D7	/metodos/cohortes-y-diseno	results/certified/cptac_unshared_treat.tsv; data/raw/pride/Cohort1_proteinGroups.txt; results/v3_7/preanalitica.json; config/preregistro_v3.yaml	CPTAC, Tanaka, CP, CN y HC, sin n de HC
+D8	/metodos/expresion-diferencial	config/preregistro_v3.yaml; rai2025; results/v3_7/suero_embudo.json	TREAT, TOST y las tres clases
+D9	/investigacion/reproducibilidad	config/preregistro_v3.yaml; results/v3_7/corrida.json; results/v3_7/certificado.json; docs/determinismo_d_e.md	Preregistro, corrida, sello y la pareja D y E
+D10	/metodos/aprendizaje-automatico	results/v3_7/ml_modelos.tsv; results/v3_7/ml_nulo_permutaciones.tsv	M1, M2, M3 y el nulo
+D11	/glosario	rai2025; vasaikar2019	Términos del glosario y sus relacionados

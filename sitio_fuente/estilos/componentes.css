@@ -100,6 +100,7 @@ th, td { border-bottom: 1px solid var(--linea); text-align: left; padding: 0.35r
 .cita-wrap:hover .cita-ventana, .cita-wrap:focus-within .cita-ventana,
 .termino:hover .definicion-corta, .termino:focus-within .definicion-corta { display: block; }
 .lienzo-svg { width: 100%; height: auto; }
+.lienzo-svg a.resaltado rect, .lienzo-svg line.resaltado { stroke-width: 4; }
 .pie {
   border-top: 1px solid var(--linea);
   padding: 1rem;

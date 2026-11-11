@@ -1,0 +1,31 @@
+id: D9
+titulo: Del preregistro al certificado
+desc: La corrida publicada es la E. El documento de determinismo dice que D y E coinciden en los números.
+pregunta: ¿Qué sella el resultado?
+nodos:
+  - id: preregistro
+    texto: Preregistro
+    href: /investigacion/reproducibilidad
+    fuente: config/preregistro_v3.yaml
+  - id: corrida
+    texto: Corrida
+    href: /investigacion/reproducibilidad
+    fuente: results/v3_7/corrida.json
+  - id: sello
+    texto: Sello
+    href: /investigacion/reproducibilidad
+    fuente: results/v3_7/certificado.json
+  - id: par
+    texto: D y E
+    href: /investigacion/reproducibilidad
+    fuente: docs/determinismo_d_e.md
+aristas:
+  - origen: preregistro
+    destino: corrida
+    fuente: results/v3_7/corrida.json
+  - origen: corrida
+    destino: sello
+    fuente: results/v3_7/certificado.json
+  - origen: sello
+    destino: par
+    fuente: docs/determinismo_d_e.md

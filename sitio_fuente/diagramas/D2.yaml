@@ -1,0 +1,31 @@
+id: D2
+titulo: Sitios que quedaron de las versiones anteriores
+desc: La línea muestra las páginas de archivo v3.3, v3.4 y v3.6 y el certificado de la v3.7. No resume cada commit.
+pregunta: ¿Qué versiones siguen en el repositorio?
+nodos:
+  - id: v33
+    texto: v3.3
+    href: /archivo/v3_3
+    fuente: sitio/archivo/v3_3.html
+  - id: v34
+    texto: v3.4
+    href: /archivo/v3_4
+    fuente: sitio/archivo/v3_4.html
+  - id: v36
+    texto: v3.6
+    href: /archivo/v3_6
+    fuente: sitio/archivo/v3_6/index.html
+  - id: v37
+    texto: v3.7
+    href: /investigacion/reproducibilidad
+    fuente: results/v3_7/certificado.json
+aristas:
+  - origen: v33
+    destino: v34
+    fuente: sitio/archivo/v3_4.html
+  - origen: v34
+    destino: v36
+    fuente: sitio/archivo/v3_6/index.html
+  - origen: v36
+    destino: v37
+    fuente: results/v3_7/certificado.json

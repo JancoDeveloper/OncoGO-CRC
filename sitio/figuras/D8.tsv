@@ -1,0 +1,12 @@
+nodo	fuente
+Contraste	config/preregistro_v3.yaml
+TREAT	rai2025
+TOST	config/preregistro_v3.yaml
+Diferente	results/v3_7/suero_embudo.json
+Equivalente	results/v3_7/suero_embudo.json
+Indeterminada	results/v3_7/suero_embudo.json
+contraste → treat	rai2025
+contraste → tost	config/preregistro_v3.yaml
+treat → diferente	results/v3_7/suero_embudo.json
+tost → equivalente	results/v3_7/suero_embudo.json
+tost → indeterminada	results/v3_7/suero_embudo.json

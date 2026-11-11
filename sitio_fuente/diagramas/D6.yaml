@@ -1,0 +1,38 @@
+id: D6
+titulo: Etapas de la corrida v3.7
+desc: Los nombres son las piezas que llama src/oncogo_crc/stages/v3_7.py. No es la lista completa de funciones.
+pregunta: ¿En qué orden corre el cálculo?
+nodos:
+  - id: tejido
+    texto: Tejido
+    href: /datos/pdc000116
+    fuente: src/oncogo_crc/stages/v3_7.py
+  - id: suero
+    texto: Suero
+    href: /datos/pxd055218
+    fuente: src/oncogo_crc/stages/v3_7.py
+  - id: ml
+    texto: Modelos
+    href: /metodos/aprendizaje-automatico
+    fuente: src/oncogo_crc/stages/v3_7.py
+  - id: hipotesis
+    texto: Hipótesis
+    href: /metodos/hipotesis
+    fuente: src/oncogo_crc/stages/v3_7.py
+  - id: prioridad
+    texto: Priorización
+    href: /metodos/priorizacion
+    fuente: src/oncogo_crc/stages/v3_7.py
+aristas:
+  - origen: tejido
+    destino: suero
+    fuente: src/oncogo_crc/stages/v3_7.py
+  - origen: suero
+    destino: ml
+    fuente: src/oncogo_crc/stages/v3_7.py
+  - origen: ml
+    destino: hipotesis
+    fuente: src/oncogo_crc/stages/v3_7.py
+  - origen: hipotesis
+    destino: prioridad
+    fuente: src/oncogo_crc/stages/v3_7.py

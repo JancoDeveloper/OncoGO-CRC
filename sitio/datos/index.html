@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Datos · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/v4.af8fbc90bb.css">
+<link rel="stylesheet" href="/css/v4.91f668dadf.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -45,6 +45,7 @@
 <p>Cada página nombra el acceso que está en el preregistro o en el registro de datasets, y el fichero que `results/v3_7/manifest_entradas.sha256` incluye. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
 <p>El instrumento, el número de muestras y la composición de los grupos no se escriben: no hay una respuesta de API guardada en `sitio_fuente/fuentes/`. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <p>Las matrices no se fusionan. El tejido y el <a class="termino" href="/glosario#suero">suero<span class="definicion-corta">La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span></a> se leen por separado. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
+<figure class="grafico" id="D3"><h3>¿Qué fichero alimenta el resultado?</h3><svg viewBox="0 0 1152 180" role="img" class="lienzo-svg"><title>Linaje de los ficheros de entrada</title><desc>Cada nodo es un fichero del manifiesto de la corrida o el resumen del suero. Al pulsar un nodo se marca el tramo que sale o llega a él.</desc><a href="/datos/pdc000116" data-id="cptac"><rect x="24" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="40" y="108" fill="currentColor" font-size="16">CPTAC</text><a href="/datos/pxd034575" data-id="tanaka"><rect x="212" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="228" y="108" fill="currentColor" font-size="16">Tanaka</text><a href="/datos/pxd055218" data-id="rai"><rect x="400" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="416" y="108" fill="currentColor" font-size="16">Suero</text><a href="/datos/hpa" data-id="hpa"><rect x="588" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="604" y="108" fill="currentColor" font-size="16">HPA</text><a href="/datos/gene-ontology" data-id="go"><rect x="776" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="792" y="108" fill="currentColor" font-size="16">GO</text><a href="/metodos/expresion-diferencial" data-id="celda"><rect x="964" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></a><text x="980" y="108" fill="currentColor" font-size="16">Celda</text><line data-origen="cptac" data-destino="celda" x1="184" y1="36" x2="964" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="tanaka" data-destino="celda" x1="372" y1="36" x2="964" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="rai" data-destino="celda" x1="560" y1="36" x2="964" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="hpa" data-destino="celda" x1="748" y1="36" x2="964" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="go" data-destino="celda" x1="936" y1="102" x2="964" y2="102" stroke="currentColor" stroke-width="2"/></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>fuente</th></tr></thead><tbody><tr><td>CPTAC</td><td>results/certified/cptac_unshared_treat.tsv</td></tr><tr><td>Tanaka</td><td>data/raw/pride/Cohort1_proteinGroups.txt</td></tr><tr><td>Suero</td><td>data/raw/plasma/DIA-NN_report.tsv</td></tr><tr><td>HPA</td><td>external/hpa/hpa_concentracion_sangre.tsv</td></tr><tr><td>GO</td><td>metadata/gene_ontology/go_gene_long.tsv</td></tr><tr><td>Celda</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>cptac → celda</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>tanaka → celda</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>rai → celda</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>hpa → celda</td><td>results/v3_7/h7_visibilidad_en_sangre.json</td></tr><tr><td>go → celda</td><td>results/v3_7/go_tejido.json</td></tr></tbody></table></details><p><a href="/figuras/D3.svg" download>Descargar SVG</a> <a href="/figuras/D3.tsv" download>Descargar TSV</a></p></figure>
 
 <h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
 <ul>
@@ -106,6 +107,19 @@
     }, { rootMargin: "-20% 0px -70% 0px" });
     secciones.forEach(function (seccion) { observador.observe(seccion); });
   }
+  document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
+    nodo.addEventListener("click", function () {
+      var svg = nodo.closest("svg");
+      svg.querySelectorAll(".resaltado").forEach(function (el) { el.classList.remove("resaltado"); });
+      nodo.classList.add("resaltado");
+      svg.querySelectorAll("line").forEach(function (linea) {
+        var id = nodo.getAttribute("data-id");
+        if (linea.getAttribute("data-origen") === id || linea.getAttribute("data-destino") === id) {
+          linea.classList.add("resaltado");
+        }
+      });
+    });
+  });
 })();
 </script>
 </body>

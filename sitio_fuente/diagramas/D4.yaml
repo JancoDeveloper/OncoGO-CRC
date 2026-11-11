@@ -1,0 +1,38 @@
+id: D4
+titulo: Bases que entran en la corrida
+desc: Cada base apunta a la página que dice qué fichero se leyó. No describe el instrumento ni el tamaño.
+pregunta: ¿Qué recurso entra en qué página?
+nodos:
+  - id: pdc
+    texto: PDC000116
+    href: /datos/pdc000116
+    fuente: config/datasets.yaml
+  - id: pxd034575
+    texto: PXD034575
+    href: /datos/pxd034575
+    fuente: config/preregistro_v3.yaml
+  - id: pxd055218
+    texto: PXD055218
+    href: /datos/pxd055218
+    fuente: config/preregistro_v3.yaml
+  - id: hpa
+    texto: HPA
+    href: /datos/hpa
+    fuente: external/hpa/hpa_concentracion_sangre.tsv
+  - id: ontologia
+    texto: GO
+    href: /datos/gene-ontology
+    fuente: metadata/gene_ontology/go_gene_long.tsv
+aristas:
+  - origen: pdc
+    destino: pxd034575
+    fuente: config/preregistro_v3.yaml
+  - origen: pxd034575
+    destino: pxd055218
+    fuente: config/preregistro_v3.yaml
+  - origen: pxd055218
+    destino: hpa
+    fuente: external/hpa/hpa_concentracion_sangre.tsv
+  - origen: hpa
+    destino: ontologia
+    fuente: metadata/gene_ontology/go_gene_long.tsv

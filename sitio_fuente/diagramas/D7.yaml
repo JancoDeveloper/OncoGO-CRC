@@ -1,0 +1,38 @@
+id: D7
+titulo: Cohortes que la corrida separa
+desc: Tejido de descubrimiento, réplica y los tres grupos del suero. No se escribe el tamaño de HC porque el JSON de preanalítica no lo trae.
+pregunta: ¿Qué grupos no se suman?
+nodos:
+  - id: cptac
+    texto: CPTAC
+    href: /datos/pdc000116
+    fuente: results/certified/cptac_unshared_treat.tsv
+  - id: tanaka
+    texto: Tanaka
+    href: /datos/pxd034575
+    fuente: data/raw/pride/Cohort1_proteinGroups.txt
+  - id: cp
+    texto: CP
+    href: /datos/pxd055218
+    fuente: results/v3_7/preanalitica.json
+  - id: cn
+    texto: CN
+    href: /datos/pxd055218
+    fuente: results/v3_7/preanalitica.json
+  - id: hc
+    texto: HC
+    href: /datos/pxd055218
+    fuente: config/preregistro_v3.yaml
+aristas:
+  - origen: cptac
+    destino: tanaka
+    fuente: config/preregistro_v3.yaml
+  - origen: tanaka
+    destino: cp
+    fuente: results/v3_7/preanalitica.json
+  - origen: cp
+    destino: cn
+    fuente: results/v3_7/preanalitica.json
+  - origen: cn
+    destino: hc
+    fuente: config/preregistro_v3.yaml

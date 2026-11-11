@@ -1,0 +1,12 @@
+nodo	fuente
+Suero	rai2025
+Digestión	rai2025
+LC-MS/MS	rai2025
+DIA	rai2025
+DIA-NN	rai2025
+Matriz	data/raw/plasma/DIA-NN_report.tsv
+suero → digestion	rai2025
+digestion → lcms	rai2025
+lcms → dia	rai2025
+dia → diann	rai2025
+diann → matriz	data/raw/plasma/DIA-NN_report.tsv

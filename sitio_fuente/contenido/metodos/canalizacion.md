@@ -31,3 +31,5 @@ La canalización de esta tesis es el paso que convierte un fichero publicado en 
 ## Qué no demuestra
 
 Que una proteína entre en la celda no dice que sirva para decidir sobre un paciente. [@rai2025]
+
+{{diagrama:D6}}

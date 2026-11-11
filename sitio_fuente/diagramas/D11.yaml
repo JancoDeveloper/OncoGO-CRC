@@ -1,0 +1,52 @@
+id: D11
+titulo: Términos que se usan juntos
+desc: Las aristas son los relacionados del glosario. Cada término tiene su cita en la ficha.
+pregunta: ¿Qué palabra remite a cuál?
+nodos:
+  - id: cn
+    texto: CN
+    href: /glosario#cn
+    fuente: rai2025
+  - id: cp
+    texto: CP
+    href: /glosario#cp
+    fuente: rai2025
+  - id: hc
+    texto: HC
+    href: /glosario#hc
+    fuente: rai2025
+  - id: suero
+    texto: Suero
+    href: /glosario#suero
+    fuente: rai2025
+  - id: celda
+    texto: Celda
+    href: /glosario#celda
+    fuente: rai2025
+  - id: dia
+    texto: DIA
+    href: /glosario#dia
+    fuente: rai2025
+  - id: proteoma
+    texto: Proteoma
+    href: /glosario#proteoma
+    fuente: vasaikar2019
+aristas:
+  - origen: cn
+    destino: cp
+    fuente: rai2025
+  - origen: cp
+    destino: hc
+    fuente: rai2025
+  - origen: hc
+    destino: suero
+    fuente: rai2025
+  - origen: suero
+    destino: celda
+    fuente: rai2025
+  - origen: suero
+    destino: dia
+    fuente: rai2025
+  - origen: suero
+    destino: proteoma
+    fuente: vasaikar2019

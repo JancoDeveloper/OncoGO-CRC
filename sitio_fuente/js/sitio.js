@@ -38,4 +38,17 @@
     }, { rootMargin: "-20% 0px -70% 0px" });
     secciones.forEach(function (seccion) { observador.observe(seccion); });
   }
+  document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
+    nodo.addEventListener("click", function () {
+      var svg = nodo.closest("svg");
+      svg.querySelectorAll(".resaltado").forEach(function (el) { el.classList.remove("resaltado"); });
+      nodo.classList.add("resaltado");
+      svg.querySelectorAll("line").forEach(function (linea) {
+        var id = nodo.getAttribute("data-id");
+        if (linea.getAttribute("data-origen") === id || linea.getAttribute("data-destino") === id) {
+          linea.classList.add("resaltado");
+        }
+      });
+    });
+  });
 })();

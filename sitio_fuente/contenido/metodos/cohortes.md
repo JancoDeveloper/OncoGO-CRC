@@ -31,3 +31,5 @@ El diseño decide qué filas se pueden restar. Emparejar por participante no es 
 ## Qué no demuestra
 
 Un diseño correcto no convierte el cero del suero en una prueba de que el tumor no cambia en el tejido. [@rai2025]
+
+{{diagrama:D7}}

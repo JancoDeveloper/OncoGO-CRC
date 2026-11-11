@@ -15,3 +15,5 @@ La metástasis hepática sigue en la matriz, con sus contrastes secundarios, y n
 En la sangre la pregunta no es si el tumor difiere de una mucosa. Es si el {{termino:suero}} de {{termino:CP}} difiere del de {{termino:CN}}. [@rai2025]
 
 Esa separación es la que deja el cero de la {{termino:celda}} en su sitio: describe el contraste escrito, no un cambio del tejido. [@rai2025] [@zhang2014]
+
+{{diagrama:D2}}

@@ -1,0 +1,45 @@
+id: D8
+titulo: Tres clases, no un solo umbral
+desc: TREAT y TOST separan diferente, equivalente e indeterminada. El margen está en el preregistro.
+pregunta: ¿Cómo se clasifica una proteína?
+nodos:
+  - id: contraste
+    texto: Contraste
+    href: /metodos/expresion-diferencial
+    fuente: config/preregistro_v3.yaml
+  - id: treat
+    texto: TREAT
+    href: /metodos/expresion-diferencial
+    fuente: rai2025
+  - id: tost
+    texto: TOST
+    href: /metodos/expresion-diferencial
+    fuente: config/preregistro_v3.yaml
+  - id: diferente
+    texto: Diferente
+    href: /metodos/expresion-diferencial
+    fuente: results/v3_7/suero_embudo.json
+  - id: equivalente
+    texto: Equivalente
+    href: /metodos/expresion-diferencial
+    fuente: results/v3_7/suero_embudo.json
+  - id: indeterminada
+    texto: Indeterminada
+    href: /metodos/expresion-diferencial
+    fuente: results/v3_7/suero_embudo.json
+aristas:
+  - origen: contraste
+    destino: treat
+    fuente: rai2025
+  - origen: contraste
+    destino: tost
+    fuente: config/preregistro_v3.yaml
+  - origen: treat
+    destino: diferente
+    fuente: results/v3_7/suero_embudo.json
+  - origen: tost
+    destino: equivalente
+    fuente: results/v3_7/suero_embudo.json
+  - origen: tost
+    destino: indeterminada
+    fuente: results/v3_7/suero_embudo.json

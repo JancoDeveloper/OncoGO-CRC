@@ -1,0 +1,14 @@
+nodo	fuente
+CN	rai2025
+CP	rai2025
+HC	rai2025
+Suero	rai2025
+Celda	rai2025
+DIA	rai2025
+Proteoma	vasaikar2019
+cn → cp	rai2025
+cp → hc	rai2025
+hc → suero	rai2025
+suero → celda	rai2025
+suero → dia	rai2025
+suero → proteoma	vasaikar2019

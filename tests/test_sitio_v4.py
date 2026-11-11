@@ -94,6 +94,23 @@ def test_el_css_lleva_su_hash_y_no_hay_terceros():
         assert "cdn." not in texto.lower()
 
 
+def test_cada_nodo_de_diagrama_tiene_fichero_o_cita():
+    bib = (REPO / "tesis-ucaldas" / "latex" / "references.bib").read_text(encoding="utf-8")
+    manifiesto = (REPO / "results" / "v3_7" / "manifest_entradas.sha256").read_text(encoding="utf-8")
+    for ruta in (REPO / "sitio_fuente" / "diagramas").glob("D*.yaml"):
+        datos = yaml.safe_load(ruta.read_text(encoding="utf-8"))
+        piezas = list(datos["nodos"]) + list(datos.get("aristas", []))
+        for pieza in piezas:
+            fuente = pieza["fuente"]
+            assert (
+                f"{{{fuente}," in bib
+                or (REPO / fuente).is_file()
+                or fuente in manifiesto
+            ), (ruta.name, fuente)
+        assert (SITIO / "figuras" / f"{datos['id']}.svg").is_file()
+        assert (SITIO / "figuras" / f"{datos['id']}.sello.json").is_file()
+
+
 def test_d1_tiene_tabla_y_sello():
     pagina = (SITIO / "index.html").read_text(encoding="utf-8")
     assert 'role="img"' in pagina and "<title>" in pagina and "<desc>" in pagina

@@ -1,0 +1,8 @@
+nodo	fuente
+Preregistro	config/preregistro_v3.yaml
+Corrida	results/v3_7/corrida.json
+Sello	results/v3_7/certificado.json
+D y E	docs/determinismo_d_e.md
+preregistro → corrida	results/v3_7/corrida.json
+corrida → sello	results/v3_7/certificado.json
+sello → par	docs/determinismo_d_e.md

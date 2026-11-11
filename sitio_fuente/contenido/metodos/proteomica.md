@@ -31,3 +31,5 @@ El cálculo empieza cuando la matriz ya existe: identificar las proteínas, sepa
 ## Qué no demuestra
 
 El resultado del suero no demuestra que el cambio del tumor esté ausente en el tejido, ni que el cero sirva para descartar una enfermedad en una persona. [@tanaka2024] [@rai2025]
+
+{{diagrama:D5}}

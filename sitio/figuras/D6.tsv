@@ -1,0 +1,10 @@
+nodo	fuente
+Tejido	src/oncogo_crc/stages/v3_7.py
+Suero	src/oncogo_crc/stages/v3_7.py
+Modelos	src/oncogo_crc/stages/v3_7.py
+Hipótesis	src/oncogo_crc/stages/v3_7.py
+Priorización	src/oncogo_crc/stages/v3_7.py
+tejido → suero	src/oncogo_crc/stages/v3_7.py
+suero → ml	src/oncogo_crc/stages/v3_7.py
+ml → hipotesis	src/oncogo_crc/stages/v3_7.py
+hipotesis → prioridad	src/oncogo_crc/stages/v3_7.py

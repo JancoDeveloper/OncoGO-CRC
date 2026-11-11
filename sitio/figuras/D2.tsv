@@ -1,0 +1,8 @@
+nodo	fuente
+v3.3	sitio/archivo/v3_3.html
+v3.4	sitio/archivo/v3_4.html
+v3.6	sitio/archivo/v3_6/index.html
+v3.7	results/v3_7/certificado.json
+v33 → v34	sitio/archivo/v3_4.html
+v34 → v36	sitio/archivo/v3_6/index.html
+v36 → v37	results/v3_7/certificado.json
