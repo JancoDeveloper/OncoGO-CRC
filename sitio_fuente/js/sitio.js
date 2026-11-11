@@ -78,13 +78,13 @@
           viewportShowAnimation: false,
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
-          return visor.loadStructureFromUrl(archivo, "bcif", true);
+          return visor.loadStructureFromUrl(archivo, "mmcif", true);
         });
       });
     };
     document.body.appendChild(cargador);
   });
-  document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
+  document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");
       svg.querySelectorAll(".resaltado").forEach(function (el) { el.classList.remove("resaltado"); });

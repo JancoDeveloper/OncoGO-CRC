@@ -200,11 +200,12 @@ def diagrama_html(ident: str, bib) -> str:
         x = 24 + i * (ancho + 28)
         lugar[nodo["id"]] = x
         cuerpo.append(
-            f'<a href="{e(nodo["href"])}" data-id="{e(nodo["id"])}"><rect x="{x}" y="70" width="{ancho}" height="64" rx="8" '
-            f'fill="none" stroke="currentColor" stroke-width="2"/></a>'
+            f'<g data-id="{e(nodo["id"])}"><title>{e(nodo["texto"])}</title>'
+            f'<rect x="{x}" y="70" width="{ancho}" height="64" rx="8" '
+            f'fill="none" stroke="currentColor" stroke-width="2"/></g>'
             f'<text x="{x + 16}" y="108" fill="currentColor" font-size="16">{e(nodo["texto"])}</text>'
         )
-        filas.append({"nodo": nodo["texto"], "fuente": nodo["fuente"]})
+        filas.append({"nodo": nodo["texto"], "fuente": nodo["fuente"], "href": nodo["href"]})
     aristas = datos.get("aristas") or []
     if not aristas:
         aristas = [
@@ -220,7 +221,7 @@ def diagrama_html(ident: str, bib) -> str:
             f'<line data-origen="{e(arista["origen"])}" data-destino="{e(arista["destino"])}" '
             f'x1="{x1}" y1="{y}" x2="{x2}" y2="{y}" stroke="currentColor" stroke-width="2"/>'
         )
-        filas.append({"nodo": f'{arista["origen"]} → {arista["destino"]}', "fuente": arista["fuente"]})
+        filas.append({"nodo": f'{arista["origen"]} → {arista["destino"]}', "fuente": arista["fuente"], "href": ""})
     alto = 180
     largo = 24 + len(nodos) * (ancho + 28)
     svg = (
@@ -241,7 +242,10 @@ def diagrama_html(ident: str, bib) -> str:
     lineas = ["\t".join(columnas)] + ["\t".join(fila[col] for col in columnas) for fila in filas]
     (carpeta / f"{ident}.tsv").write_text("\n".join(lineas) + "\n", encoding="utf-8")
     tabla = "".join(
-        f"<tr><td>{e(fila['nodo'])}</td><td>{e(fila['fuente'])}</td></tr>" for fila in filas
+        "<tr><td>"
+        + (f'<a href="{e(fila["href"])}">{e(fila["nodo"])}</a>' if fila.get("href") else e(fila["nodo"]))
+        + f"</td><td>{e(fila['fuente'])}</td></tr>"
+        for fila in filas
     )
     return (
         f'<figure class="grafico" id="{e(ident)}"><h3>{e(datos["pregunta"])}</h3>{svg}'

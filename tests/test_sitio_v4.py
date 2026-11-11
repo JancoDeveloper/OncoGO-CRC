@@ -163,6 +163,12 @@ def test_las_284_fichas_son_la_celda():
         if pagina.parent.name in {"P05109", "P06702"}:
             assert "calprotectina" in texto
     assert con_etiqueta == 21
+    indice = (SITIO / "proteinas" / "index.html").read_text(encoding="utf-8")
+    grupos = [href for href in re.findall(r'href="(/proteinas/[^"]+)"', indice) if ";" in href or "%3B" in href]
+    assert len(grupos) == 65
+    for href in grupos:
+        assert "%3B" not in href
+        assert (SITIO / "proteinas" / href.removeprefix("/proteinas/") / "index.html").is_file()
 
 
 def test_d1_tiene_tabla_y_sello():
@@ -270,4 +276,32 @@ def test_la_atribucion_esta_y_el_visor_no_se_carga_solo():
     candidatas = (SITIO / "proteinas" / "candidatas" / "index.html").read_text(encoding="utf-8")
     assert "CC BY 4.0" in candidatas
     assert candidatas.count("Candidata (paso 5): hipótesis para cohortes futuras, no biomarcador") >= 1
+
+
+def test_las_rutas_viejas_apuntan_a_paginas_que_existen():
+    hosting = json.loads((REPO / "firebase.json").read_text(encoding="utf-8"))["hosting"]
+    obligatorias = {
+        "/lo-prometido": "/investigacion/historia",
+        "/historial": "/investigacion/historia",
+        "/tejido": "/resultados/tejido",
+        "/suero": "/resultados/suero",
+        "/aprendizaje-automatico": "/resultados/aprendizaje",
+        "/preanalitica": "/resultados/preanalitica",
+        "/hipotesis": "/resultados/hipotesis",
+        "/priorizacion": "/resultados/priorizacion",
+        "/desviaciones": "/entregables",
+        "/reproducir": "/investigacion/reproducibilidad",
+        "/como-se-hizo": "/investigacion/reproducibilidad",
+        "/aprende": "/datos/bases-de-datos",
+        "/preguntas": "/ayuda",
+    }
+    por_origen = {item["source"]: item for item in hosting["redirects"]}
+    for origen, destino in obligatorias.items():
+        regla = por_origen[origen]
+        assert regla["destination"] == destino
+        assert regla["type"] == 301
+        carpeta = SITIO / destino.strip("/")
+        assert (carpeta / "index.html").is_file() or carpeta.with_suffix(".html").is_file()
+    for pagina in paginas():
+        assert 'href="/lo-prometido"' not in pagina.read_text(encoding="utf-8")
 

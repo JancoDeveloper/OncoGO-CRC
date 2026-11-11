@@ -7,7 +7,20 @@
     "redirects": [
       {"source": "/v3_3", "destination": "/archivo/v3_3", "type": 301},
       {"source": "/v3_4", "destination": "/archivo/v3_4", "type": 301},
-      {"source": "/lectura-31-oct", "destination": "/archivo/lectura-31-oct", "type": 301}
+      {"source": "/lectura-31-oct", "destination": "/archivo/lectura-31-oct", "type": 301},
+      {"source": "/lo-prometido", "destination": "/investigacion/historia", "type": 301},
+      {"source": "/historial", "destination": "/investigacion/historia", "type": 301},
+      {"source": "/tejido", "destination": "/resultados/tejido", "type": 301},
+      {"source": "/suero", "destination": "/resultados/suero", "type": 301},
+      {"source": "/aprendizaje-automatico", "destination": "/resultados/aprendizaje", "type": 301},
+      {"source": "/preanalitica", "destination": "/resultados/preanalitica", "type": 301},
+      {"source": "/hipotesis", "destination": "/resultados/hipotesis", "type": 301},
+      {"source": "/priorizacion", "destination": "/resultados/priorizacion", "type": 301},
+      {"source": "/desviaciones", "destination": "/entregables", "type": 301},
+      {"source": "/reproducir", "destination": "/investigacion/reproducibilidad", "type": 301},
+      {"source": "/como-se-hizo", "destination": "/investigacion/reproducibilidad", "type": 301},
+      {"source": "/aprende", "destination": "/datos/bases-de-datos", "type": 301},
+      {"source": "/preguntas", "destination": "/ayuda", "type": 301}
     ],
     "headers": [
       {
@@ -19,5 +32,9 @@
         "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]
       }
     ]
+  },
+  "emulators": {
+    "hosting": {"port": 5002},
+    "ui": {"enabled": false}
   }
 }

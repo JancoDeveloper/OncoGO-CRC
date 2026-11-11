@@ -119,7 +119,7 @@ def escribir(render, env, comunes, cita) -> list[dict]:
         gen = genes[0] if len(genes) == 1 else ""
         fichas.append({
             "id": protein_id,
-            "href": "/proteinas/" + quote(protein_id, safe="-"),
+            "href": "/proteinas/" + quote(protein_id, safe="-;"),
             "genes": genes,
             "gen": gen,
             "candidata": len(genes) == 1 and gen in paso5,
