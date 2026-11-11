@@ -11,3 +11,22 @@ Diferencias admitidas: auditoria_rai2025.tsv.sello.json, certificado.json, certi
 Diferencias que impiden tratarlas como idénticas: ninguna.
 
 D y E son idénticas en los números.
+
+## Pareja descartada
+
+Antes de esas dos corridas hubo otra pareja, del commit `95dae8d3e3c0c3723312113891f7c635fc20ee98`. Quedó en el volumen, sin borrarla:
+
+- D: `/Volumes/JANCODATA/OncoGO-CRC/results/archivo/v3_7_d_antes_del_estado` (sello `2026-11-10T23:58:30Z`)
+- E: `/Volumes/JANCODATA/OncoGO-CRC/results/archivo/v3_7_e_antes_del_estado` (sello `2026-11-11T00:13:27Z`)
+
+`secuencia.json` y `secuencia_v3_4.json` quedaron en `no_evaluable`, con el motivo «ESM-2 o TMbed no tienen todavía una salida completa». El registro solo acepta `calculado`. La corrida escribía `leido` en `h7_visibilidad_en_sangre.json`, campo `modelo_secundario.esm2`. El arreglo está en `a3360cb`: esa palabra vuelve a `calculado`. Las corridas publicadas salen de `71b310a3fcaebe9267fac971156df3aab491e009`, que ya incluye ese arreglo.
+
+Comparada con E (`/Volumes/JANCODATA/OncoGO-CRC/results/v3_7`), la pareja descartada no cambia los números principales. El veredicto de H7 sigue en `refuta`. El AUC principal sigue en 0,48281209614887566 y el secundario en 0,47376583096407343, con 668 proteínas con vector. Lo que cambia es el estado de `secuencia.json` y lo que depende de esa palabra:
+
+- `secuencia.json` y `secuencia_v3_4.json` pasan de `no_evaluable` a `calculado`, y solo entonces escriben `n_con_secuencia` (668), `n_sin_secuencia` (20), las rutas de ESM-2 y de TMbed, y la nota de que el secundario no entra en el veredicto;
+- `modelo_secundario.esm2` pasa de `leido` a `calculado`;
+- el sello cambia de commit, de `95dae8d` a `71b310a`;
+- los sha256 que resumen esos ficheros, o un sello, cambian con ellos;
+- `gsea_tejido.tsv` solo cambia el orden de las filas: ordenado por cohorte y término, el contenido es el mismo.
+
+No cambia ningún otro campo de los JSON ni ningún otro TSV.
