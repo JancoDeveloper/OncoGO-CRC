@@ -49,7 +49,9 @@ Cada valor lo formatea `src/oncogo_crc/formato.py` desde el fichero de esa corri
 | \BhPielCn | no medido | 0,056 | cambia |
 | \GoConNum | no medido | 16 | cambia |
 | \GoConDen | no medido | 16 | cambia |
-| \HsieteSec | 0,48591 | 0,47738 | cambia |
+| \HsieteSec | 0,48591 | 0,47377 | cambia |
+| \HsieteNEsm | no medido | 668 | cambia |
+| \HsieteOmitidas | no medido | 20 | cambia |
 | \PreCrudos | 60 | 60 | igual |
 | \CalidadCoagP | 0,00099 | 0,00099 | igual |
 | \CalidadPielP | 3,4 × 10⁻⁶ | 3,4 × 10⁻⁶ | igual |
