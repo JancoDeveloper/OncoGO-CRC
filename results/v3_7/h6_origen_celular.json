@@ -45,12 +45,12 @@
   "motivo_degenerada": "ninguna proteína tiene signo distinto; la prueba no puede detectar una diferencia",
   "nota": "Pelka 2021 no tiene la matriz h5 en este disco. La clase sale del HPA y las células tumorales no están en ese atlas.",
   "sello": {
-    "commit": "b7f8b8e844f6c484b72e19fecf5fb7d07f53c2ab",
+    "commit": "71b310a3fcaebe9267fac971156df3aab491e009",
     "arbol_limpio": true,
-    "fecha_utc": "2026-11-10T21:28:31Z",
-    "sha256_preregistro": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a",
+    "fecha_utc": "2026-11-11T00:48:45Z",
+    "sha256_preregistro": "34603ba0e8b965b0c11fa732954051dc8d6d37eaead6248f284d672cd950a418",
     "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
-    "sha256_manifest_entradas": "864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a",
+    "sha256_manifest_entradas": "e03f0c71107e41a3e82f6b105d680ff11db702ed89f8a2f3a146546896062a37",
     "python": "3.14.3",
     "paquetes": {
       "numpy": "2.4.4",

@@ -10,7 +10,7 @@
         "no_declaradas": 0
       },
       "estado": "pasa",
-      "sha256_fuente": "864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a"
+      "sha256_fuente": "e03f0c71107e41a3e82f6b105d680ff11db702ed89f8a2f3a146546896062a37"
     },
     {
       "nombre": "sellos",
@@ -21,24 +21,24 @@
         "n": 119
       },
       "estado": "pasa",
-      "sha256_fuente": "a1680e713bd340ff65b2144c868e3d3bc2d473f61c04e3fbd6eb848419ea44cb"
+      "sha256_fuente": "44254fb8565021cbed68180950cc1db477806ef4320f45ea2406ed2240e3299f"
     },
     {
       "nombre": "corrida_unica",
       "fuente": "results/v3_7/corrida.json",
       "criterio": "el mismo proceso escribe el pid, el inicio, el fin y el código 0",
       "valor": {
-        "pid": 33002,
-        "inicio": "2026-11-10T21:28:31Z",
-        "fin": "2026-11-10T21:46:30Z",
+        "pid": 40615,
+        "inicio": "2026-11-11T00:48:45Z",
+        "fin": "2026-11-11T01:04:00Z",
         "codigo": 0,
         "sello": {
-          "commit": "b7f8b8e844f6c484b72e19fecf5fb7d07f53c2ab",
+          "commit": "71b310a3fcaebe9267fac971156df3aab491e009",
           "arbol_limpio": true,
-          "fecha_utc": "2026-11-10T21:28:31Z",
-          "sha256_preregistro": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a",
+          "fecha_utc": "2026-11-11T00:48:45Z",
+          "sha256_preregistro": "34603ba0e8b965b0c11fa732954051dc8d6d37eaead6248f284d672cd950a418",
           "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
-          "sha256_manifest_entradas": "864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a",
+          "sha256_manifest_entradas": "e03f0c71107e41a3e82f6b105d680ff11db702ed89f8a2f3a146546896062a37",
           "python": "3.14.3",
           "paquetes": {
             "numpy": "2.4.4",
@@ -51,7 +51,7 @@
         }
       },
       "estado": "pasa",
-      "sha256_fuente": "5b8ede57da5d4a8b879a7b676a1b55e57235628bab122298aed640d0f4b0f4d5"
+      "sha256_fuente": "e4d54173297f07faed5c25f3d52740e40d765b21c8fb4a71d4822151beeec036"
     },
     {
       "nombre": "controles_suero",
@@ -95,7 +95,7 @@
         }
       },
       "estado": "pasa",
-      "sha256_fuente": "91277c81f8043ef75679a0690b198489ef76be8c0f3582d168c1057479bb0f65"
+      "sha256_fuente": "b824b1b31c9cf15778364fd3a1b7b1ea4d0240c997c0c9cfef140e360d881aaf"
     },
     {
       "nombre": "auditoria_rai2025",
@@ -119,7 +119,7 @@
         "vias_suero"
       ],
       "estado": "desviacion_declarada",
-      "sha256_fuente": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a"
+      "sha256_fuente": "34603ba0e8b965b0c11fa732954051dc8d6d37eaead6248f284d672cd950a418"
     },
     {
       "nombre": "reproduce",
@@ -140,7 +140,7 @@
         "codigo": 0
       },
       "estado": "pasa",
-      "sha256_fuente": "8fe2a655a7e184b0fd514b7b6f14554a629020b39ff839a780787af45f465c80"
+      "sha256_fuente": "8275de0432b3767449f38599cb8e0dc8e694a7c1ff1c231ad89202b7b87cdd0a"
     },
     {
       "nombre": "suero",
@@ -153,7 +153,7 @@
         "indeterminada": 118
       },
       "estado": "pasa",
-      "sha256_fuente": "2577a25c3c4fc772dbce99c27be1d130901857ac8c04bde10ed8dfead4849441"
+      "sha256_fuente": "b1c9445bb4daa80b7fa0ad23d9f8493e7f0f43c545746cfde71ffbc4dbecb4cf"
     },
     {
       "nombre": "ml",
@@ -161,7 +161,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": 0.88025,
       "estado": "pasa",
-      "sha256_fuente": "05099a2db4efdd87b327b875671f4275d34384d3c6ea58a58f16f219f6807fe4"
+      "sha256_fuente": "8d5a56148d97dd6fd993db2c80c0175c606f0bcbe382931ccc85c8cc7f9a49a8"
     },
     {
       "nombre": "multiverso",
@@ -169,7 +169,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": 13,
       "estado": "pasa",
-      "sha256_fuente": "f8dd94d08d92b8fdfe8389c44a6e2ae74c0d28d7dfdcb17b50b3b023ccabd950"
+      "sha256_fuente": "5bbce7294cb9b7d4baabd0a5c65629ca4401a256c7601e8ff06ae2e63b27b739"
     },
     {
       "nombre": "h5",
@@ -177,7 +177,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": "sostiene",
       "estado": "pasa",
-      "sha256_fuente": "054431ba415d2d949a4a29a02d457dfa4b94779394254ed2d0b3a6ef4a0f8a6f"
+      "sha256_fuente": "0b05ef06d68494ede86233f5d76003558f79134552c5000baae7a9ab6192df62"
     },
     {
       "nombre": "h6",
@@ -185,7 +185,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": "no_sostiene",
       "estado": "pasa",
-      "sha256_fuente": "0a2b0e5feb3a2f7e9e01f7a57ad72b32109827964a367f13f32122232911ae6a"
+      "sha256_fuente": "7475d238e31772fe36624ff10800270e589abb803f4ad7c7eb5574c9566c16a2"
     },
     {
       "nombre": "h7",
@@ -193,7 +193,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": "refuta",
       "estado": "pasa",
-      "sha256_fuente": "e29ac1374cdd1ddc9bf1bedfd5f037d9448ae35e6787c523bacf84451e2a788a"
+      "sha256_fuente": "f70a7c45838e5834968ec9e8387600787c90ceb091395fb866a94badd7a502da"
     },
     {
       "nombre": "h8",
@@ -201,7 +201,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": "no_evaluable",
       "estado": "pasa",
-      "sha256_fuente": "520c50571876c2c0c41a90fb789e491362a91e4f1c3a674a48f19ec0f1405af9"
+      "sha256_fuente": "afffd35fc738802d2a845cdb23a91b39ec1a62a6dc108fd91c7125ad401bfc68"
     },
     {
       "nombre": "h9",
@@ -209,7 +209,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": "exploratorio",
       "estado": "pasa",
-      "sha256_fuente": "d4f21419dba2c6490afe75f519b9173df4054fc28dbcbd93eb2006552cc40975"
+      "sha256_fuente": "7039a950643e0d3da51f5cb8830651852eefd23e864c1b9a2f438915e948f802"
     },
     {
       "nombre": "h10",
@@ -217,7 +217,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": "descriptiva",
       "estado": "pasa",
-      "sha256_fuente": "b648345a95393386fa7c08c232cbcb2affaa491bff7a6b1d0a8b6ce6b201ac12"
+      "sha256_fuente": "1c8d72efa15eb63ba76c3cf996fe499070acab8083d0209274561aaf970aea86"
     },
     {
       "nombre": "preanalitica",
@@ -225,7 +225,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": "calculado",
       "estado": "pasa",
-      "sha256_fuente": "001f1ca51a32ece8b9f52f1fcae4a982e748eb2ed1c8e7e8834d24467faad780"
+      "sha256_fuente": "514c32f40f24a08d30b6102fab25f614a6446973aa57c20e8c5a6eaf8ad1628e"
     },
     {
       "nombre": "go",
@@ -233,7 +233,7 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": "no_emite",
       "estado": "pasa",
-      "sha256_fuente": "95f1c46253debc8eae3cec18a7686b1a607a925d7d2078ef140451161baf4fd6"
+      "sha256_fuente": "2b89b7e7e4b79a6fcd45bb03bc6fef0dd2e0fca88de1d1998514b165b2a5dc79"
     },
     {
       "nombre": "ml_explicacion",
@@ -244,7 +244,7 @@
         "M3_solo_qc": 0.0
       },
       "estado": "pasa",
-      "sha256_fuente": "c66ad24c8a4e3cd915ddaf98809901bbffdf48669326f1bb9100d355e54a12b5"
+      "sha256_fuente": "151f9ebc30f658ecf1806667800b7ca5204520243fd4824033b03e2347ee378a"
     },
     {
       "nombre": "priorizacion",
@@ -252,17 +252,17 @@
       "criterio": "el fichero de esta corrida existe",
       "valor": true,
       "estado": "pasa",
-      "sha256_fuente": "1ab72bfdebd2757b3a8628f77b75a7376d9bb42003f595c5aba0ce2af810390b"
+      "sha256_fuente": "337b30e701327789acb3f39f17b58d3f2a4709c3a7360833a31d52099389677c"
     }
   ],
   "prohibidas": [],
   "sello": {
-    "commit": "b7f8b8e844f6c484b72e19fecf5fb7d07f53c2ab",
+    "commit": "71b310a3fcaebe9267fac971156df3aab491e009",
     "arbol_limpio": true,
-    "fecha_utc": "2026-11-10T21:28:31Z",
-    "sha256_preregistro": "0b0ffe6d6c84ef5151a676203af0710258ff607c7cc5f7403c9bb0c97a65109a",
+    "fecha_utc": "2026-11-11T00:48:45Z",
+    "sha256_preregistro": "34603ba0e8b965b0c11fa732954051dc8d6d37eaead6248f284d672cd950a418",
     "sha256_enmiendas": "cfef4cc932ae3c0f594bf047b3231dd465742f354709b88aa32b1426ac609ff2",
-    "sha256_manifest_entradas": "864342f54dd6df16160e65aa85d4b33614cd149f39d131dbb38a7acec2a3db8a",
+    "sha256_manifest_entradas": "e03f0c71107e41a3e82f6b105d680ff11db702ed89f8a2f3a146546896062a37",
     "python": "3.14.3",
     "paquetes": {
       "numpy": "2.4.4",
