@@ -26,4 +26,4 @@ Esas ausencias están declaradas en `enmienda_v3_7_cierre`. No son un resultado.
 
 La corrida versionada es E. El certificado es publicable. D y E salen del mismo commit y son idénticas en los números: solo cambian la fecha, el pid, las horas, los tiempos de `tests.txt` y el orden de `gsea_tejido.tsv` (`docs/determinismo_d_e.md`).
 B y C, con el sello `b7f8b8e844f6`, no eran idénticas en el secundario de H7 (`docs/determinismo_b_c.md`). La causa era ESM-2 en MPS, que omitía errores sin registro: 181 de 668 proteínas con secuencia tenían vector. La enmienda `enmienda_v3_7_esm2` lo calcula en CPU, fuera de la corrida. El detalle está en `docs/diagnostico_esm2.md` y `docs/cambio_esm2_b_d.md`.
-La web se anota en `docs/web_pendiente.md` hasta el despliegue.
+La web pública es la v3.7, en https://oncogo-crc-tesis.web.app. El despliegue está en `docs/despliegue_v3_7.md`. `docs/web_pendiente.md` queda cerrado.
