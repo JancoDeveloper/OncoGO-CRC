@@ -1,6 +1,6 @@
 # Informe de la implementación
 
-Fecha: 2026-11-11. Publicado. Hosting `1e365b023d3e7804`, liberada el 2026-11-11T16:41:51.391Z, sitio `9660345`. La comprobación en vivo está en `docs/despliegue_sitio_v4.md`.
+Fecha: 2026-11-11. Publicado. Hosting `ed65f62acbad33dc`, liberada el 2026-11-11T18:31:00.695Z, sitio `ae7416e`. La comprobación en vivo está en `docs/despliegue_sitio_v4.md`.
 
 ## Qué se modificó
 
@@ -42,4 +42,4 @@ Después de añadir las matrices, el embudo en `details` y la hoja `v4.a1fc0bd2e
 
 ## Publicación
 
-Hosting `1e365b023d3e7804`. Con `?v=6`, la portada, `/proteinas` y `/proteinas/P02749` sirven el mismo menú y el aviso dos veces. La versión anterior, `50c23bee344597f5`, queda en el historial. El detalle está en `docs/despliegue_sitio_v4.md`.
+Hosting `ed65f62acbad33dc`. Con `?v=7`, la portada muestra 166, 118 y 0, sin la etiqueta suelta «fuente», y las tres ilustraciones responden 200. La versión anterior, `1e365b023d3e7804`, queda en el historial. El detalle está en `docs/despliegue_sitio_v4.md`.
