@@ -1,3 +1,5 @@
+> Archivo anterior a la v3. No describe la tesis actual. Punto de entrada: docs/estado_v3_7.md y tesis-ucaldas/latex/main.tex.
+
 # Plan de ejecución por fases — OncoGO-CRC y tesis
 
 Este documento organiza el trabajo **después de reconstruir el proyecto**: no como una sola corrida completa, sino como **fases con entregables triples** en cada bloque relevante:

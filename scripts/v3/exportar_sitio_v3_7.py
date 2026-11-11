@@ -23,7 +23,7 @@ REPO = Path(__file__).resolve().parents[2]
 V37 = REPO / "results" / "v3_7"
 SITIO = REPO / "sitio"
 SHA = "595118ae09ea6006c744c86b28cb0a10d42e0442"
-GITHUB = f"https://github.com/JancoDeveloper/OncoGO-CRC/blob/{SHA}/results/v3_7"
+GITHUB = f"https://github.com/JancoDeveloper/OncoGO-CRC/blob/{SHA}"
 
 _spec = importlib.util.spec_from_file_location(
     "exportar_sitio_v3_6", REPO / "scripts" / "v3" / "exportar_sitio_v3_6.py"
@@ -134,6 +134,13 @@ def guardar_figura(fid: str, svg: str, filas: list[dict], fuentes: list[str]) ->
     (carpeta / f"{fid}.tsv").write_text("\n".join(lineas) + "\n", encoding="utf-8")
 
 
+def ruta_en_el_commit(fuente: str) -> str:
+    ruta = fuente.split("#", 1)[0]
+    if ruta.startswith(("results/", "config/", "docs/")):
+        return ruta
+    return f"results/v3_7/{ruta}"
+
+
 def figura(fid: str, titulo: str, desc: str, cuerpo: str, filas: list[dict], fuentes: list[str], pregunta: str, viewbox: str = "0 0 640 360") -> str:
     svg = (
         f'<svg viewBox="{viewbox}" role="img" class="lienzo-svg">'
@@ -149,7 +156,8 @@ def figura(fid: str, titulo: str, desc: str, cuerpo: str, filas: list[dict], fue
         cuerpo_tabla.append("<tr><td>Sin filas en el fichero de origen.</td></tr>")
     enlaces = []
     for fuente in fuentes:
-        enlaces.append(f'<a href="{GITHUB}/{e(fuente)}">origen {e(fuente)}</a>')
+        ruta = ruta_en_el_commit(fuente)
+        enlaces.append(f'<a href="{GITHUB}/{e(ruta)}">origen {e(ruta)}</a>')
     return f"""<figure class="grafico" id="{e(fid)}">
 <h3>{e(pregunta)}</h3>
 {svg}
@@ -184,7 +192,7 @@ def menu() -> str:
     return "".join(f'<a href="{href}">{nombre}</a>' for href, nombre in enlaces)
 
 
-def pagina(titulo: str, cuerpo: str, cert: dict | None) -> str:
+def pagina(titulo: str, cuerpo: str, cert: dict | None, css: str) -> str:
     if cert is None:
         franja = '<p class="franja">Falta results/v3_7/certificado.json. No hay franja de certificado.</p>'
     else:
@@ -201,7 +209,7 @@ def pagina(titulo: str, cuerpo: str, cert: dict | None) -> str:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(titulo)} · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/v37.css">
+<link rel="stylesheet" href="/css/{e(css)}">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -982,13 +990,24 @@ def mini(fid: str, punto: str, titulo: str, valor, tipo: str, fuente: str) -> st
         f'<rect x="40" y="80" width="200" height="40" fill="none" stroke="#0b4f55" stroke-width="3" '
         f'data-value="{e(bruto)}" data-fuente="{e(fuente)}" tabindex="0" data-tip="{e(punto)}"/>'
     )
-    return figura(fid, titulo, titulo, cuerpo, [{"punto": punto, "valor": bruto}], [fuente.split("/")[-1].split("#")[0]], titulo)
+    return figura(fid, titulo, titulo, cuerpo, [{"punto": punto, "valor": bruto}], [fuente], titulo)
+
+
+def escribir_css() -> str:
+    contenido = CSS.encode()
+    nombre = "v37." + hashlib.sha256(contenido).hexdigest()[:10] + ".css"
+    carpeta = SITIO / "css"
+    carpeta.mkdir(parents=True, exist_ok=True)
+    for viejo in carpeta.glob("v37*.css"):
+        if viejo.name != nombre:
+            viejo.unlink()
+    (carpeta / nombre).write_bytes(contenido)
+    return nombre
 
 
 def main() -> None:
     archivar_v36()
-    (SITIO / "css").mkdir(parents=True, exist_ok=True)
-    (SITIO / "css" / "v37.css").write_text(CSS, encoding="utf-8")
+    css = escribir_css()
     cert = cargar("certificado.json")
     emb = cargar("suero_embudo.json")
     if cert is None or emb is None:
@@ -1115,16 +1134,17 @@ def main() -> None:
         "404.html": ("No está", "<h1>Esta página no está</h1><p><a href=\"/\">Volver al inicio</a>.</p>"),
     }
     for nombre, (titulo, cuerpo) in paginas.items():
-        (SITIO / nombre).write_text(pagina(titulo, cuerpo, cert), encoding="utf-8")
+        (SITIO / nombre).write_text(pagina(titulo, cuerpo, cert, css), encoding="utf-8")
     archivo = pagina(
         "Archivo",
         "<h1>Archivo</h1><ul><li><a href=\"/archivo/v3_6/\">Sitio anterior, v3.6</a></li>"
         "<li><a href=\"/archivo/v3_3\">v3.3</a></li><li><a href=\"/archivo/v3_4\">v3.4</a></li></ul>",
         cert,
+        css,
     )
     (SITIO / "archivo" / "index.html").write_text(archivo, encoding="utf-8")
     (SITIO / "archivo" / "v3_6" / "index.html")  # existe por el traslado
-    print("sitio v3.7", len(paginas), "paginas")
+    print("sitio v3.7", len(paginas), "paginas", css)
 
 
 if __name__ == "__main__":

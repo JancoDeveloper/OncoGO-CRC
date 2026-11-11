@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import re
+import subprocess
 from pathlib import Path
 
 import pandas as pd
@@ -128,8 +130,22 @@ def test_franja_aviso_y_cn(pagina: Path):
     assert pagina.stat().st_size < 400_000
 
 
+def hoja_css() -> Path:
+    hojas = list((SITIO / "css").glob("v37.*.css"))
+    assert len(hojas) == 1
+    return hojas[0]
+
+
+def test_el_css_lleva_el_hash_de_su_contenido():
+    hoja = hoja_css()
+    digest = hashlib.sha256(hoja.read_bytes()).hexdigest()[:10]
+    assert hoja.name == f"v37.{digest}.css"
+    for pagina in paginas_v37():
+        assert f'/css/{hoja.name}' in pagina.read_text(encoding="utf-8")
+
+
 def test_svg_tabla_y_movimiento():
-    css = (SITIO / "css" / "v37.css").read_text(encoding="utf-8")
+    css = hoja_css().read_text(encoding="utf-8")
     assert "prefers-reduced-motion" in css
     assert "1.2s" in css
     for pagina in paginas_v37():
@@ -173,3 +189,48 @@ def test_tarjetas_glosario_y_enlaces():
         assert (fila["estado_http"].astype(str) == "200").all()
         otra = comprobados.loc[comprobados["url"].map(lambda base: url == base or url.startswith(str(base).rstrip("/") + "/"))]
         assert not otra.empty and (otra["estado_http"].astype(str) == "200").all()
+        if "doi.org/" in url:
+            assert (fila["metodo"].astype(str) == "doi").all()
+            assert (otra["metodo"].astype(str) == "doi").all()
+
+
+def test_cada_enlace_al_commit_existe_en_la_etiqueta():
+    arbol = subprocess.check_output(
+        ["git", "ls-tree", "-r", "--name-only", "v3.7-final^{}"],
+        cwd=REPO, text=True,
+    ).splitlines()
+    presentes = set(arbol)
+    prefijo = "https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/"
+    vistos = []
+    for pagina in paginas_v37():
+        for href in re.findall(r'href="([^"]+)"', pagina.read_text(encoding="utf-8")):
+            if href.startswith(prefijo):
+                ruta = href[len(prefijo):]
+                vistos.append(ruta)
+                assert ruta in presentes, ruta
+    assert any(ruta == "config/correspondencia_propuesta.tsv" for ruta in vistos)
+
+
+LINEA_ARCHIVO = (
+    "> Archivo anterior a la v3. No describe la tesis actual. "
+    "Punto de entrada: docs/estado_v3_7.md y tesis-ucaldas/latex/main.tex."
+)
+GUIAS = [
+    REPO / "docs" / "GUIA_ESTUDIANTE_CERTIFICACION.md",
+    REPO / "GUIA_EJECUCION_Y_REDACTION_TESIS.md",
+    REPO / "PLAN_EJECUCION_TESIS.md",
+    REPO / "DOCUMENTACION_TESIS.md",
+]
+
+
+def test_el_readme_no_manda_a_empezar_por_el_archivo():
+    texto = (REPO / "README.md").read_text(encoding="utf-8")
+    assert "docs/estado_v3_7.md" in texto
+    assert "tesis-ucaldas/latex/main.tex" in texto
+    assert "Archivo, anterior a la v3, no certificado" in texto
+    for linea in texto.splitlines():
+        if "Empieza aquí" in linea:
+            for guia in GUIAS:
+                assert guia.name not in linea
+    for guia in GUIAS:
+        assert guia.read_text(encoding="utf-8").startswith(LINEA_ARCHIVO + "\n")

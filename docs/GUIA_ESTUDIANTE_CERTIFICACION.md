@@ -1,3 +1,5 @@
+> Archivo anterior a la v3. No describe la tesis actual. Punto de entrada: docs/estado_v3_7.md y tesis-ucaldas/latex/main.tex.
+
 # Guía de estudio — OncoGO-CRC: de cero a la tesis
 
 Esta guía está escrita para quien va a defender el trabajo y todavía no domina proteómica, meta-análisis ni redes. Léela en orden. Cada sección supone solo la anterior.

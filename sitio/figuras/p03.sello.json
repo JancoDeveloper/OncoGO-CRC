@@ -1,7 +1,7 @@
 {
   "svg_sha256": "859464b85d9f698a1ce81f48eb61af1d4a1fd487a76f1a9f75ad90dbe6010153",
   "fuentes": [
-    "k1_etiquetas.json"
+    "results/v3_7/k1_etiquetas.json#cobertura.numerador"
   ],
   "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
   "generador": "scripts/v3/exportar_sitio_v3_7.py"

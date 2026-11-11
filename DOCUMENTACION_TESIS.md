@@ -1,3 +1,5 @@
+> Archivo anterior a la v3. No describe la tesis actual. Punto de entrada: docs/estado_v3_7.md y tesis-ucaldas/latex/main.tex.
+
 # Documentación orientada a tesis — OncoGO-CRC
 
 Este documento enlaza el **anteproyecto**, el **reajuste técnico** y la **implementación** contenidos en `Informacion/Paquete/docs/` con el código ejecutable del repositorio. Está redactado para incorporarse como anexo metodológico o capítulo de “material y métodos computacionales”.

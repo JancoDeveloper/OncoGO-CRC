@@ -8,17 +8,22 @@ La página pública sigue en la v3.6: [oncogo-crc-tesis.web.app](https://oncogo-
 
 **OncoGO-CRC** es un entorno reproducible de bioinformática para integrar proteómica pública de cáncer colorrectal (CCR). El anteproyecto y el reajuste técnico están en la carpeta `Informacion/`.
 
-## Documentación (raíz del repositorio)
+## Documentación
+
+El punto de entrada de la tesis v3.7 es [docs/estado_v3_7.md](docs/estado_v3_7.md) y [tesis-ucaldas/latex/main.tex](tesis-ucaldas/latex/main.tex). El paquete para Overleaf es [tesis-ucaldas/overleaf_v3_7.zip](tesis-ucaldas/overleaf_v3_7.zip).
 
 | Archivo | Contenido |
 |-----------|-----------|
-| [docs/GUIA_ESTUDIANTE_CERTIFICACION.md](docs/GUIA_ESTUDIANTE_CERTIFICACION.md) | **Empieza aquí si vas a escribir la tesis.** Qué se busca, conceptos desde cero, diagramas, qué se actualizó y el orden de escritura de los capítulos. |
-| [GUIA_EJECUCION_Y_REDACTION_TESIS.md](GUIA_EJECUCION_Y_REDACTION_TESIS.md) | Checklist operativo + mapa **pipeline → capítulos de la tesis**; redacción en paralelo al análisis. |
-| [PLAN_EJECUCION_TESIS.md](PLAN_EJECUCION_TESIS.md) | Plan por fases (técnico + científico + material de tesis); ejecución incremental del pipeline. |
+| [docs/estado_v3_7.md](docs/estado_v3_7.md) | Estado de la versión vigente. |
+| [tesis-ucaldas/latex/main.tex](tesis-ucaldas/latex/main.tex) | Texto de la tesis. |
 | [CATALOGO_DATASETS_Y_ESTADO.md](CATALOGO_DATASETS_Y_ESTADO.md) | Fuente, contenido, utilidad y estado funcional (remoto) de cada dataset. |
-| [DOCUMENTACION_TESIS.md](DOCUMENTACION_TESIS.md) | Marco científico, fases, archivos generados, limitaciones y cierre para tesis. |
 | [GUIA_CONFIGURACION.md](GUIA_CONFIGURACION.md) | Parámetros YAML y convención de rutas. |
 | [ESTRUCTURA_DEL_PROYECTO.md](ESTRUCTURA_DEL_PROYECTO.md) | Árbol de carpetas y responsabilidad de cada módulo Python. |
+
+| Archivo | Contenido |
+|-----------|-----------|
+| Archivo, anterior a la v3, no certificado | [docs/GUIA_ESTUDIANTE_CERTIFICACION.md](docs/GUIA_ESTUDIANTE_CERTIFICACION.md), [GUIA_EJECUCION_Y_REDACTION_TESIS.md](GUIA_EJECUCION_Y_REDACTION_TESIS.md), [PLAN_EJECUCION_TESIS.md](PLAN_EJECUCION_TESIS.md) y [DOCUMENTACION_TESIS.md](DOCUMENTACION_TESIS.md). No describen la tesis actual. |
+| Borradores antiguos | [overleaf/main.tex](overleaf/main.tex) y [docs/borradores/](docs/borradores/). |
 
 ## Requisitos
 

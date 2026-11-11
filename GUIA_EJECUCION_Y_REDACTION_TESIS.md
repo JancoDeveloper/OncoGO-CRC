@@ -1,3 +1,5 @@
+> Archivo anterior a la v3. No describe la tesis actual. Punto de entrada: docs/estado_v3_7.md y tesis-ucaldas/latex/main.tex.
+
 # Guía práctica de ejecución y de redacción (pipeline → tesis)
 
 Este documento hace **dos funciones a la vez**:
