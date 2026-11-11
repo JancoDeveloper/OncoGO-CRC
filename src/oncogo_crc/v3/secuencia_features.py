@@ -191,7 +191,7 @@ def leer_esm2(tsv: Path, sello: Path, omitidas: Path, fasta: Path, modelo_dir: P
                 info["esm2_motivo"] = "la longitud del TSV no coincide con el FASTA"
                 return None, info
     info.update({
-        "esm2": "leido",
+        "esm2": "calculado",
         "n_con_esm2": int(len(tabla)),
         "n_omitidas_esm2": int(omisiones["gen"].nunique()),
         "esm2_dim": 480,

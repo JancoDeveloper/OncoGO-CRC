@@ -218,6 +218,90 @@ def comparar_estricto(a: Path, b: Path) -> dict:
     }
 
 
+def _tests_solo_tiempo(a: Path, b: Path) -> bool:
+    def norm(texto: str) -> str:
+        texto = re.sub(r"\d+\.\d+s", "TIEMPO", texto)
+        texto = re.sub(r"\(0:\d+:\d+\)", "(TIEMPO)", texto)
+        return re.sub(r"pid=\d+", "pid=PID", texto)
+
+    return norm(a.read_text(encoding="utf-8")) == norm(b.read_text(encoding="utf-8"))
+
+
+def _nan_igual(a, b) -> bool:
+    return isinstance(a, float) and isinstance(b, float) and a != a and b != b
+
+
+def _solo_proceso_o_hash(a, b) -> bool:
+    """True si lo único que cambia es la fecha, el proceso o un sha256 de un fichero que los contiene."""
+    if _nan_igual(a, b) or a == b:
+        return True
+    if isinstance(a, dict) and isinstance(b, dict):
+        for clave in set(a) | set(b):
+            if clave not in a or clave not in b:
+                return False
+            if clave in {"fecha_utc", "pid", "inicio", "fin"}:
+                continue
+            if not _solo_proceso_o_hash(a[clave], b[clave]):
+                return False
+        return True
+    if isinstance(a, list) and isinstance(b, list) and len(a) == len(b):
+        return all(_solo_proceso_o_hash(x, y) for x, y in zip(a, b))
+    if isinstance(a, str) and isinstance(b, str) and _HEX.fullmatch(a) and _HEX.fullmatch(b):
+        return True
+    return False
+
+
+def _corrida_solo_proceso(a: Path, b: Path) -> bool:
+    da = json.loads(a.read_text(encoding="utf-8"))
+    db = json.loads(b.read_text(encoding="utf-8"))
+    for clave in ("pid", "inicio", "fin"):
+        da.pop(clave, None)
+        db.pop(clave, None)
+    return _sin_fecha(da) == _sin_fecha(db)
+
+
+def comparar_de(a: Path, b: Path) -> dict:
+    """D frente a E. Solo fecha_utc, el proceso de corrida.json, los tiempos de tests y el orden de GSEA."""
+    nombres = sorted(
+        {p.name for p in a.iterdir() if p.is_file() and not p.name.startswith("._")}
+        | {p.name for p in b.iterdir() if p.is_file() and not p.name.startswith("._")}
+    )
+    admitidos = []
+    bloquean = []
+    for nombre in nombres:
+        pa, pb = a / nombre, b / nombre
+        if not pa.is_file() or not pb.is_file():
+            bloquean.append(nombre)
+            continue
+        if nombre == "corrida.json":
+            if _corrida_solo_proceso(pa, pb):
+                if _sha(pa) != _sha(pb):
+                    admitidos.append(nombre)
+            else:
+                bloquean.append(nombre)
+            continue
+        if nombre == "tests.txt":
+            if _sha(pa) != _sha(pb):
+                (admitidos if _tests_solo_tiempo(pa, pb) else bloquean).append(nombre)
+            continue
+        if nombre == "gsea_tejido.tsv":
+            if _sha(pa) != _sha(pb):
+                (admitidos if _gsea_igual(pa, pb) else bloquean).append(nombre)
+            continue
+        if nombre.endswith(".json") or nombre.endswith(".sello.json"):
+            da = json.loads(pa.read_text(encoding="utf-8"))
+            db = json.loads(pb.read_text(encoding="utf-8"))
+            if da != db:
+                if _solo_proceso_o_hash(da, db):
+                    admitidos.append(nombre)
+                else:
+                    bloquean.append(nombre)
+            continue
+        if _sha(pa) != _sha(pb):
+            bloquean.append(nombre)
+    return {"admitidos": admitidos, "bloquean": bloquean, "etiqueta": not bloquean}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--a", type=Path, required=True)
@@ -225,7 +309,31 @@ def main() -> None:
     parser.add_argument("--md", type=Path, default=Path("docs/determinismo_dos_procesos.md"))
     parser.add_argument("--json", type=Path, default=Path("docs/determinismo_dos_procesos.json"))
     parser.add_argument("--estricto", action="store_true")
+    parser.add_argument("--de", action="store_true")
     args = parser.parse_args()
+    if args.de:
+        resultado = comparar_de(args.a, args.b)
+        args.json.write_text(json.dumps(resultado, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        lineas = [
+            "# Determinismo D frente a E",
+            "",
+            f"D: `{args.a}`. E: `{args.b}`.",
+            "",
+            "Las dos salidas salen del commit `95dae8d3e3c0c3723312113891f7c635fc20ee98`.",
+            "",
+            "Solo se admiten `fecha_utc`, el pid y las horas, los tiempos de `tests.txt` y el orden de filas de `gsea_tejido.tsv`. Un sha256 que cambia entra en esa lista cuando el fichero que resume solo cambia por la fecha o por el pid.",
+            "",
+            f"Diferencias admitidas: {', '.join(resultado['admitidos']) or 'ninguna'}.",
+            "",
+            f"Diferencias que impiden tratarlas como idénticas: {', '.join(resultado['bloquean']) or 'ninguna'}.",
+            "",
+            "D y E son idénticas en los números." if resultado["etiqueta"] else "D y E no son idénticas.",
+            "",
+        ]
+        args.md.write_text("\n".join(lineas), encoding="utf-8")
+        if not resultado["etiqueta"]:
+            raise SystemExit(1)
+        return
     if args.estricto:
         resultado = comparar_estricto(args.a, args.b)
         args.json.write_text(json.dumps(resultado, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

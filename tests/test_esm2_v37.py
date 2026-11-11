@@ -78,7 +78,7 @@ def test_un_tsv_coherente_si_se_lee(tmp_path):
         hecho["tsv"], hecho["sello"], hecho["omitidas"], hecho["fasta"], hecho["modelo"],
         {"ABC"}, {"ABC": "ACDE"},
     )
-    assert info["esm2"] == "leido"
+    assert info["esm2"] == "calculado"
     assert info["n_con_esm2"] == 1
     assert info["n_omitidas_esm2"] == 0
     assert frame is not None and frame.shape == (1, 480)
