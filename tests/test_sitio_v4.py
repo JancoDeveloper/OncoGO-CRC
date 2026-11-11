@@ -62,6 +62,9 @@ def test_cifras_aviso_y_lenguaje():
             pass
         sin_titulos = re.sub(r'<span class="cita-ventana">.*?</span>', " ", texto, flags=re.S)
         sin_titulos = re.sub(r'<p class="titulo-citado">.*?</p>', " ", sin_titulos, flags=re.S)
+        sin_titulos = sin_titulos.replace(
+            "Candidata (paso 5): hipótesis para cohortes futuras, no biomarcador", " "
+        )
         if "bibliografia" not in pagina.parts:
             assert "biomarcador" not in re.sub(r"<[^>]+>", " ", sin_titulos).casefold()
             assert "Biomarker" not in sin_titulos
@@ -121,6 +124,34 @@ def test_los_graficos_de_resultados_salen_de_la_corrida():
     assert "currentColor" in svg and "#0b4f55" not in svg
     sello = json.loads((SITIO / "figuras" / "f02.sello.json").read_text(encoding="utf-8"))
     assert sello["svg_sha256"] == hashlib.sha256(svg.encode()).hexdigest()
+
+
+def test_las_284_fichas_son_la_celda():
+    import pandas as pd
+    celda = pd.read_csv(REPO / "results" / "v3_7" / "suero_k4_crc_cn.tsv", sep="\t")
+    otras = [
+        set(pd.read_csv(REPO / "results" / "v3_7" / nombre, sep="\t")["protein_id"].astype(str))
+        for nombre in ("suero_k4_crc_sanos.tsv", "suero_k4_cn_sanos.tsv")
+    ]
+    assert set(celda["protein_id"].astype(str)) == otras[0] == otras[1]
+    paginas_proteina = list((SITIO / "proteinas").glob("*/index.html"))
+    assert len(paginas_proteina) == len(celda)
+    meta = json.loads((REPO / "sitio_fuente" / "fuentes" / "uniprot_284.meta.json").read_text(encoding="utf-8"))
+    tsv = (REPO / "sitio_fuente" / "fuentes" / "uniprot_284.tsv").read_bytes()
+    assert meta["sha256"] == hashlib.sha256(tsv).hexdigest()
+    assert meta["faltan"] == []
+    assert meta["x_uniprot_release"]
+    etiqueta = "Candidata (paso 5): hipótesis para cohortes futuras, no biomarcador"
+    con_etiqueta = 0
+    for pagina in paginas_proteina:
+        if pagina.parent.name == "proteinas":
+            continue
+        texto = pagina.read_text(encoding="utf-8")
+        if etiqueta in texto:
+            con_etiqueta += 1
+        if pagina.parent.name in {"P05109", "P06702"}:
+            assert "calprotectina" in texto
+    assert con_etiqueta == 21
 
 
 def test_d1_tiene_tabla_y_sello():

@@ -426,6 +426,12 @@ def main() -> None:
     (SITIO / "glosario").mkdir(parents=True, exist_ok=True)
     (SITIO / "glosario" / "index.html").write_text(glosario_html, encoding="utf-8")
 
+    spec_proteinas = importlib.util.spec_from_file_location(
+        "proteinas_sitio", Path(__file__).with_name("proteinas.py")
+    )
+    proteinas = importlib.util.module_from_spec(spec_proteinas)
+    spec_proteinas.loader.exec_module(proteinas)
+    fichas = proteinas.escribir(render, env, comunes, lambda clave: cita_html(clave, bib))
     citadas = set()
     for pagina in SITIO.rglob("*.html"):
         if "archivo" in pagina.parts:
@@ -456,6 +462,11 @@ def main() -> None:
         grupos.append(
             f'<li data-buscar="{e(pagina["titulo"])} {e(pagina["seccion"])}">'
             f'<a href="{e(pagina["ruta"])}">{e(pagina["titulo"])}</a></li>'
+        )
+    for ficha in fichas:
+        grupos.append(
+            f'<li data-buscar="{e(ficha["id"])} {e(ficha["gen"])}">'
+            f'<a href="{e(ficha["href"])}">{e(ficha["id"])}</a></li>'
         )
     for item in glosario:
         grupos.append(
