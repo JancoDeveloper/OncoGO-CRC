@@ -1,0 +1,10 @@
+{
+  "svg_sha256": "268b18757c7689ad69e6cf74a9b19858122e5161aed402497f6a51f796736eb9",
+  "fuentes": [
+    "suero_embudo.json",
+    "suero_k4_crc_sanos.tsv",
+    "suero_k4_cn_sanos.tsv"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/sitio/graficos.py"
+}

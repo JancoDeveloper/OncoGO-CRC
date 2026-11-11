@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 from pathlib import Path
 
@@ -109,6 +110,17 @@ def test_cada_nodo_de_diagrama_tiene_fichero_o_cita():
             ), (ruta.name, fuente)
         assert (SITIO / "figuras" / f"{datos['id']}.svg").is_file()
         assert (SITIO / "figuras" / f"{datos['id']}.sello.json").is_file()
+
+
+def test_los_graficos_de_resultados_salen_de_la_corrida():
+    suero = (SITIO / "resultados" / "suero" / "index.html").read_text(encoding="utf-8")
+    assert 'id="r01"' in suero and 'id="f02"' in suero
+    bosque = (SITIO / "figuras" / "r06.tsv").read_text(encoding="utf-8").splitlines()
+    assert len(bosque) == 21
+    svg = (SITIO / "figuras" / "f02.svg").read_text(encoding="utf-8")
+    assert "currentColor" in svg and "#0b4f55" not in svg
+    sello = json.loads((SITIO / "figuras" / "f02.sello.json").read_text(encoding="utf-8"))
+    assert sello["svg_sha256"] == hashlib.sha256(svg.encode()).hexdigest()
 
 
 def test_d1_tiene_tabla_y_sello():

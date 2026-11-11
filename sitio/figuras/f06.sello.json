@@ -1,0 +1,8 @@
+{
+  "svg_sha256": "f4570ade3dd095cb61461e75d1242801c2d8139eda6ad0da74a9b13d59a758b9",
+  "fuentes": [
+    "controles.tsv"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/sitio/graficos.py"
+}

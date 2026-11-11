@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gene Ontology, resultados · OncoGO-CRC</title>
+<link rel="stylesheet" href="/css/v4.91f668dadf.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="barra">
+<a class="marca" href="/">OncoGO-CRC</a>
+<nav class="menu" aria-label="Principal">
+
+<a href="/">Inicio</a>
+
+<a href="/investigacion/contexto">Investigación</a>
+
+<a href="/datos">Datos</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/resultados">Resultados</a>
+
+<a href="/ayuda">Ayuda</a>
+
+<a href="/glosario">Glosario</a>
+
+<a href="/bibliografia">Bibliografía</a>
+
+</nav>
+<form class="buscar" action="/buscar" method="get" role="search">
+<label class="saltar" for="q">Buscar</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<button type="submit">Buscar</button>
+</form>
+<button type="button" id="tema">Tema</button>
+</header>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<div class="disposicion">
+<nav class="indice" aria-label="En esta página">
+<p class="migas">Inicio / Resultados / Gene Ontology, resultados</p>
+
+</nav>
+<main id="contenido">
+<h1>Gene Ontology, resultados</h1>
+<p>La concordancia de signo del NES es <data value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.numerador">16</data><details class="evidencia"><summary>fuente</summary><p id="ev86">results/v3_7/go_tejido.json#concordancia_nes.numerador</p></details> de <data value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.denominador">16</data><details class="evidencia"><summary>fuente</summary><p id="ev87">results/v3_7/go_tejido.json#concordancia_nes.denominador</p></details>. GO no emite el veredicto de H1. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
+<figure class="grafico" id="p05">
+<h3>Concordancia de NES</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Concordancia de NES</title><desc>Concordancia de NES</desc><text x="40" y="180" fill="currentColor" font-size="28">16</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.numerador" tabindex="0" data-tip="nes"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>nes</td><td>16</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/figuras/p05.svg" download>Descargar SVG</a>
+<a href="/figuras/p05.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">origen results/v3_7/go_tejido.json</a></p>
+</figure>
+<p>Términos de CPTAC con FDR dentro del umbral que también tienen NES en Tanaka, y el mismo signo: <data value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.numerador">16</data> de <data value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.denominador">16</data>. GO no emite el veredicto de H1: <data value="no_emite" data-fuente="results/v3_7/go_tejido.json#veredicto_h1">No emite</data>.</p><p>cptac_tumor_frente_a_normal: términos <data value="787" data-fuente="results/v3_7/go_tejido.json#cohortes.cptac_tumor_frente_a_normal.n_terminos_probados">787</data>, ORA suben <data value="17" data-fuente="results/v3_7/go_tejido.json#cohortes.cptac_tumor_frente_a_normal.n_ora_significativos_suben">17</data>, ORA bajan <data value="63" data-fuente="results/v3_7/go_tejido.json#cohortes.cptac_tumor_frente_a_normal.n_ora_significativos_bajan">63</data>, GSEA <data value="64" data-fuente="results/v3_7/go_tejido.json#cohortes.cptac_tumor_frente_a_normal.n_gsea_fdr">64</data>.</p><p>tanaka_primario_frente_a_mucosa: términos <data value="101" data-fuente="results/v3_7/go_tejido.json#cohortes.tanaka_primario_frente_a_mucosa.n_terminos_probados">101</data>, ORA suben <data value="0" data-fuente="results/v3_7/go_tejido.json#cohortes.tanaka_primario_frente_a_mucosa.n_ora_significativos_suben">0</data>, ORA bajan <data value="0" data-fuente="results/v3_7/go_tejido.json#cohortes.tanaka_primario_frente_a_mucosa.n_ora_significativos_bajan">0</data>, GSEA <data value="21" data-fuente="results/v3_7/go_tejido.json#cohortes.tanaka_primario_frente_a_mucosa.n_gsea_fdr">21</data>.</p><figure class="grafico" id="f07">
+<h3>¿El signo del NES coincide?</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>NES de CPTAC frente al de Tanaka</title><desc>Cada punto es un término con FDR de CPTAC dentro del umbral y con NES en Tanaka.</desc><circle cx="600.0" cy="66.1" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="2.18684312231599" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0002181|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.351246051908635" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0002181|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0002181"/><circle cx="456.8" cy="79.3" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.965690995369828" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006364|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.327762414493568" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0006364|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0006364"/><circle cx="333.7" cy="94.6" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.775376865575694" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0008380|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.30053813882983" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0008380|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0008380"/><circle cx="288.1" cy="225.8" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.704964832358598" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0032543|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.066548219842034" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0032543|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0032543"/><circle cx="284.7" cy="53.9" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.699782068179552" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0051607|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.373129089767678" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0051607|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0051607"/><circle cx="273.5" cy="68.7" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.682508164505885" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006396|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.34671814286075" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0006396|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0006396"/><circle cx="270.9" cy="83.8" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.678438991314951" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006606|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.319743500286792" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0006606|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0006606"/><circle cx="270.7" cy="85.6" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.678057816091951" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0000387|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.31651742326092" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0000387|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0000387"/><circle cx="259.0" cy="247.6" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.660118936820387" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0061136|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.027560701088809" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0061136|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0061136"/><circle cx="254.7" cy="125.4" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.653366828025861" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0042274|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.245560024863967" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0042274|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0042274"/><circle cx="243.6" cy="40.0" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.636272039381748" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006281|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.397876067141307" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0006281|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0006281"/><circle cx="238.1" cy="82.3" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.627706881069931" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0010468|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.322389056067054" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0010468|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0010468"/><circle cx="206.1" cy="158.9" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.578358207366131" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:1901740|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.185860135687159" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:1901740|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:1901740"/><circle cx="166.3" cy="114.5" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.516909267655228" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006913|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.264965091681622" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0006913|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0006913"/><circle cx="86.1" cy="300.0" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.39298605344338" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0051321|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="0.9341545040501416" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0051321|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0051321"/><circle cx="50.0" cy="222.2" r="5" fill="none" stroke="currentColor" stroke-width="2" data-value="1.337182813976829" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0071357|cohorte=cptac_tumor_frente_a_normal.NES" data-value-y="1.072844386248424" data-fuente-y="results/v3_7/gsea_tejido.tsv#Term=GO:0071357|cohorte=tanaka_primario_frente_a_mucosa.NES" tabindex="0" data-tip="GO:0071357"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>termino</th><th>nes_cptac</th><th>nes_tanaka</th></tr></thead><tbody><tr><td>GO:0002181</td><td>2.18684312231599</td><td>1.351246051908635</td></tr><tr><td>GO:0006364</td><td>1.9656909953698285</td><td>1.3277624144935678</td></tr><tr><td>GO:0008380</td><td>1.7753768655756943</td><td>1.3005381388298298</td></tr><tr><td>GO:0032543</td><td>1.7049648323585982</td><td>1.0665482198420342</td></tr><tr><td>GO:0051607</td><td>1.6997820681795517</td><td>1.3731290897676782</td></tr><tr><td>GO:0006396</td><td>1.6825081645058853</td><td>1.34671814286075</td></tr><tr><td>GO:0006606</td><td>1.6784389913149511</td><td>1.319743500286792</td></tr><tr><td>GO:0000387</td><td>1.6780578160919508</td><td>1.3165174232609205</td></tr><tr><td>GO:0061136</td><td>1.660118936820387</td><td>1.0275607010888086</td></tr><tr><td>GO:0042274</td><td>1.653366828025861</td><td>1.2455600248639669</td></tr><tr><td>GO:0006281</td><td>1.6362720393817485</td><td>1.397876067141307</td></tr><tr><td>GO:0010468</td><td>1.627706881069931</td><td>1.322389056067054</td></tr><tr><td>GO:1901740</td><td>1.5783582073661313</td><td>1.1858601356871592</td></tr><tr><td>GO:0006913</td><td>1.5169092676552278</td><td>1.264965091681622</td></tr><tr><td>GO:0051321</td><td>1.3929860534433804</td><td>0.9341545040501416</td></tr><tr><td>GO:0071357</td><td>1.3371828139768294</td><td>1.072844386248424</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/figuras/f07.svg" download>Descargar SVG</a>
+<a href="/figuras/f07.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">origen results/v3_7/gsea_tejido.tsv</a> <a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">origen results/v3_7/go_tejido.json</a></p>
+</figure>
+<figure class="grafico" id="r04">
+<h3>¿Hacia dónde apunta cada término?</h3>
+<svg viewBox="0 0 640 1176" role="img" class="lienzo-svg"><title>Puntos de GO en CPTAC</title><desc>Cada punto es un término de CPTAC con FDR dentro del umbral del fichero y NES distinto de cero.</desc><circle cx="600.0" cy="20" r="4" fill="none" stroke="currentColor" data-value="2.18684312231599" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0002181|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0002181"/><circle cx="571.9" cy="38" r="4" fill="none" stroke="currentColor" data-value="1.965690995369828" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006364|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006364"/><circle cx="547.6" cy="56" r="4" fill="none" stroke="currentColor" data-value="1.775376865575694" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0008380|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0008380"/><circle cx="538.7" cy="74" r="4" fill="none" stroke="currentColor" data-value="1.704964832358598" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0032543|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0032543"/><circle cx="538.0" cy="92" r="4" fill="none" stroke="currentColor" data-value="1.699782068179552" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0051607|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0051607"/><circle cx="535.8" cy="110" r="4" fill="none" stroke="currentColor" data-value="1.682508164505885" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006396|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006396"/><circle cx="535.3" cy="128" r="4" fill="none" stroke="currentColor" data-value="1.678438991314951" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006606|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006606"/><circle cx="535.2" cy="146" r="4" fill="none" stroke="currentColor" data-value="1.678057816091951" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0000387|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0000387"/><circle cx="533.0" cy="164" r="4" fill="none" stroke="currentColor" data-value="1.660118936820387" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0061136|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0061136"/><circle cx="532.1" cy="182" r="4" fill="none" stroke="currentColor" data-value="1.653366828025861" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0042274|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0042274"/><circle cx="532.0" cy="200" r="4" fill="none" stroke="currentColor" data-value="1.65296283023741" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0000724|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0000724"/><circle cx="529.9" cy="218" r="4" fill="none" stroke="currentColor" data-value="1.636272039381748" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006281|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006281"/><circle cx="529.6" cy="236" r="4" fill="none" stroke="currentColor" data-value="1.633822474642237" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006417|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006417"/><circle cx="529.6" cy="254" r="4" fill="none" stroke="currentColor" data-value="1.633757241157832" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0051726|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0051726"/><circle cx="528.8" cy="272" r="4" fill="none" stroke="currentColor" data-value="1.627706881069931" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0010468|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0010468"/><circle cx="527.4" cy="290" r="4" fill="none" stroke="currentColor" data-value="1.61674123826421" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006366|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006366"/><circle cx="522.6" cy="308" r="4" fill="none" stroke="currentColor" data-value="1.578358207366131" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:1901740|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:1901740"/><circle cx="522.2" cy="326" r="4" fill="none" stroke="currentColor" data-value="1.575420686827257" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006260|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006260"/><circle cx="522.2" cy="344" r="4" fill="none" stroke="currentColor" data-value="1.575263366561345" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0032968|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0032968"/><circle cx="521.2" cy="362" r="4" fill="none" stroke="currentColor" data-value="1.56758331451867" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0007059|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0007059"/><circle cx="519.8" cy="380" r="4" fill="none" stroke="currentColor" data-value="1.556980838073773" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0030490|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0030490"/><circle cx="516.9" cy="398" r="4" fill="none" stroke="currentColor" data-value="1.534107822510958" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0031507|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0031507"/><circle cx="516.2" cy="416" r="4" fill="none" stroke="currentColor" data-value="1.528288490185733" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0042254|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0042254"/><circle cx="514.7" cy="434" r="4" fill="none" stroke="currentColor" data-value="1.516909267655228" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006913|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006913"/><circle cx="514.5" cy="452" r="4" fill="none" stroke="currentColor" data-value="1.515041230421277" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0042273|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0042273"/><circle cx="514.2" cy="470" r="4" fill="none" stroke="currentColor" data-value="1.512785393642452" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006401|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006401"/><circle cx="513.4" cy="488" r="4" fill="none" stroke="currentColor" data-value="1.506538667259103" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0098586|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0098586"/><circle cx="512.7" cy="506" r="4" fill="none" stroke="currentColor" data-value="1.50056529378313" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0045727|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0045727"/><circle cx="509.9" cy="524" r="4" fill="none" stroke="currentColor" data-value="1.479309299691253" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006406|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006406"/><circle cx="509.2" cy="542" r="4" fill="none" stroke="currentColor" data-value="1.473839604259828" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0000244|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0000244"/><circle cx="506.8" cy="560" r="4" fill="none" stroke="currentColor" data-value="1.45438000108835" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0010507|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0010507"/><circle cx="506.2" cy="578" r="4" fill="none" stroke="currentColor" data-value="1.450111533525948" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0008283|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0008283"/><circle cx="505.6" cy="596" r="4" fill="none" stroke="currentColor" data-value="1.44546650057464" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0000281|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0000281"/><circle cx="505.5" cy="614" r="4" fill="none" stroke="currentColor" data-value="1.444478515760433" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0007249|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0007249"/><circle cx="502.6" cy="632" r="4" fill="none" stroke="currentColor" data-value="1.421267579757095" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:1905168|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:1905168"/><circle cx="502.4" cy="650" r="4" fill="none" stroke="currentColor" data-value="1.41986858878254" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0048025|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0048025"/><circle cx="500.8" cy="668" r="4" fill="none" stroke="currentColor" data-value="1.407600830763609" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0030150|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0030150"/><circle cx="500.2" cy="686" r="4" fill="none" stroke="currentColor" data-value="1.402690160965165" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0007623|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0007623"/><circle cx="499.7" cy="704" r="4" fill="none" stroke="currentColor" data-value="1.398908599550623" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0007080|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0007080"/><circle cx="499.0" cy="722" r="4" fill="none" stroke="currentColor" data-value="1.39298605344338" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0051321|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0051321"/><circle cx="498.1" cy="740" r="4" fill="none" stroke="currentColor" data-value="1.386269377555968" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0001843|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0001843"/><circle cx="497.6" cy="758" r="4" fill="none" stroke="currentColor" data-value="1.382598712910272" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0045089|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0045089"/><circle cx="497.3" cy="776" r="4" fill="none" stroke="currentColor" data-value="1.379978290815069" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:1903241|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:1903241"/><circle cx="496.7" cy="794" r="4" fill="none" stroke="currentColor" data-value="1.37520715674537" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:1904263|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:1904263"/><circle cx="495.8" cy="812" r="4" fill="none" stroke="currentColor" data-value="1.368170285427354" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0000388|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0000388"/><circle cx="495.7" cy="830" r="4" fill="none" stroke="currentColor" data-value="1.367133819545142" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:1903077|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:1903077"/><circle cx="495.0" cy="848" r="4" fill="none" stroke="currentColor" data-value="1.361650329092131" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0034243|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0034243"/><circle cx="494.6" cy="866" r="4" fill="none" stroke="currentColor" data-value="1.359031716590611" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006289|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006289"/><circle cx="494.2" cy="884" r="4" fill="none" stroke="currentColor" data-value="1.355936041491726" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0019082|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0019082"/><circle cx="494.2" cy="902" r="4" fill="none" stroke="currentColor" data-value="1.355845632178124" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0031124|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0031124"/><circle cx="493.1" cy="920" r="4" fill="none" stroke="currentColor" data-value="1.346757637498436" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0000375|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0000375"/><circle cx="493.0" cy="938" r="4" fill="none" stroke="currentColor" data-value="1.346310622195815" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0007020|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0007020"/><circle cx="492.1" cy="956" r="4" fill="none" stroke="currentColor" data-value="1.339092428628201" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0048024|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0048024"/><circle cx="491.9" cy="974" r="4" fill="none" stroke="currentColor" data-value="1.337182813976829" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0071357|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0071357"/><circle cx="490.7" cy="992" r="4" fill="none" stroke="currentColor" data-value="1.327809103198247" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0042149|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0042149"/><circle cx="490.5" cy="1010" r="4" fill="none" stroke="currentColor" data-value="1.326590733122209" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0061025|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0061025"/><circle cx="490.0" cy="1028" r="4" fill="none" stroke="currentColor" data-value="1.322592553412939" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006275|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006275"/><circle cx="489.8" cy="1046" r="4" fill="none" stroke="currentColor" data-value="1.320925861531566" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0032212|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0032212"/><circle cx="489.5" cy="1064" r="4" fill="none" stroke="currentColor" data-value="1.318774789080264" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0007095|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0007095"/><circle cx="489.4" cy="1082" r="4" fill="none" stroke="currentColor" data-value="1.318083186617538" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0006284|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0006284"/><circle cx="489.2" cy="1100" r="4" fill="none" stroke="currentColor" data-value="1.3166578312807" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0042752|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0042752"/><circle cx="160.0" cy="1118" r="4" fill="none" stroke="currentColor" data-value="-1.27010623528663" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0016241|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0016241"/><circle cx="160.5" cy="1136" r="4" fill="none" stroke="currentColor" data-value="-1.265827905471827" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0031398|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0031398"/><circle cx="162.3" cy="1154" r="4" fill="none" stroke="currentColor" data-value="-1.252257265662741" data-fuente="results/v3_7/gsea_tejido.tsv#Term=GO:0010508|cohorte=cptac_tumor_frente_a_normal.NES" tabindex="0" data-tip="GO:0010508"/></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>termino</th><th>nes</th><th>fdr</th></tr></thead><tbody><tr><td>GO:0002181</td><td>2.18684312231599</td><td>0.005</td></tr><tr><td>GO:0006364</td><td>1.9656909953698285</td><td>0.005</td></tr><tr><td>GO:0008380</td><td>1.7753768655756943</td><td>0.005</td></tr><tr><td>GO:0032543</td><td>1.7049648323585982</td><td>0.005</td></tr><tr><td>GO:0051607</td><td>1.6997820681795517</td><td>0.005</td></tr><tr><td>GO:0006396</td><td>1.6825081645058853</td><td>0.0060334729376273</td></tr><tr><td>GO:0006606</td><td>1.6784389913149511</td><td>0.005171548232252</td></tr><tr><td>GO:0000387</td><td>1.6780578160919508</td><td>0.005</td></tr><tr><td>GO:0061136</td><td>1.660118936820387</td><td>0.0050278941146894</td></tr><tr><td>GO:0042274</td><td>1.653366828025861</td><td>0.005</td></tr><tr><td>GO:0000724</td><td>1.65296283023741</td><td>0.005</td></tr><tr><td>GO:0006281</td><td>1.6362720393817485</td><td>0.0060334729376273</td></tr><tr><td>GO:0006417</td><td>1.6338224746422372</td><td>0.0055693596347329</td></tr><tr><td>GO:0051726</td><td>1.6337572411578325</td><td>0.005171548232252</td></tr><tr><td>GO:0010468</td><td>1.627706881069931</td><td>0.0060334729376273</td></tr><tr><td>GO:0006366</td><td>1.6167412382642097</td><td>0.0073532951427333</td></tr><tr><td>GO:1901740</td><td>1.5783582073661313</td><td>0.009050209406441</td></tr><tr><td>GO:0006260</td><td>1.575420686827257</td><td>0.0100557882293789</td></tr><tr><td>GO:0032968</td><td>1.5752633665613447</td><td>0.0095265362173063</td></tr><tr><td>GO:0007059</td><td>1.56758331451867</td><td>0.0099552303470851</td></tr><tr><td>GO:0030490</td><td>1.5569808380737729</td><td>0.01292887058063</td></tr><tr><td>GO:0031507</td><td>1.534107822510958</td><td>0.019745911432235</td></tr><tr><td>GO:0042254</td><td>1.5282884901857334</td><td>0.021641805102359</td></tr><tr><td>GO:0006913</td><td>1.5169092676552278</td><td>0.0256422599849163</td></tr><tr><td>GO:0042273</td><td>1.5150412304212768</td><td>0.0253405863380349</td></tr><tr><td>GO:0006401</td><td>1.5127853936424516</td><td>0.0250621183562983</td></tr><tr><td>GO:0098586</td><td>1.506538667259103</td><td>0.0264802423373645</td></tr><tr><td>GO:0045727</td><td>1.5005652937831302</td><td>0.0274738499838389</td></tr><tr><td>GO:0006406</td><td>1.479309299691253</td><td>0.0430665137272022</td></tr><tr><td>GO:0000244</td><td>1.4738396042598283</td><td>0.0443460260915611</td></tr><tr><td>GO:0010507</td><td>1.45438000108835</td><td>0.0630595236061699</td></tr><tr><td>GO:0008283</td><td>1.4501115335259476</td><td>0.0653311991527463</td></tr><tr><td>GO:0000281</td><td>1.4454665005746403</td><td>0.0688364412429304</td></tr><tr><td>GO:0007249</td><td>1.4444785157604327</td><td>0.0676103879187066</td></tr><tr><td>GO:1905168</td><td>1.4212675797570948</td><td>0.0943807552385995</td></tr><tr><td>GO:0048025</td><td>1.4198685887825395</td><td>0.0937702252389586</td></tr><tr><td>GO:0030150</td><td>1.4076008307636094</td><td>0.1115377159280302</td></tr><tr><td>GO:0007623</td><td>1.4026901609651652</td><td>0.1169382320674357</td></tr><tr><td>GO:0007080</td><td>1.3989085995506234</td><td>0.1227579686155722</td></tr><tr><td>GO:0051321</td><td>1.3929860534433804</td><td>0.1276079526308188</td></tr><tr><td>GO:0001843</td><td>1.386269377555968</td><td>0.136856825170572</td></tr><tr><td>GO:0045089</td><td>1.382598712910272</td><td>0.1413556516815555</td></tr><tr><td>GO:1903241</td><td>1.379978290815069</td><td>0.1448033505030568</td></tr><tr><td>GO:1904263</td><td>1.37520715674537</td><td>0.1507682612482112</td></tr><tr><td>GO:0000388</td><td>1.3681702854273543</td><td>0.1647138111972271</td></tr><tr><td>GO:1903077</td><td>1.367133819545142</td><td>0.1634940003641851</td></tr><tr><td>GO:0034243</td><td>1.3616503290921311</td><td>0.1731093246040533</td></tr><tr><td>GO:0006289</td><td>1.3590317165906114</td><td>0.1762905373962996</td></tr><tr><td>GO:0019082</td><td>1.355936041491726</td><td>0.1791572066173024</td></tr><tr><td>GO:0031124</td><td>1.3558456321781238</td><td>0.1757550666730852</td></tr><tr><td>GO:0000375</td><td>1.3467576374984365</td><td>0.1950231399544847</td></tr><tr><td>GO:0007020</td><td>1.3463106221958154</td><td>0.193013119841214</td></tr><tr><td>GO:0048024</td><td>1.3390924286282009</td><td>0.20747178167596</td></tr><tr><td>GO:0071357</td><td>1.3371828139768294</td><td>0.2076520269366752</td></tr><tr><td>GO:0042149</td><td>1.3278091031982473</td><td>0.2364572894010144</td></tr><tr><td>GO:0061025</td><td>1.3265907331222089</td><td>0.2361134989787567</td></tr><tr><td>GO:0006275</td><td>1.3225925534129386</td><td>0.2437205515594213</td></tr><tr><td>GO:0032212</td><td>1.3209258615315664</td><td>0.2429513111349779</td></tr><tr><td>GO:0007095</td><td>1.318774789080264</td><td>0.2455828010120699</td></tr><tr><td>GO:0006284</td><td>1.318083186617538</td><td>0.2442048171504677</td></tr><tr><td>GO:0042752</td><td>1.3166578312807005</td><td>0.244800746239799</td></tr><tr><td>GO:0016241</td><td>-1.27010623528663</td><td>0.0219209965819347</td></tr><tr><td>GO:0031398</td><td>-1.2658279054718269</td><td>0.0131525979491608</td></tr><tr><td>GO:0010508</td><td>-1.252257265662741</td><td>0.0438419931638695</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/figuras/r04.svg" download>Descargar SVG</a>
+<a href="/figuras/r04.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">origen results/v3_7/gsea_tejido.tsv</a> <a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">origen results/v3_7/go_tejido.json</a></p>
+</figure>
+
+<h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
+<ul>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#concordancia_nes.numerador</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#concordancia_nes.denominador</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#veredicto_h1</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#cohortes.cptac_tumor_frente_a_normal.n_terminos_probados</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#cohortes.cptac_tumor_frente_a_normal.n_ora_significativos_suben</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#cohortes.cptac_tumor_frente_a_normal.n_ora_significativos_bajan</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#cohortes.cptac_tumor_frente_a_normal.n_gsea_fdr</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#cohortes.tanaka_primario_frente_a_mucosa.n_terminos_probados</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#cohortes.tanaka_primario_frente_a_mucosa.n_ora_significativos_suben</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#cohortes.tanaka_primario_frente_a_mucosa.n_ora_significativos_bajan</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/go_tejido.json">results/v3_7/go_tejido.json#cohortes.tanaka_primario_frente_a_mucosa.n_gsea_fdr</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0002181|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006364|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0008380|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0032543|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0051607|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006396|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006606|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0000387|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0061136|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0042274|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006281|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0010468|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:1901740|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006913|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0051321|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0071357|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0000724|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006417|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0051726|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006366|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006260|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0032968|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0007059|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0030490|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0031507|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0042254|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0042273|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006401|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0098586|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0045727|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006406|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0000244|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0010507|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0008283|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0000281|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0007249|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:1905168|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0048025|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0030150|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0007623|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0007080|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0001843|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0045089|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:1903241|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:1904263|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0000388|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:1903077|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0034243|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006289|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0019082|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0031124|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0000375|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0007020|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0048024|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0042149|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0061025|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006275|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0032212|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0007095|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0006284|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0042752|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0016241|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0031398|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/gsea_tejido.tsv">results/v3_7/gsea_tejido.tsv#Term=GO:0010508|cohorte=cptac_tumor_frente_a_normal.NES</a></li>
+
+<li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
+
+</ul>
+
+</main>
+</div>
+<footer class="pie">
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data><details class="evidencia"><summary>fuente</summary><p id="ev1">results/v3_7/certificado.json#estado</p></details> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data><details class="evidencia"><summary>fuente</summary><p id="ev2">results/v3_7/certificado.json#sello.commit</p></details>.</p>
+<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+</footer>
+<script>(function () {
+  var raiz = document.documentElement;
+  var guardado = null;
+  try { guardado = localStorage.getItem("tema"); } catch (error) { guardado = null; }
+  if (guardado === "oscuro" || guardado === "claro") raiz.setAttribute("data-tema", guardado);
+  var boton = document.getElementById("tema");
+  if (boton) {
+    boton.addEventListener("click", function () {
+      var siguiente = raiz.getAttribute("data-tema") === "oscuro" ? "claro" : "oscuro";
+      raiz.setAttribute("data-tema", siguiente);
+      try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
+    });
+  }
+  var caja = document.getElementById("q");
+  if (caja && document.querySelector("[data-buscar]")) {
+    var aplicar = function () {
+      var consulta = caja.value.toLowerCase();
+      document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
+        var texto = nodo.getAttribute("data-buscar").toLowerCase();
+        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+      });
+    };
+    caja.addEventListener("input", aplicar);
+    if (caja.value) aplicar();
+  }
+  var secciones = Array.prototype.slice.call(document.querySelectorAll("main h2[id]"));
+  var enlaces = Array.prototype.slice.call(document.querySelectorAll(".indice a"));
+  if (secciones.length && enlaces.length && "IntersectionObserver" in window) {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) return;
+        enlaces.forEach(function (enlace) {
+          var activo = enlace.getAttribute("href") === "#" + entrada.target.id;
+          if (activo) enlace.setAttribute("aria-current", "true");
+          else enlace.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    secciones.forEach(function (seccion) { observador.observe(seccion); });
+  }
+  document.querySelectorAll("[data-filtro]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var filtro = boton.getAttribute("data-filtro");
+      var valor = boton.getAttribute("data-valor");
+      document.querySelectorAll(".celda-multi").forEach(function (celda) {
+        var ocultar = valor !== "todas" && celda.getAttribute(filtro) !== valor;
+        celda.style.display = ocultar ? "none" : "";
+      });
+    });
+  });
+  document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
+    nodo.addEventListener("click", function () {
+      var svg = nodo.closest("svg");
+      svg.querySelectorAll(".resaltado").forEach(function (el) { el.classList.remove("resaltado"); });
+      nodo.classList.add("resaltado");
+      svg.querySelectorAll("line").forEach(function (linea) {
+        var id = nodo.getAttribute("data-id");
+        if (linea.getAttribute("data-origen") === id || linea.getAttribute("data-destino") === id) {
+          linea.classList.add("resaltado");
+        }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

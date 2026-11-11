@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import html
+import importlib.util
 import json
 import re
 import shutil
@@ -23,6 +24,7 @@ BIB = REPO / "tesis-ucaldas" / "latex" / "references.bib"
 AVISO = "Ningún resultado de esta tesis sirve para decidir sobre un paciente."
 SHA = "595118ae09ea6006c744c86b28cb0a10d42e0442"
 GITHUB = f"https://github.com/JancoDeveloper/OncoGO-CRC/blob/{SHA}"
+FIGURAS: dict[str, str] = {}
 
 
 def e(texto) -> str:
@@ -129,7 +131,7 @@ def ancla_de(texto: str) -> str:
 
 def md_inline(texto: str, bib, glosario, contador) -> str:
     patron = re.compile(
-        r"\{\{dato:([^}]+)\}\}|\{\{termino:([^}]+)\}\}|\{\{diagrama:([^}]+)\}\}|\[@([^\]]+)\]"
+        r"\{\{dato:([^}]+)\}\}|\{\{termino:([^}]+)\}\}|\{\{diagrama:([^}]+)\}\}|\{\{figura:([^}]+)\}\}|\[@([^\]]+)\]"
     )
     piezas = []
     pos = 0
@@ -141,8 +143,12 @@ def md_inline(texto: str, bib, glosario, contador) -> str:
             piezas.append(termino_html(hallado.group(2), glosario))
         elif hallado.group(3):
             piezas.append(diagrama_html(hallado.group(3), bib))
+        elif hallado.group(4):
+            if hallado.group(4) not in FIGURAS:
+                raise SystemExit(f"figura sin datos: {hallado.group(4)}")
+            piezas.append(FIGURAS[hallado.group(4)])
         else:
-            piezas.append(cita_html(hallado.group(4), bib))
+            piezas.append(cita_html(hallado.group(5), bib))
         pos = hallado.end()
     piezas.append(e(texto[pos:]))
     return "".join(piezas)
@@ -154,7 +160,7 @@ def md_a_html(texto: str, bib, glosario, contador) -> tuple[str, list[dict]]:
     piezas = []
     for bloque in bloques:
         lineas = bloque.splitlines()
-        if bloque.strip().startswith("{{diagrama:"):
+        if bloque.strip().startswith(("{{diagrama:", "{{figura:")):
             piezas.append(md_inline(bloque.strip(), bib, glosario, contador))
         elif bloque.startswith("# "):
             piezas.append(f"<h1>{md_inline(bloque[2:].strip(), bib, glosario, contador)}</h1>")
@@ -296,6 +302,9 @@ def escribir_estaticos() -> tuple[str, str]:
             viejo.unlink()
     (SITIO / "css" / css_nombre).write_text(css, encoding="utf-8")
     (SITIO / "js").mkdir(parents=True, exist_ok=True)
+    for viejo in (SITIO / "js").glob("v4.*.js"):
+        if viejo.name != js_nombre:
+            viejo.unlink()
     (SITIO / "js" / js_nombre).write_text(js, encoding="utf-8")
     destino_fuentes = SITIO / "fuentes"
     destino_fuentes.mkdir(parents=True, exist_ok=True)
@@ -348,6 +357,11 @@ def main() -> None:
     contador = [0]
     estado = dato_html("results/v3_7/certificado.json#estado", contador)
     sello = dato_html("results/v3_7/certificado.json#sello.commit", contador)
+    global FIGURAS
+    spec = importlib.util.spec_from_file_location("graficos_sitio", Path(__file__).with_name("graficos.py"))
+    graficos = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(graficos)
+    FIGURAS = graficos.generar()
     paginas = leer_paginas()
     menu = [{"nombre": "Inicio", "ruta": "/"}] + menu_de(paginas)
     env = Environment(

@@ -1,0 +1,8 @@
+{
+  "svg_sha256": "12576dc5b6a91ac7ab927c70f4f5c46a9f0c85c3e17a3168bc5c0189ebd6a6c1",
+  "fuentes": [
+    "certificado.json"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/sitio/graficos.py"
+}

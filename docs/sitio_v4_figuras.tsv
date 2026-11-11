@@ -10,3 +10,33 @@ D8	/metodos/expresion-diferencial	config/preregistro_v3.yaml; rai2025; results/v
 D9	/investigacion/reproducibilidad	config/preregistro_v3.yaml; results/v3_7/corrida.json; results/v3_7/certificado.json; docs/determinismo_d_e.md	Preregistro, corrida, sello y la pareja D y E
 D10	/metodos/aprendizaje-automatico	results/v3_7/ml_modelos.tsv; results/v3_7/ml_nulo_permutaciones.tsv	M1, M2, M3 y el nulo
 D11	/glosario	rai2025; vasaikar2019	Términos del glosario y sus relacionados
+f01	/resultados	certificado.json	Mapa tejido, suero, hipótesis y priorización
+f02	/resultados/suero	suero_embudo.json	Embudo del suero
+f03	/resultados/suero	suero_embudo.json; suero_k4_crc_sanos.tsv; suero_k4_cn_sanos.tsv	Celda y contrastes con HC
+f04	/resultados/suero	multiverso_suero.tsv; multiverso_resumen.json	Rejilla del multiverso
+f05	/resultados/tejido	h7_tabla_proteinas.tsv; triangulacion.tsv; k1_etiquetas.json	log2FC de CPTAC y de Tanaka
+f06	/resultados/tejido	controles.tsv	Controles de tejido no medibles
+f07	/resultados/go	gsea_tejido.tsv; go_tejido.json	NES de CPTAC frente al de Tanaka
+f08	/resultados/aprendizaje	ml_suero_permutacion.json; k5_auc.json	AUC de M1 a M6 y nulo de K5
+f09	/resultados/aprendizaje	ml_explicacion.tsv	SHAP de M2 y de M3
+n10	/resultados/preanalitica	preanalitica_orden.tsv; suero_calidad_muestra.tsv	Orden de adquisición y precursores
+n11	/resultados/hipotesis	k1_etiquetas.json; h5 a h10	Tablero de hipótesis
+n12	/resultados/priorizacion	priorizacion_embudo.json	Embudo de siete pasos
+n13	/resultados/priorizacion	triangulacion.tsv; priorizacion.tsv	Signo en tejido de las 20
+n14	/resultados/priorizacion	certificado.json	Casillas del certificado
+p01	/resultados	suero_embudo.json	Proteínas de la celda
+p02	/resultados	suero_embudo.json	Diferentes frente a CN
+p03	/resultados/tejido	k1_etiquetas.json	Cobertura de R1
+p04	/resultados/priorizacion	priorizacion_embudo.json	Paso 5
+p05	/resultados/go	go_tejido.json	Concordancia de NES
+p06	/resultados	config/correspondencia_propuesta.tsv	Redes, estado declarado
+p07	/resultados/aprendizaje	ml_suero_permutacion.json	AUC de M3
+p08	/resultados/priorizacion	priorizacion_embudo.json	Paso 6
+p09	/resultados	config/correspondencia_propuesta.tsv	Cohortes nuevas, no cumplido
+p10	/resultados	certificado.json	Estado del certificado
+r01	/resultados/suero	suero_k4_crc_cn.tsv	Volcán CP frente a CN, con intervalo
+r02	/resultados/suero	suero_k4_crc_sanos.tsv	Volcán CP frente a HC, con intervalo
+r03	/resultados/suero	suero_k4_cn_sanos.tsv	Volcán CN frente a HC, con intervalo
+r04	/resultados/go	gsea_tejido.tsv; go_tejido.json	Puntos de NES en CPTAC
+r05	/resultados/shap	ml_explicacion.tsv	Correlación de M2 con la calidad
+r06	/resultados/priorizacion	suero_k4_crc_cn.tsv; priorizacion.tsv; gene_uniprot_human_reviewed_bulk.tsv	Bosque de las 20 del paso 5

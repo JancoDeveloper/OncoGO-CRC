@@ -20,6 +20,8 @@
 
 <a href="/metodos/proteomica">Métodos</a>
 
+<a href="/resultados">Resultados</a>
+
 <a href="/ayuda">Ayuda</a>
 
 <a href="/glosario">Glosario</a>
@@ -45,7 +47,7 @@
 
 </nav>
 <main id="contenido">
-<h1>Qué parte del tumor colorrectal se deja ver en la sangre</h1><div class="tarjetas"><a class="tarjeta" href="/investigacion/contexto"><h2>Investigación</h2></a><a class="tarjeta" href="/datos"><h2>Datos</h2></a><a class="tarjeta" href="/metodos/proteomica"><h2>Métodos</h2></a><a class="tarjeta" href="/ayuda"><h2>Ayuda</h2></a><a class="tarjeta" href="/glosario"><h2>Glosario</h2></a><a class="tarjeta" href="/bibliografia"><h2>Bibliografía</h2></a></div>
+<h1>Qué parte del tumor colorrectal se deja ver en la sangre</h1><div class="tarjetas"><a class="tarjeta" href="/investigacion/contexto"><h2>Investigación</h2></a><a class="tarjeta" href="/datos"><h2>Datos</h2></a><a class="tarjeta" href="/metodos/proteomica"><h2>Métodos</h2></a><a class="tarjeta" href="/resultados"><h2>Resultados</h2></a><a class="tarjeta" href="/ayuda"><h2>Ayuda</h2></a><a class="tarjeta" href="/glosario"><h2>Glosario</h2></a><a class="tarjeta" href="/bibliografia"><h2>Bibliografía</h2></a></div>
 <p>Lo primero, en la <a class="termino" href="/glosario#celda">celda<span class="definicion-corta">Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.</span></a> del <a class="termino" href="/glosario#suero">suero<span class="definicion-corta">La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span></a> y frente a <a class="termino" href="/glosario#cn">CN<span class="definicion-corta">Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span></a>: <data value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente">0</data><details class="evidencia"><summary>fuente</summary><p id="ev3">results/v3_7/suero_embudo.json#celda_preregistrada.diferente</p></details> proteínas diferentes, <data value="166" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.equivalente">166</data><details class="evidencia"><summary>fuente</summary><p id="ev4">results/v3_7/suero_embudo.json#celda_preregistrada.equivalente</p></details> equivalentes y <data value="118" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada">118</data><details class="evidencia"><summary>fuente</summary><p id="ev5">results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada</p></details> indeterminadas, de <data value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n">284</data><details class="evidencia"><summary>fuente</summary><p id="ev6">results/v3_7/suero_embudo.json#celda_preregistrada.n</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <p><a class="termino" href="/glosario#cn">CN<span class="definicion-corta">Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span></a> son pacientes sintomáticos con otra enfermedad intestinal. <a class="termino" href="/glosario#hc">HC<span class="definicion-corta">El contraste con personas sanas existe, pero no es el que decide la pregunta.</span></a> es otro grupo, medido aparte, y no es el contraste que decide la pregunta. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
 <h2 id="en-un-minuto">En un minuto</h2>
@@ -123,6 +125,16 @@
     }, { rootMargin: "-20% 0px -70% 0px" });
     secciones.forEach(function (seccion) { observador.observe(seccion); });
   }
+  document.querySelectorAll("[data-filtro]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var filtro = boton.getAttribute("data-filtro");
+      var valor = boton.getAttribute("data-valor");
+      document.querySelectorAll(".celda-multi").forEach(function (celda) {
+        var ocultar = valor !== "todas" && celda.getAttribute(filtro) !== valor;
+        celda.style.display = ocultar ? "none" : "";
+      });
+    });
+  });
   document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

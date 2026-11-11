@@ -1,0 +1,8 @@
+{
+  "svg_sha256": "cd929c15564d65a62703e02c99024ff67578c5a44eeceafdb1908a7b0e88c8d2",
+  "fuentes": [
+    "config/correspondencia_propuesta.tsv#punto=ampliar_cohortes.estado"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/sitio/graficos.py"
+}

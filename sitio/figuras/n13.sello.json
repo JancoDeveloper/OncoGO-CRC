@@ -1,0 +1,9 @@
+{
+  "svg_sha256": "f20f6cb9eb9132a84a051b16fcffb988eecd24afb796dcb7b12c7c45ade024e7",
+  "fuentes": [
+    "triangulacion.tsv",
+    "priorizacion.tsv"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/sitio/graficos.py"
+}
