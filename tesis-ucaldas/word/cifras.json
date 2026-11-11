@@ -225,9 +225,19 @@
     "crudo": 16
   },
   "HsieteSec": {
-    "valor": "0,47738",
+    "valor": "0,47377",
     "fuente": "results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario",
-    "crudo": 0.4773843370379944
+    "crudo": 0.47376583096407343
+  },
+  "HsieteNEsm": {
+    "valor": "668",
+    "fuente": "results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.n_con_esm2",
+    "crudo": 668
+  },
+  "HsieteOmitidas": {
+    "valor": "20",
+    "fuente": "results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.n_omitidas_esm2",
+    "crudo": 20
   },
   "PreCrudos": {
     "valor": "60",

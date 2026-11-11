@@ -49,7 +49,9 @@ Salen de `results/v3_7/` por `scripts/v3/exportar_cifras_v3_7.py`.
 | \BhPielCn | 0,056 | results/v3_7/preanalitica.json#bh_descriptivo.q.CN:piel |
 | \GoConNum | 16 | results/v3_7/go_tejido.json#concordancia_nes.numerador |
 | \GoConDen | 16 | results/v3_7/go_tejido.json#concordancia_nes.denominador |
-| \HsieteSec | 0,47738 | results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario |
+| \HsieteSec | 0,47377 | results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario |
+| \HsieteNEsm | 668 | results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.n_con_esm2 |
+| \HsieteOmitidas | 20 | results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.n_omitidas_esm2 |
 | \PreCrudos | 60 | results/v3_7/preanalitica.json#n_crudos_validos |
 | \CalidadCoagP | 0,00099 | results/v3_7/k7_control_tecnico.json#coagulacion.p_kruskal |
 | \CalidadPielP | 3,4 × 10⁻⁶ | results/v3_7/k7_control_tecnico.json#piel.p_kruskal |

@@ -36,7 +36,7 @@ El report de DIA-NN se buscó solo contra UniProt humano. Hacen falta las secuen
 
 \section{Lo que esta corrida sí deja dicho}
 
-El secundario de H7, con ESM-2 y TMbed, es \HsieteSec\ en \texttt{h7\_visibilidad\_en\_sangre.json}. No entra en el veredicto. No se usa como resultado estable entre versiones.
+En la corrida B, ESM-2 corrió en MPS y omitió en silencio las proteínas que fallaban: había vector para 181 de 668 con secuencia. B y C, con el mismo sello, dieron 0,4774 y 0,4882. Con la enmienda, en CPU, con ventanas de 1022 residuos y con cada omisión registrada, D y E son idénticas: el vector cubre \HsieteNEsm\ proteínas, se omiten \HsieteOmitidas\ y el AUC secundario es \HsieteSec. El veredicto de H7 no cambia, porque el secundario no entra en él.
 
 H6 usó el respaldo del HPA porque Pelka 2021 no estaba disponible. La prueba quedó degenerada y el estado es \HseisEstado.
 

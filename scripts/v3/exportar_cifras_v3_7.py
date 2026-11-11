@@ -162,6 +162,8 @@ def _entradas(carpeta: Path, version: str) -> list[tuple[str, object, str, str]]
         ("GoConNum", (go.get("concordancia_nes") or {}).get("numerador"), "entero", f"{prefijo}/go_tejido.json#concordancia_nes.numerador"),
         ("GoConDen", (go.get("concordancia_nes") or {}).get("denominador"), "entero", f"{prefijo}/go_tejido.json#concordancia_nes.denominador"),
         ("HsieteSec", (h7.get("modelo_secundario") or {}).get("auc_secundario"), "auc_completo", f"{prefijo}/h7_visibilidad_en_sangre.json#modelo_secundario.auc_secundario"),
+        ("HsieteNEsm", (h7.get("modelo_secundario") or {}).get("n_con_esm2"), "entero", f"{prefijo}/h7_visibilidad_en_sangre.json#modelo_secundario.n_con_esm2"),
+        ("HsieteOmitidas", (h7.get("modelo_secundario") or {}).get("n_omitidas_esm2"), "entero", f"{prefijo}/h7_visibilidad_en_sangre.json#modelo_secundario.n_omitidas_esm2"),
         ("PreCrudos", pre["n_crudos_validos"], "entero", f"{prefijo}/preanalitica.json#n_crudos_validos"),
         ("CalidadCoagP", piel["coagulacion"]["p_kruskal"], "p", f"{prefijo}/k7_control_tecnico.json#coagulacion.p_kruskal"),
         ("CalidadPielP", piel["piel"]["p_kruskal"], "p", f"{prefijo}/k7_control_tecnico.json#piel.p_kruskal"),
@@ -369,7 +371,9 @@ def main() -> None:
         "",
         "Esas ausencias están declaradas en `enmienda_v3_7_cierre`. No son un resultado.",
         "",
-        "La corrida versionada terminó en un proceso. El certificado y el sello son los de `results/v3_7/certificado.json`. La comparación con la corrida archivada está en `docs/determinismo_dos_procesos.md`: los números principales coinciden. Los sellos no, porque la segunda corrida declara `results/certified/inference_audit.json`.",
+        "La corrida versionada es E. El certificado es publicable. D y E salen del mismo commit y son idénticas en los números: solo cambian la fecha, el pid, las horas, los tiempos de `tests.txt` y el orden de `gsea_tejido.tsv` (`docs/determinismo_d_e.md`).",
+        "B y C, con el sello `b7f8b8e844f6`, no eran idénticas en el secundario de H7 (`docs/determinismo_b_c.md`). La causa era ESM-2 en MPS, que omitía errores sin registro: 181 de 668 proteínas con secuencia tenían vector. La enmienda `enmienda_v3_7_esm2` lo calcula en CPU, fuera de la corrida. El detalle está en `docs/diagnostico_esm2.md` y `docs/cambio_esm2_b_d.md`.",
+        "La web se anota en `docs/web_pendiente.md` hasta el despliegue.",
         "",
     ])
     ESTADO.write_text("\n".join(lineas_estado), encoding="utf-8")
