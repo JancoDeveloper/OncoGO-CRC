@@ -1,0 +1,14 @@
+{
+  "svg_sha256": "3e7d9eb009e0845e17c291019c6739b401c095560add064c050e570279485c3f",
+  "fuentes": [
+    "k1_etiquetas.json",
+    "h5_especificidad_organo.json",
+    "h6_origen_celular.json",
+    "h7_visibilidad_en_sangre.json",
+    "h8_carga_tumoral.json",
+    "h9_wald.json",
+    "h10_especificidad.json"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/v3/exportar_sitio_v3_7.py"
+}

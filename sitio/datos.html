@@ -4,24 +4,76 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Datos · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/base.beaa25f321.css">
+<link rel="stylesheet" href="/css/v37.css">
 </head>
 <body>
-<div class="progreso" id="progreso"></div>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <a href="/">OncoGO-CRC</a>
-<nav><a href="/">Inicio</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/resultados">Resultados</a><a href="/aprende">Aprende</a><a href="/datos">Datos</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/reproducir">Reproducir</a><a href="/historial">Historial</a></nav>
+<nav><a href="/">Inicio</a><a href="/lo-prometido">Lo prometido</a><a href="/datos">Datos</a><a href="/tejido">Tejido</a><a href="/suero">Suero</a><a href="/aprendizaje-automatico">Aprendizaje</a><a href="/preanalitica">Preanalítica</a><a href="/hipotesis">Hipótesis</a><a href="/priorizacion">Priorización</a><a href="/desviaciones">Desviaciones</a><a href="/reproducir">Reproducir</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/aprende">Aprende</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/historial">Historial</a><a href="/archivo/">Archivo</a></nav>
+<button type="button" id="tema">Tema</button>
 </header>
+<p class="franja" role="status">Certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">Publicable</data>. Commit del sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>. Etiqueta v3.7-final.</p>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<main class="pagina">
-<h1>Datos</h1><ul class="tarjeta">
-<li>Suero: PXD056870, Orbitrap Fusion, sesenta muestras.</li>
-<li>Tejido de referencia: Tanaka, PXD034575.</li>
-<li>Tejido de comparación: CPTAC.</li>
-<li>Las salidas de la recálculo vigente están en results/v3_7/. results/v3_6/ queda congelado.</li>
-</ul>
+<main id="contenido" class="pagina">
+<h1>Datos</h1><p>CP es el grupo de cáncer. CN son pacientes sintomáticos con otra enfermedad intestinal. HC son personas sanas, medidas en otras corridas del mismo instrumento.</p><h2>Entradas del manifiesto</h2><table class="ordenable"><thead><tr><th>sha256</th><th>ruta</th></tr></thead><tbody><tr><td class="mono"><data value="a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8" data-fuente="results/v3_7/manifest_entradas.sha256#data/raw/plasma/DIA-NN_report.tsv">a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8</data></td><td class="mono">data/raw/plasma/DIA-NN_report.tsv</td></tr><tr><td class="mono"><data value="e5e73c2bdf543ec5493846e71b0a92143bde59fd891550856e632d451eed7cf6" data-fuente="results/v3_7/manifest_entradas.sha256#results/certified/cptac_unshared_treat.tsv">e5e73c2bdf543ec5493846e71b0a92143bde59fd891550856e632d451eed7cf6</data></td><td class="mono">results/certified/cptac_unshared_treat.tsv</td></tr><tr><td class="mono"><data value="1fd5e8cee6ef044b12d0b0b0a05f522bd788ad6f9330099fb23dc9e57053f9ce" data-fuente="results/v3_7/manifest_entradas.sha256#results/certified/inference_audit.json">1fd5e8cee6ef044b12d0b0b0a05f522bd788ad6f9330099fb23dc9e57053f9ce</data></td><td class="mono">results/certified/inference_audit.json</td></tr><tr><td class="mono"><data value="ece8a9079cb1e7db29403ce984fc6322fac7b0387b4e7e87259b8127db4d9590" data-fuente="results/v3_7/manifest_entradas.sha256#results/certification/certificado_resumen.json">ece8a9079cb1e7db29403ce984fc6322fac7b0387b4e7e87259b8127db4d9590</data></td><td class="mono">results/certification/certificado_resumen.json</td></tr><tr><td class="mono"><data value="560b33fa6d2980e138d70656eff588a5e76074102c59f7ae4a23e98fa3df5302" data-fuente="results/v3_7/manifest_entradas.sha256#metadata/gene_ontology/go_gene_long.tsv">560b33fa6d2980e138d70656eff588a5e76074102c59f7ae4a23e98fa3df5302</data></td><td class="mono">metadata/gene_ontology/go_gene_long.tsv</td></tr><tr><td class="mono"><data value="2d1619fa567a1839a60237fe52c1119455b18349d41f3e349fed406931de4215" data-fuente="results/v3_7/manifest_entradas.sha256#metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv">2d1619fa567a1839a60237fe52c1119455b18349d41f3e349fed406931de4215</data></td><td class="mono">metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv</td></tr><tr><td class="mono"><data value="da9ec08ee656d207b29242d804f308247957126201678e2ed80cae37ce8ed8c9" data-fuente="results/v3_7/manifest_entradas.sha256#data/raw/pride/Cohort1_proteinGroups.txt">da9ec08ee656d207b29242d804f308247957126201678e2ed80cae37ce8ed8c9</data></td><td class="mono">data/raw/pride/Cohort1_proteinGroups.txt</td></tr><tr><td class="mono"><data value="9e9e3239ccfe5bec7ae50eddfe7524dc159d87c4796d2e16e5b42a615fb94526" data-fuente="results/v3_7/manifest_entradas.sha256#external/hpa/hpa_concentracion_sangre.tsv">9e9e3239ccfe5bec7ae50eddfe7524dc159d87c4796d2e16e5b42a615fb94526</data></td><td class="mono">external/hpa/hpa_concentracion_sangre.tsv</td></tr><tr><td class="mono"><data value="2b1e48e3d90476bd1cd9f2c8a2091b18be9b0dd119c61c87ac912729bd64e6b7" data-fuente="results/v3_7/manifest_entradas.sha256#external/modelos/h7_esm2_embeddings.tsv">2b1e48e3d90476bd1cd9f2c8a2091b18be9b0dd119c61c87ac912729bd64e6b7</data></td><td class="mono">external/modelos/h7_esm2_embeddings.tsv</td></tr><tr><td class="mono"><data value="2f49356fac6c2f520f71b9aff6c673b65147bdfe756d407d26ee54057c053ef6" data-fuente="results/v3_7/manifest_entradas.sha256#external/modelos/h7_esm2_embeddings.tsv.sello.json">2f49356fac6c2f520f71b9aff6c673b65147bdfe756d407d26ee54057c053ef6</data></td><td class="mono">external/modelos/h7_esm2_embeddings.tsv.sello.json</td></tr><tr><td class="mono"><data value="ae6f767d992df424f85f5f8c41f192d211171c4829e528ce2c30e07db31b9d8a" data-fuente="results/v3_7/manifest_entradas.sha256#external/modelos/h7_esm2_omitidas.tsv">ae6f767d992df424f85f5f8c41f192d211171c4829e528ce2c30e07db31b9d8a</data></td><td class="mono">external/modelos/h7_esm2_omitidas.tsv</td></tr><tr><td class="mono"><data value="b6e577398819b5c3caccbbdb862976ecf0e133bdaee83f8c9f5fd9b75b9b44f9" data-fuente="results/v3_7/manifest_entradas.sha256#external/modelos/h7_esm2_omitidas.tsv.sello.json">b6e577398819b5c3caccbbdb862976ecf0e133bdaee83f8c9f5fd9b75b9b44f9</data></td><td class="mono">external/modelos/h7_esm2_omitidas.tsv.sello.json</td></tr><tr><td class="mono"><data value="34603ba0e8b965b0c11fa732954051dc8d6d37eaead6248f284d672cd950a418" data-fuente="results/v3_7/manifest_entradas.sha256#config/preregistro_v3.yaml">34603ba0e8b965b0c11fa732954051dc8d6d37eaead6248f284d672cd950a418</data></td><td class="mono">config/preregistro_v3.yaml</td></tr><tr><td class="mono"><data value="cb615434e1955e65e6cdaf27e677b7ea2f6f51dea200fcc8303e9bbc1d8bc4aa" data-fuente="results/v3_7/manifest_entradas.sha256#config/config.yaml">cb615434e1955e65e6cdaf27e677b7ea2f6f51dea200fcc8303e9bbc1d8bc4aa</data></td><td class="mono">config/config.yaml</td></tr><tr><td class="mono"><data value="cc4130fb2c06d3a773b8562f01d4567e5b315896e9e6b0d402b7cb71efd7ba75" data-fuente="results/v3_7/manifest_entradas.sha256#config/entradas_v3_7.yaml">cc4130fb2c06d3a773b8562f01d4567e5b315896e9e6b0d402b7cb71efd7ba75</data></td><td class="mono">config/entradas_v3_7.yaml</td></tr><tr><td class="mono"><data value="959322002f165dadc274be71164c1a775d4254df1e071d3ed642b50ae4f91abe" data-fuente="results/v3_7/manifest_entradas.sha256#config/esperado_v3_7.tsv">959322002f165dadc274be71164c1a775d4254df1e071d3ed642b50ae4f91abe</data></td><td class="mono">config/esperado_v3_7.tsv</td></tr><tr><td class="mono"><data value="19b45e1f3104a86cc19aba7ddab407996f9652e38a6d8f2a7ed8f23524f5ed37" data-fuente="results/v3_7/manifest_entradas.sha256#results/v3_7/crudos_integridad.tsv">19b45e1f3104a86cc19aba7ddab407996f9652e38a6d8f2a7ed8f23524f5ed37</data></td><td class="mono">results/v3_7/crudos_integridad.tsv</td></tr></tbody></table><h2>Cohortes</h2><ul><li>Tejido de descubrimiento: PDC000116, a través de results/certified/cptac_unshared_treat.tsv.</li><li>Tejido de réplica: PXD034575.</li><li>Suero: PXD055218.</li></ul>
 </main>
 <p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<script type="module" src="/js/sitio.a7de76dd00.js"></script>
+<script>
+(function () {
+  var reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var boton = document.getElementById("tema");
+  if (boton) boton.addEventListener("click", function () {
+    var actual = document.documentElement.getAttribute("data-tema");
+    document.documentElement.setAttribute("data-tema", actual === "oscuro" ? "claro" : "oscuro");
+  });
+  document.querySelectorAll("table.ordenable").forEach(function (tabla) {
+    var filas = Array.prototype.slice.call(tabla.tBodies[0].rows);
+    Array.prototype.forEach.call(tabla.tHead.rows[0].cells, function (th, indice) {
+      th.tabIndex = 0;
+      function ordenar() {
+        var abajo = th.getAttribute("aria-sort") !== "ascending";
+        filas.sort(function (a, b) {
+          var x = a.cells[indice].textContent.trim();
+          var y = b.cells[indice].textContent.trim();
+          var nx = parseFloat(x.replace(",", "."));
+          var ny = parseFloat(y.replace(",", "."));
+          var cmp = (isFinite(nx) && isFinite(ny)) ? nx - ny : x.localeCompare(y, "es");
+          return abajo ? cmp : -cmp;
+        });
+        filas.forEach(function (fila) { tabla.tBodies[0].appendChild(fila); });
+        th.setAttribute("aria-sort", abajo ? "ascending" : "descending");
+      }
+      th.addEventListener("click", ordenar);
+      th.addEventListener("keydown", function (ev) { if (ev.key === "Enter") ordenar(); });
+    });
+  });
+  document.querySelectorAll("[data-filtro]").forEach(function (botonFiltro) {
+    botonFiltro.addEventListener("click", function () {
+      var campo = botonFiltro.getAttribute("data-filtro");
+      var valor = botonFiltro.getAttribute("data-valor");
+      document.querySelectorAll(".celda-multi").forEach(function (celda) {
+        var ocultar = valor !== "todas" && celda.getAttribute(campo) !== valor;
+        if (ocultar) celda.setAttribute("hidden", "");
+        else celda.removeAttribute("hidden");
+      });
+    });
+  });
+  if (!reducido) {
+    document.querySelectorAll("data.contador").forEach(function (nodo) {
+      var fin = parseFloat(nodo.getAttribute("value"));
+      if (!isFinite(fin)) return;
+      var t0 = performance.now();
+      function paso(ahora) {
+        var t = Math.min(1, (ahora - t0) / 1200);
+        nodo.textContent = String(Math.round(fin * t));
+        if (t < 1) requestAnimationFrame(paso);
+        else nodo.textContent = nodo.getAttribute("data-visible");
+      }
+      requestAnimationFrame(paso);
+    });
+  }
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aprende · OncoGO-CRC</title>
+<link rel="stylesheet" href="/archivo/v3_6/css/base.beaa25f321.css">
+</head>
+<body>
+<div class="progreso" id="progreso"></div>
+<header class="barra">
+<a href="/">OncoGO-CRC</a>
+<nav><a href="/">Inicio</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/resultados">Resultados</a><a href="/aprende">Aprende</a><a href="/datos">Datos</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/reproducir">Reproducir</a><a href="/historial">Historial</a></nav>
+</header>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<main class="pagina">
+<h1>Para aprender</h1>
+<article class="tarjeta"><h2>La sangre no es el tumor diluido</h2><p>El suero se midió con DIA-NN y el tejido se comparó entre estudios. <data value="284" data-fuente="results/v3_6/suero_embudo.json">284</data> proteínas llegan a la celda.</p><p class="no-muestra">No muestra un examen.</p></article>
+<article class="tarjeta"><h2>Equivalente no es no se midió</h2><p><data value="166" data-fuente="results/v3_6/suero_embudo.json">166</data> proteínas descartan el cambio de la regla. <data value="118" data-fuente="results/v3_6/suero_embudo.json">118</data> no alcanzan a decidir.</p></article>
+<article class="tarjeta"><h2>Un modelo puede separar por la calidad</h2><p>M3 da <data value="0.9151250000000001" data-fuente="results/v3_6/ml_suero_permutacion.json">0,915</data> y M5 da <data value="0.6467499999999999" data-fuente="results/v3_6/ml_suero_permutacion.json">0,647</data>.</p></article>
+<article class="tarjeta"><h2>El orden es parte del diseño</h2><p>Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.</p></article>
+<article class="tarjeta"><h2>Una tabla degenerada no informa</h2><p>H6 queda en <data value="no_sostiene" data-fuente="results/v3_6/h6_origen_celular.json">no_sostiene</data>. No es evidencia a favor ni en contra.</p></article>
+<article class="tarjeta"><h2>No se detecta no quiere decir no existe</h2><p>H8 queda en <data value="no_evaluable" data-fuente="results/v3_6/h8_carga_tumoral.json">no_evaluable</data> porque el universo no llega a las proteínas tumorales epiteliales.</p></article>
+<article class="tarjeta"><h2>Fase aguda no es una proteína del tumor</h2><p>SAA1, LBP y LRG1 suben frente a sanos. Esas personas se midieron en otro bloque.</p></article>
+<article class="tarjeta"><h2>El certificado dice qué se puede afirmar</h2><p>El estado es <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data>. La limitación aceptada es H8. La preanalítica queda <data value="calculado" data-fuente="results/v3_7/preanalitica.json#estado">calculado</data>.</p></article>
+
+</main>
+<p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<script type="module" src="/archivo/v3_6/js/sitio.a7de76dd00.js"></script>
+</body>
+</html>

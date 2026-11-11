@@ -1,0 +1,8 @@
+{
+  "svg_sha256": "140d00afd79b4885e8f968279bca3d962d58d50434c11f61e12decd564a0c712",
+  "fuentes": [
+    "ml_explicacion.tsv"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/v3/exportar_sitio_v3_7.py"
+}

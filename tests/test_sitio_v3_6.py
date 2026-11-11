@@ -6,7 +6,8 @@ import re
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
-SITIO = RAIZ / "sitio"
+SITIO = RAIZ / "sitio" / "archivo" / "v3_6"
+VIGENTE = RAIZ / "sitio"
 AVISO = "Ningún resultado de esta tesis sirve para decidir sobre un paciente."
 PAGINAS = [
     "index.html", "como-se-hizo.html", "resultados.html", "aprende.html",
@@ -32,7 +33,7 @@ def test_paginas_aviso_y_figuras():
 def test_el_estado_v3_7_coincide_con_sus_ficheros():
     import json
 
-    pagina = (SITIO / "index.html").read_text(encoding="utf-8")
+    pagina = (VIGENTE / "index.html").read_text(encoding="utf-8")
     pares = re.findall(r'<data value="([^"]*)" data-fuente="(results/v3_7/[^"]+)"', pagina)
     assert pares
     for valor, fuente in pares:

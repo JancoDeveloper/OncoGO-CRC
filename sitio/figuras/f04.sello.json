@@ -1,0 +1,9 @@
+{
+  "svg_sha256": "ab23576efa4aa51f2f02da1faefb6de378201f544f98aa2295e90385c80bd36f",
+  "fuentes": [
+    "multiverso_suero.tsv",
+    "multiverso_resumen.json"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/v3/exportar_sitio_v3_7.py"
+}

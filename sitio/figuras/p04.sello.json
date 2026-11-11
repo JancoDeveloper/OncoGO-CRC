@@ -1,0 +1,8 @@
+{
+  "svg_sha256": "0eea00cad532b6722f19925cebdf49b375eb83dca7dd103f3dd623bc1a3f88d9",
+  "fuentes": [
+    "priorizacion_embudo.json"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/v3/exportar_sitio_v3_7.py"
+}

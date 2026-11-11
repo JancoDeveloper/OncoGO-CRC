@@ -1,0 +1,8 @@
+{
+  "svg_sha256": "366542e0f63b011462f1b82748cad9b94a62dc6ced12fb7f5672f82e64ee67eb",
+  "fuentes": [
+    "suero_embudo.json"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/v3/exportar_sitio_v3_7.py"
+}

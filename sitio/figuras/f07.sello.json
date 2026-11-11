@@ -1,0 +1,9 @@
+{
+  "svg_sha256": "7cae215bb63cded028cea7e5ac65b84bc0f93e2606bfa2627161516e0d553b77",
+  "fuentes": [
+    "gsea_tejido.tsv",
+    "go_tejido.json"
+  ],
+  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
+  "generador": "scripts/v3/exportar_sitio_v3_7.py"
+}

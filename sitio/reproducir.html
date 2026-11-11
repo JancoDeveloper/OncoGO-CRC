@@ -4,19 +4,85 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reproducir · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/base.beaa25f321.css">
+<link rel="stylesheet" href="/css/v37.css">
 </head>
 <body>
-<div class="progreso" id="progreso"></div>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <a href="/">OncoGO-CRC</a>
-<nav><a href="/">Inicio</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/resultados">Resultados</a><a href="/aprende">Aprende</a><a href="/datos">Datos</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/reproducir">Reproducir</a><a href="/historial">Historial</a></nav>
+<nav><a href="/">Inicio</a><a href="/lo-prometido">Lo prometido</a><a href="/datos">Datos</a><a href="/tejido">Tejido</a><a href="/suero">Suero</a><a href="/aprendizaje-automatico">Aprendizaje</a><a href="/preanalitica">Preanalítica</a><a href="/hipotesis">Hipótesis</a><a href="/priorizacion">Priorización</a><a href="/desviaciones">Desviaciones</a><a href="/reproducir">Reproducir</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/aprende">Aprende</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/historial">Historial</a><a href="/archivo/">Archivo</a></nav>
+<button type="button" id="tema">Tema</button>
 </header>
+<p class="franja" role="status">Certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">Publicable</data>. Commit del sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>. Etiqueta v3.7-final.</p>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<main class="pagina">
-<h1>Reproducir</h1><ol class="tarjeta"><li>Clonar el repositorio.</li><li>Crear el entorno con el archivo de dependencias.</li><li>Ejecutar <span class="mono">make v3-7</span> después de que los 60 crudos coincidan con el SHA-1 de PRIDE.</li><li>Las salidas quedan en results/v3_7/. v3.6 no se vuelve a calcular.</li></ol>
+<main id="contenido" class="pagina">
+<h1>Reproducir</h1><pre class="mono">make v3-7</pre><p>Esa orden repite la etapa. No recalcula ESM-2: lo lee de external/modelos/h7_esm2_embeddings.tsv.</p><h2>Determinismo</h2><ul><li>A quedó archivada en el volumen. docs/determinismo_dos_procesos.md la compara con la B que entonces ocupaba results/v3_7, no con esta E.</li><li>B y C, con el mismo sello, no coinciden en el secundario de H7. El detalle está en docs/determinismo_b_c.md.</li><li>La primera pareja D y E se descartó: secuencia.json quedó en no_evaluable. Está en el volumen y en docs/determinismo_d_e.md.</li><li>D y E, ya con el estado calculado, son idénticas en los números. docs/determinismo_d_e.md.</li><li>La comprobación estricta, que no da por iguales dos sha256 distintos, no encuentra otra diferencia. docs/determinismo_d_e_estricto.md.</li></ul><figure class="grafico" id="n14">
+<h3>¿Qué casillas pasan?</h3>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Casillas del certificado</title><desc>Cada casilla copia su estado. El trazo discontinuo no es pasa.</desc><rect x="16" y="16" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.0.estado" tabindex="0" data-tip="entradas pasa"/><text x="24" y="42" fill="currentColor" font-size="11">entradas</text><rect x="172" y="16" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.1.estado" tabindex="0" data-tip="sellos pasa"/><text x="180" y="42" fill="currentColor" font-size="11">sellos</text><rect x="328" y="16" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.2.estado" tabindex="0" data-tip="corrida_unica pasa"/><text x="336" y="42" fill="currentColor" font-size="11">corrida_unica</text><rect x="484" y="16" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.3.estado" tabindex="0" data-tip="controles_suero pasa"/><text x="492" y="42" fill="currentColor" font-size="11">controles_suero</text><rect x="16" y="68" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.4.estado" tabindex="0" data-tip="h1 pasa"/><text x="24" y="94" fill="currentColor" font-size="11">h1</text><rect x="172" y="68" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.5.estado" tabindex="0" data-tip="auditoria_rai2025 pasa"/><text x="180" y="94" fill="currentColor" font-size="11">auditoria_rai2025</text><rect x="328" y="68" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="4 2" data-value="desviacion_declarada" data-fuente="results/v3_7/certificado.json#casillas.6.estado" tabindex="0" data-tip="alcance desviacion_declarada"/><text x="336" y="94" fill="currentColor" font-size="11">alcance</text><rect x="484" y="68" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.7.estado" tabindex="0" data-tip="reproduce pasa"/><text x="492" y="94" fill="currentColor" font-size="11">reproduce</text><rect x="16" y="120" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.8.estado" tabindex="0" data-tip="tests pasa"/><text x="24" y="146" fill="currentColor" font-size="11">tests</text><rect x="172" y="120" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.9.estado" tabindex="0" data-tip="suero pasa"/><text x="180" y="146" fill="currentColor" font-size="11">suero</text><rect x="328" y="120" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.10.estado" tabindex="0" data-tip="ml pasa"/><text x="336" y="146" fill="currentColor" font-size="11">ml</text><rect x="484" y="120" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.11.estado" tabindex="0" data-tip="multiverso pasa"/><text x="492" y="146" fill="currentColor" font-size="11">multiverso</text><rect x="16" y="172" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.12.estado" tabindex="0" data-tip="h5 pasa"/><text x="24" y="198" fill="currentColor" font-size="11">h5</text><rect x="172" y="172" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.13.estado" tabindex="0" data-tip="h6 pasa"/><text x="180" y="198" fill="currentColor" font-size="11">h6</text><rect x="328" y="172" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.14.estado" tabindex="0" data-tip="h7 pasa"/><text x="336" y="198" fill="currentColor" font-size="11">h7</text><rect x="484" y="172" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.15.estado" tabindex="0" data-tip="h8 pasa"/><text x="492" y="198" fill="currentColor" font-size="11">h8</text><rect x="16" y="224" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.16.estado" tabindex="0" data-tip="h9 pasa"/><text x="24" y="250" fill="currentColor" font-size="11">h9</text><rect x="172" y="224" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.17.estado" tabindex="0" data-tip="h10 pasa"/><text x="180" y="250" fill="currentColor" font-size="11">h10</text><rect x="328" y="224" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.18.estado" tabindex="0" data-tip="preanalitica pasa"/><text x="336" y="250" fill="currentColor" font-size="11">preanalitica</text><rect x="484" y="224" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.19.estado" tabindex="0" data-tip="go pasa"/><text x="492" y="250" fill="currentColor" font-size="11">go</text><rect x="16" y="276" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.20.estado" tabindex="0" data-tip="ml_explicacion pasa"/><text x="24" y="302" fill="currentColor" font-size="11">ml_explicacion</text><rect x="172" y="276" width="148" height="44" fill="none" stroke="#0b4f55" stroke-dasharray="0" data-value="pasa" data-fuente="results/v3_7/certificado.json#casillas.21.estado" tabindex="0" data-tip="priorizacion pasa"/><text x="180" y="302" fill="currentColor" font-size="11">priorizacion</text></svg>
+<details><summary>Tabla de los datos del gráfico</summary>
+<table class="ordenable"><thead><tr><th>casilla</th><th>estado</th></tr></thead><tbody><tr><td>entradas</td><td>pasa</td></tr><tr><td>sellos</td><td>pasa</td></tr><tr><td>corrida_unica</td><td>pasa</td></tr><tr><td>controles_suero</td><td>pasa</td></tr><tr><td>h1</td><td>pasa</td></tr><tr><td>auditoria_rai2025</td><td>pasa</td></tr><tr><td>alcance</td><td>desviacion_declarada</td></tr><tr><td>reproduce</td><td>pasa</td></tr><tr><td>tests</td><td>pasa</td></tr><tr><td>suero</td><td>pasa</td></tr><tr><td>ml</td><td>pasa</td></tr><tr><td>multiverso</td><td>pasa</td></tr><tr><td>h5</td><td>pasa</td></tr><tr><td>h6</td><td>pasa</td></tr><tr><td>h7</td><td>pasa</td></tr><tr><td>h8</td><td>pasa</td></tr><tr><td>h9</td><td>pasa</td></tr><tr><td>h10</td><td>pasa</td></tr><tr><td>preanalitica</td><td>pasa</td></tr><tr><td>go</td><td>pasa</td></tr><tr><td>ml_explicacion</td><td>pasa</td></tr><tr><td>priorizacion</td><td>pasa</td></tr></tbody></table>
+</details>
+<p class="descargas"><a href="/figuras/n14.svg" download>Descargar SVG</a>
+<a href="/figuras/n14.tsv" download>Descargar TSV</a>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/certificado.json">origen certificado.json</a></p>
+</figure><p>Los tests de la corrida están en results/v3_7/tests.txt.</p>
 </main>
 <p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<script type="module" src="/js/sitio.a7de76dd00.js"></script>
+<script>
+(function () {
+  var reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var boton = document.getElementById("tema");
+  if (boton) boton.addEventListener("click", function () {
+    var actual = document.documentElement.getAttribute("data-tema");
+    document.documentElement.setAttribute("data-tema", actual === "oscuro" ? "claro" : "oscuro");
+  });
+  document.querySelectorAll("table.ordenable").forEach(function (tabla) {
+    var filas = Array.prototype.slice.call(tabla.tBodies[0].rows);
+    Array.prototype.forEach.call(tabla.tHead.rows[0].cells, function (th, indice) {
+      th.tabIndex = 0;
+      function ordenar() {
+        var abajo = th.getAttribute("aria-sort") !== "ascending";
+        filas.sort(function (a, b) {
+          var x = a.cells[indice].textContent.trim();
+          var y = b.cells[indice].textContent.trim();
+          var nx = parseFloat(x.replace(",", "."));
+          var ny = parseFloat(y.replace(",", "."));
+          var cmp = (isFinite(nx) && isFinite(ny)) ? nx - ny : x.localeCompare(y, "es");
+          return abajo ? cmp : -cmp;
+        });
+        filas.forEach(function (fila) { tabla.tBodies[0].appendChild(fila); });
+        th.setAttribute("aria-sort", abajo ? "ascending" : "descending");
+      }
+      th.addEventListener("click", ordenar);
+      th.addEventListener("keydown", function (ev) { if (ev.key === "Enter") ordenar(); });
+    });
+  });
+  document.querySelectorAll("[data-filtro]").forEach(function (botonFiltro) {
+    botonFiltro.addEventListener("click", function () {
+      var campo = botonFiltro.getAttribute("data-filtro");
+      var valor = botonFiltro.getAttribute("data-valor");
+      document.querySelectorAll(".celda-multi").forEach(function (celda) {
+        var ocultar = valor !== "todas" && celda.getAttribute(campo) !== valor;
+        if (ocultar) celda.setAttribute("hidden", "");
+        else celda.removeAttribute("hidden");
+      });
+    });
+  });
+  if (!reducido) {
+    document.querySelectorAll("data.contador").forEach(function (nodo) {
+      var fin = parseFloat(nodo.getAttribute("value"));
+      if (!isFinite(fin)) return;
+      var t0 = performance.now();
+      function paso(ahora) {
+        var t = Math.min(1, (ahora - t0) / 1200);
+        nodo.textContent = String(Math.round(fin * t));
+        if (t < 1) requestAnimationFrame(paso);
+        else nodo.textContent = nodo.getAttribute("data-visible");
+      }
+      requestAnimationFrame(paso);
+    });
+  }
+})();
+</script>
 </body>
 </html>

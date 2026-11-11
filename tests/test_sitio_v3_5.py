@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
-SITIO = RAIZ / "sitio"
+SITIO = RAIZ / "sitio" / "archivo" / "v3_6"
 AVISO = "Ningún resultado de esta tesis sirve para decidir sobre un paciente."
 PAGINAS = [
     "index.html",

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inicio · OncoGO-CRC</title>
+<link rel="stylesheet" href="/archivo/v3_6/css/base.beaa25f321.css">
+</head>
+<body>
+<div class="progreso" id="progreso"></div>
+<header class="barra">
+<a href="/">OncoGO-CRC</a>
+<nav><a href="/">Inicio</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/resultados">Resultados</a><a href="/aprende">Aprende</a><a href="/datos">Datos</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/reproducir">Reproducir</a><a href="/historial">Historial</a></nav>
+</header>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<main class="pagina">
+
+<h1>Qué parte del tumor se deja ver en la sangre</h1>
+<section class="tarjeta" id="estado-v37">
+<h2>Recálculo v3.7</h2>
+<p>El certificado de esta recálculo está en <span class="estado" data-estado="publicable"><data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data></span>. La preanalítica queda <data value="calculado" data-fuente="results/v3_7/preanalitica.json#estado">calculado</data>, con fecha en <data value="60" data-fuente="results/v3_7/preanalitica.json#n_con_fecha">60</data> de <data value="60" data-fuente="results/v3_7/preanalitica.json#n_crudos_validos">60</data> crudos. H8 sigue <data value="no_evaluable" data-fuente="results/v3_7/h8_carga_tumoral.json#estado">no_evaluable</data> y su universo es <data value="53" data-fuente="results/v3_7/h8_carga_tumoral.json#n_universo">53</data>.</p>
+<p class="no-muestra"><strong>Qué no muestra:</strong> no une los sanos. El reporte los llama Normal y el crudo se llama HC. Tampoco hay vías, GO, catálogo, neoantígenos ni PRTC: esos ficheros no están. El detalle está en docs/estado_v3_7.md.</p>
+</section>
+<p class="tarjeta">El certificado de esta corrida está en <span class="estado" data-estado="publicable"><data value="publicable" data-fuente="results/v3_6/certificado.json">publicable</data></span>. Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.</p>
+<div class="rejilla">
+<div class="tarjeta"><p class="numero"><data value="0" data-fuente="results/v3_6/suero_embudo.json">0</data></p><p>proteínas diferentes de <data value="284" data-fuente="results/v3_6/suero_embudo.json">284</data></p></div>
+<div class="tarjeta"><p class="numero"><data value="0.9151250000000001" data-fuente="results/v3_6/ml_suero_permutacion.json">0,915</data></p><p>separa la calidad sola</p></div>
+<div class="tarjeta"><p class="numero"><data value="0.6467499999999999" data-fuente="results/v3_6/ml_suero_permutacion.json">0,647</data></p><p>queda al quitar la calidad</p></div>
+</div>
+<figure class="grafico tarjeta" id="g1">
+<h3>¿Cuántas proteínas llegan a la celda?</h3>
+<div class="lienzo"><svg viewBox="0 0 600 80" role="img"><rect x="0.0" y="20" width="295.4" height="36" fill="#0E7C86"><title>Grupos: 897</title></rect><rect x="295.4" y="20" width="108.3" height="36" fill="#56B4E9"><title>q: 329</title></rect><rect x="403.7" y="20" width="102.7" height="36" fill="#009E73"><title>Humanas: 312</title></rect><rect x="506.5" y="20" width="93.5" height="36" fill="#D55E00"><title>Celda: 284</title></rect></svg></div>
+<noscript><p>Barras del embudo del suero.</p></noscript>
+<p class="leyenda"><data value="897" data-fuente="results/v3_6/suero_embudo.json">897</data> → <data value="284" data-fuente="results/v3_6/suero_embudo.json">284</data></p>
+<details class="como-leer"><summary>Cómo leerlo</summary><p>Cada tramo es un filtro escrito antes de mirar.</p></details>
+<details class="muestra"><summary>Qué muestra</summary><p>Cuántas proteínas sobreviven a cada regla.</p></details>
+<details class="no-muestra"><summary>Qué no muestra</summary><p>No dice que las que salen no existan.</p></details>
+<details class="tecnico"><summary>Datos</summary><p class="mono">results/v3_6/suero_embudo.json</p></details>
+<figcaption>Embudo del suero</figcaption>
+<p class="sr-only">Barras del embudo del suero.</p>
+</figure>
+<p>Esta animación de la portada es una ilustración. No hay un espectro medido de SAA1 en esta corrida.</p>
+
+</main>
+<p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<script type="module" src="/archivo/v3_6/js/sitio.a7de76dd00.js"></script>
+</body>
+</html>

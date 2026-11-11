@@ -4,28 +4,76 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aprende · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/base.beaa25f321.css">
+<link rel="stylesheet" href="/css/v37.css">
 </head>
 <body>
-<div class="progreso" id="progreso"></div>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <a href="/">OncoGO-CRC</a>
-<nav><a href="/">Inicio</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/resultados">Resultados</a><a href="/aprende">Aprende</a><a href="/datos">Datos</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/reproducir">Reproducir</a><a href="/historial">Historial</a></nav>
+<nav><a href="/">Inicio</a><a href="/lo-prometido">Lo prometido</a><a href="/datos">Datos</a><a href="/tejido">Tejido</a><a href="/suero">Suero</a><a href="/aprendizaje-automatico">Aprendizaje</a><a href="/preanalitica">Preanalítica</a><a href="/hipotesis">Hipótesis</a><a href="/priorizacion">Priorización</a><a href="/desviaciones">Desviaciones</a><a href="/reproducir">Reproducir</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/aprende">Aprende</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/historial">Historial</a><a href="/archivo/">Archivo</a></nav>
+<button type="button" id="tema">Tema</button>
 </header>
+<p class="franja" role="status">Certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">Publicable</data>. Commit del sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>. Etiqueta v3.7-final.</p>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<main class="pagina">
-<h1>Para aprender</h1>
-<article class="tarjeta"><h2>La sangre no es el tumor diluido</h2><p>El suero se midió con DIA-NN y el tejido se comparó entre estudios. <data value="284" data-fuente="results/v3_6/suero_embudo.json">284</data> proteínas llegan a la celda.</p><p class="no-muestra">No muestra un examen.</p></article>
-<article class="tarjeta"><h2>Equivalente no es no se midió</h2><p><data value="166" data-fuente="results/v3_6/suero_embudo.json">166</data> proteínas descartan el cambio de la regla. <data value="118" data-fuente="results/v3_6/suero_embudo.json">118</data> no alcanzan a decidir.</p></article>
-<article class="tarjeta"><h2>Un modelo puede separar por la calidad</h2><p>M3 da <data value="0.9151250000000001" data-fuente="results/v3_6/ml_suero_permutacion.json">0,915</data> y M5 da <data value="0.6467499999999999" data-fuente="results/v3_6/ml_suero_permutacion.json">0,647</data>.</p></article>
-<article class="tarjeta"><h2>El orden es parte del diseño</h2><p>Los grupos se midieron en bloques: primero el cáncer, después la colonoscopia negativa y al final los sanos. La piel y la coagulación cambian con el orden. Con estos datos no se puede separar el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no es atribuible al tumor. Las diferencias frente a los sanos comparan también bloques de adquisición distintos.</p></article>
-<article class="tarjeta"><h2>Una tabla degenerada no informa</h2><p>H6 queda en <data value="no_sostiene" data-fuente="results/v3_6/h6_origen_celular.json">no_sostiene</data>. No es evidencia a favor ni en contra.</p></article>
-<article class="tarjeta"><h2>No se detecta no quiere decir no existe</h2><p>H8 queda en <data value="no_evaluable" data-fuente="results/v3_6/h8_carga_tumoral.json">no_evaluable</data> porque el universo no llega a las proteínas tumorales epiteliales.</p></article>
-<article class="tarjeta"><h2>Fase aguda no es una proteína del tumor</h2><p>SAA1, LBP y LRG1 suben frente a sanos. Esas personas se midieron en otro bloque.</p></article>
-<article class="tarjeta"><h2>El certificado dice qué se puede afirmar</h2><p>El estado es <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data>. La limitación aceptada es H8. La preanalítica queda <data value="calculado" data-fuente="results/v3_7/preanalitica.json#estado">calculado</data>.</p></article>
-
+<main id="contenido" class="pagina">
+<h1>Aprende</h1><p>Estas lecciones apuntan fuera. Solo se enlaza lo que respondió 200 en docs/web_enlaces.tsv.</p><ul><li><a href="https://www.ebi.ac.uk/pride/archive/projects/PXD055218">pride_pxd055218</a>. PRIDE - PRoteomics IDEntifications Database</li><li><a href="https://www.ebi.ac.uk/pride/archive/projects/PXD034575">pride_pxd034575</a>. PRIDE - PRoteomics IDEntifications Database</li><li><a href="https://pdc.cancer.gov/pdc/study/PDC000116">pdc_pdc000116</a>. Proteomic Data Commons</li><li><a href="https://kb.linkedomics.org/">linkedomics</a>. LinkedOmicsKB</li><li><a href="https://www.proteinatlas.org/about/download">hpa_descarga</a>. Downloadable data - The Human Protein Atlas</li><li><a href="https://www.proteinatlas.org/humanproteome/blood">hpa_sangre</a>. The human blood atlas - The Human Protein Atlas</li><li><a href="https://www.ebi.ac.uk/GOA/human_release">goa_humano</a>. Current Composition of Human UniProt-GOA | European Bioinformatics Institute</li><li><a href="https://geneontology.org/docs/download-go-annotations/downloads/">go_descargas</a>. Download annotations by organism</li><li><a href="https://reactome.org/download-data">reactome</a>. Download - Reactome Pathway Database</li><li><a href="https://www.gsea-msigdb.org/gsea/msigdb/human/collections.jsp">msigdb</a>. GSEA | MSigDB | Human MSigDB Collections</li><li><a href="https://github.com/HaoGroup-ProtContLib/Protein-Contaminant-Libraries-for-DDA-and-DIA-Proteomics">contaminantes_repo</a>. GitHub - HaoGroup-ProtContLib/Protein-Contaminant-Libraries-for-DDA-and-DIA-Proteomics: This project is created by the Hao Lab at the Department of Chemistry &amp;amp; Biochemistry, University of Maryland, College Park, MD. This project aims to provide contaminant protein FASTA and spectral libraries that can be universally applied to DDA and DIA proteomics and freely accessible for the proteomics community. · GitHub</li><li><a href="https://github.com/vdemichev/DiaNN">diann</a>. GitHub - vdemichev/DiaNN: DIA-NN - a universal automated software suite for DIA proteomics data analysis. · GitHub</li><li><a href="https://github.com/compomics/ThermoRawFileParser">thermoraw</a>. GitHub - CompOmics/ThermoRawFileParser: Thermo RAW file parser that runs on Linux/Mac and all other platforms that support Mono · GitHub</li><li><a href="https://gseapy.readthedocs.io/">gseapy</a>. Welcome to GSEAPY’s documentation! &amp;mdash; gseapy 1.3.0 documentation</li><li><a href="https://shap.readthedocs.io/">shap</a>. Welcome to the SHAP documentation &amp;mdash; SHAP latest documentation</li><li><a href="https://github.com/JancoDeveloper/OncoGO-CRC">repositorio</a>. GitHub - JancoDeveloper/OncoGO-CRC · GitHub</li><li><a href="https://doi.org/10.1038/nature13438">doi_zhang</a>. Proteogenomic characterization of human colon and rectal cancer | Nature</li><li><a href="https://doi.org/10.1038/s41592-019-0638-x">doi_diann</a>. DIA-NN: neural networks and interference correction enable deep proteome coverage in high throughput | Nature Methods</li><li><a href="https://doi.org/10.51643/22562915.853">doi_garcia</a>. Biología molecular del cáncer colorrectal | Revista Colombiana de Hematología y Oncología</li></ul><p>Una cohorte no es una persona. Un AUC no es una decisión. Un término GO no es un mecanismo demostrado.</p>
 </main>
 <p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<script type="module" src="/js/sitio.a7de76dd00.js"></script>
+<script>
+(function () {
+  var reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var boton = document.getElementById("tema");
+  if (boton) boton.addEventListener("click", function () {
+    var actual = document.documentElement.getAttribute("data-tema");
+    document.documentElement.setAttribute("data-tema", actual === "oscuro" ? "claro" : "oscuro");
+  });
+  document.querySelectorAll("table.ordenable").forEach(function (tabla) {
+    var filas = Array.prototype.slice.call(tabla.tBodies[0].rows);
+    Array.prototype.forEach.call(tabla.tHead.rows[0].cells, function (th, indice) {
+      th.tabIndex = 0;
+      function ordenar() {
+        var abajo = th.getAttribute("aria-sort") !== "ascending";
+        filas.sort(function (a, b) {
+          var x = a.cells[indice].textContent.trim();
+          var y = b.cells[indice].textContent.trim();
+          var nx = parseFloat(x.replace(",", "."));
+          var ny = parseFloat(y.replace(",", "."));
+          var cmp = (isFinite(nx) && isFinite(ny)) ? nx - ny : x.localeCompare(y, "es");
+          return abajo ? cmp : -cmp;
+        });
+        filas.forEach(function (fila) { tabla.tBodies[0].appendChild(fila); });
+        th.setAttribute("aria-sort", abajo ? "ascending" : "descending");
+      }
+      th.addEventListener("click", ordenar);
+      th.addEventListener("keydown", function (ev) { if (ev.key === "Enter") ordenar(); });
+    });
+  });
+  document.querySelectorAll("[data-filtro]").forEach(function (botonFiltro) {
+    botonFiltro.addEventListener("click", function () {
+      var campo = botonFiltro.getAttribute("data-filtro");
+      var valor = botonFiltro.getAttribute("data-valor");
+      document.querySelectorAll(".celda-multi").forEach(function (celda) {
+        var ocultar = valor !== "todas" && celda.getAttribute(campo) !== valor;
+        if (ocultar) celda.setAttribute("hidden", "");
+        else celda.removeAttribute("hidden");
+      });
+    });
+  });
+  if (!reducido) {
+    document.querySelectorAll("data.contador").forEach(function (nodo) {
+      var fin = parseFloat(nodo.getAttribute("value"));
+      if (!isFinite(fin)) return;
+      var t0 = performance.now();
+      function paso(ahora) {
+        var t = Math.min(1, (ahora - t0) / 1200);
+        nodo.textContent = String(Math.round(fin * t));
+        if (t < 1) requestAnimationFrame(paso);
+        else nodo.textContent = nodo.getAttribute("data-visible");
+      }
+      requestAnimationFrame(paso);
+    });
+  }
+})();
+</script>
 </body>
 </html>

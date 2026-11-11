@@ -1,0 +1,11 @@
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Mapa del estudio</title><desc>Cuatro bloques unidos por un trazo: tejido, suero, hipótesis y priorización. El trazo se dibuja una vez.</desc>
+<rect x="40" y="40" width="150" height="64" fill="none" stroke="#0b4f55" stroke-width="2"/>
+<text x="115" y="78" text-anchor="middle" fill="currentColor">Tejido</text>
+<rect x="245" y="40" width="150" height="64" fill="none" stroke="#0b4f55" stroke-width="2"/>
+<text x="320" y="78" text-anchor="middle" fill="currentColor">Suero</text>
+<rect x="450" y="40" width="150" height="64" fill="none" stroke="#0b4f55" stroke-width="2"/>
+<text x="525" y="78" text-anchor="middle" fill="currentColor">Hipótesis</text>
+<rect x="245" y="220" width="150" height="64" fill="none" stroke="#6b2d12" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="320" y="258" text-anchor="middle" fill="currentColor">Priorización</text>
+<path class="trazo" d="M190 72 H245 M395 72 H450 M320 104 V220" fill="none" stroke="#0b4f55" stroke-width="3"/>
+</svg>

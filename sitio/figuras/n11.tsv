@@ -1,0 +1,11 @@
+hipotesis	valor	fuente
+H1	rechaza_h1	results/v3_7/k1_etiquetas.json#h1_veredicto
+H2	no_evaluada	config/preregistro_v3.yaml#hipotesis.h2.estado_heredado
+H3	el preregistro v3 no tiene h3	
+H4	0.9	config/preregistro_v3.yaml#hipotesis.h4.umbral
+H5	sostiene	results/v3_7/h5_especificidad_organo.json#estado
+H6	no_sostiene	results/v3_7/h6_origen_celular.json#estado
+H7	refuta	results/v3_7/h7_visibilidad_en_sangre.json#estado
+H8	no_evaluable	results/v3_7/h8_carga_tumoral.json#estado
+H9	exploratorio	results/v3_7/h9_wald.json#estado
+H10	descriptiva	results/v3_7/h10_especificidad.json#estado

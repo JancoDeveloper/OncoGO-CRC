@@ -1,0 +1,8 @@
+modelo	auc_oof_media
+M1_proteinas_filtrada_humana	0.9466249999999998
+M2_proteinas_principal	0.88025
+M3_solo_qc	0.9151250000000001
+M4_solo_coagulacion	0.818375
+M5_principal_residualizada_qc	0.6467499999999999
+M6_principal_pca5	0.8875
+K5_percentil95_nulo_sin_contaminantes_ni_paneles	0.8675

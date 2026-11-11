@@ -1,7 +1,14 @@
-# Web v3.7, pendiente
+# Web v3.7, pendiente de publicación
 
-La corrida E está en `results/v3_7/` y la etiqueta `v3.7-final` apunta a `595118ae09ea6006c744c86b28cb0a10d42e0442`. El sitio público no se regeneró ni se desplegó. Sigue en la v3.6.
+El sitio se genera con `scripts/v3/exportar_sitio_v3_7.py` y los tests de `tests/test_sitio_v3_7.py` pasan. Las páginas de la v3.6 están en `sitio/archivo/v3_6/`. No se ha desplegado. La página pública sigue en la v3.6.
 
-No están `scripts/v3/exportar_sitio_v3_7.py`, `tests/test_sitio_v3_7.py`, `config/enlaces_externos.tsv` ni `scripts/v3/verificar_enlaces.py`. Las páginas actuales no se movieron a `sitio/archivo/v3_6/`.
+`scripts/v3/verificar_enlaces.py` no termina en cero. No se publica un enlace que no responda 200 con el título esperado, y no se despliega mientras esa comprobación falle.
 
-Falta, como mínimo: las rutas a `results/v3_7`, la franja del certificado, CN descrito como pacientes sintomáticos con otra enfermedad intestinal, la página de lo prometido y los gráficos del embudo, de la celda, de R1, del bosque de AUC y del tablero de hipótesis.
+Siguen sin poder publicarse:
+
+- `https://europepmc.org/article/MED/40652393` responde 403.
+- `https://doi.org/10.1021/acs.jproteome.5c00285` termina en 403.
+- `https://doi.org/10.1021/acs.jproteome.2c00145` termina en 403.
+- `https://doi.org/10.1016/j.celrep.2024.113810` y `https://doi.org/10.1016/j.cell.2019.03.030` responden 200 con el título «Redirecting», no con el título del artículo. El sitio del editor responde 403 a este cliente.
+
+El resto de `config/enlaces_externos.tsv` respondió 200 y sí entra en la web local.

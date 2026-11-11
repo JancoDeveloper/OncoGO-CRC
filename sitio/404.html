@@ -4,19 +4,76 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>No está · OncoGO-CRC</title>
-<link rel="stylesheet" href="/css/base.beaa25f321.css">
+<link rel="stylesheet" href="/css/v37.css">
 </head>
 <body>
-<div class="progreso" id="progreso"></div>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <a href="/">OncoGO-CRC</a>
-<nav><a href="/">Inicio</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/resultados">Resultados</a><a href="/aprende">Aprende</a><a href="/datos">Datos</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/reproducir">Reproducir</a><a href="/historial">Historial</a></nav>
+<nav><a href="/">Inicio</a><a href="/lo-prometido">Lo prometido</a><a href="/datos">Datos</a><a href="/tejido">Tejido</a><a href="/suero">Suero</a><a href="/aprendizaje-automatico">Aprendizaje</a><a href="/preanalitica">Preanalítica</a><a href="/hipotesis">Hipótesis</a><a href="/priorizacion">Priorización</a><a href="/desviaciones">Desviaciones</a><a href="/reproducir">Reproducir</a><a href="/como-se-hizo">Cómo se hizo</a><a href="/aprende">Aprende</a><a href="/glosario">Glosario</a><a href="/preguntas">Preguntas</a><a href="/historial">Historial</a><a href="/archivo/">Archivo</a></nav>
+<button type="button" id="tema">Tema</button>
 </header>
+<p class="franja" role="status">Certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">Publicable</data>. Commit del sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>. Etiqueta v3.7-final.</p>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<main class="pagina">
-<h1>No está</h1><p>Esa dirección no existe. <a href='/'>Volver al inicio</a>.</p><p>Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<main id="contenido" class="pagina">
+<h1>Esta página no está</h1><p><a href="/">Volver al inicio</a>.</p>
 </main>
 <p class="pie">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<script type="module" src="/js/sitio.a7de76dd00.js"></script>
+<script>
+(function () {
+  var reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var boton = document.getElementById("tema");
+  if (boton) boton.addEventListener("click", function () {
+    var actual = document.documentElement.getAttribute("data-tema");
+    document.documentElement.setAttribute("data-tema", actual === "oscuro" ? "claro" : "oscuro");
+  });
+  document.querySelectorAll("table.ordenable").forEach(function (tabla) {
+    var filas = Array.prototype.slice.call(tabla.tBodies[0].rows);
+    Array.prototype.forEach.call(tabla.tHead.rows[0].cells, function (th, indice) {
+      th.tabIndex = 0;
+      function ordenar() {
+        var abajo = th.getAttribute("aria-sort") !== "ascending";
+        filas.sort(function (a, b) {
+          var x = a.cells[indice].textContent.trim();
+          var y = b.cells[indice].textContent.trim();
+          var nx = parseFloat(x.replace(",", "."));
+          var ny = parseFloat(y.replace(",", "."));
+          var cmp = (isFinite(nx) && isFinite(ny)) ? nx - ny : x.localeCompare(y, "es");
+          return abajo ? cmp : -cmp;
+        });
+        filas.forEach(function (fila) { tabla.tBodies[0].appendChild(fila); });
+        th.setAttribute("aria-sort", abajo ? "ascending" : "descending");
+      }
+      th.addEventListener("click", ordenar);
+      th.addEventListener("keydown", function (ev) { if (ev.key === "Enter") ordenar(); });
+    });
+  });
+  document.querySelectorAll("[data-filtro]").forEach(function (botonFiltro) {
+    botonFiltro.addEventListener("click", function () {
+      var campo = botonFiltro.getAttribute("data-filtro");
+      var valor = botonFiltro.getAttribute("data-valor");
+      document.querySelectorAll(".celda-multi").forEach(function (celda) {
+        var ocultar = valor !== "todas" && celda.getAttribute(campo) !== valor;
+        if (ocultar) celda.setAttribute("hidden", "");
+        else celda.removeAttribute("hidden");
+      });
+    });
+  });
+  if (!reducido) {
+    document.querySelectorAll("data.contador").forEach(function (nodo) {
+      var fin = parseFloat(nodo.getAttribute("value"));
+      if (!isFinite(fin)) return;
+      var t0 = performance.now();
+      function paso(ahora) {
+        var t = Math.min(1, (ahora - t0) / 1200);
+        nodo.textContent = String(Math.round(fin * t));
+        if (t < 1) requestAnimationFrame(paso);
+        else nodo.textContent = nodo.getAttribute("data-visible");
+      }
+      requestAnimationFrame(paso);
+    });
+  }
+})();
+</script>
 </body>
 </html>
