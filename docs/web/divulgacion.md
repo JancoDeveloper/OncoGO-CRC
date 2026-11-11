@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Qué se ve del tumor en la sangre
 
 La página con las gráficas, las fichas, la teoría y los diccionarios está en [divulgacion.html](divulgacion.html). Lo que hay que estudiar está en [sustentacion.md](sustentacion.md). El mapa de la teoría y de los enlaces está en [diccionario.md](diccionario.md). Esta nota deja los números por escrito.

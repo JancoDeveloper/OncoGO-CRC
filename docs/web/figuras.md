@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Figuras (generadas automáticamente)
 
 Cada figura se regenera en cada `publish_results`. Las versiones PNG residen bajo `reports/web/figures/` y se espejan en `docs/web/figures/` para MkDocs.

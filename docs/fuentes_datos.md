@@ -1,5 +1,21 @@
 # Fuentes de datos de v2
 
+## Uso en v3.7
+
+El sha256 es el de `results/v3_7/manifest_entradas.sha256`. La fecha de acceso solo se escribe cuando un fichero del proyecto ya la trae.
+
+| Fuente | Fichero del manifiesto | sha256 | Fecha de acceso | Enlace |
+| --- | --- | --- | --- | --- |
+| PDC000116 | `results/certified/cptac_unshared_treat.tsv` | `e5e73c2bdf543ec5493846e71b0a92143bde59fd891550856e632d451eed7cf6` | no está en el manifiesto | https://pdc.cancer.gov/pdc/study/PDC000116 y https://doi.org/10.1016/j.cell.2019.03.030 |
+| PXD034575 | `data/raw/pride/Cohort1_proteinGroups.txt` | `da9ec08ee656d207b29242d804f308247957126201678e2ed80cae37ce8ed8c9` | no está en el manifiesto | https://www.ebi.ac.uk/pride/archive/projects/PXD034575 y https://doi.org/10.1016/j.celrep.2024.113810 |
+| PXD055218 | `data/raw/plasma/DIA-NN_report.tsv` | `a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8` | no está en el manifiesto | https://www.ebi.ac.uk/pride/archive/projects/PXD055218 y https://doi.org/10.1021/acs.jproteome.5c00285 |
+| GOA | `metadata/gene_ontology/go_gene_long.tsv` | `560b33fa6d2980e138d70656eff588a5e76074102c59f7ae4a23e98fa3df5302` | no está en el manifiesto | https://www.ebi.ac.uk/GOA/human_release |
+| HPA | `external/hpa/hpa_concentracion_sangre.tsv` | `9e9e3239ccfe5bec7ae50eddfe7524dc159d87c4796d2e16e5b42a615fb94526` | 2026-10-03, en `external/hpa/estado.json` | https://www.proteinatlas.org/about/download |
+
+La librería de contaminantes está en `external/frankenfield_2022/0602_Universal_Contaminants.fasta`, según `config/preregistro_v3.yaml`. No es una entrada de `manifest_entradas.sha256`, así que este apartado no le pone un sha256. El enlace es https://github.com/HaoGroup-ProtContLib/Protein-Contaminant-Libraries-for-DDA-and-DIA-Proteomics y el DOI https://doi.org/10.1021/acs.jproteome.2c00145.
+
+Las fichas de abajo son las de v2 y no se reescriben.
+
 Una ficha por fuente. El estado solo puede ser uno de tres:
 
 - **usada**: descargada, parseada y en uso en algún resultado de `results/v2/`.

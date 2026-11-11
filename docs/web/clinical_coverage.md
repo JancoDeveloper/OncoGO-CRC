@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Cobertura clínica
 
 Fracción de muestras con valor **informativo** por variable (≠ vacío / unknown). Para **conteos y distribución** (estadio, hispano/latino, región geográfica), ver [Demografía y contexto clínico](clinical_demographics.md).

@@ -1,5 +1,15 @@
 # OncoGO-CRC
 
+## Empieza aquí (v3.7)
+
+- [Tesis](../tesis-ucaldas/overleaf_v3_7.zip)
+- [Estado](estado_v3_7.md)
+- [Fuentes](fuentes_datos.md)
+- [Determinismo D frente a E](determinismo_d_e.md) y [B frente a C](determinismo_b_c.md)
+- [Desviaciones](../tesis-ucaldas/latex/chapters/11-desviaciones.tex)
+- [Compilación](compilacion_tesis_v3_7.md)
+- Web: la página pública sigue en la v3.6, [oncogo-crc-tesis.web.app](https://oncogo-crc-tesis.web.app). Lo que falta del sitio v3.7 está en [web_pendiente.md](web_pendiente.md).
+
 ## Reportes v2 (PDF)
 
 - [Guía pública para lectores sin formación técnica](reportes/OncoGO-CRC_guia_publica_v2.pdf)

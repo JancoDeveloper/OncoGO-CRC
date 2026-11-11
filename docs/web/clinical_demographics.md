@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Demografía y contexto clínico (estadio, etnia, geografía)
 CPTAC colon (PDC000116) recluta principalmente en centros de EE.UU. La variable 'hispanic_latino_bin' proviene de la categoría NIH 'Hispanic or Latino' (autorreportada), NO de nacionalidad colombiana ni de residencia en Latinoamérica. 'geographic_region_bin' usa país/sitio cuando el Excel clínico lo incluye; si falta, queda 'unknown'. No sustituye un registro clínico local (p. ej. cohorte CTIC Colombia).
 

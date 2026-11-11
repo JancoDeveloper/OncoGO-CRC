@@ -17,7 +17,7 @@ nav:
   - Pipeline: pipeline.md
   - Proceso y datos (detallado): proceso_datos_y_pipeline.md
   - Configuración: configuracion.md
-  - Proyecto Web:
+  - Archivo v1 (no certificado):
       - La investigación, en claro: web/divulgacion.md
       - Para sustentar: web/sustentacion.md
       - Teoría y diccionarios: web/diccionario.md

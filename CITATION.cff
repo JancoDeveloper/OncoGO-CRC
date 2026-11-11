@@ -6,7 +6,18 @@ authors:
   - family-names: Polanco Franco
     given-names: Juan Diego
 version: "3.7"
-date-released: "2026-11-10"
+date-released: "2026-11-11"
 license: MIT
 repository-code: "https://github.com/JancoDeveloper/OncoGO-CRC"
 url: "https://oncogo-crc-tesis.web.app"
+commit: "595118ae09ea6006c744c86b28cb0a10d42e0442"
+identifiers:
+  - type: doi
+    value: "10.1021/acs.jproteome.5c00285"
+    description: "Rai 2025"
+  - type: doi
+    value: "10.1016/j.celrep.2024.113810"
+    description: "Tanaka 2024"
+  - type: doi
+    value: "10.1016/j.cell.2019.03.030"
+    description: "Vasaikar 2019"

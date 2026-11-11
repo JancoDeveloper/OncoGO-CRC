@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Evidencia externa e in silico
 
 Esta etapa (`external_evidence`) **no sustituye** experimentos de laboratorio: integra el diferencial núcleo con **capas YAML** (`crc_context_layers.yaml`), tablas **opcionales** de referencia transcriptómica (TCGA u otras) y **Cox por gen** si aportas un TSV (p. ej. export GEPIA / cBioPortal).

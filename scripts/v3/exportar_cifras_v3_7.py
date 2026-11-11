@@ -353,6 +353,7 @@ def main() -> None:
         "",
         f"Certificado: {formatear(_json(V37, 'certificado.json')['estado'], 'estado')}.",
         f"Sello: commit `{sello['commit'][:12]}`, fecha {sello['fecha_utc']}.",
+        "Etiqueta: `v3.7-final`, commit `595118ae09ea6006c744c86b28cb0a10d42e0442`.",
         f"`sha256_manifest_entradas` en el sello: {sello.get('sha256_manifest_entradas')!s}.",
         "",
         "## Unión de los sanos",

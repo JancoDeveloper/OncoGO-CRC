@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Proyecto web — OncoGO-CRC
 
 > **Workspace de datos:** `data/`, `results/`, `reports/`, `metadata/` y `docs/web/` apuntan a `/Volumes/JANCODATA/OncoGO-CRC` (el clon conserva `config/`, `src/` y el resto de `docs/`). Trazabilidad de corrida: `results/run_manifest.json`.

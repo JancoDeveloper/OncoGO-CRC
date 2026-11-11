@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Glosario — OncoGO-CRC
 
 Glosario de los términos estadísticos, bioinformáticos y traslacionales más usados en este sitio. Está pensado para acompañar la lectura de las páginas **Resultados base**, **Síntesis para tesis** e **Interpretación biológica** sin necesidad de saltar a textbooks externos.

@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Limitaciones (auto)
 
 - **Modelo estadístico:** t-test por proteína + FDR Benjamini–Hochberg; asume razonablemente muestreo independiente entre grupos; **no** modela emparejamiento tumor-normal por sujeto (mejora futura: t pareado o modelos mixtos si hay `participant_id` confiable).

@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Diccionario y teoría
 
 La explicación completa, con las tablas y los enlaces, está en [divulgacion.html](divulgacion.html), en las secciones Teoría, Datos, Procesos y Estudios.

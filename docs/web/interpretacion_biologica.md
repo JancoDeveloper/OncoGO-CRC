@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Interpretación biológica de los módulos detectados
 
 Esta página **traduce los términos GO/GSEA significativos a contexto biológico de cáncer colorrectal**, agrupando los _leading edges_ por familia funcional y emparejándolos con un catálogo curado a partir de literatura proteogenómica reciente (Cancer Cell 2023, Nature 2014, PLOS Comp Biol 2024, García-Foncillas et al. 2026).

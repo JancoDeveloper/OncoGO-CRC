@@ -1,12 +1,10 @@
 # OncoGO-CRC
 
-La recálculo vigente es la **v3.7**. El certificado está en `results/v3_7/certificado.json` y dice publicable. Lo que cambió, lo que falló y lo que sigue pendiente está en [docs/estado_v3_7.md](docs/estado_v3_7.md). La página pública [oncogo-crc-tesis.web.app](https://oncogo-crc-tesis.web.app) sigue mostrando la v3.6 hasta que el sitio de la v3.7 esté completo. Para repetir la recálculo, con los 60 crudos ya verificados:
+La versión vigente es la **v3.7**. El certificado de [results/v3_7/certificado.json](results/v3_7/certificado.json) es publicable. La etiqueta es `v3.7-final`, en el commit `595118ae09ea6006c744c86b28cb0a10d42e0442`. El estado está en [docs/estado_v3_7.md](docs/estado_v3_7.md).
 
-```bash
-make v3-7
-```
+No se ejecutaron, y no son un resultado: las vías del suero, la cláusula de vías de H1, la unión de HC por XIC, la deriva del PRTC, las redes de coexpresión, el catálogo de candidatas y los neoantígenos. El GO del tejido sí está calculado.
 
-No hay etiqueta `v3.7-final`. Faltan las vías del suero, la cláusula de vías de H1, el GO del tejido, el catálogo de candidatas, los neoantígenos y el PRTC. La etiqueta `v3.6-final` marca la corrida anterior. Las carpetas `results/v3_2` a `results/v3_6` quedan congeladas.
+La página pública sigue en la v3.6: [oncogo-crc-tesis.web.app](https://oncogo-crc-tesis.web.app). Para repetir la corrida, con los 60 crudos ya verificados, `make v3-7`. Para citar, [CITATION.cff](CITATION.cff). La etiqueta `v3.6-final` marca la corrida anterior. Las carpetas `results/v3_2` a `results/v3_6` quedan congeladas.
 
 **OncoGO-CRC** es un entorno reproducible de bioinformática para integrar proteómica pública de cáncer colorrectal (CCR). El anteproyecto y el reajuste técnico están en la carpeta `Informacion/`.
 

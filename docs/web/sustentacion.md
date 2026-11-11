@@ -1,3 +1,5 @@
+> Documento de la v1. No forma parte de los resultados certificados de la tesis; ver results/v3_7.
+
 # Para sustentar OncoGO-CRC
 
 La página con gráficas y fichas está en [divulgacion.html](divulgacion.html). Esta nota es lo que hay que poder decir.

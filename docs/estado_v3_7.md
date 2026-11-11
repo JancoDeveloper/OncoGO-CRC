@@ -4,6 +4,7 @@ Este archivo lo escribe `scripts/v3/exportar_cifras_v3_7.py` a partir de `result
 
 Certificado: Publicable.
 Sello: commit `71b310a3fcae`, fecha 2026-11-11T00:48:45Z.
+Etiqueta: `v3.7-final`, commit `595118ae09ea6006c744c86b28cb0a10d42e0442`.
 `sha256_manifest_entradas` en el sello: e03f0c71107e41a3e82f6b105d680ff11db702ed89f8a2f3a146546896062a37.
 
 ## Unión de los sanos
