@@ -1,0 +1,53 @@
+# Ilustraciones guardadas en el sitio. No se piden a otro servidor al abrir la página.
+- nombre: colon.png
+  procedencia: Servier Medical Art
+  url_original: https://smart.servier.com/wp-content/uploads/2016/10/colon.png
+  ficha: https://smart.servier.com/smart_image/colon/
+  autor: Laboratoires Servier
+  licencia: CC BY 4.0
+  atribucion: "Image provided by Servier Medical Art (https://smart.servier.com/), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+  seccion: Inicio, anatomía del colon
+  nota: Anatomía general. No localiza las muestras de esta tesis y no marca un tumor.
+- nombre: tejido.png
+  procedencia: Servier Medical Art
+  url_original: https://smart.servier.com/wp-content/uploads/2016/10/Epi_cylindrique_goblet_03.png
+  ficha: https://smart.servier.com/smart_image/simple-columnar-epithelium/
+  autor: Laboratoires Servier
+  licencia: CC BY 4.0
+  atribucion: "Image provided by Servier Medical Art (https://smart.servier.com/), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+  seccion: Inicio, panel de tejido
+  nota: Epitelio cilíndrico con célula caliciforme. No es un corte de las muestras.
+- nombre: suero.png
+  procedencia: Servier Medical Art
+  url_original: https://smart.servier.com/wp-content/uploads/2016/10/Tube_plein_6.png
+  ficha: https://smart.servier.com/smart_image/blood-test-smart-overiew/
+  autor: Laboratoires Servier
+  licencia: CC BY 4.0
+  atribucion: "Image provided by Servier Medical Art (https://smart.servier.com/), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+  seccion: Inicio, panel de suero
+  nota: Tubo de sangre. El suero medido es la fracción líquida; el dibujo no es la muestra.
+- nombre: colon-respaldo.svg
+  procedencia: Dibujo propio del sitio
+  url_original: ""
+  autor: OncoGO-CRC
+  licencia: Misma licencia del código del sitio
+  atribucion: ""
+  seccion: Respaldo si colon.png no carga
+- nombre: tejido-respaldo.svg
+  procedencia: Dibujo propio del sitio
+  url_original: ""
+  autor: OncoGO-CRC
+  licencia: Misma licencia del código del sitio
+  atribucion: ""
+  seccion: Respaldo si tejido.png no carga
+- nombre: suero-respaldo.svg
+  procedencia: Dibujo propio del sitio
+  url_original: ""
+  autor: OncoGO-CRC
+  licencia: Misma licencia del código del sitio
+  atribucion: ""
+  seccion: Respaldo si suero.png no carga
+- nombre: no incorporado
+  biorender: No se usó. La publicación web de figuras de BioRender exige una licencia que este proyecto no tiene, y la exportación gratuita lleva marca de agua.
+  lottiefiles: No se usó. Cada animación tiene su propia licencia y el reproductor sería un script de tercero. La barra de la celda se dibuja con los conteos, sin animación decorativa.
+  nci: No se incorporó un archivo del National Cancer Institute. No había una ficha de derechos comprobada para una lámina que pudiera sustituir a la anatomía ya atribuida.

@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
+<link rel="stylesheet" href="/css/v4.536e3e2340.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -60,7 +60,7 @@
 </nav>
 
 <h1>Gene Ontology, resultados</h1>
-<p>La concordancia de signo del NES es <data value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.numerador">16</data><details class="evidencia"><summary>fuente</summary><p id="ev143">results/v3_7/go_tejido.json#concordancia_nes.numerador</p></details> de <data value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.denominador">16</data><details class="evidencia"><summary>fuente</summary><p id="ev144">results/v3_7/go_tejido.json#concordancia_nes.denominador</p></details>. GO no emite el veredicto de H1. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
+<p>La concordancia de signo del NES es <data value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.numerador">16</data><details class="evidencia"><summary>Origen</summary><p id="ev121">results/v3_7/go_tejido.json#concordancia_nes.numerador</p></details> de <data value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.denominador">16</data><details class="evidencia"><summary>Origen</summary><p id="ev122">results/v3_7/go_tejido.json#concordancia_nes.denominador</p></details>. GO no emite el veredicto de H1. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
 <figure class="grafico" id="p05">
 <h3>Concordancia de NES</h3>
 <svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Concordancia de NES</title><desc>Concordancia de NES</desc><text x="40" y="180" fill="currentColor" font-size="28">16</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="16" data-fuente="results/v3_7/go_tejido.json#concordancia_nes.numerador" tabindex="0" data-tip="nes"/></svg>
@@ -273,7 +273,7 @@
 <a href="/bibliografia">Bibliografía</a>
 
 </nav>
-<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data><details class="evidencia"><summary>fuente</summary><p id="ev1">results/v3_7/certificado.json#estado</p></details> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data><details class="evidencia"><summary>fuente</summary><p id="ev2">results/v3_7/certificado.json#sello.commit</p></details>.</p>
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data><details class="evidencia"><summary>Origen</summary><p id="ev1">results/v3_7/certificado.json#estado</p></details> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data><details class="evidencia"><summary>Origen</summary><p id="ev2">results/v3_7/certificado.json#sello.commit</p></details>.</p>
 <p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 </footer>
@@ -290,6 +290,13 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  document.querySelectorAll("img[data-respaldo]").forEach(function (img) {
+    img.addEventListener("error", function () {
+      if (img.getAttribute("data-cambio") === "1") return;
+      img.setAttribute("data-cambio", "1");
+      img.src = img.getAttribute("data-respaldo");
+    });
+  });
   var path = location.pathname.replace(/\/$/, "") || "/";
   document.querySelectorAll(".menu a").forEach(function (enlace) {
     var href = enlace.getAttribute("href");

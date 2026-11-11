@@ -11,6 +11,13 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  document.querySelectorAll("img[data-respaldo]").forEach(function (img) {
+    img.addEventListener("error", function () {
+      if (img.getAttribute("data-cambio") === "1") return;
+      img.setAttribute("data-cambio", "1");
+      img.src = img.getAttribute("data-respaldo");
+    });
+  });
   var path = location.pathname.replace(/\/$/, "") || "/";
   document.querySelectorAll(".menu a").forEach(function (enlace) {
     var href = enlace.getAttribute("href");

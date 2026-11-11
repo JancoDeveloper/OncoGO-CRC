@@ -93,7 +93,7 @@ def cifra(valor, fuente: str, columna: str = "") -> str:
         visible = bruto
     return (
         f'<data value="{e(bruto)}" data-fuente="{e(fuente)}">{e(visible)}</data>'
-        f'<details class="evidencia"><summary>fuente</summary><p>{e(fuente)}</p></details>'
+        f'<details class="evidencia"><summary>Origen</summary><p>{e(fuente)}</p></details>'
     )
 
 

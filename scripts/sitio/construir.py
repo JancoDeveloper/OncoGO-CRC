@@ -55,7 +55,7 @@ def valor_de(fuente: str):
     raise SystemExit(f"atajo sin lector: {ruta}")
 
 
-def dato_html(fuente: str, contador: list[int]) -> str:
+def dato_html(fuente: str, contador: list[int], traza: bool = True) -> str:
     valor = valor_de(fuente)
     if isinstance(valor, float):
         bruto = format(valor, ".16g")
@@ -66,12 +66,14 @@ def dato_html(fuente: str, contador: list[int]) -> str:
     else:
         bruto = str(valor)
         visible = formatear(valor, "entero") if isinstance(valor, int) else bruto
+    dato = f'<data value="{e(bruto)}" data-fuente="{e(fuente)}">{e(visible)}</data>'
+    if not traza:
+        return dato
     contador[0] += 1
     ident = f"ev{contador[0]}"
-    dato = f'<data value="{e(bruto)}" data-fuente="{e(fuente)}">{e(visible)}</data>'
     return (
         dato
-        + f'<details class="evidencia"><summary>fuente</summary>'
+        + f'<details class="evidencia"><summary>Origen</summary>'
         + f'<p id="{ident}">{e(fuente)}</p></details>'
     )
 
@@ -141,16 +143,29 @@ def llamadas_html() -> str:
     )
 
 
-def celda_html(contador) -> str:
-    base = "results/v3_7/suero_embudo.json#celda_preregistrada."
+CREDITO_SERVIER = (
+    "Image provided by Servier Medical Art (https://smart.servier.com/), "
+    "licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+)
+NOTA_CONCEPTUAL = "Ilustración conceptual. No corresponde a una imagen experimental de esta investigación."
+
+
+def _porcentaje(valor: int, total: int) -> str:
+    return f"{100 * valor / total:.1f}".replace(".", ",") + " %"
+
+
+def _lamina(archivo: str, respaldo: str, alt: str, ancho: int, alto: int, pie: str) -> str:
     return (
-        '<ul class="cifras">'
-        f'<li><strong>{dato_html(base + "diferente", contador)}</strong> diferentes frente a CN</li>'
-        f'<li><strong>{dato_html(base + "equivalente", contador)}</strong> equivalentes</li>'
-        f'<li><strong>{dato_html(base + "indeterminada", contador)}</strong> indeterminadas</li>'
-        f'<li><strong>{dato_html(base + "n", contador)}</strong> proteínas en la celda</li>'
-        "</ul>"
+        '<figure class="lamina">'
+        f'<img src="/ilustraciones/{archivo}" data-respaldo="/ilustraciones/{respaldo}" '
+        f'alt="{e(alt)}" width="{ancho}" height="{alto}" loading="lazy" decoding="async">'
+        f"<figcaption>{e(pie)} {e(CREDITO_SERVIER)} {e(NOTA_CONCEPTUAL)}</figcaption>"
+        "</figure>"
     )
+
+
+def celda_html(contador) -> str:
+    return comparacion_html(contador)
 
 
 def embudo_html(ident: str, contador) -> str:
@@ -216,18 +231,14 @@ def anatomia_html(contador) -> str:
             "</li>"
         )
     return (
-        '<figure class="colon">'
-        '<svg class="colon-lienzo" viewBox="0 0 280 360" role="img">'
-        "<title>Esquema del colon</title>"
-        "<desc>Esquema didáctico, no a escala. No localiza las muestras de esta tesis.</desc>"
-        '<path d="M80 300 C80 80 200 80 200 300" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round"/>'
-        '<text x="150" y="40" text-anchor="middle" fill="currentColor" font-size="14">transverso</text>'
-        '<text x="8" y="180" fill="currentColor" font-size="14">ascendente</text>'
-        '<text x="214" y="180" fill="currentColor" font-size="14">descendente</text>'
-        "</svg>"
-        "<figcaption>Ilustración conceptual. No corresponde a una imagen experimental de esta investigación. "
-        "No está a escala y no localiza las muestras.</figcaption>"
-        "<ul class=\"segmentos\">" + "".join(botones) + "</ul></figure>"
+        '<div class="colon">'
+        + _lamina(
+            "colon.png", "colon-respaldo.svg",
+            "Dibujo del intestino grueso. No marca el lugar de las muestras.",
+            661, 913,
+            "Anatomía general del intestino grueso. No está a escala y no localiza las muestras.",
+        )
+        + "<ul class=\"segmentos\">" + "".join(botones) + "</ul></div>"
     )
 
 
@@ -236,31 +247,66 @@ def comparacion_html(contador) -> str:
     total = int(celda["n"])
     clases = [
         ("equivalente", "Equivalentes", "TOST cabe en el margen de 1,5 veces."),
-        ("indeterminada", "Indeterminadas", "Quedan fuera de las otras dos clases. No ver un cambio, con esta potencia, no las vuelve equivalentes."),
+        ("indeterminada", "Indeterminadas", "Quedan fuera de las otras dos clases."),
         ("diferente", "Diferentes", "TREAT pasa el corte en el sentido observado."),
     ]
     if sum(int(celda[clave]) for clave, _, _ in clases) != total:
         raise SystemExit("la celda del suero no suma el total")
     base = "results/v3_7/suero_embudo.json#celda_preregistrada."
+    tarjetas = []
     trozos = []
-    filas = []
+    leyenda = []
+    etiqueta = []
     for clave, nombre, frase in clases:
         valor = int(celda[clave])
-        ancho = 100 * valor / total
-        porcentaje = f"{ancho:.1f}".replace(".", ",") + " %"
-        trozos.append(f'<span class="trozo trozo-{clave}" style="width:{ancho:.4f}%"></span>')
-        filas.append(
-            f'<li><span class="muestra muestra-{clave}"></span>'
-            f"<strong>{e(nombre)}</strong> {e(frase)} "
-            f"{dato_html(base + clave, contador)} de {dato_html(base + 'n', contador)}. "
-            f"El porcentaje, {e(porcentaje)}, es 100 × esta clase / el total.</li>"
+        porcentaje = _porcentaje(valor, total)
+        tarjetas.append(
+            f'<li class="clase clase-{clave}">'
+            f'<p class="clase-nombre"><span class="muestra muestra-{clave}"></span> {e(nombre)}</p>'
+            f'<p class="clase-valor">{dato_html(base + clave, contador, traza=False)}</p>'
+            f'<p class="clase-pct">{e(porcentaje)}</p>'
+            f"<p>{e(frase)}</p></li>"
         )
+        if valor > 0:
+            trozos.append(f'<span class="trozo trozo-{clave}" style="width:{100 * valor / total:.4f}%"></span>')
+        leyenda.append(
+            f'<li><span class="muestra muestra-{clave}"></span> {e(nombre)}: {e(porcentaje)}</li>'
+        )
+        etiqueta.append(f"{nombre} {valor}, {porcentaje}")
     return (
         '<figure class="comparacion">'
-        "<figcaption>Clases de la celda del suero, frente a CN. Las tres cuentas suman el total. "
+        "<figcaption>Distribución de los registros de la celda del suero según las categorías "
+        "reportadas en la investigación. Las tres cuentas suman el total. "
         "No es un gráfico de una cohorte nueva.</figcaption>"
-        f'<div class="apilada" role="img" aria-label="Composición de la celda">'
-        + "".join(trozos) + "</div><ul>" + "".join(filas) + "</ul></figure>"
+        f'<ul class="clases">{"".join(tarjetas)}</ul>'
+        f'<p class="clase-total">Total de la celda: {dato_html(base + "n", contador, traza=False)} proteínas.</p>'
+        f'<div class="apilada" role="img" aria-label="{e(". ".join(etiqueta))}">'
+        + "".join(trozos) + "</div>"
+        f'<ul class="leyenda">{"".join(leyenda)}</ul>'
+        "<p>Diferentes no ocupa un tramo: el conteo es 0, y un ancho inventado lo haría parecer distinto de cero. "
+        "El color nombra la clase. No dice que una clase sea mejor que otra.</p>"
+        '<div class="lectura-clases">'
+        "<h3>Equivalentes</h3>"
+        "<p>Dos pruebas unilaterales que, juntas, declaran que el cambio cabe dentro de un margen. "
+        "En esta celda, una proteína es equivalente si TOST cabe en el margen de 1,5 veces.</p>"
+        "<h3>Indeterminadas</h3>"
+        "<p>Quedan fuera de las otras dos clases. Un resultado negativo con poca potencia se queda "
+        "en indeterminado, no en equivalente. No ver un cambio, con esta potencia, no las vuelve equivalentes.</p>"
+        "<h3>Diferentes</h3>"
+        "<p>TREAT exige que el cambio supere un margen, no solo que sea distinto de cero. "
+        "Una proteína es diferente si TREAT pasa el corte en el sentido observado. "
+        "El cero es el conteo de esa clase frente a CN. No dice que el tumor no cambie en el tejido.</p>"
+        "</div>"
+        '<details class="complemento"><summary>Definiciones, referencias y origen de los números</summary>'
+        "<p>Los conteos salen de results/v3_7/suero_embudo.json, campo celda_preregistrada. "
+        "El porcentaje de cada tarjeta es 100 × esa clase / el total, con un decimal.</p>"
+        '<p>TOST está en el <a href="/glosario#tost">glosario</a>. '
+        '<a href="/bibliografia#lakens2017">Lakens 2017</a>.</p>'
+        '<p>TREAT está en el <a href="/glosario#treat">glosario</a>. '
+        '<a href="/bibliografia#mccarthy2009">McCarthy 2009</a>.</p>'
+        '<p>La potencia y la celda están en el <a href="/glosario#potencia">glosario</a> y en el de '
+        '<a href="/glosario#celda">celda</a>. <a href="/bibliografia#rai2025">Rai 2025</a>.</p>'
+        "</details></figure>"
     )
 
 
@@ -290,18 +336,21 @@ def matrices_html(contador) -> str:
     )
     return (
         '<div class="matrices">'
-        '<figure class="lamina"><svg viewBox="0 0 320 150" role="img">'
-        "<title>Tejido y suero, por separado</title>"
-        "<desc>Ilustración conceptual. No corresponde a una imagen experimental de esta investigación.</desc>"
-        '<rect x="28" y="28" width="112" height="78" rx="18" fill="none" stroke="currentColor" stroke-width="3"/>'
-        '<text x="84" y="74" text-anchor="middle" fill="currentColor" font-size="16">Tejido</text>'
-        '<rect x="196" y="34" width="64" height="70" rx="32" fill="none" stroke="currentColor" stroke-width="3"/>'
-        '<text x="228" y="76" text-anchor="middle" fill="currentColor" font-size="16">Suero</text>'
-        "</svg>"
-        "<figcaption>Ilustración conceptual. No corresponde a una imagen experimental de esta investigación. "
-        "No representa una biopsia ni una extracción.</figcaption></figure>"
-        f"<article>{tejido}</article><article>{suero}</article>"
-        "<p>Las dos pistas no se unen. La tesis no fusiona las matrices y no muestra una proteína que salga del tumor hacia la sangre.</p>"
+        + _lamina(
+            "tejido.png", "tejido-respaldo.svg",
+            "Dibujo de epitelio cilíndrico con una célula caliciforme.",
+            208, 258,
+            "Epitelio en general. No es un corte del tumor ni de la mucosa de esta tesis.",
+        )
+        + _lamina(
+            "suero.png", "suero-respaldo.svg",
+            "Dibujo de un tubo de sangre.",
+            42, 316,
+            "Tubo de sangre. El suero medido es la fracción líquida; este dibujo no es la muestra.",
+        )
+        + f"<article>{tejido}</article><article>{suero}</article>"
+        + "<p class=\"matrices-nota\">Las dos figuras no se unen. La tesis no fusiona las matrices "
+        "y no muestra una proteína que salga del tumor hacia la sangre.</p>"
         "</div>"
     )
 
@@ -326,7 +375,18 @@ def explorar_html(paginas: list[dict]) -> str:
         tarjetas.append(
             f'<a class="tarjeta" href="{e(ruta)}"><h2>{e(titulo)}</h2><p>{e(resumen)}</p></a>'
         )
-    return '<div class="tarjetas">' + "".join(tarjetas) + "</div>"
+    esquema = (
+        '<figure class="esquema-proteina"><svg viewBox="0 0 240 110" role="img">'
+        "<title>Esquema de una proteína</title>"
+        "<desc>Cinta esquemática. No es la estructura de una proteína de esta tesis.</desc>"
+        '<path d="M24 78 C48 18, 96 18, 118 58 S186 96, 214 36" fill="none" stroke="currentColor" '
+        'stroke-width="8" stroke-linecap="round"/>'
+        "</svg>"
+        "<figcaption>Cinta esquemática. No es el modelo de una proteína de la celda. "
+        "Cuando hay un modelo de AlphaFold, está en la ficha y se abre con el botón. "
+        f"{e(NOTA_CONCEPTUAL)}</figcaption></figure>"
+    )
+    return esquema + '<div class="tarjetas">' + "".join(tarjetas) + "</div>"
 
 
 def md_inline(texto: str, bib, glosario, contador) -> str:
@@ -464,7 +524,7 @@ def diagrama_html(ident: str, bib) -> str:
     return (
         f'<figure class="grafico" id="{e(ident)}"><h3>{e(datos["pregunta"])}</h3>{svg}'
         f'<details><summary>Tabla de los datos del gráfico</summary>'
-        f'<table><thead><tr><th>nodo</th><th>fuente</th></tr></thead><tbody>{tabla}</tbody></table></details>'
+        f'<table><thead><tr><th>nodo</th><th>origen</th></tr></thead><tbody>{tabla}</tbody></table></details>'
         f'<p><a href="/figuras/{e(ident)}.svg" download>Descargar SVG</a> '
         f'<a href="/figuras/{e(ident)}.tsv" download>Descargar TSV</a></p></figure>'
     )
@@ -559,6 +619,12 @@ def escribir_estaticos() -> tuple[str, str, str, str]:
     for archivo in (FUENTE / "estilos" / "fuentes").glob("*"):
         if archivo.suffix in {".woff2", ".txt"}:
             shutil.copy2(archivo, destino_fuentes / archivo.name)
+    origen_ilustraciones = FUENTE / "ilustraciones"
+    if origen_ilustraciones.is_dir():
+        destino_ilustraciones = SITIO / "ilustraciones"
+        if destino_ilustraciones.exists():
+            shutil.rmtree(destino_ilustraciones)
+        shutil.copytree(origen_ilustraciones, destino_ilustraciones)
     return css_nombre, js, molstar_js, molstar_css
 
 

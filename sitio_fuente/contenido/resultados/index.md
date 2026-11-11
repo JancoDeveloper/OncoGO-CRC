@@ -8,7 +8,7 @@ resumen: Los números de la corrida, cada uno con su fichero.
 
 # Resultados
 
-La pregunta de esta página es cuánto del cambio del tumor se deja ver en el suero. La matriz es la {{termino:celda}}. Frente a {{termino:CN}} hay {{dato:results/v3_7/suero_embudo.json#celda_preregistrada.diferente}} proteínas diferentes, de {{dato:results/v3_7/suero_embudo.json#celda_preregistrada.n}}. [@rai2025]
+La pregunta de esta página es cuánto del cambio del tumor se deja ver en el suero. La matriz es la {{termino:celda}}.
 
 {{comparacion}}
 

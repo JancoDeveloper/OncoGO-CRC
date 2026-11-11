@@ -7,7 +7,7 @@
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.6a5e9a711b.css">
+<link rel="stylesheet" href="/css/v4.536e3e2340.css">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -99,7 +99,7 @@
 <a href="/bibliografia">Bibliografía</a>
 
 </nav>
-<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data><details class="evidencia"><summary>fuente</summary><p id="ev1">results/v3_7/certificado.json#estado</p></details> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data><details class="evidencia"><summary>fuente</summary><p id="ev2">results/v3_7/certificado.json#sello.commit</p></details>.</p>
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data><details class="evidencia"><summary>Origen</summary><p id="ev1">results/v3_7/certificado.json#estado</p></details> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data><details class="evidencia"><summary>Origen</summary><p id="ev2">results/v3_7/certificado.json#sello.commit</p></details>.</p>
 <p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
 <p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 </footer>
@@ -116,6 +116,13 @@
       try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
     });
   }
+  document.querySelectorAll("img[data-respaldo]").forEach(function (img) {
+    img.addEventListener("error", function () {
+      if (img.getAttribute("data-cambio") === "1") return;
+      img.setAttribute("data-cambio", "1");
+      img.src = img.getAttribute("data-respaldo");
+    });
+  });
   var path = location.pathname.replace(/\/$/, "") || "/";
   document.querySelectorAll(".menu a").forEach(function (enlace) {
     var href = enlace.getAttribute("href");

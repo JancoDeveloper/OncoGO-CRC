@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img">
+<title>Esquema de epitelio</title>
+<desc>Respaldo dibujado en el sitio. No es un corte de las muestras.</desc>
+<rect x="36" y="24" width="48" height="120" rx="20" fill="#f3d7cf" stroke="#202b36"/>
+<rect x="96" y="24" width="48" height="120" rx="20" fill="#f7e7c4" stroke="#202b36"/>
+<rect x="156" y="24" width="48" height="120" rx="20" fill="#f3d7cf" stroke="#202b36"/>
+<text x="120" y="168" text-anchor="middle" fill="#202b36" font-size="14" font-family="sans-serif">epitelio, esquema</text>
+</svg>
