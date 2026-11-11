@@ -142,4 +142,723 @@
   como_se_uso_aqui: /proteinas/candidatas
   relacionados: []
   fuentes: [szklarczyk2023]
-
+- termino: proteómica
+  sigla: ""
+  sinonimos: []
+  definicion: Estudio de las proteínas de una muestra, aquí tejido o suero, por espectrometría de masas.
+  en_palabras_simples: Medir muchas proteínas a la vez, en lugar de una sola.
+  rol_en_bioinformatica: Produce la matriz de intensidades de la que salen los contrastes.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [DIA, espectrometría de masas]
+  fuentes: [rai2025]
+- termino: espectrometría de masas
+  sigla: MS
+  sinonimos: []
+  definicion: Técnica que separa iones por su masa y su carga para identificar y cuantificar péptidos.
+  en_palabras_simples: Una balanza de moléculas que dice qué péptidos hay y cuánto hay de cada uno.
+  rol_en_bioinformatica: Es el instrumento del que sale el informe que luego se convierte en tabla.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [LC-MS/MS, péptido]
+  fuentes: [zhang2014]
+- termino: LC-MS/MS
+  sigla: LC-MS/MS
+  sinonimos: []
+  definicion: Cromatografía líquida acoplada a dos etapas de espectrometría, una para el precursor y otra para sus fragmentos.
+  en_palabras_simples: Primero se separan los péptidos en el tiempo y después se rompen para leerlos.
+  rol_en_bioinformatica: Es el experimento que alimenta a DIA-NN.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [precursor, fragmento]
+  fuentes: [zhang2014]
+- termino: DDA
+  sigla: DDA
+  sinonimos: [adquisición dependiente de datos]
+  definicion: Modo en el que el espectrómetro elige unos pocos precursores, casi siempre los más intensos, para fragmentarlos.
+  en_palabras_simples: El aparato decide en cada momento a qué iones les hace caso.
+  rol_en_bioinformatica: Contrasta con DIA, que es el modo de las matrices de esta tesis.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [DIA]
+  fuentes: [zhang2014]
+- termino: péptido
+  sigla: ""
+  sinonimos: []
+  definicion: Trozo de proteína producido por la digestión, que es lo que mide el espectrómetro.
+  en_palabras_simples: Un fragmento de la proteína, no la proteína entera.
+  rol_en_bioinformatica: Las intensidades de péptidos se resumen en grupos de proteínas.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [precursor, grupo de proteínas]
+  fuentes: [demichev2020]
+- termino: precursor
+  sigla: ""
+  sinonimos: []
+  definicion: Ion del péptido antes de fragmentarlo, con una masa y una carga.
+  en_palabras_simples: La pieza que el aparato elige, o deja pasar en una ventana, antes de romperla.
+  rol_en_bioinformatica: DIA-NN informa la cantidad del precursor y su q.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [fragmento, q-valor]
+  fuentes: [demichev2020]
+- termino: fragmento
+  sigla: ""
+  sinonimos: [ion fragmento]
+  definicion: Trozo del precursor que se produce al romperlo y sirve para identificar la secuencia.
+  en_palabras_simples: Las piezas más pequeñas que confirman de qué péptido se trata.
+  rol_en_bioinformatica: Sin fragmentos no hay identificación fiable del precursor.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [precursor]
+  fuentes: [demichev2020]
+- termino: digestión con tripsina
+  sigla: ""
+  sinonimos: [tripsina]
+  definicion: Corte de las proteínas en péptidos, en esta tesis antes de la cromatografía.
+  en_palabras_simples: Se parten las proteínas en trozos que el espectrómetro puede leer.
+  rol_en_bioinformatica: Define qué péptidos pueden aparecer en la matriz.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [péptido]
+  fuentes: [zhang2014]
+- termino: grupo de proteínas
+  sigla: ""
+  sinonimos: [protein group]
+  definicion: Conjunto de proteínas que comparten los péptidos medidos y no se pueden separar con esa evidencia.
+  en_palabras_simples: El aparato vio péptidos que encajan en más de una proteína, y las deja juntas.
+  rol_en_bioinformatica: La celda del suero usa el identificador del grupo, aunque lleve varios accesos.
+  como_se_uso_aqui: /proteinas
+  relacionados: [proteotípico]
+  fuentes: [demichev2020]
+- termino: proteotípico
+  sigla: ""
+  sinonimos: []
+  definicion: Péptido que, con la evidencia disponible, apunta a una sola proteína del grupo.
+  en_palabras_simples: Un trozo que no se comparte con las otras proteínas del grupo.
+  rol_en_bioinformatica: Ayuda a decidir si el grupo se puede leer como una proteína o queda ambiguo.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [grupo de proteínas]
+  fuentes: [demichev2020]
+- termino: FDR
+  sigla: FDR
+  sinonimos: [tasa de falsos descubrimientos]
+  definicion: Proporción esperada de hallazgos falsos entre los que se declaran.
+  en_palabras_simples: De lo que se da por encontrado, cuánto se espera que sea ruido.
+  rol_en_bioinformatica: El q del precursor y el q del grupo cortan la matriz antes del contraste.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [q-valor, Benjamini-Hochberg]
+  fuentes: [benjamini1995]
+- termino: q-valor
+  sigla: q
+  sinonimos: []
+  definicion: FDR mínimo al que un resultado se declararía significativo.
+  en_palabras_simples: Una probabilidad ajustada para no contar el mismo hallazgo muchas veces.
+  rol_en_bioinformatica: En el suero, la celda exige q del precursor y q del grupo de hasta 0,01.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [FDR]
+  fuentes: [benjamini1995]
+- termino: DIA-NN
+  sigla: ""
+  sinonimos: []
+  definicion: Programa que identifica y cuantifica péptidos a partir de una adquisición DIA.
+  en_palabras_simples: El programa que convierte el experimento del suero en una tabla de cantidades.
+  rol_en_bioinformatica: El informe de DIA-NN es la entrada de la canalización del suero.
+  como_se_uso_aqui: /metodos/proteomica
+  relacionados: [DIA, MaxLFQ]
+  fuentes: [demichev2020]
+- termino: MaxLFQ
+  sigla: MaxLFQ
+  sinonimos: []
+  definicion: Resumen de intensidades de péptidos a una intensidad por grupo de proteínas, con un ajuste entre corridas.
+  en_palabras_simples: Una forma de pasar de muchos péptidos a un número por proteína y por muestra.
+  rol_en_bioinformatica: La matriz principal del suero usa ese resumen.
+  como_se_uso_aqui: /metodos/canalizacion
+  relacionados: [matriz de intensidades]
+  fuentes: [demichev2020]
+- termino: matriz de intensidades
+  sigla: ""
+  sinonimos: []
+  definicion: Tabla con proteínas en las filas, muestras en las columnas y una intensidad en cada celda.
+  en_palabras_simples: La hoja de cálculo de la que salen los contrastes.
+  rol_en_bioinformatica: Todo el contraste, el aprendizaje y la priorización leen esa tabla, no el crudo.
+  como_se_uso_aqui: /metodos/canalizacion
+  relacionados: [MaxLFQ]
+  fuentes: [rai2025]
+- termino: log2FC
+  sigla: log2FC
+  sinonimos: [log2 de la diferencia]
+  definicion: Logaritmo en base 2 del cociente de intensidades entre dos grupos.
+  en_palabras_simples: Cuántas veces cambia una proteína, contado en una escala que trata igual la subida y la bajada.
+  rol_en_bioinformatica: Es la magnitud que TREAT y TOST comparan con el margen de 1,5 veces.
+  como_se_uso_aqui: /metodos/expresion-diferencial
+  relacionados: [TREAT, TOST]
+  fuentes: [smyth2004]
+- termino: limma
+  sigla: ""
+  sinonimos: []
+  definicion: Modelos lineales con una varianza prestada entre genes para estimar diferencias con pocas muestras.
+  en_palabras_simples: Un método pensado para muchas medidas y pocos pacientes.
+  rol_en_bioinformatica: El contraste del tejido y el del suero usan esa familia de modelos.
+  como_se_uso_aqui: /metodos/expresion-diferencial
+  relacionados: [t moderada]
+  fuentes: [ritchie2015]
+- termino: t moderada
+  sigla: ""
+  sinonimos: []
+  definicion: Estadístico t en el que la varianza de cada proteína se acerca a una varianza común.
+  en_palabras_simples: Una t que no se fía solo de la variación de esa proteína.
+  rol_en_bioinformatica: Es el estadístico del contraste antes del ajuste por muchas pruebas.
+  como_se_uso_aqui: /metodos/expresion-diferencial
+  relacionados: [limma]
+  fuentes: [smyth2004]
+- termino: TREAT
+  sigla: TREAT
+  sinonimos: []
+  definicion: Prueba que exige que el cambio supere un margen, no solo que sea distinto de cero.
+  en_palabras_simples: No basta con ver un cambio pequeño. Tiene que pasar un tamaño fijado de antemano.
+  rol_en_bioinformatica: Una proteína es diferente si TREAT pasa el corte en el sentido observado.
+  como_se_uso_aqui: /metodos/expresion-diferencial
+  relacionados: [TOST, log2FC]
+  fuentes: [mccarthy2009]
+- termino: TOST
+  sigla: TOST
+  sinonimos: [equivalencia]
+  definicion: Dos pruebas unilaterales que, juntas, declaran que el cambio cabe dentro de un margen.
+  en_palabras_simples: Una forma de decir que el cambio es menor que el tamaño que se había fijado.
+  rol_en_bioinformatica: Una proteína es equivalente si TOST cabe en el margen de 1,5 veces.
+  como_se_uso_aqui: /metodos/expresion-diferencial
+  relacionados: [TREAT]
+  fuentes: [lakens2017]
+- termino: Benjamini-Hochberg
+  sigla: BH
+  sinonimos: []
+  definicion: Procedimiento que controla la tasa de falsos descubrimientos al ordenar los p y aplicar un umbral creciente.
+  en_palabras_simples: Una corrección para cuando se miran miles de proteínas a la vez.
+  rol_en_bioinformatica: El q del contraste sale de este ajuste.
+  como_se_uso_aqui: /metodos/expresion-diferencial
+  relacionados: [FDR, q-valor]
+  fuentes: [benjamini1995]
+- termino: intervalo de confianza
+  sigla: IC
+  sinonimos: []
+  definicion: Rango calculado con una regla fijada de antemano, que en esta tesis acompaña al log2FC y al AUC.
+  en_palabras_simples: Una franja alrededor del número, no un sí o un no.
+  rol_en_bioinformatica: El volcán y el bosque muestran el intervalo junto con la estimación.
+  como_se_uso_aqui: /resultados/suero
+  relacionados: [log2FC, AUC]
+  fuentes: [rai2025]
+- termino: efecto mínimo detectable
+  sigla: ""
+  sinonimos: []
+  definicion: Cambio más pequeño que el diseño, con su tamaño de muestra, tiene una probabilidad fijada de declarar.
+  en_palabras_simples: Lo más chico que este estudio podía esperar ver.
+  rol_en_bioinformatica: Con veinte personas por grupo, no ver un cambio no demuestra que el cambio sea cero.
+  como_se_uso_aqui: /discusion
+  relacionados: [potencia]
+  fuentes: [rai2025]
+- termino: potencia
+  sigla: ""
+  sinonimos: []
+  definicion: Probabilidad de declarar un cambio cuando ese cambio existe y tiene el tamaño que se estudió.
+  en_palabras_simples: La oportunidad de ver algo si de verdad está ahí.
+  rol_en_bioinformatica: Un resultado negativo con poca potencia se queda en indeterminado, no en equivalente.
+  como_se_uso_aqui: /discusion
+  relacionados: [efecto mínimo detectable, TOST]
+  fuentes: [rai2025]
+- termino: GO
+  sigla: GO
+  sinonimos: [Gene Ontology]
+  definicion: Vocabulario de procesos, funciones y componentes celulares, con relaciones entre términos.
+  en_palabras_simples: Un diccionario compartido para decir qué hace una proteína.
+  rol_en_bioinformatica: El enriquecimiento del tejido y el comparador leen términos GO.
+  como_se_uso_aqui: /datos/gene-ontology
+  relacionados: [ORA, GSEA, IEA]
+  fuentes: [ashburner2000, goconsortium2023]
+- termino: ORA
+  sigla: ORA
+  sinonimos: [análisis de sobrerrepresentación]
+  definicion: Prueba que pregunta si un conjunto de genes cae más de lo esperado en un término.
+  en_palabras_simples: ¿Este grupo de proteínas se concentra en un proceso, o es el azar?
+  rol_en_bioinformatica: En el tejido se informa junto con GSEA y no emite un veredicto de H1.
+  como_se_uso_aqui: /metodos/enriquecimiento
+  relacionados: [GSEA, GO]
+  fuentes: [goconsortium2023]
+- termino: GSEA
+  sigla: GSEA
+  sinonimos: []
+  definicion: Método que recorre una lista ordenada de genes y mira si un conjunto se acumula en un extremo.
+  en_palabras_simples: No hace falta un corte duro. Mira si el conjunto sube o baja en bloque.
+  rol_en_bioinformatica: El tejido guarda el NES y el FDR de esa prueba.
+  como_se_uso_aqui: /metodos/enriquecimiento
+  relacionados: [NES, ORA]
+  fuentes: [subramanian2005]
+- termino: NES
+  sigla: NES
+  sinonimos: [puntuación de enriquecimiento normalizada]
+  definicion: Puntuación de GSEA dividida por el tamaño típico de las puntuaciones permutadas, con signo.
+  en_palabras_simples: Un número que dice si el conjunto sube o baja, y cuánto respecto del ruido.
+  rol_en_bioinformatica: La concordancia de signo entre cohortes se lee sobre el NES.
+  como_se_uso_aqui: /resultados/go
+  relacionados: [GSEA]
+  fuentes: [subramanian2005]
+- termino: Reactome
+  sigla: ""
+  sinonimos: []
+  definicion: Base de reacciones y vías, citada aquí por las referencias cruzadas de UniProt.
+  en_palabras_simples: Un mapa de reacciones en las que puede entrar una proteína.
+  rol_en_bioinformatica: La ficha lista esas vías. No son un resultado del contraste.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [GO]
+  fuentes: [milacic2024]
+- termino: MSigDB
+  sigla: MSigDB
+  sinonimos: []
+  definicion: Colección de conjuntos de genes usada como biblioteca de enriquecimiento.
+  en_palabras_simples: Listas ya armadas de genes que comparten un proceso o una firma.
+  rol_en_bioinformatica: Hallmark es una de sus colecciones.
+  como_se_uso_aqui: /metodos/enriquecimiento
+  relacionados: [Hallmark, GSEA]
+  fuentes: [liberzon2015]
+- termino: Hallmark
+  sigla: ""
+  sinonimos: []
+  definicion: Colección reducida de conjuntos de genes de MSigDB, pensada para procesos amplios.
+  en_palabras_simples: Unas pocas listas grandes, en lugar de miles de términos sueltos.
+  rol_en_bioinformatica: Sirve de biblioteca en el enriquecimiento, no como etiqueta clínica.
+  como_se_uso_aqui: /metodos/enriquecimiento
+  relacionados: [MSigDB]
+  fuentes: [liberzon2015]
+- termino: HPA
+  sigla: HPA
+  sinonimos: [Human Protein Atlas]
+  definicion: Atlas de la expresión de proteínas humanas en tejidos y en células.
+  en_palabras_simples: Un mapa público de dónde se ve cada proteína.
+  rol_en_bioinformatica: H6 lee el tipo celular de ese atlas y no sostiene el origen epitelial.
+  como_se_uso_aqui: /datos/hpa
+  relacionados: [UniProt]
+  fuentes: [uhlen2015]
+- termino: UniProt
+  sigla: ""
+  sinonimos: []
+  definicion: Base de secuencias y anotación de proteínas. Esta web usa la liberación 2026_04.
+  en_palabras_simples: La ficha de referencia de cada proteína.
+  rol_en_bioinformatica: Las 284 fichas y el comparador salen de respuestas guardadas de UniProt.
+  como_se_uso_aqui: /proteinas
+  relacionados: [acceso de UniProt, Swiss-Prot]
+  fuentes: [uniprot2025]
+- termino: acceso de UniProt
+  sigla: ""
+  sinonimos: [accession]
+  definicion: Identificador estable de una entrada de UniProt, a veces con un sufijo de isoforma.
+  en_palabras_simples: El código de la proteína, por ejemplo P02749.
+  rol_en_bioinformatica: La dirección de cada ficha es ese identificador, o el grupo si hay varios.
+  como_se_uso_aqui: /proteinas
+  relacionados: [UniProt, isoforma]
+  fuentes: [uniprot2025]
+- termino: PRIDE
+  sigla: PRIDE
+  sinonimos: []
+  definicion: Archivo público de experimentos de proteómica, del que salen PXD055218 y PXD034575.
+  en_palabras_simples: El depósito donde están los crudos y los informes de otros grupos.
+  rol_en_bioinformatica: La tesis no vuelve a medir. Lee lo que PRIDE ya publicó.
+  como_se_uso_aqui: /datos/pxd055218
+  relacionados: [ProteomeXchange]
+  fuentes: [perezriverol2025]
+- termino: ProteomeXchange
+  sigla: ""
+  sinonimos: []
+  definicion: Consorcio que da un identificador común a los depósitos de proteómica, entre ellos PRIDE.
+  en_palabras_simples: El paraguas de los archivos de proteómica.
+  rol_en_bioinformatica: Los accesos PXD de esta tesis son identificadores de ese consorcio.
+  como_se_uso_aqui: /datos/bases-de-datos
+  relacionados: [PRIDE]
+  fuentes: [deutsch2023]
+- termino: CPTAC
+  sigla: CPTAC
+  sinonimos: []
+  definicion: Programa que publicó el proteoma de colon y recto usado aquí como cohorte de tejido.
+  en_palabras_simples: El estudio grande de tejido con el que se compara a Tanaka.
+  rol_en_bioinformatica: Una de las dos tablas del contraste de tumor frente a mucosa.
+  como_se_uso_aqui: /datos/pdc000116
+  relacionados: [PDC]
+  fuentes: [zhang2014]
+- termino: PDC
+  sigla: PDC
+  sinonimos: [Proteomic Data Commons]
+  definicion: Archivo del que se lee el estudio PDC000116 de CPTAC.
+  en_palabras_simples: El sitio donde está depositada la cohorte de tejido de CPTAC.
+  rol_en_bioinformatica: La página de datos nombra ese estudio y no inventa el instrumento.
+  como_se_uso_aqui: /datos/pdc000116
+  relacionados: [CPTAC]
+  fuentes: [zhang2014]
+- termino: cáncer colorrectal
+  sigla: CCR
+  sinonimos: []
+  definicion: Tumor del colon o del recto. En el suero de esta tesis es el grupo CP.
+  en_palabras_simples: La enfermedad que la pregunta quiere ver, o no ver, en la sangre.
+  rol_en_bioinformatica: Es la etiqueta positiva del contraste principal del suero.
+  como_se_uso_aqui: /investigacion/pregunta-e-hipotesis
+  relacionados: [CP, estadio]
+  fuentes: [rai2025]
+- termino: estadio
+  sigla: ""
+  sinonimos: []
+  definicion: Clasificación clínica de cuánto se ha extendido el tumor.
+  en_palabras_simples: Una etiqueta de qué tan avanzado está el cáncer en esa persona.
+  rol_en_bioinformatica: H8 compara estadios en una cohorte externa y queda no evaluable para la carga en sangre.
+  como_se_uso_aqui: /resultados/hipotesis
+  relacionados: [metástasis hepática]
+  fuentes: [tanaka2024]
+- termino: metástasis hepática
+  sigla: ""
+  sinonimos: []
+  definicion: Tumor en el hígado que proviene del colorrectal, medido en la cohorte de tejido de Tanaka.
+  en_palabras_simples: El mismo tumor cuando ya llegó al hígado.
+  rol_en_bioinformatica: Hay un contraste de metástasis frente a mucosa y frente al primario. No es el contraste del suero.
+  como_se_uso_aqui: /resultados/tejido
+  relacionados: [estadio]
+  fuentes: [tanaka2024]
+- termino: mucosa normal adyacente
+  sigla: ""
+  sinonimos: [mucosa]
+  definicion: Tejido de mucosa tomado junto al tumor y usado como contraste en CPTAC y en Tanaka.
+  en_palabras_simples: El tejido de al lado, sin el tumor, en la misma persona o en la misma cohorte.
+  rol_en_bioinformatica: El log2FC del tejido es tumor frente a esa mucosa.
+  como_se_uso_aqui: /resultados/tejido
+  relacionados: [CPTAC]
+  fuentes: [vasaikar2019]
+- termino: colonoscopia
+  sigla: ""
+  sinonimos: []
+  definicion: Exploración del colon. En esta tesis, la colonoscopia negativa define el grupo CN.
+  en_palabras_simples: Una revisión del intestino que, en CN, no encontró este cáncer.
+  rol_en_bioinformatica: Es el criterio clínico del contraste principal del suero.
+  como_se_uso_aqui: /metodos/cohortes-y-diseno
+  relacionados: [CN]
+  fuentes: [rai2025]
+- termino: enfermedad inflamatoria intestinal
+  sigla: EII
+  sinonimos: []
+  definicion: Inflamación crónica del intestino. Parte de las personas de CN la tienen.
+  en_palabras_simples: Otra enfermedad del intestino, distinta de este cáncer, que también cambia proteínas de la sangre.
+  rol_en_bioinformatica: Por eso no se espera que la calprotectina separe CP de CN.
+  como_se_uso_aqui: /proteinas/candidatas
+  relacionados: [CN, calprotectina]
+  fuentes: [rai2025]
+- termino: cohorte
+  sigla: ""
+  sinonimos: []
+  definicion: Grupo de personas medido con un mismo diseño. Aquí hay cohortes de tejido y una de suero.
+  en_palabras_simples: El conjunto de pacientes y contrastes de un estudio.
+  rol_en_bioinformatica: Las matrices no se fusionan entre cohortes.
+  como_se_uso_aqui: /metodos/cohortes-y-diseno
+  relacionados: [CPTAC]
+  fuentes: [tanaka2024]
+- termino: proteína de fase aguda
+  sigla: ""
+  sinonimos: []
+  definicion: Proteína del plasma cuya cantidad cambia con la inflamación.
+  en_palabras_simples: Una proteína que sube o baja cuando el cuerpo responde a un daño, no solo a un tumor.
+  rol_en_bioinformatica: Esa lectura no se separa del lote, porque HC se midió en otro bloque.
+  como_se_uso_aqui: /discusion
+  relacionados: [preanalítica]
+  fuentes: [gabay1999]
+- termino: calprotectina
+  sigla: ""
+  sinonimos: []
+  definicion: Complejo de S100A8 y S100A9, de neutrófilos, que también sube en la inflamación intestinal.
+  en_palabras_simples: Una pareja de proteínas de la inflamación, no una prueba de este cáncer.
+  rol_en_bioinformatica: Las dos entran en el paso 5 y la página lo dice con la etiqueta de candidata.
+  como_se_uso_aqui: /proteinas/candidatas
+  relacionados: [enfermedad inflamatoria intestinal]
+  fuentes: [rai2025]
+- termino: CEACAM5
+  sigla: CEA
+  sinonimos: [CEA]
+  definicion: Proteína usada en el seguimiento del cáncer colorrectal, no como cribado en esta tesis.
+  en_palabras_simples: Una proteína que los clínicos ya miran después del diagnóstico, no una prueba nueva de esta web.
+  rol_en_bioinformatica: La auditoría anota si está en el informe. No se propone como decisión.
+  como_se_uso_aqui: /discusion
+  relacionados: [cáncer colorrectal]
+  fuentes: [locker2006]
+- termino: contaminante
+  sigla: ""
+  sinonimos: []
+  definicion: Proteína que llega a la muestra desde fuera, por ejemplo de la piel o de los reactivos, y no del tejido o del suero de la persona.
+  en_palabras_simples: Una proteína que se coló en el tubo.
+  rol_en_bioinformatica: La matriz principal retira la biblioteca de contaminantes antes del contraste.
+  como_se_uso_aqui: /metodos/preanalitica-y-calidad
+  relacionados: [queratina]
+  fuentes: [frankenfield2022]
+- termino: queratina
+  sigla: ""
+  sinonimos: []
+  definicion: Familia de proteínas de la piel y del epitelio. En el suero, la piel es un panel de calidad.
+  en_palabras_simples: Proteínas que pueden venir de haber tocado la muestra.
+  rol_en_bioinformatica: El panel de piel entra en la calidad y no se lee como tumor.
+  como_se_uso_aqui: /metodos/preanalitica-y-calidad
+  relacionados: [contaminante, preanalítica]
+  fuentes: [geyer2019]
+- termino: preanalítica
+  sigla: ""
+  sinonimos: []
+  definicion: Todo lo que ocurre con la muestra antes de medirla, el tubo, el tiempo y el orden.
+  en_palabras_simples: Cómo se tomó y se guardó la sangre, no qué enfermedad tiene la persona.
+  rol_en_bioinformatica: En esta corrida el orden va en bloques y se confunde con el grupo.
+  como_se_uso_aqui: /metodos/preanalitica-y-calidad
+  relacionados: [orden de adquisición, efecto de lote]
+  fuentes: [geyer2019]
+- termino: PRTC
+  sigla: PRTC
+  sinonimos: []
+  definicion: Péptidos de control que se añaden para vigilar el instrumento.
+  en_palabras_simples: Una mezcla conocida que sirve de termómetro del aparato.
+  rol_en_bioinformatica: La deriva de PRTC está declarada como desviación y no tiene un resultado en esta web.
+  como_se_uso_aqui: /entregables
+  relacionados: [preanalítica]
+  fuentes: [rai2025]
+- termino: XIC
+  sigla: XIC
+  sinonimos: [cromatograma de ion extraído]
+  definicion: Señal de un ion a lo largo del tiempo de cromatografía.
+  en_palabras_simples: El pico de un péptido en la corrida.
+  rol_en_bioinformatica: La unión de HC por XIC está declarada como desviación y no se usa como resultado.
+  como_se_uso_aqui: /entregables
+  relacionados: [HC]
+  fuentes: [rai2025]
+- termino: efecto de lote
+  sigla: ""
+  sinonimos: [lote]
+  definicion: Diferencia técnica entre tandas de medición que puede parecer una diferencia biológica.
+  en_palabras_simples: El aparato o el día cambian el número, aunque la biología no cambie.
+  rol_en_bioinformatica: Aquí el grupo y el lote van juntos, así que no se separan.
+  como_se_uso_aqui: /discusion
+  relacionados: [orden de adquisición]
+  fuentes: [leek2010]
+- termino: orden de adquisición
+  sigla: ""
+  sinonimos: []
+  definicion: Secuencia en la que se midieron las muestras. En esta corrida, CP, luego CN y al final HC.
+  en_palabras_simples: Quién pasó primero por el aparato.
+  rol_en_bioinformatica: Los bloques perfectos impiden separar grupo y lote.
+  como_se_uso_aqui: /discusion
+  relacionados: [efecto de lote, preanalítica]
+  fuentes: [leek2010]
+- termino: validación cruzada anidada
+  sigla: ""
+  sinonimos: []
+  definicion: Un pliegue exterior estima el desempeño y un pliegue interior elige el ajuste, sin usar el exterior.
+  en_palabras_simples: Se entrena y se juzga en pacientes distintos, y el ajuste no ve el examen final.
+  rol_en_bioinformatica: El AUC de M1 a M6 es la media fuera de pliegue de ese esquema.
+  como_se_uso_aqui: /metodos/aprendizaje-automatico
+  relacionados: [AUC]
+  fuentes: [rai2025]
+- termino: AUC
+  sigla: AUC
+  sinonimos: [área bajo la curva]
+  definicion: Área bajo la curva de la sensibilidad frente a uno menos la especificidad, entre 0 y 1.
+  en_palabras_simples: Cuánto separa un modelo a los dos grupos. 0,5 es el azar.
+  rol_en_bioinformatica: Se informa con su nulo de permutación. No es una prueba para un paciente.
+  como_se_uso_aqui: /resultados/aprendizaje
+  relacionados: [prueba de permutación]
+  fuentes: [rai2025]
+- termino: prueba de permutación
+  sigla: ""
+  sinonimos: []
+  definicion: Nulo que baraja las etiquetas y repite el cálculo para ver qué AUC aparece por azar.
+  en_palabras_simples: Se rompe la relación entre la muestra y su grupo y se mira si el modelo sigue separando.
+  rol_en_bioinformatica: El p de M5 sale de mil permutaciones.
+  como_se_uso_aqui: /resultados/aprendizaje
+  relacionados: [p de Phipson-Smyth, AUC]
+  fuentes: [phipson2010]
+- termino: p de Phipson-Smyth
+  sigla: ""
+  sinonimos: []
+  definicion: p de una permutación que no puede valer cero cuando las permutaciones son una muestra.
+  en_palabras_simples: Aunque ninguna permutación supere el dato, el p no se escribe como cero.
+  rol_en_bioinformatica: Es el p que acompaña al AUC del nulo.
+  como_se_uso_aqui: /resultados/aprendizaje
+  relacionados: [prueba de permutación]
+  fuentes: [phipson2010]
+- termino: SHAP
+  sigla: SHAP
+  sinonimos: []
+  definicion: Reparto aditivo de la predicción de un modelo entre sus variables.
+  en_palabras_simples: Cuánto empuja cada proteína, o cada variable de calidad, la salida del modelo.
+  rol_en_bioinformatica: M2 y M3 se explican con el SHAP lineal del logístico ya ajustado.
+  como_se_uso_aqui: /resultados/shap
+  relacionados: [AUC]
+  fuentes: [lundberg2017]
+- termino: ESM-2
+  sigla: ESM-2
+  sinonimos: []
+  definicion: Modelo de lenguaje de proteínas que asigna un vector a una secuencia.
+  en_palabras_simples: Una representación numérica de la secuencia, entrenada en muchas proteínas.
+  rol_en_bioinformatica: Entra en la priorización como una variable más, no como una estructura.
+  como_se_uso_aqui: /metodos/priorizacion
+  relacionados: [embedding]
+  fuentes: [lin2023]
+- termino: embedding
+  sigla: ""
+  sinonimos: [vector]
+  definicion: Lista de números que resume una secuencia o una muestra para un cálculo posterior.
+  en_palabras_simples: Una traducción de la proteína a una fila de números.
+  rol_en_bioinformatica: El embedding de ESM-2 es una de las columnas de la priorización.
+  como_se_uso_aqui: /metodos/priorizacion
+  relacionados: [ESM-2]
+  fuentes: [lin2023]
+- termino: preregistro
+  sigla: ""
+  sinonimos: []
+  definicion: Texto de las reglas escrito antes de mirar el resultado de esta versión. El fichero es config/preregistro_v3.yaml.
+  en_palabras_simples: Lo que se iba a hacer, dejado por escrito antes.
+  rol_en_bioinformatica: El certificado compara la corrida con ese fichero.
+  como_se_uso_aqui: /investigacion/reproducibilidad
+  relacionados: [enmienda, certificado]
+  fuentes: [rai2025]
+- termino: enmienda
+  sigla: ""
+  sinonimos: []
+  definicion: Cambio posterior del preregistro, declarado como desviación cuando una pieza no se ejecutó.
+  en_palabras_simples: Una corrección escrita, no un resultado escondido.
+  rol_en_bioinformatica: La casilla de alcance del certificado lista lo que quedó en desviación.
+  como_se_uso_aqui: /entregables
+  relacionados: [preregistro, certificado]
+  fuentes: [rai2025]
+- termino: sello
+  sigla: ""
+  sinonimos: []
+  definicion: Bloque con el commit, la fecha y los hashes de los ficheros que produjeron un resultado. Vive en results/v3_7/certificado.json.
+  en_palabras_simples: La marca que dice con qué código y qué entradas se calculó el número.
+  rol_en_bioinformatica: Cada figura y el certificado llevan sello. Sin él, el número no se publica.
+  como_se_uso_aqui: /investigacion/reproducibilidad
+  relacionados: [sha256, certificado]
+  fuentes: [rai2025]
+- termino: sha256
+  sigla: SHA-256
+  sinonimos: []
+  definicion: Resumen criptográfico de un fichero. Si cambia un byte, cambia el resumen.
+  en_palabras_simples: Una huella del fichero, para saber si es el mismo.
+  rol_en_bioinformatica: El manifiesto y el sello guardan ese resumen de las entradas.
+  como_se_uso_aqui: /investigacion/reproducibilidad
+  relacionados: [sello]
+  fuentes: [rai2025]
+- termino: certificado
+  sigla: ""
+  sinonimos: []
+  definicion: Informe que dice si la corrida cumple las reglas. El fichero es results/v3_7/certificado.json y la portada lee su estado.
+  en_palabras_simples: El parte de si se puede mostrar la corrida.
+  rol_en_bioinformatica: La portada lee ese estado. No sustituye al juicio clínico.
+  como_se_uso_aqui: /entregables
+  relacionados: [sello, preregistro]
+  fuentes: [rai2025]
+- termino: multiverso
+  sigla: ""
+  sinonimos: []
+  definicion: Conjunto de análisis vecinos, con reglas distintas fijadas de antemano, para ver si el titular se mueve.
+  en_palabras_simples: Repetir la cuenta de varias formas acordadas, no elegir la que queda mejor.
+  rol_en_bioinformatica: El suero y el aprendizaje tienen una página de ese barrido.
+  como_se_uso_aqui: /resultados
+  relacionados: [determinismo]
+  fuentes: [rai2025]
+- termino: triangulación
+  sigla: ""
+  sinonimos: []
+  definicion: Lectura conjunta de piezas distintas, tejido, suero y modelos, sin fundirlas en un solo número.
+  en_palabras_simples: Mirar varias cuentas que no miden lo mismo y decir en qué coinciden.
+  rol_en_bioinformatica: No convierte un cero del suero en un cero del tejido.
+  como_se_uso_aqui: /resultados
+  relacionados: [multiverso]
+  fuentes: [vasaikar2019]
+- termino: determinismo
+  sigla: ""
+  sinonimos: []
+  definicion: Propiedad de obtener el mismo número al repetir la corrida con las mismas entradas. El descarte de un par de corridas está en docs/determinismo_d_e.md.
+  en_palabras_simples: Volver a correr y obtener lo mismo.
+  rol_en_bioinformatica: El certificado exige que la corrida se pueda repetir.
+  como_se_uso_aqui: /investigacion/reproducibilidad
+  relacionados: [sello]
+  fuentes: [rai2025]
+- termino: identidad de secuencia
+  sigla: ""
+  sinonimos: [similitud de secuencia]
+  definicion: Porcentaje de columnas idénticas en el alineamiento global, con los huecos en el denominador. La similitud cuenta columnas con BLOSUM62 positivo.
+  en_palabras_simples: Cuántas letras coinciden, contando también los huecos.
+  rol_en_bioinformatica: El comparador la calcula en el navegador con la misma regla que Biopython.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [alineamiento global, BLOSUM62]
+  fuentes: [needleman1970, henikoff1992]
+- termino: dominio proteico
+  sigla: ""
+  sinonimos: [dominio]
+  definicion: Tramo de la secuencia anotado en UniProt como dominio, distinto del péptido señal.
+  en_palabras_simples: Un trozo de la proteína con un nombre en la ficha.
+  rol_en_bioinformatica: La ficha lo subraya en la secuencia y lo lista junto a InterPro y Pfam.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [InterPro, Pfam]
+  fuentes: [uniprot2025]
+- termino: Pfam
+  sigla: ""
+  sinonimos: []
+  definicion: Colección de familias de dominios, leída aquí desde las referencias cruzadas de UniProt.
+  en_palabras_simples: Un catálogo de trozos que se repiten en muchas proteínas.
+  rol_en_bioinformatica: La ficha lista la familia. No aloja el modelo de Pfam.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [dominio proteico, InterPro]
+  fuentes: [blum2025]
+- termino: PDB
+  sigla: PDB
+  sinonimos: []
+  definicion: Archivo de estructuras experimentales. Esta web solo lista el identificador, el método y la resolución.
+  en_palabras_simples: El depósito de estructuras medidas en el laboratorio.
+  rol_en_bioinformatica: No se copian los ficheros. El enlace sale a PDBe y a RCSB.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [estructura experimental]
+  fuentes: [uniprot2025]
+- termino: estructura experimental
+  sigla: ""
+  sinonimos: [estructura predicha]
+  definicion: Estructura medida y depositada en PDB. La predicha, en esta web, es el modelo de AlphaFold y no se lee como un dominio si el pLDDT es bajo.
+  en_palabras_simples: Una es una medida. La otra es una predicción.
+  rol_en_bioinformatica: La ficha separa la lista de PDB del visor de AlphaFold.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [PDB, AlphaFold, pLDDT]
+  fuentes: [jumper2021]
+- termino: código de evidencia GO
+  sigla: ""
+  sinonimos: []
+  definicion: Código que dice cómo se asignó un término GO. IEA es el electrónico.
+  en_palabras_simples: La nota al pie de por qué esa proteína tiene ese término.
+  rol_en_bioinformatica: La vista directa exige un código que no empiece por IEA.
+  como_se_uso_aqui: /proteinas/candidatas
+  relacionados: [IEA, GO]
+  fuentes: [goconsortium2023]
+- termino: propagación por la ontología
+  sigla: ""
+  sinonimos: []
+  definicion: Añadir los ancestros is_a de un término GO. Aquí no se usa part_of y el obo no es el de la tesis.
+  en_palabras_simples: Si una proteína tiene un término específico, también cuenta el término más general que lo contiene.
+  rol_en_bioinformatica: El comparador muestra el Jaccard de esa vista aparte del directo.
+  como_se_uso_aqui: /proteinas/comparar
+  relacionados: [GO, índice de Jaccard]
+  fuentes: [goconsortium2023]
+- termino: similitud semántica
+  sigla: ""
+  sinonimos: []
+  definicion: Medida de cercanía entre términos GO que usa la estructura de la ontología. Esta web no la calcula.
+  en_palabras_simples: Otra forma de comparar términos, más fina que contar los que se comparten.
+  rol_en_bioinformatica: Quedó fuera a propósito. El panorama usa Jaccard.
+  como_se_uso_aqui: /proteinas/candidatas
+  relacionados: [índice de Jaccard, GO]
+  fuentes: [goconsortium2023]
+- termino: Swiss-Prot
+  sigla: ""
+  sinonimos: [TrEMBL]
+  definicion: Entradas revisadas de UniProt. TrEMBL son las no revisadas. La ficha dice si la entrada está revisada.
+  en_palabras_simples: La ficha revisada por una persona, frente a la que solo pasó un programa.
+  rol_en_bioinformatica: El comparador muestra esa marca. No cambia la clase del contraste.
+  como_se_uso_aqui: /proteinas
+  relacionados: [UniProt]
+  fuentes: [uniprot2025]
+- termino: isoforma
+  sigla: ""
+  sinonimos: []
+  definicion: Variante de la misma entrada, con un sufijo numérico. El modelo de AlphaFold es el de la secuencia canónica.
+  en_palabras_simples: Otra forma de la misma proteína, más larga o más corta.
+  rol_en_bioinformatica: La ficha lo dice cuando el modelo no es el de esa variante.
+  como_se_uso_aqui: /proteinas
+  relacionados: [acceso de UniProt, AlphaFold]
+  fuentes: [uniprot2025, varadi2024]

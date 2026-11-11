@@ -79,6 +79,30 @@ def test_europepmc_solo_pide_la_api_de_ebi():
     ]
 
 
+def test_doi_datacite_solo_pide_la_api_de_datacite():
+    mod = modulo()
+    pedidas = []
+
+    def obtener(url: str):
+        pedidas.append(url)
+        cuerpo = json.dumps({
+            "data": {"attributes": {"titles": [{"title": "A Unified Approach to Interpreting Model Predictions"}]}},
+        })
+        return 200, url, cuerpo
+
+    fila = {
+        "id": "doi_lundberg2017",
+        "url": "https://doi.org/10.48550/arXiv.1705.07874",
+        "metodo": "doi_datacite",
+        "titulo_esperado": "A Unified Approach to Interpreting Model Predictions",
+        "doi_esperado": "",
+    }
+    resultado = mod.comprobar_fila(fila, obtener)
+    assert resultado["estado_http"] == "200"
+    assert pedidas == ["https://api.datacite.org/dois/10.48550/arXiv.1705.07874"]
+    assert not any("arxiv.org/pdf" in url or "europepmc.org" in url for url in pedidas)
+
+
 def test_el_user_agent_lleva_el_correo(monkeypatch):
     mod = modulo()
     visto = {}

@@ -12,6 +12,7 @@ import json
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -144,6 +145,20 @@ def comprobar_fila(fila: dict, obtener=obtener_red) -> dict:
         url_final = final
         esperado = fila.get("titulo_esperado", "")
         bien = codigo == 200 and esperado.lower() in f"{titulo} {final}".lower()
+    elif metodo == "doi_datacite":
+        doi = fila["url"].removeprefix("https://doi.org/").strip()
+        codigo, final, cuerpo = una(
+            "https://api.datacite.org/dois/" + urllib.parse.quote(doi, safe="/")
+        )
+        titulos = (((_json(cuerpo).get("data") or {}).get("attributes") or {}).get("titles")) or []
+        primero = titulos[0] if titulos else {}
+        titulo = str(primero.get("title") or "") if isinstance(primero, dict) else ""
+        url_final = final
+        bien = (
+            codigo == 200
+            and titulo_comparable(titulo) == titulo_comparable(fila.get("titulo_esperado", ""))
+            and not _es_editor(final)
+        )
     else:
         titulo = f"metodo desconocido: {metodo}"
 

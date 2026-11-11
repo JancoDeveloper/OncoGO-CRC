@@ -34,3 +34,26 @@ doi_uniprot	https://doi.org/10.1093/nar/gkae1010	DOI UniProt 2025	doi	2026-11-11
 doi_go	https://doi.org/10.1093/genetics/iyad031	DOI Gene Ontology 2023	doi	2026-11-11	200	The Gene Ontology knowledgebase in 2023	
 doi_milacic	https://doi.org/10.1093/nar/gkad1025	DOI Milacic Reactome	doi	2026-11-11	200	The Reactome Pathway Knowledgebase 2024	
 doi_szklarczyk	https://doi.org/10.1093/nar/gkac1000	DOI Szklarczyk STRING	doi	2026-11-11	200	The STRING database in 2023: protein–protein association networks and functional enrichment analyses for any sequenced genome of interest	
+doi_lin	https://doi.org/10.1126/science.ade2574	DOI Lin ESM-2	doi	2026-11-11	200	Evolutionary-scale prediction of atomic-level protein structure with a language model	
+doi_lundberg2020	https://doi.org/10.1038/s42256-019-0138-9	DOI Lundberg 2020	doi	2026-11-11	200	From local explanations to global understanding with explainable AI for trees	
+doi_fang	https://doi.org/10.1093/bioinformatics/btac757	DOI Fang GSEApy	doi	2026-11-11	200	GSEApy: a comprehensive package for performing gene set enrichment analysis in Python	
+doi_perezriverol	https://doi.org/10.1093/nar/gkae1011	DOI Perez-Riverol PRIDE	doi	2026-11-11	200	The PRIDE database at 20 years: 2025 update	
+doi_deutsch	https://doi.org/10.1093/nar/gkac1040	DOI Deutsch ProteomeXchange	doi	2026-11-11	200	The ProteomeXchange consortium at 10 years: 2023 update	
+doi_liberzon	https://doi.org/10.1016/j.cels.2015.12.004	DOI Liberzon Hallmark	doi	2026-11-11	200	The Molecular Signatures Database Hallmark Gene Set Collection	
+doi_phipson	https://doi.org/10.2202/1544-6115.1585	DOI Phipson y Smyth	doi	2026-11-11	200	Permutation P-values Should Never Be Zero: Calculating Exact P-values When Permutations Are Randomly Drawn	
+doi_lakens	https://doi.org/10.1177/1948550617697177	DOI Lakens equivalencia	doi	2026-11-11	200	Equivalence Tests	
+doi_ritchie	https://doi.org/10.1093/nar/gkv007	DOI Ritchie limma	doi	2026-11-11	200	limma powers differential expression analyses for RNA-sequencing and microarray studies	
+doi_geyer	https://doi.org/10.15252/emmm.201910427	DOI Geyer 2019	doi	2026-11-11	200	Plasma Proteome Profiling to detect and avoid sample‐related biases in biomarker studies	
+doi_leek	https://doi.org/10.1038/nrg2825	DOI Leek 2010	doi	2026-11-11	200	Tackling the widespread and critical impact of batch effects in high-throughput data	
+doi_gabay	https://doi.org/10.1056/NEJM199902113400607	DOI Gabay 1999	doi	2026-11-11	200	Acute-Phase Proteins and Other Systemic Responses to Inflammation	
+doi_locker	https://doi.org/10.1200/jco.2006.08.2644	DOI Locker 2006	doi	2026-11-11	200	ASCO 2006 Update of Recommendations for the Use of Tumor Markers in Gastrointestinal Cancer	
+doi_hermoso	https://doi.org/10.1016/j.isci.2026.114751	DOI Hermoso-Durán 2026	doi	2026-11-11	200	Integrating thermal liquid biopsy, clinical data, and mass spectrometry for early diagnosis and biomarker discovery in colorectal cancer	
+doi_pepe	https://doi.org/10.1093/jnci/93.14.1054	DOI Pepe 2001	doi	2026-11-11	200	Phases of Biomarker Development for Early Detection of Cancer	
+doi_uhlen	https://doi.org/10.1126/science.1260419	DOI Uhlen 2015	doi	2026-11-11	200	Tissue-based map of the human proteome	
+doi_benjamini	https://doi.org/10.1111/j.2517-6161.1995.tb02031.x	DOI Benjamini 1995	doi	2026-11-11	200	Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing	
+doi_subramanian	https://doi.org/10.1073/pnas.0506580102	DOI Subramanian 2005	doi	2026-11-11	200	Gene set enrichment analysis: A knowledge-based approach for interpreting genome-wide expression profiles	
+doi_smyth	https://doi.org/10.2202/1544-6115.1027	DOI Smyth 2004	doi	2026-11-11	200	Linear Models and Empirical Bayes Methods for Assessing Differential Expression in Microarray Experiments	
+doi_ashburner	https://doi.org/10.1038/75556	DOI Ashburner 2000	doi	2026-11-11	200	Gene Ontology: tool for the unification of biology	
+doi_malmstrom	https://doi.org/10.1016/j.cell.2025.03.013	DOI Malmstrom 2025	doi	2026-11-11	200	Human proteome distribution atlas for tissue-specific plasma proteome dynamics	
+doi_lundberg2017	https://doi.org/10.48550/arXiv.1705.07874	DOI Lundberg y Lee 2017	doi_datacite	2026-11-11	200	A Unified Approach to Interpreting Model Predictions	
+doi_mccarthy	https://doi.org/10.1093/bioinformatics/btp053	DOI McCarthy TREAT	doi	2026-11-11	200	Testing significance relative to a fold-change threshold is a TREAT	

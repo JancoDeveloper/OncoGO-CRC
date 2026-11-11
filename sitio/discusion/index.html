@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discusión · OncoGO-CRC</title>
+<link rel="stylesheet" href="/css/v4.4448135229.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="barra">
+<a class="marca" href="/">OncoGO-CRC</a>
+<nav class="menu" aria-label="Principal">
+
+<a href="/">Inicio</a>
+
+<a href="/investigacion/contexto">Investigación</a>
+
+<a href="/datos">Datos</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/resultados">Resultados</a>
+
+<a href="/proteinas">Proteínas</a>
+
+<a href="/discusion">Discusion</a>
+
+<a href="/conclusiones">Conclusiones</a>
+
+<a href="/entregables">Entregables</a>
+
+<a href="/ayuda">Ayuda</a>
+
+<a href="/glosario">Glosario</a>
+
+<a href="/bibliografia">Bibliografía</a>
+
+</nav>
+<form class="buscar" action="/buscar" method="get" role="search">
+<label class="saltar" for="q">Buscar</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<button type="submit">Buscar</button>
+</form>
+<button type="button" id="tema">Tema</button>
+</header>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<div class="disposicion">
+<nav class="indice" aria-label="En esta página">
+<p class="migas">Inicio / Discusion / Discusión</p>
+
+<a href="#el-dise-o-en-bloques">El diseño en bloques</a>
+
+<a href="#coagulaci-n-tubo-o-tumor">Coagulación: tubo o tumor</a>
+
+<a href="#el-resultado-negativo">El resultado negativo</a>
+
+<a href="#coherencia-y-lo-que-no-se-alcanza">Coherencia y lo que no se alcanza</a>
+
+<a href="#otros-estudios-y-limitaciones">Otros estudios y limitaciones</a>
+
+<a href="#qu-dise-o-lo-evitar-a">Qué diseño lo evitaría</a>
+
+</nav>
+<main id="contenido">
+<h1>Discusión</h1>
+<h2 id="el-dise-o-en-bloques">El diseño en bloques</h2>
+<p>Los grupos se midieron en bloques. El orden de <a class="termino" href="/glosario#cp">CP<span class="definicion-corta">Las muestras de suero de personas con este cáncer.</span></a> va de <data value="1" data-fuente="results/v3_7/preanalitica.json#posicion_por_grupo.CP.orden_min">1</data><details class="evidencia"><summary>fuente</summary><p id="ev90">results/v3_7/preanalitica.json#posicion_por_grupo.CP.orden_min</p></details> a <data value="20" data-fuente="results/v3_7/preanalitica.json#posicion_por_grupo.CP.orden_max">20</data><details class="evidencia"><summary>fuente</summary><p id="ev91">results/v3_7/preanalitica.json#posicion_por_grupo.CP.orden_max</p></details>, el de <a class="termino" href="/glosario#cn">CN<span class="definicion-corta">Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span></a> de <data value="21" data-fuente="results/v3_7/preanalitica.json#posicion_por_grupo.CN.orden_min">21</data><details class="evidencia"><summary>fuente</summary><p id="ev92">results/v3_7/preanalitica.json#posicion_por_grupo.CN.orden_min</p></details> a <data value="40" data-fuente="results/v3_7/preanalitica.json#posicion_por_grupo.CN.orden_max">40</data><details class="evidencia"><summary>fuente</summary><p id="ev93">results/v3_7/preanalitica.json#posicion_por_grupo.CN.orden_max</p></details>, y el de <a class="termino" href="/glosario#hc">HC<span class="definicion-corta">El contraste con personas sanas existe, pero no es el que decide la pregunta.</span></a> de <data value="41" data-fuente="results/v3_7/preanalitica.json#posicion_por_grupo.HC.orden_min">41</data><details class="evidencia"><summary>fuente</summary><p id="ev94">results/v3_7/preanalitica.json#posicion_por_grupo.HC.orden_min</p></details> a <data value="60" data-fuente="results/v3_7/preanalitica.json#posicion_por_grupo.HC.orden_max">60</data><details class="evidencia"><summary>fuente</summary><p id="ev95">results/v3_7/preanalitica.json#posicion_por_grupo.HC.orden_max</p></details>. Hay fecha en <data value="60" data-fuente="results/v3_7/preanalitica.json#n_con_fecha">60</data><details class="evidencia"><summary>fuente</summary><p id="ev96">results/v3_7/preanalitica.json#n_con_fecha</p></details> de <data value="60" data-fuente="results/v3_7/preanalitica.json#n_crudos_validos">60</data><details class="evidencia"><summary>fuente</summary><p id="ev97">results/v3_7/preanalitica.json#n_crudos_validos</p></details> crudos. El estado de la preanalítica es <data value="calculado" data-fuente="results/v3_7/preanalitica.json#estado">calculado</data><details class="evidencia"><summary>fuente</summary><p id="ev98">results/v3_7/preanalitica.json#estado</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#geyer2019">Geyer 2019</a><span class="cita-ventana">Plasma Proteome Profiling to detect and avoid sample-related biases in biomarker studies 10.15252/emmm.201910427</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#leek2010">Leek 2010</a><span class="cita-ventana">Tackling the widespread and critical impact of batch effects in high-throughput data 10.1038/nrg2825</span></span></p>
+<p>Con estos datos no se separa el efecto del grupo del efecto del lote de adquisición. Eso no crea una proteína del tumor: refuerza que la separación del suero no se atribuye al tumor. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<h2 id="coagulaci-n-tubo-o-tumor">Coagulación: tubo o tumor</h2>
+<p>La coagulación difiere entre cáncer y colonoscopia negativa, con p <data value="0.0009909115846774195" data-fuente="results/v3_7/suero_calidad.json#confusion_preanalitica.0.p_kruskal">0,001</data><details class="evidencia"><summary>fuente</summary><p id="ev99">results/v3_7/suero_calidad.json#confusion_preanalitica.0.p_kruskal</p></details>. La piel, con p <data value="3.368147927831302e-06" data-fuente="results/v3_7/suero_calidad.json#confusion_preanalitica.1.p_kruskal">0,000</data><details class="evidencia"><summary>fuente</summary><p id="ev100">results/v3_7/suero_calidad.json#confusion_preanalitica.1.p_kruskal</p></details>, apunta a manipulación. El cáncer puede activar la coagulación, y el tubo y el tiempo hasta centrifugar también la cambian. Con estos datos no se separan. <span class="cita-wrap"><a class="cita" href="/bibliografia#geyer2019">Geyer 2019</a><span class="cita-ventana">Plasma Proteome Profiling to detect and avoid sample-related biases in biomarker studies 10.15252/emmm.201910427</span></span></p>
+<h2 id="el-resultado-negativo">El resultado negativo</h2>
+<p>En la celda, <data value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente">0</data><details class="evidencia"><summary>fuente</summary><p id="ev101">results/v3_7/suero_embudo.json#celda_preregistrada.diferente</p></details> de <data value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n">284</data><details class="evidencia"><summary>fuente</summary><p id="ev102">results/v3_7/suero_embudo.json#celda_preregistrada.n</p></details> proteínas separan el cáncer de la colonoscopia negativa. <data value="166" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.equivalente">166</data><details class="evidencia"><summary>fuente</summary><p id="ev103">results/v3_7/suero_embudo.json#celda_preregistrada.equivalente</p></details> son equivalentes y <data value="118" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada">118</data><details class="evidencia"><summary>fuente</summary><p id="ev104">results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada</p></details> quedan indeterminadas. Con este tamaño, no detectar una diferencia no equivale a demostrar que no existe. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<h2 id="coherencia-y-lo-que-no-se-alcanza">Coherencia y lo que no se alcanza</h2>
+<p>SAA1, LBP y LRG1 forman parte de la respuesta de fase aguda. Esa lectura es plausible y no se separa del lote, porque HC se midió al final. <span class="cita-wrap"><a class="cita" href="/bibliografia#gabay1999">Gabay 1999</a><span class="cita-ventana">Acute-Phase Proteins and Other Systemic Responses to Inflammation 10.1056/NEJM199902113400607</span></span> CEACAM5 se usa en el seguimiento, no como cribado. <span class="cita-wrap"><a class="cita" href="/bibliografia#locker2006">Locker 2006</a><span class="cita-ventana">ASCO 2006 Update of Recommendations for the Use of Tumor Markers in Gastrointestinal Cancer 10.1200/jco.2006.08.2644</span></span> H8 queda en <data value="no_evaluable" data-fuente="results/v3_7/h8_carga_tumoral.json#estado">no_evaluable</data><details class="evidencia"><summary>fuente</summary><p id="ev105">results/v3_7/h8_carga_tumoral.json#estado</p></details>, con <data value="0" data-fuente="results/v3_7/h8_carga_tumoral.json#n_tumorales_epiteliales">0</data><details class="evidencia"><summary>fuente</summary><p id="ev106">results/v3_7/h8_carga_tumoral.json#n_tumorales_epiteliales</p></details> proteínas tumorales epiteliales en un universo de <data value="53" data-fuente="results/v3_7/h8_carga_tumoral.json#n_universo">53</data><details class="evidencia"><summary>fuente</summary><p id="ev107">results/v3_7/h8_carga_tumoral.json#n_universo</p></details>. Un DIA sin depleción no alcanza esas proteínas. <span class="cita-wrap"><a class="cita" href="/bibliografia#hermoso2026">Hermoso-Dur\&#x27;an 2026</a><span class="cita-ventana">Integrating thermal liquid biopsy, clinical data, and mass spectrometry for early diagnosis and biomarker discovery in colorectal cancer 10.1016/j.isci.2026.114751</span></span></p>
+<h2 id="otros-estudios-y-limitaciones">Otros estudios y limitaciones</h2>
+<p>Otros estudios preguntan cosas distintas y usan diseños distintos. No se comparan áreas bajo la curva entre diseños. H7 queda en <data value="refuta" data-fuente="results/v3_7/h7_visibilidad_en_sangre.json#estado">refuta</data><details class="evidencia"><summary>fuente</summary><p id="ev108">results/v3_7/h7_visibilidad_en_sangre.json#estado</p></details> dentro de sus propias reglas. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<p>El suero es de un solo centro y de grupos pequeños. No hay tejido y sangre de la misma persona. H6 queda en <data value="no_sostiene" data-fuente="results/v3_7/h6_origen_celular.json#estado">no_sostiene</data><details class="evidencia"><summary>fuente</summary><p id="ev109">results/v3_7/h6_origen_celular.json#estado</p></details>. H9 queda en <data value="exploratorio" data-fuente="results/v3_7/h9_wald.json#estado">exploratorio</data><details class="evidencia"><summary>fuente</summary><p id="ev110">results/v3_7/h9_wald.json#estado</p></details> y no decide la tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
+<h2 id="qu-dise-o-lo-evitar-a">Qué diseño lo evitaría</h2>
+<p>Aleatorizar el orden de adquisición, intercalar los grupos y repetir el contraste en otra cohorte de personas con síntomas. Sigue siendo la fase 1 de ese esquema, y no es un examen. <span class="cita-wrap"><a class="cita" href="/bibliografia#pepe2001">Pepe 2001</a><span class="cita-ventana">Phases of Biomarker Development for Early Detection of Cancer 10.1093/jnci/93.14.1054</span></span></p>
+<p>La enmienda declara como desviación, no como resultado, el catálogo de candidatas, la cláusula de vías de H1, los neoantígenos, la deriva de PRTC, las redes de coexpresión, la unión de HC por XIC y las vías del suero. Esa casilla está en <data value="desviacion_declarada" data-fuente="results/v3_7/certificado.json#casillas.6.estado">desviacion_declarada</data><details class="evidencia"><summary>fuente</summary><p id="ev111">results/v3_7/certificado.json#casillas.6.estado</p></details>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+
+<h2 id="fuentes-de-esta-pagina">Fuentes de esta página</h2>
+<ul>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/preanalitica.json">results/v3_7/preanalitica.json#posicion_por_grupo.CP.orden_min</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/preanalitica.json">results/v3_7/preanalitica.json#posicion_por_grupo.CP.orden_max</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/preanalitica.json">results/v3_7/preanalitica.json#posicion_por_grupo.CN.orden_min</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/preanalitica.json">results/v3_7/preanalitica.json#posicion_por_grupo.CN.orden_max</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/preanalitica.json">results/v3_7/preanalitica.json#posicion_por_grupo.HC.orden_min</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/preanalitica.json">results/v3_7/preanalitica.json#posicion_por_grupo.HC.orden_max</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/preanalitica.json">results/v3_7/preanalitica.json#n_con_fecha</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/preanalitica.json">results/v3_7/preanalitica.json#n_crudos_validos</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/preanalitica.json">results/v3_7/preanalitica.json#estado</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_calidad.json">results/v3_7/suero_calidad.json#confusion_preanalitica.0.p_kruskal</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_calidad.json">results/v3_7/suero_calidad.json#confusion_preanalitica.1.p_kruskal</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.diferente</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.n</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.equivalente</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h8_carga_tumoral.json">results/v3_7/h8_carga_tumoral.json#estado</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h8_carga_tumoral.json">results/v3_7/h8_carga_tumoral.json#n_tumorales_epiteliales</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h8_carga_tumoral.json">results/v3_7/h8_carga_tumoral.json#n_universo</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h7_visibilidad_en_sangre.json">results/v3_7/h7_visibilidad_en_sangre.json#estado</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h6_origen_celular.json">results/v3_7/h6_origen_celular.json#estado</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h9_wald.json">results/v3_7/h9_wald.json#estado</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/certificado.json">results/v3_7/certificado.json#casillas.6.estado</a></li>
+
+<li><a href="https://doi.org/10.15252/emmm.201910427">geyer2019 · 10.15252/emmm.201910427</a></li>
+
+<li><a href="https://doi.org/10.1038/nrg2825">leek2010 · 10.1038/nrg2825</a></li>
+
+<li><a href="https://doi.org/10.1021/acs.jproteome.5c00285">rai2025 · 10.1021/acs.jproteome.5c00285</a></li>
+
+<li><a href="https://doi.org/10.1056/NEJM199902113400607">gabay1999 · 10.1056/NEJM199902113400607</a></li>
+
+<li><a href="https://doi.org/10.1200/jco.2006.08.2644">locker2006 · 10.1200/jco.2006.08.2644</a></li>
+
+<li><a href="https://doi.org/10.1016/j.isci.2026.114751">hermoso2026 · 10.1016/j.isci.2026.114751</a></li>
+
+<li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
+
+<li><a href="https://doi.org/10.1093/jnci/93.14.1054">pepe2001 · 10.1093/jnci/93.14.1054</a></li>
+
+</ul>
+
+</main>
+</div>
+<footer class="pie">
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado">publicable</data><details class="evidencia"><summary>fuente</summary><p id="ev1">results/v3_7/certificado.json#estado</p></details> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data><details class="evidencia"><summary>fuente</summary><p id="ev2">results/v3_7/certificado.json#sello.commit</p></details>.</p>
+<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+</footer>
+<script>(function () {
+  var raiz = document.documentElement;
+  var guardado = null;
+  try { guardado = localStorage.getItem("tema"); } catch (error) { guardado = null; }
+  if (guardado === "oscuro" || guardado === "claro") raiz.setAttribute("data-tema", guardado);
+  var boton = document.getElementById("tema");
+  if (boton) {
+    boton.addEventListener("click", function () {
+      var siguiente = raiz.getAttribute("data-tema") === "oscuro" ? "claro" : "oscuro";
+      raiz.setAttribute("data-tema", siguiente);
+      try { localStorage.setItem("tema", siguiente); } catch (error) { return; }
+    });
+  }
+  var caja = document.getElementById("q");
+  if (caja && document.querySelector("[data-buscar]")) {
+    var aplicar = function () {
+      var consulta = caja.value.toLowerCase();
+      document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
+        var texto = nodo.getAttribute("data-buscar").toLowerCase();
+        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+      });
+    };
+    caja.addEventListener("input", aplicar);
+    if (caja.value) aplicar();
+  }
+  var secciones = Array.prototype.slice.call(document.querySelectorAll("main h2[id]"));
+  var enlaces = Array.prototype.slice.call(document.querySelectorAll(".indice a"));
+  if (secciones.length && enlaces.length && "IntersectionObserver" in window) {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) return;
+        enlaces.forEach(function (enlace) {
+          var activo = enlace.getAttribute("href") === "#" + entrada.target.id;
+          if (activo) enlace.setAttribute("aria-current", "true");
+          else enlace.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    secciones.forEach(function (seccion) { observador.observe(seccion); });
+  }
+  document.querySelectorAll("[data-filtro]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var filtro = boton.getAttribute("data-filtro");
+      var valor = boton.getAttribute("data-valor");
+      document.querySelectorAll(".celda-multi").forEach(function (celda) {
+        var ocultar = valor !== "todas" && celda.getAttribute(filtro) !== valor;
+        celda.style.display = ocultar ? "none" : "";
+      });
+    });
+  });
+  document.body.addEventListener("click", function (evento) {
+    var boton = evento.target.closest ? evento.target.closest("[data-ver-estructura]") : null;
+    if (!boton) return;
+    var destino = document.getElementById(boton.getAttribute("data-ver-estructura"));
+    if (!destino || destino.getAttribute("data-listo") === "1") return;
+    destino.setAttribute("data-listo", "1");
+    var estilo = document.createElement("link");
+    estilo.rel = "stylesheet";
+    estilo.href = boton.getAttribute("data-estilo");
+    document.head.appendChild(estilo);
+    var cargador = document.createElement("script");
+    cargador.src = boton.getAttribute("data-script");
+    cargador.onload = function () {
+      var archivos = (boton.getAttribute("data-modelos") || "").split(",").filter(Boolean);
+      archivos.forEach(function (archivo) {
+        var caja = document.createElement("div");
+        caja.className = "visor";
+        destino.appendChild(caja);
+        molstar.Viewer.create(caja, {
+          layoutIsExpanded: false,
+          layoutShowControls: false,
+          layoutShowSequence: true,
+          layoutShowLog: false,
+          layoutShowLeftPanel: false,
+          viewportShowExpand: false,
+          viewportShowSettings: false,
+          viewportShowSelectionMode: false,
+          viewportShowAnimation: false,
+          viewportShowTrajectoryControls: false
+        }).then(function (visor) {
+          return visor.loadStructureFromUrl(archivo, "bcif", true);
+        });
+      });
+    };
+    document.body.appendChild(cargador);
+  });
+  document.querySelectorAll(".lienzo-svg a[data-id]").forEach(function (nodo) {
+    nodo.addEventListener("click", function () {
+      var svg = nodo.closest("svg");
+      svg.querySelectorAll(".resaltado").forEach(function (el) { el.classList.remove("resaltado"); });
+      nodo.classList.add("resaltado");
+      svg.querySelectorAll("line").forEach(function (linea) {
+        var id = nodo.getAttribute("data-id");
+        if (linea.getAttribute("data-origen") === id || linea.getAttribute("data-destino") === id) {
+          linea.classList.add("resaltado");
+        }
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
