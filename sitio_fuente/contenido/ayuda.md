@@ -10,7 +10,7 @@ resumen: Cómo leer las cifras, las citas y las etiquetas de fuente.
 
 ## Cómo leer una cifra
 
-Cada cifra está en un elemento con su fichero de origen. La etiqueta «Origen» abre esa ruta. El listado de rutas de la página está en «Transparencia y trazabilidad». Si el fichero no está, el generador se detiene y no inventa el número. [@rai2025]
+Cada cifra guarda su fichero en el atributo del número. Al posar el cursor, o al enfocar el número, se lee la ruta. El listado de rutas de la página está en «Transparencia y trazabilidad». Si el fichero no está, el generador se detiene y no inventa el número. [@rai2025]
 
 ## Cómo leer una cita
 

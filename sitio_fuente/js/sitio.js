@@ -96,12 +96,16 @@
           viewportShowAnimation: false,
           viewportShowTrajectoryControls: false
         }).then(function (visor) {
-          return visor.loadStructureFromUrl(archivo, "mmcif", true);
+          return visor.loadStructureFromUrl(archivo, "mmcif", true).then(function () {
+            var plugin = visor.plugin;
+            if (plugin && plugin.canvas3d && plugin.canvas3d.handle && plugin.canvas3d.handle.resize) {
+              plugin.canvas3d.handle.resize();
+            }
+          });
         }).catch(function () {
           caja.textContent = "El modelo no se abrió en este navegador. La cifra de pLDDT sigue en el texto.";
         });
       });
-      destino.scrollIntoView({ block: "nearest" });
     };
     cargador.onerror = function () {
       destino.textContent = "No se pudo cargar el visor. La cifra de pLDDT sigue en el texto.";

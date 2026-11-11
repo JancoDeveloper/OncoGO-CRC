@@ -66,16 +66,8 @@ def dato_html(fuente: str, contador: list[int], traza: bool = True) -> str:
     else:
         bruto = str(valor)
         visible = formatear(valor, "entero") if isinstance(valor, int) else bruto
-    dato = f'<data value="{e(bruto)}" data-fuente="{e(fuente)}">{e(visible)}</data>'
-    if not traza:
-        return dato
-    contador[0] += 1
-    ident = f"ev{contador[0]}"
-    return (
-        dato
-        + f'<details class="evidencia"><summary>Origen</summary>'
-        + f'<p id="{ident}">{e(fuente)}</p></details>'
-    )
+    dato = f'<data value="{e(bruto)}" data-fuente="{e(fuente)}" title="{e("Origen: " + str(fuente))}">{e(visible)}</data>'
+    return dato
 
 
 def leer_bib() -> dict[str, dict]:

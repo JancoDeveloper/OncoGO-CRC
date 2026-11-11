@@ -92,8 +92,7 @@ def cifra(valor, fuente: str, columna: str = "") -> str:
         bruto = str(valor)
         visible = bruto
     return (
-        f'<data value="{e(bruto)}" data-fuente="{e(fuente)}">{e(visible)}</data>'
-        f'<details class="evidencia"><summary>Origen</summary><p>{e(fuente)}</p></details>'
+        f'<data value="{e(bruto)}" data-fuente="{e(fuente)}" title="{e("Origen: " + fuente)}">{e(visible)}</data>'
     )
 
 
@@ -232,7 +231,9 @@ def lista_html(fichas: list[dict], meta: dict, cita) -> str:
         "Una ficha lleva la etiqueta de candidata cuando su único gen tiene ultimo_paso 5 en priorizacion.tsv. "
         "Esa etiqueta es una hipótesis para cohortes futuras."
         f"{e(nota_repetidos)} {cita('tanaka2024')}</p>"
-        '<p><a href="/proteinas/comparar">Comparador</a> · <a href="/proteinas/candidatas">Candidatas</a></p>'
+        '<p><a href="/proteinas/comparar">Comparar hallazgos</a> pone, una junto a otra, la clase frente a CN, '
+        "el paso, GO, los dominios y la secuencia. "
+        '<a href="/proteinas/candidatas">Candidatas</a> reúne las del paso 5.</p>'
         '<p class="filtro-proteinas"><label for="filtro-proteinas">Buscar en esta lista por identificador, gen o nombre</label>'
         '<input id="filtro-proteinas" type="search" autocomplete="off">'
         '<label><input id="solo-paso-5" type="checkbox"> Solo el paso 5, hipótesis para cohortes futuras</label></p>'
@@ -244,12 +245,20 @@ def cuerpo_de(ficha, uniprot, tablas, traza, prio, tri, shap, cita, vistas, docu
     protein_id = ficha["id"]
     representate = base_de(protein_id.split(";")[0])
     entrada = uniprot.loc[representate] if representate in uniprot.index else None
-    partes = [f"<h1>{e(protein_id)}</h1>"]
-    if ficha.get("gen"):
-        partes.append(f'<p class="gen-ficha">{e(ficha["gen"])}</p>')
     nombre = ficha.get("nombre") or ""
-    if nombre:
-        partes.append(f'<p class="nombre-proteina">{e(nombre.split(" (")[0])}</p>')
+    corto = nombre.split(" (")[0] if nombre else protein_id
+    gen = ficha.get("gen") or ""
+    primero = quote(protein_id.split(";")[0], safe="-")
+    partes = [
+        '<header class="ficha-cabeza">'
+        + (f'<p class="gen-ficha">{e(gen)}</p>' if gen else "")
+        + f"<h1>{e(corto)}</h1>"
+        + f'<p class="acceso">{e(protein_id)}</p>'
+        + '<p class="ficha-acciones">'
+        + f'<a href="https://www.uniprot.org/uniprotkb/{e(representate)}/entry">UniProt</a>'
+        + f'<a href="/proteinas/comparar?p={e(primero)}">Comparar hallazgos</a>'
+        + "</p></header>"
+    ]
     if ficha["candidata"]:
         partes.append(f'<p class="etiqueta-candidata">{e(ETIQUETA)}</p>')
     if ficha["gen"] in {"S100A8", "S100A9"}:

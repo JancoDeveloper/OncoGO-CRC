@@ -1,5 +1,5 @@
 * { box-sizing: border-box; }
-html { scroll-behavior: auto; }
+html { scroll-behavior: auto; overflow-x: clip; }
 body {
   margin: 0;
   background: var(--papel);
@@ -7,6 +7,7 @@ body {
   font-family: var(--fuente);
   font-size: 1.05rem;
   line-height: 1.55;
+  overflow-x: clip;
 }
 a { color: var(--marca); }
 a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
@@ -28,16 +29,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   top: 0;
   z-index: 4;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 0.75rem 1rem;
   align-items: center;
   padding: 0.7rem 1rem;
   background: var(--tarjeta);
   border-bottom: 1px solid var(--linea);
-  overflow-x: auto;
 }
 .marca { font-weight: 600; text-decoration: none; color: var(--tinta); }
-.menu { display: flex; flex-wrap: nowrap; gap: 0.35rem 0.4rem; }
+.menu { display: flex; flex-wrap: wrap; gap: 0.35rem 0.4rem; }
 .buscar { display: flex; gap: 0.4rem; margin-left: auto; }
 .buscar input {
   width: 11rem;
@@ -64,14 +64,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .indice {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 0.35rem 0.85rem;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
   position: sticky;
   top: 4.3rem;
   z-index: 3;
   margin: 0 0 1.2rem;
   padding: 0.45rem 0;
-  overflow-x: auto;
   background: var(--papel);
   border-bottom: 1px solid var(--linea);
 }
@@ -167,7 +166,21 @@ th, td { border-bottom: 1px solid var(--linea); text-align: left; padding: 0.35r
 .secuencia .signal { background: var(--aviso-fondo); color: var(--aviso-tinta); }
 .secuencia .domain { text-decoration: underline; }
 .pestanias { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0.6rem 0 1rem; }
-.visor { height: 24rem; margin: 0.6rem 0; border: 1px solid var(--linea); border-radius: var(--radio); background: #f3f1ea; }
+.ficha-cabeza { margin: 0 0 1.4rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--linea); }
+.ficha-cabeza h1 { margin: 0.1rem 0; }
+.ficha-cabeza .acceso { margin: 0.2rem 0; font-family: var(--fuente-mono); color: var(--tinta-suave); }
+.ficha-acciones { display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem; }
+.marco-estructura { margin: 0.6rem 0 1rem; }
+.visor {
+  position: relative;
+  height: 32rem;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background: #f3f1ea;
+}
+.visor .msp-plugin { position: absolute !important; inset: 0 !important; width: auto !important; height: auto !important; }
 .nodo-equivalente { stroke: var(--marca); }
 .nodo-indeterminada { stroke: var(--aviso-tinta); }
 .nodo-diferente { stroke: var(--tinta); }

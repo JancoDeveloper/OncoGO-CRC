@@ -52,8 +52,7 @@ def dato(valor, fuente: str, tipo: str | None = None) -> str:
     else:
         bruto, visible = str(valor), str(valor)
     return (
-        f'<data value="{e(bruto)}" data-fuente="{e(fuente)}">{e(visible)}</data>'
-        f'<details class="evidencia"><summary>Origen</summary><p>{e(fuente)}</p></details>'
+        f'<data value="{e(bruto)}" data-fuente="{e(fuente)}" title="{e("Origen: " + fuente)}">{e(visible)}</data>'
     )
 
 
@@ -194,7 +193,7 @@ def secciones(ficha: dict, documento: dict, cita, comunes: dict) -> str:
                 f'data-modelos="/{e(alfa["modelo_local"])}" '
                 f'data-script="/js/{e(comunes["molstar_js"])}" '
                 f'data-estilo="/css/{e(comunes["molstar_css"])}">Ver estructura</button></p>'
-                f'<div id="{ancla}"></div>'
+                f'<div class="marco-estructura" id="{ancla}"></div>'
                 "<p>Sin JavaScript queda la cifra de pLDDT. El visor no forma parte de la página hasta ese botón.</p>"
             )
         else:
@@ -473,10 +472,14 @@ def cerrar(render, env, comunes: dict, cita, fichas: list[dict]) -> None:
         + (REPO / "sitio_fuente" / "js" / "comparar.js").read_text(encoding="utf-8")
     )
     cuerpo = (
-        "<h1>Comparador</h1>"
-        "<p>Describe conocimiento previo: secuencia, estructura, GO, dominios y vías. "
-        "No es un resultado de la tesis. Compartir términos, dominios o secuencia no significa "
-        "que dos proteínas se comporten igual en la sangre. Las proteínas más estudiadas tienen más anotaciones.</p>"
+        "<h1>Comparar hallazgos</h1>"
+        "<p>Aquí se ve en qué coinciden dos a cuatro proteínas de la celda. "
+        "La tabla pone al lado la clase frente a CN, el log2FC, el paso, los términos GO, "
+        "los dominios y la secuencia. Lo compartido es lo que sale en ambas columnas. "
+        "No calcula un hallazgo nuevo y no superpone estructuras.</p>"
+        "<p>Describe conocimiento previo de secuencia, estructura, GO, dominios y vías. "
+        "Compartir términos o secuencia no significa que se comporten igual en la sangre. "
+        "Las proteínas más estudiadas tienen más anotaciones.</p>"
         '<p><a href="/proteinas/candidatas">Las 20 candidatas</a>. '
         f'<a href="/proteinas/comparar?p={EJEMPLO[0]},{EJEMPLO[1]}">Ejemplo {EJEMPLO[0]} y {EJEMPLO[1]}</a>. '
         '<a href="/proteinas/comparar?p=P05109,P06702">Calprotectina (S100A8 y S100A9)</a>.</p>'
@@ -503,7 +506,7 @@ def cerrar(render, env, comunes: dict, cita, fichas: list[dict]) -> None:
     )
     pagina = render(
         env, "base.html.j2",
-        titulo="Comparador",
+        titulo="Comparar hallazgos",
         cuerpo=cuerpo,
         indice=[
             {"id": "vista-resumen", "texto": "Resumen"},
@@ -566,7 +569,7 @@ def estructura_lado(documento: dict, accesos: tuple[str, str], comunes: dict) ->
             '<p><button type="button" data-ver-estructura="visor-ejemplo" data-modelos="'
             + e(",".join(modelos[:2]))
             + f'" data-script="/js/{e(comunes["molstar_js"])}" data-estilo="/css/{e(comunes["molstar_css"])}">'
-            "Ver estructuras</button></p><div id=\"visor-ejemplo\"></div>"
+            "Ver estructuras</button></p><div class=\"marco-estructura\" id=\"visor-ejemplo\"></div>"
         )
     partes.append("<p>No se superponen estructuras: no hay un método de superposición citado.</p>")
     return "\n".join(partes)

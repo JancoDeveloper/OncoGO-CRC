@@ -102,6 +102,11 @@ var Comparador = (function () {
     if (!caja) return;
     var pedido = leerConsulta();
     var actual = (caja.getAttribute("data-par") || "").split(",");
+    if (pedido.length === 1) {
+      var campo = document.getElementById("p");
+      if (campo) campo.value = pedido[0] + ",";
+      return;
+    }
     if (pedido.length < 2 || pedido.join(",") === actual.join(",")) return;
     fetch("/fuentes/comparador.json").then(function (respuesta) { return respuesta.json(); }).then(function (datos) {
       datos.proteinas._molstar_js = datos.molstar_js;
