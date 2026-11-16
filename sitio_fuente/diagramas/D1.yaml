@@ -1,31 +1,51 @@
 id: D1
 titulo: Mapa de la investigación
-desc: La pregunta usa el suero de Rai y el tejido de Vasaikar y de Tanaka. El resultado de la celda no se presenta como una prueba para un paciente.
+desc: La pregunta se abre en dos matrices que no se fusionan. El tejido responde si
+  el cambio se repite. El suero responde si ese cambio se distingue de otra enfermedad
+  intestinal.
 pregunta: ¿Cómo se recorre el estudio?
 nodos:
-  - id: pregunta
-    texto: Pregunta
-    href: /
-    fuente: rai2025
-  - id: datos
-    texto: Datos
-    href: /metodos/proteomica
-    fuente: vasaikar2019
-  - id: metodos
-    texto: Métodos
-    href: /metodos/proteomica
-    fuente: tanaka2024
-  - id: resultados
-    texto: Resultados
-    href: /
-    fuente: results/v3_7/suero_embudo.json
+- id: pregunta
+  texto: Pregunta
+  href: /investigacion/pregunta-e-hipotesis
+  fuente: rai2025
+  grupo: inicio
+- id: tejido
+  texto: Tejido
+  href: /resultados/tejido
+  fuente: vasaikar2019
+  grupo: matrices
+- id: suero
+  texto: Suero
+  href: /resultados/suero
+  fuente: rai2025
+  grupo: matrices
+- id: embudo
+  texto: Embudo
+  href: /resultados/priorizacion
+  fuente: results/v3_7/priorizacion_embudo.json
+  grupo: cierre
+  dato: results/v3_7/priorizacion_embudo.json#pasos.4.n
+- id: celda
+  texto: Celda
+  href: /resultados/suero
+  fuente: results/v3_7/suero_embudo.json
+  grupo: cierre
+  dato: results/v3_7/suero_embudo.json#celda_preregistrada.diferente
 aristas:
-  - origen: pregunta
-    destino: datos
-    fuente: rai2025
-  - origen: datos
-    destino: metodos
-    fuente: tanaka2024
-  - origen: metodos
-    destino: resultados
-    fuente: results/v3_7/suero_embudo.json
+- origen: pregunta
+  destino: tejido
+  rotulo: ¿se repite?
+  fuente: vasaikar2019
+- origen: pregunta
+  destino: suero
+  rotulo: ¿se distingue?
+  fuente: rai2025
+- origen: tejido
+  destino: embudo
+  rotulo: signo
+  fuente: results/v3_7/k1_etiquetas.json
+- origen: suero
+  destino: celda
+  rotulo: TREAT y TOST
+  fuente: results/v3_7/suero_embudo.json

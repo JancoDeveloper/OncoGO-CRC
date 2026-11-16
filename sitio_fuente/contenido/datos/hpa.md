@@ -8,7 +8,7 @@ resumen: La concentración en sangre que entra como variable, no como diagnósti
 
 # Human Protein Atlas
 
-El manifiesto de la corrida incluye `external/hpa/hpa_concentracion_sangre.tsv`. [@rai2025]
+El manifiesto de la corrida incluye la tabla de concentración en sangre del atlas. [@rai2025]
 
 Ese fichero alimenta una variable del modelo de visibilidad en sangre. El modelo cerró en {{dato:results/v3_7/h7_visibilidad_en_sangre.json#estado}}. [@rai2025]
 

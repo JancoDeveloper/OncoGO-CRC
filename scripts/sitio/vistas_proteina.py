@@ -102,7 +102,7 @@ def atribucion(documento: dict, cita, con_string: bool = False) -> str:
         f"Gene Ontology, obo {e(documento.get('obo_version', ''))}, que no es el de la tesis. "
         f"{cita('goconsortium2023')} Reactome, CC BY 4.0. {cita('milacic2024')} "
         "PDB, CC0: solo la lista, sin ficheros. "
-        f"{e(documento.get('nota_go', ''))}</p>"
+        f"{e((documento.get('nota_go') or '').replace('go_gene_long.tsv', 'la tabla de Gene Ontology'))}</p>"
     )
     if con_string:
         texto += (

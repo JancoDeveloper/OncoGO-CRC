@@ -4,81 +4,84 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Comparar hallazgos · OncoGO-CRC</title>
+
+<meta property="og:title" content="Comparar hallazgos · OncoGO-CRC">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CO">
+
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.4fa9f694d6.css">
+<link rel="preload" href="/fuentes/source-serif-4-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v4.cc00b862b0.css">
+
 </head>
-<body>
+<body data-pagefind-filter="seccion">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
+<nav id="exploracion" class="menu" aria-label="Principal">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
+
+<a href="/datos">Datos</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/resultados">Resultados</a>
+
+<a href="/proteinas">Proteínas</a>
+
+</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
-<label class="saltar" for="q">Buscar</label>
-<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<label class="saltar" for="q">Buscar proteína, término o página</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" autocomplete="off" value="">
 <button type="submit">Buscar</button>
+<div id="sugerencias" class="sugerencias" hidden></div>
 </form>
+<nav class="accesos" aria-label="Consulta">
+<a href="/glosario">Glosario</a>
+<a href="/bibliografia">Bibliografía</a>
+</nav>
 <button type="button" id="tema">Tema</button>
 </header>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<div class="marco">
-<aside id="exploracion" class="lateral" aria-label="Principal">
-<p class="lateral-etiqueta">Explorar la investigación</p>
-<a class="lateral-inicio" href="/">Inicio</a>
-
-<nav class="lateral-grupo" aria-label="Investigación">
-<p>Investigación</p>
-
-<a href="/#qu-problema-se-midi">El problema</a>
-
-<a href="/investigacion/pregunta-e-hipotesis">La pregunta</a>
-
-<a href="/#qu-no-demuestra-este-resultado">Alcance</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Recorrido">
-<p>Recorrido</p>
-
-<a href="/metodos/proteomica">Metodología</a>
-
-<a href="/#qu-muestra-cada-matriz">Las dos matrices</a>
-
-<a href="/#el-colon-como-contexto">El colon como contexto</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Resultados">
-<p>Resultados</p>
-
-<a href="/resultados">Resultados principales</a>
-
-<a href="/proteinas">Explorar proteínas</a>
-
-<a href="/proteinas/comparar">Comparador</a>
-
-<a href="/proteinas/candidatas">Candidatas</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Consulta">
-<p>Consulta</p>
-
-<a href="/glosario">Glosario</a>
-
-<a href="/bibliografia">Bibliografía</a>
-
-<a href="/entregables">Entregables</a>
-
-</nav>
-
-</aside>
 <div class="velo" id="velo" hidden></div>
+<div class="marco">
 <div class="columna">
 <p class="migas">Inicio / Proteínas / Comparador</p>
+<p class="lectura">Lectura de unos 1 min</p>
+<main id="contenido" data-pagefind-body>
+
+<h1>Comparar hallazgos</h1><p>Aquí se ve en qué coinciden dos a cuatro proteínas de la celda. La tabla pone al lado la clase frente a CN, el log2FC, el paso, los términos GO, los dominios y la secuencia. Lo compartido es lo que sale en ambas columnas. No calcula un hallazgo nuevo y no superpone estructuras.</p><p>Describe conocimiento previo de secuencia, estructura, GO, dominios y vías. Compartir términos o secuencia no significa que se comporten igual en la sangre. Las proteínas más estudiadas tienen más anotaciones.</p><p><a href="/proteinas/candidatas">Las 20 candidatas</a>. <a href="/proteinas/comparar?p=P02749,P05155">Ejemplo P02749 y P05155</a>. <a href="/proteinas/comparar?p=P05109,P06702">Calprotectina (S100A8 y S100A9)</a>.</p><form action="/proteinas/comparar" method="get"><label for="p">De 2 a 4 accesos, separados por comas</label> <input id="p" name="p" value="P02749,P05155"> <button type="submit">Comparar</button></form><p>Sin JavaScript se muestra el par de ejemplo. Otro par se calcula en el navegador a partir de la anotación guardada.</p><nav class="pestanias" aria-label="Vistas de la comparación"><a href="#vista-resumen">Resumen</a><a href="#vista-go">GO</a><a href="#vista-secuencia">Secuencia</a><a href="#vista-dominios">Dominios</a><a href="#vista-estructura">Estructura</a></nav><div id="comparacion" data-par="P02749,P05155"><h2 id="vista-resumen">Resumen</h2><p>P02749 y P05155, lado a lado, en la anotación guardada.</p><h2 id="vista-go">GO</h2><p>Jaccard directo <data value="0.05714285714285714" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.directo" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.directo">0,057</data>. Jaccard propagado <data value="0.1576086956521739" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado">0,158</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023" aria-describedby="cita-5078">(Consortium, 2023)</a><span class="cita-ventana" id="cita-5078" role="tooltip"><span class="cita-autores">The Gene Ontology Consortium</span> (2023). <span class="cita-titulo">The Gene Ontology knowledgebase in 2023</span>. <span class="cita-revista">GENETICS</span>. <a href="https://doi.org/10.1093/genetics/iyad031">https://doi.org/10.1093/genetics/iyad031</a></span></span></p>
+<h3>Proceso</h3><p>Solo P02749: 15. Compartidos: 0. Solo P05155: 2.</p>
+<h3>Función</h3><p>Solo P02749: 5. Compartidos: 0. Solo P05155: 1.</p>
+<h3>Componente</h3><p>Solo P02749: 6. Compartidos: 2. Solo P05155: 4.</p><h2 id="vista-secuencia">Secuencia</h2><p>Jaccard directo <data value="0.05714285714285714" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.directo" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.directo">0,057</data>. Jaccard propagado <data value="0.1576086956521739" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado">0,158</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023" aria-describedby="cita-5079">(Consortium, 2023)</a><span class="cita-ventana" id="cita-5079" role="tooltip"><span class="cita-autores">The Gene Ontology Consortium</span> (2023). <span class="cita-titulo">The Gene Ontology knowledgebase in 2023</span>. <span class="cita-revista">GENETICS</span>. <a href="https://doi.org/10.1093/genetics/iyad031">https://doi.org/10.1093/genetics/iyad031</a></span></span></p>
+<h3>Proceso</h3><p>Solo P02749: 15. Compartidos: 0. Solo P05155: 2.</p>
+<h3>Función</h3><p>Solo P02749: 5. Compartidos: 0. Solo P05155: 1.</p>
+<h3>Componente</h3><p>Solo P02749: 6. Compartidos: 2. Solo P05155: 4.</p>
+<p>Puntuación <data value="-48" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.puntuacion" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.puntuacion">−48,000</data>. Identidad <data value="16.15798922800718" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.identidad" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.identidad">16 %</data>. Similitud <data value="24.77558348294435" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.similitud" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.similitud">25 %</data>. Hueco de apertura 10 y de extensión 0,5. Matriz BLOSUM62. <span class="cita-wrap"><a class="cita" href="/bibliografia#needleman1970" aria-describedby="cita-5080">(Needleman y Wunsch, 1970)</a><span class="cita-ventana" id="cita-5080" role="tooltip"><span class="cita-autores">Needleman, Saul B. and Wunsch, Christian D.</span> (1970). <span class="cita-titulo">A general method applicable to the search for similarities in the amino acid sequence of two proteins</span>. <span class="cita-revista">Journal of Molecular Biology</span>. <a href="https://doi.org/10.1016/0022-2836(70)90057-4">https://doi.org/10.1016/0022-2836(70)90057-4</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#henikoff1992" aria-describedby="cita-5081">(Henikoff y Henikoff, 1992)</a><span class="cita-ventana" id="cita-5081" role="tooltip"><span class="cita-autores">Henikoff, Steven and Henikoff, Jorja G.</span> (1992). <span class="cita-titulo">Amino acid substitution matrices from protein blocks.</span>. <span class="cita-revista">Proceedings of the National Academy of Sciences</span>. <a href="https://doi.org/10.1073/pnas.89.22.10915">https://doi.org/10.1073/pnas.89.22.10915</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#cock2009" aria-describedby="cita-5082">(Cock y others, 2009)</a><span class="cita-ventana" id="cita-5082" role="tooltip"><span class="cita-autores">Cock, Peter J. A. and others</span> (2009). <span class="cita-titulo">Biopython: freely available Python tools for computational molecular biology and bioinformatics</span>. <span class="cita-revista">Bioinformatics</span>. <a href="https://doi.org/10.1093/bioinformatics/btp163">https://doi.org/10.1093/bioinformatics/btp163</a></span></span></p><p class="secuencia">MISPVLILFSSFLCHVAIAG-RTCPKPDDLPFSTVVPLKTFYEPGEEITYSCKPGYVSRGGMRK--FICPLTGLWPINTLKCTPRVCPFAGILENGAVRYT--TFEYPNTISFSCNTGFYLNGADSAKCTEEGKWSP---------ELPVCAPI------ICPPP--------SIPTFA---------TLRVYKPSAG-----NNSLYRDTAVFECLPQHAM-FGNDT-------------ITC--------TTHGNWTKLPECREVKCPFPSRPD----NGFVNYPAKPTLYYKDKATFGCHDGYSLDGPEEIECTKLGNWSA-------------MPS--------------------------------CKASCKVPV---KKATVVY---QGERVKI-------------------------------------------QEKFKNGMLH---------------GDKVSFFCKNKE-KKCSYTEDAQ---------------------CIDGTIEVPK---CFKEHSSLAFWKTDASDVKP----------C
+MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTTNST----------TNSATKITANTTDEPTT-----------------QPTTEPTTQPTIQPTQPTTQLPTDSPTQPTTGSFCPGPVTLCSDLESHSTEAVLGDALVDFSLKLYHAFSAMKKVETNMAFSPFSIASLLTQVLLGAGENTKTNLESILSYPKDFTCVHQALKGFTTKG-------VTSVSQIFHS-PDLAIRDTFVN--ASRTLYSSSPRVLSNNSDANLE--------LINTWVAKNTNNKISRLLDSLPSDTRLVLLNAIYLSAKWKTTFDPKKTRMEPFHFKNSVIKVPMMNSKKYPVAHFIDQTLKAKVGQLQLSHNLSLVILVPQNLKHRLEDMEQALSPSVFKAIMEKLEMSKFQPTLLTLPRIKVTTSQDMLSIMEKLEFFDFSYDLNLCGLTEDPDLQVSAMQHQTVLELTETGVEAAAASAISVARTLLVFEVQQPFLFVLWDQQHKFPVFMGRVYDPRA</p><h2 id="vista-dominios">Dominios</h2><table><thead><tr><th>Acceso</th><th>Base</th><th>Id</th><th>Nombre</th></tr></thead><tbody><tr><td>P02749</td><td>interpro</td><td>IPR035976</td><td>Sushi/SCR/CCP_sf</td></tr><tr><td>P02749</td><td>interpro</td><td>IPR015104</td><td>Sushi_2</td></tr><tr><td>P02749</td><td>interpro</td><td>IPR000436</td><td>Sushi_SCR_CCP_dom</td></tr><tr><td>P02749</td><td>pfam</td><td>PF00084</td><td>Sushi</td></tr><tr><td>P02749</td><td>pfam</td><td>PF09014</td><td>Sushi_2</td></tr><tr><td>P02749</td><td>reactome</td><td>R-HSA-114608</td><td>Platelet degranulation</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR023795</td><td>Serpin_CS</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR023796</td><td>Serpin_dom</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR000215</td><td>Serpin_fam</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR036186</td><td>Serpin_sf</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR042178</td><td>Serpin_sf_1</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR042185</td><td>Serpin_sf_2</td></tr><tr><td>P05155</td><td>pfam</td><td>PF00079</td><td>Serpin</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-114608</td><td>Platelet degranulation</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-9657689</td><td>Defective SERPING1 causes hereditary angioedema</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-9769739</td><td>Regulation of clotting cascade</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-977606</td><td>Regulation of Complement cascade</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-9855719</td><td>Regulation of FXIIa and plasma kallikrein activity</td></tr></tbody></table><h2 id="vista-estructura">Estructura</h2><table><tbody>
+<tr><th>P02749</th><td>93.12</td></tr>
+<tr><th>P05155</th><td>79.56</td></tr>
+</tbody></table>
+<p><button type="button" data-ver-estructura="visor-ejemplo" data-modelos="/fuentes/modelos/AF-P02749-F1.bcif,/fuentes/modelos/AF-P05155-F1.bcif" data-script="/js/molstar.0dba8aea4c.js" data-estilo="/css/molstar.bea8d630b6.css">Ver estructuras</button></p><div class="marco-estructura" id="visor-ejemplo"></div>
+<p>No se superponen estructuras: no hay un método de superposición citado.</p></div><p>UniProt 2026_04, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025" aria-describedby="cita-5083">(Consortium, 2025)</a><span class="cita-ventana" id="cita-5083" role="tooltip"><span class="cita-autores">The UniProt Consortium</span> (2025). <span class="cita-titulo">UniProt: the Universal Protein Knowledgebase in 2025</span>. <span class="cita-revista">Nucleic Acids Research</span>. <a href="https://doi.org/10.1093/nar/gkae1010">https://doi.org/10.1093/nar/gkae1010</a></span></span> AlphaFold DB, CC BY 4.0. Suma de BinaryCIF alojados: 59.205 MB. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021" aria-describedby="cita-5084">(Jumper, 2021)</a><span class="cita-ventana" id="cita-5084" role="tooltip"><span class="cita-autores">Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., Tunyasuvunakool, K., Bates, R., Žídek, A., Potapenko, A., Bridgland, A., Meyer, C., Kohl, S. A. A., Ballard, A. J., Cowie, A., Romera-Paredes, B., Nikolov, S., Jain, R., Adler, J., . . . Hassabis, D</span> (2021). <span class="cita-titulo">Highly accurate protein structure prediction with AlphaFold</span>. <span class="cita-revista">Nature</span>. <a href="https://doi.org/10.1038/s41586-021-03819-2">https://doi.org/10.1038/s41586-021-03819-2</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024" aria-describedby="cita-5085">(Varadi y others, 2024)</a><span class="cita-ventana" id="cita-5085" role="tooltip"><span class="cita-autores">Varadi, Mihaly and others</span> (2024). <span class="cita-titulo">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences</span>. <span class="cita-revista">Nucleic Acids Research</span>. <a href="https://doi.org/10.1093/nar/gkad1011">https://doi.org/10.1093/nar/gkad1011</a></span></span> InterPro y Pfam, por las referencias cruzadas de UniProt, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025" aria-describedby="cita-5086">(Blum y others, 2025)</a><span class="cita-ventana" id="cita-5086" role="tooltip"><span class="cita-autores">Blum, Matthias and others</span> (2025). <span class="cita-titulo">InterPro: the protein sequence classification resource in 2025</span>. <span class="cita-revista">Nucleic Acids Research</span>. <a href="https://doi.org/10.1093/nar/gkae1082">https://doi.org/10.1093/nar/gkae1082</a></span></span> Gene Ontology, obo releases/2026-07-26, que no es el de la tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023" aria-describedby="cita-5087">(Consortium, 2023)</a><span class="cita-ventana" id="cita-5087" role="tooltip"><span class="cita-autores">The Gene Ontology Consortium</span> (2023). <span class="cita-titulo">The Gene Ontology knowledgebase in 2023</span>. <span class="cita-revista">GENETICS</span>. <a href="https://doi.org/10.1093/genetics/iyad031">https://doi.org/10.1093/genetics/iyad031</a></span></span> Reactome, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024" aria-describedby="cita-5088">(Milacic y others, 2024)</a><span class="cita-ventana" id="cita-5088" role="tooltip"><span class="cita-autores">Milacic, Marija and others</span> (2024). <span class="cita-titulo">The Reactome Pathway Knowledgebase 2024</span>. <span class="cita-revista">Nucleic Acids Research</span>. <a href="https://doi.org/10.1093/nar/gkad1025">https://doi.org/10.1093/nar/gkad1025</a></span></span> PDB, CC0: solo la lista, sin ficheros. Los términos y las evidencias salen de UniProt. la tabla de Gene Ontology está en el manifiesto de la corrida y no trae códigos de evidencia, y la corrida no guardó el obo. La propagación usa go-basic.obo descargado aparte. No es la ontología de la tesis.</p>
+
+
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
+<ul>
+
+<li><a href="/fuentes/comparador.json">Anotación para el comparador</a></li>
+
+</ul>
+</details>
+
+</main>
+</div>
 
 <nav class="indice" aria-label="En esta página">
+<p class="indice-titulo">En esta página</p>
 
 <a href="#vista-resumen">Resumen</a>
 
@@ -92,37 +95,11 @@
 
 </nav>
 
-<main id="contenido">
-
-<h1>Comparar hallazgos</h1><p>Aquí se ve en qué coinciden dos a cuatro proteínas de la celda. La tabla pone al lado la clase frente a CN, el log2FC, el paso, los términos GO, los dominios y la secuencia. Lo compartido es lo que sale en ambas columnas. No calcula un hallazgo nuevo y no superpone estructuras.</p><p>Describe conocimiento previo de secuencia, estructura, GO, dominios y vías. Compartir términos o secuencia no significa que se comporten igual en la sangre. Las proteínas más estudiadas tienen más anotaciones.</p><p><a href="/proteinas/candidatas">Las 20 candidatas</a>. <a href="/proteinas/comparar?p=P02749,P05155">Ejemplo P02749 y P05155</a>. <a href="/proteinas/comparar?p=P05109,P06702">Calprotectina (S100A8 y S100A9)</a>.</p><form action="/proteinas/comparar" method="get"><label for="p">De 2 a 4 accesos, separados por comas</label> <input id="p" name="p" value="P02749,P05155"> <button type="submit">Comparar</button></form><p>Sin JavaScript se muestra el par de ejemplo. Otro par se calcula en el navegador a partir de la anotación guardada.</p><nav class="pestanias" aria-label="Vistas de la comparación"><a href="#vista-resumen">Resumen</a><a href="#vista-go">GO</a><a href="#vista-secuencia">Secuencia</a><a href="#vista-dominios">Dominios</a><a href="#vista-estructura">Estructura</a></nav><div id="comparacion" data-par="P02749,P05155"><h2 id="vista-resumen">Resumen</h2><p>P02749 y P05155, lado a lado, en la anotación guardada.</p><h2 id="vista-go">GO</h2><p>Jaccard directo <data value="0.05714285714285714" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.directo" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.directo">0,057</data>. Jaccard propagado <data value="0.1576086956521739" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado">0,158</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span></p>
-<h3>Proceso</h3><p>Solo P02749: 15. Compartidos: 0. Solo P05155: 2.</p>
-<h3>Función</h3><p>Solo P02749: 5. Compartidos: 0. Solo P05155: 1.</p>
-<h3>Componente</h3><p>Solo P02749: 6. Compartidos: 2. Solo P05155: 4.</p><h2 id="vista-secuencia">Secuencia</h2><p>Jaccard directo <data value="0.05714285714285714" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.directo" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.directo">0,057</data>. Jaccard propagado <data value="0.1576086956521739" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.propagado">0,158</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span></p>
-<h3>Proceso</h3><p>Solo P02749: 15. Compartidos: 0. Solo P05155: 2.</p>
-<h3>Función</h3><p>Solo P02749: 5. Compartidos: 0. Solo P05155: 1.</p>
-<h3>Componente</h3><p>Solo P02749: 6. Compartidos: 2. Solo P05155: 4.</p>
-<p>Puntuación <data value="-48" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.puntuacion" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.puntuacion">−48,000</data>. Identidad <data value="16.15798922800718" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.identidad" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.identidad">16 %</data>. Similitud <data value="24.77558348294435" data-fuente="sitio/fuentes/calculos_comparador.json#P02749|P05155.similitud" title="Origen: sitio/fuentes/calculos_comparador.json#P02749|P05155.similitud">25 %</data>. Hueco de apertura 10 y de extensión 0,5. Matriz BLOSUM62. <span class="cita-wrap"><a class="cita" href="/bibliografia#needleman1970">Needleman 1970</a><span class="cita-ventana">A general method applicable to the search for similarities in the amino acid sequence of two proteins 10.1016/0022-2836(70)90057-4</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#henikoff1992">Henikoff 1992</a><span class="cita-ventana">Amino acid substitution matrices from protein blocks. 10.1073/pnas.89.22.10915</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#cock2009">Cock 2009</a><span class="cita-ventana">Biopython: freely available Python tools for computational molecular biology and bioinformatics 10.1093/bioinformatics/btp163</span></span></p><p class="secuencia">MISPVLILFSSFLCHVAIAG-RTCPKPDDLPFSTVVPLKTFYEPGEEITYSCKPGYVSRGGMRK--FICPLTGLWPINTLKCTPRVCPFAGILENGAVRYT--TFEYPNTISFSCNTGFYLNGADSAKCTEEGKWSP---------ELPVCAPI------ICPPP--------SIPTFA---------TLRVYKPSAG-----NNSLYRDTAVFECLPQHAM-FGNDT-------------ITC--------TTHGNWTKLPECREVKCPFPSRPD----NGFVNYPAKPTLYYKDKATFGCHDGYSLDGPEEIECTKLGNWSA-------------MPS--------------------------------CKASCKVPV---KKATVVY---QGERVKI-------------------------------------------QEKFKNGMLH---------------GDKVSFFCKNKE-KKCSYTEDAQ---------------------CIDGTIEVPK---CFKEHSSLAFWKTDASDVKP----------C
-MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTTNST----------TNSATKITANTTDEPTT-----------------QPTTEPTTQPTIQPTQPTTQLPTDSPTQPTTGSFCPGPVTLCSDLESHSTEAVLGDALVDFSLKLYHAFSAMKKVETNMAFSPFSIASLLTQVLLGAGENTKTNLESILSYPKDFTCVHQALKGFTTKG-------VTSVSQIFHS-PDLAIRDTFVN--ASRTLYSSSPRVLSNNSDANLE--------LINTWVAKNTNNKISRLLDSLPSDTRLVLLNAIYLSAKWKTTFDPKKTRMEPFHFKNSVIKVPMMNSKKYPVAHFIDQTLKAKVGQLQLSHNLSLVILVPQNLKHRLEDMEQALSPSVFKAIMEKLEMSKFQPTLLTLPRIKVTTSQDMLSIMEKLEFFDFSYDLNLCGLTEDPDLQVSAMQHQTVLELTETGVEAAAASAISVARTLLVFEVQQPFLFVLWDQQHKFPVFMGRVYDPRA</p><h2 id="vista-dominios">Dominios</h2><table><thead><tr><th>Acceso</th><th>Base</th><th>Id</th><th>Nombre</th></tr></thead><tbody><tr><td>P02749</td><td>interpro</td><td>IPR035976</td><td>Sushi/SCR/CCP_sf</td></tr><tr><td>P02749</td><td>interpro</td><td>IPR015104</td><td>Sushi_2</td></tr><tr><td>P02749</td><td>interpro</td><td>IPR000436</td><td>Sushi_SCR_CCP_dom</td></tr><tr><td>P02749</td><td>pfam</td><td>PF00084</td><td>Sushi</td></tr><tr><td>P02749</td><td>pfam</td><td>PF09014</td><td>Sushi_2</td></tr><tr><td>P02749</td><td>reactome</td><td>R-HSA-114608</td><td>Platelet degranulation</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR023795</td><td>Serpin_CS</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR023796</td><td>Serpin_dom</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR000215</td><td>Serpin_fam</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR036186</td><td>Serpin_sf</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR042178</td><td>Serpin_sf_1</td></tr><tr><td>P05155</td><td>interpro</td><td>IPR042185</td><td>Serpin_sf_2</td></tr><tr><td>P05155</td><td>pfam</td><td>PF00079</td><td>Serpin</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-114608</td><td>Platelet degranulation</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-9657689</td><td>Defective SERPING1 causes hereditary angioedema</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-9769739</td><td>Regulation of clotting cascade</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-977606</td><td>Regulation of Complement cascade</td></tr><tr><td>P05155</td><td>reactome</td><td>R-HSA-9855719</td><td>Regulation of FXIIa and plasma kallikrein activity</td></tr></tbody></table><h2 id="vista-estructura">Estructura</h2><table><tbody>
-<tr><th>P02749</th><td>93.12</td></tr>
-<tr><th>P05155</th><td>79.56</td></tr>
-</tbody></table>
-<p><button type="button" data-ver-estructura="visor-ejemplo" data-modelos="/fuentes/modelos/AF-P02749-F1.bcif,/fuentes/modelos/AF-P05155-F1.bcif" data-script="/js/molstar.0dba8aea4c.js" data-estilo="/css/molstar.bea8d630b6.css">Ver estructuras</button></p><div class="marco-estructura" id="visor-ejemplo"></div>
-<p>No se superponen estructuras: no hay un método de superposición citado.</p></div><p>UniProt 2026_04, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span> AlphaFold DB, CC BY 4.0. Suma de BinaryCIF alojados: 59.205 MB. <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> InterPro y Pfam, por las referencias cruzadas de UniProt, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> Gene Ontology, obo releases/2026-07-26, que no es el de la tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#goconsortium2023">The Gene Ontology Consortium 2023</a><span class="cita-ventana">The Gene Ontology knowledgebase in 2023 10.1093/genetics/iyad031</span></span> Reactome, CC BY 4.0. <span class="cita-wrap"><a class="cita" href="/bibliografia#milacic2024">Milacic 2024</a><span class="cita-ventana">The Reactome Pathway Knowledgebase 2024 10.1093/nar/gkad1025</span></span> PDB, CC0: solo la lista, sin ficheros. Los términos y las evidencias salen de UniProt. go_gene_long.tsv está en el manifiesto de la corrida y no trae códigos de evidencia, y la corrida no guardó el obo. La propagación usa go-basic.obo descargado aparte. No es la ontología de la tesis.</p>
-
-<details class="transparencia">
-<summary>Transparencia y trazabilidad</summary>
-<ul>
-
-<li><a href="/fuentes/comparador.json">Anotación para el comparador</a></li>
-
-</ul>
-</details>
-
-</main>
-</div>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
 
 <a href="/datos">Datos</a>
 
@@ -140,10 +117,12 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
 
 <a href="/bibliografia">Bibliografía</a>
 
+<a href="/como-citar">Cómo citar</a>
+<a href="/sobre">Sobre esta tesis</a>
 </nav>
-<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
-<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">Publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
+<p><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v3.7-final">Repositorio, etiqueta v3.7-final</a></p>
+<p class="nota-etica">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 </footer>
 <script>(function () {
   var raiz = document.documentElement;
@@ -167,7 +146,7 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
   function marcarLateral() {
-    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+    document.querySelectorAll("#exploracion a").forEach(function (enlace) {
       var href = enlace.getAttribute("href") || "";
       var activo = false;
       if (href.indexOf("#") !== -1) {
@@ -226,7 +205,9 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
         if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
-        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+        var partes = consulta.split(";").map(function (parte) { return parte.trim(); }).filter(Boolean);
+        var hallado = texto.indexOf(consulta) !== -1 || (partes.length > 1 && partes.some(function (parte) { return texto.indexOf(parte) !== -1; }));
+        nodo.hidden = consulta.length > 0 && !hallado;
       });
     };
     caja.addEventListener("input", aplicar);
@@ -370,6 +351,176 @@ MASRLTLL---TLLLLLLAGDRASSNPNATSSSSQDP-ESLQDRGE--------GKVATTVISKMLFVEPILEVSSLPTT
     if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
     pintar();
   }
+  document.querySelectorAll(".termino").forEach(function (boton) {
+    var panel = document.getElementById(boton.getAttribute("aria-describedby"));
+    if (!panel) return;
+    function abrir() {
+      panel.hidden = false;
+      boton.setAttribute("aria-expanded", "true");
+    }
+    function cerrar() {
+      panel.hidden = true;
+      boton.setAttribute("aria-expanded", "false");
+    }
+    boton.addEventListener("click", function () {
+      if (panel.hidden) abrir();
+      else cerrar();
+    });
+    boton.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  });
+  document.querySelectorAll("[data-copiar]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var texto = boton.getAttribute("data-copiar") || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(function () {
+          boton.textContent = "Copiada";
+        });
+      }
+    });
+  });
+  function filtrarGrupo(selector, atributo, valor) {
+    document.querySelectorAll(selector).forEach(function (nodo) {
+      var coincide = valor === "Todas" || nodo.getAttribute(atributo) === valor;
+      nodo.hidden = !coincide;
+    });
+  }
+  document.querySelectorAll("[data-filtro-bib]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-tesis", "data-tema", boton.getAttribute("data-filtro-bib"));
+    });
+  });
+  document.querySelectorAll("[data-filtro-glosario]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-termino", "data-categoria", boton.getAttribute("data-filtro-glosario"));
+    });
+  });
+  var filtroGlosario = document.getElementById("filtro-glosario");
+  if (filtroGlosario) {
+    filtroGlosario.addEventListener("input", function () {
+      var q = filtroGlosario.value.toLowerCase();
+      document.querySelectorAll(".entrada-termino").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  var filtroBib = document.getElementById("filtro-bib");
+  if (filtroBib) {
+    filtroBib.addEventListener("input", function () {
+      var q = filtroBib.value.toLowerCase();
+      document.querySelectorAll(".entrada-tesis").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  document.querySelectorAll("[data-juguete]").forEach(function (formulario) {
+    var efecto = formulario.querySelector("[data-efecto]");
+    var ancho = formulario.querySelector("[data-ancho]");
+    var clase = formulario.querySelector("[data-clase]");
+    function pintar() {
+      var e = Number(efecto.value);
+      var a = Number(ancho.value);
+      var bajo = e - a;
+      var alto = e + a;
+      var margen = Math.log2(1.5);
+      var resultado = "indeterminada";
+      if (bajo >= margen || alto <= -margen) resultado = "diferente";
+      else if (bajo >= -margen && alto <= margen) resultado = "equivalente";
+      clase.textContent = "Efecto " + e.toFixed(2) + ", intervalo " + bajo.toFixed(2) + " a " + alto.toFixed(2) + ". Clase de juguete: " + resultado + ".";
+    }
+    efecto.addEventListener("input", pintar);
+    ancho.addEventListener("input", pintar);
+    pintar();
+  });
+  var cajaBusqueda = document.getElementById("q");
+  var sugerencias = document.getElementById("sugerencias");
+  if (cajaBusqueda && sugerencias && !document.querySelector("[data-buscar]")) {
+    var indice = null;
+    var activo = -1;
+    function coincide(consulta, texto) {
+      var q = consulta.toLowerCase().trim();
+      var bolsa = (texto || "").toLowerCase();
+      if (!q) return false;
+      if (bolsa.indexOf(q) !== -1) return true;
+      var partes = q.split(";").filter(Boolean);
+      return partes.length > 1 && partes.some(function (parte) { return bolsa.indexOf(parte) !== -1; });
+    }
+    function pintarSugerencias(lista) {
+      sugerencias.innerHTML = "";
+      if (!lista.length) {
+        sugerencias.hidden = true;
+        return;
+      }
+      var grupos = {};
+      lista.slice(0, 12).forEach(function (item) {
+        grupos[item.grupo] = grupos[item.grupo] || [];
+        grupos[item.grupo].push(item);
+      });
+      Object.keys(grupos).forEach(function (grupo) {
+        var titulo = document.createElement("p");
+        titulo.textContent = grupo;
+        sugerencias.appendChild(titulo);
+        grupos[grupo].forEach(function (item) {
+          var enlace = document.createElement("a");
+          enlace.href = item.href;
+          enlace.textContent = item.rotulo;
+          sugerencias.appendChild(enlace);
+        });
+      });
+      sugerencias.hidden = false;
+      activo = -1;
+    }
+    cajaBusqueda.addEventListener("input", function () {
+      var q = cajaBusqueda.value;
+      if (q.trim().length < 2) {
+        sugerencias.hidden = true;
+        return;
+      }
+      function aplicar(datos) {
+        indice = datos;
+        pintarSugerencias(datos.filter(function (item) { return coincide(q, item.texto); }));
+      }
+      if (indice) aplicar(indice);
+      else fetch("/buscar/indice.json").then(function (r) { return r.json(); }).then(aplicar).catch(function () {});
+    });
+    cajaBusqueda.addEventListener("keydown", function (evento) {
+      var enlaces = sugerencias.querySelectorAll("a");
+      if (evento.key === "Escape") {
+        sugerencias.hidden = true;
+        return;
+      }
+      if (!enlaces.length || sugerencias.hidden) return;
+      if (evento.key === "ArrowDown" || evento.key === "ArrowUp") {
+        evento.preventDefault();
+        activo += evento.key === "ArrowDown" ? 1 : -1;
+        if (activo < 0) activo = enlaces.length - 1;
+        if (activo >= enlaces.length) activo = 0;
+        enlaces.forEach(function (enlace, i) {
+          if (i === activo) enlace.setAttribute("aria-selected", "true");
+          else enlace.removeAttribute("aria-selected");
+        });
+        enlaces[activo].focus();
+      }
+    });
+  }
+  var punta = document.createElement("div");
+  punta.className = "cita-ventana";
+  punta.hidden = true;
+  document.body.appendChild(punta);
+  document.querySelectorAll("[data-tip]").forEach(function (nodo) {
+    function mostrar() {
+      punta.hidden = false;
+      punta.textContent = nodo.getAttribute("data-tip");
+    }
+    nodo.addEventListener("focus", mostrar);
+    nodo.addEventListener("mouseenter", mostrar);
+    nodo.addEventListener("blur", function () { punta.hidden = true; });
+    nodo.addEventListener("mouseleave", function () { punta.hidden = true; });
+  });
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

@@ -20,11 +20,16 @@ REPO = Path(__file__).resolve().parents[2]
 V37 = REPO / "results" / "v3_7"
 FUENTE = REPO / "sitio_fuente"
 SITIO = REPO / "sitio"
-BIB = REPO / "tesis-ucaldas" / "latex" / "references.bib"
+BIB = FUENTE / "referencias.bib"
 AVISO = "Ningún resultado de esta tesis sirve para decidir sobre un paciente."
-SHA = "595118ae09ea6006c744c86b28cb0a10d42e0442"
-GITHUB = f"https://github.com/JancoDeveloper/OncoGO-CRC/blob/{SHA}"
+COMMIT = "595118ae09ea6006c744c86b28cb0a10d42e0442"
+GITHUB = "https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final"
 FIGURAS: dict[str, str] = {}
+ETIQUETAS = {}
+for _clave, _valor in (yaml.safe_load((FUENTE / "etiquetas.yaml").read_text(encoding="utf-8")) or {}).items():
+    ETIQUETAS[str(_clave)] = str(_valor)
+    ETIQUETAS[str(_clave).casefold()] = str(_valor)
+_CITA_N = [0]
 
 
 def e(texto) -> str:
@@ -55,26 +60,32 @@ def valor_de(fuente: str):
     raise SystemExit(f"atajo sin lector: {ruta}")
 
 
-def dato_html(fuente: str, contador: list[int], traza: bool = True) -> str:
-    valor = valor_de(fuente)
-    if isinstance(valor, float):
+def visible_de(valor) -> tuple[str, str]:
+    if isinstance(valor, bool):
+        bruto = "true" if valor else "false"
+    elif isinstance(valor, float):
         bruto = format(valor, ".16g")
-        visible = formatear(valor, "auc" if abs(valor) <= 1 else "decimal")
-    elif isinstance(valor, bool):
-        bruto = str(valor).lower()
-        visible = bruto
     else:
         bruto = str(valor)
-        visible = formatear(valor, "entero") if isinstance(valor, int) else bruto
-    dato = f'<data value="{e(bruto)}" data-fuente="{e(fuente)}" title="{e("Origen: " + str(fuente))}">{e(visible)}</data>'
-    return dato
+    if bruto in ETIQUETAS:
+        return bruto, ETIQUETAS[bruto]
+    if isinstance(valor, float):
+        return bruto, formatear(valor, "auc" if abs(valor) <= 1 else "log2fc")
+    if isinstance(valor, int) and not isinstance(valor, bool):
+        return bruto, formatear(valor, "entero")
+    return bruto, bruto
+
+
+def dato_html(fuente: str, contador: list[int], traza: bool = True) -> str:
+    bruto, visible = visible_de(valor_de(fuente))
+    return (
+        f'<data value="{e(bruto)}" data-fuente="{e(fuente)}" title="{e("Origen: " + str(fuente))}">'
+        f"{e(visible)}</data>"
+    )
 
 
 def leer_bib() -> dict[str, dict]:
     textos = [BIB.read_text(encoding="utf-8")]
-    extra = FUENTE / "referencias_sitio.bib"
-    if extra.is_file():
-        textos.append(extra.read_text(encoding="utf-8"))
     texto = "\n".join(textos)
     entradas = {}
     for bloque in re.split(r"\n(?=@)", texto):
@@ -91,8 +102,22 @@ def leer_bib() -> dict[str, dict]:
 def apellido(autor: str) -> str:
     primero = autor.split(" and ")[0]
     if "," in primero:
-        return primero.split(",")[0].strip()
-    return primero.split()[-1]
+        return primero.split(",")[0].strip(" .")
+    partes = primero.split()
+    return partes[-1].strip(" .") if partes else autor
+
+
+def rotulo_apa(campos: dict, clave: str) -> str:
+    autores = [parte.strip() for parte in campos.get("author", "").split(" and ") if parte.strip()]
+    apellidos = [apellido(autor) for autor in autores] or [clave]
+    anio = campos.get("year", "")
+    if len(apellidos) >= 3:
+        nombre = f"{apellidos[0]} et al."
+    elif len(apellidos) == 2:
+        nombre = f"{apellidos[0]} y {apellidos[1]}"
+    else:
+        nombre = apellidos[0]
+    return f"({nombre}, {anio})" if anio else f"({nombre})"
 
 
 def cargar_glosario() -> list[dict]:
@@ -100,13 +125,31 @@ def cargar_glosario() -> list[dict]:
     return datos or []
 
 
+def _coincide_termino(item: dict, nombre: str) -> bool:
+    consulta = nombre.casefold()
+    candidatos = [item["termino"], item.get("sigla") or ""]
+    candidatos.extend(item.get("sinonimos") or [])
+    return any(str(candidato).casefold() == consulta for candidato in candidatos if candidato)
+
+
 def termino_html(nombre: str, glosario: list[dict]) -> str:
     for item in glosario:
-        if item["termino"].casefold() == nombre.casefold() or item.get("sigla", "").casefold() == nombre.casefold():
-            ancla = re.sub(r"[^a-z0-9]+", "-", item["termino"].casefold()).strip("-")
+        if _coincide_termino(item, nombre):
+            ancla = ancla_de(item["termino"])
+            ident = "t-" + ancla
+            relacionados = item.get("relacionados") or []
+            vinculos = " ".join(
+                f'<a href="/glosario#{e(ancla_de(str(otro)))}">{e(str(otro))}</a>'
+                for otro in relacionados[:4]
+            )
             return (
-                f'<a class="termino" href="/glosario#{e(ancla)}">{e(item["termino"])}'
-                f'<span class="definicion-corta">{e(item["en_palabras_simples"])}</span></a>'
+                f'<span class="termino-wrap"><button type="button" class="termino" '
+                f'aria-describedby="{e(ident)}" aria-expanded="false">{e(item["termino"])}</button>'
+                f'<span class="definicion-corta" id="{e(ident)}" role="tooltip" hidden>'
+                f'<span>{e(item["en_palabras_simples"])}</span> '
+                f'<a href="/glosario#{e(ancla)}">Más en el glosario</a>'
+                + (f'<span class="relacionados">{vinculos}</span>' if vinculos else "")
+                + "</span></span>"
             )
     raise SystemExit(f"término sin ficha: {nombre}")
 
@@ -115,12 +158,22 @@ def cita_html(clave: str, bib: dict[str, dict]) -> str:
     if clave not in bib:
         raise SystemExit(f"cita sin entrada: {clave}")
     campos = bib[clave]
-    rotulo = f"{apellido(campos.get('author', clave))} {campos.get('year', '')}".strip()
-    titulo = campos.get("title", "")
+    _CITA_N[0] += 1
+    ident = f"cita-{_CITA_N[0]}"
     doi = campos.get("doi", "")
+    doi_html = (
+        f'<a href="https://doi.org/{e(doi)}">https://doi.org/{e(doi)}</a>'
+        if doi else ""
+    )
+    revista = campos.get("journal") or campos.get("howpublished") or ""
     return (
-        f'<span class="cita-wrap"><a class="cita" href="/bibliografia#{e(clave)}">{e(rotulo)}</a>'
-        f'<span class="cita-ventana">{e(titulo)} {e(doi)}</span></span>'
+        f'<span class="cita-wrap"><a class="cita" href="/bibliografia#{e(clave)}" '
+        f'aria-describedby="{ident}">{e(rotulo_apa(campos, clave))}</a>'
+        f'<span class="cita-ventana" id="{ident}" role="tooltip">'
+        f'<span class="cita-autores">{e(campos.get("author", ""))}</span> '
+        f'({e(campos.get("year", ""))}). '
+        f'<span class="cita-titulo">{e(campos.get("title", ""))}</span>. '
+        f'<span class="cita-revista">{e(revista)}</span>. {doi_html}</span></span>'
     )
 
 
@@ -146,11 +199,20 @@ def _porcentaje(valor: int, total: int) -> str:
     return f"{100 * valor / total:.1f}".replace(".", ",") + " %"
 
 
-def _lamina(archivo: str, respaldo: str, alt: str, ancho: int, alto: int, pie: str) -> str:
+def _lamina(archivo: str, respaldo: str, alt: str, ancho: int, alto: int, pie: str, diferida: bool = True) -> str:
+    base = archivo.rsplit(".", 1)[0]
+    fuentes = []
+    for tipo, extension in (("image/avif", "avif"), ("image/webp", "webp")):
+        if (FUENTE / "ilustraciones" / f"{base}.{extension}").is_file():
+            fuentes.append(f'<source type="{tipo}" srcset="/ilustraciones/{base}.{extension}">')
+    carga = ' loading="lazy"' if diferida else ""
     return (
         '<figure class="lamina">'
-        f'<img src="/ilustraciones/{archivo}" data-respaldo="/ilustraciones/{respaldo}" '
-        f'alt="{e(alt)}" width="{ancho}" height="{alto}" loading="lazy" decoding="async">'
+        "<picture>"
+        + "".join(fuentes)
+        + f'<img src="/ilustraciones/{archivo}" data-respaldo="/ilustraciones/{respaldo}" '
+        f'alt="{e(alt)}" width="{ancho}" height="{alto}"{carga} decoding="async">'
+        "</picture>"
         f"<figcaption>{e(pie)} {e(CREDITO_SERVIER)} {e(NOTA_CONCEPTUAL)}</figcaption>"
         "</figure>"
     )
@@ -158,6 +220,28 @@ def _lamina(archivo: str, respaldo: str, alt: str, ancho: int, alto: int, pie: s
 
 def celda_html(contador) -> str:
     return comparacion_html(contador)
+
+
+def _lista_paso_5() -> str:
+    datos = json.loads((V37 / "priorizacion_embudo.json").read_text(encoding="utf-8"))
+    genes = datos.get("hipotesis_para_cohortes_futuras") or []
+    traza = (V37 / "suero_trazabilidad_grupos.tsv").read_text(encoding="utf-8").splitlines()
+    cabecera = traza[0].split("\t")
+    gen_i = cabecera.index("genes")
+    id_i = cabecera.index("protein_group")
+    por_gen = {}
+    for linea in traza[1:]:
+        cols = linea.split("\t")
+        for gen in cols[gen_i].split(";"):
+            por_gen.setdefault(gen, cols[id_i])
+    items = []
+    for gen in genes:
+        acceso = por_gen.get(gen, "")
+        if acceso:
+            items.append(f'<li><a href="/proteinas/{e(acceso)}">{e(gen)}</a></li>')
+        else:
+            items.append(f"<li>{e(gen)}</li>")
+    return "<p>Las proteínas que llegan a este paso, como hipótesis para cohortes futuras:</p><ul>" + "".join(items) + "</ul>"
 
 
 def embudo_html(ident: str, contador) -> str:
@@ -180,9 +264,9 @@ def embudo_html(ident: str, contador) -> str:
             f"{numero}"
             "</summary>"
             f"{separador}{resto}"
-            f"<p>Definición guardada en el JSON: {e(paso['nombre'])}. "
-            f"El n es el de {e(fuente)}. No hay otra frase para este paso.</p>"
-            "</details></li>"
+            f"<p>{e(paso['nombre'])}.</p>"
+            + (_lista_paso_5() if int(paso["paso"]) == 5 else "")
+            + "</details></li>"
         )
     return '<ol class="embudo">' + "".join(filas) + "</ol>"
 
@@ -367,30 +451,76 @@ def explorar_html(paginas: list[dict]) -> str:
         tarjetas.append(
             f'<a class="tarjeta" href="{e(ruta)}"><h2>{e(titulo)}</h2><p>{e(resumen)}</p></a>'
         )
-    esquema = (
-        '<figure class="esquema-proteina"><svg viewBox="0 0 240 110" role="img">'
-        "<title>Esquema de una proteína</title>"
-        "<desc>Cinta esquemática. No es la estructura de una proteína de esta tesis.</desc>"
-        '<path d="M24 78 C48 18, 96 18, 118 58 S186 96, 214 36" fill="none" stroke="currentColor" '
-        'stroke-width="8" stroke-linecap="round"/>'
-        "</svg>"
-        "<figcaption>Cinta esquemática. No es el modelo de una proteína de la celda. "
-        "Cuando hay un modelo de AlphaFold, está en la ficha y se abre con el botón. "
-        f"{e(NOTA_CONCEPTUAL)}</figcaption></figure>"
+    return '<div class="tarjetas">' + "".join(tarjetas) + "</div>"
+
+
+def cifra_html(fuente: str, etiqueta: str, contador) -> str:
+    return (
+        f'<p class="cifra-tarjeta"><strong>{dato_html(fuente, contador)}</strong>'
+        f'<span>{e(etiqueta)}</span></p>'
     )
-    return esquema + '<div class="tarjetas">' + "".join(tarjetas) + "</div>"
 
 
-def md_inline(texto: str, bib, glosario, contador) -> str:
+def estado_html(codigo: str, contador) -> str:
+    fichas = {
+        "HP": ("No se rechazó", "results/v3_7/suero_embudo.json#celda_preregistrada.diferente", "neutro"),
+        "H0": ("Supuesto de los datos", "", "neutro"),
+        "H1": ("", "results/v3_7/k1_etiquetas.json#h1_veredicto", "no"),
+        "H2": ("", "config/preregistro_v3.yaml#hipotesis.h2.estado_heredado", "neutro"),
+        "H3": ("Adoptada, enmienda de cierre v3.7", "config/preregistro_v3.yaml#enmienda_v3_7_cierre.descriptivos_que_se_ejecutan.priorizacion_secuencial.regla", "si"),
+        "H4": ("Sin veredicto", "config/preregistro_v3.yaml#hipotesis.h4.umbral", "neutro"),
+        "H5": ("", "results/v3_7/h5_especificidad_organo.json#estado", "si"),
+        "H6": ("", "results/v3_7/h6_origen_celular.json#estado", "no"),
+        "H7": ("", "results/v3_7/h7_visibilidad_en_sangre.json#estado", "no"),
+        "H8": ("", "results/v3_7/h8_carga_tumoral.json#estado", "neutro"),
+        "H9": ("", "results/v3_7/h9_wald.json#estado", "neutro"),
+        "H10": ("", "results/v3_7/h10_especificidad.json#estado", "neutro"),
+    }
+    if codigo not in fichas:
+        raise SystemExit(f"estado sin ficha: {codigo}")
+    texto, fuente, tono = fichas[codigo]
+    if codigo == "H4":
+        umbral = dato_html(fuente, contador)
+        cuerpo = f"Sin veredicto · umbral {umbral}"
+    elif texto and codigo == "H3":
+        cuerpo = f"{e(texto)}"
+    elif texto:
+        cuerpo = e(texto)
+    else:
+        cuerpo = dato_html(fuente, contador)
+    return f'<span class="chip chip-{tono}"><span class="chip-marca" aria-hidden="true"></span>{codigo}: {cuerpo}</span>'
+
+
+def juguete_html() -> str:
+    return (
+        '<form class="juguete" data-juguete>'
+        "<p><strong>Ejemplo de juguete.</strong> No es una proteína de la tesis. "
+        "Mueve el efecto y la incertidumbre. Sin JavaScript se lee el caso inicial: "
+        "efecto 0,20 y semiancho 0,40, intervalo de −0,20 a 0,60, clase indeterminada.</p>"
+        '<label>Efecto (log2FC) <input type="range" min="-2" max="2" step="0.05" value="0.2" data-efecto></label>'
+        '<label>Incertidumbre <input type="range" min="0.05" max="1.5" step="0.05" value="0.4" data-ancho></label>'
+        '<p class="juguete-clase" data-clase>Clase inicial: indeterminada.</p>'
+        "<p>El margen del preregistro es 1,5 veces, esto es log2(1,5) ≈ 0,585. "
+        "Si todo el intervalo cae fuera de ese margen, la clase de juguete es diferente. "
+        "Si todo el intervalo cabe dentro, es equivalente. En cualquier otro caso queda indeterminada. "
+        "TREAT y TOST de la tesis son más estrictos: esto solo enseña la idea.</p>"
+        "</form>"
+    )
+
+
+def _piezas_inline(texto: str, bib, glosario, contador, escapar: bool):
     patron = re.compile(
         r"\{\{dato:([^}]+)\}\}|\{\{termino:([^}]+)\}\}|\{\{diagrama:([^}]+)\}\}|\{\{figura:([^}]+)\}\}|"
         r"\{\{embudo:([^}]+)\}\}|\{\{anatomia:([^}]+)\}\}|\{\{matrices\}\}|\{\{comparacion\}\}|"
-        r"\{\{celda\}\}|\{\{llamadas\}\}|\{\{explorar\}\}|\[@([^\]]+)\]"
+        r"\{\{celda\}\}|\{\{llamadas\}\}|\{\{explorar\}\}|"
+        r"\{\{cifra:([^|}]+)\|([^}]+)\}\}|\{\{estado:([^}]+)\}\}|\{\{paso (\d+)\}\}|\{\{juguete:([^}]+)\}\}|"
+        r"\[@([^\]]+)\]"
     )
     piezas = []
     pos = 0
     for hallado in patron.finditer(texto):
-        piezas.append(e(texto[pos:hallado.start()]))
+        trozo = texto[pos:hallado.start()]
+        piezas.append(e(trozo) if escapar else trozo)
         if hallado.group(1):
             piezas.append(dato_html(hallado.group(1), contador))
         elif hallado.group(2):
@@ -417,20 +547,58 @@ def md_inline(texto: str, bib, glosario, contador) -> str:
             piezas.append(llamadas_html())
         elif hallado.group(0) == "{{explorar}}":
             piezas.append('<div class="tarjetas" id="explorar"></div>')
+        elif hallado.group(7):
+            piezas.append(cifra_html(hallado.group(7), hallado.group(8), contador))
+        elif hallado.group(9):
+            piezas.append(estado_html(hallado.group(9), contador))
+        elif hallado.group(10):
+            piezas.append(f'<span class="paso-n">{e(hallado.group(10))}</span>')
+        elif hallado.group(11):
+            if hallado.group(11) != "clases":
+                raise SystemExit(f"juguete sin definición: {hallado.group(11)}")
+            piezas.append(juguete_html())
         else:
-            piezas.append(cita_html(hallado.group(7), bib))
+            piezas.append(cita_html(hallado.group(12), bib))
         pos = hallado.end()
-    piezas.append(e(texto[pos:]))
+    resto = texto[pos:]
+    piezas.append(e(resto) if escapar else resto)
     return "".join(piezas)
 
 
-def md_a_html(texto: str, bib, glosario, contador) -> tuple[str, list[dict]]:
+def md_inline(texto: str, bib, glosario, contador) -> str:
+    return _piezas_inline(texto, bib, glosario, contador, True)
+
+
+def _envolver_nivel(tipo: str, interno: str, bib, glosario, contador) -> str:
+    html_interno, _ = md_a_html(interno, bib, glosario, contador, _anidado=True)
+    if tipo == "resumen":
+        return f'<aside class="resumen"><p class="resumen-etiqueta">En una frase</p>{html_interno}</aside>'
+    if tipo == "analogia":
+        return f'<aside class="analogia"><p class="resumen-etiqueta">Analogía</p>{html_interno}</aside>'
+    return (
+        '<details class="especialistas"><summary>Para especialistas</summary>'
+        f"{html_interno}</details>"
+    )
+
+
+def md_a_html(texto: str, bib, glosario, contador, _anidado: bool = False) -> tuple[str, list[dict]]:
+    if not _anidado:
+        def reemplazo(hallado):
+            return _envolver_nivel(hallado.group(1), hallado.group(2), bib, glosario, contador)
+        texto = re.sub(
+            r"\{\{(resumen|analogia|especialistas)\}\}(.*?)\{\{/\1\}\}",
+            reemplazo,
+            texto,
+            flags=re.S,
+        )
     indice = []
     bloques = re.split(r"\n\s*\n", texto.strip())
     piezas = []
     for bloque in bloques:
         lineas = bloque.splitlines()
-        if bloque.strip().startswith(("{{diagrama:", "{{figura:", "{{embudo:", "{{anatomia:", "{{matrices}}", "{{comparacion}}", "{{celda}}", "{{llamadas}}", "{{explorar}}")):
+        if bloque.strip().startswith("<"):
+            piezas.append(_piezas_inline(bloque.strip(), bib, glosario, contador, False))
+        elif bloque.strip().startswith(("{{diagrama:", "{{figura:", "{{embudo:", "{{anatomia:", "{{matrices}}", "{{comparacion}}", "{{celda}}", "{{llamadas}}", "{{explorar}}", "{{juguete:")):
             piezas.append(md_inline(bloque.strip(), bib, glosario, contador))
         elif bloque.startswith("# "):
             piezas.append(f"<h1>{md_inline(bloque[2:].strip(), bib, glosario, contador)}</h1>")
@@ -452,46 +620,92 @@ def md_a_html(texto: str, bib, glosario, contador) -> tuple[str, list[dict]]:
     return "\n".join(piezas), indice
 
 
+def _capas_de(nodos: list[dict], aristas: list[dict]) -> dict[str, int]:
+    grupos = []
+    for nodo in nodos:
+        grupo = nodo.get("grupo") or ""
+        if grupo and grupo not in grupos:
+            grupos.append(grupo)
+    if len(grupos) > 1:
+        return {nodo["id"]: grupos.index(nodo.get("grupo") or grupos[0]) for nodo in nodos}
+    salientes = {nodo["id"]: [] for nodo in nodos}
+    entrantes = {nodo["id"]: 0 for nodo in nodos}
+    for arista in aristas:
+        salientes[arista["origen"]].append(arista["destino"])
+        entrantes[arista["destino"]] = entrantes.get(arista["destino"], 0) + 1
+    capa = {nodo["id"]: 0 for nodo in nodos}
+    cola = [nodo["id"] for nodo in nodos if entrantes[nodo["id"]] == 0] or [nodos[0]["id"]]
+    pasos = 0
+    while cola and pasos < len(nodos) * 6:
+        actual = cola.pop(0)
+        pasos += 1
+        for destino in salientes.get(actual, []):
+            capa[destino] = max(capa.get(destino, 0), capa[actual] + 1)
+            cola.append(destino)
+    return capa
+
+
 def diagrama_html(ident: str, bib) -> str:
     ruta = FUENTE / "diagramas" / f"{ident}.yaml"
     if not ruta.is_file():
         raise SystemExit(f"diagrama sin definición: {ident}")
     datos = yaml.safe_load(ruta.read_text(encoding="utf-8"))
     nodos = datos["nodos"]
-    ancho = 160
+    aristas = datos.get("aristas") or [
+        {"origen": nodos[i]["id"], "destino": nodos[i + 1]["id"], "fuente": nodos[i + 1]["fuente"]}
+        for i in range(len(nodos) - 1)
+    ]
+    capas = _capas_de(nodos, aristas)
+    por_capa: dict[int, list] = {}
+    for nodo in nodos:
+        por_capa.setdefault(capas[nodo["id"]], []).append(nodo)
+    ancho, alto_n, sep_x, sep_y = 172, 76, 78, 36
+    lugar = {}
+    for capa, lista in por_capa.items():
+        for i, nodo in enumerate(lista):
+            lugar[nodo["id"]] = (28 + capa * (ancho + sep_x), 48 + i * (alto_n + sep_y))
     cuerpo = []
     filas = []
-    lugar = {}
-    for i, nodo in enumerate(nodos):
-        x = 24 + i * (ancho + 28)
-        lugar[nodo["id"]] = x
+    for nodo in nodos:
+        x, y = lugar[nodo["id"]]
+        texto = nodo["texto"]
+        if nodo.get("dato"):
+            _, numero = visible_de(valor_de(nodo["dato"]))
+            texto = f"{texto} {numero}"
         cuerpo.append(
-            f'<g data-id="{e(nodo["id"])}"><title>{e(nodo["texto"])}</title>'
-            f'<rect x="{x}" y="70" width="{ancho}" height="64" rx="8" '
-            f'fill="none" stroke="currentColor" stroke-width="2"/></g>'
-            f'<text x="{x + 16}" y="108" fill="currentColor" font-size="16">{e(nodo["texto"])}</text>'
+            f'<a href="{e(nodo["href"])}" data-id="{e(nodo["id"])}" data-fuente="{e(nodo["fuente"])}">'
+            f"<title>{e(texto)}</title>"
+            f'<rect x="{x}" y="{y}" width="{ancho}" height="{alto_n}" rx="8" '
+            f'fill="none" stroke="currentColor" stroke-width="2"/>'
+            f'<text x="{x + 12}" y="{y + 44}" fill="currentColor" font-size="15">{e(texto)}</text></a>'
         )
-        filas.append({"nodo": nodo["texto"], "fuente": nodo["fuente"], "href": nodo["href"]})
-    aristas = datos.get("aristas") or []
-    if not aristas:
-        aristas = [
-            {"origen": nodos[i]["id"], "destino": nodos[i + 1]["id"], "fuente": nodos[i + 1]["fuente"]}
-            for i in range(len(nodos) - 1)
-        ]
-    indice = {nodo["id"]: i for i, nodo in enumerate(nodos)}
+        filas.append({"nodo": texto, "fuente": nodo["fuente"], "href": nodo["href"]})
     for arista in aristas:
-        x1 = lugar[arista["origen"]] + ancho
-        x2 = lugar[arista["destino"]]
-        y = 102 if abs(indice[arista["origen"]] - indice[arista["destino"]]) == 1 else 36
+        x1, y1 = lugar[arista["origen"]]
+        x2, y2 = lugar[arista["destino"]]
+        inicio = (x1 + ancho, y1 + alto_n / 2)
+        fin = (x2, y2 + alto_n / 2)
+        medio = ((inicio[0] + fin[0]) / 2, (inicio[1] + fin[1]) / 2)
+        rotulo = arista.get("rotulo") or ""
         cuerpo.append(
             f'<line data-origen="{e(arista["origen"])}" data-destino="{e(arista["destino"])}" '
-            f'x1="{x1}" y1="{y}" x2="{x2}" y2="{y}" stroke="currentColor" stroke-width="2"/>'
+            f'x1="{inicio[0]}" y1="{inicio[1]}" x2="{fin[0]}" y2="{fin[1]}" '
+            f'stroke="currentColor" stroke-width="2"/>'
         )
-        filas.append({"nodo": f'{arista["origen"]} → {arista["destino"]}', "fuente": arista["fuente"], "href": ""})
-    alto = 180
-    largo = 24 + len(nodos) * (ancho + 28)
+        if rotulo:
+            cuerpo.append(
+                f'<text x="{medio[0]}" y="{medio[1] - 6}" fill="currentColor" font-size="12" text-anchor="middle">'
+                f"{e(rotulo)}</text>"
+            )
+        filas.append({
+            "nodo": f'{arista["origen"]} → {arista["destino"]}' + (f" ({rotulo})" if rotulo else ""),
+            "fuente": arista["fuente"],
+            "href": "",
+        })
+    max_x = max(x + ancho for x, _ in lugar.values()) + 36
+    max_y = max(y + alto_n for _, y in lugar.values()) + 28
     svg = (
-        f'<svg viewBox="0 0 {largo} {alto}" role="img" class="lienzo-svg">'
+        f'<svg viewBox="0 0 {max_x} {max_y}" role="img" class="lienzo-svg">'
         f'<title>{e(datos["titulo"])}</title><desc>{e(datos["desc"])}</desc>'
         + "".join(cuerpo) + "</svg>"
     )
@@ -501,7 +715,7 @@ def diagrama_html(ident: str, bib) -> str:
     sello = {
         "fuentes": sorted({fila["fuente"] for fila in filas}),
         "svg_sha256": hashlib.sha256(svg.encode()).hexdigest(),
-        "commit_de_la_etiqueta": SHA,
+        "commit_de_la_etiqueta": COMMIT,
     }
     (carpeta / f"{ident}.sello.json").write_text(json.dumps(sello, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     columnas = ["nodo", "fuente"]
@@ -539,11 +753,11 @@ def leer_paginas() -> list[dict]:
 
 def menu_principal() -> list[dict]:
     return [
-        {"nombre": "Inicio", "ruta": "/"},
-        {"nombre": "Investigación", "ruta": "/investigacion/contexto"},
-        {"nombre": "Metodología", "ruta": "/metodos/proteomica"},
+        {"nombre": "Aprende", "ruta": "/aprende/cancer-colorrectal"},
+        {"nombre": "Datos", "ruta": "/datos"},
+        {"nombre": "Métodos", "ruta": "/metodos/proteomica"},
         {"nombre": "Resultados", "ruta": "/resultados"},
-        {"nombre": "Explorar proteínas", "ruta": "/proteinas"},
+        {"nombre": "Proteínas", "ruta": "/proteinas"},
     ]
 
 
@@ -679,7 +893,56 @@ def archivar_v37() -> None:
 def render(env, plantilla, **datos) -> str:
     datos.setdefault("hermanas", [])
     datos.setdefault("portada", False)
+    datos.setdefault("anterior", None)
+    datos.setdefault("siguiente", None)
+    datos.setdefault("minutos", 1)
+    datos.setdefault("aviso_contextual", False)
+    datos.setdefault("descripcion", "")
+    datos.setdefault("ruta", "")
+    datos.setdefault("jsonld", "")
+    datos.setdefault("consulta", "")
     return env.get_template("base.html.j2").render(**datos)
+
+
+def _jsonld(pagina: dict) -> str:
+    datos = {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "headline": pagina["titulo"],
+        "inLanguage": "es",
+        "author": {"@type": "Person", "name": "Juan Diego Polanco Franco"},
+        "publisher": {"@type": "CollegeOrUniversity", "name": "Universidad de Caldas"},
+        "description": pagina.get("resumen", ""),
+        "isAccessibleForFree": True,
+    }
+    return json.dumps(datos, ensure_ascii=False)
+
+
+def _minutos(texto: str) -> int:
+    palabras = re.findall(r"\w+", re.sub(r"\{\{[^}]+\}\}|\[@[^\]]+\]", " ", texto))
+    return max(1, round(len(palabras) / 180))
+
+
+def _aviso_contextual(pagina: dict) -> bool:
+    ruta = pagina.get("ruta", "")
+    return pagina.get("seccion") == "Resultados" or "aprendizaje" in ruta
+
+
+def vigilar_prosa(html_pagina: str, ruta: str) -> None:
+    if "/archivo" in ruta:
+        return
+    limpio = re.sub(r"<details\b.*?</details>", " ", html_pagina, flags=re.S)
+    limpio = re.sub(r"<footer\b.*?</footer>", " ", limpio, flags=re.S)
+    limpio = re.sub(r"<script\b.*?</script>", " ", limpio, flags=re.S)
+    visible = re.sub(r"<[^>]+>", " ", limpio)
+    hallazgo = re.search(r"\b(true|false|rechaza_h1|no_sostiene|no_evaluable|no_evaluada|desviacion_declarada)\b", visible)
+    if hallazgo:
+        i = hallazgo.start()
+        raise SystemExit(f"valor crudo {hallazgo.group(0)!r} en la prosa de {ruta}: {visible[max(0, i - 50):i + 50]!r}")
+    ruta_visible = re.search(r"results/|config/|\.tsv\b|\.json\b|\.yaml\b", visible)
+    if ruta_visible:
+        i = ruta_visible.start()
+        raise SystemExit(f"ruta de archivo en la prosa de {ruta}: {visible[max(0, i - 50):i + 50]!r}")
 
 
 def main() -> None:
@@ -731,37 +994,75 @@ def main() -> None:
             for otra in paginas
             if otra["seccion"] == pagina["seccion"] and otra["ruta"] != pagina["ruta"] and pagina["seccion"] != "Inicio"
         ]
+        misma = [otra for otra in paginas if otra["seccion"] == pagina["seccion"]]
+        lugar = next((i for i, otra in enumerate(misma) if otra["ruta"] == pagina["ruta"]), 0)
+        anterior = {"nombre": misma[lugar - 1]["titulo"], "ruta": misma[lugar - 1]["ruta"]} if lugar > 0 and pagina["seccion"] == "Aprende" else None
+        siguiente = {"nombre": misma[lugar + 1]["titulo"], "ruta": misma[lugar + 1]["ruta"]} if lugar + 1 < len(misma) and pagina["seccion"] == "Aprende" else None
         html_pagina = render(
             env, "base.html.j2",
             titulo=pagina["titulo"],
+            descripcion=pagina.get("resumen", ""),
+            ruta=pagina["ruta"],
             cuerpo=cuerpo,
             indice=indice,
             migas=migas,
             fuentes=fuentes_de(cuerpo, bib),
             hermanas=hermanas,
             portada=pagina["ruta"] == "/",
+            minutos=_minutos(pagina["cuerpo"]),
+            anterior=anterior,
+            siguiente=siguiente,
+            aviso_contextual=_aviso_contextual(pagina),
+            jsonld=_jsonld(pagina) if pagina["ruta"] == "/" else "",
             **comunes,
         )
+        vigilar_prosa(html_pagina, pagina["ruta"])
         destino = SITIO / "index.html" if pagina["ruta"] == "/" else SITIO / pagina["ruta"].strip("/") / "index.html"
         destino.parent.mkdir(parents=True, exist_ok=True)
         destino.write_text(html_pagina, encoding="utf-8")
 
+    letras = sorted({ancla_de(item["termino"])[:1] for item in glosario if item["termino"]})
+    indice_letras = "".join(f'<a href="#letra-{e(letra)}">{e(letra.upper())}</a>' for letra in letras)
     entradas = []
-    for item in glosario:
+    letra_previa = ""
+    for item in sorted(glosario, key=lambda fila: fila["termino"].casefold()):
         ident = ancla_de(item["termino"])
+        letra = ident[:1]
+        if letra != letra_previa:
+            entradas.append(f'<h2 id="letra-{e(letra)}">{e(letra.upper())}</h2>')
+            letra_previa = letra
         fuentes = " ".join(cita_html(clave, bib) for clave in item["fuentes"])
-        entradas.append(
-            f'<dt id="{e(ident)}">{e(item["termino"])}</dt>'
-            f'<dd><p>{e(item["definicion"])}</p>'
-            f'<p>{e(item["en_palabras_simples"])}</p>'
-            f'<p>{e(item["rol_en_bioinformatica"])}</p>'
-            f'<p><a href="{e(item["como_se_uso_aqui"])}">Dónde se usa</a></p>'
-            f'<p>{fuentes}</p></dd>'
+        categoria = item.get("categoria") or "Proteómica"
+        relacionados = " ".join(
+            f'<a href="#{e(ancla_de(str(otro)))}">{e(str(otro))}</a>' for otro in (item.get("relacionados") or [])
         )
+        entradas.append(
+            f'<article class="entrada-termino" id="{e(ident)}" data-buscar="{e(item["termino"])} {e(item.get("sigla") or "")} {e(categoria)}" data-categoria="{e(categoria)}">'
+            f"<h3>{e(item['termino'])}</h3>"
+            f'<p class="chip">{e(categoria)}</p>'
+            f"<p>{e(item['definicion'])}</p>"
+            f"<p><strong>En palabras simples.</strong> {e(item['en_palabras_simples'])}</p>"
+            f"<p><strong>Rol en bioinformática.</strong> {e(item['rol_en_bioinformatica'])}</p>"
+            f"<p><strong>Cómo se usó aquí.</strong> <a href=\"{e(item['como_se_uso_aqui'])}\">Ver la página</a></p>"
+            + (f"<p><strong>Relacionados.</strong> {relacionados}</p>" if relacionados else "")
+            + f"<p>{fuentes}</p></article>"
+        )
+    filtros = "".join(
+        f'<button type="button" data-filtro-glosario="{e(nombre)}">{e(nombre)}</button>'
+        for nombre in ("Todas", "Biología", "Proteómica", "Estadística", "ML", "Datos", "Software")
+    )
     glosario_html = render(
         env, "base.html.j2",
         titulo="Glosario",
-        cuerpo="<h1>Glosario</h1><dl>" + "".join(entradas) + "</dl>" + diagrama_html("D11", bib),
+        descripcion="Términos de la tesis, en palabras simples y con la fuente.",
+        ruta="/glosario",
+        cuerpo=(
+            "<h1>Glosario</h1>"
+            f'<nav class="letras" aria-label="Letras">{indice_letras}</nav>'
+            f'<div class="filtros">{filtros}</div>'
+            '<label>Filtrar <input id="filtro-glosario" type="search"></label>'
+            + "".join(entradas) + diagrama_html("D11", bib)
+        ),
         indice=[],
         migas="Inicio / Glosario",
         fuentes=[{"href": "/bibliografia", "texto": "Bibliografía"}],
@@ -781,10 +1082,34 @@ def main() -> None:
         if "archivo" in pagina.parts:
             continue
         citadas.update(re.findall(r'href="/bibliografia#([^"]+)"', pagina.read_text(encoding="utf-8")))
+    apa = yaml.safe_load((FUENTE / "referencias_apa.yaml").read_text(encoding="utf-8"))
+    por_clave = {ficha["clave"]: ficha for ficha in apa}
+    if len(apa) != 86:
+        raise SystemExit(f"la bibliografía de la tesis no tiene 86 entradas: {len(apa)}")
+    temas = ["Biología CRC", "Proteómica", "Estadística", "ML", "Datos", "Software"]
+    filtros_bib = "".join(
+        f'<button type="button" data-filtro-bib="{e(tema)}">{e(tema)}</button>' for tema in ["Todas", *temas]
+    )
     bloques = []
-    for clave in sorted(citadas):
-        campos = bib[clave]
+    for ficha in sorted(apa, key=lambda fila: fila["apa"].casefold()):
+        doi = ficha.get("doi") or ""
+        doi_html = f'<a href="https://doi.org/{e(doi)}">https://doi.org/{e(doi)}</a>' if doi else "<p>Sin DOI en la tesis.</p>"
         bloques.append(
+            f'<article id="{e(ficha["clave"])}" class="entrada entrada-tesis" data-tema="{e(ficha["tema"])}" '
+            f'data-buscar="{e(ficha["apa"])}">'
+            f'<h2>{e(apellido(ficha.get("autores") or ficha["clave"]))} {e(ficha.get("anio", ""))}</h2>'
+            f'<p class="titulo-citado">{e(ficha.get("titulo") or "")}</p>'
+            f'<p class="apa">{e(ficha["apa"])}</p>'
+            f'<p><button type="button" data-copiar="{e(ficha["apa"])}">Copiar cita</button> '
+            f'<span class="chip">{e(ficha["tema"])}</span></p>'
+            f"<p>{doi_html}</p></article>"
+        )
+    extras = []
+    for clave in sorted(citadas):
+        if clave in por_clave:
+            continue
+        campos = bib[clave]
+        extras.append(
             f'<article id="{e(clave)}" class="entrada"><h2>{e(apellido(campos.get("author", clave)))} {e(campos.get("year", ""))}</h2>'
             f'<p class="titulo-citado">{e(campos.get("title", ""))}</p>'
             f'<p><a href="https://doi.org/{e(campos.get("doi", ""))}">https://doi.org/{e(campos.get("doi", ""))}</a></p></article>'
@@ -792,7 +1117,17 @@ def main() -> None:
     bibliografia = render(
         env, "base.html.j2",
         titulo="Bibliografía",
-        cuerpo="<h1>Bibliografía</h1>" + "".join(bloques),
+        descripcion="86 referencias de la tesis, en APA 7.",
+        ruta="/bibliografia",
+        cuerpo=(
+            "<h1>Bibliografía</h1>"
+            "<p>Las 86 referencias de la tesis, en APA 7 y en orden alfabético. "
+            "Las que el sitio cita y la tesis no lista van al final.</p>"
+            f'<div class="filtros">{filtros_bib}</div>'
+            '<label>Filtrar <input id="filtro-bib" type="search"></label>'
+            + "".join(bloques)
+            + ("<h2>Referencias del sitio</h2>" + "".join(extras) if extras else "")
+        ),
         indice=[],
         migas="Inicio / Bibliografía",
         fuentes=[],
@@ -802,23 +1137,41 @@ def main() -> None:
     (SITIO / "bibliografia" / "index.html").write_text(bibliografia, encoding="utf-8")
 
     grupos = []
+    indice_busqueda = []
     for pagina in paginas:
         grupos.append(
-            f'<li data-buscar="{e(pagina["titulo"])} {e(pagina["seccion"])}">'
+            f'<li data-buscar="{e(pagina["titulo"])} {e(pagina["seccion"])}" data-grupo="Páginas">'
             f'<a href="{e(pagina["ruta"])}">{e(pagina["titulo"])}</a></li>'
         )
+        indice_busqueda.append({"grupo": "Páginas", "texto": f'{pagina["titulo"]} {pagina["seccion"]}', "href": pagina["ruta"], "rotulo": pagina["titulo"]})
     for ficha in fichas:
+        bolsa = " ".join([ficha["id"], ficha.get("gen") or "", " ".join(ficha.get("genes") or []), ficha.get("nombre") or ""])
         grupos.append(
-            f'<li data-buscar="{e(ficha["id"])} {e(ficha["gen"])}">'
-            f'<a href="{e(ficha["href"])}">{e(ficha["id"])}</a></li>'
+            f'<li data-buscar="{e(bolsa)}" data-grupo="Proteínas">'
+            f'<a href="{e(ficha["href"])}">{e(ficha.get("gen") or ficha["id"])} · {e(ficha["id"])}</a></li>'
         )
+        indice_busqueda.append({
+            "grupo": "Proteínas",
+            "texto": bolsa,
+            "href": ficha["href"],
+            "rotulo": f'{ficha.get("gen") or ficha["id"]} · {ficha["id"]}',
+            "clase": ficha.get("clase") or "",
+            "es_candidata": bool(ficha.get("candidata")),
+        })
     for titulo, ruta in (("Comparador", "/proteinas/comparar"), ("Candidatas", "/proteinas/candidatas")):
         grupos.append(f'<li data-buscar="{e(titulo)}"><a href="{ruta}">{e(titulo)}</a></li>')
     for item in glosario:
+        bolsa = " ".join([item["termino"], item.get("sigla") or "", " ".join(item.get("sinonimos") or [])])
         grupos.append(
-            f'<li data-buscar="{e(item["termino"])} {e(item.get("sigla", ""))}">'
+            f'<li data-buscar="{e(bolsa)}" data-grupo="Términos">'
             f'<a href="/glosario#{e(ancla_de(item["termino"]))}">{e(item["termino"])}</a></li>'
         )
+        indice_busqueda.append({
+            "grupo": "Términos",
+            "texto": bolsa,
+            "href": "/glosario#" + ancla_de(item["termino"]),
+            "rotulo": item["termino"],
+        })
     buscar = render(
         env, "base.html.j2",
         titulo="Buscar",
@@ -830,6 +1183,32 @@ def main() -> None:
     )
     (SITIO / "buscar").mkdir(parents=True, exist_ok=True)
     (SITIO / "buscar" / "index.html").write_text(buscar, encoding="utf-8")
+    (SITIO / "buscar" / "indice.json").write_text(
+        json.dumps(indice_busqueda, ensure_ascii=False), encoding="utf-8"
+    )
+    urls = ['https://oncogo-crc-tesis.web.app/']
+    for pagina in paginas:
+        if pagina["ruta"] != "/":
+            urls.append("https://oncogo-crc-tesis.web.app" + pagina["ruta"])
+    urls.extend([
+        "https://oncogo-crc-tesis.web.app/glosario",
+        "https://oncogo-crc-tesis.web.app/bibliografia",
+        "https://oncogo-crc-tesis.web.app/buscar",
+    ])
+    (SITIO / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(f"  <url><loc>{e(url)}</loc></url>" for url in urls)
+        + "\n</urlset>\n",
+        encoding="utf-8",
+    )
+    (SITIO / "robots.txt").write_text(
+        "User-agent: *\nAllow: /\nSitemap: https://oncogo-crc-tesis.web.app/sitemap.xml\n",
+        encoding="utf-8",
+    )
+    for pagina in SITIO.rglob("*.html"):
+        if "archivo" in pagina.parts:
+            continue
+        vigilar_prosa(pagina.read_text(encoding="utf-8"), "/" + pagina.relative_to(SITIO).as_posix())
     faltante = render(
         env, "base.html.j2",
         titulo="No está",

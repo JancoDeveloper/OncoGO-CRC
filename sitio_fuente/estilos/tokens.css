@@ -1,59 +1,90 @@
-/* Identidad propia. No usa la marca ni las hojas de UniProt. */
+/* Paleta sobria. El color de clase nunca va solo: cada clase lleva además una forma. */
 @font-face {
   font-family: "Source Sans 3";
   font-style: normal;
   font-weight: 400;
-  font-display: optional;
+  font-display: swap;
   src: url("/fuentes/source-sans-3-400.woff2") format("woff2");
 }
 @font-face {
   font-family: "Source Sans 3";
   font-style: normal;
   font-weight: 600;
-  font-display: optional;
+  font-display: swap;
   src: url("/fuentes/source-sans-3-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fuentes/source-sans-3-700.woff2") format("woff2");
 }
 @font-face {
   font-family: "Source Serif 4";
   font-style: normal;
   font-weight: 400;
-  font-display: optional;
+  font-display: swap;
   src: url("/fuentes/source-serif-4-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fuentes/source-serif-4-600.woff2") format("woff2");
 }
 
 :root {
-  --papel: #fafaf8;
-  --tinta: #202b36;
-  --tinta-suave: #4e5d6c;
-  --marca: #2563a6;
-  --sobre-marca: #fafaf8;
-  --linea: #e7e9ec;
-  --tarjeta: #ffffff;
-  --aviso-fondo: #f8ebe3;
-  --aviso-tinta: #6a2c18;
-  --foco: #1e4e86;
-  --clase-diferente: #b94a48;
-  --clase-equivalente: #239d9a;
-  --clase-indeterminada: #c58b35;
-  --sombra: 0 1px 2px rgba(32, 43, 54, 0.06);
+  --papel: #f6f3ee;
+  --tinta: #1c1917;
+  --tinta-suave: #44403c;
+  --marca: #0f4c5c;
+  --sobre-marca: #f6f3ee;
+  --linea: #e4ddd2;
+  --tarjeta: #fffcf8;
+  --aviso-fondo: #f3e6d4;
+  --aviso-tinta: #5c3317;
+  --foco: #0f4c5c;
+  --clase-diferente: #d55e00;
+  --clase-equivalente: #0072b2;
+  --clase-indeterminada: #e69f00;
+  --sombra: 0 1px 2px rgba(28, 25, 23, 0.06);
   --radio: 12px;
-  --espacio: 1rem;
+  --espacio: 8px;
   --fuente: "Source Sans 3", "Segoe UI", sans-serif;
   --fuente-titulo: "Source Serif 4", Georgia, serif;
   --fuente-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --medida: 72rem;
+  --medida: 68ch;
+  --base: 1.125rem;
 }
 
 [data-tema="oscuro"] {
-  --papel: #14181f;
-  --tinta: #f3efe6;
-  --tinta-suave: #d2cdc2;
-  --marca: #9fd4d8;
+  --papel: #14171c;
+  --tinta: #f6f3ee;
+  --tinta-suave: #d6d0c6;
+  --marca: #9fd4d0;
   --sobre-marca: #102124;
-  --linea: #2c3440;
-  --tarjeta: #1c222b;
-  --aviso-fondo: #3a241c;
-  --aviso-tinta: #f6d5c8;
-  --foco: #9fd4d8;
+  --linea: #2c313a;
+  --tarjeta: #1c2128;
+  --aviso-fondo: #2c241c;
+  --aviso-tinta: #f6d7c4;
+  --foco: #9fd4d0;
   --sombra: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) {
+    --papel: #14171c;
+    --tinta: #f6f3ee;
+    --tinta-suave: #d6d0c6;
+    --marca: #9fd4d0;
+    --sobre-marca: #102124;
+    --linea: #2c313a;
+    --tarjeta: #1c2128;
+    --aviso-fondo: #2c241c;
+    --aviso-tinta: #f6d7c4;
+    --foco: #9fd4d0;
+    --sombra: none;
+  }
 }

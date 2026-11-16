@@ -10,3 +10,4 @@ digestion → lcms	rai2025
 lcms → dia	rai2025
 dia → diann	rai2025
 diann → matriz	data/raw/plasma/DIA-NN_report.tsv
+suero → matriz (cierra)	data/raw/plasma/DIA-NN_report.tsv

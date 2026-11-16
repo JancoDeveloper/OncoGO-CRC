@@ -8,3 +8,4 @@ cptac → tanaka	config/preregistro_v3.yaml
 tanaka → cp	results/v3_7/preanalitica.json
 cp → cn	results/v3_7/preanalitica.json
 cn → hc	config/preregistro_v3.yaml
+cptac → hc (cierra)	config/preregistro_v3.yaml

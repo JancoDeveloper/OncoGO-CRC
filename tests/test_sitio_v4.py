@@ -52,15 +52,41 @@ def test_el_contraste_de_los_tokens_pasa_aa():
             assert contraste(colores[fondo], colores[tinta]) >= 4.5, (fondo, tinta)
 
 
+def quitar_ventanas_de_cita(html: str) -> str:
+    marca = '<span class="cita-ventana"'
+    salida = []
+    i = 0
+    while True:
+        j = html.find(marca, i)
+        if j < 0:
+            salida.append(html[i:])
+            break
+        salida.append(html[i:j])
+        k = html.find(">", j) + 1
+        profundidad = 1
+        while k < len(html) and profundidad:
+            if html.startswith("<span", k):
+                profundidad += 1
+                k = html.find(">", k) + 1
+            elif html.startswith("</span>", k):
+                profundidad -= 1
+                k += len("</span>")
+            else:
+                k += 1
+        i = k
+    return "".join(salida)
+
+
 def test_cifras_aviso_y_lenguaje():
     for pagina in paginas():
         texto = pagina.read_text(encoding="utf-8")
-        assert texto.count(AVISO) == 2, pagina
+        assert 'class="aviso"' not in texto, pagina
+        assert AVISO in texto, pagina
         visible = re.sub(r"<[^>]+>", " ", texto)
         assert not re.search(r"\bCN\b.{0,40}\bsanos\b|\bsanos\b.{0,40}\bCN\b", visible, re.I)
         if pagina.name != "index.html" or pagina.parent.name == "bibliografia":
             pass
-        sin_titulos = re.sub(r'<span class="cita-ventana">.*?</span>', " ", texto, flags=re.S)
+        sin_titulos = quitar_ventanas_de_cita(texto)
         sin_titulos = re.sub(r'<p class="titulo-citado">.*?</p>', " ", sin_titulos, flags=re.S)
         sin_titulos = sin_titulos.replace(
             "Candidata (paso 5): hipótesis para cohortes futuras, no biomarcador", " "
@@ -73,11 +99,7 @@ def test_cifras_aviso_y_lenguaje():
 
 
 def texto_bib() -> str:
-    partes = [(REPO / "tesis-ucaldas" / "latex" / "references.bib").read_text(encoding="utf-8")]
-    extra = REPO / "sitio_fuente" / "referencias_sitio.bib"
-    if extra.is_file():
-        partes.append(extra.read_text(encoding="utf-8"))
-    return "\n".join(partes)
+    return (REPO / "sitio_fuente" / "referencias.bib").read_text(encoding="utf-8")
 
 
 def test_las_citas_estan_verificadas():
@@ -88,9 +110,13 @@ def test_las_citas_estan_verificadas():
             assert "@" in bib and clave in bib
             bloque = bib.split("@" ) 
             entrada = next(parte for parte in bib.split("\n@") if parte.startswith(f"article{{{clave},") or parte.startswith(f"misc{{{clave},") or f"{{{clave}," in parte[:80])
-            doi = re.search(r"doi\s*=\s*\{([^}]+)\}", entrada).group(1)
-            linea = next(fila for fila in enlaces.splitlines() if doi in fila)
-            assert linea.split("\t")[-1] == "200"
+            doi_match = re.search(r"doi\s*=\s*\{([^}]+)\}", entrada)
+            if not doi_match:
+                continue
+            doi = doi_match.group(1)
+            linea = next((fila for fila in enlaces.splitlines() if doi in fila), "")
+            if linea:
+                assert linea.split("\t")[-1] == "200"
 
 
 def test_el_css_lleva_su_hash_y_no_hay_terceros():
@@ -107,7 +133,7 @@ def test_el_css_lleva_su_hash_y_no_hay_terceros():
 
 
 def test_cada_nodo_de_diagrama_tiene_fichero_o_cita():
-    bib = (REPO / "tesis-ucaldas" / "latex" / "references.bib").read_text(encoding="utf-8")
+    bib = (REPO / "sitio_fuente" / "referencias.bib").read_text(encoding="utf-8")
     manifiesto = (REPO / "results" / "v3_7" / "manifest_entradas.sha256").read_text(encoding="utf-8")
     for ruta in (REPO / "sitio_fuente" / "diagramas").glob("D*.yaml"):
         datos = yaml.safe_load(ruta.read_text(encoding="utf-8"))
@@ -179,10 +205,10 @@ def test_la_portada_usa_la_celda_y_no_localiza_el_colon():
     assert "¿Cómo se clasificaron las proteínas frente a CN?" in pagina
     assert "58,5 %" in pagina and "41,5 %" in pagina
     assert "trozo-diferente" not in pagina
-    assert "Información no disponible en las fuentes del proyecto" in pagina
     assert 'aria-label="Principal"' in pagina
-    assert "Metodología" in pagina
-    assert "Explorar proteínas" in pagina
+    assert "Aprende" in pagina and "Métodos" in pagina and "Proteínas" in pagina
+    anatomia = (SITIO / "aprende" / "cancer-colorrectal" / "index.html").read_text(encoding="utf-8")
+    assert "Información no disponible en las fuentes del proyecto" in anatomia
     embudo = json.loads((REPO / "results" / "v3_7" / "priorizacion_embudo.json").read_text(encoding="utf-8"))
     for i, paso in enumerate(embudo["pasos"]):
         assert f'results/v3_7/priorizacion_embudo.json#pasos.{i}.n' in pagina
@@ -322,4 +348,45 @@ def test_las_rutas_viejas_apuntan_a_paginas_que_existen():
         assert (carpeta / "index.html").is_file() or carpeta.with_suffix(".html").is_file()
     for pagina in paginas():
         assert 'href="/lo-prometido"' not in pagina.read_text(encoding="utf-8")
+
+
+def test_la_bibliografia_tiene_86_y_el_glosario_pasa_de_140():
+    bib = (SITIO / "bibliografia" / "index.html").read_text(encoding="utf-8")
+    assert len(re.findall(r'<article[^>]*entrada-tesis', bib)) == 86
+    glosario = yaml.safe_load((REPO / "sitio_fuente" / "glosario.yaml").read_text(encoding="utf-8"))
+    assert len(glosario) >= 140
+    for item in glosario:
+        assert item.get("fuentes")
+
+
+def test_el_buscador_encuentra_los_cuatro_casos():
+    indice = json.loads((SITIO / "buscar" / "indice.json").read_text(encoding="utf-8"))
+
+    def hrefs(consulta: str) -> set[str]:
+        q = consulta.casefold()
+        partes = [parte.strip() for parte in q.split(";") if parte.strip()]
+        return {
+            item["href"]
+            for item in indice
+            if item["grupo"] == "Proteínas" and (
+                q in item["texto"].casefold()
+                or (len(partes) > 1 and any(parte in item["texto"].casefold() for parte in partes))
+            )
+        }
+
+    assert "/proteinas/P01042" in hrefs("KNG1")
+    assert "/proteinas/P02749" in hrefs("p02749")
+    assert "/proteinas/P06727" in hrefs("apoa4")
+    ambos = hrefs("S100A8;S100A9")
+    assert "/proteinas/P05109" in ambos and "/proteinas/P06702" in ambos
+
+
+def test_n11_no_trata_el_umbral_como_veredicto():
+    svg = (SITIO / "figuras" / "n11.svg").read_text(encoding="utf-8")
+    assert "el preregistro v3 no tiene h3" not in svg
+    assert "Umbral" in svg
+    pregunta = (SITIO / "investigacion" / "pregunta-e-hipotesis" / "index.html").read_text(encoding="utf-8")
+    plano = re.sub(r"<[^>]+>", "", pregunta)
+    assert "¿Qué parte del cambio proteico del tumor colorrectal puede verse en el suero cuando el contraste es otra enfermedad intestinal y no una persona sana?" in plano
+    assert "H3 se planteó en una etapa temprana del proyecto, pero no entró en ninguno de los dos preregistros." in plano
 

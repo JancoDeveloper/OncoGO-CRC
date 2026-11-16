@@ -12,7 +12,7 @@ El certificado de esta corrida está en {{dato:results/v3_7/certificado.json#est
 
 El árbol estaba limpio: {{dato:results/v3_7/certificado.json#sello.arbol_limpio}}. La semilla es {{dato:results/v3_7/certificado.json#sello.semilla}}. [@vasaikar2019]
 
-Los números de estas páginas salen de `results/v3_7/` con el atajo `dato`. Si el atajo no encuentra la ruta, la construcción se detiene. [@rai2025]
+Los números de estas páginas salen de la corrida con un atajo que nombra el fichero. Si el atajo no encuentra la fuente, la construcción se detiene. [@rai2025]
 
 La etiqueta v3.7-final no se mueve desde esta web. [@tanaka2024]
 

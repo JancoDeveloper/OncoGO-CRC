@@ -4,136 +4,84 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Resultados · OncoGO-CRC</title>
+<meta name="description" content="Los números de la corrida, cada uno con su fichero.">
+<meta property="og:title" content="Resultados · OncoGO-CRC">
+<meta property="og:description" content="Los números de la corrida, cada uno con su fichero.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CO">
+<link rel="canonical" href="https://oncogo-crc-tesis.web.app/resultados">
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.4fa9f694d6.css">
+<link rel="preload" href="/fuentes/source-serif-4-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v4.cc00b862b0.css">
+
 </head>
-<body>
+<body data-pagefind-filter="seccion">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
+<nav id="exploracion" class="menu" aria-label="Principal">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
+
+<a href="/datos">Datos</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/resultados">Resultados</a>
+
+<a href="/proteinas">Proteínas</a>
+
+</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
-<label class="saltar" for="q">Buscar</label>
-<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<label class="saltar" for="q">Buscar proteína, término o página</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" autocomplete="off" value="">
 <button type="submit">Buscar</button>
+<div id="sugerencias" class="sugerencias" hidden></div>
 </form>
+<nav class="accesos" aria-label="Consulta">
+<a href="/glosario">Glosario</a>
+<a href="/bibliografia">Bibliografía</a>
+</nav>
 <button type="button" id="tema">Tema</button>
 </header>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<div class="marco">
-<aside id="exploracion" class="lateral" aria-label="Principal">
-<p class="lateral-etiqueta">Explorar la investigación</p>
-<a class="lateral-inicio" href="/">Inicio</a>
-
-<nav class="lateral-grupo" aria-label="Investigación">
-<p>Investigación</p>
-
-<a href="/#qu-problema-se-midi">El problema</a>
-
-<a href="/investigacion/pregunta-e-hipotesis">La pregunta</a>
-
-<a href="/#qu-no-demuestra-este-resultado">Alcance</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Recorrido">
-<p>Recorrido</p>
-
-<a href="/metodos/proteomica">Metodología</a>
-
-<a href="/#qu-muestra-cada-matriz">Las dos matrices</a>
-
-<a href="/#el-colon-como-contexto">El colon como contexto</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Resultados">
-<p>Resultados</p>
-
-<a href="/resultados">Resultados principales</a>
-
-<a href="/proteinas">Explorar proteínas</a>
-
-<a href="/proteinas/comparar">Comparador</a>
-
-<a href="/proteinas/candidatas">Candidatas</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Consulta">
-<p>Consulta</p>
-
-<a href="/glosario">Glosario</a>
-
-<a href="/bibliografia">Bibliografía</a>
-
-<a href="/entregables">Entregables</a>
-
-</nav>
-
-</aside>
 <div class="velo" id="velo" hidden></div>
+<div class="marco">
 <div class="columna">
 <p class="migas">Inicio / Resultados / Resultados</p>
+<p class="lectura">Lectura de unos 1 min</p>
+<main id="contenido" data-pagefind-body>
 
-<nav class="indice" aria-label="En esta página">
-
-<a href="#lo-que-esta-versi-n-no-calcul">Lo que esta versión no calculó</a>
-
-<a href="#gr-ficos-de-la-corrida">Gráficos de la corrida</a>
-
-</nav>
-
-<main id="contenido">
-
-<nav class="hermanas" aria-label="En esta sección">
-
-<a href="/resultados/tejido">Tejido</a>
-
-<a href="/resultados/suero">Suero</a>
-
-<a href="/resultados/aprendizaje">Aprendizaje</a>
-
-<a href="/resultados/preanalitica">Preanalítica</a>
-
-<a href="/resultados/hipotesis">Hipótesis, veredictos</a>
-
-<a href="/resultados/go">Gene Ontology, resultados</a>
-
-<a href="/resultados/shap">SHAP</a>
-
-<a href="/resultados/priorizacion">Priorización, resultado</a>
-
-</nav>
+<aside class="callout" role="note">
+<p>Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+</aside>
 
 <h1>Resultados</h1>
-<p>La pregunta de esta página es cuánto del cambio del tumor se deja ver en el suero. La matriz es la <a class="termino" href="/glosario#celda">celda<span class="definicion-corta">Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.</span></a>.</p>
+<p>La pregunta de esta página es cuánto del cambio del tumor se deja ver en el suero. La matriz es la <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-celda" aria-expanded="false">celda</button><span class="definicion-corta" id="t-celda" role="tooltip" hidden><span>Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.</span> <a href="/glosario#celda">Más en el glosario</a><span class="relacionados"><a href="/glosario#suero">suero</a> <a href="/glosario#cn">CN</a></span></span></span>.</p>
 <figure class="comparacion"><figcaption>Distribución de los registros de la celda del suero según las categorías reportadas en la investigación. Las tres cuentas suman el total. No es un gráfico de una cohorte nueva.</figcaption><ul class="clases"><li class="clase clase-equivalente"><p class="clase-nombre"><span class="muestra muestra-equivalente"></span> Equivalentes</p><p class="clase-valor"><data value="166" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.equivalente" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.equivalente">166</data></p><p class="clase-pct">58,5 %</p><p>TOST cabe en el margen de 1,5 veces.</p></li><li class="clase clase-indeterminada"><p class="clase-nombre"><span class="muestra muestra-indeterminada"></span> Indeterminadas</p><p class="clase-valor"><data value="118" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada">118</data></p><p class="clase-pct">41,5 %</p><p>Quedan fuera de las otras dos clases.</p></li><li class="clase clase-diferente"><p class="clase-nombre"><span class="muestra muestra-diferente"></span> Diferentes</p><p class="clase-valor"><data value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.diferente">0</data></p><p class="clase-pct">0,0 %</p><p>TREAT pasa el corte en el sentido observado.</p></li></ul><p class="clase-total">Total de la celda: <data value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.n">284</data> proteínas.</p><div class="apilada" role="img" aria-label="Equivalentes 166, 58,5 %. Indeterminadas 118, 41,5 %. Diferentes 0, 0,0 %"><span class="trozo trozo-equivalente" style="width:58.4507%"></span><span class="trozo trozo-indeterminada" style="width:41.5493%"></span></div><ul class="leyenda"><li><span class="muestra muestra-equivalente"></span> Equivalentes: 58,5 %</li><li><span class="muestra muestra-indeterminada"></span> Indeterminadas: 41,5 %</li><li><span class="muestra muestra-diferente"></span> Diferentes: 0,0 %</li></ul><p>Diferentes no ocupa un tramo: el conteo es 0, y un ancho inventado lo haría parecer distinto de cero. El color nombra la clase. No dice que una clase sea mejor que otra.</p><div class="lectura-clases"><h3>Equivalentes</h3><p>Dos pruebas unilaterales que, juntas, declaran que el cambio cabe dentro de un margen. En esta celda, una proteína es equivalente si TOST cabe en el margen de 1,5 veces.</p><h3>Indeterminadas</h3><p>Quedan fuera de las otras dos clases. Un resultado negativo con poca potencia se queda en indeterminado, no en equivalente. No ver un cambio, con esta potencia, no las vuelve equivalentes.</p><h3>Diferentes</h3><p>TREAT exige que el cambio supere un margen, no solo que sea distinto de cero. Una proteína es diferente si TREAT pasa el corte en el sentido observado. El cero es el conteo de esa clase frente a CN. No dice que el tumor no cambie en el tejido.</p></div><details class="complemento"><summary>Definiciones, referencias y origen de los números</summary><p>Los conteos salen de results/v3_7/suero_embudo.json, campo celda_preregistrada. El porcentaje de cada tarjeta es 100 × esa clase / el total, con un decimal.</p><p>TOST está en el <a href="/glosario#tost">glosario</a>. <a href="/bibliografia#lakens2017">Lakens 2017</a>.</p><p>TREAT está en el <a href="/glosario#treat">glosario</a>. <a href="/bibliografia#mccarthy2009">McCarthy 2009</a>.</p><p>La potencia y la celda están en el <a href="/glosario#potencia">glosario</a> y en el de <a href="/glosario#celda">celda</a>. <a href="/bibliografia#rai2025">Rai 2025</a>.</p></details></figure>
-<p>Eso es un resultado calculado. No es una prueba diagnóstica y no detecta una proteína saliendo del tumor. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<p>Eso es un resultado calculado. No es una prueba diagnóstica y no detecta una proteína saliendo del tumor. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-161">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-161" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
 <h2 id="lo-que-esta-versi-n-no-calcul">Lo que esta versión no calculó</h2>
-<p>Las redes no se calcularon: el estado declarado es el de la correspondencia, y no es un resultado. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span></p>
+<p>Las redes no se calcularon: el estado declarado es el de la correspondencia, y no es un resultado. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014" aria-describedby="cita-162">(Zhang, 2014)</a><span class="cita-ventana" id="cita-162" role="tooltip"><span class="cita-autores">Zhang, B., Wang, J., Wang, X., Zhu, J., Liu, Q., Shi, Z., Chambers, M. C., Zimmerman, L. J., Shaddox, K. F., Kim, S., Davies, S. R., Wang, S., Wang, P., Kinsinger, C. R., Rivers, R. C., Rodriguez, H., Townsend, R. R., Ellis, M. J. C., Carr, S. A., . . . NCI CPTAC</span> (2014). <span class="cita-titulo">Proteogenomic characterization of human colon and rectal cancer</span>. <span class="cita-revista">Nature</span>. <a href="https://doi.org/10.1038/nature13438">https://doi.org/10.1038/nature13438</a></span></span></p>
 <figure class="grafico" id="p06">
 <h3>Redes</h3>
-<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Redes</title><desc>Redes</desc><text x="40" y="180" fill="currentColor" font-size="28">desviacion_declarada</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="desviacion_declarada" data-fuente="config/correspondencia_propuesta.tsv#punto=redes.estado" tabindex="0" data-tip="redes"/></svg>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Redes</title><desc>Redes</desc><text x="40" y="180" fill="currentColor" font-size="28">Desviación declarada</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="desviacion_declarada" data-fuente="config/correspondencia_propuesta.tsv#punto=redes.estado" tabindex="0" data-tip="redes"/></svg><details class="como-leer"><summary>Cómo leer este gráfico</summary><p>Redes</p></details>
 <details><summary>Tabla de los datos del gráfico</summary>
-<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>redes</td><td>desviacion_declarada</td></tr></tbody></table>
+<table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>redes</td><td>Desviación declarada</td></tr></tbody></table>
 </details>
 <p class="descargas"><a href="/figuras/p06.svg" download>Descargar SVG</a>
 <a href="/figuras/p06.tsv" download>Descargar TSV</a>
-<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/correspondencia_propuesta.tsv">origen config/correspondencia_propuesta.tsv</a></p>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/correspondencia_propuesta.tsv">Origen en el repositorio</a></p>
 </figure>
-<p>No hay una cohorte nueva medida en esta tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
+<p>No hay una cohorte nueva medida en esta tesis. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024" aria-describedby="cita-163">(Tanaka y Roehrl, 2024)</a><span class="cita-ventana" id="cita-163" role="tooltip"><span class="cita-autores">Tanaka, A., Ogawa, M., Zhou, Y., Namba, K., Hendrickson, R. C., Miele, M. M., Li, Z., Klimstra, D. S., Buckley, P. G., Gulcher, J., Wang, J. Y. and Roehrl, M. H</span> (2024). <span class="cita-titulo">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures</span>. <span class="cita-revista">Cell Reports</span>. <a href="https://doi.org/10.1016/j.celrep.2024.113810">https://doi.org/10.1016/j.celrep.2024.113810</a></span></span></p>
 <figure class="grafico" id="p09">
 <h3>Cohortes nuevas</h3>
-<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Cohortes nuevas</title><desc>Cohortes nuevas</desc><text x="40" y="180" fill="currentColor" font-size="28">no_cumplido</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="no_cumplido" data-fuente="config/correspondencia_propuesta.tsv#punto=ampliar_cohortes.estado" tabindex="0" data-tip="cohortes"/></svg>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Cohortes nuevas</title><desc>Cohortes nuevas</desc><text x="40" y="180" fill="currentColor" font-size="28">no_cumplido</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="no_cumplido" data-fuente="config/correspondencia_propuesta.tsv#punto=ampliar_cohortes.estado" tabindex="0" data-tip="cohortes"/></svg><details class="como-leer"><summary>Cómo leer este gráfico</summary><p>Cohortes nuevas</p></details>
 <details><summary>Tabla de los datos del gráfico</summary>
 <table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>cohortes</td><td>no_cumplido</td></tr></tbody></table>
 </details>
 <p class="descargas"><a href="/figuras/p09.svg" download>Descargar SVG</a>
 <a href="/figuras/p09.tsv" download>Descargar TSV</a>
-<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/correspondencia_propuesta.tsv">origen config/correspondencia_propuesta.tsv</a></p>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/correspondencia_propuesta.tsv">Origen en el repositorio</a></p>
 </figure>
 <h2 id="gr-ficos-de-la-corrida">Gráficos de la corrida</h2>
 <figure class="grafico" id="f01">
@@ -148,62 +96,63 @@
 <rect x="245" y="220" width="150" height="64" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3"/>
 <text x="320" y="258" text-anchor="middle" fill="currentColor">Priorización</text>
 <path class="trazo" d="M190 72 H245 M395 72 H450 M320 104 V220" fill="none" stroke="currentColor" stroke-width="3"/>
-</svg>
+</svg><details class="como-leer"><summary>Cómo leer este gráfico</summary><p>Cuatro bloques unidos por un trazo: tejido, suero, hipótesis y priorización. El trazo se dibuja una vez.</p></details>
 <details><summary>Tabla de los datos del gráfico</summary>
 <table class="ordenable"><thead><tr><th>bloque</th></tr></thead><tbody><tr><td>Tejido</td></tr><tr><td>Suero</td></tr><tr><td>Hipótesis</td></tr><tr><td>Priorización</td></tr></tbody></table>
 </details>
 <p class="descargas"><a href="/figuras/f01.svg" download>Descargar SVG</a>
 <a href="/figuras/f01.tsv" download>Descargar TSV</a>
-<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/certificado.json">origen results/v3_7/certificado.json</a></p>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/certificado.json">Origen en el repositorio</a></p>
 </figure>
 <figure class="grafico" id="p01">
 <h3>Proteínas de la celda</h3>
-<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Proteínas de la celda</title><desc>Proteínas de la celda</desc><text x="40" y="180" fill="currentColor" font-size="28">284</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n" tabindex="0" data-tip="celda"/></svg>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Proteínas de la celda</title><desc>Proteínas de la celda</desc><text x="40" y="180" fill="currentColor" font-size="28">284</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n" tabindex="0" data-tip="celda"/></svg><details class="como-leer"><summary>Cómo leer este gráfico</summary><p>Proteínas de la celda</p></details>
 <details><summary>Tabla de los datos del gráfico</summary>
 <table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>celda</td><td>284</td></tr></tbody></table>
 </details>
 <p class="descargas"><a href="/figuras/p01.svg" download>Descargar SVG</a>
 <a href="/figuras/p01.tsv" download>Descargar TSV</a>
-<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">origen results/v3_7/suero_embudo.json</a></p>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">Origen en el repositorio</a></p>
 </figure>
 <figure class="grafico" id="p02">
 <h3>Diferentes frente a CN</h3>
-<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Diferentes frente a CN</title><desc>Diferentes frente a CN</desc><text x="40" y="180" fill="currentColor" font-size="28">0</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente" tabindex="0" data-tip="diferente"/></svg>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Diferentes frente a CN</title><desc>Diferentes frente a CN</desc><text x="40" y="180" fill="currentColor" font-size="28">0</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente" tabindex="0" data-tip="diferente"/></svg><details class="como-leer"><summary>Cómo leer este gráfico</summary><p>Diferentes frente a CN</p></details>
 <details><summary>Tabla de los datos del gráfico</summary>
 <table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>diferente</td><td>0</td></tr></tbody></table>
 </details>
 <p class="descargas"><a href="/figuras/p02.svg" download>Descargar SVG</a>
 <a href="/figuras/p02.tsv" download>Descargar TSV</a>
-<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">origen results/v3_7/suero_embudo.json</a></p>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">Origen en el repositorio</a></p>
 </figure>
 <figure class="grafico" id="p10">
 <h3>Certificado</h3>
-<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Certificado</title><desc>Certificado</desc><text x="40" y="180" fill="currentColor" font-size="28">Publicable</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="publicable" data-fuente="results/v3_7/certificado.json#estado" tabindex="0" data-tip="certificado"/></svg>
+<svg viewBox="0 0 640 360" role="img" class="lienzo-svg"><title>Certificado</title><desc>Certificado</desc><text x="40" y="180" fill="currentColor" font-size="28">Publicable</text><rect x="40" y="80" width="200" height="40" fill="none" stroke="currentColor" stroke-width="3" data-value="publicable" data-fuente="results/v3_7/certificado.json#estado" tabindex="0" data-tip="certificado"/></svg><details class="como-leer"><summary>Cómo leer este gráfico</summary><p>Certificado</p></details>
 <details><summary>Tabla de los datos del gráfico</summary>
 <table class="ordenable"><thead><tr><th>punto</th><th>valor</th></tr></thead><tbody><tr><td>certificado</td><td>publicable</td></tr></tbody></table>
 </details>
 <p class="descargas"><a href="/figuras/p10.svg" download>Descargar SVG</a>
 <a href="/figuras/p10.tsv" download>Descargar TSV</a>
-<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/certificado.json">origen results/v3_7/certificado.json</a></p>
+<a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/certificado.json">Origen en el repositorio</a></p>
 </figure>
+
 
 <details class="transparencia">
 <summary>Transparencia y trazabilidad</summary>
 <ul>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.equivalente</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.equivalente</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.diferente</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.diferente</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.n</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.n</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/correspondencia_propuesta.tsv">config/correspondencia_propuesta.tsv#punto=redes.estado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/correspondencia_propuesta.tsv">config/correspondencia_propuesta.tsv#punto=redes.estado</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/correspondencia_propuesta.tsv">config/correspondencia_propuesta.tsv#punto=ampliar_cohortes.estado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/correspondencia_propuesta.tsv">config/correspondencia_propuesta.tsv#punto=ampliar_cohortes.estado</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/certificado.json">results/v3_7/certificado.json#estado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/certificado.json">results/v3_7/certificado.json#estado</a></li>
 
 <li><a href="https://doi.org/10.1177/1948550617697177">lakens2017 · 10.1177/1948550617697177</a></li>
 
@@ -220,9 +169,21 @@
 
 </main>
 </div>
+
+<nav class="indice" aria-label="En esta página">
+<p class="indice-titulo">En esta página</p>
+
+<a href="#lo-que-esta-versi-n-no-calcul">Lo que esta versión no calculó</a>
+
+<a href="#gr-ficos-de-la-corrida">Gráficos de la corrida</a>
+
+</nav>
+
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
 
 <a href="/datos">Datos</a>
 
@@ -240,10 +201,12 @@
 
 <a href="/bibliografia">Bibliografía</a>
 
+<a href="/como-citar">Cómo citar</a>
+<a href="/sobre">Sobre esta tesis</a>
 </nav>
-<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
-<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">Publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
+<p><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v3.7-final">Repositorio, etiqueta v3.7-final</a></p>
+<p class="nota-etica">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 </footer>
 <script>(function () {
   var raiz = document.documentElement;
@@ -267,7 +230,7 @@
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
   function marcarLateral() {
-    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+    document.querySelectorAll("#exploracion a").forEach(function (enlace) {
       var href = enlace.getAttribute("href") || "";
       var activo = false;
       if (href.indexOf("#") !== -1) {
@@ -326,7 +289,9 @@
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
         if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
-        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+        var partes = consulta.split(";").map(function (parte) { return parte.trim(); }).filter(Boolean);
+        var hallado = texto.indexOf(consulta) !== -1 || (partes.length > 1 && partes.some(function (parte) { return texto.indexOf(parte) !== -1; }));
+        nodo.hidden = consulta.length > 0 && !hallado;
       });
     };
     caja.addEventListener("input", aplicar);
@@ -470,6 +435,176 @@
     if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
     pintar();
   }
+  document.querySelectorAll(".termino").forEach(function (boton) {
+    var panel = document.getElementById(boton.getAttribute("aria-describedby"));
+    if (!panel) return;
+    function abrir() {
+      panel.hidden = false;
+      boton.setAttribute("aria-expanded", "true");
+    }
+    function cerrar() {
+      panel.hidden = true;
+      boton.setAttribute("aria-expanded", "false");
+    }
+    boton.addEventListener("click", function () {
+      if (panel.hidden) abrir();
+      else cerrar();
+    });
+    boton.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  });
+  document.querySelectorAll("[data-copiar]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var texto = boton.getAttribute("data-copiar") || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(function () {
+          boton.textContent = "Copiada";
+        });
+      }
+    });
+  });
+  function filtrarGrupo(selector, atributo, valor) {
+    document.querySelectorAll(selector).forEach(function (nodo) {
+      var coincide = valor === "Todas" || nodo.getAttribute(atributo) === valor;
+      nodo.hidden = !coincide;
+    });
+  }
+  document.querySelectorAll("[data-filtro-bib]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-tesis", "data-tema", boton.getAttribute("data-filtro-bib"));
+    });
+  });
+  document.querySelectorAll("[data-filtro-glosario]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-termino", "data-categoria", boton.getAttribute("data-filtro-glosario"));
+    });
+  });
+  var filtroGlosario = document.getElementById("filtro-glosario");
+  if (filtroGlosario) {
+    filtroGlosario.addEventListener("input", function () {
+      var q = filtroGlosario.value.toLowerCase();
+      document.querySelectorAll(".entrada-termino").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  var filtroBib = document.getElementById("filtro-bib");
+  if (filtroBib) {
+    filtroBib.addEventListener("input", function () {
+      var q = filtroBib.value.toLowerCase();
+      document.querySelectorAll(".entrada-tesis").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  document.querySelectorAll("[data-juguete]").forEach(function (formulario) {
+    var efecto = formulario.querySelector("[data-efecto]");
+    var ancho = formulario.querySelector("[data-ancho]");
+    var clase = formulario.querySelector("[data-clase]");
+    function pintar() {
+      var e = Number(efecto.value);
+      var a = Number(ancho.value);
+      var bajo = e - a;
+      var alto = e + a;
+      var margen = Math.log2(1.5);
+      var resultado = "indeterminada";
+      if (bajo >= margen || alto <= -margen) resultado = "diferente";
+      else if (bajo >= -margen && alto <= margen) resultado = "equivalente";
+      clase.textContent = "Efecto " + e.toFixed(2) + ", intervalo " + bajo.toFixed(2) + " a " + alto.toFixed(2) + ". Clase de juguete: " + resultado + ".";
+    }
+    efecto.addEventListener("input", pintar);
+    ancho.addEventListener("input", pintar);
+    pintar();
+  });
+  var cajaBusqueda = document.getElementById("q");
+  var sugerencias = document.getElementById("sugerencias");
+  if (cajaBusqueda && sugerencias && !document.querySelector("[data-buscar]")) {
+    var indice = null;
+    var activo = -1;
+    function coincide(consulta, texto) {
+      var q = consulta.toLowerCase().trim();
+      var bolsa = (texto || "").toLowerCase();
+      if (!q) return false;
+      if (bolsa.indexOf(q) !== -1) return true;
+      var partes = q.split(";").filter(Boolean);
+      return partes.length > 1 && partes.some(function (parte) { return bolsa.indexOf(parte) !== -1; });
+    }
+    function pintarSugerencias(lista) {
+      sugerencias.innerHTML = "";
+      if (!lista.length) {
+        sugerencias.hidden = true;
+        return;
+      }
+      var grupos = {};
+      lista.slice(0, 12).forEach(function (item) {
+        grupos[item.grupo] = grupos[item.grupo] || [];
+        grupos[item.grupo].push(item);
+      });
+      Object.keys(grupos).forEach(function (grupo) {
+        var titulo = document.createElement("p");
+        titulo.textContent = grupo;
+        sugerencias.appendChild(titulo);
+        grupos[grupo].forEach(function (item) {
+          var enlace = document.createElement("a");
+          enlace.href = item.href;
+          enlace.textContent = item.rotulo;
+          sugerencias.appendChild(enlace);
+        });
+      });
+      sugerencias.hidden = false;
+      activo = -1;
+    }
+    cajaBusqueda.addEventListener("input", function () {
+      var q = cajaBusqueda.value;
+      if (q.trim().length < 2) {
+        sugerencias.hidden = true;
+        return;
+      }
+      function aplicar(datos) {
+        indice = datos;
+        pintarSugerencias(datos.filter(function (item) { return coincide(q, item.texto); }));
+      }
+      if (indice) aplicar(indice);
+      else fetch("/buscar/indice.json").then(function (r) { return r.json(); }).then(aplicar).catch(function () {});
+    });
+    cajaBusqueda.addEventListener("keydown", function (evento) {
+      var enlaces = sugerencias.querySelectorAll("a");
+      if (evento.key === "Escape") {
+        sugerencias.hidden = true;
+        return;
+      }
+      if (!enlaces.length || sugerencias.hidden) return;
+      if (evento.key === "ArrowDown" || evento.key === "ArrowUp") {
+        evento.preventDefault();
+        activo += evento.key === "ArrowDown" ? 1 : -1;
+        if (activo < 0) activo = enlaces.length - 1;
+        if (activo >= enlaces.length) activo = 0;
+        enlaces.forEach(function (enlace, i) {
+          if (i === activo) enlace.setAttribute("aria-selected", "true");
+          else enlace.removeAttribute("aria-selected");
+        });
+        enlaces[activo].focus();
+      }
+    });
+  }
+  var punta = document.createElement("div");
+  punta.className = "cita-ventana";
+  punta.hidden = true;
+  document.body.appendChild(punta);
+  document.querySelectorAll("[data-tip]").forEach(function (nodo) {
+    function mostrar() {
+      punta.hidden = false;
+      punta.textContent = nodo.getAttribute("data-tip");
+    }
+    nodo.addEventListener("focus", mostrar);
+    nodo.addEventListener("mouseenter", mostrar);
+    nodo.addEventListener("blur", function () { punta.hidden = true; });
+    nodo.addEventListener("mouseleave", function () { punta.hidden = true; });
+  });
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

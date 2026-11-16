@@ -4,121 +4,78 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ayuda · OncoGO-CRC</title>
+<meta name="description" content="Cómo leer las cifras, las citas y las etiquetas de fuente.">
+<meta property="og:title" content="Ayuda · OncoGO-CRC">
+<meta property="og:description" content="Cómo leer las cifras, las citas y las etiquetas de fuente.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CO">
+<link rel="canonical" href="https://oncogo-crc-tesis.web.app/ayuda">
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.4fa9f694d6.css">
+<link rel="preload" href="/fuentes/source-serif-4-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v4.cc00b862b0.css">
+
 </head>
-<body>
+<body data-pagefind-filter="seccion">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
+<nav id="exploracion" class="menu" aria-label="Principal">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
+
+<a href="/datos">Datos</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/resultados">Resultados</a>
+
+<a href="/proteinas">Proteínas</a>
+
+</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
-<label class="saltar" for="q">Buscar</label>
-<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<label class="saltar" for="q">Buscar proteína, término o página</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" autocomplete="off" value="">
 <button type="submit">Buscar</button>
+<div id="sugerencias" class="sugerencias" hidden></div>
 </form>
+<nav class="accesos" aria-label="Consulta">
+<a href="/glosario">Glosario</a>
+<a href="/bibliografia">Bibliografía</a>
+</nav>
 <button type="button" id="tema">Tema</button>
 </header>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<div class="marco">
-<aside id="exploracion" class="lateral" aria-label="Principal">
-<p class="lateral-etiqueta">Explorar la investigación</p>
-<a class="lateral-inicio" href="/">Inicio</a>
-
-<nav class="lateral-grupo" aria-label="Investigación">
-<p>Investigación</p>
-
-<a href="/#qu-problema-se-midi">El problema</a>
-
-<a href="/investigacion/pregunta-e-hipotesis">La pregunta</a>
-
-<a href="/#qu-no-demuestra-este-resultado">Alcance</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Recorrido">
-<p>Recorrido</p>
-
-<a href="/metodos/proteomica">Metodología</a>
-
-<a href="/#qu-muestra-cada-matriz">Las dos matrices</a>
-
-<a href="/#el-colon-como-contexto">El colon como contexto</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Resultados">
-<p>Resultados</p>
-
-<a href="/resultados">Resultados principales</a>
-
-<a href="/proteinas">Explorar proteínas</a>
-
-<a href="/proteinas/comparar">Comparador</a>
-
-<a href="/proteinas/candidatas">Candidatas</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Consulta">
-<p>Consulta</p>
-
-<a href="/glosario">Glosario</a>
-
-<a href="/bibliografia">Bibliografía</a>
-
-<a href="/entregables">Entregables</a>
-
-</nav>
-
-</aside>
 <div class="velo" id="velo" hidden></div>
+<div class="marco">
 <div class="columna">
 <p class="migas">Inicio / Ayuda / Ayuda</p>
-
-<nav class="indice" aria-label="En esta página">
-
-<a href="#c-mo-leer-una-cifra">Cómo leer una cifra</a>
-
-<a href="#c-mo-leer-una-cita">Cómo leer una cita</a>
-
-<a href="#qu-no-es-esta-web">Qué no es esta web</a>
-
-<a href="#comprobar-una-lectura">Comprobar una lectura</a>
-
-<a href="#d-nde-sigue-la-lectura">Dónde sigue la lectura</a>
-
-<a href="#licencias-de-la-anotaci-n">Licencias de la anotación</a>
-
-</nav>
-
-<main id="contenido">
+<p class="lectura">Lectura de unos 1 min</p>
+<main id="contenido" data-pagefind-body>
 
 <h1>Ayuda</h1>
 <h2 id="c-mo-leer-una-cifra">Cómo leer una cifra</h2>
-<p>Cada cifra guarda su fichero en el atributo del número. Al posar el cursor, o al enfocar el número, se lee la ruta. El listado de rutas de la página está en «Transparencia y trazabilidad». Si el fichero no está, el generador se detiene y no inventa el número. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<p>Cada cifra guarda su fichero en el atributo del número. Al posar el cursor, o al enfocar el número, se lee la ruta. El listado de rutas de la página está en «Transparencia y trazabilidad». Si el fichero no está, el generador se detiene y no inventa el número. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-203">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-203" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
 <h2 id="c-mo-leer-una-cita">Cómo leer una cita</h2>
-<p>Una cita enlaza a la bibliografía. Al enfocarla se ve el título del artículo. El título se comprueba contra el registro del DOI y no se reescribe. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
+<p>Una cita enlaza a la bibliografía. Al enfocarla se ve el título del artículo. El título se comprueba contra el registro del DOI y no se reescribe. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019" aria-describedby="cita-204">(Vasaikar, 2019)</a><span class="cita-ventana" id="cita-204" role="tooltip"><span class="cita-autores">Vasaikar, S., Huang, C., Wang, X., Petyuk, V. A., Savage, S. R., Wen, B., Dou, Y., Zhang, Y., Shi, Z., Arshad, O. A., Gritsenko, M. A., Zimmerman, L. J., McDermott, J. E., Clauss, T. R., Moore, R. J., Zhao, R., Monroe, M. E., Wang, Y.-T., Chambers, M. C., . . . Zhang, Z</span> (2019). <span class="cita-titulo">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities</span>. <span class="cita-revista">Cell</span>. <a href="https://doi.org/10.1016/j.cell.2019.03.030">https://doi.org/10.1016/j.cell.2019.03.030</a></span></span></p>
 <h2 id="qu-no-es-esta-web">Qué no es esta web</h2>
-<p>No es una herramienta para decidir sobre un paciente. <a class="termino" href="/glosario#cn">CN<span class="definicion-corta">Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span></a> son pacientes sintomáticos con otra enfermedad intestinal. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<p>No es una herramienta para decidir sobre un paciente. <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-cn" aria-expanded="false">CN</button><span class="definicion-corta" id="t-cn" role="tooltip" hidden><span>Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span> <a href="/glosario#cn">Más en el glosario</a><span class="relacionados"><a href="/glosario#cp">CP</a> <a href="/glosario#hc">HC</a></span></span></span> son pacientes sintomáticos con otra enfermedad intestinal. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-205">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-205" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
 <h2 id="comprobar-una-lectura">Comprobar una lectura</h2>
-<p>Una lectura falsa diría que ese grupo no tiene enfermedad. <a class="termino" href="/glosario#cn">CN<span class="definicion-corta">Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span></a> son pacientes sintomáticos con otra enfermedad intestinal. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<p>¿Alguien pasa el paso 6? El fichero dice <data value="true" data-fuente="results/v3_7/priorizacion_embudo.json#nadie_pasa_el_paso_6" title="Origen: results/v3_7/priorizacion_embudo.json#nadie_pasa_el_paso_6">true</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<p>¿H7 se sostiene? El estado guardado es <data value="refuta" data-fuente="results/v3_7/h7_visibilidad_en_sangre.json#estado" title="Origen: results/v3_7/h7_visibilidad_en_sangre.json#estado">refuta</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<p>Una lectura falsa diría que ese grupo no tiene enfermedad. <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-cn" aria-expanded="false">CN</button><span class="definicion-corta" id="t-cn" role="tooltip" hidden><span>Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span> <a href="/glosario#cn">Más en el glosario</a><span class="relacionados"><a href="/glosario#cp">CP</a> <a href="/glosario#hc">HC</a></span></span></span> son pacientes sintomáticos con otra enfermedad intestinal. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-206">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-206" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<p>¿Alguien pasa el paso 6? El fichero dice <data value="true" data-fuente="results/v3_7/priorizacion_embudo.json#nadie_pasa_el_paso_6" title="Origen: results/v3_7/priorizacion_embudo.json#nadie_pasa_el_paso_6">sí</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-207">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-207" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<p>¿H7 se sostiene? El estado guardado es <data value="refuta" data-fuente="results/v3_7/h7_visibilidad_en_sangre.json#estado" title="Origen: results/v3_7/h7_visibilidad_en_sangre.json#estado">Refutada</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-208">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-208" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
 <h2 id="d-nde-sigue-la-lectura">Dónde sigue la lectura</h2>
-<p>La discusión, las conclusiones y los entregables están en el menú. El documento de la tesis sigue en revisión y esta web no publica el PDF. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
+<p>La discusión, las conclusiones y los entregables están en el menú. El documento de la tesis sigue en revisión y esta web no publica el PDF. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-209">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-209" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
 <h2 id="licencias-de-la-anotaci-n">Licencias de la anotación</h2>
-<p>UniProt, AlphaFold DB, InterPro y STRING permiten el uso con la licencia CC BY 4.0. PDB usa CC0. El visor Mol* está en el sitio, con licencia MIT, y el navegador solo lo pide al pulsar «Ver estructura». <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025">The UniProt Consortium 2025</a><span class="cita-ventana">UniProt: the Universal Protein Knowledgebase in 2025 10.1093/nar/gkae1010</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021">Jumper 2021</a><span class="cita-ventana">Highly accurate protein structure prediction with AlphaFold 10.1038/s41586-021-03819-2</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024">Varadi 2024</a><span class="cita-ventana">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences 10.1093/nar/gkad1011</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025">Blum 2025</a><span class="cita-ventana">InterPro: the protein sequence classification resource in 2025 10.1093/nar/gkae1082</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#sehnal2021">Sehnal 2021</a><span class="cita-ventana">Mol* Viewer: modern web app for 3D visualization and analysis of large biomolecular structures 10.1093/nar/gkab314</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#szklarczyk2023">Szklarczyk 2023</a><span class="cita-ventana">The STRING database in 2023: protein–protein association networks and functional enrichment analyses for any sequenced genome of interest 10.1093/nar/gkac1000</span></span></p>
+<p>UniProt, AlphaFold DB, InterPro y STRING permiten el uso con la licencia CC BY 4.0. PDB usa CC0. El visor Mol* está en el sitio, con licencia MIT, y el navegador solo lo pide al pulsar «Ver estructura». <span class="cita-wrap"><a class="cita" href="/bibliografia#uniprot2025" aria-describedby="cita-210">(Consortium, 2025)</a><span class="cita-ventana" id="cita-210" role="tooltip"><span class="cita-autores">The UniProt Consortium</span> (2025). <span class="cita-titulo">UniProt: the Universal Protein Knowledgebase in 2025</span>. <span class="cita-revista">Nucleic Acids Research</span>. <a href="https://doi.org/10.1093/nar/gkae1010">https://doi.org/10.1093/nar/gkae1010</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#jumper2021" aria-describedby="cita-211">(Jumper, 2021)</a><span class="cita-ventana" id="cita-211" role="tooltip"><span class="cita-autores">Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., Tunyasuvunakool, K., Bates, R., Žídek, A., Potapenko, A., Bridgland, A., Meyer, C., Kohl, S. A. A., Ballard, A. J., Cowie, A., Romera-Paredes, B., Nikolov, S., Jain, R., Adler, J., . . . Hassabis, D</span> (2021). <span class="cita-titulo">Highly accurate protein structure prediction with AlphaFold</span>. <span class="cita-revista">Nature</span>. <a href="https://doi.org/10.1038/s41586-021-03819-2">https://doi.org/10.1038/s41586-021-03819-2</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#varadi2024" aria-describedby="cita-212">(Varadi y others, 2024)</a><span class="cita-ventana" id="cita-212" role="tooltip"><span class="cita-autores">Varadi, Mihaly and others</span> (2024). <span class="cita-titulo">AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences</span>. <span class="cita-revista">Nucleic Acids Research</span>. <a href="https://doi.org/10.1093/nar/gkad1011">https://doi.org/10.1093/nar/gkad1011</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#blum2025" aria-describedby="cita-213">(Blum y others, 2025)</a><span class="cita-ventana" id="cita-213" role="tooltip"><span class="cita-autores">Blum, Matthias and others</span> (2025). <span class="cita-titulo">InterPro: the protein sequence classification resource in 2025</span>. <span class="cita-revista">Nucleic Acids Research</span>. <a href="https://doi.org/10.1093/nar/gkae1082">https://doi.org/10.1093/nar/gkae1082</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#sehnal2021" aria-describedby="cita-214">(Sehnal y others, 2021)</a><span class="cita-ventana" id="cita-214" role="tooltip"><span class="cita-autores">Sehnal, David and others</span> (2021). <span class="cita-titulo">Mol* Viewer: modern web app for 3D visualization and analysis of large biomolecular structures</span>. <span class="cita-revista">Nucleic Acids Research</span>. <a href="https://doi.org/10.1093/nar/gkab314">https://doi.org/10.1093/nar/gkab314</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#szklarczyk2023" aria-describedby="cita-215">(Szklarczyk y others, 2023)</a><span class="cita-ventana" id="cita-215" role="tooltip"><span class="cita-autores">Szklarczyk, Damian and others</span> (2023). <span class="cita-titulo">The STRING database in 2023: protein–protein association networks and functional enrichment analyses for any sequenced genome of interest</span>. <span class="cita-revista">Nucleic Acids Research</span>. <a href="https://doi.org/10.1093/nar/gkac1000">https://doi.org/10.1093/nar/gkac1000</a></span></span></p>
+
 
 <details class="transparencia">
 <summary>Transparencia y trazabilidad</summary>
 <ul>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/priorizacion_embudo.json">results/v3_7/priorizacion_embudo.json#nadie_pasa_el_paso_6</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/priorizacion_embudo.json">results/v3_7/priorizacion_embudo.json#nadie_pasa_el_paso_6</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h7_visibilidad_en_sangre.json">results/v3_7/h7_visibilidad_en_sangre.json#estado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/h7_visibilidad_en_sangre.json">results/v3_7/h7_visibilidad_en_sangre.json#estado</a></li>
 
 <li><a href="https://doi.org/10.1021/acs.jproteome.5c00285">rai2025 · 10.1021/acs.jproteome.5c00285</a></li>
 
@@ -141,9 +98,29 @@
 
 </main>
 </div>
+
+<nav class="indice" aria-label="En esta página">
+<p class="indice-titulo">En esta página</p>
+
+<a href="#c-mo-leer-una-cifra">Cómo leer una cifra</a>
+
+<a href="#c-mo-leer-una-cita">Cómo leer una cita</a>
+
+<a href="#qu-no-es-esta-web">Qué no es esta web</a>
+
+<a href="#comprobar-una-lectura">Comprobar una lectura</a>
+
+<a href="#d-nde-sigue-la-lectura">Dónde sigue la lectura</a>
+
+<a href="#licencias-de-la-anotaci-n">Licencias de la anotación</a>
+
+</nav>
+
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
 
 <a href="/datos">Datos</a>
 
@@ -161,10 +138,12 @@
 
 <a href="/bibliografia">Bibliografía</a>
 
+<a href="/como-citar">Cómo citar</a>
+<a href="/sobre">Sobre esta tesis</a>
 </nav>
-<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
-<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">Publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
+<p><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v3.7-final">Repositorio, etiqueta v3.7-final</a></p>
+<p class="nota-etica">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 </footer>
 <script>(function () {
   var raiz = document.documentElement;
@@ -188,7 +167,7 @@
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
   function marcarLateral() {
-    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+    document.querySelectorAll("#exploracion a").forEach(function (enlace) {
       var href = enlace.getAttribute("href") || "";
       var activo = false;
       if (href.indexOf("#") !== -1) {
@@ -247,7 +226,9 @@
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
         if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
-        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+        var partes = consulta.split(";").map(function (parte) { return parte.trim(); }).filter(Boolean);
+        var hallado = texto.indexOf(consulta) !== -1 || (partes.length > 1 && partes.some(function (parte) { return texto.indexOf(parte) !== -1; }));
+        nodo.hidden = consulta.length > 0 && !hallado;
       });
     };
     caja.addEventListener("input", aplicar);
@@ -391,6 +372,176 @@
     if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
     pintar();
   }
+  document.querySelectorAll(".termino").forEach(function (boton) {
+    var panel = document.getElementById(boton.getAttribute("aria-describedby"));
+    if (!panel) return;
+    function abrir() {
+      panel.hidden = false;
+      boton.setAttribute("aria-expanded", "true");
+    }
+    function cerrar() {
+      panel.hidden = true;
+      boton.setAttribute("aria-expanded", "false");
+    }
+    boton.addEventListener("click", function () {
+      if (panel.hidden) abrir();
+      else cerrar();
+    });
+    boton.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  });
+  document.querySelectorAll("[data-copiar]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var texto = boton.getAttribute("data-copiar") || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(function () {
+          boton.textContent = "Copiada";
+        });
+      }
+    });
+  });
+  function filtrarGrupo(selector, atributo, valor) {
+    document.querySelectorAll(selector).forEach(function (nodo) {
+      var coincide = valor === "Todas" || nodo.getAttribute(atributo) === valor;
+      nodo.hidden = !coincide;
+    });
+  }
+  document.querySelectorAll("[data-filtro-bib]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-tesis", "data-tema", boton.getAttribute("data-filtro-bib"));
+    });
+  });
+  document.querySelectorAll("[data-filtro-glosario]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-termino", "data-categoria", boton.getAttribute("data-filtro-glosario"));
+    });
+  });
+  var filtroGlosario = document.getElementById("filtro-glosario");
+  if (filtroGlosario) {
+    filtroGlosario.addEventListener("input", function () {
+      var q = filtroGlosario.value.toLowerCase();
+      document.querySelectorAll(".entrada-termino").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  var filtroBib = document.getElementById("filtro-bib");
+  if (filtroBib) {
+    filtroBib.addEventListener("input", function () {
+      var q = filtroBib.value.toLowerCase();
+      document.querySelectorAll(".entrada-tesis").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  document.querySelectorAll("[data-juguete]").forEach(function (formulario) {
+    var efecto = formulario.querySelector("[data-efecto]");
+    var ancho = formulario.querySelector("[data-ancho]");
+    var clase = formulario.querySelector("[data-clase]");
+    function pintar() {
+      var e = Number(efecto.value);
+      var a = Number(ancho.value);
+      var bajo = e - a;
+      var alto = e + a;
+      var margen = Math.log2(1.5);
+      var resultado = "indeterminada";
+      if (bajo >= margen || alto <= -margen) resultado = "diferente";
+      else if (bajo >= -margen && alto <= margen) resultado = "equivalente";
+      clase.textContent = "Efecto " + e.toFixed(2) + ", intervalo " + bajo.toFixed(2) + " a " + alto.toFixed(2) + ". Clase de juguete: " + resultado + ".";
+    }
+    efecto.addEventListener("input", pintar);
+    ancho.addEventListener("input", pintar);
+    pintar();
+  });
+  var cajaBusqueda = document.getElementById("q");
+  var sugerencias = document.getElementById("sugerencias");
+  if (cajaBusqueda && sugerencias && !document.querySelector("[data-buscar]")) {
+    var indice = null;
+    var activo = -1;
+    function coincide(consulta, texto) {
+      var q = consulta.toLowerCase().trim();
+      var bolsa = (texto || "").toLowerCase();
+      if (!q) return false;
+      if (bolsa.indexOf(q) !== -1) return true;
+      var partes = q.split(";").filter(Boolean);
+      return partes.length > 1 && partes.some(function (parte) { return bolsa.indexOf(parte) !== -1; });
+    }
+    function pintarSugerencias(lista) {
+      sugerencias.innerHTML = "";
+      if (!lista.length) {
+        sugerencias.hidden = true;
+        return;
+      }
+      var grupos = {};
+      lista.slice(0, 12).forEach(function (item) {
+        grupos[item.grupo] = grupos[item.grupo] || [];
+        grupos[item.grupo].push(item);
+      });
+      Object.keys(grupos).forEach(function (grupo) {
+        var titulo = document.createElement("p");
+        titulo.textContent = grupo;
+        sugerencias.appendChild(titulo);
+        grupos[grupo].forEach(function (item) {
+          var enlace = document.createElement("a");
+          enlace.href = item.href;
+          enlace.textContent = item.rotulo;
+          sugerencias.appendChild(enlace);
+        });
+      });
+      sugerencias.hidden = false;
+      activo = -1;
+    }
+    cajaBusqueda.addEventListener("input", function () {
+      var q = cajaBusqueda.value;
+      if (q.trim().length < 2) {
+        sugerencias.hidden = true;
+        return;
+      }
+      function aplicar(datos) {
+        indice = datos;
+        pintarSugerencias(datos.filter(function (item) { return coincide(q, item.texto); }));
+      }
+      if (indice) aplicar(indice);
+      else fetch("/buscar/indice.json").then(function (r) { return r.json(); }).then(aplicar).catch(function () {});
+    });
+    cajaBusqueda.addEventListener("keydown", function (evento) {
+      var enlaces = sugerencias.querySelectorAll("a");
+      if (evento.key === "Escape") {
+        sugerencias.hidden = true;
+        return;
+      }
+      if (!enlaces.length || sugerencias.hidden) return;
+      if (evento.key === "ArrowDown" || evento.key === "ArrowUp") {
+        evento.preventDefault();
+        activo += evento.key === "ArrowDown" ? 1 : -1;
+        if (activo < 0) activo = enlaces.length - 1;
+        if (activo >= enlaces.length) activo = 0;
+        enlaces.forEach(function (enlace, i) {
+          if (i === activo) enlace.setAttribute("aria-selected", "true");
+          else enlace.removeAttribute("aria-selected");
+        });
+        enlaces[activo].focus();
+      }
+    });
+  }
+  var punta = document.createElement("div");
+  punta.className = "cita-ventana";
+  punta.hidden = true;
+  document.body.appendChild(punta);
+  document.querySelectorAll("[data-tip]").forEach(function (nodo) {
+    function mostrar() {
+      punta.hidden = false;
+      punta.textContent = nodo.getAttribute("data-tip");
+    }
+    nodo.addEventListener("focus", mostrar);
+    nodo.addEventListener("mouseenter", mostrar);
+    nodo.addEventListener("blur", function () { punta.hidden = true; });
+    nodo.addEventListener("mouseleave", function () { punta.hidden = true; });
+  });
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

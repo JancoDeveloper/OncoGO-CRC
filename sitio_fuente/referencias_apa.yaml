@@ -1,0 +1,688 @@
+- clave: alvez2023
+  apa: Álvez, M. B., Edfors, F., von Feilitzen, K., Zwahlen, M., Mardinoglu, A., Edqvist, P.-H., Sjöblom, T., Lundin, E., Rameika, N., Enblad, G., Lindman, H., Höglund, M., Hesselager, G., Stålberg, K., Enblad, M., Simonson, O. E., Häggman, M., Axelsson, T., Åberg, M., . . . Uhlén, M. (2023). Next generation pan-cancer blood proteome profiling using proximity extension assay. Nature Communications, 14(1), Artículo 4308. https://doi.org/10.1038/s41467-023-39765-y
+  doi: 10.1038/s41467-023-39765-y
+  anio: '2023'
+  titulo: Next generation pan-cancer blood proteome profiling using proximity extension assay
+  revista: Nature Communications
+  autores: Álvez, M. B., Edfors, F., von Feilitzen, K., Zwahlen, M., Mardinoglu, A., Edqvist, P.-H., Sjöblom, T., Lundin, E., Rameika, N., Enblad, G., Lindman, H., Höglund, M., Hesselager, G., Stålberg, K., Enblad, M., Simonson, O. E., Häggman, M., Axelsson, T., Åberg, M., . . . Uhlén, M
+  tema: Proteómica
+- clave: ammar2023
+  apa: Ammar, C., Schessner, J. P., Willems, S., Michaelis, A. C., y Mann, M. (2023). Accurate Label-Free Quantification by directLFQ to Compare Unlimited Numbers of Proteomes. Molecular & Cellular Proteomics, 22(7), 100581. https://doi.org/10.1016/j.mcpro.2023.100581
+  doi: 10.1016/j.mcpro.2023.100581
+  anio: '2023'
+  titulo: Accurate Label-Free Quantification by directLFQ to Compare Unlimited Numbers of Proteomes
+  revista: Molecular & Cellular Proteomics
+  autores: Ammar, C., Schessner, J. P., Willems, S., Michaelis, A. C. and Mann, M
+  tema: Proteómica
+- clave: anderson2002
+  apa: Anderson, N. L., y Anderson, N. G. (2002). The Human Plasma Proteome. Molecular & Cellular Proteomics, 1(11), 845–867. https://doi.org/10.1074/mcp.R200007-MCP200
+  doi: 10.1074/mcp.R200007-MCP200
+  anio: '2002'
+  titulo: The Human Plasma Proteome
+  revista: Molecular & Cellular Proteomics
+  autores: Anderson, N. L. and Anderson, N. G
+  tema: Proteómica
+- clave: cursor2026
+  apa: Anysphere. (2026). Cursor (versión 3.28.7) [Software]. https://cursor.com
+  doi: ''
+  anio: '2026'
+  titulo: Cursor (versión 3.28.7) [Software]
+  revista: https://cursor.com
+  autores: Anysphere
+  tema: Software
+- clave: ashburner2000
+  apa: 'Ashburner, M., Ball, C. A., Blake, J. A., Botstein, D., Butler, H., Cherry, J. M., Davis, A. P., Dolinski, K., Dwight, S. S., Eppig, J. T., Harris, M. A., Hill, D. P., Issel-Tarver, L., Kasarskis, A., Lewis, S., Matese, J. C., Richardson, J. E., Ringwald, M., Rubin, G. M., y Sherlock, G. (2000). Gene Ontology: tool for the unification of biology. Nature Genetics, 25(1), 25–29. https://doi.org/10.1038/75556'
+  doi: 10.1038/75556
+  anio: '2000'
+  titulo: 'Gene Ontology: tool for the unification of biology'
+  revista: Nature Genetics
+  autores: Ashburner, M., Ball, C. A., Blake, J. A., Botstein, D., Butler, H., Cherry, J. M., Davis, A. P., Dolinski, K., Dwight, S. S., Eppig, J. T., Harris, M. A., Hill, D. P., Issel-Tarver, L., Kasarskis, A., Lewis, S., Matese, J. C., Richardson, J. E., Ringwald, M., Rubin, G. M. and Sherlock, G
+  tema: Datos
+- clave: benjamini1995
+  apa: 'Benjamini, Y., y Hochberg, Y. (1995). Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing. Journal of the Royal Statistical Society Series B: Statistical Methodology, 57(1), 289–300. https://doi.org/10.1111/j.2517-6161.1995.tb02031.x'
+  doi: 10.1111/j.2517-6161.1995.tb02031.x
+  anio: '1995'
+  titulo: 'Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing'
+  revista: 'Journal of the Royal Statistical Society Series B: Statistical Methodology'
+  autores: Benjamini, Y. and Hochberg, Y
+  tema: Estadística
+- clave: bernhofer2022
+  apa: 'Bernhofer, M., y Rost, B. (2022). TMbed: transmembrane proteins predicted through language model embeddings. BMC Bioinformatics, 23(1), Artículo 326. https://doi.org/10.1186/s12859-022-04873-x'
+  doi: 10.1186/s12859-022-04873-x
+  anio: '2022'
+  titulo: 'TMbed: transmembrane proteins predicted through language model embeddings'
+  revista: BMC Bioinformatics
+  autores: Bernhofer, M. and Rost, B
+  tema: Proteómica
+- clave: bray2024
+  apa: 'Bray, F., Laversanne, M., Sung, H., Ferlay, J., Siegel, R. L., Soerjomataram, I., y Jemal, A. (2024). Global cancer statistics 2022: GLOBOCAN estimates of incidence and mortality worldwide for 36 cancers in 185 countries. CA: A Cancer Journal for Clinicians, 74(3), 229–263. https://doi.org/10.3322/caac.21834'
+  doi: 10.3322/caac.21834
+  anio: '2024'
+  titulo: 'Global cancer statistics 2022: GLOBOCAN estimates of incidence and mortality worldwide for 36 cancers in 185 countries'
+  revista: 'CA: A Cancer Journal for Clinicians'
+  autores: Bray, F., Laversanne, M., Sung, H., Ferlay, J., Siegel, R. L., Soerjomataram, I. and Jemal, A
+  tema: Biología CRC
+- clave: burgess2013
+  apa: Burgess, S., Butterworth, A., y Thompson, S. G. (2013). Mendelian Randomization Analysis With Multiple Genetic Variants Using Summarized Data. Genetic Epidemiology, 37(7), 658–665. https://doi.org/10.1002/gepi.21758
+  doi: 10.1002/gepi.21758
+  anio: '2013'
+  titulo: Mendelian Randomization Analysis With Multiple Genetic Variants Using Summarized Data
+  revista: Genetic Epidemiology
+  autores: Burgess, S., Butterworth, A. and Thompson, S. G
+  tema: Proteómica
+- clave: clopper1934
+  apa: CLOPPER, C. J., y PEARSON, E. S. (1934). THE USE OF CONFIDENCE OR FIDUCIAL LIMITS ILLUSTRATED IN THE CASE OF THE BINOMIAL. Biometrika, 26(4), 404–413. https://doi.org/10.1093/biomet/26.4.404
+  doi: 10.1093/biomet/26.4.404
+  anio: '1934'
+  titulo: THE USE OF CONFIDENCE OR FIDUCIAL LIMITS ILLUSTRATED IN THE CASE OF THE BINOMIAL
+  revista: Biometrika
+  autores: CLOPPER, C. J. and PEARSON, E. S
+  tema: Estadística
+- clave: collins2024
+  apa: 'Collins, G. S., Moons, K. G. M., Dhiman, P., Riley, R. D., Beam, A. L., Van Calster, B., Ghassemi, M., Liu, X., Reitsma, J. B., van Smeden, M., Boulesteix, A.-L., Camaradou, J. C., Celi, L. A., Denaxas, S., Denniston, A. K., Glocker, B., Golub, R. M., Harvey, H., Heinze, G., . . . Logullo, P. (2024). TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods. BMJ, 385, e078378. https://doi.org/10.1136/bmj-2023-078378'
+  doi: 10.1136/bmj-2023-078378
+  anio: '2024'
+  titulo: 'TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods'
+  revista: BMJ
+  autores: Collins, G. S., Moons, K. G. M., Dhiman, P., Riley, R. D., Beam, A. L., Van Calster, B., Ghassemi, M., Liu, X., Reitsma, J. B., van Smeden, M., Boulesteix, A.-L., Camaradou, J. C., Celi, L. A., Denaxas, S., Denniston, A. K., Glocker, B., Golub, R. M., Harvey, H., Heinze, G., . . . Logullo, P
+  tema: Proteómica
+- clave: ley1384
+  apa: Congreso de la República de Colombia. (2010). Ley 1384 de 2010, por la cual se establecen las acciones para la atención integral del cáncer en Colombia. Diario Oficial.
+  doi: ''
+  anio: '2010'
+  titulo: Ley 1384 de 2010, por la cual se establecen las acciones para la atención integral del cáncer en Colombia
+  revista: Diario Oficial
+  autores: Congreso de la República de Colombia
+  tema: Proteómica
+- clave: cox2014
+  apa: Cox, J., Hein, M. Y., Luber, C. A., Paron, I., Nagaraj, N., y Mann, M. (2014). Accurate Proteome-wide Label-free Quantification by Delayed Normalization and Maximal Peptide Ratio Extraction, Termed MaxLFQ. Molecular & Cellular Proteomics, 13(9), 2513–2526. https://doi.org/10.1074/mcp.M113.031591
+  doi: 10.1074/mcp.M113.031591
+  anio: '2014'
+  titulo: Accurate Proteome-wide Label-free Quantification by Delayed Normalization and Maximal Peptide Ratio Extraction, Termed MaxLFQ
+  revista: Molecular & Cellular Proteomics
+  autores: Cox, J., Hein, M. Y., Luber, C. A., Paron, I., Nagaraj, N. and Mann, M
+  tema: Proteómica
+- clave: cox2008
+  apa: Cox, J., y Mann, M. (2008). MaxQuant enables high peptide identification rates, individualized p.p.b.-range mass accuracies and proteome-wide protein quantification. Nature Biotechnology, 26(12), 1367–1372. https://doi.org/10.1038/nbt.1511
+  doi: 10.1038/nbt.1511
+  anio: '2008'
+  titulo: MaxQuant enables high peptide identification rates, individualized p.p.b.-range mass accuracies and proteome-wide protein quantification
+  revista: Nature Biotechnology
+  autores: Cox, J. and Mann, M
+  tema: Software
+- clave: dekker2019
+  apa: Dekker, E., Tanis, P. J., Vleugels, J. L. A., Kasi, P. M., y Wallace, M. B. (2019). Colorectal cancer. The Lancet, 394(10207), 1467–1480. https://doi.org/10.1016/S0140-6736(19)32319-0
+  doi: 10.1016/S0140-6736(19)32319-0
+  anio: '2019'
+  titulo: Colorectal cancer
+  revista: The Lancet
+  autores: Dekker, E., Tanis, P. J., Vleugels, J. L. A., Kasi, P. M. and Wallace, M. B
+  tema: Biología CRC
+- clave: delong1988
+  apa: 'DeLong, E. R., DeLong, D. M., y Clarke-Pearson, D. L. (1988). Comparing the Areas under Two or More Correlated Receiver Operating Characteristic Curves: A Nonparametric Approach. Biometrics, 44(3), 837. https://doi.org/10.2307/2531595'
+  doi: 10.2307/2531595
+  anio: '1988'
+  titulo: 'Comparing the Areas under Two or More Correlated Receiver Operating Characteristic Curves: A Nonparametric Approach'
+  revista: Biometrics
+  autores: DeLong, E. R., DeLong, D. M. and Clarke-Pearson, D. L
+  tema: ML
+- clave: demichev2020
+  apa: 'Demichev, V., Messner, C. B., Vernardis, S. I., Lilley, K. S., y Ralser, M. (2020). DIA-NN: neural networks and interference correction enable deep proteome coverage in high throughput. Nature Methods, 17(1), 41–44. https://doi.org/10.1038/s41592-019-0638-x'
+  doi: 10.1038/s41592-019-0638-x
+  anio: '2020'
+  titulo: 'DIA-NN: neural networks and interference correction enable deep proteome coverage in high throughput'
+  revista: Nature Methods
+  autores: Demichev, V., Messner, C. B., Vernardis, S. I., Lilley, K. S. and Ralser, M
+  tema: Software
+- clave: deutsch2023
+  apa: 'Deutsch, E. W., Bandeira, N., Perez-Riverol, Y., Sharma, V., Carver, J. J., Mendoza, L., Kundu, D. J., Wang, S., Bandla, C., Kamatchinathan, S., Hewapathirana, S., Pullman, B. S., Wertz, J., Sun, Z., Kawano, S., Okuda, S., Watanabe, Y., MacLean, B., MacCoss, M. J., . . . Vizcaíno, J. A. (2023). The ProteomeXchange consortium at 10 years: 2023 update. Nucleic Acids Research, 51(D1), D1539–D1548. https://doi.org/10.1093/nar/gkac1040'
+  doi: 10.1093/nar/gkac1040
+  anio: '2023'
+  titulo: 'The ProteomeXchange consortium at 10 years: 2023 update'
+  revista: Nucleic Acids Research
+  autores: Deutsch, E. W., Bandeira, N., Perez-Riverol, Y., Sharma, V., Carver, J. J., Mendoza, L., Kundu, D. J., Wang, S., Bandla, C., Kamatchinathan, S., Hewapathirana, S., Pullman, B. S., Wertz, J., Sun, Z., Kawano, S., Okuda, S., Watanabe, Y., MacLean, B., MacCoss, M. J., . . . Vizcaíno, J. A
+  tema: Proteómica
+- clave: dhami2026
+  apa: Dhami, J., Radhakrishnan, S. K., Russ, D., Mondal, S., Alzarooni, A., Merodio, L. B., Duggal, N. A., Gupta, R., y Acharjee, A. (2026). A Network‐Based Association of IBD and Colorectal Cancer Using Proteomics Data. PROTEOMICS – Clinical Applications, 20(2), Artículo e70041. https://doi.org/10.1002/prca.70041
+  doi: 10.1002/prca.70041
+  anio: '2026'
+  titulo: A Network‐Based Association of IBD and Colorectal Cancer Using Proteomics Data
+  revista: PROTEOMICS – Clinical Applications
+  autores: Dhami, J., Radhakrishnan, S. K., Russ, D., Mondal, S., Alzarooni, A., Merodio, L. B., Duggal, N. A., Gupta, R. and Acharjee, A
+  tema: Biología CRC
+- clave: fang2023
+  apa: 'Fang, Z., Liu, X., y Peltz, G. (2023). GSEApy: a comprehensive package for performing gene set enrichment analysis in Python. Bioinformatics, 39(1), Artículo btac757. https://doi.org/10.1093/bioinformatics/btac757'
+  doi: 10.1093/bioinformatics/btac757
+  anio: '2023'
+  titulo: 'GSEApy: a comprehensive package for performing gene set enrichment analysis in Python'
+  revista: Bioinformatics
+  autores: Fang, Z., Liu, X. and Peltz, G
+  tema: Software
+- clave: fernandezrozadilla2023
+  apa: Fernandez-Rozadilla, C., Timofeeva, M., Chen, Z., Law, P., Thomas, M., Schmit, S., Díez-Obrero, V., Hsu, L., Fernandez-Tajes, J., Palles, C., Sherwood, K., Briggs, S., Svinti, V., Donnelly, K., Farrington, S., Blackmur, J., Vaughan-Shaw, P., Shu, X.-O., Long, J., . . . Peters, U. (2023). Deciphering colorectal cancer genetics through multi-omic analysis of 100,204 cases and 154,587 controls of European and east Asian ancestries. Nature Genetics, 55(1), 89–99. https://doi.org/10.1038/s41588-022-01222-9
+  doi: 10.1038/s41588-022-01222-9
+  anio: '2023'
+  titulo: Deciphering colorectal cancer genetics through multi-omic analysis of 100,204 cases and 154,587 controls of European and east Asian ancestries
+  revista: Nature Genetics
+  autores: Fernandez-Rozadilla, C., Timofeeva, M., Chen, Z., Law, P., Thomas, M., Schmit, S., Díez-Obrero, V., Hsu, L., Fernandez-Tajes, J., Palles, C., Sherwood, K., Briggs, S., Svinti, V., Donnelly, K., Farrington, S., Blackmur, J., Vaughan-Shaw, P., Shu, X.-O., Long, J., . . . Peters, U
+  tema: Biología CRC
+- clave: frankenfield2022
+  apa: 'Frankenfield, A. M., Ni, J., Ahmed, M., y Hao, L. (2022). Protein Contaminants Matter: Building Universal Protein Contaminant Libraries for DDA and DIA Proteomics. Journal of Proteome Research, 21(9), 2104–2113. https://doi.org/10.1021/acs.jproteome.2c00145'
+  doi: 10.1021/acs.jproteome.2c00145
+  anio: '2022'
+  titulo: 'Protein Contaminants Matter: Building Universal Protein Contaminant Libraries for DDA and DIA Proteomics'
+  revista: Journal of Proteome Research
+  autores: Frankenfield, A. M., Ni, J., Ahmed, M. and Hao, L
+  tema: Proteómica
+- clave: gabay1999
+  apa: Gabay, C., y Kushner, I. (1999). Acute-Phase Proteins and Other Systemic Responses to Inflammation. New England Journal of Medicine, 340(6), 448–454. https://doi.org/10.1056/NEJM199902113400607
+  doi: 10.1056/NEJM199902113400607
+  anio: '1999'
+  titulo: Acute-Phase Proteins and Other Systemic Responses to Inflammation
+  revista: New England Journal of Medicine
+  autores: Gabay, C. and Kushner, I
+  tema: Proteómica
+- clave: garciafoncillas2026
+  apa: Garcia-Foncillas, J., Jiménez-Vásquez, P., Avila-Rodriguez, V., Guerrero-Macías, S., Manrique, M. E., Rendón-Hernández, J., Montano Angarita, J., Calvo, J. F., y Bonilla, C. E. (2026). Biología molecular del cáncer colorrectal. Revista Colombiana de Hematología y Oncología, 13(1S), 281–309. https://doi.org/10.51643/22562915.853
+  doi: 10.51643/22562915.853
+  anio: '2026'
+  titulo: Biología molecular del cáncer colorrectal
+  revista: Revista Colombiana de Hematología y Oncología
+  autores: Garcia-Foncillas, J., Jiménez-Vásquez, P., Avila-Rodriguez, V., Guerrero-Macías, S., Manrique, M. E., Rendón-Hernández, J., Montano Angarita, J., Calvo, J. F. and Bonilla, C. E
+  tema: Proteómica
+- clave: geyer2019
+  apa: Geyer, P. E., Voytik, E., Treit, P. V., Doll, S., Kleinhempel, A., Niu, L., Müller, J. B., Buchholtz, M., Bader, J. M., Teupser, D., Holdt, L. M., y Mann, M. (2019). Plasma Proteome Profiling to detect and avoid sample‐related biases in biomarker studies. EMBO Molecular Medicine, 11(11), Artículo EMMM201910427. https://doi.org/10.15252/emmm.201910427
+  doi: 10.15252/emmm.201910427
+  anio: '2019'
+  titulo: Plasma Proteome Profiling to detect and avoid sample‐related biases in biomarker studies
+  revista: EMBO Molecular Medicine
+  autores: Geyer, P. E., Voytik, E., Treit, P. V., Doll, S., Kleinhempel, A., Niu, L., Müller, J. B., Buchholtz, M., Bader, J. M., Teupser, D., Holdt, L. M. and Mann, M
+  tema: Proteómica
+- clave: gwascatalog
+  apa: 'GWAS Catalog. (s. f.). GCST90255676: Colorectal cancer [Conjunto de datos]. EMBL-EBI. https://www.ebi.ac.uk/gwas/studies/GCST90255676'
+  doi: ''
+  anio: s. f.
+  titulo: 'GCST90255676: Colorectal cancer [Conjunto de datos]'
+  revista: EMBL-EBI. https://www.ebi.ac.uk/gwas/studies/GCST90255676
+  autores: GWAS Catalog
+  tema: Datos
+- clave: harris2020
+  apa: Harris, C. R., Millman, K. J., van der Walt, S. J., Gommers, R., Virtanen, P., Cournapeau, D., Wieser, E., Taylor, J., Berg, S., Smith, N. J., Kern, R., Picus, M., Hoyer, S., van Kerkwijk, M. H., Brett, M., Haldane, A., del Río, J. F., Wiebe, M., Peterson, P., . . . Oliphant, T. E. (2020). Array programming with NumPy. Nature, 585(7825), 357–362. https://doi.org/10.1038/s41586-020-2649-2
+  doi: 10.1038/s41586-020-2649-2
+  anio: '2020'
+  titulo: Array programming with NumPy
+  revista: Nature
+  autores: Harris, C. R., Millman, K. J., van der Walt, S. J., Gommers, R., Virtanen, P., Cournapeau, D., Wieser, E., Taylor, J., Berg, S., Smith, N. J., Kern, R., Picus, M., Hoyer, S., van Kerkwijk, M. H., Brett, M., Haldane, A., del Río, J. F., Wiebe, M., Peterson, P., . . . Oliphant, T. E
+  tema: Software
+- clave: hembrough2026
+  apa: 'Hembrough, T., Ezrin, A. M., Opheim, Z., Bandoski, C., Bennett, S., Fagan-Solis, K., Vincent, B. G., y Hoos, W. (2026). Abstract 7710: Extracellular vesicle immunopeptidomics recovers immunogenic neoantigen peptides from cancer patient plasma. Cancer Research, 86(7_Supplement), 7710–7710. https://doi.org/10.1158/1538-7445.am2026-7710'
+  doi: 10.1158/1538-7445.am2026-7710
+  anio: '2026'
+  titulo: 'Abstract 7710: Extracellular vesicle immunopeptidomics recovers immunogenic neoantigen peptides from cancer patient plasma'
+  revista: Cancer Research
+  autores: Hembrough, T., Ezrin, A. M., Opheim, Z., Bandoski, C., Bennett, S., Fagan-Solis, K., Vincent, B. G. and Hoos, W
+  tema: Biología CRC
+- clave: hermoso2026
+  apa: Hermoso-Durán, S., Ortega-Alarcon, D., Johansen, A. Z., McKay, M. J., Johansen, J. S., Vega, S., Feltoft, C. L., Dolin, T. G., Lykke, J., Fraunhoffer, N., Sanchez-Gracia, O., Garrido, P. F., Lanas, Á., Molloy, M. P., Velazquez-Campoy, A., y Abian, O. (2026). Integrating thermal liquid biopsy, clinical data, and mass spectrometry for early diagnosis and biomarker discovery in colorectal cancer. iScience, 29(2), 114751. https://doi.org/10.1016/j.isci.2026.114751
+  doi: 10.1016/j.isci.2026.114751
+  anio: '2026'
+  titulo: Integrating thermal liquid biopsy, clinical data, and mass spectrometry for early diagnosis and biomarker discovery in colorectal cancer
+  revista: iScience
+  autores: Hermoso-Durán, S., Ortega-Alarcon, D., Johansen, A. Z., McKay, M. J., Johansen, J. S., Vega, S., Feltoft, C. L., Dolin, T. G., Lykke, J., Fraunhoffer, N., Sanchez-Gracia, O., Garrido, P. F., Lanas, Á., Molloy, M. P., Velazquez-Campoy, A. and Abian, O
+  tema: Biología CRC
+- clave: hulstaert2020
+  apa: 'Hulstaert, N., Shofstahl, J., Sachsenberg, T., Walzer, M., Barsnes, H., Martens, L., y Perez-Riverol, Y. (2020). ThermoRawFileParser: Modular, Scalable, and Cross-Platform RAW File Conversion. Journal of Proteome Research, 19(1), 537–542. https://doi.org/10.1021/acs.jproteome.9b00328'
+  doi: 10.1021/acs.jproteome.9b00328
+  anio: '2020'
+  titulo: 'ThermoRawFileParser: Modular, Scalable, and Cross-Platform RAW File Conversion'
+  revista: Journal of Proteome Research
+  autores: Hulstaert, N., Shofstahl, J., Sachsenberg, T., Walzer, M., Barsnes, H., Martens, L. and Perez-Riverol, Y
+  tema: Software
+- clave: proteinatlas
+  apa: Human Protein Atlas. (s. f.). The Human Protein Atlas [Base de datos]. https://www.proteinatlas.org
+  doi: ''
+  anio: s. f.
+  titulo: The Human Protein Atlas [Base de datos]
+  revista: https://www.proteinatlas.org
+  autores: Human Protein Atlas
+  tema: Datos
+- clave: jumper2021
+  apa: Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., Tunyasuvunakool, K., Bates, R., Žídek, A., Potapenko, A., Bridgland, A., Meyer, C., Kohl, S. A. A., Ballard, A. J., Cowie, A., Romera-Paredes, B., Nikolov, S., Jain, R., Adler, J., . . . Hassabis, D. (2021). Highly accurate protein structure prediction with AlphaFold. Nature, 596(7873), 583–589. https://doi.org/10.1038/s41586-021-03819-2
+  doi: 10.1038/s41586-021-03819-2
+  anio: '2021'
+  titulo: Highly accurate protein structure prediction with AlphaFold
+  revista: Nature
+  autores: Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., Tunyasuvunakool, K., Bates, R., Žídek, A., Potapenko, A., Bridgland, A., Meyer, C., Kohl, S. A. A., Ballard, A. J., Cowie, A., Romera-Paredes, B., Nikolov, S., Jain, R., Adler, J., . . . Hassabis, D
+  tema: Proteómica
+- clave: keshavaprasad2025
+  apa: Keshava Prasad, T. S. (2025). Data-independent acquisition analysis to identify serum biomarkers and neoantigens for differentiating colorectal cancer from inflammatory bowel disease (PXD055218) [Conjunto de datos]. PRIDE. https://www.ebi.ac.uk/pride/archive/projects/PXD055218
+  doi: ''
+  anio: '2025'
+  titulo: Data-independent acquisition analysis to identify serum biomarkers and neoantigens for differentiating colorectal cancer from inflammatory bowel disease (PXD055218) [Conjunto de datos]
+  revista: PRIDE. https://www.ebi.ac.uk/pride/archive/projects/PXD055218
+  autores: Keshava Prasad, T. S
+  tema: Datos
+- clave: kruskal1952
+  apa: Kruskal, W. H., y Wallis, W. A. (1952). Use of Ranks in One-Criterion Variance Analysis. Journal of the American Statistical Association, 47(260), 583–621. https://doi.org/10.1080/01621459.1952.10483441
+  doi: 10.1080/01621459.1952.10483441
+  anio: '1952'
+  titulo: Use of Ranks in One-Criterion Variance Analysis
+  revista: Journal of the American Statistical Association
+  autores: Kruskal, W. H. and Wallis, W. A
+  tema: Estadística
+- clave: lakens2017
+  apa: Lakens, D. (2017). Equivalence Tests. Social Psychological and Personality Science, 8(4), 355–362. https://doi.org/10.1177/1948550617697177
+  doi: 10.1177/1948550617697177
+  anio: '2017'
+  titulo: Equivalence Tests
+  revista: Social Psychological and Personality Science
+  autores: Lakens, D
+  tema: Estadística
+- clave: lazar2016
+  apa: Lazar, C., Gatto, L., Ferro, M., Bruley, C., y Burger, T. (2016). Accounting forthe Multiple Natures of Missing Valuesin Label-Free Quantitative Proteomics Data Sets to Compare ImputationStrategies. Journal of Proteome Research, 15(4), 1116–1125. https://doi.org/10.1021/acs.jproteome.5b00981
+  doi: 10.1021/acs.jproteome.5b00981
+  anio: '2016'
+  titulo: Accounting forthe Multiple Natures of Missing Valuesin Label-Free Quantitative Proteomics Data Sets to Compare ImputationStrategies
+  revista: Journal of Proteome Research
+  autores: Lazar, C., Gatto, L., Ferro, M., Bruley, C. and Burger, T
+  tema: Proteómica
+- clave: ledell2015
+  apa: LeDell, E., Petersen, M., y van der Laan, M. (2015). Computationally efficient confidence intervals for cross-validated area under the ROC curve estimates. Electronic Journal of Statistics, 9(1), 1583–1607. https://doi.org/10.1214/15-EJS1035
+  doi: 10.1214/15-EJS1035
+  anio: '2015'
+  titulo: Computationally efficient confidence intervals for cross-validated area under the ROC curve estimates
+  revista: Electronic Journal of Statistics
+  autores: LeDell, E., Petersen, M. and van der Laan, M
+  tema: ML
+- clave: leek2010
+  apa: Leek, J. T., Scharpf, R. B., Bravo, H. C., Simcha, D., Langmead, B., Johnson, W. E., Geman, D., Baggerly, K., y Irizarry, R. A. (2010). Tackling the widespread and critical impact of batch effects in high-throughput data. Nature Reviews Genetics, 11(10), 733–739. https://doi.org/10.1038/nrg2825
+  doi: 10.1038/nrg2825
+  anio: '2010'
+  titulo: Tackling the widespread and critical impact of batch effects in high-throughput data
+  revista: Nature Reviews Genetics
+  autores: Leek, J. T., Scharpf, R. B., Bravo, H. C., Simcha, D., Langmead, B., Johnson, W. E., Geman, D., Baggerly, K. and Irizarry, R. A
+  tema: Proteómica
+- clave: lesur2023
+  apa: Lesur, A., Bernardin, F., Koncina, E., Letellier, E., Kruppa, G., Schmit, P.-O., y Dittmar, G. (2023). Quantification of 782 Plasma Peptides by Multiplexed Targeted Proteomics. Journal of Proteome Research, 22(6), 1630–1638. https://doi.org/10.1021/acs.jproteome.2c00575
+  doi: 10.1021/acs.jproteome.2c00575
+  anio: '2023'
+  titulo: Quantification of 782 Plasma Peptides by Multiplexed Targeted Proteomics
+  revista: Journal of Proteome Research
+  autores: Lesur, A., Bernardin, F., Koncina, E., Letellier, E., Kruppa, G., Schmit, P.-O. and Dittmar, G
+  tema: Proteómica
+- clave: li2024datos
+  apa: Li, L., Jiang, D., Liu, H., Guo, C., Zhang, Q., Li, X., Chen, X., Chen, Z., Feng, J., Tan, S., Huang, W., Huang, J., Xu, C., Liu, C.-Y., Yu, W., Hou, Y., y Ding, C. (2024a). Comprehensive Proteogenomic Profiling Reveals the Molecular Characteristics of Colorectal Cancer at Distinct Stages of Progression. Cancer Research, 84(17), 2888–2910. https://doi.org/10.1158/0008-5472.CAN-23-1878
+  doi: 10.1158/0008-5472.CAN-23-1878
+  anio: '2024'
+  titulo: Comprehensive Proteogenomic Profiling Reveals the Molecular Characteristics of Colorectal Cancer at Distinct Stages of Progression
+  revista: Cancer Research
+  autores: Li, L., Jiang, D., Liu, H., Guo, C., Zhang, Q., Li, X., Chen, X., Chen, Z., Feng, J., Tan, S., Huang, W., Huang, J., Xu, C., Liu, C.-Y., Yu, W., Hou, Y. and Ding, C
+  tema: Biología CRC
+- clave: li2024
+  apa: Li, Y., Wang, B., Yang, W., Ma, F., Zou, J., Li, K., Tan, S., Feng, J., Wang, Y., Qin, Z., Chen, Z., y Ding, C. (2024b). Longitudinal plasma proteome profiling reveals the diversity of biomarkers for diagnosis and cetuximab therapy response of colorectal cancer. Nature Communications, 15(1), Artículo 980. https://doi.org/10.1038/s41467-024-44911-1
+  doi: 10.1038/s41467-024-44911-1
+  anio: '2024'
+  titulo: Longitudinal plasma proteome profiling reveals the diversity of biomarkers for diagnosis and cetuximab therapy response of colorectal cancer
+  revista: Nature Communications
+  autores: Li, Y., Wang, B., Yang, W., Ma, F., Zou, J., Li, K., Tan, S., Feng, J., Wang, Y., Qin, Z., Chen, Z. and Ding, C
+  tema: Biología CRC
+- clave: lin1989
+  apa: Lin, L. I.-K. (1989). A Concordance Correlation Coefficient to Evaluate Reproducibility. Biometrics, 45(1), 255. https://doi.org/10.2307/2532051
+  doi: 10.2307/2532051
+  anio: '1989'
+  titulo: A Concordance Correlation Coefficient to Evaluate Reproducibility
+  revista: Biometrics
+  autores: Lin, L. I.-K
+  tema: Estadística
+- clave: lin2023
+  apa: Lin, Z., Akin, H., Rao, R., Hie, B., Zhu, Z., Lu, W., Smetanin, N., Verkuil, R., Kabeli, O., Shmueli, Y., dos Santos Costa, A., Fazel-Zarandi, M., Sercu, T., Candido, S., y Rives, A. (2023). Evolutionary-scale prediction of atomic-level protein structure with a language model. Science, 379(6637), 1123–1130. https://doi.org/10.1126/science.ade2574
+  doi: 10.1126/science.ade2574
+  anio: '2023'
+  titulo: Evolutionary-scale prediction of atomic-level protein structure with a language model
+  revista: Science
+  autores: Lin, Z., Akin, H., Rao, R., Hie, B., Zhu, Z., Lu, W., Smetanin, N., Verkuil, R., Kabeli, O., Shmueli, Y., dos Santos Costa, A., Fazel-Zarandi, M., Sercu, T., Candido, S. and Rives, A
+  tema: Proteómica
+- clave: linkedomicskb
+  apa: 'LinkedOmicsKB. (s. f.). LinkedOmicsKB: Pan-cancer proteogenomics knowledge base [Base de datos]. https://kb.linkedomics.org'
+  doi: ''
+  anio: s. f.
+  titulo: 'LinkedOmicsKB: Pan-cancer proteogenomics knowledge base [Base de datos]'
+  revista: https://kb.linkedomics.org
+  autores: LinkedOmicsKB
+  tema: Datos
+- clave: locker2006
+  apa: Locker, G. Y., Hamilton, S., Harris, J., Jessup, J. M., Kemeny, N., Macdonald, J. S., Somerfield, M. R., Hayes, D. F., y Bast, R. C. (2006). ASCO 2006 Update of Recommendations for the Use of Tumor Markers in Gastrointestinal Cancer. Journal of Clinical Oncology, 24(33), 5313–5327. https://doi.org/10.1200/jco.2006.08.2644
+  doi: 10.1200/jco.2006.08.2644
+  anio: '2006'
+  titulo: ASCO 2006 Update of Recommendations for the Use of Tumor Markers in Gastrointestinal Cancer
+  revista: Journal of Clinical Oncology
+  autores: Locker, G. Y., Hamilton, S., Harris, J., Jessup, J. M., Kemeny, N., Macdonald, J. S., Somerfield, M. R., Hayes, D. F. and Bast, R. C
+  tema: Proteómica
+- clave: lundberg2017
+  apa: Lundberg, S., y Lee, S.-I. (2017). A Unified Approach to Interpreting Model Predictions [Preimpresión]. arXiv. https://doi.org/10.48550/arXiv.1705.07874
+  doi: 10.48550/arXiv.1705.07874
+  anio: '2017'
+  titulo: A Unified Approach to Interpreting Model Predictions [Preimpresión]
+  revista: arXiv. https://doi.org/10.48550/arXiv.1705.07874
+  autores: Lundberg, S. and Lee, S.-I
+  tema: ML
+- clave: malmstrom2025
+  apa: Malmström, E., Malmström, L., Hauri, S., Mohanty, T., Scott, A., Karlsson, C., Gueto-Tettay, C., Åhrman, E., Nozohoor, S., Tingstedt, B., Regner, S., Elfving, P., Bjermer, L., Forsvall, A., Doyle, A., Magnusson, M., Hedenfalk, I., Kannisto, P., Brandt, C., . . . Malmström, J. (2025). Human proteome distribution atlas for tissue-specific plasma proteome dynamics. Cell, 188(10), 2810–2822.e16. https://doi.org/10.1016/j.cell.2025.03.013
+  doi: 10.1016/j.cell.2025.03.013
+  anio: '2025'
+  titulo: Human proteome distribution atlas for tissue-specific plasma proteome dynamics
+  revista: Cell
+  autores: Malmström, E., Malmström, L., Hauri, S., Mohanty, T., Scott, A., Karlsson, C., Gueto-Tettay, C., Åhrman, E., Nozohoor, S., Tingstedt, B., Regner, S., Elfving, P., Bjermer, L., Forsvall, A., Doyle, A., Magnusson, M., Hedenfalk, I., Kannisto, P., Brandt, C., . . . Malmström, J
+  tema: Proteómica
+- clave: mccarthy2009
+  apa: McCarthy, D. J., y Smyth, G. K. (2009). Testing significance relative to a fold-change threshold is a TREAT. Bioinformatics, 25(6), 765–771. https://doi.org/10.1093/bioinformatics/btp053
+  doi: 10.1093/bioinformatics/btp053
+  anio: '2009'
+  titulo: Testing significance relative to a fold-change threshold is a TREAT
+  revista: Bioinformatics
+  autores: McCarthy, D. J. and Smyth, G. K
+  tema: Estadística
+- clave: mckay2026
+  apa: McKay, M. (2026). Thermal liquid biopsy for early colorectal cancer diagnosis integrating mass spectrometry proteomic biomarker discovery (PXD064655) [Conjunto de datos]. PRIDE. https://www.ebi.ac.uk/pride/archive/projects/PXD064655
+  doi: ''
+  anio: '2026'
+  titulo: Thermal liquid biopsy for early colorectal cancer diagnosis integrating mass spectrometry proteomic biomarker discovery (PXD064655) [Conjunto de datos]
+  revista: PRIDE. https://www.ebi.ac.uk/pride/archive/projects/PXD064655
+  autores: McKay, M
+  tema: Datos
+- clave: mckinney2010
+  apa: McKinney, W. (2010). Data Structures for Statistical Computing in Python. En Proceedings of the Python in Science Conference (pp. 56–61). https://doi.org/10.25080/Majora-92bf1922-00a
+  doi: 10.25080/Majora-92bf1922-00a
+  anio: '2010'
+  titulo: Data Structures for Statistical Computing in Python
+  revista: En Proceedings of the Python in Science Conference (pp. 56–61). https://doi.org/10.25080/Majora-92bf1922-00a
+  autores: McKinney, W
+  tema: Software
+- clave: nosek2018
+  apa: Nosek, B. A., Ebersole, C. R., DeHaven, A. C., y Mellor, D. T. (2018). The preregistration revolution. Proceedings of the National Academy of Sciences, 115(11), 2600–2606. https://doi.org/10.1073/pnas.1708274114
+  doi: 10.1073/pnas.1708274114
+  anio: '2018'
+  titulo: The preregistration revolution
+  revista: Proceedings of the National Academy of Sciences
+  autores: Nosek, B. A., Ebersole, C. R., DeHaven, A. C. and Mellor, D. T
+  tema: Software
+- clave: ogren2026
+  apa: Ögren, J. Å., Ekström, J., Rameika, N., Torell, E., Larsson, C., Stoimenov, I., Micke, P., Gyllensten, U., Hellström, M., Glimelius, B., Stålberg, K., y Sjöblom, T. (2026). Composite proteomic and metabolomic plasma biomarkers for detection of colorectal, lung and ovarian cancers. Molecular Cancer, 25(1), Artículo 105. https://doi.org/10.1186/s12943-026-02654-1
+  doi: 10.1186/s12943-026-02654-1
+  anio: '2026'
+  titulo: Composite proteomic and metabolomic plasma biomarkers for detection of colorectal, lung and ovarian cancers
+  revista: Molecular Cancer
+  autores: Ögren, J. Å., Ekström, J., Rameika, N., Torell, E., Larsson, C., Stoimenov, I., Micke, P., Gyllensten, U., Hellström, M., Glimelius, B., Stålberg, K. and Sjöblom, T
+  tema: Biología CRC
+- clave: papier2024
+  apa: Papier, K., Atkins, J. R., Tong, T. Y. N., Gaitskell, K., Desai, T., Ogamba, C. F., Parsaeian, M., Reeves, G. K., Mills, I. G., Key, T. J., Smith-Byrne, K., y Travis, R. C. (2024). Identifying proteomic risk factors for cancer using prospective and exome analyses of 1463 circulating proteins and risk of 19 cancers in the UK Biobank. Nature Communications, 15(1), Artículo 4010. https://doi.org/10.1038/s41467-024-48017-6
+  doi: 10.1038/s41467-024-48017-6
+  anio: '2024'
+  titulo: Identifying proteomic risk factors for cancer using prospective and exome analyses of 1463 circulating proteins and risk of 19 cancers in the UK Biobank
+  revista: Nature Communications
+  autores: Papier, K., Atkins, J. R., Tong, T. Y. N., Gaitskell, K., Desai, T., Ogamba, C. F., Parsaeian, M., Reeves, G. K., Mills, I. G., Key, T. J., Smith-Byrne, K. and Travis, R. C
+  tema: Proteómica
+- clave: pedregosa2011
+  apa: 'Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., y Duchesnay, É. (2011). Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12, 2825–2830. https://jmlr.org/papers/v12/pedregosa11a.html'
+  doi: ''
+  anio: '2011'
+  titulo: 'Scikit-learn: Machine learning in Python'
+  revista: Journal of Machine Learning Research
+  autores: Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M. and Duchesnay, É
+  tema: Software
+- clave: pelka2021
+  apa: Pelka, K., Hofree, M., Chen, J. H., Sarkizova, S., Pirl, J. D., Jorgji, V., Bejnood, A., Dionne, D., Ge, W. H., Xu, K. H., Chao, S. X., Zollinger, D. R., Lieb, D. J., Reeves, J. W., Fuhrman, C. A., Hoang, M. L., Delorey, T., Nguyen, L. T., Waldman, J., . . . Hacohen, N. (2021). Spatially organized multicellular immune hubs in human colorectal cancer. Cell, 184(18), 4734–4752.e20. https://doi.org/10.1016/j.cell.2021.08.003
+  doi: 10.1016/j.cell.2021.08.003
+  anio: '2021'
+  titulo: Spatially organized multicellular immune hubs in human colorectal cancer
+  revista: Cell
+  autores: Pelka, K., Hofree, M., Chen, J. H., Sarkizova, S., Pirl, J. D., Jorgji, V., Bejnood, A., Dionne, D., Ge, W. H., Xu, K. H., Chao, S. X., Zollinger, D. R., Lieb, D. J., Reeves, J. W., Fuhrman, C. A., Hoang, M. L., Delorey, T., Nguyen, L. T., Waldman, J., . . . Hacohen, N
+  tema: Biología CRC
+- clave: pepe2001
+  apa: Pepe, M. S., Etzioni, R., Feng, Z., Potter, J. D., Thompson, M. L., Thornquist, M., Winget, M., y Yasui, Y. (2001). Phases of Biomarker Development for Early Detection of Cancer. JNCI Journal of the National Cancer Institute, 93(14), 1054–1061. https://doi.org/10.1093/jnci/93.14.1054
+  doi: 10.1093/jnci/93.14.1054
+  anio: '2001'
+  titulo: Phases of Biomarker Development for Early Detection of Cancer
+  revista: JNCI Journal of the National Cancer Institute
+  autores: Pepe, M. S., Etzioni, R., Feng, Z., Potter, J. D., Thompson, M. L., Thornquist, M., Winget, M. and Yasui, Y
+  tema: Proteómica
+- clave: perezriverol2025
+  apa: 'Perez-Riverol, Y., Bandla, C., Kundu, D. J., Kamatchinathan, S., Bai, J., Hewapathirana, S., John, N. S., Prakash, A., Walzer, M., Wang, S., y Vizcaíno, J. A. (2025). The PRIDE database at 20 years: 2025 update. Nucleic Acids Research, 53(D1), D543–D553. https://doi.org/10.1093/nar/gkae1011'
+  doi: 10.1093/nar/gkae1011
+  anio: '2025'
+  titulo: 'The PRIDE database at 20 years: 2025 update'
+  revista: Nucleic Acids Research
+  autores: Perez-Riverol, Y., Bandla, C., Kundu, D. J., Kamatchinathan, S., Bai, J., Hewapathirana, S., John, N. S., Prakash, A., Walzer, M., Wang, S. and Vizcaíno, J. A
+  tema: Proteómica
+- clave: phipson2010
+  apa: 'Phipson, B., y Smyth, G. K. (2010). Permutation P-values Should Never Be Zero: Calculating Exact P-values When Permutations Are Randomly Drawn. Statistical Applications in Genetics and Molecular Biology, 9(1). https://doi.org/10.2202/1544-6115.1585'
+  doi: 10.2202/1544-6115.1585
+  anio: '2010'
+  titulo: 'Permutation P-values Should Never Be Zero: Calculating Exact P-values When Permutations Are Randomly Drawn'
+  revista: Statistical Applications in Genetics and Molecular Biology
+  autores: Phipson, B. and Smyth, G. K
+  tema: Estadística
+- clave: praus2023
+  apa: Praus, F., Künstner, A., Sauer, T., Kohl, M., Kern, K., Deichmann, S., Végvári, Á., Keck, T., Busch, H., Habermann, J. K., y Gemoll, T. (2023). Panomics reveals patient individuality as the major driver of colorectal cancer progression. Journal of Translational Medicine, 21(1), Artículo 41. https://doi.org/10.1186/s12967-022-03855-0
+  doi: 10.1186/s12967-022-03855-0
+  anio: '2023'
+  titulo: Panomics reveals patient individuality as the major driver of colorectal cancer progression
+  revista: Journal of Translational Medicine
+  autores: Praus, F., Künstner, A., Sauer, T., Kohl, M., Kern, K., Deichmann, S., Végvári, Á., Keck, T., Busch, H., Habermann, J. K. and Gemoll, T
+  tema: Biología CRC
+- clave: pdc
+  apa: 'Proteomic Data Commons. (s. f.). PDC000116: Prospective Colon PNNL Proteome [Conjunto de datos]. National Cancer Institute. https://pdc.cancer.gov/pdc/study/PDC000116'
+  doi: ''
+  anio: s. f.
+  titulo: 'PDC000116: Prospective Colon PNNL Proteome [Conjunto de datos]'
+  revista: National Cancer Institute. https://pdc.cancer.gov/pdc/study/PDC000116
+  autores: Proteomic Data Commons
+  tema: Datos
+- clave: proteomicscore2026
+  apa: Proteomics Core Facility. (2026). Proteomic profiling of tumor tissue-derived extracellular vesicles in colon cancer (PXD033236) [Conjunto de datos]. PRIDE. https://www.ebi.ac.uk/pride/archive/projects/PXD033236
+  doi: ''
+  anio: '2026'
+  titulo: Proteomic profiling of tumor tissue-derived extracellular vesicles in colon cancer (PXD033236) [Conjunto de datos]
+  revista: PRIDE. https://www.ebi.ac.uk/pride/archive/projects/PXD033236
+  autores: Proteomics Core Facility
+  tema: Datos
+- clave: python
+  apa: Python Software Foundation. (2026). Python (versión 3.14.3) [Software]. https://www.python.org
+  doi: ''
+  anio: '2026'
+  titulo: Python (versión 3.14.3) [Software]
+  revista: https://www.python.org
+  autores: Python Software Foundation
+  tema: Software
+- clave: rai2025
+  apa: Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V., y Prasad, T. S. K. (2025). Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases. Journal of Proteome Research, 24(8), 4166–4180. https://doi.org/10.1021/acs.jproteome.5c00285
+  doi: 10.1021/acs.jproteome.5c00285
+  anio: '2025'
+  titulo: Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases
+  revista: Journal of Proteome Research
+  autores: Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K
+  tema: Biología CRC
+- clave: rifai2006
+  apa: 'Rifai, N., Gillette, M. A., y Carr, S. A. (2006). Protein biomarker discovery and validation: the long and uncertain path to clinical utility. Nature Biotechnology, 24(8), 971–983. https://doi.org/10.1038/nbt1235'
+  doi: 10.1038/nbt1235
+  anio: '2006'
+  titulo: 'Protein biomarker discovery and validation: the long and uncertain path to clinical utility'
+  revista: Nature Biotechnology
+  autores: Rifai, N., Gillette, M. A. and Carr, S. A
+  tema: Biología CRC
+- clave: ritchie2015
+  apa: Ritchie, M. E., Phipson, B., Wu, D., Hu, Y., Law, C. W., Shi, W., y Smyth, G. K. (2015). limma powers differential expression analyses for RNA-sequencing and microarray studies. Nucleic Acids Research, 43(7), e47–e47. https://doi.org/10.1093/nar/gkv007
+  doi: 10.1093/nar/gkv007
+  anio: '2015'
+  titulo: limma powers differential expression analyses for RNA-sequencing and microarray studies
+  revista: Nucleic Acids Research
+  autores: Ritchie, M. E., Phipson, B., Wu, D., Hu, Y., Law, C. W., Shi, W. and Smyth, G. K
+  tema: Estadística
+- clave: robles2024
+  apa: Robles, J., Prakash, A., Vizcaíno, J. A., y Casal, J. I. (2024). Integrated meta-analysis of colorectal cancer public proteomic datasets for biomarker discovery and validation. PLOS Computational Biology, 20(1), e1011828. https://doi.org/10.1371/journal.pcbi.1011828
+  doi: 10.1371/journal.pcbi.1011828
+  anio: '2024'
+  titulo: Integrated meta-analysis of colorectal cancer public proteomic datasets for biomarker discovery and validation
+  revista: PLOS Computational Biology
+  autores: Robles, J., Prakash, A., Vizcaíno, J. A. and Casal, J. I
+  tema: Biología CRC
+- clave: schuirmann1987
+  apa: Schuirmann, D. J. (1987). A comparison of the Two One-Sided Tests Procedure and the Power Approach for assessing the equivalence of average bioavailability. Journal of Pharmacokinetics and Biopharmaceutics, 15(6), 657–680. https://doi.org/10.1007/BF01068419
+  doi: 10.1007/BF01068419
+  anio: '1987'
+  titulo: A comparison of the Two One-Sided Tests Procedure and the Power Approach for assessing the equivalence of average bioavailability
+  revista: Journal of Pharmacokinetics and Biopharmaceutics
+  autores: Schuirmann, D. J
+  tema: Estadística
+- clave: scispace2026
+  apa: SciSpace. (2026). SciSpace [Herramienta de búsqueda bibliográfica con inteligencia artificial]. Consultado entre marzo y noviembre de 2026. https://scispace.com
+  doi: ''
+  anio: '2026'
+  titulo: SciSpace [Herramienta de búsqueda bibliográfica con inteligencia artificial]
+  revista: Consultado entre marzo y noviembre de 2026. https://scispace.com
+  autores: SciSpace
+  tema: Software
+- clave: seo2026
+  apa: Seo, Y., Han, Y. D., Bojmar, L., Kim, K., Seo, Y., Kim, T. K., Lee, S., Kim, Y., Choi, H. B., Lim, Y. H., Kim, C. H., Sandberg, A., Fan, C., Lauritzen, P., Molina, H., Peralta, C., Geri, J. B., Burdette, C., Han, D. H., . . . Kim, H. S. (2026). Proteomic Profiling of Human Extracellular Vesicles Reveals Diagnostic Biomarkers for Colon Adenocarcinoma. Journal of Extracellular Vesicles, 15(4), Artículo e70278. https://doi.org/10.1002/jev2.70278
+  doi: 10.1002/jev2.70278
+  anio: '2026'
+  titulo: Proteomic Profiling of Human Extracellular Vesicles Reveals Diagnostic Biomarkers for Colon Adenocarcinoma
+  revista: Journal of Extracellular Vesicles
+  autores: Seo, Y., Han, Y. D., Bojmar, L., Kim, K., Seo, Y., Kim, T. K., Lee, S., Kim, Y., Choi, H. B., Lim, Y. H., Kim, C. H., Sandberg, A., Fan, C., Lauritzen, P., Molina, H., Peralta, C., Geri, J. B., Burdette, C., Han, D. H., . . . Kim, H. S
+  tema: Biología CRC
+- clave: smyth2004
+  apa: Smyth, G. K. (2004). Linear Models and Empirical Bayes Methods for Assessing Differential Expression in Microarray Experiments. Statistical Applications in Genetics and Molecular Biology, 3(1), 1–25. https://doi.org/10.2202/1544-6115.1027
+  doi: 10.2202/1544-6115.1027
+  anio: '2004'
+  titulo: Linear Models and Empirical Bayes Methods for Assessing Differential Expression in Microarray Experiments
+  revista: Statistical Applications in Genetics and Molecular Biology
+  autores: Smyth, G. K
+  tema: Estadística
+- clave: steegen2016
+  apa: Steegen, S., Tuerlinckx, F., Gelman, A., y Vanpaemel, W. (2016). Increasing Transparency Through a Multiverse Analysis. Perspectives on Psychological Science, 11(5), 702–712. https://doi.org/10.1177/1745691616658637
+  doi: 10.1177/1745691616658637
+  anio: '2016'
+  titulo: Increasing Transparency Through a Multiverse Analysis
+  revista: Perspectives on Psychological Science
+  autores: Steegen, S., Tuerlinckx, F., Gelman, A. and Vanpaemel, W
+  tema: ML
+- clave: subramanian2005
+  apa: 'Subramanian, A., Tamayo, P., Mootha, V. K., Mukherjee, S., Ebert, B. L., Gillette, M. A., Paulovich, A., Pomeroy, S. L., Golub, T. R., Lander, E. S., y Mesirov, J. P. (2005). Gene set enrichment analysis: A knowledge-based approach for interpreting genome-wide expression profiles. Proceedings of the National Academy of Sciences, 102(43), 15545–15550. https://doi.org/10.1073/pnas.0506580102'
+  doi: 10.1073/pnas.0506580102
+  anio: '2005'
+  titulo: 'Gene set enrichment analysis: A knowledge-based approach for interpreting genome-wide expression profiles'
+  revista: Proceedings of the National Academy of Sciences
+  autores: Subramanian, A., Tamayo, P., Mootha, V. K., Mukherjee, S., Ebert, B. L., Gillette, M. A., Paulovich, A., Pomeroy, S. L., Golub, T. R., Lander, E. S. and Mesirov, J. P
+  tema: Software
+- clave: sun2023
+  apa: Sun, B. B., Chiou, J., Traylor, M., Benner, C., Hsu, Y.-H., Richardson, T. G., Surendran, P., Mahajan, A., Robins, C., Vasquez-Grinnell, S. G., Hou, L., Kvikstad, E. M., Burren, O. S., Davitte, J., Ferber, K. L., Gillies, C. E., Hedman, Å. K., Hu, S., Lin, T., . . . Whelan, C. D. (2023). Plasma proteomic associations with genetics and health in the UK Biobank. Nature, 622(7982), 329–338. https://doi.org/10.1038/s41586-023-06592-6
+  doi: 10.1038/s41586-023-06592-6
+  anio: '2023'
+  titulo: Plasma proteomic associations with genetics and health in the UK Biobank
+  revista: Nature
+  autores: Sun, B. B., Chiou, J., Traylor, M., Benner, C., Hsu, Y.-H., Richardson, T. G., Surendran, P., Mahajan, A., Robins, C., Vasquez-Grinnell, S. G., Hou, L., Kvikstad, E. M., Burren, O. S., Davitte, J., Ferber, K. L., Gillies, C. E., Hedman, Å. K., Hu, S., Lin, T., . . . Whelan, C. D
+  tema: Proteómica
+- clave: tanaka2024
+  apa: Tanaka, A., Ogawa, M., Zhou, Y., Namba, K., Hendrickson, R. C., Miele, M. M., Li, Z., Klimstra, D. S., Buckley, P. G., Gulcher, J., Wang, J. Y., y Roehrl, M. H. (2024). Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures. Cell Reports, 43(2), 113810. https://doi.org/10.1016/j.celrep.2024.113810
+  doi: 10.1016/j.celrep.2024.113810
+  anio: '2024'
+  titulo: Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures
+  revista: Cell Reports
+  autores: Tanaka, A., Ogawa, M., Zhou, Y., Namba, K., Hendrickson, R. C., Miele, M. M., Li, Z., Klimstra, D. S., Buckley, P. G., Gulcher, J., Wang, J. Y. and Roehrl, M. H
+  tema: Biología CRC
+- clave: tanaka20242
+  apa: Tanaka, A. (2024). Proteogenomic characterization of metastatic colorectal cancer with its primary origin (PXD034575) [Conjunto de datos]. PRIDE. https://www.ebi.ac.uk/pride/archive/projects/PXD034575
+  doi: ''
+  anio: '2024'
+  titulo: Proteogenomic characterization of metastatic colorectal cancer with its primary origin (PXD034575) [Conjunto de datos]
+  revista: PRIDE. https://www.ebi.ac.uk/pride/archive/projects/PXD034575
+  autores: Tanaka, A
+  tema: Datos
+- clave: goconsortium2023
+  apa: The Gene Ontology Consortium. (2023). The Gene Ontology knowledgebase in 2023. GENETICS, 224(1), Artículo iyad031. https://doi.org/10.1093/genetics/iyad031
+  doi: 10.1093/genetics/iyad031
+  anio: '2023'
+  titulo: The Gene Ontology knowledgebase in 2023
+  revista: GENETICS
+  autores: The Gene Ontology Consortium
+  tema: Datos
+- clave: uniprot2025
+  apa: 'The UniProt Consortium. (2025). UniProt: the Universal Protein Knowledgebase in 2025. Nucleic Acids Research, 53(D1), D609–D617. https://doi.org/10.1093/nar/gkae1010'
+  doi: 10.1093/nar/gkae1010
+  anio: '2025'
+  titulo: 'UniProt: the Universal Protein Knowledgebase in 2025'
+  revista: Nucleic Acids Research
+  autores: The UniProt Consortium
+  tema: Datos
+- clave: uhlen2015
+  apa: Uhlén, M., Fagerberg, L., Hallström, B. M., Lindskog, C., Oksvold, P., Mardinoglu, A., Sivertsson, Å., Kampf, C., Sjöstedt, E., Asplund, A., Olsson, I., Edlund, K., Lundberg, E., Navani, S., Szigyarto, C. A.-K., Odeberg, J., Djureinovic, D., Takanen, J. O., Hober, S., . . . Pontén, F. (2015). Tissue-based map of the human proteome. Science, 347(6220), Artículo 1260419. https://doi.org/10.1126/science.1260419
+  doi: 10.1126/science.1260419
+  anio: '2015'
+  titulo: Tissue-based map of the human proteome
+  revista: Science
+  autores: Uhlén, M., Fagerberg, L., Hallström, B. M., Lindskog, C., Oksvold, P., Mardinoglu, A., Sivertsson, Å., Kampf, C., Sjöstedt, E., Asplund, A., Olsson, I., Edlund, K., Lundberg, E., Navani, S., Szigyarto, C. A.-K., Odeberg, J., Djureinovic, D., Takanen, J. O., Hober, S., . . . Pontén, F
+  tema: Proteómica
+- clave: vancalster2019
+  apa: 'Van Calster, B., McLernon, D. J., van Smeden, M., Wynants, L., y Steyerberg, E. W. (2019). Calibration: the Achilles heel of predictive analytics. BMC Medicine, 17(1), Artículo 230. https://doi.org/10.1186/s12916-019-1466-7'
+  doi: 10.1186/s12916-019-1466-7
+  anio: '2019'
+  titulo: 'Calibration: the Achilles heel of predictive analytics'
+  revista: BMC Medicine
+  autores: Van Calster, B., McLernon, D. J., van Smeden, M., Wynants, L. and Steyerberg, E. W
+  tema: ML
+- clave: vasaikar2019
+  apa: Vasaikar, S., Huang, C., Wang, X., Petyuk, V. A., Savage, S. R., Wen, B., Dou, Y., Zhang, Y., Shi, Z., Arshad, O. A., Gritsenko, M. A., Zimmerman, L. J., McDermott, J. E., Clauss, T. R., Moore, R. J., Zhao, R., Monroe, M. E., Wang, Y.-T., Chambers, M. C., . . . Zhang, Z. (2019). Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities. Cell, 177(4), 1035–1049.e19. https://doi.org/10.1016/j.cell.2019.03.030
+  doi: 10.1016/j.cell.2019.03.030
+  anio: '2019'
+  titulo: Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities
+  revista: Cell
+  autores: Vasaikar, S., Huang, C., Wang, X., Petyuk, V. A., Savage, S. R., Wen, B., Dou, Y., Zhang, Y., Shi, Z., Arshad, O. A., Gritsenko, M. A., Zimmerman, L. J., McDermott, J. E., Clauss, T. R., Moore, R. J., Zhao, R., Monroe, M. E., Wang, Y.-T., Chambers, M. C., . . . Zhang, Z
+  tema: Biología CRC
+- clave: verathamjamras2023
+  apa: Verathamjamras, C., Chantaraamporn, J., Sornprachum, T., Mutapat, P., Chokchaichamnankit, D., Mingkwan, K., Luevisadpibul, V., Srisomsap, C., Chutipongtanate, S., Svasti, J., y Champattanachai, V. (2023). Label-free quantitative proteomics reveals aberrant expression levels of LRG, C9, FN, A1AT and AGP1 in the plasma of patients with colorectal cancer. Clinical Proteomics, 20(1), Artículo 15. https://doi.org/10.1186/s12014-023-09407-y
+  doi: 10.1186/s12014-023-09407-y
+  anio: '2023'
+  titulo: Label-free quantitative proteomics reveals aberrant expression levels of LRG, C9, FN, A1AT and AGP1 in the plasma of patients with colorectal cancer
+  revista: Clinical Proteomics
+  autores: Verathamjamras, C., Chantaraamporn, J., Sornprachum, T., Mutapat, P., Chokchaichamnankit, D., Mingkwan, K., Luevisadpibul, V., Srisomsap, C., Chutipongtanate, S., Svasti, J. and Champattanachai, V
+  tema: Biología CRC
+- clave: virtanen2020
+  apa: 'Virtanen, P., Gommers, R., Oliphant, T. E., Haberland, M., Reddy, T., Cournapeau, D., Burovski, E., Peterson, P., Weckesser, W., Bright, J., van der Walt, S. J., Brett, M., Wilson, J., Millman, K. J., Mayorov, N., Nelson, A. R. J., Jones, E., Kern, R., Larson, E., . . . Vázquez-Baeza, Y. (2020). SciPy 1.0: fundamental algorithms for scientific computing in Python. Nature Methods, 17(3), 261–272. https://doi.org/10.1038/s41592-019-0686-2'
+  doi: 10.1038/s41592-019-0686-2
+  anio: '2020'
+  titulo: 'SciPy 1.0: fundamental algorithms for scientific computing in Python'
+  revista: Nature Methods
+  autores: Virtanen, P., Gommers, R., Oliphant, T. E., Haberland, M., Reddy, T., Cournapeau, D., Burovski, E., Peterson, P., Weckesser, W., Bright, J., van der Walt, S. J., Brett, M., Wilson, J., Millman, K. J., Mayorov, N., Nelson, A. R. J., Jones, E., Kern, R., Larson, E., . . . Vázquez-Baeza, Y
+  tema: Software
+- clave: wannberg2025
+  apa: Wannberg, F., Álvez, M. B., Qvick, A., Pongracz, T., Aguilera, K., Adolfsson, E., Essehorn, L., Gordon, M., Uhlén, M., Helenius, G., Hjalmar, V., Åberg, M., Rosell, A., y Thålin, C. (2025). Plasma protein profiling predicts cancer in patients with non-specific symptoms. Nature Communications, 17(1), Artículo 151. https://doi.org/10.1038/s41467-025-67688-3
+  doi: 10.1038/s41467-025-67688-3
+  anio: '2025'
+  titulo: Plasma protein profiling predicts cancer in patients with non-specific symptoms
+  revista: Nature Communications
+  autores: Wannberg, F., Álvez, M. B., Qvick, A., Pongracz, T., Aguilera, K., Adolfsson, E., Essehorn, L., Gordon, M., Uhlén, M., Helenius, G., Hjalmar, V., Åberg, M., Rosell, A. and Thålin, C
+  tema: Proteómica
+- clave: xiang2026
+  apa: Xiang, H., Guan, X., Wei, Y., Luo, S., Zhang, H., Bu, F., Yan, Y., Fu, Y., Li, Y., Xu, Q., Lin, P., Liu, D., Zhou, X., Gao, F., Chen, T., Nie, G., Wu, K., Gu, Y., Liu, L., . . . Dong, X. (2026). Predominant mutated non-canonical tumor-specific antigens identified by proteogenomics demonstrate immunogenicity and tumor suppression in CRC. Cell Genomics, 6(1), 101062. https://doi.org/10.1016/j.xgen.2025.101062
+  doi: 10.1016/j.xgen.2025.101062
+  anio: '2026'
+  titulo: Predominant mutated non-canonical tumor-specific antigens identified by proteogenomics demonstrate immunogenicity and tumor suppression in CRC
+  revista: Cell Genomics
+  autores: Xiang, H., Guan, X., Wei, Y., Luo, S., Zhang, H., Bu, F., Yan, Y., Fu, Y., Li, Y., Xu, Q., Lin, P., Liu, D., Zhou, X., Gao, F., Chen, T., Nie, G., Wu, K., Gu, Y., Liu, L., . . . Dong, X
+  tema: Proteómica
+- clave: yu2026
+  apa: Yu, Y., Jiang, X., Pei, B., Zhou, J., Long, Z., Cao, Y., Ye, J., Gao, Y., Xie, K., Yuan, H., Jia, Y., Zhang, M., Liu, X., Zhao, Y., Ning, H., y Wang, F. (2026). Proteome profiling reveals early diagnostic biomarker candidates for colorectal cancer. BMC Cancer, 26(1), Artículo 283. https://doi.org/10.1186/s12885-026-15547-9
+  doi: 10.1186/s12885-026-15547-9
+  anio: '2026'
+  titulo: Proteome profiling reveals early diagnostic biomarker candidates for colorectal cancer
+  revista: BMC Cancer
+  autores: Yu, Y., Jiang, X., Pei, B., Zhou, J., Long, Z., Cao, Y., Ye, J., Gao, Y., Xie, K., Yuan, H., Jia, Y., Zhang, M., Liu, X., Zhao, Y., Ning, H. and Wang, F
+  tema: Biología CRC
+- clave: zhang2014
+  apa: Zhang, B., Wang, J., Wang, X., Zhu, J., Liu, Q., Shi, Z., Chambers, M. C., Zimmerman, L. J., Shaddox, K. F., Kim, S., Davies, S. R., Wang, S., Wang, P., Kinsinger, C. R., Rivers, R. C., Rodriguez, H., Townsend, R. R., Ellis, M. J. C., Carr, S. A., . . . NCI CPTAC. (2014). Proteogenomic characterization of human colon and rectal cancer. Nature, 513(7518), 382–387. https://doi.org/10.1038/nature13438
+  doi: 10.1038/nature13438
+  anio: '2014'
+  titulo: Proteogenomic characterization of human colon and rectal cancer
+  revista: Nature
+  autores: Zhang, B., Wang, J., Wang, X., Zhu, J., Liu, Q., Shi, Z., Chambers, M. C., Zimmerman, L. J., Shaddox, K. F., Kim, S., Davies, S. R., Wang, S., Wang, P., Kinsinger, C. R., Rivers, R. C., Rodriguez, H., Townsend, R. R., Ellis, M. J. C., Carr, S. A., . . . NCI CPTAC
+  tema: Proteómica

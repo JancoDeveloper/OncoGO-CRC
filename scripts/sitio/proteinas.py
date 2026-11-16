@@ -89,8 +89,13 @@ def cifra(valor, fuente: str, columna: str = "") -> str:
             bruto = format(valor, ".16g")
             visible = formatear(valor, tipo)
     else:
-        bruto = str(valor)
-        visible = bruto
+        bruto = "true" if valor is True else "false" if valor is False else str(valor)
+        etiquetas = {
+            "true": "sí", "false": "no", "True": "sí", "False": "no",
+            "indeterminada": "Indeterminada", "equivalente": "Equivalente", "diferente": "Diferente",
+            "no_medida": "No medida", "si": "sí",
+        }
+        visible = etiquetas.get(bruto, bruto)
     return (
         f'<data value="{e(bruto)}" data-fuente="{e(fuente)}" title="{e("Origen: " + fuente)}">{e(visible)}</data>'
     )
@@ -129,6 +134,7 @@ def escribir(render, env, comunes, cita) -> list[dict]:
             "gen": gen,
             "nombre": nombre,
             "candidata": len(genes) == 1 and gen in paso5,
+            "clase": str(tablas["suero_k4_crc_cn.tsv"].loc[protein_id, "clase"]),
         })
     indice = [
         {"id": "resumen", "texto": "Resumen"},
@@ -190,7 +196,7 @@ def _vistas():
 def fuentes_de(meta: dict) -> list[dict]:
     return [
         {"href": "/fuentes/uniprot_284.tsv", "texto": f'UniProt {meta["x_uniprot_release"]}'},
-        {"href": "https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_k4_crc_cn.tsv", "texto": "suero_k4_crc_cn.tsv"},
+        {"href": "https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_k4_crc_cn.tsv", "texto": "Matriz del contraste que decide"},
     ]
 
 
@@ -228,7 +234,7 @@ def lista_html(fichas: list[dict], meta: dict, cita) -> str:
         f'UniProt {e(meta["x_uniprot_release"])}, descargado el {e(meta["fecha_utc"])}. '
         f'Ninguna consulta volvió inactiva. {cita("rai2025")}</p>'
         "<p>El nombre sale de UniProt cuando la descarga lo trajo. "
-        "Una ficha lleva la etiqueta de candidata cuando su único gen tiene ultimo_paso 5 en priorizacion.tsv. "
+        "Una ficha lleva la etiqueta de candidata cuando su único gen se quedó en el paso 5 del embudo. "
         "Esa etiqueta es una hipótesis para cohortes futuras."
         f"{e(nota_repetidos)} {cita('tanaka2024')}</p>"
         '<p><a href="/proteinas/comparar">Comparar hallazgos</a> pone, una junto a otra, la clase frente a CN, '
@@ -263,6 +269,7 @@ def cuerpo_de(ficha, uniprot, tablas, traza, prio, tri, shap, cita, vistas, docu
         partes.append(f'<p class="etiqueta-candidata">{e(ETIQUETA)}</p>')
     if ficha["gen"] in {"S100A8", "S100A9"}:
         partes.append(f"<p>{e(NOTA_CALPROTECTINA)} {cita('rai2025')}</p>")
+    partes.append(en_llano(ficha, protein_id, entrada, tablas, tri, prio))
     partes.append(resumen(ficha, protein_id, representate, entrada, cita))
     partes.append(suero(protein_id, tablas, cita))
     partes.append(calidad(protein_id, traza))
@@ -271,6 +278,55 @@ def cuerpo_de(ficha, uniprot, tablas, traza, prio, tri, shap, cita, vistas, docu
     partes.append(explicacion(ficha, shap))
     partes.append(vistas.secciones(ficha, documento, cita, comunes))
     return "\n".join(partes)
+
+
+def _signo(valor) -> str:
+    try:
+        numero = float(valor)
+    except (TypeError, ValueError):
+        return "sin medida de ese contraste"
+    if numero > 0:
+        return "sube en el tumor frente a la mucosa"
+    if numero < 0:
+        return "baja en el tumor frente a la mucosa"
+    return "no cambia en ese contraste"
+
+
+def en_llano(ficha, protein_id, entrada, tablas, tri, prio) -> str:
+    nombre = ""
+    if entrada is not None:
+        bruto = str(entrada.get("Protein names", ""))
+        if bruto not in {"nan", "None", ""}:
+            nombre = bruto.split("(")[0].strip()
+    clase = {
+        "indeterminada": "indeterminada",
+        "equivalente": "equivalente",
+        "diferente": "diferente",
+    }.get(str(tablas["suero_k4_crc_cn.tsv"].loc[protein_id, "clase"]), "sin clase")
+    signo = "el grupo tiene más de un gen y no se elige un signo"
+    paso = "no tiene una fila de priorización"
+    if len(ficha["genes"]) == 1:
+        gen = ficha["gen"]
+        if gen in tri.index:
+            signo = "en CPTAC " + _signo(tri.loc[gen, "cptac_coad_log2fc"])
+        else:
+            signo = "sin fila de tejido"
+        if gen in prio.index:
+            paso = (
+                f"último paso {int(prio.loc[gen, 'ultimo_paso'])}. "
+                f"{prio.loc[gen, 'motivo_no_pasa_el_siguiente']}"
+            )
+    que_es = nombre or "Esta entrada no trajo un nombre en la descarga de UniProt."
+    return (
+        '<section class="en-llano">'
+        f"<h2>En una frase</h2>"
+        f"<p><strong>Qué es.</strong> {e(que_es)}</p>"
+        f"<p><strong>Qué pasó en esta tesis.</strong> En el suero, frente a la colonoscopia negativa, "
+        f"la clase es {e(clase)}. En tejido, {e(signo)}. En el embudo, {e(paso)}.</p>"
+        "<p><strong>Qué no significa.</strong> No dice que sirva para decidir sobre un paciente "
+        "ni que la proteína haya salido del tumor hacia la sangre.</p>"
+        "</section>"
+    )
 
 
 def resumen(ficha, protein_id, representate, entrada, cita) -> str:
@@ -325,7 +381,7 @@ def suero(protein_id, tablas, cita) -> str:
 
 def calidad(protein_id, traza) -> str:
     if protein_id not in traza.index:
-        return '<h2 id="calidad">Calidad</h2><p>No está en suero_trazabilidad_grupos.tsv.</p>'
+        return '<h2 id="calidad">Calidad</h2><p>No está en la tabla de trazabilidad del suero.</p>'
     fila = traza.loc[protein_id]
     columnas = (
         "pg_q_min", "global_pg_q", "n_precursores", "fraccion_proteotipicos",
@@ -343,7 +399,7 @@ def tejido(ficha, tri, cita) -> str:
         return '<h2 id="tejido">Tejido</h2><p>Unión ambigua: el grupo tiene más de un gen, y no se elige una fila.</p>'
     gen = ficha["gen"]
     if gen not in tri.index:
-        return f'<h2 id="tejido">Tejido</h2><p>{e(gen)} no está en triangulacion.tsv. {cita("vasaikar2019")}</p>'
+        return f'<h2 id="tejido">Tejido</h2><p>{e(gen)} no está en la tabla de triangulación del tejido. {cita("vasaikar2019")}</p>'
     fila = tri.loc[gen]
     columnas = ("tanaka_log2fc", "cptac_coad_log2fc", "clase_h5")
     celdas = []
@@ -361,7 +417,7 @@ def priorizacion(ficha, prio) -> str:
         return '<h2 id="priorizacion">Priorización</h2><p>Unión ambigua: no se asigna un paso.</p>'
     gen = ficha["gen"]
     if gen not in prio.index:
-        return f'<h2 id="priorizacion">Priorización</h2><p>{e(gen)} no está en priorizacion.tsv.</p>'
+        return f'<h2 id="priorizacion">Priorización</h2><p>{e(gen)} no está en la tabla de priorización.</p>'
     fila = prio.loc[gen]
     columnas = ("ultimo_paso", "motivo_no_pasa_el_siguiente", "clase_h5")
     celdas = []

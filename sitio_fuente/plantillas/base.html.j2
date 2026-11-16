@@ -4,56 +4,57 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ titulo }} · OncoGO-CRC</title>
+{% if descripcion %}<meta name="description" content="{{ descripcion }}">{% endif %}
+<meta property="og:title" content="{{ titulo }} · OncoGO-CRC">
+{% if descripcion %}<meta property="og:description" content="{{ descripcion }}">{% endif %}
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CO">
+{% if ruta %}<link rel="canonical" href="https://oncogo-crc-tesis.web.app{{ ruta }}">{% endif %}
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fuentes/source-serif-4-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/{{ css }}">
+{% if jsonld %}<script type="application/ld+json">{{ jsonld | safe }}</script>{% endif %}
 </head>
-<body{% if portada %} class="portada"{% endif %}>
+<body{% if portada %} class="portada"{% endif %} data-pagefind-filter="seccion">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
+<nav id="exploracion" class="menu" aria-label="Principal">
+{% for item in menu %}
+<a href="{{ item.ruta }}">{{ item.nombre }}</a>
+{% endfor %}
+</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
-<label class="saltar" for="q">Buscar</label>
-<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="{{ consulta }}">
+<label class="saltar" for="q">Buscar proteína, término o página</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" autocomplete="off" value="{{ consulta }}">
 <button type="submit">Buscar</button>
+<div id="sugerencias" class="sugerencias" hidden></div>
 </form>
+<nav class="accesos" aria-label="Consulta">
+<a href="/glosario">Glosario</a>
+<a href="/bibliografia">Bibliografía</a>
+</nav>
 <button type="button" id="tema">Tema</button>
 </header>
-<p class="aviso">{{ aviso }}</p>
-<div class="marco">
-<aside id="exploracion" class="lateral" aria-label="Principal">
-<p class="lateral-etiqueta">Explorar la investigación</p>
-<a class="lateral-inicio" href="/">Inicio</a>
-{% for grupo in exploracion %}
-<nav class="lateral-grupo" aria-label="{{ grupo.grupo }}">
-<p>{{ grupo.grupo }}</p>
-{% for item in grupo.enlaces %}
-<a href="{{ item.ruta }}">{{ item.nombre }}</a>
-{% endfor %}
-</nav>
-{% endfor %}
-</aside>
 <div class="velo" id="velo" hidden></div>
+<div class="marco">
 <div class="columna">
 {% if migas %}<p class="migas">{{ migas }}</p>{% endif %}
-{% if indice and not portada %}
-<nav class="indice" aria-label="En esta página">
-{% for ancla in indice %}
-<a href="#{{ ancla.id }}">{{ ancla.texto }}</a>
-{% endfor %}
-</nav>
-{% endif %}
-<main id="contenido">
-{% if hermanas %}
-<nav class="hermanas" aria-label="En esta sección">
-{% for item in hermanas %}
-<a href="{{ item.ruta }}">{{ item.nombre }}</a>
-{% endfor %}
-</nav>
+{% if minutos %}<p class="lectura">Lectura de unos {{ minutos }} min</p>{% endif %}
+<main id="contenido" data-pagefind-body>
+{% if aviso_contextual %}
+<aside class="callout" role="note">
+<p>{{ aviso }}</p>
+</aside>
 {% endif %}
 {{ cuerpo | safe }}
+{% if anterior or siguiente %}
+<nav class="recorrido" aria-label="Recorrido">
+{% if anterior %}<a class="boton boton-secundario" href="{{ anterior.ruta }}" rel="prev">Anterior: {{ anterior.nombre }}</a>{% endif %}
+{% if siguiente %}<a class="boton" href="{{ siguiente.ruta }}" rel="next">Siguiente: {{ siguiente.nombre }}</a>{% endif %}
+</nav>
+{% endif %}
 {% if fuentes %}
 <details class="transparencia">
 <summary>Transparencia y trazabilidad</summary>
@@ -66,16 +67,26 @@
 {% endif %}
 </main>
 </div>
+{% if indice and not portada %}
+<nav class="indice" aria-label="En esta página">
+<p class="indice-titulo">En esta página</p>
+{% for ancla in indice %}
+<a href="#{{ ancla.id }}">{{ ancla.texto }}</a>
+{% endfor %}
+</nav>
+{% endif %}
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
 {% for item in secundario %}
 <a href="{{ item.ruta }}">{{ item.nombre }}</a>
 {% endfor %}
+<a href="/como-citar">Cómo citar</a>
+<a href="/sobre">Sobre esta tesis</a>
 </nav>
 <p>Resultados v3.7-final · certificado {{ franja_estado | safe }} · sello {{ franja_sello | safe }}.</p>
-<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
-<p class="aviso">{{ aviso }}</p>
+<p><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v3.7-final">Repositorio, etiqueta v3.7-final</a></p>
+<p class="nota-etica">{{ aviso }}</p>
 </footer>
 <script>{{ js | safe }}</script>
 {% if js_extra %}<script>{{ js_extra | safe }}</script>{% endif %}

@@ -4,81 +4,104 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Expresión diferencial · OncoGO-CRC</title>
+<meta name="description" content="Diferente, equivalente e indeterminada son tres clases, no un solo umbral.">
+<meta property="og:title" content="Expresión diferencial · OncoGO-CRC">
+<meta property="og:description" content="Diferente, equivalente e indeterminada son tres clases, no un solo umbral.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CO">
+<link rel="canonical" href="https://oncogo-crc-tesis.web.app/metodos/expresion-diferencial">
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.4fa9f694d6.css">
+<link rel="preload" href="/fuentes/source-serif-4-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v4.cc00b862b0.css">
+
 </head>
-<body>
+<body data-pagefind-filter="seccion">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
+<nav id="exploracion" class="menu" aria-label="Principal">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
+
+<a href="/datos">Datos</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/resultados">Resultados</a>
+
+<a href="/proteinas">Proteínas</a>
+
+</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
-<label class="saltar" for="q">Buscar</label>
-<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<label class="saltar" for="q">Buscar proteína, término o página</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" autocomplete="off" value="">
 <button type="submit">Buscar</button>
+<div id="sugerencias" class="sugerencias" hidden></div>
 </form>
+<nav class="accesos" aria-label="Consulta">
+<a href="/glosario">Glosario</a>
+<a href="/bibliografia">Bibliografía</a>
+</nav>
 <button type="button" id="tema">Tema</button>
 </header>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<div class="marco">
-<aside id="exploracion" class="lateral" aria-label="Principal">
-<p class="lateral-etiqueta">Explorar la investigación</p>
-<a class="lateral-inicio" href="/">Inicio</a>
-
-<nav class="lateral-grupo" aria-label="Investigación">
-<p>Investigación</p>
-
-<a href="/#qu-problema-se-midi">El problema</a>
-
-<a href="/investigacion/pregunta-e-hipotesis">La pregunta</a>
-
-<a href="/#qu-no-demuestra-este-resultado">Alcance</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Recorrido">
-<p>Recorrido</p>
-
-<a href="/metodos/proteomica">Metodología</a>
-
-<a href="/#qu-muestra-cada-matriz">Las dos matrices</a>
-
-<a href="/#el-colon-como-contexto">El colon como contexto</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Resultados">
-<p>Resultados</p>
-
-<a href="/resultados">Resultados principales</a>
-
-<a href="/proteinas">Explorar proteínas</a>
-
-<a href="/proteinas/comparar">Comparador</a>
-
-<a href="/proteinas/candidatas">Candidatas</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Consulta">
-<p>Consulta</p>
-
-<a href="/glosario">Glosario</a>
-
-<a href="/bibliografia">Bibliografía</a>
-
-<a href="/entregables">Entregables</a>
-
-</nav>
-
-</aside>
 <div class="velo" id="velo" hidden></div>
+<div class="marco">
 <div class="columna">
 <p class="migas">Inicio / Métodos / Expresión diferencial</p>
+<p class="lectura">Lectura de unos 1 min</p>
+<main id="contenido" data-pagefind-body>
+
+<h1>Expresión diferencial</h1>
+<h2 id="qu-entra">Qué entra</h2>
+<p>Entra la <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-celda" aria-expanded="false">celda</button><span class="definicion-corta" id="t-celda" role="tooltip" hidden><span>Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.</span> <a href="/glosario#celda">Más en el glosario</a><span class="relacionados"><a href="/glosario#suero">suero</a> <a href="/glosario#cn">CN</a></span></span></span> del <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-suero" aria-expanded="false">suero</button><span class="definicion-corta" id="t-suero" role="tooltip" hidden><span>La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span> <a href="/glosario#suero">Más en el glosario</a><span class="relacionados"><a href="/glosario#cn">CN</a> <a href="/glosario#dia">DIA</a></span></span></span> y los contrastes de tejido ya definidos. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-122">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-122" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019" aria-describedby="cita-123">(Vasaikar, 2019)</a><span class="cita-ventana" id="cita-123" role="tooltip"><span class="cita-autores">Vasaikar, S., Huang, C., Wang, X., Petyuk, V. A., Savage, S. R., Wen, B., Dou, Y., Zhang, Y., Shi, Z., Arshad, O. A., Gritsenko, M. A., Zimmerman, L. J., McDermott, J. E., Clauss, T. R., Moore, R. J., Zhao, R., Monroe, M. E., Wang, Y.-T., Chambers, M. C., . . . Zhang, Z</span> (2019). <span class="cita-titulo">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities</span>. <span class="cita-revista">Cell</span>. <a href="https://doi.org/10.1016/j.cell.2019.03.030">https://doi.org/10.1016/j.cell.2019.03.030</a></span></span></p>
+<h2 id="qu-se-hace">Qué se hace</h2>
+<p>Cada proteína recibe una clase. Diferente y equivalente no se colapsan en «no significativo». El margen TOST declarado, en log2, va de <data value="-0.585" data-fuente="config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.0" title="Origen: config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.0">−0,585</data> a <data value="0.585" data-fuente="config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.1" title="Origen: config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.1">0,585</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-124">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-124" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<h2 id="qu-sale">Qué sale</h2>
+<p>Frente a <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-cn" aria-expanded="false">CN</button><span class="definicion-corta" id="t-cn" role="tooltip" hidden><span>Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span> <a href="/glosario#cn">Más en el glosario</a><span class="relacionados"><a href="/glosario#cp">CP</a> <a href="/glosario#hc">HC</a></span></span></span> hay <data value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.diferente">0</data> diferentes, <data value="166" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.equivalente" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.equivalente">166</data> equivalentes y <data value="118" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada">118</data> indeterminadas. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-125">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-125" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<h2 id="por-qu-as">Por qué así</h2>
+<p>Un valor no significativo no demuestra que el efecto sea pequeño. La clase equivalente exige el margen escrito antes. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014" aria-describedby="cita-126">(Zhang, 2014)</a><span class="cita-ventana" id="cita-126" role="tooltip"><span class="cita-autores">Zhang, B., Wang, J., Wang, X., Zhu, J., Liu, Q., Shi, Z., Chambers, M. C., Zimmerman, L. J., Shaddox, K. F., Kim, S., Davies, S. R., Wang, S., Wang, P., Kinsinger, C. R., Rivers, R. C., Rodriguez, H., Townsend, R. R., Ellis, M. J. C., Carr, S. A., . . . NCI CPTAC</span> (2014). <span class="cita-titulo">Proteogenomic characterization of human colon and rectal cancer</span>. <span class="cita-revista">Nature</span>. <a href="https://doi.org/10.1038/nature13438">https://doi.org/10.1038/nature13438</a></span></span></p>
+<h2 id="qu-tiene-que-ver-con-la-bioinform-tica">Qué tiene que ver con la bioinformática</h2>
+<p>La prueba se calcula sobre la matriz, con el error estándar y los grados de libertad de cada proteína. No se elige la clase a mano. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024" aria-describedby="cita-127">(Tanaka y Roehrl, 2024)</a><span class="cita-ventana" id="cita-127" role="tooltip"><span class="cita-autores">Tanaka, A., Ogawa, M., Zhou, Y., Namba, K., Hendrickson, R. C., Miele, M. M., Li, Z., Klimstra, D. S., Buckley, P. G., Gulcher, J., Wang, J. Y. and Roehrl, M. H</span> (2024). <span class="cita-titulo">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures</span>. <span class="cita-revista">Cell Reports</span>. <a href="https://doi.org/10.1016/j.celrep.2024.113810">https://doi.org/10.1016/j.celrep.2024.113810</a></span></span></p>
+<h2 id="qu-no-demuestra">Qué no demuestra</h2>
+<p>La clase equivalente no dice que la proteína esté ausente, ni que el resultado sirva para un paciente. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-128">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-128" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<figure class="grafico" id="D8"><h3>¿Cómo se clasifica una proteína?</h3><svg viewBox="0 0 736 376" role="img" class="lienzo-svg"><title>Tres clases, no un solo umbral</title><desc>TREAT y TOST separan diferente, equivalente e indeterminada. El margen está en el preregistro.</desc><a href="/metodos/expresion-diferencial" data-id="contraste" data-fuente="config/preregistro_v3.yaml"><title>Contraste</title><rect x="28" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="40" y="92" fill="currentColor" font-size="15">Contraste</text></a><a href="/metodos/expresion-diferencial" data-id="treat" data-fuente="rai2025"><title>TREAT</title><rect x="278" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="290" y="92" fill="currentColor" font-size="15">TREAT</text></a><a href="/metodos/expresion-diferencial" data-id="tost" data-fuente="config/preregistro_v3.yaml"><title>TOST</title><rect x="278" y="160" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="290" y="204" fill="currentColor" font-size="15">TOST</text></a><a href="/metodos/expresion-diferencial" data-id="diferente" data-fuente="results/v3_7/suero_embudo.json"><title>Diferente</title><rect x="528" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="540" y="92" fill="currentColor" font-size="15">Diferente</text></a><a href="/metodos/expresion-diferencial" data-id="equivalente" data-fuente="results/v3_7/suero_embudo.json"><title>Equivalente</title><rect x="528" y="160" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="540" y="204" fill="currentColor" font-size="15">Equivalente</text></a><a href="/metodos/expresion-diferencial" data-id="indeterminada" data-fuente="results/v3_7/suero_embudo.json"><title>Indeterminada</title><rect x="528" y="272" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="540" y="316" fill="currentColor" font-size="15">Indeterminada</text></a><line data-origen="contraste" data-destino="treat" x1="200" y1="86.0" x2="278" y2="86.0" stroke="currentColor" stroke-width="2"/><line data-origen="contraste" data-destino="tost" x1="200" y1="86.0" x2="278" y2="198.0" stroke="currentColor" stroke-width="2"/><line data-origen="treat" data-destino="diferente" x1="450" y1="86.0" x2="528" y2="86.0" stroke="currentColor" stroke-width="2"/><line data-origen="tost" data-destino="equivalente" x1="450" y1="198.0" x2="528" y2="198.0" stroke="currentColor" stroke-width="2"/><line data-origen="tost" data-destino="indeterminada" x1="450" y1="198.0" x2="528" y2="310.0" stroke="currentColor" stroke-width="2"/></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>origen</th></tr></thead><tbody><tr><td><a href="/metodos/expresion-diferencial">Contraste</a></td><td>config/preregistro_v3.yaml</td></tr><tr><td><a href="/metodos/expresion-diferencial">TREAT</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/expresion-diferencial">TOST</a></td><td>config/preregistro_v3.yaml</td></tr><tr><td><a href="/metodos/expresion-diferencial">Diferente</a></td><td>results/v3_7/suero_embudo.json</td></tr><tr><td><a href="/metodos/expresion-diferencial">Equivalente</a></td><td>results/v3_7/suero_embudo.json</td></tr><tr><td><a href="/metodos/expresion-diferencial">Indeterminada</a></td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>contraste → treat</td><td>rai2025</td></tr><tr><td>contraste → tost</td><td>config/preregistro_v3.yaml</td></tr><tr><td>treat → diferente</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>tost → equivalente</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>tost → indeterminada</td><td>results/v3_7/suero_embudo.json</td></tr></tbody></table></details><p><a href="/figuras/D8.svg" download>Descargar SVG</a> <a href="/figuras/D8.tsv" download>Descargar TSV</a></p></figure>
+
+
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
+<ul>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/preregistro_v3.yaml">config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.0</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/preregistro_v3.yaml">config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.1</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.diferente</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.equivalente</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/preregistro_v3.yaml">config/preregistro_v3.yaml</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/rai2025">rai2025</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json</a></li>
+
+<li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
+
+<li><a href="https://doi.org/10.1038/nature13438">zhang2014 · 10.1038/nature13438</a></li>
+
+<li><a href="https://doi.org/10.1016/j.celrep.2024.113810">tanaka2024 · 10.1016/j.celrep.2024.113810</a></li>
+
+</ul>
+</details>
+
+</main>
+</div>
 
 <nav class="indice" aria-label="En esta página">
+<p class="indice-titulo">En esta página</p>
 
 <a href="#qu-entra">Qué entra</a>
 
@@ -94,73 +117,11 @@
 
 </nav>
 
-<main id="contenido">
-
-<nav class="hermanas" aria-label="En esta sección">
-
-<a href="/metodos/proteomica">Proteómica</a>
-
-<a href="/metodos/canalizacion">Canalización</a>
-
-<a href="/metodos/cohortes-y-diseno">Cohortes y diseño</a>
-
-<a href="/metodos/enriquecimiento">Enriquecimiento</a>
-
-<a href="/metodos/aprendizaje-automatico">Aprendizaje automático</a>
-
-<a href="/metodos/preanalitica-y-calidad">Preanalítica y calidad</a>
-
-<a href="/metodos/priorizacion">Priorización</a>
-
-<a href="/metodos/hipotesis">Hipótesis</a>
-
-</nav>
-
-<h1>Expresión diferencial</h1>
-<h2 id="qu-entra">Qué entra</h2>
-<p>Entra la <a class="termino" href="/glosario#celda">celda<span class="definicion-corta">Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.</span></a> del <a class="termino" href="/glosario#suero">suero<span class="definicion-corta">La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span></a> y los contrastes de tejido ya definidos. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
-<h2 id="qu-se-hace">Qué se hace</h2>
-<p>Cada proteína recibe una clase. Diferente y equivalente no se colapsan en «no significativo». El margen TOST declarado, en log2, va de <data value="-0.585" data-fuente="config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.0" title="Origen: config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.0">−0,585</data> a <data value="0.585" data-fuente="config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.1" title="Origen: config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.1">0,585</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<h2 id="qu-sale">Qué sale</h2>
-<p>Frente a <a class="termino" href="/glosario#cn">CN<span class="definicion-corta">Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span></a> hay <data value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.diferente">0</data> diferentes, <data value="166" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.equivalente" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.equivalente">166</data> equivalentes y <data value="118" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada">118</data> indeterminadas. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<h2 id="por-qu-as">Por qué así</h2>
-<p>Un valor no significativo no demuestra que el efecto sea pequeño. La clase equivalente exige el margen escrito antes. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span></p>
-<h2 id="qu-tiene-que-ver-con-la-bioinform-tica">Qué tiene que ver con la bioinformática</h2>
-<p>La prueba se calcula sobre la matriz, con el error estándar y los grados de libertad de cada proteína. No se elige la clase a mano. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
-<h2 id="qu-no-demuestra">Qué no demuestra</h2>
-<p>La clase equivalente no dice que la proteína esté ausente, ni que el resultado sirva para un paciente. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<figure class="grafico" id="D8"><h3>¿Cómo se clasifica una proteína?</h3><svg viewBox="0 0 1152 180" role="img" class="lienzo-svg"><title>Tres clases, no un solo umbral</title><desc>TREAT y TOST separan diferente, equivalente e indeterminada. El margen está en el preregistro.</desc><g data-id="contraste"><title>Contraste</title><rect x="24" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="40" y="108" fill="currentColor" font-size="16">Contraste</text><g data-id="treat"><title>TREAT</title><rect x="212" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="228" y="108" fill="currentColor" font-size="16">TREAT</text><g data-id="tost"><title>TOST</title><rect x="400" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="416" y="108" fill="currentColor" font-size="16">TOST</text><g data-id="diferente"><title>Diferente</title><rect x="588" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="604" y="108" fill="currentColor" font-size="16">Diferente</text><g data-id="equivalente"><title>Equivalente</title><rect x="776" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="792" y="108" fill="currentColor" font-size="16">Equivalente</text><g data-id="indeterminada"><title>Indeterminada</title><rect x="964" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="980" y="108" fill="currentColor" font-size="16">Indeterminada</text><line data-origen="contraste" data-destino="treat" x1="184" y1="102" x2="212" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="contraste" data-destino="tost" x1="184" y1="36" x2="400" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="treat" data-destino="diferente" x1="372" y1="36" x2="588" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="tost" data-destino="equivalente" x1="560" y1="36" x2="776" y2="36" stroke="currentColor" stroke-width="2"/><line data-origen="tost" data-destino="indeterminada" x1="560" y1="36" x2="964" y2="36" stroke="currentColor" stroke-width="2"/></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>origen</th></tr></thead><tbody><tr><td><a href="/metodos/expresion-diferencial">Contraste</a></td><td>config/preregistro_v3.yaml</td></tr><tr><td><a href="/metodos/expresion-diferencial">TREAT</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/expresion-diferencial">TOST</a></td><td>config/preregistro_v3.yaml</td></tr><tr><td><a href="/metodos/expresion-diferencial">Diferente</a></td><td>results/v3_7/suero_embudo.json</td></tr><tr><td><a href="/metodos/expresion-diferencial">Equivalente</a></td><td>results/v3_7/suero_embudo.json</td></tr><tr><td><a href="/metodos/expresion-diferencial">Indeterminada</a></td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>contraste → treat</td><td>rai2025</td></tr><tr><td>contraste → tost</td><td>config/preregistro_v3.yaml</td></tr><tr><td>treat → diferente</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>tost → equivalente</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>tost → indeterminada</td><td>results/v3_7/suero_embudo.json</td></tr></tbody></table></details><p><a href="/figuras/D8.svg" download>Descargar SVG</a> <a href="/figuras/D8.tsv" download>Descargar TSV</a></p></figure>
-
-<details class="transparencia">
-<summary>Transparencia y trazabilidad</summary>
-<ul>
-
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/preregistro_v3.yaml">config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.0</a></li>
-
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/preregistro_v3.yaml">config/preregistro_v3.yaml#k4_suero.margenes_tost_log2.1</a></li>
-
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.diferente</a></li>
-
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.equivalente</a></li>
-
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.indeterminada</a></li>
-
-<li><a href="https://doi.org/10.1021/acs.jproteome.5c00285">rai2025 · 10.1021/acs.jproteome.5c00285</a></li>
-
-<li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
-
-<li><a href="https://doi.org/10.1038/nature13438">zhang2014 · 10.1038/nature13438</a></li>
-
-<li><a href="https://doi.org/10.1016/j.celrep.2024.113810">tanaka2024 · 10.1016/j.celrep.2024.113810</a></li>
-
-</ul>
-</details>
-
-</main>
-</div>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
 
 <a href="/datos">Datos</a>
 
@@ -178,10 +139,12 @@
 
 <a href="/bibliografia">Bibliografía</a>
 
+<a href="/como-citar">Cómo citar</a>
+<a href="/sobre">Sobre esta tesis</a>
 </nav>
-<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
-<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">Publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
+<p><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v3.7-final">Repositorio, etiqueta v3.7-final</a></p>
+<p class="nota-etica">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 </footer>
 <script>(function () {
   var raiz = document.documentElement;
@@ -205,7 +168,7 @@
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
   function marcarLateral() {
-    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+    document.querySelectorAll("#exploracion a").forEach(function (enlace) {
       var href = enlace.getAttribute("href") || "";
       var activo = false;
       if (href.indexOf("#") !== -1) {
@@ -264,7 +227,9 @@
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
         if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
-        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+        var partes = consulta.split(";").map(function (parte) { return parte.trim(); }).filter(Boolean);
+        var hallado = texto.indexOf(consulta) !== -1 || (partes.length > 1 && partes.some(function (parte) { return texto.indexOf(parte) !== -1; }));
+        nodo.hidden = consulta.length > 0 && !hallado;
       });
     };
     caja.addEventListener("input", aplicar);
@@ -408,6 +373,176 @@
     if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
     pintar();
   }
+  document.querySelectorAll(".termino").forEach(function (boton) {
+    var panel = document.getElementById(boton.getAttribute("aria-describedby"));
+    if (!panel) return;
+    function abrir() {
+      panel.hidden = false;
+      boton.setAttribute("aria-expanded", "true");
+    }
+    function cerrar() {
+      panel.hidden = true;
+      boton.setAttribute("aria-expanded", "false");
+    }
+    boton.addEventListener("click", function () {
+      if (panel.hidden) abrir();
+      else cerrar();
+    });
+    boton.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  });
+  document.querySelectorAll("[data-copiar]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var texto = boton.getAttribute("data-copiar") || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(function () {
+          boton.textContent = "Copiada";
+        });
+      }
+    });
+  });
+  function filtrarGrupo(selector, atributo, valor) {
+    document.querySelectorAll(selector).forEach(function (nodo) {
+      var coincide = valor === "Todas" || nodo.getAttribute(atributo) === valor;
+      nodo.hidden = !coincide;
+    });
+  }
+  document.querySelectorAll("[data-filtro-bib]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-tesis", "data-tema", boton.getAttribute("data-filtro-bib"));
+    });
+  });
+  document.querySelectorAll("[data-filtro-glosario]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-termino", "data-categoria", boton.getAttribute("data-filtro-glosario"));
+    });
+  });
+  var filtroGlosario = document.getElementById("filtro-glosario");
+  if (filtroGlosario) {
+    filtroGlosario.addEventListener("input", function () {
+      var q = filtroGlosario.value.toLowerCase();
+      document.querySelectorAll(".entrada-termino").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  var filtroBib = document.getElementById("filtro-bib");
+  if (filtroBib) {
+    filtroBib.addEventListener("input", function () {
+      var q = filtroBib.value.toLowerCase();
+      document.querySelectorAll(".entrada-tesis").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  document.querySelectorAll("[data-juguete]").forEach(function (formulario) {
+    var efecto = formulario.querySelector("[data-efecto]");
+    var ancho = formulario.querySelector("[data-ancho]");
+    var clase = formulario.querySelector("[data-clase]");
+    function pintar() {
+      var e = Number(efecto.value);
+      var a = Number(ancho.value);
+      var bajo = e - a;
+      var alto = e + a;
+      var margen = Math.log2(1.5);
+      var resultado = "indeterminada";
+      if (bajo >= margen || alto <= -margen) resultado = "diferente";
+      else if (bajo >= -margen && alto <= margen) resultado = "equivalente";
+      clase.textContent = "Efecto " + e.toFixed(2) + ", intervalo " + bajo.toFixed(2) + " a " + alto.toFixed(2) + ". Clase de juguete: " + resultado + ".";
+    }
+    efecto.addEventListener("input", pintar);
+    ancho.addEventListener("input", pintar);
+    pintar();
+  });
+  var cajaBusqueda = document.getElementById("q");
+  var sugerencias = document.getElementById("sugerencias");
+  if (cajaBusqueda && sugerencias && !document.querySelector("[data-buscar]")) {
+    var indice = null;
+    var activo = -1;
+    function coincide(consulta, texto) {
+      var q = consulta.toLowerCase().trim();
+      var bolsa = (texto || "").toLowerCase();
+      if (!q) return false;
+      if (bolsa.indexOf(q) !== -1) return true;
+      var partes = q.split(";").filter(Boolean);
+      return partes.length > 1 && partes.some(function (parte) { return bolsa.indexOf(parte) !== -1; });
+    }
+    function pintarSugerencias(lista) {
+      sugerencias.innerHTML = "";
+      if (!lista.length) {
+        sugerencias.hidden = true;
+        return;
+      }
+      var grupos = {};
+      lista.slice(0, 12).forEach(function (item) {
+        grupos[item.grupo] = grupos[item.grupo] || [];
+        grupos[item.grupo].push(item);
+      });
+      Object.keys(grupos).forEach(function (grupo) {
+        var titulo = document.createElement("p");
+        titulo.textContent = grupo;
+        sugerencias.appendChild(titulo);
+        grupos[grupo].forEach(function (item) {
+          var enlace = document.createElement("a");
+          enlace.href = item.href;
+          enlace.textContent = item.rotulo;
+          sugerencias.appendChild(enlace);
+        });
+      });
+      sugerencias.hidden = false;
+      activo = -1;
+    }
+    cajaBusqueda.addEventListener("input", function () {
+      var q = cajaBusqueda.value;
+      if (q.trim().length < 2) {
+        sugerencias.hidden = true;
+        return;
+      }
+      function aplicar(datos) {
+        indice = datos;
+        pintarSugerencias(datos.filter(function (item) { return coincide(q, item.texto); }));
+      }
+      if (indice) aplicar(indice);
+      else fetch("/buscar/indice.json").then(function (r) { return r.json(); }).then(aplicar).catch(function () {});
+    });
+    cajaBusqueda.addEventListener("keydown", function (evento) {
+      var enlaces = sugerencias.querySelectorAll("a");
+      if (evento.key === "Escape") {
+        sugerencias.hidden = true;
+        return;
+      }
+      if (!enlaces.length || sugerencias.hidden) return;
+      if (evento.key === "ArrowDown" || evento.key === "ArrowUp") {
+        evento.preventDefault();
+        activo += evento.key === "ArrowDown" ? 1 : -1;
+        if (activo < 0) activo = enlaces.length - 1;
+        if (activo >= enlaces.length) activo = 0;
+        enlaces.forEach(function (enlace, i) {
+          if (i === activo) enlace.setAttribute("aria-selected", "true");
+          else enlace.removeAttribute("aria-selected");
+        });
+        enlaces[activo].focus();
+      }
+    });
+  }
+  var punta = document.createElement("div");
+  punta.className = "cita-ventana";
+  punta.hidden = true;
+  document.body.appendChild(punta);
+  document.querySelectorAll("[data-tip]").forEach(function (nodo) {
+    function mostrar() {
+      punta.hidden = false;
+      punta.textContent = nodo.getAttribute("data-tip");
+    }
+    nodo.addEventListener("focus", mostrar);
+    nodo.addEventListener("mouseenter", mostrar);
+    nodo.addEventListener("blur", function () { punta.hidden = true; });
+    nodo.addEventListener("mouseleave", function () { punta.hidden = true; });
+  });
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

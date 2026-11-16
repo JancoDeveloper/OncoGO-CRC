@@ -534,7 +534,7 @@ def main() -> None:
     documento = {
         "nota_go": (
             "Los términos y las evidencias salen de UniProt. "
-            "go_gene_long.tsv está en el manifiesto de la corrida y no trae códigos de evidencia, "
+            "La tabla de Gene Ontology está en el manifiesto de la corrida y no trae códigos de evidencia, "
             "y la corrida no guardó el obo. La propagación usa go-basic.obo descargado aparte. "
             "No es la ontología de la tesis."
         ),
@@ -634,7 +634,7 @@ def rehacer() -> None:
     documento = {
         "nota_go": (
             "Los términos y las evidencias salen de UniProt. "
-            "go_gene_long.tsv está en el manifiesto de la corrida y no trae códigos de evidencia, "
+            "La tabla de Gene Ontology está en el manifiesto de la corrida y no trae códigos de evidencia, "
             "y la corrida no guardó el obo. La propagación usa go-basic.obo descargado aparte. "
             "No es la ontología de la tesis."
         ),

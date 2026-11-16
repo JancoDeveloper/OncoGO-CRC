@@ -4,81 +4,102 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Canalización · OncoGO-CRC</title>
+<meta name="description" content="De la matriz publicada a la tabla que entra en el contraste.">
+<meta property="og:title" content="Canalización · OncoGO-CRC">
+<meta property="og:description" content="De la matriz publicada a la tabla que entra en el contraste.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CO">
+<link rel="canonical" href="https://oncogo-crc-tesis.web.app/metodos/canalizacion">
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.4fa9f694d6.css">
+<link rel="preload" href="/fuentes/source-serif-4-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v4.cc00b862b0.css">
+
 </head>
-<body>
+<body data-pagefind-filter="seccion">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
+<nav id="exploracion" class="menu" aria-label="Principal">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
+
+<a href="/datos">Datos</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/resultados">Resultados</a>
+
+<a href="/proteinas">Proteínas</a>
+
+</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
-<label class="saltar" for="q">Buscar</label>
-<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<label class="saltar" for="q">Buscar proteína, término o página</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" autocomplete="off" value="">
 <button type="submit">Buscar</button>
+<div id="sugerencias" class="sugerencias" hidden></div>
 </form>
+<nav class="accesos" aria-label="Consulta">
+<a href="/glosario">Glosario</a>
+<a href="/bibliografia">Bibliografía</a>
+</nav>
 <button type="button" id="tema">Tema</button>
 </header>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<div class="marco">
-<aside id="exploracion" class="lateral" aria-label="Principal">
-<p class="lateral-etiqueta">Explorar la investigación</p>
-<a class="lateral-inicio" href="/">Inicio</a>
-
-<nav class="lateral-grupo" aria-label="Investigación">
-<p>Investigación</p>
-
-<a href="/#qu-problema-se-midi">El problema</a>
-
-<a href="/investigacion/pregunta-e-hipotesis">La pregunta</a>
-
-<a href="/#qu-no-demuestra-este-resultado">Alcance</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Recorrido">
-<p>Recorrido</p>
-
-<a href="/metodos/proteomica">Metodología</a>
-
-<a href="/#qu-muestra-cada-matriz">Las dos matrices</a>
-
-<a href="/#el-colon-como-contexto">El colon como contexto</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Resultados">
-<p>Resultados</p>
-
-<a href="/resultados">Resultados principales</a>
-
-<a href="/proteinas">Explorar proteínas</a>
-
-<a href="/proteinas/comparar">Comparador</a>
-
-<a href="/proteinas/candidatas">Candidatas</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Consulta">
-<p>Consulta</p>
-
-<a href="/glosario">Glosario</a>
-
-<a href="/bibliografia">Bibliografía</a>
-
-<a href="/entregables">Entregables</a>
-
-</nav>
-
-</aside>
 <div class="velo" id="velo" hidden></div>
+<div class="marco">
 <div class="columna">
 <p class="migas">Inicio / Métodos / Canalización</p>
+<p class="lectura">Lectura de unos 1 min</p>
+<main id="contenido" data-pagefind-body>
+
+<h1>Canalización</h1>
+<h2 id="qu-entra">Qué entra</h2>
+<p>Entra el informe ya cuantificado del <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-suero" aria-expanded="false">suero</button><span class="definicion-corta" id="t-suero" role="tooltip" hidden><span>La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span> <a href="/glosario#suero">Más en el glosario</a><span class="relacionados"><a href="/glosario#cn">CN</a> <a href="/glosario#dia">DIA</a></span></span></span> y las matrices de tejido publicadas. Esta tesis no vuelve a adquirir los espectros. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-106">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-106" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019" aria-describedby="cita-107">(Vasaikar, 2019)</a><span class="cita-ventana" id="cita-107" role="tooltip"><span class="cita-autores">Vasaikar, S., Huang, C., Wang, X., Petyuk, V. A., Savage, S. R., Wen, B., Dou, Y., Zhang, Y., Shi, Z., Arshad, O. A., Gritsenko, M. A., Zimmerman, L. J., McDermott, J. E., Clauss, T. R., Moore, R. J., Zhao, R., Monroe, M. E., Wang, Y.-T., Chambers, M. C., . . . Zhang, Z</span> (2019). <span class="cita-titulo">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities</span>. <span class="cita-revista">Cell</span>. <a href="https://doi.org/10.1016/j.cell.2019.03.030">https://doi.org/10.1016/j.cell.2019.03.030</a></span></span></p>
+<h2 id="qu-se-hace">Qué se hace</h2>
+<p>Se leen las proteínas, se aplican los filtros escritos en el preregistro y se dejan tres contrastes de suero separados. El diseño declarado del suero es <data value="no_pareado" data-fuente="config/preregistro_v3.yaml#k4_suero.diseno" title="Origen: config/preregistro_v3.yaml#k4_suero.diseno">Sin parear las muestras</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-108">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-108" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<h2 id="qu-sale">Qué sale</h2>
+<p>La <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-celda" aria-expanded="false">celda</button><span class="definicion-corta" id="t-celda" role="tooltip" hidden><span>Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.</span> <a href="/glosario#celda">Más en el glosario</a><span class="relacionados"><a href="/glosario#suero">suero</a> <a href="/glosario#cn">CN</a></span></span></span> queda con <data value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.n">284</data> proteínas. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-109">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-109" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<h2 id="por-qu-as">Por qué así</h2>
+<p>Un filtro escrito después de ver el resultado cambiaría el universo. El preregistro fija el universo antes. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014" aria-describedby="cita-110">(Zhang, 2014)</a><span class="cita-ventana" id="cita-110" role="tooltip"><span class="cita-autores">Zhang, B., Wang, J., Wang, X., Zhu, J., Liu, Q., Shi, Z., Chambers, M. C., Zimmerman, L. J., Shaddox, K. F., Kim, S., Davies, S. R., Wang, S., Wang, P., Kinsinger, C. R., Rivers, R. C., Rodriguez, H., Townsend, R. R., Ellis, M. J. C., Carr, S. A., . . . NCI CPTAC</span> (2014). <span class="cita-titulo">Proteogenomic characterization of human colon and rectal cancer</span>. <span class="cita-revista">Nature</span>. <a href="https://doi.org/10.1038/nature13438">https://doi.org/10.1038/nature13438</a></span></span></p>
+<h2 id="qu-tiene-que-ver-con-la-bioinform-tica">Qué tiene que ver con la bioinformática</h2>
+<p>La canalización de esta tesis es el paso que convierte un fichero publicado en una tabla con grupos y con una regla de ausencia. No es el programa del espectrómetro. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024" aria-describedby="cita-111">(Tanaka y Roehrl, 2024)</a><span class="cita-ventana" id="cita-111" role="tooltip"><span class="cita-autores">Tanaka, A., Ogawa, M., Zhou, Y., Namba, K., Hendrickson, R. C., Miele, M. M., Li, Z., Klimstra, D. S., Buckley, P. G., Gulcher, J., Wang, J. Y. and Roehrl, M. H</span> (2024). <span class="cita-titulo">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures</span>. <span class="cita-revista">Cell Reports</span>. <a href="https://doi.org/10.1016/j.celrep.2024.113810">https://doi.org/10.1016/j.celrep.2024.113810</a></span></span></p>
+<h2 id="qu-no-demuestra">Qué no demuestra</h2>
+<p>Que una proteína entre en la celda no dice que sirva para decidir sobre un paciente. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-112">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-112" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<figure class="grafico" id="D6"><h3>¿En qué orden corre el cálculo?</h3><svg viewBox="0 0 1236 264" role="img" class="lienzo-svg"><title>Canalización con ramas</title><desc>Tejido, suero, anotación y modelos no se funden en una sola matriz. Cada rama produce su tabla y todas llegan al embudo.</desc><a href="/datos/pdc000116" data-id="cptac" data-fuente="vasaikar2019"><title>CPTAC 688</title><rect x="28" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="40" y="92" fill="currentColor" font-size="15">CPTAC 688</text></a><a href="/datos/pxd034575" data-id="tanaka" data-fuente="tanaka2024"><title>Tanaka</title><rect x="28" y="160" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="40" y="204" fill="currentColor" font-size="15">Tanaka</text></a><a href="/datos/pxd055218" data-id="rai" data-fuente="rai2025"><title>Rai</title><rect x="278" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="290" y="92" fill="currentColor" font-size="15">Rai</text></a><a href="/resultados/suero" data-id="celda" data-fuente="results/v3_7/suero_embudo.json"><title>Celda 284</title><rect x="278" y="160" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="290" y="204" fill="currentColor" font-size="15">Celda 284</text></a><a href="/datos/hpa" data-id="anotacion" data-fuente="uhlen2015"><title>Anotación</title><rect x="528" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="540" y="92" fill="currentColor" font-size="15">Anotación</text></a><a href="/metodos/aprendizaje-automatico" data-id="modelos" data-fuente="results/v3_7/ml_modelos.tsv"><title>Modelos</title><rect x="778" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="790" y="92" fill="currentColor" font-size="15">Modelos</text></a><a href="/resultados/priorizacion" data-id="embudo" data-fuente="results/v3_7/priorizacion_embudo.json"><title>Paso 5 20</title><rect x="1028" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="1040" y="92" fill="currentColor" font-size="15">Paso 5 20</text></a><a href="/resultados/priorizacion" data-id="cero" data-fuente="results/v3_7/priorizacion_embudo.json"><title>Paso 6 0</title><rect x="1028" y="160" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="1040" y="204" fill="currentColor" font-size="15">Paso 6 0</text></a><line data-origen="cptac" data-destino="tanaka" x1="200" y1="86.0" x2="28" y2="198.0" stroke="currentColor" stroke-width="2"/><text x="114.0" y="136.0" fill="currentColor" font-size="12" text-anchor="middle">mismo signo</text><line data-origen="rai" data-destino="celda" x1="450" y1="86.0" x2="278" y2="198.0" stroke="currentColor" stroke-width="2"/><text x="364.0" y="136.0" fill="currentColor" font-size="12" text-anchor="middle">DIA-NN</text><line data-origen="tanaka" data-destino="embudo" x1="200" y1="198.0" x2="1028" y2="86.0" stroke="currentColor" stroke-width="2"/><text x="614.0" y="136.0" fill="currentColor" font-size="12" text-anchor="middle">tejido</text><line data-origen="celda" data-destino="embudo" x1="450" y1="198.0" x2="1028" y2="86.0" stroke="currentColor" stroke-width="2"/><text x="739.0" y="136.0" fill="currentColor" font-size="12" text-anchor="middle">suero</text><line data-origen="anotacion" data-destino="embudo" x1="700" y1="86.0" x2="1028" y2="86.0" stroke="currentColor" stroke-width="2"/><text x="864.0" y="80.0" fill="currentColor" font-size="12" text-anchor="middle">H5 y H7</text><line data-origen="modelos" data-destino="embudo" x1="950" y1="86.0" x2="1028" y2="86.0" stroke="currentColor" stroke-width="2"/><text x="989.0" y="80.0" fill="currentColor" font-size="12" text-anchor="middle">calidad</text><line data-origen="embudo" data-destino="cero" x1="1200" y1="86.0" x2="1028" y2="198.0" stroke="currentColor" stroke-width="2"/><text x="1114.0" y="136.0" fill="currentColor" font-size="12" text-anchor="middle">nadie pasa</text><line data-origen="cptac" data-destino="cero" x1="200" y1="86.0" x2="1028" y2="198.0" stroke="currentColor" stroke-width="2"/><text x="614.0" y="136.0" fill="currentColor" font-size="12" text-anchor="middle">cierra</text></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>origen</th></tr></thead><tbody><tr><td><a href="/datos/pdc000116">CPTAC 688</a></td><td>vasaikar2019</td></tr><tr><td><a href="/datos/pxd034575">Tanaka</a></td><td>tanaka2024</td></tr><tr><td><a href="/datos/pxd055218">Rai</a></td><td>rai2025</td></tr><tr><td><a href="/resultados/suero">Celda 284</a></td><td>results/v3_7/suero_embudo.json</td></tr><tr><td><a href="/datos/hpa">Anotación</a></td><td>uhlen2015</td></tr><tr><td><a href="/metodos/aprendizaje-automatico">Modelos</a></td><td>results/v3_7/ml_modelos.tsv</td></tr><tr><td><a href="/resultados/priorizacion">Paso 5 20</a></td><td>results/v3_7/priorizacion_embudo.json</td></tr><tr><td><a href="/resultados/priorizacion">Paso 6 0</a></td><td>results/v3_7/priorizacion_embudo.json</td></tr><tr><td>cptac → tanaka (mismo signo)</td><td>tanaka2024</td></tr><tr><td>rai → celda (DIA-NN)</td><td>rai2025</td></tr><tr><td>tanaka → embudo (tejido)</td><td>results/v3_7/k1_etiquetas.json</td></tr><tr><td>celda → embudo (suero)</td><td>results/v3_7/suero_embudo.json</td></tr><tr><td>anotacion → embudo (H5 y H7)</td><td>uhlen2015</td></tr><tr><td>modelos → embudo (calidad)</td><td>results/v3_7/ml_modelos.tsv</td></tr><tr><td>embudo → cero (nadie pasa)</td><td>results/v3_7/priorizacion_embudo.json</td></tr><tr><td>cptac → cero (cierra)</td><td>results/v3_7/priorizacion_embudo.json</td></tr></tbody></table></details><p><a href="/figuras/D6.svg" download>Descargar SVG</a> <a href="/figuras/D6.tsv" download>Descargar TSV</a></p></figure>
+
+
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
+<ul>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/preregistro_v3.yaml">config/preregistro_v3.yaml#k4_suero.diseno</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.n</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/vasaikar2019">vasaikar2019</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/tanaka2024">tanaka2024</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/rai2025">rai2025</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/uhlen2015">uhlen2015</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/ml_modelos.tsv">results/v3_7/ml_modelos.tsv</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/priorizacion_embudo.json">results/v3_7/priorizacion_embudo.json</a></li>
+
+<li><a href="https://doi.org/10.1038/nature13438">zhang2014 · 10.1038/nature13438</a></li>
+
+</ul>
+</details>
+
+</main>
+</div>
 
 <nav class="indice" aria-label="En esta página">
+<p class="indice-titulo">En esta página</p>
 
 <a href="#qu-entra">Qué entra</a>
 
@@ -94,67 +115,11 @@
 
 </nav>
 
-<main id="contenido">
-
-<nav class="hermanas" aria-label="En esta sección">
-
-<a href="/metodos/proteomica">Proteómica</a>
-
-<a href="/metodos/cohortes-y-diseno">Cohortes y diseño</a>
-
-<a href="/metodos/expresion-diferencial">Expresión diferencial</a>
-
-<a href="/metodos/enriquecimiento">Enriquecimiento</a>
-
-<a href="/metodos/aprendizaje-automatico">Aprendizaje automático</a>
-
-<a href="/metodos/preanalitica-y-calidad">Preanalítica y calidad</a>
-
-<a href="/metodos/priorizacion">Priorización</a>
-
-<a href="/metodos/hipotesis">Hipótesis</a>
-
-</nav>
-
-<h1>Canalización</h1>
-<h2 id="qu-entra">Qué entra</h2>
-<p>Entra el informe ya cuantificado del <a class="termino" href="/glosario#suero">suero<span class="definicion-corta">La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span></a> y las matrices de tejido publicadas. Esta tesis no vuelve a adquirir los espectros. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
-<h2 id="qu-se-hace">Qué se hace</h2>
-<p>Se leen las proteínas, se aplican los filtros escritos en el preregistro y se dejan tres contrastes de suero separados. El diseño declarado del suero es <data value="no_pareado" data-fuente="config/preregistro_v3.yaml#k4_suero.diseno" title="Origen: config/preregistro_v3.yaml#k4_suero.diseno">no_pareado</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<h2 id="qu-sale">Qué sale</h2>
-<p>La <a class="termino" href="/glosario#celda">celda<span class="definicion-corta">Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.</span></a> queda con <data value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.n">284</data> proteínas. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<h2 id="por-qu-as">Por qué así</h2>
-<p>Un filtro escrito después de ver el resultado cambiaría el universo. El preregistro fija el universo antes. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span></p>
-<h2 id="qu-tiene-que-ver-con-la-bioinform-tica">Qué tiene que ver con la bioinformática</h2>
-<p>La canalización de esta tesis es el paso que convierte un fichero publicado en una tabla con grupos y con una regla de ausencia. No es el programa del espectrómetro. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
-<h2 id="qu-no-demuestra">Qué no demuestra</h2>
-<p>Que una proteína entre en la celda no dice que sirva para decidir sobre un paciente. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<figure class="grafico" id="D6"><h3>¿En qué orden corre el cálculo?</h3><svg viewBox="0 0 964 180" role="img" class="lienzo-svg"><title>Etapas de la corrida v3.7</title><desc>Los nombres son las piezas que llama src/oncogo_crc/stages/v3_7.py. No es la lista completa de funciones.</desc><g data-id="tejido"><title>Tejido</title><rect x="24" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="40" y="108" fill="currentColor" font-size="16">Tejido</text><g data-id="suero"><title>Suero</title><rect x="212" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="228" y="108" fill="currentColor" font-size="16">Suero</text><g data-id="ml"><title>Modelos</title><rect x="400" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="416" y="108" fill="currentColor" font-size="16">Modelos</text><g data-id="hipotesis"><title>Hipótesis</title><rect x="588" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="604" y="108" fill="currentColor" font-size="16">Hipótesis</text><g data-id="prioridad"><title>Priorización</title><rect x="776" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="792" y="108" fill="currentColor" font-size="16">Priorización</text><line data-origen="tejido" data-destino="suero" x1="184" y1="102" x2="212" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="suero" data-destino="ml" x1="372" y1="102" x2="400" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="ml" data-destino="hipotesis" x1="560" y1="102" x2="588" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="hipotesis" data-destino="prioridad" x1="748" y1="102" x2="776" y2="102" stroke="currentColor" stroke-width="2"/></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>origen</th></tr></thead><tbody><tr><td><a href="/datos/pdc000116">Tejido</a></td><td>src/oncogo_crc/stages/v3_7.py</td></tr><tr><td><a href="/datos/pxd055218">Suero</a></td><td>src/oncogo_crc/stages/v3_7.py</td></tr><tr><td><a href="/metodos/aprendizaje-automatico">Modelos</a></td><td>src/oncogo_crc/stages/v3_7.py</td></tr><tr><td><a href="/metodos/hipotesis">Hipótesis</a></td><td>src/oncogo_crc/stages/v3_7.py</td></tr><tr><td><a href="/metodos/priorizacion">Priorización</a></td><td>src/oncogo_crc/stages/v3_7.py</td></tr><tr><td>tejido → suero</td><td>src/oncogo_crc/stages/v3_7.py</td></tr><tr><td>suero → ml</td><td>src/oncogo_crc/stages/v3_7.py</td></tr><tr><td>ml → hipotesis</td><td>src/oncogo_crc/stages/v3_7.py</td></tr><tr><td>hipotesis → prioridad</td><td>src/oncogo_crc/stages/v3_7.py</td></tr></tbody></table></details><p><a href="/figuras/D6.svg" download>Descargar SVG</a> <a href="/figuras/D6.tsv" download>Descargar TSV</a></p></figure>
-
-<details class="transparencia">
-<summary>Transparencia y trazabilidad</summary>
-<ul>
-
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/preregistro_v3.yaml">config/preregistro_v3.yaml#k4_suero.diseno</a></li>
-
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.n</a></li>
-
-<li><a href="https://doi.org/10.1021/acs.jproteome.5c00285">rai2025 · 10.1021/acs.jproteome.5c00285</a></li>
-
-<li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
-
-<li><a href="https://doi.org/10.1038/nature13438">zhang2014 · 10.1038/nature13438</a></li>
-
-<li><a href="https://doi.org/10.1016/j.celrep.2024.113810">tanaka2024 · 10.1016/j.celrep.2024.113810</a></li>
-
-</ul>
-</details>
-
-</main>
-</div>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
 
 <a href="/datos">Datos</a>
 
@@ -172,10 +137,12 @@
 
 <a href="/bibliografia">Bibliografía</a>
 
+<a href="/como-citar">Cómo citar</a>
+<a href="/sobre">Sobre esta tesis</a>
 </nav>
-<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
-<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">Publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
+<p><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v3.7-final">Repositorio, etiqueta v3.7-final</a></p>
+<p class="nota-etica">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 </footer>
 <script>(function () {
   var raiz = document.documentElement;
@@ -199,7 +166,7 @@
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
   function marcarLateral() {
-    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+    document.querySelectorAll("#exploracion a").forEach(function (enlace) {
       var href = enlace.getAttribute("href") || "";
       var activo = false;
       if (href.indexOf("#") !== -1) {
@@ -258,7 +225,9 @@
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
         if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
-        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+        var partes = consulta.split(";").map(function (parte) { return parte.trim(); }).filter(Boolean);
+        var hallado = texto.indexOf(consulta) !== -1 || (partes.length > 1 && partes.some(function (parte) { return texto.indexOf(parte) !== -1; }));
+        nodo.hidden = consulta.length > 0 && !hallado;
       });
     };
     caja.addEventListener("input", aplicar);
@@ -402,6 +371,176 @@
     if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
     pintar();
   }
+  document.querySelectorAll(".termino").forEach(function (boton) {
+    var panel = document.getElementById(boton.getAttribute("aria-describedby"));
+    if (!panel) return;
+    function abrir() {
+      panel.hidden = false;
+      boton.setAttribute("aria-expanded", "true");
+    }
+    function cerrar() {
+      panel.hidden = true;
+      boton.setAttribute("aria-expanded", "false");
+    }
+    boton.addEventListener("click", function () {
+      if (panel.hidden) abrir();
+      else cerrar();
+    });
+    boton.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  });
+  document.querySelectorAll("[data-copiar]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var texto = boton.getAttribute("data-copiar") || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(function () {
+          boton.textContent = "Copiada";
+        });
+      }
+    });
+  });
+  function filtrarGrupo(selector, atributo, valor) {
+    document.querySelectorAll(selector).forEach(function (nodo) {
+      var coincide = valor === "Todas" || nodo.getAttribute(atributo) === valor;
+      nodo.hidden = !coincide;
+    });
+  }
+  document.querySelectorAll("[data-filtro-bib]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-tesis", "data-tema", boton.getAttribute("data-filtro-bib"));
+    });
+  });
+  document.querySelectorAll("[data-filtro-glosario]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-termino", "data-categoria", boton.getAttribute("data-filtro-glosario"));
+    });
+  });
+  var filtroGlosario = document.getElementById("filtro-glosario");
+  if (filtroGlosario) {
+    filtroGlosario.addEventListener("input", function () {
+      var q = filtroGlosario.value.toLowerCase();
+      document.querySelectorAll(".entrada-termino").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  var filtroBib = document.getElementById("filtro-bib");
+  if (filtroBib) {
+    filtroBib.addEventListener("input", function () {
+      var q = filtroBib.value.toLowerCase();
+      document.querySelectorAll(".entrada-tesis").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  document.querySelectorAll("[data-juguete]").forEach(function (formulario) {
+    var efecto = formulario.querySelector("[data-efecto]");
+    var ancho = formulario.querySelector("[data-ancho]");
+    var clase = formulario.querySelector("[data-clase]");
+    function pintar() {
+      var e = Number(efecto.value);
+      var a = Number(ancho.value);
+      var bajo = e - a;
+      var alto = e + a;
+      var margen = Math.log2(1.5);
+      var resultado = "indeterminada";
+      if (bajo >= margen || alto <= -margen) resultado = "diferente";
+      else if (bajo >= -margen && alto <= margen) resultado = "equivalente";
+      clase.textContent = "Efecto " + e.toFixed(2) + ", intervalo " + bajo.toFixed(2) + " a " + alto.toFixed(2) + ". Clase de juguete: " + resultado + ".";
+    }
+    efecto.addEventListener("input", pintar);
+    ancho.addEventListener("input", pintar);
+    pintar();
+  });
+  var cajaBusqueda = document.getElementById("q");
+  var sugerencias = document.getElementById("sugerencias");
+  if (cajaBusqueda && sugerencias && !document.querySelector("[data-buscar]")) {
+    var indice = null;
+    var activo = -1;
+    function coincide(consulta, texto) {
+      var q = consulta.toLowerCase().trim();
+      var bolsa = (texto || "").toLowerCase();
+      if (!q) return false;
+      if (bolsa.indexOf(q) !== -1) return true;
+      var partes = q.split(";").filter(Boolean);
+      return partes.length > 1 && partes.some(function (parte) { return bolsa.indexOf(parte) !== -1; });
+    }
+    function pintarSugerencias(lista) {
+      sugerencias.innerHTML = "";
+      if (!lista.length) {
+        sugerencias.hidden = true;
+        return;
+      }
+      var grupos = {};
+      lista.slice(0, 12).forEach(function (item) {
+        grupos[item.grupo] = grupos[item.grupo] || [];
+        grupos[item.grupo].push(item);
+      });
+      Object.keys(grupos).forEach(function (grupo) {
+        var titulo = document.createElement("p");
+        titulo.textContent = grupo;
+        sugerencias.appendChild(titulo);
+        grupos[grupo].forEach(function (item) {
+          var enlace = document.createElement("a");
+          enlace.href = item.href;
+          enlace.textContent = item.rotulo;
+          sugerencias.appendChild(enlace);
+        });
+      });
+      sugerencias.hidden = false;
+      activo = -1;
+    }
+    cajaBusqueda.addEventListener("input", function () {
+      var q = cajaBusqueda.value;
+      if (q.trim().length < 2) {
+        sugerencias.hidden = true;
+        return;
+      }
+      function aplicar(datos) {
+        indice = datos;
+        pintarSugerencias(datos.filter(function (item) { return coincide(q, item.texto); }));
+      }
+      if (indice) aplicar(indice);
+      else fetch("/buscar/indice.json").then(function (r) { return r.json(); }).then(aplicar).catch(function () {});
+    });
+    cajaBusqueda.addEventListener("keydown", function (evento) {
+      var enlaces = sugerencias.querySelectorAll("a");
+      if (evento.key === "Escape") {
+        sugerencias.hidden = true;
+        return;
+      }
+      if (!enlaces.length || sugerencias.hidden) return;
+      if (evento.key === "ArrowDown" || evento.key === "ArrowUp") {
+        evento.preventDefault();
+        activo += evento.key === "ArrowDown" ? 1 : -1;
+        if (activo < 0) activo = enlaces.length - 1;
+        if (activo >= enlaces.length) activo = 0;
+        enlaces.forEach(function (enlace, i) {
+          if (i === activo) enlace.setAttribute("aria-selected", "true");
+          else enlace.removeAttribute("aria-selected");
+        });
+        enlaces[activo].focus();
+      }
+    });
+  }
+  var punta = document.createElement("div");
+  punta.className = "cita-ventana";
+  punta.hidden = true;
+  document.body.appendChild(punta);
+  document.querySelectorAll("[data-tip]").forEach(function (nodo) {
+    function mostrar() {
+      punta.hidden = false;
+      punta.textContent = nodo.getAttribute("data-tip");
+    }
+    nodo.addEventListener("focus", mostrar);
+    nodo.addEventListener("mouseenter", mostrar);
+    nodo.addEventListener("blur", function () { punta.hidden = true; });
+    nodo.addEventListener("mouseleave", function () { punta.hidden = true; });
+  });
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

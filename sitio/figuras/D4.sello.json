@@ -5,6 +5,6 @@
     "external/hpa/hpa_concentracion_sangre.tsv",
     "metadata/gene_ontology/go_gene_long.tsv"
   ],
-  "svg_sha256": "b542fd31d098fcdd4e1c51d3629d4696d56aeaaaba5b83e1af0a688698d07b45",
+  "svg_sha256": "0d14b60729871d2e67aef3cb717a5ea062679cf97a68df768aa47555702c294d",
   "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442"
 }

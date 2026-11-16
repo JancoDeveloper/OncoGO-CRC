@@ -10,7 +10,7 @@ resumen: Los términos salen de la tabla local de Gene Ontology, no de una lista
 
 ## Qué entra
 
-Entra la tabla `metadata/gene_ontology/go_gene_long.tsv`, que está en el manifiesto, y el ranking del contraste de tejido. [@vasaikar2019]
+Entra la anotación de Gene Ontology que está en el manifiesto, y el ranking del contraste de tejido. [@vasaikar2019]
 
 ## Qué se hace
 

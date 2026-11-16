@@ -1,38 +1,83 @@
 id: D6
-titulo: Etapas de la corrida v3.7
-desc: Los nombres son las piezas que llama src/oncogo_crc/stages/v3_7.py. No es la lista completa de funciones.
+titulo: Canalización con ramas
+desc: Tejido, suero, anotación y modelos no se funden en una sola matriz. Cada rama
+  produce su tabla y todas llegan al embudo.
 pregunta: ¿En qué orden corre el cálculo?
 nodos:
-  - id: tejido
-    texto: Tejido
-    href: /datos/pdc000116
-    fuente: src/oncogo_crc/stages/v3_7.py
-  - id: suero
-    texto: Suero
-    href: /datos/pxd055218
-    fuente: src/oncogo_crc/stages/v3_7.py
-  - id: ml
-    texto: Modelos
-    href: /metodos/aprendizaje-automatico
-    fuente: src/oncogo_crc/stages/v3_7.py
-  - id: hipotesis
-    texto: Hipótesis
-    href: /metodos/hipotesis
-    fuente: src/oncogo_crc/stages/v3_7.py
-  - id: prioridad
-    texto: Priorización
-    href: /metodos/priorizacion
-    fuente: src/oncogo_crc/stages/v3_7.py
+- id: cptac
+  texto: CPTAC
+  href: /datos/pdc000116
+  fuente: vasaikar2019
+  grupo: tejido
+  dato: results/v3_7/k1_etiquetas.json#n_certificadas
+- id: tanaka
+  texto: Tanaka
+  href: /datos/pxd034575
+  fuente: tanaka2024
+  grupo: tejido
+- id: rai
+  texto: Rai
+  href: /datos/pxd055218
+  fuente: rai2025
+  grupo: suero
+- id: celda
+  texto: Celda
+  href: /resultados/suero
+  fuente: results/v3_7/suero_embudo.json
+  grupo: suero
+  dato: results/v3_7/suero_embudo.json#celda_preregistrada.n
+- id: anotacion
+  texto: Anotación
+  href: /datos/hpa
+  fuente: uhlen2015
+  grupo: anotacion
+- id: modelos
+  texto: Modelos
+  href: /metodos/aprendizaje-automatico
+  fuente: results/v3_7/ml_modelos.tsv
+  grupo: modelos
+- id: embudo
+  texto: Paso 5
+  href: /resultados/priorizacion
+  fuente: results/v3_7/priorizacion_embudo.json
+  grupo: cierre
+  dato: results/v3_7/priorizacion_embudo.json#pasos.4.n
+- id: cero
+  texto: Paso 6
+  href: /resultados/priorizacion
+  fuente: results/v3_7/priorizacion_embudo.json
+  grupo: cierre
+  dato: results/v3_7/priorizacion_embudo.json#pasos.5.n
 aristas:
-  - origen: tejido
-    destino: suero
-    fuente: src/oncogo_crc/stages/v3_7.py
-  - origen: suero
-    destino: ml
-    fuente: src/oncogo_crc/stages/v3_7.py
-  - origen: ml
-    destino: hipotesis
-    fuente: src/oncogo_crc/stages/v3_7.py
-  - origen: hipotesis
-    destino: prioridad
-    fuente: src/oncogo_crc/stages/v3_7.py
+- origen: cptac
+  destino: tanaka
+  rotulo: mismo signo
+  fuente: tanaka2024
+- origen: rai
+  destino: celda
+  rotulo: DIA-NN
+  fuente: rai2025
+- origen: tanaka
+  destino: embudo
+  rotulo: tejido
+  fuente: results/v3_7/k1_etiquetas.json
+- origen: celda
+  destino: embudo
+  rotulo: suero
+  fuente: results/v3_7/suero_embudo.json
+- origen: anotacion
+  destino: embudo
+  rotulo: H5 y H7
+  fuente: uhlen2015
+- origen: modelos
+  destino: embudo
+  rotulo: calidad
+  fuente: results/v3_7/ml_modelos.tsv
+- origen: embudo
+  destino: cero
+  rotulo: nadie pasa
+  fuente: results/v3_7/priorizacion_embudo.json
+- origen: cptac
+  destino: cero
+  rotulo: cierra
+  fuente: results/v3_7/priorizacion_embudo.json

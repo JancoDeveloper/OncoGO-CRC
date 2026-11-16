@@ -8,7 +8,7 @@ resumen: Los depósitos que esta corrida nombra, y lo que no se describe porque 
 
 # Datos
 
-Cada página nombra el acceso que está en el preregistro o en el registro de datasets, y el fichero que `results/v3_7/manifest_entradas.sha256` incluye. [@vasaikar2019]
+Cada página nombra el acceso que está en el preregistro o en el registro de datasets, y solo el fichero que el manifiesto de la corrida incluye. [@vasaikar2019]
 
 El instrumento, el número de muestras y la composición de los grupos no se escriben: no hay una respuesta de API guardada en `sitio_fuente/fuentes/`. [@rai2025]
 

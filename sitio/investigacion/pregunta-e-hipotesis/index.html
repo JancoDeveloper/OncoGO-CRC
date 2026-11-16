@@ -4,155 +4,122 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pregunta e hipótesis · OncoGO-CRC</title>
+<meta name="description" content="La pregunta, las hipótesis y los objetivos, con el texto de la tesis y el estado de cada una.">
+<meta property="og:title" content="Pregunta e hipótesis · OncoGO-CRC">
+<meta property="og:description" content="La pregunta, las hipótesis y los objetivos, con el texto de la tesis y el estado de cada una.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CO">
+<link rel="canonical" href="https://oncogo-crc-tesis.web.app/investigacion/pregunta-e-hipotesis">
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.4fa9f694d6.css">
+<link rel="preload" href="/fuentes/source-serif-4-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v4.cc00b862b0.css">
+
 </head>
-<body>
+<body data-pagefind-filter="seccion">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
+<nav id="exploracion" class="menu" aria-label="Principal">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
+
+<a href="/datos">Datos</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/resultados">Resultados</a>
+
+<a href="/proteinas">Proteínas</a>
+
+</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
-<label class="saltar" for="q">Buscar</label>
-<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<label class="saltar" for="q">Buscar proteína, término o página</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" autocomplete="off" value="">
 <button type="submit">Buscar</button>
+<div id="sugerencias" class="sugerencias" hidden></div>
 </form>
+<nav class="accesos" aria-label="Consulta">
+<a href="/glosario">Glosario</a>
+<a href="/bibliografia">Bibliografía</a>
+</nav>
 <button type="button" id="tema">Tema</button>
 </header>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<div class="marco">
-<aside id="exploracion" class="lateral" aria-label="Principal">
-<p class="lateral-etiqueta">Explorar la investigación</p>
-<a class="lateral-inicio" href="/">Inicio</a>
-
-<nav class="lateral-grupo" aria-label="Investigación">
-<p>Investigación</p>
-
-<a href="/#qu-problema-se-midi">El problema</a>
-
-<a href="/investigacion/pregunta-e-hipotesis">La pregunta</a>
-
-<a href="/#qu-no-demuestra-este-resultado">Alcance</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Recorrido">
-<p>Recorrido</p>
-
-<a href="/metodos/proteomica">Metodología</a>
-
-<a href="/#qu-muestra-cada-matriz">Las dos matrices</a>
-
-<a href="/#el-colon-como-contexto">El colon como contexto</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Resultados">
-<p>Resultados</p>
-
-<a href="/resultados">Resultados principales</a>
-
-<a href="/proteinas">Explorar proteínas</a>
-
-<a href="/proteinas/comparar">Comparador</a>
-
-<a href="/proteinas/candidatas">Candidatas</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Consulta">
-<p>Consulta</p>
-
-<a href="/glosario">Glosario</a>
-
-<a href="/bibliografia">Bibliografía</a>
-
-<a href="/entregables">Entregables</a>
-
-</nav>
-
-</aside>
 <div class="velo" id="velo" hidden></div>
+<div class="marco">
 <div class="columna">
 <p class="migas">Inicio / Investigación / Pregunta e hipótesis</p>
-
-<nav class="indice" aria-label="En esta página">
-
-<a href="#lo-que-se-fij-antes">Lo que se fijó antes</a>
-
-<a href="#c-mo-cerr-cada-una">Cómo cerró cada una</a>
-
-</nav>
-
-<main id="contenido">
-
-<nav class="hermanas" aria-label="En esta sección">
-
-<a href="/investigacion/contexto">Contexto</a>
-
-<a href="/investigacion/historia">Cómo cambió la pregunta</a>
-
-<a href="/investigacion/reproducibilidad">Reproducibilidad</a>
-
-</nav>
+<p class="lectura">Lectura de unos 5 min</p>
+<main id="contenido" data-pagefind-body>
 
 <h1>Pregunta e hipótesis</h1>
-<p>La pregunta es qué parte del cambio del tumor se deja ver en la sangre cuando el contraste es otra enfermedad intestinal. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#garciafoncillas2026">Garcia-Foncillas 2026</a><span class="cita-ventana">Biología molecular del cáncer colorrectal 10.51643/22562915.853</span></span></p>
-<h2 id="lo-que-se-fij-antes">Lo que se fijó antes</h2>
-<p>H1 conserva el umbral <data value="0.7" data-fuente="config/preregistro_v3.yaml#hipotesis.h1.umbral_concordancia_proteina" title="Origen: config/preregistro_v3.yaml#hipotesis.h1.umbral_concordancia_proteina">0,700</data>. La nota del preregistro dice: <data value="El umbral no cambia. Cambia la réplica: P frente a N, no M frente a N." data-fuente="config/preregistro_v3.yaml#hipotesis.h1.nota" title="Origen: config/preregistro_v3.yaml#hipotesis.h1.nota">El umbral no cambia. Cambia la réplica: P frente a N, no M frente a N.</data> <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
-<p>H2 quedó con el estado heredado <data value="no_evaluada" data-fuente="config/preregistro_v3.yaml#hipotesis.h2.estado_heredado" title="Origen: config/preregistro_v3.yaml#hipotesis.h2.estado_heredado">no_evaluada</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span></p>
-<h2 id="c-mo-cerr-cada-una">Cómo cerró cada una</h2>
-<p>H5, especificidad de órgano, cerró en <data value="sostiene" data-fuente="results/v3_7/h5_especificidad_organo.json#estado" title="Origen: results/v3_7/h5_especificidad_organo.json#estado">sostiene</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
-<p>H6, origen celular, cerró en <data value="no_sostiene" data-fuente="results/v3_7/h6_origen_celular.json#estado" title="Origen: results/v3_7/h6_origen_celular.json#estado">no_sostiene</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
-<p>H7, visibilidad en sangre, cerró en <data value="refuta" data-fuente="results/v3_7/h7_visibilidad_en_sangre.json#estado" title="Origen: results/v3_7/h7_visibilidad_en_sangre.json#estado">refuta</data>. El AUC principal de ese modelo es <data value="0.4828120961488757" data-fuente="results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_principal" title="Origen: results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_principal">0,483</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<p>H8, carga tumoral, cerró en <data value="no_evaluable" data-fuente="results/v3_7/h8_carga_tumoral.json#estado" title="Origen: results/v3_7/h8_carga_tumoral.json#estado">no_evaluable</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<p>H9 cerró en <data value="exploratorio" data-fuente="results/v3_7/h9_wald.json#estado" title="Origen: results/v3_7/h9_wald.json#estado">exploratorio</data>. H10 cerró en <data value="descriptiva" data-fuente="results/v3_7/h10_especificidad.json#estado" title="Origen: results/v3_7/h10_especificidad.json#estado">descriptiva</data>. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span></p>
-<p>Las hipótesis no se promedian entre sí. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
+<aside class="resumen"><p class="resumen-etiqueta">En una frase</p><p>La pregunta pregunta qué parte del cambio del tumor se ve en el suero cuando el contraste es otra enfermedad intestinal.</p></aside>
+<h2 id="pregunta">Pregunta</h2>
+<p>¿Qué parte del cambio proteico del tumor colorrectal puede verse en el suero cuando el contraste es otra enfermedad intestinal y no una persona sana?</p>
+<h2 id="hip-tesis-principal">Hipótesis principal</h2>
+<p>La hipótesis principal (HP) se desprende de la pregunta. Si el tumor colorrectal deja en la sangre una huella propia, al menos una proteína del suero debería diferir entre las personas con cáncer (CP) y las personas con colonoscopia negativa (CN) en más de 1,5 veces. La hipótesis nula es que ninguna proteína supera ese margen. Se decide con TREAT y TOST con un margen de log2(1,5) = 0,585 y corrección de Benjamini-Hochberg al 5 % (secciones 3.4 y 4.4). En el resto del documento esta prueba aparece también como la «celda preregistrada» del suero.</p>
+<p><span class="chip chip-neutro"><span class="chip-marca" aria-hidden="true"></span>HP: No se rechazó</span></p>
+<h2 id="las-dem-s-hip-tesis">Las demás hipótesis</h2>
+<p>Alrededor de la HP hay hipótesis que responden partes concretas de la pregunta. Su numeración se conserva para que el documento, el código y el sitio web usen los mismos nombres.</p>
+<ul><li>H1 (tejido, heredada de v2): entre dos cohortes de tejido, las proteínas individuales coincidirían poco en la dirección del cambio (concordancia de signo menor que 0,70), pero las vías sí (mayor que 0,80). <span class="chip chip-no"><span class="chip-marca" aria-hidden="true"></span>H1: <data value="rechaza_h1" data-fuente="results/v3_7/k1_etiquetas.json#h1_veredicto" title="Origen: results/v3_7/k1_etiquetas.json#h1_veredicto">No se sostiene</data></span></li><li>H2 (tejido): la estructura de las redes de coexpresión difiere entre cohortes. <span class="chip chip-neutro"><span class="chip-marca" aria-hidden="true"></span>H2: <data value="no_evaluada" data-fuente="config/preregistro_v3.yaml#hipotesis.h2.estado_heredado" title="Origen: config/preregistro_v3.yaml#hipotesis.h2.estado_heredado">No evaluada</data></span></li><li>H3 se planteó en una etapa temprana del proyecto, pero no entró en ninguno de los dos preregistros. <span class="chip chip-si"><span class="chip-marca" aria-hidden="true"></span>H3: Adoptada, enmienda de cierre v3.7</span></li><li>H4 (medibilidad): se da por falsada si al menos el 90 % de las proteínas candidatas ya es medible en sangre. <span class="chip chip-neutro"><span class="chip-marca" aria-hidden="true"></span>H4: Sin veredicto · umbral <data value="0.9" data-fuente="config/preregistro_v3.yaml#hipotesis.h4.umbral" title="Origen: config/preregistro_v3.yaml#hipotesis.h4.umbral">0,900</data></span></li><li>H5 (especificidad de órgano): una parte importante del cambio tumoral del colon es común a otros carcinomas. <span class="chip chip-si"><span class="chip-marca" aria-hidden="true"></span>H5: <data value="sostiene" data-fuente="results/v3_7/h5_especificidad_organo.json#estado" title="Origen: results/v3_7/h5_especificidad_organo.json#estado">Se sostiene</data></span></li><li>H6 (origen celular): la concordancia entre cohortes es distinta en las proteínas epiteliales y en las del estroma o inmunes. <span class="chip chip-no"><span class="chip-marca" aria-hidden="true"></span>H6: <data value="no_sostiene" data-fuente="results/v3_7/h6_origen_celular.json#estado" title="Origen: results/v3_7/h6_origen_celular.json#estado">No se sostiene</data></span></li><li>H7 (visibilidad en sangre): lo que se sabe de una proteína antes de mirar la sangre (localización, secreción, concentración y otras variables) anticipa si su cambio tumoral se verá en sangre en la misma dirección. <span class="chip chip-no"><span class="chip-marca" aria-hidden="true"></span>H7: <data value="refuta" data-fuente="results/v3_7/h7_visibilidad_en_sangre.json#estado" title="Origen: results/v3_7/h7_visibilidad_en_sangre.json#estado">Refutada</data></span></li><li>H8 (carga tumoral): lo que sube en el suero en estadio IV frente a estadios I–II está enriquecido en proteínas tumorales epiteliales. <span class="chip chip-neutro"><span class="chip-marca" aria-hidden="true"></span>H8: <data value="no_evaluable" data-fuente="results/v3_7/h8_carga_tumoral.json#estado" title="Origen: results/v3_7/h8_carga_tumoral.json#estado">No se pudo evaluar</data></span></li><li>H9 (dirección causal, exploratoria): una variante genética que modifica el nivel de una proteína en sangre modifica también el riesgo de cáncer colorrectal. <span class="chip chip-neutro"><span class="chip-marca" aria-hidden="true"></span>H9: <data value="exploratorio" data-fuente="results/v3_7/h9_wald.json#estado" title="Origen: results/v3_7/h9_wald.json#estado">Exploratoria</data></span></li><li>H10 (especificidad clínica, descriptiva): las proteínas de partida son específicas del cáncer colorrectal frente a otras enfermedades. <span class="chip chip-neutro"><span class="chip-marca" aria-hidden="true"></span>H10: <data value="descriptiva" data-fuente="results/v3_7/h10_especificidad.json#estado" title="Origen: results/v3_7/h10_especificidad.json#estado">Descriptiva</data></span></li></ul>
+<p>La HP, H1 y H5 son las hipótesis confirmatorias; H6, H7 y H8 son secundarias; H9 es exploratoria y H10 es descriptiva. Por objetivo específico (sección 1.7.2), H1, H5 y H6 responden al objetivo 1, de tejido; la HP, H4, H7, H8, H9 y H10 responden al objetivo 2, de suero, porque todas usan el dato de la sangre; y H2, sobre las redes de coexpresión, queda en el objetivo 3, de interpretación funcional.</p>
+<p>Sobre la numeración: H0 y H3 no aparecen en este documento y H4 no tiene veredicto. H0 era una auditoría de ficheros compartidos entre depósitos de PRIDE prevista en el preregistro v2; no tiene resultado en la versión v3.7 y aquí se trata como un supuesto de los datos. H3 se planteó en una etapa temprana del proyecto, pero no entró en ninguno de los dos preregistros. H4 tiene una regla escrita (umbral de 0,90), pero su veredicto no se calculó en la versión v3.7. No se renumeró para no romper la correspondencia con el repositorio y con el sitio web.</p>
+<details class="especialistas"><summary>Para especialistas</summary><p>La enmienda de cierre registra la priorización así: <data value="sin pesos ni puntajes: cada proteína guarda el último paso que supera. El orden dentro de un paso es el padj de CPTAC." data-fuente="config/preregistro_v3.yaml#enmienda_v3_7_cierre.descriptivos_que_se_ejecutan.priorizacion_secuencial.regla" title="Origen: config/preregistro_v3.yaml#enmienda_v3_7_cierre.descriptivos_que_se_ejecutan.priorizacion_secuencial.regla">sin pesos ni puntajes: cada proteína guarda el último paso que supera. El orden dentro de un paso es el padj de CPTAC.</data></p></details>
+<p>H0: era una auditoría de ficheros compartidos entre depósitos de PRIDE prevista en el preregistro v2; no tiene resultado en la versión v3.7 y aquí se trata como un supuesto de los datos. <span class="chip chip-neutro"><span class="chip-marca" aria-hidden="true"></span>H0: Supuesto de los datos</span></p>
+<h2 id="objetivos">Objetivos</h2>
+<p>Cuantificar qué parte del cambio proteico del tumor colorrectal observado en el tejido se repite en una cohorte independiente de tejido y se ve de forma específica en el suero cuando la comparación es con personas con colonoscopia negativa, mediante el reanálisis de datos proteómicos públicos.</p>
+<ul><li>1. Caracterizar el cambio proteico del tumor colorrectal frente a la mucosa y medir su concordancia entre dos cohortes independientes de tejido, CPTAC y Tanaka, incluidas su especificidad de órgano y su relación con el origen celular (H1, H5 y H6).</li><li>2. Evaluar si ese cambio aparece en el suero al comparar cáncer con colonoscopia negativa, con una regla de diferencia y de equivalencia escrita de antemano, y separar el efecto de la calidad de la muestra y del orden de adquisición con los modelos M1 a M6 (HP, H4, H7, H8, H9 y H10).</li><li>3. Interpretar funcionalmente el cambio del tejido con Gene Ontology y documentar un pipeline reproducible, con sello, versión v3.7 y sitio web documental, que permita rastrear cada cifra hasta su fichero (H2).</li></ul>
+<p>El estado de cada hipótesis y la figura están en [Hipótesis](/resultados/hipotesis).</p>
+
 
 <details class="transparencia">
 <summary>Transparencia y trazabilidad</summary>
 <ul>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/preregistro_v3.yaml">config/preregistro_v3.yaml#hipotesis.h1.umbral_concordancia_proteina</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/k1_etiquetas.json">results/v3_7/k1_etiquetas.json#h1_veredicto</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/preregistro_v3.yaml">config/preregistro_v3.yaml#hipotesis.h1.nota</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/preregistro_v3.yaml">config/preregistro_v3.yaml#hipotesis.h2.estado_heredado</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/config/preregistro_v3.yaml">config/preregistro_v3.yaml#hipotesis.h2.estado_heredado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/preregistro_v3.yaml">config/preregistro_v3.yaml#hipotesis.h4.umbral</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h5_especificidad_organo.json">results/v3_7/h5_especificidad_organo.json#estado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/h5_especificidad_organo.json">results/v3_7/h5_especificidad_organo.json#estado</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h6_origen_celular.json">results/v3_7/h6_origen_celular.json#estado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/h6_origen_celular.json">results/v3_7/h6_origen_celular.json#estado</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h7_visibilidad_en_sangre.json">results/v3_7/h7_visibilidad_en_sangre.json#estado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/h7_visibilidad_en_sangre.json">results/v3_7/h7_visibilidad_en_sangre.json#estado</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h7_visibilidad_en_sangre.json">results/v3_7/h7_visibilidad_en_sangre.json#modelo_secundario.auc_principal</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/h8_carga_tumoral.json">results/v3_7/h8_carga_tumoral.json#estado</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h8_carga_tumoral.json">results/v3_7/h8_carga_tumoral.json#estado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/h9_wald.json">results/v3_7/h9_wald.json#estado</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h9_wald.json">results/v3_7/h9_wald.json#estado</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/h10_especificidad.json">results/v3_7/h10_especificidad.json#estado</a></li>
 
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/h10_especificidad.json">results/v3_7/h10_especificidad.json#estado</a></li>
-
-<li><a href="https://doi.org/10.1021/acs.jproteome.5c00285">rai2025 · 10.1021/acs.jproteome.5c00285</a></li>
-
-<li><a href="https://doi.org/10.51643/22562915.853">garciafoncillas2026 · 10.51643/22562915.853</a></li>
-
-<li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
-
-<li><a href="https://doi.org/10.1016/j.celrep.2024.113810">tanaka2024 · 10.1016/j.celrep.2024.113810</a></li>
-
-<li><a href="https://doi.org/10.1038/nature13438">zhang2014 · 10.1038/nature13438</a></li>
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/config/preregistro_v3.yaml">config/preregistro_v3.yaml#enmienda_v3_7_cierre.descriptivos_que_se_ejecutan.priorizacion_secuencial.regla</a></li>
 
 </ul>
 </details>
 
 </main>
 </div>
+
+<nav class="indice" aria-label="En esta página">
+<p class="indice-titulo">En esta página</p>
+
+<a href="#pregunta">Pregunta</a>
+
+<a href="#hip-tesis-principal">Hipótesis principal</a>
+
+<a href="#las-dem-s-hip-tesis">Las demás hipótesis</a>
+
+<a href="#objetivos">Objetivos</a>
+
+</nav>
+
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
 
 <a href="/datos">Datos</a>
 
@@ -170,10 +137,12 @@
 
 <a href="/bibliografia">Bibliografía</a>
 
+<a href="/como-citar">Cómo citar</a>
+<a href="/sobre">Sobre esta tesis</a>
 </nav>
-<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
-<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">Publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
+<p><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v3.7-final">Repositorio, etiqueta v3.7-final</a></p>
+<p class="nota-etica">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 </footer>
 <script>(function () {
   var raiz = document.documentElement;
@@ -197,7 +166,7 @@
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
   function marcarLateral() {
-    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+    document.querySelectorAll("#exploracion a").forEach(function (enlace) {
       var href = enlace.getAttribute("href") || "";
       var activo = false;
       if (href.indexOf("#") !== -1) {
@@ -256,7 +225,9 @@
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
         if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
-        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+        var partes = consulta.split(";").map(function (parte) { return parte.trim(); }).filter(Boolean);
+        var hallado = texto.indexOf(consulta) !== -1 || (partes.length > 1 && partes.some(function (parte) { return texto.indexOf(parte) !== -1; }));
+        nodo.hidden = consulta.length > 0 && !hallado;
       });
     };
     caja.addEventListener("input", aplicar);
@@ -400,6 +371,176 @@
     if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
     pintar();
   }
+  document.querySelectorAll(".termino").forEach(function (boton) {
+    var panel = document.getElementById(boton.getAttribute("aria-describedby"));
+    if (!panel) return;
+    function abrir() {
+      panel.hidden = false;
+      boton.setAttribute("aria-expanded", "true");
+    }
+    function cerrar() {
+      panel.hidden = true;
+      boton.setAttribute("aria-expanded", "false");
+    }
+    boton.addEventListener("click", function () {
+      if (panel.hidden) abrir();
+      else cerrar();
+    });
+    boton.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  });
+  document.querySelectorAll("[data-copiar]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var texto = boton.getAttribute("data-copiar") || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(function () {
+          boton.textContent = "Copiada";
+        });
+      }
+    });
+  });
+  function filtrarGrupo(selector, atributo, valor) {
+    document.querySelectorAll(selector).forEach(function (nodo) {
+      var coincide = valor === "Todas" || nodo.getAttribute(atributo) === valor;
+      nodo.hidden = !coincide;
+    });
+  }
+  document.querySelectorAll("[data-filtro-bib]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-tesis", "data-tema", boton.getAttribute("data-filtro-bib"));
+    });
+  });
+  document.querySelectorAll("[data-filtro-glosario]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-termino", "data-categoria", boton.getAttribute("data-filtro-glosario"));
+    });
+  });
+  var filtroGlosario = document.getElementById("filtro-glosario");
+  if (filtroGlosario) {
+    filtroGlosario.addEventListener("input", function () {
+      var q = filtroGlosario.value.toLowerCase();
+      document.querySelectorAll(".entrada-termino").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  var filtroBib = document.getElementById("filtro-bib");
+  if (filtroBib) {
+    filtroBib.addEventListener("input", function () {
+      var q = filtroBib.value.toLowerCase();
+      document.querySelectorAll(".entrada-tesis").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  document.querySelectorAll("[data-juguete]").forEach(function (formulario) {
+    var efecto = formulario.querySelector("[data-efecto]");
+    var ancho = formulario.querySelector("[data-ancho]");
+    var clase = formulario.querySelector("[data-clase]");
+    function pintar() {
+      var e = Number(efecto.value);
+      var a = Number(ancho.value);
+      var bajo = e - a;
+      var alto = e + a;
+      var margen = Math.log2(1.5);
+      var resultado = "indeterminada";
+      if (bajo >= margen || alto <= -margen) resultado = "diferente";
+      else if (bajo >= -margen && alto <= margen) resultado = "equivalente";
+      clase.textContent = "Efecto " + e.toFixed(2) + ", intervalo " + bajo.toFixed(2) + " a " + alto.toFixed(2) + ". Clase de juguete: " + resultado + ".";
+    }
+    efecto.addEventListener("input", pintar);
+    ancho.addEventListener("input", pintar);
+    pintar();
+  });
+  var cajaBusqueda = document.getElementById("q");
+  var sugerencias = document.getElementById("sugerencias");
+  if (cajaBusqueda && sugerencias && !document.querySelector("[data-buscar]")) {
+    var indice = null;
+    var activo = -1;
+    function coincide(consulta, texto) {
+      var q = consulta.toLowerCase().trim();
+      var bolsa = (texto || "").toLowerCase();
+      if (!q) return false;
+      if (bolsa.indexOf(q) !== -1) return true;
+      var partes = q.split(";").filter(Boolean);
+      return partes.length > 1 && partes.some(function (parte) { return bolsa.indexOf(parte) !== -1; });
+    }
+    function pintarSugerencias(lista) {
+      sugerencias.innerHTML = "";
+      if (!lista.length) {
+        sugerencias.hidden = true;
+        return;
+      }
+      var grupos = {};
+      lista.slice(0, 12).forEach(function (item) {
+        grupos[item.grupo] = grupos[item.grupo] || [];
+        grupos[item.grupo].push(item);
+      });
+      Object.keys(grupos).forEach(function (grupo) {
+        var titulo = document.createElement("p");
+        titulo.textContent = grupo;
+        sugerencias.appendChild(titulo);
+        grupos[grupo].forEach(function (item) {
+          var enlace = document.createElement("a");
+          enlace.href = item.href;
+          enlace.textContent = item.rotulo;
+          sugerencias.appendChild(enlace);
+        });
+      });
+      sugerencias.hidden = false;
+      activo = -1;
+    }
+    cajaBusqueda.addEventListener("input", function () {
+      var q = cajaBusqueda.value;
+      if (q.trim().length < 2) {
+        sugerencias.hidden = true;
+        return;
+      }
+      function aplicar(datos) {
+        indice = datos;
+        pintarSugerencias(datos.filter(function (item) { return coincide(q, item.texto); }));
+      }
+      if (indice) aplicar(indice);
+      else fetch("/buscar/indice.json").then(function (r) { return r.json(); }).then(aplicar).catch(function () {});
+    });
+    cajaBusqueda.addEventListener("keydown", function (evento) {
+      var enlaces = sugerencias.querySelectorAll("a");
+      if (evento.key === "Escape") {
+        sugerencias.hidden = true;
+        return;
+      }
+      if (!enlaces.length || sugerencias.hidden) return;
+      if (evento.key === "ArrowDown" || evento.key === "ArrowUp") {
+        evento.preventDefault();
+        activo += evento.key === "ArrowDown" ? 1 : -1;
+        if (activo < 0) activo = enlaces.length - 1;
+        if (activo >= enlaces.length) activo = 0;
+        enlaces.forEach(function (enlace, i) {
+          if (i === activo) enlace.setAttribute("aria-selected", "true");
+          else enlace.removeAttribute("aria-selected");
+        });
+        enlaces[activo].focus();
+      }
+    });
+  }
+  var punta = document.createElement("div");
+  punta.className = "cita-ventana";
+  punta.hidden = true;
+  document.body.appendChild(punta);
+  document.querySelectorAll("[data-tip]").forEach(function (nodo) {
+    function mostrar() {
+      punta.hidden = false;
+      punta.textContent = nodo.getAttribute("data-tip");
+    }
+    nodo.addEventListener("focus", mostrar);
+    nodo.addEventListener("mouseenter", mostrar);
+    nodo.addEventListener("blur", function () { punta.hidden = true; });
+    nodo.addEventListener("mouseleave", function () { punta.hidden = true; });
+  });
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");

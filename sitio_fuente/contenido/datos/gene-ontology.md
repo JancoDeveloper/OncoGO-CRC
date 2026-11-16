@@ -8,7 +8,7 @@ resumen: La anotación que usa el enriquecimiento de esta corrida.
 
 # Gene Ontology
 
-El manifiesto de la corrida incluye `metadata/gene_ontology/go_gene_long.tsv`. [@vasaikar2019]
+El manifiesto de la corrida incluye la tabla larga de Gene Ontology. [@vasaikar2019]
 
 Esa tabla es la anotación local del enriquecimiento. No se afirma aquí la fecha de GOA ni el número de términos. [@vasaikar2019]
 

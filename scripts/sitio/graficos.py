@@ -6,6 +6,7 @@ import hashlib
 import importlib.util
 import json
 import math
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -23,8 +24,56 @@ def _exportador():
     return modulo
 
 
+def _etiquetas() -> dict[str, str]:
+    import yaml
+    crudo = yaml.safe_load((REPO / "sitio_fuente" / "etiquetas.yaml").read_text(encoding="utf-8")) or {}
+    salida = {}
+    for clave, valor in crudo.items():
+        salida[str(clave)] = str(valor)
+        salida[str(clave).casefold()] = str(valor)
+    return salida
+
+
 def _tinta(texto: str) -> str:
-    return texto.replace("#0b4f55", "currentColor").replace("#6b2d12", "currentColor")
+    texto = texto.replace("#0b4f55", "currentColor").replace("#6b2d12", "currentColor")
+    texto = texto.replace("595118ae09ea6006c744c86b28cb0a10d42e0442", "v3.7-final")
+    texto = re.sub(r">origen [^<]+<", ">Origen en el repositorio<", texto)
+    etiquetas = _etiquetas()
+
+    def etiquetar(coincidencia):
+        interior = coincidencia.group(1)
+
+        def palabra(pieza):
+            token = pieza.group(0)
+            if token in etiquetas and (
+                "_" in token or token in {"true", "false", "True", "False"}
+            ):
+                return etiquetas[token]
+            return token
+
+        return ">" + re.sub(r"\b[A-Za-z][A-Za-z0-9_]*\b", palabra, interior) + "<"
+
+    texto = re.sub(r">([^<]*)<", etiquetar, texto)
+
+    def envolver(coincidencia):
+        plano = re.sub(r"<[^>]+>", " ", coincidencia.group(0))
+        if re.search(r"results/|config/|\.tsv\b|\.json\b|\.yaml\b", plano):
+            return (
+                '<details class="especialistas"><summary>Para especialistas</summary>'
+                + coincidencia.group(0) + "</details>"
+            )
+        return coincidencia.group(0)
+
+    texto = re.sub(r"<p\b[^>]*>.*?</p>", envolver, texto, flags=re.S)
+    if "<desc>" in texto and "como-leer" not in texto:
+        desc = re.search(r"<desc>(.*?)</desc>", texto)
+        if desc:
+            bloque = (
+                '<details class="como-leer"><summary>Cómo leer este gráfico</summary>'
+                f"<p>{desc.group(1)}</p></details>"
+            )
+            texto = texto.replace("</svg>", "</svg>" + bloque, 1)
+    return texto
 
 
 def _cerrar_sello(fid: str) -> None:
@@ -196,6 +245,43 @@ def _bosque_paso5(mod, pri: pd.DataFrame, suero: pd.DataFrame, mapa: pd.DataFram
     )
 
 
+def _tablero(mod, k1, h5, h6, h7, h8, h9, h10, pre) -> str:
+    umbral = mod.caminar(pre, "hipotesis.h4.umbral")
+    umbral_visible = str(umbral).replace(".", ",")
+    filas_src = [
+        ("H1", "No se sostiene", k1["h1_veredicto"], "results/v3_7/k1_etiquetas.json#h1_veredicto"),
+        ("H2", "No evaluada", mod.caminar(pre, "hipotesis.h2.estado_heredado"), "config/preregistro_v3.yaml#hipotesis.h2.estado_heredado"),
+        ("H3", "Adoptada, enmienda de cierre v3.7", "adoptada", "config/preregistro_v3.yaml#enmienda_v3_7_cierre.fecha"),
+        ("H4", f"Umbral {umbral_visible} · sin veredicto", umbral, "config/preregistro_v3.yaml#hipotesis.h4.umbral"),
+        ("H5", "Se sostiene", h5["estado"], "results/v3_7/h5_especificidad_organo.json#estado"),
+        ("H6", "No se sostiene", h6["estado"], "results/v3_7/h6_origen_celular.json#estado"),
+        ("H7", "Refutada", h7["estado"], "results/v3_7/h7_visibilidad_en_sangre.json#estado"),
+        ("H8", "No se pudo evaluar", h8["estado"], "results/v3_7/h8_carga_tumoral.json#estado"),
+        ("H9", "Exploratoria", h9["estado"], "results/v3_7/h9_wald.json#estado"),
+        ("H10", "Descriptiva", h10["estado"], "results/v3_7/h10_especificidad.json#estado"),
+    ]
+    cuerpo, filas = [], []
+    for i, (nombre, visible, bruto, fuente) in enumerate(filas_src):
+        col, ren = i % 5, i // 5
+        valor = format(bruto, ".16g") if isinstance(bruto, float) else str(bruto)
+        cuerpo.append(
+            f'<rect x="{20 + col * 122}" y="{40 + ren * 120}" width="112" height="90" fill="none" stroke="currentColor" '
+            f'stroke-width="2" data-value="{mod.e(valor)}" data-fuente="{mod.e(fuente)}" tabindex="0" '
+            f'data-tip="{mod.e(nombre)} {mod.e(visible)}"/>'
+            f'<text x="{28 + col * 122}" y="{72 + ren * 120}" fill="currentColor">{mod.e(nombre)}</text>'
+            f'<text x="{28 + col * 122}" y="{96 + ren * 120}" fill="currentColor" font-size="11">{mod.e(visible[:22])}</text>'
+        )
+        filas.append({"hipotesis": nombre, "valor": visible, "fuente": fuente})
+    return mod.figura(
+        "n11", "Tablero de H1 a H10",
+        "Cada celda muestra el estado en lenguaje llano. H3 es la priorización sin pesos, adoptada en la enmienda de cierre v3.7. H4 muestra el umbral, no un veredicto.",
+        "".join(cuerpo), filas,
+        ["k1_etiquetas.json", "h5_especificidad_organo.json", "h6_origen_celular.json",
+         "h7_visibilidad_en_sangre.json", "h8_carga_tumoral.json", "h9_wald.json", "h10_especificidad.json"],
+        "¿Cuál es el estado de cada hipótesis?",
+    )
+
+
 def generar() -> dict[str, str]:
     mod = _exportador()
     v37 = REPO / "results" / "v3_7"
@@ -225,8 +311,8 @@ def generar() -> dict[str, str]:
         "f08": mod.bosque(ml, k5),
         "f09": mod.shap(tsv("ml_explicacion.tsv")),
         "n10": mod.muestras(tsv("preanalitica_orden.tsv"), tsv("suero_calidad_muestra.tsv")),
-        "n11": mod.tablero(
-            k1, cargar("h5_especificidad_organo.json"), cargar("h6_origen_celular.json"),
+        "n11": _tablero(
+            mod, k1, cargar("h5_especificidad_organo.json"), cargar("h6_origen_celular.json"),
             cargar("h7_visibilidad_en_sangre.json"), cargar("h8_carga_tumoral.json"),
             cargar("h9_wald.json"), cargar("h10_especificidad.json"), pre,
         ),

@@ -4,81 +4,96 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Proteómica · OncoGO-CRC</title>
+<meta name="description" content="Qué se midió en el tejido y en el suero, y qué hace con eso el cálculo.">
+<meta property="og:title" content="Proteómica · OncoGO-CRC">
+<meta property="og:description" content="Qué se midió en el tejido y en el suero, y qué hace con eso el cálculo.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CO">
+<link rel="canonical" href="https://oncogo-crc-tesis.web.app/metodos/proteomica">
 <link rel="preload" href="/fuentes/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fuentes/source-serif-4-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v4.4fa9f694d6.css">
+<link rel="preload" href="/fuentes/source-serif-4-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v4.cc00b862b0.css">
+
 </head>
-<body>
+<body data-pagefind-filter="seccion">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 <header class="barra">
 <button type="button" id="abrir-exploracion" aria-expanded="false" aria-controls="exploracion">Menú</button>
 <a class="marca" href="/">OncoGO-CRC</a>
+<nav id="exploracion" class="menu" aria-label="Principal">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
+
+<a href="/datos">Datos</a>
+
+<a href="/metodos/proteomica">Métodos</a>
+
+<a href="/resultados">Resultados</a>
+
+<a href="/proteinas">Proteínas</a>
+
+</nav>
 <form class="buscar" action="/buscar" method="get" role="search">
-<label class="saltar" for="q">Buscar</label>
-<input id="q" name="q" type="search" placeholder="Proteína, término o página" value="">
+<label class="saltar" for="q">Buscar proteína, término o página</label>
+<input id="q" name="q" type="search" placeholder="Proteína, término o página" autocomplete="off" value="">
 <button type="submit">Buscar</button>
+<div id="sugerencias" class="sugerencias" hidden></div>
 </form>
+<nav class="accesos" aria-label="Consulta">
+<a href="/glosario">Glosario</a>
+<a href="/bibliografia">Bibliografía</a>
+</nav>
 <button type="button" id="tema">Tema</button>
 </header>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
-<div class="marco">
-<aside id="exploracion" class="lateral" aria-label="Principal">
-<p class="lateral-etiqueta">Explorar la investigación</p>
-<a class="lateral-inicio" href="/">Inicio</a>
-
-<nav class="lateral-grupo" aria-label="Investigación">
-<p>Investigación</p>
-
-<a href="/#qu-problema-se-midi">El problema</a>
-
-<a href="/investigacion/pregunta-e-hipotesis">La pregunta</a>
-
-<a href="/#qu-no-demuestra-este-resultado">Alcance</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Recorrido">
-<p>Recorrido</p>
-
-<a href="/metodos/proteomica">Metodología</a>
-
-<a href="/#qu-muestra-cada-matriz">Las dos matrices</a>
-
-<a href="/#el-colon-como-contexto">El colon como contexto</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Resultados">
-<p>Resultados</p>
-
-<a href="/resultados">Resultados principales</a>
-
-<a href="/proteinas">Explorar proteínas</a>
-
-<a href="/proteinas/comparar">Comparador</a>
-
-<a href="/proteinas/candidatas">Candidatas</a>
-
-</nav>
-
-<nav class="lateral-grupo" aria-label="Consulta">
-<p>Consulta</p>
-
-<a href="/glosario">Glosario</a>
-
-<a href="/bibliografia">Bibliografía</a>
-
-<a href="/entregables">Entregables</a>
-
-</nav>
-
-</aside>
 <div class="velo" id="velo" hidden></div>
+<div class="marco">
 <div class="columna">
 <p class="migas">Inicio / Métodos / Proteómica</p>
+<p class="lectura">Lectura de unos 1 min</p>
+<main id="contenido" data-pagefind-body>
+
+<h1>Proteómica</h1>
+<h2 id="qu-entra">Qué entra</h2>
+<p>Entra el <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-suero" aria-expanded="false">suero</button><span class="definicion-corta" id="t-suero" role="tooltip" hidden><span>La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span> <a href="/glosario#suero">Más en el glosario</a><span class="relacionados"><a href="/glosario#cn">CN</a> <a href="/glosario#dia">DIA</a></span></span></span> medido por <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-dia" aria-expanded="false">DIA</button><span class="definicion-corta" id="t-dia" role="tooltip" hidden><span>Una forma de medir muchas proteínas del suero en la misma corrida.</span> <a href="/glosario#dia">Más en el glosario</a><span class="relacionados"><a href="/glosario#suero">suero</a></span></span></span> en tres grupos, <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-cp" aria-expanded="false">CP</button><span class="definicion-corta" id="t-cp" role="tooltip" hidden><span>Las muestras de suero de personas con este cáncer.</span> <a href="/glosario#cp">Más en el glosario</a><span class="relacionados"><a href="/glosario#cn">CN</a> <a href="/glosario#hc">HC</a></span></span></span>, <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-cn" aria-expanded="false">CN</button><span class="definicion-corta" id="t-cn" role="tooltip" hidden><span>Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span> <a href="/glosario#cn">Más en el glosario</a><span class="relacionados"><a href="/glosario#cp">CP</a> <a href="/glosario#hc">HC</a></span></span></span> y <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-hc" aria-expanded="false">HC</button><span class="definicion-corta" id="t-hc" role="tooltip" hidden><span>El contraste con personas sanas existe, pero no es el que decide la pregunta.</span> <a href="/glosario#hc">Más en el glosario</a><span class="relacionados"><a href="/glosario#cn">CN</a> <a href="/glosario#cp">CP</a></span></span></span>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-82">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-82" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span> Entra también el <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-proteoma" aria-expanded="false">proteoma</button><span class="definicion-corta" id="t-proteoma" role="tooltip" hidden><span>La lista de proteínas que el experimento alcanzó a cuantificar.</span> <a href="/glosario#proteoma">Más en el glosario</a><span class="relacionados"><a href="/glosario#suero">suero</a></span></span></span> de tejido de descubrimiento y el de la réplica. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019" aria-describedby="cita-83">(Vasaikar, 2019)</a><span class="cita-ventana" id="cita-83" role="tooltip"><span class="cita-autores">Vasaikar, S., Huang, C., Wang, X., Petyuk, V. A., Savage, S. R., Wen, B., Dou, Y., Zhang, Y., Shi, Z., Arshad, O. A., Gritsenko, M. A., Zimmerman, L. J., McDermott, J. E., Clauss, T. R., Moore, R. J., Zhao, R., Monroe, M. E., Wang, Y.-T., Chambers, M. C., . . . Zhang, Z</span> (2019). <span class="cita-titulo">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities</span>. <span class="cita-revista">Cell</span>. <a href="https://doi.org/10.1016/j.cell.2019.03.030">https://doi.org/10.1016/j.cell.2019.03.030</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024" aria-describedby="cita-84">(Tanaka y Roehrl, 2024)</a><span class="cita-ventana" id="cita-84" role="tooltip"><span class="cita-autores">Tanaka, A., Ogawa, M., Zhou, Y., Namba, K., Hendrickson, R. C., Miele, M. M., Li, Z., Klimstra, D. S., Buckley, P. G., Gulcher, J., Wang, J. Y. and Roehrl, M. H</span> (2024). <span class="cita-titulo">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures</span>. <span class="cita-revista">Cell Reports</span>. <a href="https://doi.org/10.1016/j.celrep.2024.113810">https://doi.org/10.1016/j.celrep.2024.113810</a></span></span></p>
+<h2 id="qu-se-hace">Qué se hace</h2>
+<p>La digestión, el cromatógrafo y el espectrómetro son los del artículo de cada cohorte. Esta tesis no repitió el experimento: lee las matrices publicadas y les aplica la regla escrita antes de mirar. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-85">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-85" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014" aria-describedby="cita-86">(Zhang, 2014)</a><span class="cita-ventana" id="cita-86" role="tooltip"><span class="cita-autores">Zhang, B., Wang, J., Wang, X., Zhu, J., Liu, Q., Shi, Z., Chambers, M. C., Zimmerman, L. J., Shaddox, K. F., Kim, S., Davies, S. R., Wang, S., Wang, P., Kinsinger, C. R., Rivers, R. C., Rodriguez, H., Townsend, R. R., Ellis, M. J. C., Carr, S. A., . . . NCI CPTAC</span> (2014). <span class="cita-titulo">Proteogenomic characterization of human colon and rectal cancer</span>. <span class="cita-revista">Nature</span>. <a href="https://doi.org/10.1038/nature13438">https://doi.org/10.1038/nature13438</a></span></span></p>
+<h2 id="qu-sale">Qué sale</h2>
+<p>La <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-celda" aria-expanded="false">celda</button><span class="definicion-corta" id="t-celda" role="tooltip" hidden><span>Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.</span> <a href="/glosario#celda">Más en el glosario</a><span class="relacionados"><a href="/glosario#suero">suero</a> <a href="/glosario#cn">CN</a></span></span></span> conserva <data value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.n">284</data> proteínas. Frente a <span class="termino-wrap"><button type="button" class="termino" aria-describedby="t-cn" aria-expanded="false">CN</button><span class="definicion-corta" id="t-cn" role="tooltip" hidden><span>Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span> <a href="/glosario#cn">Más en el glosario</a><span class="relacionados"><a href="/glosario#cp">CP</a> <a href="/glosario#hc">HC</a></span></span></span> hay <data value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.diferente">0</data> diferentes. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-87">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-87" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<h2 id="por-qu-as">Por qué así</h2>
+<p>Las intensidades de una plataforma no se suman a las de otra. El tejido de descubrimiento y el suero no son la misma medición ni las mismas personas. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014" aria-describedby="cita-88">(Zhang, 2014)</a><span class="cita-ventana" id="cita-88" role="tooltip"><span class="cita-autores">Zhang, B., Wang, J., Wang, X., Zhu, J., Liu, Q., Shi, Z., Chambers, M. C., Zimmerman, L. J., Shaddox, K. F., Kim, S., Davies, S. R., Wang, S., Wang, P., Kinsinger, C. R., Rivers, R. C., Rodriguez, H., Townsend, R. R., Ellis, M. J. C., Carr, S. A., . . . NCI CPTAC</span> (2014). <span class="cita-titulo">Proteogenomic characterization of human colon and rectal cancer</span>. <span class="cita-revista">Nature</span>. <a href="https://doi.org/10.1038/nature13438">https://doi.org/10.1038/nature13438</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-89">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-89" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<h2 id="qu-tiene-que-ver-con-la-bioinform-tica">Qué tiene que ver con la bioinformática</h2>
+<p>El cálculo empieza cuando la matriz ya existe: identificar las proteínas, separar los grupos y contar con la regla fijada. No diseña el ensayo de laboratorio. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019" aria-describedby="cita-90">(Vasaikar, 2019)</a><span class="cita-ventana" id="cita-90" role="tooltip"><span class="cita-autores">Vasaikar, S., Huang, C., Wang, X., Petyuk, V. A., Savage, S. R., Wen, B., Dou, Y., Zhang, Y., Shi, Z., Arshad, O. A., Gritsenko, M. A., Zimmerman, L. J., McDermott, J. E., Clauss, T. R., Moore, R. J., Zhao, R., Monroe, M. E., Wang, Y.-T., Chambers, M. C., . . . Zhang, Z</span> (2019). <span class="cita-titulo">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities</span>. <span class="cita-revista">Cell</span>. <a href="https://doi.org/10.1016/j.cell.2019.03.030">https://doi.org/10.1016/j.cell.2019.03.030</a></span></span></p>
+<h2 id="qu-no-demuestra">Qué no demuestra</h2>
+<p>El resultado del suero no demuestra que el cambio del tumor esté ausente en el tejido, ni que el cero sirva para descartar una enfermedad en una persona. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024" aria-describedby="cita-91">(Tanaka y Roehrl, 2024)</a><span class="cita-ventana" id="cita-91" role="tooltip"><span class="cita-autores">Tanaka, A., Ogawa, M., Zhou, Y., Namba, K., Hendrickson, R. C., Miele, M. M., Li, Z., Klimstra, D. S., Buckley, P. G., Gulcher, J., Wang, J. Y. and Roehrl, M. H</span> (2024). <span class="cita-titulo">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures</span>. <span class="cita-revista">Cell Reports</span>. <a href="https://doi.org/10.1016/j.celrep.2024.113810">https://doi.org/10.1016/j.celrep.2024.113810</a></span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025" aria-describedby="cita-92">(Rai y Prasad, 2025)</a><span class="cita-ventana" id="cita-92" role="tooltip"><span class="cita-autores">Rai, A. B., Codi, J. A. K., Kotimoole, C. N., Ramesh, P., Narayana, V. K., Shaji, V. and Prasad, T. S. K</span> (2025). <span class="cita-titulo">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases</span>. <span class="cita-revista">Journal of Proteome Research</span>. <a href="https://doi.org/10.1021/acs.jproteome.5c00285">https://doi.org/10.1021/acs.jproteome.5c00285</a></span></span></p>
+<figure class="grafico" id="D5"><h3>¿Cómo se llega a la matriz?</h3><svg viewBox="0 0 1486 152" role="img" class="lienzo-svg"><title>Del tubo a la matriz del suero</title><desc>El recorrido es el del artículo del suero. Esta tesis no repitió la digestión ni la adquisición.</desc><a href="/datos/pxd055218" data-id="suero" data-fuente="rai2025"><title>Suero</title><rect x="28" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="40" y="92" fill="currentColor" font-size="15">Suero</text></a><a href="/metodos/proteomica" data-id="digestion" data-fuente="rai2025"><title>Digestión</title><rect x="278" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="290" y="92" fill="currentColor" font-size="15">Digestión</text></a><a href="/metodos/proteomica" data-id="lcms" data-fuente="rai2025"><title>LC-MS/MS</title><rect x="528" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="540" y="92" fill="currentColor" font-size="15">LC-MS/MS</text></a><a href="/metodos/proteomica" data-id="dia" data-fuente="rai2025"><title>DIA</title><rect x="778" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="790" y="92" fill="currentColor" font-size="15">DIA</text></a><a href="/datos/herramientas" data-id="diann" data-fuente="rai2025"><title>DIA-NN</title><rect x="1028" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="1040" y="92" fill="currentColor" font-size="15">DIA-NN</text></a><a href="/metodos/canalizacion" data-id="matriz" data-fuente="data/raw/plasma/DIA-NN_report.tsv"><title>Matriz</title><rect x="1278" y="48" width="172" height="76" rx="8" fill="none" stroke="currentColor" stroke-width="2"/><text x="1290" y="92" fill="currentColor" font-size="15">Matriz</text></a><line data-origen="suero" data-destino="digestion" x1="200" y1="86.0" x2="278" y2="86.0" stroke="currentColor" stroke-width="2"/><line data-origen="digestion" data-destino="lcms" x1="450" y1="86.0" x2="528" y2="86.0" stroke="currentColor" stroke-width="2"/><line data-origen="lcms" data-destino="dia" x1="700" y1="86.0" x2="778" y2="86.0" stroke="currentColor" stroke-width="2"/><line data-origen="dia" data-destino="diann" x1="950" y1="86.0" x2="1028" y2="86.0" stroke="currentColor" stroke-width="2"/><line data-origen="diann" data-destino="matriz" x1="1200" y1="86.0" x2="1278" y2="86.0" stroke="currentColor" stroke-width="2"/><line data-origen="suero" data-destino="matriz" x1="200" y1="86.0" x2="1278" y2="86.0" stroke="currentColor" stroke-width="2"/><text x="739.0" y="80.0" fill="currentColor" font-size="12" text-anchor="middle">cierra</text></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>origen</th></tr></thead><tbody><tr><td><a href="/datos/pxd055218">Suero</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/proteomica">Digestión</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/proteomica">LC-MS/MS</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/proteomica">DIA</a></td><td>rai2025</td></tr><tr><td><a href="/datos/herramientas">DIA-NN</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/canalizacion">Matriz</a></td><td>data/raw/plasma/DIA-NN_report.tsv</td></tr><tr><td>suero → digestion</td><td>rai2025</td></tr><tr><td>digestion → lcms</td><td>rai2025</td></tr><tr><td>lcms → dia</td><td>rai2025</td></tr><tr><td>dia → diann</td><td>rai2025</td></tr><tr><td>diann → matriz</td><td>data/raw/plasma/DIA-NN_report.tsv</td></tr><tr><td>suero → matriz (cierra)</td><td>data/raw/plasma/DIA-NN_report.tsv</td></tr></tbody></table></details><p><a href="/figuras/D5.svg" download>Descargar SVG</a> <a href="/figuras/D5.tsv" download>Descargar TSV</a></p></figure>
+
+
+<details class="transparencia">
+<summary>Transparencia y trazabilidad</summary>
+<ul>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.n</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.diferente</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/rai2025">rai2025</a></li>
+
+<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v3.7-final/data/raw/plasma/DIA-NN_report.tsv">data/raw/plasma/DIA-NN_report.tsv</a></li>
+
+<li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
+
+<li><a href="https://doi.org/10.1016/j.celrep.2024.113810">tanaka2024 · 10.1016/j.celrep.2024.113810</a></li>
+
+<li><a href="https://doi.org/10.1038/nature13438">zhang2014 · 10.1038/nature13438</a></li>
+
+</ul>
+</details>
+
+</main>
+</div>
 
 <nav class="indice" aria-label="En esta página">
+<p class="indice-titulo">En esta página</p>
 
 <a href="#qu-entra">Qué entra</a>
 
@@ -94,67 +109,11 @@
 
 </nav>
 
-<main id="contenido">
-
-<nav class="hermanas" aria-label="En esta sección">
-
-<a href="/metodos/canalizacion">Canalización</a>
-
-<a href="/metodos/cohortes-y-diseno">Cohortes y diseño</a>
-
-<a href="/metodos/expresion-diferencial">Expresión diferencial</a>
-
-<a href="/metodos/enriquecimiento">Enriquecimiento</a>
-
-<a href="/metodos/aprendizaje-automatico">Aprendizaje automático</a>
-
-<a href="/metodos/preanalitica-y-calidad">Preanalítica y calidad</a>
-
-<a href="/metodos/priorizacion">Priorización</a>
-
-<a href="/metodos/hipotesis">Hipótesis</a>
-
-</nav>
-
-<h1>Proteómica</h1>
-<h2 id="qu-entra">Qué entra</h2>
-<p>Entra el <a class="termino" href="/glosario#suero">suero<span class="definicion-corta">La parte líquida de la sangre que se midió en el estudio de Rai y otros.</span></a> medido por <a class="termino" href="/glosario#dia">DIA<span class="definicion-corta">Una forma de medir muchas proteínas del suero en la misma corrida.</span></a> en tres grupos, <a class="termino" href="/glosario#cp">CP<span class="definicion-corta">Las muestras de suero de personas con este cáncer.</span></a>, <a class="termino" href="/glosario#cn">CN<span class="definicion-corta">Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span></a> y <a class="termino" href="/glosario#hc">HC<span class="definicion-corta">El contraste con personas sanas existe, pero no es el que decide la pregunta.</span></a>. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span> Entra también el <a class="termino" href="/glosario#proteoma">proteoma<span class="definicion-corta">La lista de proteínas que el experimento alcanzó a cuantificar.</span></a> de tejido de descubrimiento y el de la réplica. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span></p>
-<h2 id="qu-se-hace">Qué se hace</h2>
-<p>La digestión, el cromatógrafo y el espectrómetro son los del artículo de cada cohorte. Esta tesis no repitió el experimento: lee las matrices publicadas y les aplica la regla escrita antes de mirar. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span></p>
-<h2 id="qu-sale">Qué sale</h2>
-<p>La <a class="termino" href="/glosario#celda">celda<span class="definicion-corta">Las proteínas que quedan cuando ya se aplicaron las reglas de la corrida.</span></a> conserva <data value="284" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.n" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.n">284</data> proteínas. Frente a <a class="termino" href="/glosario#cn">CN<span class="definicion-corta">Personas con síntomas intestinales en las que la colonoscopia no mostró este cáncer.</span></a> hay <data value="0" data-fuente="results/v3_7/suero_embudo.json#celda_preregistrada.diferente" title="Origen: results/v3_7/suero_embudo.json#celda_preregistrada.diferente">0</data> diferentes. <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<h2 id="por-qu-as">Por qué así</h2>
-<p>Las intensidades de una plataforma no se suman a las de otra. El tejido de descubrimiento y el suero no son la misma medición ni las mismas personas. <span class="cita-wrap"><a class="cita" href="/bibliografia#zhang2014">CPTAC 2014</a><span class="cita-ventana">Proteogenomic characterization of human colon and rectal cancer 10.1038/nature13438</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<h2 id="qu-tiene-que-ver-con-la-bioinform-tica">Qué tiene que ver con la bioinformática</h2>
-<p>El cálculo empieza cuando la matriz ya existe: identificar las proteínas, separar los grupos y contar con la regla fijada. No diseña el ensayo de laboratorio. <span class="cita-wrap"><a class="cita" href="/bibliografia#vasaikar2019">Vasaikar 2019</a><span class="cita-ventana">Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities 10.1016/j.cell.2019.03.030</span></span></p>
-<h2 id="qu-no-demuestra">Qué no demuestra</h2>
-<p>El resultado del suero no demuestra que el cambio del tumor esté ausente en el tejido, ni que el cero sirva para descartar una enfermedad en una persona. <span class="cita-wrap"><a class="cita" href="/bibliografia#tanaka2024">Tanaka 2024</a><span class="cita-ventana">Proteogenomic characterization of primary colorectal cancer and metastatic progression identifies proteome-based subtypes and signatures 10.1016/j.celrep.2024.113810</span></span> <span class="cita-wrap"><a class="cita" href="/bibliografia#rai2025">Rai 2025</a><span class="cita-ventana">Data-Independent Acquisition Analysis to Identify Serum Biomarkers and Neoantigens for Differentiating Colorectal Cancer from Inflammatory Bowel Diseases 10.1021/acs.jproteome.5c00285</span></span></p>
-<figure class="grafico" id="D5"><h3>¿Cómo se llega a la matriz?</h3><svg viewBox="0 0 1152 180" role="img" class="lienzo-svg"><title>Del tubo a la matriz del suero</title><desc>El recorrido es el del artículo del suero. Esta tesis no repitió la digestión ni la adquisición.</desc><g data-id="suero"><title>Suero</title><rect x="24" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="40" y="108" fill="currentColor" font-size="16">Suero</text><g data-id="digestion"><title>Digestión</title><rect x="212" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="228" y="108" fill="currentColor" font-size="16">Digestión</text><g data-id="lcms"><title>LC-MS/MS</title><rect x="400" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="416" y="108" fill="currentColor" font-size="16">LC-MS/MS</text><g data-id="dia"><title>DIA</title><rect x="588" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="604" y="108" fill="currentColor" font-size="16">DIA</text><g data-id="diann"><title>DIA-NN</title><rect x="776" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="792" y="108" fill="currentColor" font-size="16">DIA-NN</text><g data-id="matriz"><title>Matriz</title><rect x="964" y="70" width="160" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="2"/></g><text x="980" y="108" fill="currentColor" font-size="16">Matriz</text><line data-origen="suero" data-destino="digestion" x1="184" y1="102" x2="212" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="digestion" data-destino="lcms" x1="372" y1="102" x2="400" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="lcms" data-destino="dia" x1="560" y1="102" x2="588" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="dia" data-destino="diann" x1="748" y1="102" x2="776" y2="102" stroke="currentColor" stroke-width="2"/><line data-origen="diann" data-destino="matriz" x1="936" y1="102" x2="964" y2="102" stroke="currentColor" stroke-width="2"/></svg><details><summary>Tabla de los datos del gráfico</summary><table><thead><tr><th>nodo</th><th>origen</th></tr></thead><tbody><tr><td><a href="/datos/pxd055218">Suero</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/proteomica">Digestión</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/proteomica">LC-MS/MS</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/proteomica">DIA</a></td><td>rai2025</td></tr><tr><td><a href="/datos/herramientas">DIA-NN</a></td><td>rai2025</td></tr><tr><td><a href="/metodos/canalizacion">Matriz</a></td><td>data/raw/plasma/DIA-NN_report.tsv</td></tr><tr><td>suero → digestion</td><td>rai2025</td></tr><tr><td>digestion → lcms</td><td>rai2025</td></tr><tr><td>lcms → dia</td><td>rai2025</td></tr><tr><td>dia → diann</td><td>rai2025</td></tr><tr><td>diann → matriz</td><td>data/raw/plasma/DIA-NN_report.tsv</td></tr></tbody></table></details><p><a href="/figuras/D5.svg" download>Descargar SVG</a> <a href="/figuras/D5.tsv" download>Descargar TSV</a></p></figure>
-
-<details class="transparencia">
-<summary>Transparencia y trazabilidad</summary>
-<ul>
-
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.n</a></li>
-
-<li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/595118ae09ea6006c744c86b28cb0a10d42e0442/results/v3_7/suero_embudo.json">results/v3_7/suero_embudo.json#celda_preregistrada.diferente</a></li>
-
-<li><a href="https://doi.org/10.1021/acs.jproteome.5c00285">rai2025 · 10.1021/acs.jproteome.5c00285</a></li>
-
-<li><a href="https://doi.org/10.1016/j.cell.2019.03.030">vasaikar2019 · 10.1016/j.cell.2019.03.030</a></li>
-
-<li><a href="https://doi.org/10.1016/j.celrep.2024.113810">tanaka2024 · 10.1016/j.celrep.2024.113810</a></li>
-
-<li><a href="https://doi.org/10.1038/nature13438">zhang2014 · 10.1038/nature13438</a></li>
-
-</ul>
-</details>
-
-</main>
-</div>
 </div>
 <footer class="pie">
 <nav class="secundario" aria-label="Más páginas">
+
+<a href="/aprende/cancer-colorrectal">Aprende</a>
 
 <a href="/datos">Datos</a>
 
@@ -172,10 +131,12 @@
 
 <a href="/bibliografia">Bibliografía</a>
 
+<a href="/como-citar">Cómo citar</a>
+<a href="/sobre">Sobre esta tesis</a>
 </nav>
-<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
-<p><a href="/bibliografia">Cómo citar</a> · <a href="https://github.com/JancoDeveloper/OncoGO-CRC">Repositorio</a></p>
-<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
+<p>Resultados v3.7-final · certificado <data value="publicable" data-fuente="results/v3_7/certificado.json#estado" title="Origen: results/v3_7/certificado.json#estado">Publicable</data> · sello <data value="71b310a3fcaebe9267fac971156df3aab491e009" data-fuente="results/v3_7/certificado.json#sello.commit" title="Origen: results/v3_7/certificado.json#sello.commit">71b310a3fcaebe9267fac971156df3aab491e009</data>.</p>
+<p><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v3.7-final">Repositorio, etiqueta v3.7-final</a></p>
+<p class="nota-etica">Ningún resultado de esta tesis sirve para decidir sobre un paciente.</p>
 </footer>
 <script>(function () {
   var raiz = document.documentElement;
@@ -199,7 +160,7 @@
   });
   var path = location.pathname.replace(/\/$/, "") || "/";
   function marcarLateral() {
-    document.querySelectorAll(".lateral a").forEach(function (enlace) {
+    document.querySelectorAll("#exploracion a").forEach(function (enlace) {
       var href = enlace.getAttribute("href") || "";
       var activo = false;
       if (href.indexOf("#") !== -1) {
@@ -258,7 +219,9 @@
       document.querySelectorAll("[data-buscar]").forEach(function (nodo) {
         if (nodo.closest && nodo.closest(".explorador")) return;
         var texto = nodo.getAttribute("data-buscar").toLowerCase();
-        nodo.hidden = consulta.length > 0 && texto.indexOf(consulta) === -1;
+        var partes = consulta.split(";").map(function (parte) { return parte.trim(); }).filter(Boolean);
+        var hallado = texto.indexOf(consulta) !== -1 || (partes.length > 1 && partes.some(function (parte) { return texto.indexOf(parte) !== -1; }));
+        nodo.hidden = consulta.length > 0 && !hallado;
       });
     };
     caja.addEventListener("input", aplicar);
@@ -402,6 +365,176 @@
     if (solo) solo.addEventListener("change", function () { pagina = 0; pintar(); });
     pintar();
   }
+  document.querySelectorAll(".termino").forEach(function (boton) {
+    var panel = document.getElementById(boton.getAttribute("aria-describedby"));
+    if (!panel) return;
+    function abrir() {
+      panel.hidden = false;
+      boton.setAttribute("aria-expanded", "true");
+    }
+    function cerrar() {
+      panel.hidden = true;
+      boton.setAttribute("aria-expanded", "false");
+    }
+    boton.addEventListener("click", function () {
+      if (panel.hidden) abrir();
+      else cerrar();
+    });
+    boton.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrar();
+    });
+  });
+  document.querySelectorAll("[data-copiar]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var texto = boton.getAttribute("data-copiar") || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(function () {
+          boton.textContent = "Copiada";
+        });
+      }
+    });
+  });
+  function filtrarGrupo(selector, atributo, valor) {
+    document.querySelectorAll(selector).forEach(function (nodo) {
+      var coincide = valor === "Todas" || nodo.getAttribute(atributo) === valor;
+      nodo.hidden = !coincide;
+    });
+  }
+  document.querySelectorAll("[data-filtro-bib]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-tesis", "data-tema", boton.getAttribute("data-filtro-bib"));
+    });
+  });
+  document.querySelectorAll("[data-filtro-glosario]").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      filtrarGrupo(".entrada-termino", "data-categoria", boton.getAttribute("data-filtro-glosario"));
+    });
+  });
+  var filtroGlosario = document.getElementById("filtro-glosario");
+  if (filtroGlosario) {
+    filtroGlosario.addEventListener("input", function () {
+      var q = filtroGlosario.value.toLowerCase();
+      document.querySelectorAll(".entrada-termino").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  var filtroBib = document.getElementById("filtro-bib");
+  if (filtroBib) {
+    filtroBib.addEventListener("input", function () {
+      var q = filtroBib.value.toLowerCase();
+      document.querySelectorAll(".entrada-tesis").forEach(function (nodo) {
+        nodo.hidden = q && (nodo.getAttribute("data-buscar") || "").toLowerCase().indexOf(q) === -1;
+      });
+    });
+  }
+  document.querySelectorAll("[data-juguete]").forEach(function (formulario) {
+    var efecto = formulario.querySelector("[data-efecto]");
+    var ancho = formulario.querySelector("[data-ancho]");
+    var clase = formulario.querySelector("[data-clase]");
+    function pintar() {
+      var e = Number(efecto.value);
+      var a = Number(ancho.value);
+      var bajo = e - a;
+      var alto = e + a;
+      var margen = Math.log2(1.5);
+      var resultado = "indeterminada";
+      if (bajo >= margen || alto <= -margen) resultado = "diferente";
+      else if (bajo >= -margen && alto <= margen) resultado = "equivalente";
+      clase.textContent = "Efecto " + e.toFixed(2) + ", intervalo " + bajo.toFixed(2) + " a " + alto.toFixed(2) + ". Clase de juguete: " + resultado + ".";
+    }
+    efecto.addEventListener("input", pintar);
+    ancho.addEventListener("input", pintar);
+    pintar();
+  });
+  var cajaBusqueda = document.getElementById("q");
+  var sugerencias = document.getElementById("sugerencias");
+  if (cajaBusqueda && sugerencias && !document.querySelector("[data-buscar]")) {
+    var indice = null;
+    var activo = -1;
+    function coincide(consulta, texto) {
+      var q = consulta.toLowerCase().trim();
+      var bolsa = (texto || "").toLowerCase();
+      if (!q) return false;
+      if (bolsa.indexOf(q) !== -1) return true;
+      var partes = q.split(";").filter(Boolean);
+      return partes.length > 1 && partes.some(function (parte) { return bolsa.indexOf(parte) !== -1; });
+    }
+    function pintarSugerencias(lista) {
+      sugerencias.innerHTML = "";
+      if (!lista.length) {
+        sugerencias.hidden = true;
+        return;
+      }
+      var grupos = {};
+      lista.slice(0, 12).forEach(function (item) {
+        grupos[item.grupo] = grupos[item.grupo] || [];
+        grupos[item.grupo].push(item);
+      });
+      Object.keys(grupos).forEach(function (grupo) {
+        var titulo = document.createElement("p");
+        titulo.textContent = grupo;
+        sugerencias.appendChild(titulo);
+        grupos[grupo].forEach(function (item) {
+          var enlace = document.createElement("a");
+          enlace.href = item.href;
+          enlace.textContent = item.rotulo;
+          sugerencias.appendChild(enlace);
+        });
+      });
+      sugerencias.hidden = false;
+      activo = -1;
+    }
+    cajaBusqueda.addEventListener("input", function () {
+      var q = cajaBusqueda.value;
+      if (q.trim().length < 2) {
+        sugerencias.hidden = true;
+        return;
+      }
+      function aplicar(datos) {
+        indice = datos;
+        pintarSugerencias(datos.filter(function (item) { return coincide(q, item.texto); }));
+      }
+      if (indice) aplicar(indice);
+      else fetch("/buscar/indice.json").then(function (r) { return r.json(); }).then(aplicar).catch(function () {});
+    });
+    cajaBusqueda.addEventListener("keydown", function (evento) {
+      var enlaces = sugerencias.querySelectorAll("a");
+      if (evento.key === "Escape") {
+        sugerencias.hidden = true;
+        return;
+      }
+      if (!enlaces.length || sugerencias.hidden) return;
+      if (evento.key === "ArrowDown" || evento.key === "ArrowUp") {
+        evento.preventDefault();
+        activo += evento.key === "ArrowDown" ? 1 : -1;
+        if (activo < 0) activo = enlaces.length - 1;
+        if (activo >= enlaces.length) activo = 0;
+        enlaces.forEach(function (enlace, i) {
+          if (i === activo) enlace.setAttribute("aria-selected", "true");
+          else enlace.removeAttribute("aria-selected");
+        });
+        enlaces[activo].focus();
+      }
+    });
+  }
+  var punta = document.createElement("div");
+  punta.className = "cita-ventana";
+  punta.hidden = true;
+  document.body.appendChild(punta);
+  document.querySelectorAll("[data-tip]").forEach(function (nodo) {
+    function mostrar() {
+      punta.hidden = false;
+      punta.textContent = nodo.getAttribute("data-tip");
+    }
+    nodo.addEventListener("focus", mostrar);
+    nodo.addEventListener("mouseenter", mostrar);
+    nodo.addEventListener("blur", function () { punta.hidden = true; });
+    nodo.addEventListener("mouseleave", function () { punta.hidden = true; });
+  });
   document.querySelectorAll(".lienzo-svg [data-id]").forEach(function (nodo) {
     nodo.addEventListener("click", function () {
       var svg = nodo.closest("svg");
