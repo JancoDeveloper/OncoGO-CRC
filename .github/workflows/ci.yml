@@ -6,19 +6,19 @@ on:
 
 jobs:
   prueba:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-14, ubuntu-24.04]
-        python: ["3.12", "3.14"]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python }}
-      - run: pip install -e ".[dev]"
-      - run: ruff check src tests
-      - run: pytest -q
+          python-version: "3.14.3"
+      - name: Instalar
+        run: pip install -e ".[dev]"
+      - name: ruff
+        run: ruff check src tests scripts
+      - name: pytest
+        run: pytest -q --cov=oncogo_crc --cov-report=term-missing
+      - name: e2e sintética
+        run: ONCOGO_E2E=1 pytest -q -m e2e --override-ini="addopts=" tests/test_e2e_v3_7_sintetico.py

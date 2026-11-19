@@ -1,9 +1,0 @@
-{
-  "svg_sha256": "b321a81958a340dce5d398d63d99f12fd15966591fe4d53f7f828751dac61d53",
-  "fuentes": [
-    "preanalitica_orden.tsv",
-    "suero_calidad_muestra.tsv"
-  ],
-  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
-  "generador": "scripts/sitio/graficos.py"
-}

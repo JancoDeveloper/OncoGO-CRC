@@ -1,8 +1,0 @@
-{
-  "svg_sha256": "322b75fe13221c24d14419be977ab232b7f012f497f08b47b0fa7f4bcd2863fb",
-  "fuentes": [
-    "results/v3_7/suero_embudo.json#celda_preregistrada.n"
-  ],
-  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
-  "generador": "scripts/sitio/graficos.py"
-}

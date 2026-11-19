@@ -1,8 +1,0 @@
-{
-  "svg_sha256": "74dba6fcc4666fe78172b777492fc55a7db53bb0101733501e04a72cd9c136f8",
-  "fuentes": [
-    "results/v3_7/suero_k4_crc_cn.tsv"
-  ],
-  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
-  "generador": "scripts/sitio/graficos.py"
-}

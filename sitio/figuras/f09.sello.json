@@ -1,8 +1,0 @@
-{
-  "svg_sha256": "c05eff60d74941a2870787795dd63293062f2c5447cee27a632923836eb0eecd",
-  "fuentes": [
-    "ml_explicacion.tsv"
-  ],
-  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
-  "generador": "scripts/sitio/graficos.py"
-}

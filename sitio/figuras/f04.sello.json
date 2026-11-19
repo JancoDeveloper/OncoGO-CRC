@@ -1,9 +1,0 @@
-{
-  "svg_sha256": "51032b397046e7ddf2d6cefb04c8f4f7d960e8ef6ae6a0886d26111920b1ca95",
-  "fuentes": [
-    "multiverso_suero.tsv",
-    "multiverso_resumen.json"
-  ],
-  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
-  "generador": "scripts/sitio/graficos.py"
-}

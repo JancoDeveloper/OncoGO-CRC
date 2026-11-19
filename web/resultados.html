@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultados · OncoGO-CRC</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<header>
+  <div class="marca">
+    <h1>OncoGO-CRC</h1>
+    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+  </div>
+  <nav><a href="index.html">Inicio</a><a href="flujo.html">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html" aria-current="page">Resultados</a><a href="robustez.html">Robustez (OE3)</a><a href="conclusiones.html">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+</header>
+<main>
+
+<h2>Resultados por objetivo</h2>
+<p>Todas las cifras de esta página están en <code>config/esperado_v3_7.tsv</code> o en el resumen de la tesis, que lee esos archivos.</p>
+<h3>OE1. El flujo corre y deja rastro</h3>
+<p>La corrida sellada terminó con certificado publicable, 119 sellos y ninguna entrada declarada ausente (<code>certificado.json</code>, casilla de entradas). Python 3.14.3. De 00:48:45 a 01:04:00 UTC del 11 de noviembre de 2026.</p>
+<h3>OE2. Tejido, suero, modelos</h3>
+<table>
+<thead><tr><th>Resultado</th><th>Valor</th><th>Archivo</th></tr></thead>
+<tbody>
+<tr><td>Concordancia de dirección, primario frente a mucosa</td><td>147 / 147</td><td><code>k1_etiquetas.json</code></td></tr>
+<tr><td>Cobertura de esa concordancia</td><td>147 / 688</td><td><code>k1_etiquetas.json</code></td></tr>
+<tr><td>Metástasis hepática frente a mucosa</td><td>116 / 143</td><td><code>k1_etiquetas.json</code></td></tr>
+<tr><td>Suero CP frente a CN</td><td>284 proteínas: 0 diferentes, 166 equivalentes, 118 indeterminadas</td><td><code>suero_embudo.json</code></td></tr>
+<tr><td>M1, proteínas filtradas humanas</td><td>AUC 0,9466249999999998; p = 0,0009990009990009</td><td><code>ml_modelos.tsv</code></td></tr>
+<tr><td>M2, proteínas de la matriz principal</td><td>AUC 0,88025; p = 0,0009990009990009</td><td><code>ml_modelos.tsv</code></td></tr>
+<tr><td>M3, solo calidad de la muestra</td><td>AUC 0,915125; p = 0,0009990009990009</td><td><code>ml_modelos.tsv</code></td></tr>
+<tr><td>M4, solo coagulación</td><td>AUC 0,818375; p = 0,0019980019980019</td><td><code>ml_modelos.tsv</code></td></tr>
+<tr><td>M5, principal residualizada por calidad</td><td>AUC 0,6467499999999999; p = 0,1188811188811188</td><td><code>ml_modelos.tsv</code></td></tr>
+<tr><td>M6, principal más 5 componentes</td><td>AUC 0,8875; p = 0,0009990009990009</td><td><code>ml_modelos.tsv</code></td></tr>
+<tr><td>Especificidad de órgano (H5)</td><td>estado sostiene; universo 29</td><td><code>h5_especificidad_organo.json</code></td></tr>
+<tr><td>Origen celular (H6)</td><td>estado no_sostiene</td><td><code>h6_origen_celular.json</code></td></tr>
+<tr><td>Visibilidad en sangre, Alvez 2023 y HPA</td><td>AUC 0,48281209614887566 y 0,46391135070380357</td><td><code>h7_visibilidad_en_sangre.json</code></td></tr>
+<tr><td>Proteínas específicas de CRC en el atlas de sangre (H10)</td><td>5</td><td><code>h10_especificidad.json</code></td></tr>
+<tr><td>Crudos con fecha de adquisición</td><td>60</td><td><code>preanalitica.json</code></td></tr>
+</tbody>
+</table>
+<p>Los grupos del suero se midieron en bloques sucesivos. La separación de M2 no se atribuye al tumor: M3, solo con calidad, separa más, y M5 deja de hacerlo (p = 0,12 en la tabla de referencia).</p>
+<h3>Síntesis</h3>
+<p>En tejido, el signo del cambio se repite en las dos cohortes para las 147 proteínas comparables. En suero, ninguna de las 284 proteínas del contraste principal es diferente entre CP y CN dentro del margen de 1,5 veces. El estudio queda en la fase exploratoria y no propone una prueba de sangre.</p>
+
+</main>
+</body>
+</html>

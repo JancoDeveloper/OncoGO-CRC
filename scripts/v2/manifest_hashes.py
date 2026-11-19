@@ -17,11 +17,23 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
 import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
-WORKSPACE = Path("/Volumes/JANCODATA/OncoGO-CRC")
+def _workspace() -> Path:
+    for clave in ("ONCOGO_CRC_DATA_WORKSPACE", "WORKSPACE"):
+        valor = os.environ.get(clave)
+        if valor:
+            return Path(valor)
+    volumen = Path("/Volumes/JANCODATA/OncoGO-CRC")
+    if volumen.is_dir():
+        return volumen
+    return Path.cwd() / "workspace"
+
+
+WORKSPACE = _workspace()
 
 # Entradas: lo que el pipeline lee y nunca debe editar.
 INPUT_GLOBS = (

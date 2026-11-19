@@ -12,64 +12,35 @@ ENV/
 .eggs/
 dist/
 build/
+.coverage
+coverage.xml
+htmlcov/
 
-# Data & results (keep structure via .gitkeep where needed)
+# Espacio de datos de una corrida nueva. La referencia sellada está en results/v3_7.
+/workspace/
+/var/
+
+# Matrices descargadas. Sus huellas están en data/checksums.sha256.
 data/raw/**/*.tsv
 data/raw/**/*.csv
 data/raw/**/*.txt
 !data/raw/**/.gitkeep
-data/interim/*.tsv
-data/processed/*.tsv
-/results/**/*
-!/results/**/.gitkeep
-# v3 se versiona: la tesis cita estas tablas. La caché de Crossref se regenera.
-!/results/v3/
-!/results/v3/**
-/results/v3/crossref_cache/
-!/results/v3_2/
-!/results/v3_2/**
-!/results/v3_2_manifest.sha256
-!/results/v3_3/
-!/results/v3_3/**
-!/results/v3_3_manifest.sha256
-!/results/v3_4/
-!/results/v3_4/**
-!/results/v3_4_manifest.sha256
-!/results/v3_5/
-!/results/v3_5/**
-!/results/v3_5_manifest.sha256
-!/results/v3_6/
-!/results/v3_6/**
-!/results/v3_6_manifest.sha256
-!/results/v3_7/
-!/results/v3_7/**
-!/results/v3_7_manifest.sha256
-/results/v3/crossref_cache/**
-/reports/**/*.md
-!/reports/**/.gitkeep
+data/interim/
+data/processed/
 
-# MkDocs
-site/
+# AppleDouble y basura de disco
+._*
+.DS_Store
 
-# IDE
+# IDE y registros locales
 .idea/
 .vscode/
 *.swp
-.DS_Store
-
-# AppleDouble: ExFAT (el disco externo JANCODATA) crea un ._fichero por fichero.
-# No son datos del proyecto.
-._*
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Registro local de una corrida. No es un resultado.
 logs/
 firebase-debug.log
 .firebase/
 
-# LaTeX, productos de la compilación
+# LaTeX
 *.aux
 *.log
 *.bcf
@@ -85,6 +56,6 @@ firebase-debug.log
 *.synctex.gz
 *.xdv
 
-# Demo exception: allow tiny demo outputs if committed — user may gitignore
-# Uncomment to ignore all demo-generated files:
-# data/**/demo_*
+# Caché de anotación de la web y sitio generado antiguo
+sitio/
+sitio_fuente/fuentes/

@@ -140,85 +140,22 @@ datasets:
       matrix_source_accession_note: "PXD055218"
     requires_token: false
 
-  crcdb_context:
-    enabled: false
-    label: "CRCDB / contexto EOCRC (opcional)"
-    role: contextual
-    mvp_tier: extended_optional
-    matrix_path: data/raw/crcdb/crcdb_matrix.tsv
-    sample_metadata: metadata/sample_metadata/crcdb_metadata.tsv
-    id_column: sample_id
-    protein_column: protein_id
-    download_real:
-      enabled: true
-      provider: manual
-      remote_source:
-        description: "CRCDB public annotations"
-        homepage: "https://crcdb.org"
-        access_mode: "manual-curated"
-      source_catalog_url: "https://crcdb.org"
-      matrix_url: ""
-      metadata_url: ""
-      headers: {}
-      query_params: {}
-      overwrite: false
-      timeout_s: 120
-      retries: 3
-    status_policy: context_only
-
-  pharmacoproteomics:
-    enabled: false
-    label: "Farmacoproteómica / PDOs (opcional)"
-    role: expansion
-    mvp_tier: extended_optional
-    matrix_path: data/raw/pharmacoproteomics/pharmacoproteomics_matrix.tsv
-    sample_metadata: metadata/sample_metadata/pharmacoproteomics_metadata.tsv
+  pxd064655:
+    label: "Suero o plasma por estadio (PXD064655), validación"
+    role: validation_stage
+    mvp_tier: core_required
+    accession: PXD064655
+    matrix_path: external/pxd064655/report.pr_matrix.tsv
+    sample_metadata: external/pxd064655/Sample_Metadata.txt
     id_column: sample_id
     protein_column: protein_id
     download_real:
       enabled: true
       provider: pride
-      source_catalog_url: "https://www.ebi.ac.uk/pride/ws/archive/v2/projects"
-      accessions: ["PXD019234"]
-      file_selection:
-        prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx"]
-        include_keywords: ["drug", "treatment", "response", "protein", "abundance", "metadata", "sample"]
-        exclude_keywords: ["raw", ".mzml", ".wiff", ".d", ".mgf", "readme", "description", "note"]
-      matrix_url: ""
-      metadata_url: ""
-      headers: {}
-      query_params: {}
-      overwrite: false
-      timeout_s: 120
-      retries: 3
-    requires_token: false
-
-  metastatic_crc_optional:
-    enabled: false
-    label: "Metastatic CRC (iProx / CRLM / cohortes afines) — opcional"
-    role: expansion_metastasis
-    mvp_tier: extended_optional
-    matrix_path: data/raw/metastatic/metastatic_crc_matrix.tsv
-    sample_metadata: metadata/sample_metadata/metastatic_crc_metadata.tsv
-    id_column: sample_id
-    protein_column: protein_id
-    download_real:
-      enabled: true
-      provider: px
-      accession: "PXD021238"
-      host_repository: "PRIDE"
-      source_catalog_url: "https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD021238&test=no"
-      file_selection:
-        prefer_extensions: [".tsv", ".txt", ".csv", ".xlsx"]
-        include_keywords: ["metastasis", "liver", "protein", "abundance", "metadata", "sample"]
-        exclude_keywords: ["raw", ".mzml", ".wiff", ".d", ".mgf", "readme", "description", "note"]
-      matrix_url: ""
-      metadata_url: ""
-      headers: {}
-      query_params: {}
-      overwrite: false
-      timeout_s: 120
-      retries: 3
+      accessions: ["PXD064655"]
+      source_project_url: "https://www.ebi.ac.uk/pride/archive/projects/PXD064655"
+      matrix_url: "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/01/PXD064655/report.pr_matrix.tsv"
+      metadata_url: "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/01/PXD064655/Sample_Metadata.txt"
     requires_token: false
 
 protein_id_map: metadata/protein_id_maps/protein_mapping_master.tsv

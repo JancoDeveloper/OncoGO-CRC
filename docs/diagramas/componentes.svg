@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" role="img" aria-labelledby="t">
+  <title id="t">Componentes del paquete oncogo_crc</title>
+  <rect width="880" height="300" fill="#f7f4ef"/>
+  <text x="24" y="32" font-family="Georgia, serif" font-size="18" fill="#1c1917">Componentes</text>
+  <g font-family="Georgia, serif" font-size="14" fill="#1c1917">
+    <rect x="24" y="56" width="250" height="56" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="40" y="90">Makefile · cli · registry</text>
+    <rect x="24" y="132" width="250" height="56" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="40" y="166">stages/v3_7.py · orquesta</text>
+    <rect x="320" y="56" width="250" height="132" rx="6" fill="#e7efe9" stroke="#1f4d3a"/>
+    <text x="336" y="90">v3/ contrastes, AUC,</text>
+    <text x="336" y="114">modelos, cierre</text>
+    <text x="336" y="138">y directLFQ</text>
+    <rect x="616" y="56" width="240" height="132" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="632" y="90">Transversales</text>
+    <text x="632" y="114">preregistro, sello,</text>
+    <text x="632" y="138">vigilante, DIA-NN</text>
+    <path d="M149 112 V132 M274 160 H320 M570 122 H616" stroke="#1f4d3a" fill="none"/>
+  </g>
+  <text x="24" y="250" font-family="Georgia, serif" font-size="12" fill="#57534e">Las dependencias van en un sentido: la biblioteca no importa una etapa.</text>
+</svg>

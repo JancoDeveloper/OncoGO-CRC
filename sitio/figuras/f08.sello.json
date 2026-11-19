@@ -1,9 +1,0 @@
-{
-  "svg_sha256": "08318946bdbd3b76f7dc85d4101996a5ef30ecada958d502bc99d289fa004061",
-  "fuentes": [
-    "ml_suero_permutacion.json",
-    "k5_auc.json"
-  ],
-  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
-  "generador": "scripts/sitio/graficos.py"
-}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220" role="img" aria-labelledby="t">
+  <title id="t">Orden de ejecución de make all-v3-7</title>
+  <rect width="920" height="220" fill="#f7f4ef"/>
+  <text x="24" y="32" font-family="Georgia, serif" font-size="18" fill="#1c1917">Actividad de make all-v3-7</text>
+  <g font-family="Georgia, serif" font-size="13" fill="#1c1917">
+    <rect x="24" y="64" width="150" height="70" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="40" y="96">Regresión v1</text>
+    <text x="40" y="116">si hay certified</text>
+    <rect x="210" y="64" width="160" height="70" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="226" y="96">Crudos PXD055218</text>
+    <text x="226" y="116">SHA-1 de PRIDE</text>
+    <rect x="406" y="64" width="150" height="70" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="422" y="96">Etapa v3_7</text>
+    <text x="422" y="116">árbol limpio</text>
+    <rect x="592" y="64" width="150" height="70" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="608" y="96">Certificado</text>
+    <text x="608" y="116">22 casillas</text>
+    <rect x="778" y="64" width="118" height="70" rx="6" fill="#e7efe9" stroke="#1f4d3a"/>
+    <text x="794" y="104">verificar</text>
+    <path d="M174 99 H210 M370 99 H406 M556 99 H592 M742 99 H778" stroke="#1f4d3a" fill="none"/>
+  </g>
+  <text x="24" y="180" font-family="Georgia, serif" font-size="12" fill="#57534e">Se detiene si el árbol de git está sucio, si falta una entrada declarada o si una salida guarda una ruta local.</text>
+</svg>

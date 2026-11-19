@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robustez · OncoGO-CRC</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<header>
+  <div class="marca">
+    <h1>OncoGO-CRC</h1>
+    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+  </div>
+  <nav><a href="index.html">Inicio</a><a href="flujo.html">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html">Resultados</a><a href="robustez.html" aria-current="page">Robustez (OE3)</a><a href="conclusiones.html">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+</header>
+<main>
+
+<h2>OE3. Robustez y reproducibilidad</h2>
+<table>
+<thead><tr><th>Comprobación</th><th>Valor de la referencia</th><th>Archivo</th></tr></thead>
+<tbody>
+<tr><td>Celdas del multiverso de suero</td><td>288</td><td><code>multiverso_resumen.json</code></td></tr>
+<tr><td>Celdas del multiverso de modelos</td><td>72</td><td><code>multiverso_resumen.json</code></td></tr>
+<tr><td>Celdas con alguna proteína diferente</td><td>13, todas sin retirar contaminantes</td><td><code>multiverso_resumen.json</code></td></tr>
+<tr><td>Segunda evaluación de M2</td><td>el AUC coincide a menos de 1e-12</td><td><code>determinismo.json</code></td></tr>
+<tr><td>35 métricas frente a la tolerancia</td><td>ninguna fuera, en la comparación de la tesis</td><td><code>config/esperado_v3_7.tsv</code></td></tr>
+</tbody>
+</table>
+<p>La comparación entre dos procesos del equipo del autor está en <code>docs/reproducibilidad/determinismo_d_e.md</code>. <code>make verificar</code> repite la comparación de una corrida nueva contra <code>results/v3_7</code>. Cambian, y se admite que cambien, los sellos, la fecha, el identificador de proceso, el registro de pruebas y el orden de filas de <code>gsea_tejido.tsv</code>.</p>
+<p>Lo que esta versión todavía no repite sola: la matriz TMT de PDC000116 (hace falta para regenerar <code>results/certified</code>), los 65,56 GB de crudos si se quieren de nuevo las fechas de adquisición, y el TSV de embeddings ESM-2, que no entra en el modelo principal.</p>
+
+</main>
+</body>
+</html>

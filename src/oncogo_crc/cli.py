@@ -12,7 +12,7 @@ from oncogo_crc.utils import run_manifest
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="oncogo-crc",
-        description="OncoGO-CRC — pipeline proteómico protein-centric con GO e IA explicable.",
+        description="OncoGO-CRC v4 — flujo bioinformático de la corrida v3.7 (tejido y suero, caso CRC).",
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -21,7 +21,7 @@ def main(argv: list[str] | None = None) -> int:
         "--stage",
         choices=STAGE_ORDER + ["all"],
         default="all",
-        help="Etapa concreta o `all` en orden. `ingest_cptac` no forma parte de `all`.",
+        help="Etapa concreta o `all` (solo v3_7). certified_inference y certification regeneran las entradas v1.",
     )
     runp.add_argument(
         "--demo",

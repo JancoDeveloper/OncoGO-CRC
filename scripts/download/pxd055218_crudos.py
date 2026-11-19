@@ -88,10 +88,15 @@ def colocar(temporal: Path, crudo: Path, fecha: str) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--workspace", type=Path, required=True)
-    parser.add_argument("--cache", type=Path, default=Path.home() / "Library" / "Caches" / "oncogo")
+    parser.add_argument(
+        "--cache",
+        type=Path,
+        default=None,
+        help="Caché de descargas. Por defecto, <workspace>/cache/pxd055218.",
+    )
     args = parser.parse_args()
     raws = args.workspace / "data" / "raw" / "plasma" / "pxd055218_raw"
-    cache = args.cache
+    cache = args.cache or (args.workspace / "cache" / "pxd055218")
     cache.mkdir(parents=True, exist_ok=True)
     checksum = raws / "checksum.txt"
     descargar(f"{URL_BASE}/checksum.txt", cache / "checksum.txt", reanudar=False)
@@ -132,7 +137,8 @@ def main() -> None:
                 raise SystemExit(f"{nombre} no coincide con PRIDE tras 3 descargas")
         anotar_redescarga(fila, cuarentena, nombre, fecha)
         filas.append(fila)
-    salida = Path("results") / "v3_7"
+    # No escribe en el results/v3_7 del repositorio: esa carpeta es la referencia sellada.
+    salida = args.workspace / "results" / "v3_7"
     salida.mkdir(parents=True, exist_ok=True)
     columnas = ["crudo", "bytes_local", "bytes_pride", "sha1_local", "sha1_pride", "igual", "redescargado", "intentos"]
     lineas = ["\t".join(columnas)]
