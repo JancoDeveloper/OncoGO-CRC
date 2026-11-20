@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marco teórico · Aprender · OncoGO-CRC</title>
+<meta name="description" content="Qué es una proteína, la proteómica, la espectrometría de masas, TMT, LFQ, DIA, el cáncer colorrectal y los depósitos públicos.">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header>
+  <div class="marca">
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
+  </div>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="autor.html">El autor</a>
+    <a href="aprender.html" aria-current="page">Aprender</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
+</header>
+<main id="contenido">
+<p><a href="aprender.html">Aprender</a></p>
+<h2>Marco teórico</h2>
+<nav class="indice-temas" aria-label="Temas del marco teórico">
+  <ul>
+    <li><a href="#proteina">Del gen a la proteína, y la proteómica</a></li>
+    <li><a href="#masas">Espectrometría de masas</a></li>
+    <li><a href="#cuantificacion">TMT, LFQ y DIA</a></li>
+    <li><a href="#cancer">Cáncer colorrectal</a></li>
+    <li><a href="#sangre">Sangre, suero y biomarcadores</a></li>
+    <li><a href="#anotacion">Gene Ontology y bases públicas</a></li>
+  </ul>
+</nav>
+
+<h3 id="proteina">Del gen a la proteína, y la proteómica</h3>
+<p>Una proteína es una cadena de aminoácidos que, ya plegada, hace un trabajo: corta moléculas, transporta otras, sostiene una estructura o manda una señal. La receta está en un gen, un tramo de ADN. La célula copia ese tramo a una molécula más corta, el ARN mensajero. Después lee el ARN de tres en tres letras y va añadiendo aminoácidos. Esa relación —del gen al ARN y del ARN a la proteína— es el llamado dogma central (<a href="referencias.html#crick1970">Crick, 1970</a>). El catálogo de proteínas humanas, con su secuencia y sus nombres, está en UniProt (<a href="referencias.html#uniprot2025">The UniProt Consortium, 2025</a>).</p>
+<p>Medir el gen, o el ARN, no dice cuánta proteína hay. La proteómica mide muchas proteínas a la vez. En este trabajo eso se hace con espectrometría de masas sobre tablas que otros laboratorios ya publicaron (<a href="referencias.html#cox2008">Cox y Mann, 2008</a>). No se reclutó a nadie y no se volvió a identificar espectro por espectro.</p>
+<figure class="real">
+  <img src="img/aprender/dogma-central.jpg" alt="Esquema del dogma central: el ADN se replica con la ADN polimerasa, se transcribe a ARN con la ARN polimerasa y el ARN se traduce a una proteína en el ribosoma.">
+  <figcaption>Del gen a la proteína: replicación, transcripción y traducción.
+    <span class="credito">Daniel Horspool (Dhorspool), 2008. Licencia: <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.es">CC BY-SA 3.0</a>. Origen: <a href="https://commons.wikimedia.org/wiki/File:Central_Dogma_of_Molecular_Biochemistry_with_Enzymes.jpg">Wikimedia Commons</a>. No se modificó. <a href="creditos-imagenes.html#dogma-central">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<figure class="real">
+  <img src="img/aprender/estructura-insulina.jpg" alt="Diagrama de cintas del hexámero de insulina humana. Seis cadenas de colores distintos rodean los átomos de cinc del centro.">
+  <figcaption>Una proteína ya plegada: la insulina humana, forma en la que se guarda. Cada cinta es una cadena. No es una proteína de este estudio.
+    <span class="credito">Benjah-bmm27, 2007. Dominio público. Origen: <a href="https://commons.wikimedia.org/wiki/File:Human-insulin-hexamer-3D-ribbons.png">Wikimedia Commons</a>. Se aplanó el fondo transparente a blanco; no se cambió el modelo. <a href="creditos-imagenes.html#estructura-insulina">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#crick1970">Crick (1970)</a>, la relación entre ADN, ARN y proteína.</li>
+  <li><a href="referencias.html#uniprot2025">The UniProt Consortium (2025)</a>, la base de secuencias y nombres.</li>
+  <li><a href="referencias.html#cox2008">Cox y Mann (2008)</a>, un programa de referencia para identificar y cuantificar proteínas.</li>
+</ul>
+
+<h3 id="masas">Espectrometría de masas</h3>
+<p>La proteómica de abajo hacia arriba corta primero las proteínas en péptidos. Esos péptidos se separan en el tiempo con una cromatografía líquida, para que no entren todos juntos al instrumento. El espectrómetro de masas mide la masa de cada péptido y cómo se rompe. El patrón de fragmentos permite proponer su secuencia, y de ahí la proteína de origen. La cantidad se estima a partir de la intensidad de la señal, no como una concentración de laboratorio lista para un informe clínico (<a href="referencias.html#cox2008">Cox y Mann, 2008</a>; <a href="referencias.html#demichev2020">Demichev y colaboradores, 2020</a>).</p>
+<p>Un mismo péptido puede coincidir con varias proteínas, a veces de otra especie. Por eso, al leer las tablas, se filtra por especie humana y se cruza con una biblioteca de contaminantes (<a href="referencias.html#frankenfield2022">Frankenfield y colaboradores, 2022</a>). Este flujo no abre los espectros para identificarlos de nuevo. La única lectura de archivos crudos es la fecha en que se adquirió cada suero, con ThermoRawFileParser (<a href="referencias.html#hulstaert2020">Hulstaert y colaboradores, 2020</a>).</p>
+<figure class="real">
+  <img src="img/aprender/espectrometro.png" alt="Esquema de un espectrómetro de masas: fuente de iones, imán que curva un haz de iones positivos y colectores de Faraday que registran las masas 44, 45 y 46.">
+  <figcaption>Cómo separa masas un espectrómetro de sector magnético: ioniza, curva el haz con un imán y detecta. No es el Orbitrap de los sueros de este trabajo. Sirve para ver las piezas: fuente de iones, analizador y detector.
+    <span class="credito">United States Geological Survey. Dominio público. Origen: <a href="https://commons.wikimedia.org/wiki/File:Mass_spectrometer_schematics.png">Wikimedia Commons</a>. Miniatura de 330 px; no se redibujó. <a href="creditos-imagenes.html#espectrometro">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#cox2008">Cox y Mann (2008)</a>, identificación y cuantificación a gran escala.</li>
+  <li><a href="referencias.html#demichev2020">Demichev y colaboradores (2020)</a>, DIA-NN y el valor q.</li>
+  <li><a href="referencias.html#frankenfield2022">Frankenfield y colaboradores (2022)</a>, contaminantes que comparten péptidos con proteínas humanas.</li>
+  <li><a href="referencias.html#hulstaert2020">Hulstaert y colaboradores (2020)</a>, lectura de la fecha en los crudos de Thermo.</li>
+</ul>
+
+<h3 id="cuantificacion">TMT, LFQ y DIA</h3>
+<p>Las tres técnicas responden a la misma pregunta —cuánta señal hay de cada proteína— con diseños distintos. En el marcado isobárico TMT, varias muestras se etiquetan, se mezclan y se miden juntas. Cada etiqueta suelta un ion reportador y la comparación es una razón frente a una referencia común. El archivo de tejido de CPTAC ya viene como razón en logaritmo base 2, así que un segundo logaritmo no tiene sentido (<a href="referencias.html#vasaikar2019">Vasaikar y colaboradores, 2019</a>). Una generación anterior del mismo programa midió colon y recto con otra profundidad (<a href="referencias.html#zhang2014">Zhang y colaboradores, 2014</a>).</p>
+<p>En la cuantificación sin marcaje, o LFQ, cada muestra se mide por separado. MaxLFQ normaliza de forma retardada y usa las razones de los péptidos que aparecen en pares de muestras (<a href="referencias.html#cox2014">Cox y colaboradores, 2014</a>). En esas tablas, un cero significa que la proteína no se identificó, no que su cantidad sea cero. Tratar el cero como cantidad sesga el cambio. Los huecos tienen orígenes mezclados y rellenarlos puede inventar diferencias (<a href="referencias.html#lazar2016">Lazar y colaboradores, 2016</a>). El tejido de <a href="referencias.html#tanaka2024">Tanaka y colaboradores (2024)</a> es LFQ. El suero por estadio se agregó con directLFQ (<a href="referencias.html#ammar2023">Ammar y colaboradores, 2023</a>).</p>
+<p>En la adquisición independiente de datos, o DIA, el instrumento fragmenta ventanas de masa sin escoger antes los péptidos más intensos. DIA-NN entrega cantidades y valores q, que controlan identificaciones falsas (<a href="referencias.html#demichev2020">Demichev y colaboradores, 2020</a>). Así están medidos los sueros de <a href="referencias.html#rai2025">Rai y colaboradores (2025)</a>.</p>
+<p>TMT, LFQ y DIA no se fusionan. Las escalas, las personas, los instrumentos y los lotes son distintos. Un ajuste de lote como ComBat supone que la diferencia técnica se puede separar de la biológica (<a href="referencias.html#johnson2007">Johnson y colaboradores, 2007</a>). Cuando el estudio, la plataforma, la matriz y el grupo clínico viajan juntos, esa separación no existe (<a href="referencias.html#leek2010">Leek y colaboradores, 2010</a>). Cada cohorte se contrasta sola. Entre cohortes solo se comparan resultados ya calculados, como el sentido del cambio.</p>
+<figure class="real">
+  <img src="img/aprender/marcado-isobarico.jpg" alt="Flujo de marcado isobárico: las muestras se digieren, cada una recibe un reactivo distinto, se mezclan en dos plexos y el espectrómetro separa iones reporteros para cuantificar y fragmentos para identificar.">
+  <figcaption>Marcado isobárico, la familia a la que pertenece el TMT del tejido CPTAC. Cada muestra lleva una etiqueta; se mezclan y se miden juntas. Los picos del dibujo son un esquema, no un espectro de este repositorio. LFQ y DIA se explican en el texto: no se halló una figura abierta que las comparara con la misma claridad.
+    <span class="credito">Egor Vorontsov, 2021. Licencia: <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>. Origen: <a href="https://commons.wikimedia.org/wiki/File:Isobaric_Labeling_Proteomic_Workflow.png">Wikimedia Commons</a>. Se redimensionó a 1200 px de alto; no se cambió el dibujo. <a href="creditos-imagenes.html#marcado-isobarico">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#vasaikar2019">Vasaikar y colaboradores (2019)</a> y <a href="referencias.html#zhang2014">Zhang y colaboradores (2014)</a>, las dos generaciones de tejido CPTAC.</li>
+  <li><a href="referencias.html#cox2014">Cox y colaboradores (2014)</a>, MaxLFQ, y <a href="referencias.html#ammar2023">Ammar y colaboradores (2023)</a>, directLFQ.</li>
+  <li><a href="referencias.html#lazar2016">Lazar y colaboradores (2016)</a>, los huecos de la cuantificación sin marcaje.</li>
+  <li><a href="referencias.html#tanaka2024">Tanaka y colaboradores (2024)</a> y <a href="referencias.html#rai2025">Rai y colaboradores (2025)</a>, las cohortes LFQ y DIA de este caso.</li>
+  <li><a href="referencias.html#johnson2007">Johnson y colaboradores (2007)</a> y <a href="referencias.html#leek2010">Leek y colaboradores (2010)</a>, por qué no se corrige el lote entre estudios.</li>
+</ul>
+
+<h3 id="cancer">Cáncer colorrectal</h3>
+<p>El cáncer colorrectal aparece, en la mayoría de los casos, a partir de lesiones de la mucosa que tardan años en avanzar. Esa ventana es la que justifica buscarlo antes de que dé síntomas (<a href="referencias.html#dekker2019">Dekker y colaboradores, 2019</a>). Las estimaciones mundiales de casos y muertes están reunidas en GLOBOCAN (<a href="referencias.html#bray2024">Bray y colaboradores, 2024</a>). La biología molecular del tumor —vías, subtipos y dianas— se revisa, entre otras fuentes, en <a href="referencias.html#garciafoncillas2026">García-Foncillas y colaboradores (2026)</a>, junto con las revisiones clínicas de Dekker y colaboradores y de <a href="referencias.html#locker2006">Locker y colaboradores (2006)</a>.</p>
+<p>El estadio describe hasta dónde llegó el tumor: si sigue limitado a la pared del intestino, si alcanzó ganglios cercanos o si hay metástasis en otros órganos. El estudio de suero por estadio agrupa las muestras en I–II, III y IV (<a href="referencias.html#hermoso2026">Hermoso-Durán y colaboradores, 2026</a>; depósito de <a href="referencias.html#mckay2026">McKay, 2026</a>). En este repositorio esa lectura quedó sin proteínas tumorales epiteliales suficientes. No aporta un marcador de carga tumoral en sangre.</p>
+<p>La colonoscopia recorre el colon y el recto, ve la mucosa y puede quitar pólipos. Sigue siendo la prueba de referencia (<a href="referencias.html#dekker2019">Dekker y colaboradores, 2019</a>). La tamización —también se dice tamizaje— es buscar la enfermedad en quien todavía no tiene un diagnóstico. No es el seguimiento de quien ya fue tratado. El antígeno carcinoembrionario, o CEA, se recomienda para el seguimiento y no como prueba de tamización (<a href="referencias.html#locker2006">Locker y colaboradores, 2006</a>). En Colombia, la Ley 1384 de 2010 pide acciones de atención integral, incluida la detección temprana (<a href="referencias.html#ley1384">Congreso de la República de Colombia, 2010</a>). Este trabajo no diseña esa prueba.</p>
+<p>Una colonoscopia negativa, en el estudio de Rai y colaboradores, reúne a personas con síntomas intestinales en las que no se vio cáncer. No son personas sanas y no son un solo diagnóstico. Comparar el cáncer con ese grupo pregunta otra cosa que compararlo con personas sanas.</p>
+<figure class="real">
+  <img src="img/aprender/intestino-grueso.jpg" alt="Dibujo del intestino grueso dentro del cuerpo y, ampliado, el colon ascendente, transverso, descendente y sigmoide, el ciego, el recto y el ano.">
+  <figcaption>Dónde está el cáncer colorrectal: el intestino grueso, del ciego al recto. Las etiquetas del dibujo están en inglés.
+    <span class="credito">Blausen.com staff (2014), <a href="https://doi.org/10.15347/wjm/2014.010">WikiJournal of Medicine 1(2)</a>. Licencia: <a href="https://creativecommons.org/licenses/by/3.0/deed.es">CC BY 3.0</a>. Origen: <a href="https://commons.wikimedia.org/wiki/File:Blausen_0604_LargeIntestine2.png">Wikimedia Commons</a>. Se redimensionó a 1200 px de ancho; no se cambió el dibujo. <a href="creditos-imagenes.html#intestino-grueso">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#dekker2019">Dekker y colaboradores (2019)</a>, el cuadro clínico, la colonoscopia y la ventana de tamización.</li>
+  <li><a href="referencias.html#bray2024">Bray y colaboradores (2024)</a>, las cifras mundiales de GLOBOCAN.</li>
+  <li><a href="referencias.html#garciafoncillas2026">García-Foncillas y colaboradores (2026)</a>, revisión de la biología molecular.</li>
+  <li><a href="referencias.html#locker2006">Locker y colaboradores (2006)</a>, el CEA en el seguimiento y no en la tamización.</li>
+  <li><a href="referencias.html#hermoso2026">Hermoso-Durán y colaboradores (2026)</a> y <a href="referencias.html#mckay2026">McKay (2026)</a>, el suero por estadio.</li>
+  <li><a href="referencias.html#ley1384">Congreso de la República de Colombia (2010)</a>, la Ley 1384 de 2010.</li>
+</ul>
+
+<h3 id="sangre">Sangre, suero y biomarcadores</h3>
+<p>Un biomarcador es una medición que se propone para detectar, seguir o clasificar una enfermedad. Llegar de una proteína candidata a un uso clínico es un camino largo (<a href="referencias.html#rifai2006">Rifai y colaboradores, 2006</a>). <a href="referencias.html#pepe2001">Pepe y colaboradores (2001)</a> describieron fases. La primera es exploratoria: compara casos y controles en muestras ya reunidas. Todo lo que este trabajo dice de una proteína o de un modelo pertenece a esa fase.</p>
+<p>El suero no es el tumor diluido. Unas pocas proteínas —albúmina, inmunoglobulinas, apolipoproteínas, complemento y coagulación— cubren varias magnitudes de concentración (<a href="referencias.html#anderson2002">Anderson y Anderson, 2002</a>). La mayor parte de lo que se mide en plasma viene de tejidos sanos y del sistema inmunitario (<a href="referencias.html#malmstrom2025">Malmström y colaboradores, 2025</a>). Si una proteína del tumor llega a la sangre, llega en poca cantidad, debajo de ese rango dinámico.</p>
+<p>Comparar cáncer con personas sanas enciende proteínas de la respuesta inflamatoria, que no son exclusivas del tumor (<a href="referencias.html#gabay1999">Gabay y Kushner, 1999</a>). La preparación de la muestra añade otra capa. Hemólisis, plaquetas y coagulación cambian el proteoma y pueden parecer un marcador (<a href="referencias.html#geyer2019">Geyer y colaboradores, 2019</a>). Si todas las muestras de un grupo se miden juntas, la deriva del instrumento coincide con el grupo y no se puede separar de la enfermedad (<a href="referencias.html#leek2010">Leek y colaboradores, 2010</a>). En el suero principal de este repositorio, los tres grupos se adquirieron en tres bloques seguidos. Esa confusión está contada en <a href="resultados.html">Resultados</a>.</p>
+<p>Un metaanálisis distinto, que integra otros conjuntos públicos de proteómica de cáncer colorrectal, es el de <a href="referencias.html#robles2024">Robles y colaboradores (2024)</a>. No es este flujo: aquí las intensidades no se suman entre plataformas.</p>
+<figure class="real">
+  <img src="img/aprender/tubo-suero.jpg" alt="Una mano sostiene un tubo con tapón rojo. Arriba hay una fracción amarilla, el suero, y abajo una fracción oscura de glóbulos rojos.">
+  <figcaption>Suero de verdad, después de centrifugar: la fracción amarilla es el suero y la oscura son los eritrocitos. Este tubo no es una muestra del estudio. El suero no es un trozo del tumor.
+    <span class="credito">Spiritia, 2019. Licencia: <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>. Origen: <a href="https://commons.wikimedia.org/wiki/File:Serum-separation_tube.jpg">Wikimedia Commons</a>. Se redimensionó; no se recortó ni se retocó. <a href="creditos-imagenes.html#tubo-suero">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#anderson2002">Anderson y Anderson (2002)</a>, el rango dinámico del plasma.</li>
+  <li><a href="referencias.html#malmstrom2025">Malmström y colaboradores (2025)</a>, de qué tejidos viene lo que se mide en plasma.</li>
+  <li><a href="referencias.html#gabay1999">Gabay y Kushner (1999)</a>, proteínas de fase aguda.</li>
+  <li><a href="referencias.html#geyer2019">Geyer y colaboradores (2019)</a>, sesgos de la muestra en estudios de biomarcadores.</li>
+  <li><a href="referencias.html#pepe2001">Pepe y colaboradores (2001)</a> y <a href="referencias.html#rifai2006">Rifai y colaboradores (2006)</a>, las fases y el camino hasta la clínica.</li>
+  <li><a href="referencias.html#robles2024">Robles y colaboradores (2024)</a>, otra forma de integrar datos públicos.</li>
+</ul>
+
+<h3 id="anotacion">Gene Ontology y bases públicas</h3>
+<p>Gene Ontology es un vocabulario controlado. Reparte los genes en procesos biológicos, componentes celulares y funciones moleculares (<a href="referencias.html#ashburner2000">Ashburner y colaboradores, 2000</a>; <a href="referencias.html#goconsortium2023">The Gene Ontology Consortium, 2023</a>). Sirve para leer una lista de proteínas sin memorizar cada símbolo. El análisis de sobrerrepresentación pregunta si una lista corta trae más genes de un término de los que el azar pondría. El enriquecimiento de conjuntos, o GSEA, no corta la lista: ordena todos los genes y pregunta si los de un término se acumulan en un extremo (<a href="referencias.html#subramanian2005">Subramanian y colaboradores, 2005</a>). Aquí esa cuenta se hace con GSEApy (<a href="referencias.html#fang2023">Fang y colaboradores, 2023</a>). Un suero que mide pocos genes de cada proceso no alcanza para decir que un proceso del tumor está en la sangre.</p>
+<p>Los nombres y las secuencias salen de UniProt. El mapa de en qué tejido se expresa cada proteína, y una parte del atlas de sangre, salen del Human Protein Atlas (<a href="referencias.html#uhlen2015">Uhlén y colaboradores, 2015</a>; <a href="referencias.html#proteinatlas">Human Protein Atlas, s. f.</a>). Una concentración de referencia en ese atlas no es la concentración de estos pacientes.</p>
+<p>Las matrices vienen de depósitos públicos. El tejido TMT es el estudio PDC000116 del Proteomic Data Commons (<a href="referencias.html#pdc">Proteomic Data Commons, s. f.</a>; <a href="referencias.html#vasaikar2019">Vasaikar y colaboradores, 2019</a>). Los otros tres accesos están en PRIDE, que forma parte de ProteomeXchange (<a href="referencias.html#perezriverol2025">Perez-Riverol y colaboradores, 2025</a>; <a href="referencias.html#deutsch2023">Deutsch y colaboradores, 2023</a>). La copia de entradas que usa la corrida sellada, con sus huellas, está en Zenodo (<a href="referencias.html#oncogoentradas2026">Polanco Franco, 2026</a>). El tamaño de cada cohorte está en <a href="datos.html">Los datos</a>.</p>
+<figure class="real">
+  <img src="img/aprender/gene-ontology.jpg" alt="Carta de ancestros de Gene Ontology para el complejo de matrilina. Tres colores marcan función molecular, componente celular y proceso biológico. A la derecha, una leyenda de relaciones: es un, parte de, regula.">
+  <figcaption>Así se lee Gene Ontology: términos unidos por relaciones, en tres ramas. El ejemplo es el complejo de matrilina, no una lista de este estudio.
+    <span class="credito">EMBL-EBI (QuickGO), con datos del Gene Ontology Consortium. Licencia de esos datos y productos: <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>. Origen: <a href="https://www.ebi.ac.uk/QuickGO/term/GO:0120216">QuickGO</a> y <a href="https://commons.wikimedia.org/wiki/File:Ancestor_Chart_of_Matrilin_Complex.png">Wikimedia Commons</a>. Se redimensionó; no se cambió el gráfico. <a href="creditos-imagenes.html#gene-ontology">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#ashburner2000">Ashburner y colaboradores (2000)</a> y <a href="referencias.html#goconsortium2023">The Gene Ontology Consortium (2023)</a>.</li>
+  <li><a href="referencias.html#subramanian2005">Subramanian y colaboradores (2005)</a> y <a href="referencias.html#fang2023">Fang y colaboradores (2023)</a>, el enriquecimiento y su implementación.</li>
+  <li><a href="referencias.html#uhlen2015">Uhlén y colaboradores (2015)</a> y el <a href="referencias.html#proteinatlas">Human Protein Atlas (s. f.)</a>.</li>
+  <li><a href="referencias.html#deutsch2023">Deutsch y colaboradores (2023)</a> y <a href="referencias.html#perezriverol2025">Perez-Riverol y colaboradores (2025)</a>, ProteomeXchange y PRIDE.</li>
+  <li><a href="referencias.html#pdc">Proteomic Data Commons (s. f.)</a>, el estudio PDC000116.</li>
+</ul>
+<p><a href="aprender-metodos.html">Siguiente: la metodología, explicada</a>.</p>
+</main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
+</body>
+</html>

@@ -24,6 +24,7 @@
     <a href="conclusiones.html">Conclusiones</a>
     <a href="autor.html">El autor</a>
     <a href="referencias.html">Referencias</a>
+    <a href="aprender.html">Aprender</a>
     <a href="glosario.html">Glosario</a>
   </nav>
 </header>
@@ -35,7 +36,7 @@
 </ul>
 <p>El certificado de esa corrida está en estado publicable (22 casillas en la prueba de cierre; 119 sellos en <code>certificado.json</code>). La semilla es <code>20260914</code>. Python 3.14.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1 y scikit-learn 1.8.0.</p>
 <h2>Cómo repetirla</h2>
-<p>Hace falta Python 3.14, <code>make</code> y espacio en disco. Las matrices no están en git. <code>make descargar</code> baja las de PRIDE y cinco archivos del conjunto de datos <a href="https://doi.org/10.5281/zenodo.24398807">10.5281/zenodo.24398807</a> (<a href="https://zenodo.org/records/24398807">zenodo.org/records/24398807</a>, licencia CC-BY-4.0). La matriz de tejido TMT se deriva del estudio de acceso abierto <a href="https://pdc.cancer.gov/pdc/study/PDC000116">PDC000116</a> (<a href="https://doi.org/10.1016/j.cell.2019.03.030">Vasaikar y colaboradores, 2019</a>) y se redistribuye con atribución. Con esa matriz, y con los tres archivos certificados del mismo depósito, <code>make v3-7</code> lee lo que antes solo estaba en el equipo de la corrida.</p>
+<p>Hace falta Python 3.14, <code>make</code> y espacio en disco. Las matrices no están en git. <code>make descargar</code> baja las de PRIDE y cinco archivos del conjunto de datos de <a href="referencias.html#oncogoentradas2026">Polanco Franco (2026)</a>, DOI <a href="https://doi.org/10.5281/zenodo.24398807">10.5281/zenodo.24398807</a> (<a href="https://zenodo.org/records/24398807">zenodo.org/records/24398807</a>, licencia CC-BY-4.0). La matriz de tejido TMT se deriva del estudio de acceso abierto <a href="https://pdc.cancer.gov/pdc/study/PDC000116">PDC000116</a> (<a href="referencias.html#vasaikar2019">Vasaikar y colaboradores, 2019</a>) y se redistribuye con atribución. Con esa matriz, y con los tres archivos certificados del mismo depósito, <code>make v3-7</code> lee lo que antes solo estaba en el equipo de la corrida.</p>
 <ol class="pasos">
   <li>Clonar el repositorio en la etiqueta que quiera repetir.</li>
   <li>Crear el entorno e instalar: <code>pip install -e ".[dev]"</code>.</li>

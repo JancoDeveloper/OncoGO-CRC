@@ -39,7 +39,7 @@ header .marca { padding: 1rem 1.25rem 0.2rem; max-width: 58rem; margin: 0 auto; 
 header h1 { font-size: 1.35rem; margin: 0; font-weight: 700; }
 header h1 a { color: inherit; text-decoration: none; }
 header .marca p { margin: 0.25rem 0 0.6rem; color: var(--muted); }
-nav {
+header nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem 0.85rem;
@@ -47,8 +47,8 @@ nav {
   max-width: 58rem;
   margin: 0 auto;
 }
-nav a { text-decoration: none; font-size: 0.98rem; }
-nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 0.2rem; font-weight: 700; }
+header nav a { text-decoration: none; font-size: 0.98rem; }
+header nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 0.2rem; font-weight: 700; }
 main { max-width: 58rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
 h2 { font-size: 1.55rem; line-height: 1.25; margin: 1.6rem 0 0.6rem; }
 h3 { font-size: 1.2rem; margin: 1.3rem 0 0.4rem; }
@@ -116,6 +116,37 @@ footer {
   padding: 1rem 1.25rem 2rem;
 }
 footer p { max-width: 58rem; margin: 0 auto; font-size: 0.95rem; }
+.indice-temas, .mapa-aprender {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 0.7rem 0.9rem;
+  margin: 0.4rem 0 1rem;
+}
+.indice-temas ul, .mapa-aprender ul { margin: 0.3rem 0; padding-left: 1.2rem; }
+.mapa-aprender { display: grid; gap: 0.75rem; padding: 0; border: 0; background: transparent; }
+@media (min-width: 720px) {
+  .mapa-aprender { grid-template-columns: 1fr 1fr; }
+}
+.mapa-aprender a.bloque {
+  display: block;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--green);
+  padding: 0.75rem 0.9rem;
+  text-decoration: none;
+  color: inherit;
+}
+.mapa-aprender a.bloque strong { display: block; color: var(--blue); margin-bottom: 0.25rem; }
+figure.real { text-align: center; }
+figure.real img { width: auto; max-width: 100%; height: auto; margin: 0 auto; }
+figcaption .credito { display: block; margin-top: 0.35rem; color: var(--muted); font-size: 0.92rem; }
+.referencias { list-style: none; padding: 0; margin: 0.5rem 0 1.2rem; }
+.referencias li {
+  margin: 0.9rem 0;
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+}
+.glosario td:first-child { font-weight: 700; white-space: nowrap; }
 @media (max-width: 640px) {
   body { font-size: 1rem; }
   header h1 { font-size: 1.2rem; }
