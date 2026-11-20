@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 824" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Procesos que comparten las veinte proteínas y procesos que las distinguen</title>
+<desc id="desc">GO:0005576 extracellular region: LUM,A2M,APOA4,AFM,SOD3,TF,SERPIND1,HP,APOA1,HPX,CP,SERPINA3,SERPINF2,KNG1,ORM2,APOA2,AHSG,S100A8,AZGP1,S100A9 (results/v3_7/h7_tabla_proteinas.tsv) | GO:0005886 plasma membrane: TF,APOA1,CP,KNG1,S100A8,S100A9 (results/v3_7/h7_tabla_proteinas.tsv) | GO:0070062 extracellular exosome: LUM,A2M,APOA4,AFM,SOD3,TF,SERPIND1,HP,APOA1,HPX,CP,SERPINA3,SERPINF2,KNG1,ORM2,APOA2,AHSG,S100A8,AZGP1,S100A9 (results/v3_7/h7_tabla_proteinas.tsv) | GO:0042632 cholesterol homeostasis: APOA1,APOA2,APOA4 tambien=GO:0006869,GO:0033344,GO:0033700,GO:0034375,GO:0042157,GO:0043691 (metadata/gene_ontology/go_gene_long.tsv) | GO:0030301 cholesterol transport: APOA1,APOA2 (metadata/gene_ontology/go_gene_long.tsv) | GO:0006879 intracellular iron ion homeostasis: CP,HPX,TF (metadata/gene_ontology/go_gene_long.tsv) | GO:0006954 inflammatory response: HP,S100A8,S100A9,SERPINA3 (metadata/gene_ontology/go_gene_long.tsv) | GO:0043542 endothelial cell migration: S100A8,S100A9 tambien=GO:0030593,GO:0042742 (metadata/gene_ontology/go_gene_long.tsv) | GO:0030199 collagen fibril organization: LUM,SERPINF2 (metadata/gene_ontology/go_gene_long.tsv) | GO:0050766 positive regulation of phagocytosis: AHSG,APOA1,APOA2 (metadata/gene_ontology/go_gene_long.tsv) | GO:0050821 protein stabilization: AFM,APOA1,APOA2 (metadata/gene_ontology/go_gene_long.tsv) | GO:0051496 positive regulation of stress fiber assembly: APOA1,SERPINF2 (metadata/gene_ontology/go_gene_long.tsv)</desc>
+<rect width="980" height="824" fill="#f7f6f3"/>
+<text x="16" y="34" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">Qué comparten y qué las distingue</text>
+<text x="16" y="58" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#3d3a37">Celda llena: el gen está anotado a ese término. No es un enriquecimiento de esta lista.</text>
+<rect x="118" y="74" width="104" height="8" fill="#084c7a"/>
+<rect x="226" y="74" width="68" height="8" fill="#E69F00"/>
+<rect x="298" y="74" width="32" height="8" fill="#009E73"/>
+<rect x="334" y="74" width="68" height="8" fill="#D55E00"/>
+<rect x="406" y="74" width="32" height="8" fill="#CC79A7"/>
+<rect x="442" y="74" width="104" height="8" fill="#56B4E9"/>
+<text x="136" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 136 230)">Región extracelular</text>
+<text x="172" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 172 230)">Membrana plasmática</text>
+<text x="208" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 208 230)">Exosoma extracelular</text>
+<text x="244" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 244 230)">Homeostasis del colesterol</text>
+<text x="280" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 280 230)">Transporte de colesterol</text>
+<text x="316" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 316 230)">Homeostasis del hierro</text>
+<text x="352" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 352 230)">Respuesta inflamatoria</text>
+<text x="388" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 388 230)">Migración endotelial</text>
+<text x="424" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 424 230)">Fibrillas de colágeno</text>
+<text x="460" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 460 230)">Fagocitosis</text>
+<text x="496" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 496 230)">Estabilización de proteínas</text>
+<text x="532" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#1a1a1a" transform="rotate(-65 532 230)">Fibras de estrés</text>
+<text x="110" y="264" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">LUM</text>
+<rect x="118" y="248" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>LUM GO:0005576 sí</title></rect>
+<rect x="154" y="248" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>LUM GO:0005886 no</title></rect>
+<rect x="190" y="248" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>LUM GO:0070062 sí</title></rect>
+<rect x="226" y="248" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>LUM GO:0042632 no</title></rect>
+<rect x="262" y="248" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>LUM GO:0030301 no</title></rect>
+<rect x="298" y="248" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>LUM GO:0006879 no</title></rect>
+<rect x="334" y="248" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>LUM GO:0006954 no</title></rect>
+<rect x="370" y="248" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>LUM GO:0043542 no</title></rect>
+<rect x="406" y="248" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>LUM GO:0030199 sí</title></rect>
+<rect x="442" y="248" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>LUM GO:0050766 no</title></rect>
+<rect x="478" y="248" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>LUM GO:0050821 no</title></rect>
+<rect x="514" y="248" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>LUM GO:0051496 no</title></rect>
+<text x="110" y="288" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">A2M</text>
+<rect x="118" y="272" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>A2M GO:0005576 sí</title></rect>
+<rect x="154" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0005886 no</title></rect>
+<rect x="190" y="272" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>A2M GO:0070062 sí</title></rect>
+<rect x="226" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0042632 no</title></rect>
+<rect x="262" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0030301 no</title></rect>
+<rect x="298" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0006879 no</title></rect>
+<rect x="334" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0006954 no</title></rect>
+<rect x="370" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0043542 no</title></rect>
+<rect x="406" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0030199 no</title></rect>
+<rect x="442" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0050766 no</title></rect>
+<rect x="478" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0050821 no</title></rect>
+<rect x="514" y="272" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>A2M GO:0051496 no</title></rect>
+<text x="110" y="312" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">APOA4</text>
+<rect x="118" y="296" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA4 GO:0005576 sí</title></rect>
+<rect x="154" y="296" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA4 GO:0005886 no</title></rect>
+<rect x="190" y="296" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA4 GO:0070062 sí</title></rect>
+<rect x="226" y="296" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA4 GO:0042632 sí</title></rect>
+<rect x="262" y="296" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA4 GO:0030301 no</title></rect>
+<rect x="298" y="296" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA4 GO:0006879 no</title></rect>
+<rect x="334" y="296" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA4 GO:0006954 no</title></rect>
+<rect x="370" y="296" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA4 GO:0043542 no</title></rect>
+<rect x="406" y="296" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA4 GO:0030199 no</title></rect>
+<rect x="442" y="296" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA4 GO:0050766 no</title></rect>
+<rect x="478" y="296" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA4 GO:0050821 no</title></rect>
+<rect x="514" y="296" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA4 GO:0051496 no</title></rect>
+<text x="110" y="336" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">AFM</text>
+<rect x="118" y="320" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>AFM GO:0005576 sí</title></rect>
+<rect x="154" y="320" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AFM GO:0005886 no</title></rect>
+<rect x="190" y="320" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>AFM GO:0070062 sí</title></rect>
+<rect x="226" y="320" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AFM GO:0042632 no</title></rect>
+<rect x="262" y="320" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AFM GO:0030301 no</title></rect>
+<rect x="298" y="320" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AFM GO:0006879 no</title></rect>
+<rect x="334" y="320" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AFM GO:0006954 no</title></rect>
+<rect x="370" y="320" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AFM GO:0043542 no</title></rect>
+<rect x="406" y="320" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AFM GO:0030199 no</title></rect>
+<rect x="442" y="320" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AFM GO:0050766 no</title></rect>
+<rect x="478" y="320" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>AFM GO:0050821 sí</title></rect>
+<rect x="514" y="320" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AFM GO:0051496 no</title></rect>
+<text x="110" y="360" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">SOD3</text>
+<rect x="118" y="344" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SOD3 GO:0005576 sí</title></rect>
+<rect x="154" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0005886 no</title></rect>
+<rect x="190" y="344" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SOD3 GO:0070062 sí</title></rect>
+<rect x="226" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0042632 no</title></rect>
+<rect x="262" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0030301 no</title></rect>
+<rect x="298" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0006879 no</title></rect>
+<rect x="334" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0006954 no</title></rect>
+<rect x="370" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0043542 no</title></rect>
+<rect x="406" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0030199 no</title></rect>
+<rect x="442" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0050766 no</title></rect>
+<rect x="478" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0050821 no</title></rect>
+<rect x="514" y="344" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SOD3 GO:0051496 no</title></rect>
+<text x="110" y="384" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">TF</text>
+<rect x="118" y="368" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>TF GO:0005576 sí</title></rect>
+<rect x="154" y="368" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>TF GO:0005886 sí</title></rect>
+<rect x="190" y="368" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>TF GO:0070062 sí</title></rect>
+<rect x="226" y="368" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>TF GO:0042632 no</title></rect>
+<rect x="262" y="368" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>TF GO:0030301 no</title></rect>
+<rect x="298" y="368" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>TF GO:0006879 sí</title></rect>
+<rect x="334" y="368" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>TF GO:0006954 no</title></rect>
+<rect x="370" y="368" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>TF GO:0043542 no</title></rect>
+<rect x="406" y="368" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>TF GO:0030199 no</title></rect>
+<rect x="442" y="368" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>TF GO:0050766 no</title></rect>
+<rect x="478" y="368" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>TF GO:0050821 no</title></rect>
+<rect x="514" y="368" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>TF GO:0051496 no</title></rect>
+<text x="110" y="408" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">SERPIND1</text>
+<rect x="118" y="392" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SERPIND1 GO:0005576 sí</title></rect>
+<rect x="154" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0005886 no</title></rect>
+<rect x="190" y="392" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SERPIND1 GO:0070062 sí</title></rect>
+<rect x="226" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0042632 no</title></rect>
+<rect x="262" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0030301 no</title></rect>
+<rect x="298" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0006879 no</title></rect>
+<rect x="334" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0006954 no</title></rect>
+<rect x="370" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0043542 no</title></rect>
+<rect x="406" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0030199 no</title></rect>
+<rect x="442" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0050766 no</title></rect>
+<rect x="478" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0050821 no</title></rect>
+<rect x="514" y="392" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPIND1 GO:0051496 no</title></rect>
+<text x="110" y="432" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">HP</text>
+<rect x="118" y="416" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>HP GO:0005576 sí</title></rect>
+<rect x="154" y="416" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HP GO:0005886 no</title></rect>
+<rect x="190" y="416" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>HP GO:0070062 sí</title></rect>
+<rect x="226" y="416" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HP GO:0042632 no</title></rect>
+<rect x="262" y="416" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HP GO:0030301 no</title></rect>
+<rect x="298" y="416" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HP GO:0006879 no</title></rect>
+<rect x="334" y="416" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>HP GO:0006954 sí</title></rect>
+<rect x="370" y="416" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HP GO:0043542 no</title></rect>
+<rect x="406" y="416" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HP GO:0030199 no</title></rect>
+<rect x="442" y="416" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HP GO:0050766 no</title></rect>
+<rect x="478" y="416" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HP GO:0050821 no</title></rect>
+<rect x="514" y="416" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HP GO:0051496 no</title></rect>
+<text x="110" y="456" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">APOA1</text>
+<rect x="118" y="440" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA1 GO:0005576 sí</title></rect>
+<rect x="154" y="440" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA1 GO:0005886 sí</title></rect>
+<rect x="190" y="440" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA1 GO:0070062 sí</title></rect>
+<rect x="226" y="440" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA1 GO:0042632 sí</title></rect>
+<rect x="262" y="440" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA1 GO:0030301 sí</title></rect>
+<rect x="298" y="440" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA1 GO:0006879 no</title></rect>
+<rect x="334" y="440" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA1 GO:0006954 no</title></rect>
+<rect x="370" y="440" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA1 GO:0043542 no</title></rect>
+<rect x="406" y="440" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA1 GO:0030199 no</title></rect>
+<rect x="442" y="440" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA1 GO:0050766 sí</title></rect>
+<rect x="478" y="440" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA1 GO:0050821 sí</title></rect>
+<rect x="514" y="440" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA1 GO:0051496 sí</title></rect>
+<text x="110" y="480" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">HPX</text>
+<rect x="118" y="464" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>HPX GO:0005576 sí</title></rect>
+<rect x="154" y="464" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HPX GO:0005886 no</title></rect>
+<rect x="190" y="464" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>HPX GO:0070062 sí</title></rect>
+<rect x="226" y="464" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HPX GO:0042632 no</title></rect>
+<rect x="262" y="464" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HPX GO:0030301 no</title></rect>
+<rect x="298" y="464" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>HPX GO:0006879 sí</title></rect>
+<rect x="334" y="464" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HPX GO:0006954 no</title></rect>
+<rect x="370" y="464" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HPX GO:0043542 no</title></rect>
+<rect x="406" y="464" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HPX GO:0030199 no</title></rect>
+<rect x="442" y="464" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HPX GO:0050766 no</title></rect>
+<rect x="478" y="464" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HPX GO:0050821 no</title></rect>
+<rect x="514" y="464" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>HPX GO:0051496 no</title></rect>
+<text x="110" y="504" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">CP</text>
+<rect x="118" y="488" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>CP GO:0005576 sí</title></rect>
+<rect x="154" y="488" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>CP GO:0005886 sí</title></rect>
+<rect x="190" y="488" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>CP GO:0070062 sí</title></rect>
+<rect x="226" y="488" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>CP GO:0042632 no</title></rect>
+<rect x="262" y="488" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>CP GO:0030301 no</title></rect>
+<rect x="298" y="488" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>CP GO:0006879 sí</title></rect>
+<rect x="334" y="488" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>CP GO:0006954 no</title></rect>
+<rect x="370" y="488" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>CP GO:0043542 no</title></rect>
+<rect x="406" y="488" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>CP GO:0030199 no</title></rect>
+<rect x="442" y="488" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>CP GO:0050766 no</title></rect>
+<rect x="478" y="488" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>CP GO:0050821 no</title></rect>
+<rect x="514" y="488" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>CP GO:0051496 no</title></rect>
+<text x="110" y="528" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">SERPINA3</text>
+<rect x="118" y="512" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SERPINA3 GO:0005576 sí</title></rect>
+<rect x="154" y="512" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINA3 GO:0005886 no</title></rect>
+<rect x="190" y="512" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SERPINA3 GO:0070062 sí</title></rect>
+<rect x="226" y="512" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINA3 GO:0042632 no</title></rect>
+<rect x="262" y="512" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINA3 GO:0030301 no</title></rect>
+<rect x="298" y="512" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINA3 GO:0006879 no</title></rect>
+<rect x="334" y="512" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SERPINA3 GO:0006954 sí</title></rect>
+<rect x="370" y="512" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINA3 GO:0043542 no</title></rect>
+<rect x="406" y="512" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINA3 GO:0030199 no</title></rect>
+<rect x="442" y="512" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINA3 GO:0050766 no</title></rect>
+<rect x="478" y="512" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINA3 GO:0050821 no</title></rect>
+<rect x="514" y="512" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINA3 GO:0051496 no</title></rect>
+<text x="110" y="552" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">SERPINF2</text>
+<rect x="118" y="536" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SERPINF2 GO:0005576 sí</title></rect>
+<rect x="154" y="536" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINF2 GO:0005886 no</title></rect>
+<rect x="190" y="536" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SERPINF2 GO:0070062 sí</title></rect>
+<rect x="226" y="536" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINF2 GO:0042632 no</title></rect>
+<rect x="262" y="536" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINF2 GO:0030301 no</title></rect>
+<rect x="298" y="536" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINF2 GO:0006879 no</title></rect>
+<rect x="334" y="536" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINF2 GO:0006954 no</title></rect>
+<rect x="370" y="536" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINF2 GO:0043542 no</title></rect>
+<rect x="406" y="536" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SERPINF2 GO:0030199 sí</title></rect>
+<rect x="442" y="536" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINF2 GO:0050766 no</title></rect>
+<rect x="478" y="536" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>SERPINF2 GO:0050821 no</title></rect>
+<rect x="514" y="536" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>SERPINF2 GO:0051496 sí</title></rect>
+<text x="110" y="576" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">KNG1</text>
+<rect x="118" y="560" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>KNG1 GO:0005576 sí</title></rect>
+<rect x="154" y="560" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>KNG1 GO:0005886 sí</title></rect>
+<rect x="190" y="560" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>KNG1 GO:0070062 sí</title></rect>
+<rect x="226" y="560" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>KNG1 GO:0042632 no</title></rect>
+<rect x="262" y="560" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>KNG1 GO:0030301 no</title></rect>
+<rect x="298" y="560" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>KNG1 GO:0006879 no</title></rect>
+<rect x="334" y="560" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>KNG1 GO:0006954 no</title></rect>
+<rect x="370" y="560" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>KNG1 GO:0043542 no</title></rect>
+<rect x="406" y="560" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>KNG1 GO:0030199 no</title></rect>
+<rect x="442" y="560" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>KNG1 GO:0050766 no</title></rect>
+<rect x="478" y="560" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>KNG1 GO:0050821 no</title></rect>
+<rect x="514" y="560" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>KNG1 GO:0051496 no</title></rect>
+<text x="110" y="600" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">ORM2</text>
+<rect x="118" y="584" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>ORM2 GO:0005576 sí</title></rect>
+<rect x="154" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0005886 no</title></rect>
+<rect x="190" y="584" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>ORM2 GO:0070062 sí</title></rect>
+<rect x="226" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0042632 no</title></rect>
+<rect x="262" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0030301 no</title></rect>
+<rect x="298" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0006879 no</title></rect>
+<rect x="334" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0006954 no</title></rect>
+<rect x="370" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0043542 no</title></rect>
+<rect x="406" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0030199 no</title></rect>
+<rect x="442" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0050766 no</title></rect>
+<rect x="478" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0050821 no</title></rect>
+<rect x="514" y="584" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>ORM2 GO:0051496 no</title></rect>
+<text x="110" y="624" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">APOA2</text>
+<rect x="118" y="608" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA2 GO:0005576 sí</title></rect>
+<rect x="154" y="608" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA2 GO:0005886 no</title></rect>
+<rect x="190" y="608" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA2 GO:0070062 sí</title></rect>
+<rect x="226" y="608" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA2 GO:0042632 sí</title></rect>
+<rect x="262" y="608" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA2 GO:0030301 sí</title></rect>
+<rect x="298" y="608" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA2 GO:0006879 no</title></rect>
+<rect x="334" y="608" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA2 GO:0006954 no</title></rect>
+<rect x="370" y="608" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA2 GO:0043542 no</title></rect>
+<rect x="406" y="608" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA2 GO:0030199 no</title></rect>
+<rect x="442" y="608" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA2 GO:0050766 sí</title></rect>
+<rect x="478" y="608" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>APOA2 GO:0050821 sí</title></rect>
+<rect x="514" y="608" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>APOA2 GO:0051496 no</title></rect>
+<text x="110" y="648" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">AHSG</text>
+<rect x="118" y="632" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>AHSG GO:0005576 sí</title></rect>
+<rect x="154" y="632" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AHSG GO:0005886 no</title></rect>
+<rect x="190" y="632" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>AHSG GO:0070062 sí</title></rect>
+<rect x="226" y="632" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AHSG GO:0042632 no</title></rect>
+<rect x="262" y="632" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AHSG GO:0030301 no</title></rect>
+<rect x="298" y="632" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AHSG GO:0006879 no</title></rect>
+<rect x="334" y="632" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AHSG GO:0006954 no</title></rect>
+<rect x="370" y="632" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AHSG GO:0043542 no</title></rect>
+<rect x="406" y="632" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AHSG GO:0030199 no</title></rect>
+<rect x="442" y="632" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>AHSG GO:0050766 sí</title></rect>
+<rect x="478" y="632" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AHSG GO:0050821 no</title></rect>
+<rect x="514" y="632" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AHSG GO:0051496 no</title></rect>
+<text x="110" y="672" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">S100A8</text>
+<rect x="118" y="656" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A8 GO:0005576 sí</title></rect>
+<rect x="154" y="656" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A8 GO:0005886 sí</title></rect>
+<rect x="190" y="656" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A8 GO:0070062 sí</title></rect>
+<rect x="226" y="656" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A8 GO:0042632 no</title></rect>
+<rect x="262" y="656" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A8 GO:0030301 no</title></rect>
+<rect x="298" y="656" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A8 GO:0006879 no</title></rect>
+<rect x="334" y="656" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A8 GO:0006954 sí</title></rect>
+<rect x="370" y="656" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A8 GO:0043542 sí</title></rect>
+<rect x="406" y="656" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A8 GO:0030199 no</title></rect>
+<rect x="442" y="656" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A8 GO:0050766 no</title></rect>
+<rect x="478" y="656" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A8 GO:0050821 no</title></rect>
+<rect x="514" y="656" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A8 GO:0051496 no</title></rect>
+<text x="110" y="696" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">AZGP1</text>
+<rect x="118" y="680" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>AZGP1 GO:0005576 sí</title></rect>
+<rect x="154" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0005886 no</title></rect>
+<rect x="190" y="680" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>AZGP1 GO:0070062 sí</title></rect>
+<rect x="226" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0042632 no</title></rect>
+<rect x="262" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0030301 no</title></rect>
+<rect x="298" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0006879 no</title></rect>
+<rect x="334" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0006954 no</title></rect>
+<rect x="370" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0043542 no</title></rect>
+<rect x="406" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0030199 no</title></rect>
+<rect x="442" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0050766 no</title></rect>
+<rect x="478" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0050821 no</title></rect>
+<rect x="514" y="680" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>AZGP1 GO:0051496 no</title></rect>
+<text x="110" y="720" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">S100A9</text>
+<rect x="118" y="704" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A9 GO:0005576 sí</title></rect>
+<rect x="154" y="704" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A9 GO:0005886 sí</title></rect>
+<rect x="190" y="704" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A9 GO:0070062 sí</title></rect>
+<rect x="226" y="704" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A9 GO:0042632 no</title></rect>
+<rect x="262" y="704" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A9 GO:0030301 no</title></rect>
+<rect x="298" y="704" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A9 GO:0006879 no</title></rect>
+<rect x="334" y="704" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A9 GO:0006954 sí</title></rect>
+<rect x="370" y="704" width="30" height="20" fill="#084c7a" stroke="#d4d0cb"><title>S100A9 GO:0043542 sí</title></rect>
+<rect x="406" y="704" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A9 GO:0030199 no</title></rect>
+<rect x="442" y="704" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A9 GO:0050766 no</title></rect>
+<rect x="478" y="704" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A9 GO:0050821 no</title></rect>
+<rect x="514" y="704" width="30" height="20" fill="#ffffff" stroke="#d4d0cb"><title>S100A9 GO:0051496 no</title></rect>
+<rect x="16" y="750" width="18" height="14" fill="#084c7a" stroke="#d4d0cb"/>
+<text x="40" y="762" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">Anotada</text>
+<rect x="120" y="750" width="18" height="14" fill="#ffffff" stroke="#d4d0cb"/>
+<text x="144" y="762" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#1a1a1a">No anotada</text>
+<rect x="250" y="750" width="14" height="14" fill="#084c7a"/>
+<text x="268" y="762" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#1a1a1a">Lugar en la célula</text>
+<rect x="480" y="750" width="14" height="14" fill="#E69F00"/>
+<text x="498" y="762" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#1a1a1a">Lípidos</text>
+<rect x="710" y="750" width="14" height="14" fill="#009E73"/>
+<text x="728" y="762" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#1a1a1a">Hierro</text>
+<rect x="250" y="772" width="14" height="14" fill="#D55E00"/>
+<text x="268" y="784" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#1a1a1a">Inflamación</text>
+<rect x="480" y="772" width="14" height="14" fill="#CC79A7"/>
+<text x="498" y="784" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#1a1a1a">Matriz</text>
+<rect x="710" y="772" width="14" height="14" fill="#56B4E9"/>
+<text x="728" y="784" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#1a1a1a">Otras anotaciones</text>
+<text x="16" y="806" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#3d3a37">Lugar en la célula: h7_tabla_proteinas.tsv. Procesos: go_gene_long.tsv. Nombres: Gene Ontology 2026-07-26.</text>
+</svg>
+

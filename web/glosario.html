@@ -19,12 +19,14 @@
     <a href="flujo.html">Qué se hizo</a>
     <a href="datos.html">Los datos</a>
     <a href="resultados.html">Resultados</a>
+    <a href="candidatas.html">Candidatas</a>
     <a href="robustez.html">Límites</a>
     <a href="reproducibilidad.html">Reproducir</a>
     <a href="conclusiones.html">Conclusiones</a>
+    <a href="hacia-donde.html">Hacia dónde</a>
     <a href="autor.html">El autor</a>
-    <a href="aprender.html">Aprender</a>
     <a href="referencias.html">Referencias</a>
+    <a href="aprender.html">Aprender</a>
     <a href="glosario.html" aria-current="page">Glosario</a>
   </nav>
 </header>
@@ -35,11 +37,14 @@
 <table class="glosario">
 <thead><tr><th>Término</th><th>En pocas palabras</th><th>Dónde se explica</th></tr></thead>
 <tbody>
+<tr id="mendeliana"><td>Aleatorización mendeliana</td><td>Usar variantes genéticas, heredadas, como instrumento para preguntar si una proteína y una enfermedad van en una dirección. La corrida no la usa para concluir. Un cálculo con un solo instrumento quedó marcado como exploratorio.</td><td><a href="hacia-donde.html#mendeliana">Hacia dónde</a></td></tr>
 <tr id="aprendizaje-automatico"><td>Aprendizaje automático</td><td>Modelos que combinan muchas variables para separar dos grupos. En la corrida sellada son seis regresiones logísticas. Se comparan con modelos que solo usan la calidad de la muestra.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
 <tr id="arn"><td>ARN mensajero</td><td>Copia temporal de un gen. La célula la lee para armar la proteína. Medir el ARN no es medir la proteína.</td><td><a href="aprender-marco.html#proteina">Del gen a la proteína</a></td></tr>
 <tr id="auc"><td>AUC</td><td>Área bajo la curva ROC. Ordena parejas de personas: 0,50 es el azar y 1 es la separación perfecta. Un 0,88 quiere decir que el modelo acertó el orden en el 88 % de las parejas. Aquí es un cálculo interno del mismo estudio.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
 <tr id="benjamini"><td>Benjamini-Hochberg</td><td>Procedimiento que ajusta los valores p cuando se prueban muchas proteínas a la vez, para controlar la FDR. El corte usado es 0,05.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
-<tr id="biomarcador"><td>Biomarcador</td><td>Una medición que se propone para detectar, seguir o clasificar una enfermedad. Este trabajo está en la fase exploratoria de ese camino.</td><td><a href="aprender-marco.html#sangre">Sangre y biomarcadores</a></td></tr>
+<tr id="biomarcador"><td>Biomarcador</td><td>Una medición que se propone para detectar, seguir o clasificar una enfermedad. Este trabajo está en la fase exploratoria de ese camino. Las veinte proteínas que llegan al suero sin pasar el criterio no se presentan como biomarcadores.</td><td><a href="candidatas.html">Proteínas candidatas</a></td></tr>
+<tr id="biopsia-liquida"><td>Biopsia líquida</td><td>Buscar una señal del tumor en la sangre, en lugar de en un trozo de tejido. El suero de este estudio no mostró una huella atribuible al tumor frente a colonoscopia negativa.</td><td><a href="hacia-donde.html#suero">Hacia dónde</a></td></tr>
+<tr id="candidata"><td>Candidata</td><td>Proteína que el cálculo deja para estudiar en otra cohorte. No es un marcador ni una prueba. En esta corrida son las veinte que se miden en el suero y no pasan el contraste principal.</td><td><a href="candidatas.html">Proteínas candidatas</a></td></tr>
 <tr id="certificado"><td>Certificado</td><td>La lista de comprobaciones de la corrida. En la referencia quedó en estado publicable. No es un certificado clínico.</td><td><a href="aprender-metodos.html#reproducir">Reproducibilidad</a></td></tr>
 <tr id="cohorte"><td>Cohorte</td><td>Un grupo de muestras reunidas en un mismo estudio, con un diseño y una técnica. Aquí hay cuatro, y no se fusionan.</td><td><a href="datos.html">Los datos</a></td></tr>
 <tr id="colonoscopia"><td>Colonoscopia</td><td>Exploración del colon y del recto con un endoscopio. Ve la mucosa y puede quitar pólipos. Sigue siendo la prueba de referencia.</td><td><a href="aprender-marco.html#cancer">Cáncer colorrectal</a></td></tr>
@@ -53,18 +58,22 @@
 <tr id="fdr"><td>FDR</td><td>Tasa de descubrimientos falsos. Al mirar cientos de proteínas, controla la proporción de diferencias que pueden ser casualidad. El umbral usado es 0,05.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
 <tr id="fuga"><td>Fuga de información</td><td>Usar, al entrenar, un cálculo que ya vio las muestras de prueba. Infla el rendimiento. Imputar y escalar se hacen dentro del pliegue.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
 <tr id="gen"><td>Gen</td><td>Tramo de ADN con la receta de una proteína. El gen no es la proteína: primero se copia a ARN y ese ARN se traduce.</td><td><a href="aprender-marco.html#proteina">Del gen a la proteína</a></td></tr>
-<tr id="go"><td>Gene Ontology</td><td>Vocabulario controlado de procesos biológicos, lugares de la célula y funciones moleculares. Sirve para leer una lista de genes.</td><td><a href="aprender-marco.html#anotacion">Anotación</a></td></tr>
+<tr id="go"><td>Gene Ontology</td><td>Vocabulario controlado de procesos biológicos, lugares de la célula y funciones moleculares. Sirve para leer una lista de genes. El enriquecimiento de la corrida es del tejido entero, no de las veinte proteínas del suero.</td><td><a href="candidatas.html#go">Proteínas candidatas</a></td></tr>
+<tr id="hla"><td>HLA</td><td>Proteínas de la superficie de la célula que muestran péptidos al sistema inmunitario. Este repositorio no midió esos péptidos.</td><td><a href="hacia-donde.html#peptido">Hacia dónde</a></td></tr>
 <tr id="imputacion"><td>Imputación</td><td>Rellenar un hueco de la tabla. En los modelos se usa la mediana del entrenamiento, dentro de cada pliegue. En el contraste principal no se imputa para declarar una diferencia.</td><td><a href="aprender-metodos.html#faltantes">Normalización e imputación</a></td></tr>
+<tr id="inmunopeptidoma"><td>Inmunopeptidómica</td><td>Medir los péptidos que una célula presenta enganchados al HLA, no la cantidad de la proteína entera. Esta tesis no la hizo.</td><td><a href="hacia-donde.html#peptido">Hacia dónde</a></td></tr>
 <tr id="lfq"><td>LFQ</td><td>Cuantificación sin marcaje. Cada muestra se mide por separado. Un cero quiere decir que la proteína no se vio. Es la técnica de la segunda cohorte de tejido.</td><td><a href="aprender-marco.html#cuantificacion">TMT, LFQ y DIA</a></td></tr>
 <tr id="limma"><td>limma</td><td>Forma de estimar la varianza de cada proteína usando también la varianza del resto. Sirve cuando hay pocas muestras.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
 <tr id="log2"><td>log2FC</td><td>Cambio en logaritmo base 2. Un valor de 1 es el doble y uno de −1 es la mitad. El margen de 1,5 veces equivale a 0,585.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
 <tr id="multiverso"><td>Multiverso</td><td>Repetir el análisis con las decisiones razonables que un analista pudo tomar, y ver si la conclusión cambia.</td><td><a href="aprender-metodos.html#reproducir">Multiverso</a></td></tr>
+<tr id="neoantigeno"><td>Neoantígeno</td><td>Péptido cuya secuencia cambió por una mutación del tumor, y que la célula puede mostrar al sistema inmunitario. No hay neoantígenos en los resultados de esta corrida.</td><td><a href="hacia-donde.html#peptido">Hacia dónde</a></td></tr>
 <tr id="normalizacion"><td>Normalización</td><td>Poner las muestras en una escala comparable. La versión principal del tejido sin marcaje no centra otra vez por la mediana; ese centrado es una sensibilidad.</td><td><a href="aprender-metodos.html#faltantes">Normalización e imputación</a></td></tr>
-<tr id="peptido"><td>Péptido</td><td>Trozo de una proteína. Esta proteómica mide péptidos y, a partir de ellos, infiere la proteína de origen.</td><td><a href="aprender-marco.html#masas">Espectrometría de masas</a></td></tr>
+<tr id="peptido"><td>Péptido</td><td>Trozo de una proteína. Esta proteómica mide péptidos y, a partir de ellos, infiere la proteína de origen. Un péptido presentado por HLA es otra medición, y aquí no se hizo.</td><td><a href="aprender-marco.html#masas">Espectrometría de masas</a></td></tr>
 <tr id="plasma"><td>Plasma</td><td>Líquido de la sangre cuando se evita que coagule. No es el suero. En un estudio de este repositorio el metadato dice plasma y el protocolo depositado dice suero.</td><td><a href="aprender-marco.html#sangre">Sangre y biomarcadores</a></td></tr>
 <tr id="pliegue"><td>Pliegue</td><td>Porción de las muestras que se aparta para probar un modelo entrenado con el resto. Aquí hay cinco pliegues, repetidos veinte veces.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
 <tr id="pride"><td>PRIDE</td><td>Depósito público de proteómica del EMBL-EBI. Los accesos que empiezan por PXD viven ahí.</td><td><a href="aprender-marco.html#anotacion">Depósitos</a></td></tr>
 <tr id="proteina"><td>Proteína</td><td>Cadena de aminoácidos que, ya plegada, hace un trabajo en la célula o fuera de ella. Sale de traducir un ARN mensajero.</td><td><a href="aprender-marco.html#proteina">Del gen a la proteína</a></td></tr>
+<tr id="proteogenomica"><td>Proteogenómica</td><td>Juntar el genoma o el ARN con las proteínas del mismo tumor. Los estudios de tejido que usa esta tesis lo hacen en origen. Este flujo leyó las tablas de proteínas y no añadió una capa genómica nueva.</td><td><a href="hacia-donde.html#proteogenomica">Hacia dónde</a></td></tr>
 <tr id="proteomica"><td>Proteómica</td><td>Medir muchas proteínas a la vez. Aquí se hace con espectrometría de masas sobre datos ya publicados.</td><td><a href="aprender-marco.html#proteina">Del gen a la proteína</a></td></tr>
 <tr id="proteomexchange"><td>ProteomeXchange</td><td>Consorcio que reúne depósitos de proteómica, entre ellos PRIDE, para que un estudio tenga un acceso estable.</td><td><a href="aprender-marco.html#anotacion">Depósitos</a></td></tr>
 <tr id="preregistro"><td>Preregistro</td><td>Escribir las reglas y los umbrales antes de ver los resultados, para separar lo confirmatorio de lo exploratorio. Un cambio posterior queda como enmienda fechada.</td><td><a href="aprender-metodos.html#reproducir">Reproducibilidad</a></td></tr>

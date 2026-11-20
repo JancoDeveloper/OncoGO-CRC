@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proteínas candidatas · OncoGO-CRC</title>
+<meta name="description" content="Las veinte proteínas que la corrida sellada v3.7 mide en el suero y no declara diferentes. Son candidatas computacionales, no una prueba clínica.">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header>
+  <div class="marca">
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
+  </div>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="candidatas.html" aria-current="page">Candidatas</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="hacia-donde.html">Hacia dónde</a>
+    <a href="autor.html">El autor</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="aprender.html">Aprender</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
+</header>
+<main id="contenido">
+<h2>Proteínas candidatas</h2>
+<p class="aviso">Son candidatas computacionales. Hace falta medirlas en otras personas, con otro diseño, antes de saber si el cambio se repite. Ninguna cifra de esta página sirve para un diagnóstico, un seguimiento o un tratamiento.</p>
+<p>La corrida sellada v3.7 (run 71b310a3) ordena las proteínas en una cadena. Empieza con 688 que cambian en el tejido de CPTAC. De esas, 135 se miden en el tejido de Tanaka con el mismo signo, 118 tienen en el Human Protein Atlas una anotación de secreción a la sangre o una concentración plasmática, y 20 se miden en la matriz principal del suero PXD055218. Ninguna de las 20 es diferente entre cáncer y colonoscopia negativa con el mismo signo que en el tejido. El archivo lo resume así: nadie pasa ese paso. La tesis usa la misma lista y la misma lectura: proteínas para estudiar en cohortes futuras, no biomarcadores.</p>
+<p>Dieciocho bajan en el tumor de CPTAC y dos, S100A8 y S100A9, suben. En Tanaka el signo coincide, pero el valor q de Tanaka no baja de 0,05: la coincidencia es de dirección, no de significación. En el suero, frente a colonoscopia negativa, la clase es equivalente o indeterminada. Equivalente quiere decir que, si hay un cambio, cabe en menos de 1,5 veces. Indeterminada quiere decir que el estudio no alcanza para decidir.</p>
+<p>En la tabla de la tesis, el símbolo que va con log2FC −1,13 y q 1,5 × 10⁻⁶ aparece como HS. En <code>priorizacion.tsv</code> ese símbolo es HP, la haptoglobina, con el mismo log2FC y el mismo valor q. Esta página usa el archivo.</p>
+
+<h2 id="tabla">La tabla</h2>
+<p>Pulse un encabezado para ordenar. El log2FC es el cambio en logaritmo base 2: 1 es el doble y −1 es la mitad. El valor q es el p ajustado por Benjamini-Hochberg. CPTAC es tumor frente a tejido normal adyacente. Tanaka es tumor primario frente a mucosa. El suero es PXD055218: la columna CN es cáncer frente a colonoscopia negativa, el contraste principal. «Frente a sanos» es otro contraste, medido al final del bloque, y no sustituye al principal. |SHAP| es la media del valor absoluto de SHAP en el modelo M2. Un guion quiere decir que la proteína no está entre las 20 variables con más peso. El archivo no guarda coeficientes ni una frecuencia de selección.</p>
+<div class="tabla">
+<table class="ordenable">
+<caption>Veinte proteínas medidas en el suero que no pasan el contraste principal.</caption>
+<thead>
+<tr>
+<th><button type="button" data-tipo="texto">Proteína</button></th>
+<th><button type="button" data-tipo="num">log2FC CPTAC</button></th>
+<th><button type="button" data-tipo="num">q CPTAC</button></th>
+<th><button type="button" data-tipo="texto">En el tumor</button></th>
+<th><button type="button" data-tipo="num">log2FC Tanaka</button></th>
+<th><button type="button" data-tipo="num">q Tanaka</button></th>
+<th><button type="button" data-tipo="num">log2FC suero, CN</button></th>
+<th><button type="button" data-tipo="texto">Clase frente a CN</button></th>
+<th><button type="button" data-tipo="texto">Clase frente a sanos</button></th>
+<th><button type="button" data-tipo="num">|SHAP| M2</button></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P51884">LUM</a></td><td data-valor="-1.3990465103836387">-1,40</td><td data-valor="3.4697877901723092e-15">3,5 × 10⁻¹⁵</td><td>Baja</td><td data-valor="-1.0363541152638869">-1,04</td><td data-valor="0.8963183151919336">0,90</td><td data-valor="-0.350768958900499">-0,35</td><td>equivalente</td><td>indeterminada</td><td data-valor="0.08996641149095613">0,090</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P01023">A2M</a></td><td data-valor="-1.1373693473473727">-1,14</td><td data-valor="3.0619345258499097e-12">3,1 × 10⁻¹²</td><td>Baja</td><td data-valor="-0.9241991968523212">-0,92</td><td data-valor="0.4465231850480602">0,45</td><td data-valor="-0.2982116305605871">-0,30</td><td>equivalente</td><td>indeterminada</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P06727">APOA4</a></td><td data-valor="-1.0525387532608717">-1,05</td><td data-valor="2.2380944875954158e-09">2,2 × 10⁻⁹</td><td>Baja</td><td data-valor="-1.1989513988339413">-1,20</td><td data-valor="0.3598673649356278">0,36</td><td data-valor="0.14395388918997298">0,14</td><td>equivalente</td><td>indeterminada</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P43652">AFM</a></td><td data-valor="-1.1193326354416728">-1,12</td><td data-valor="2.366851660210394e-09">2,4 × 10⁻⁹</td><td>Baja</td><td data-valor="-0.382330279880318">-0,38</td><td data-valor="0.999999970557004">1,00</td><td data-valor="-0.4090535349190638">-0,41</td><td>indeterminada</td><td>indeterminada</td><td data-valor="0.09619055349015271">0,096</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P08294">SOD3</a></td><td data-valor="-1.0970059464794126">-1,10</td><td data-valor="9.244347452691185e-09">9,2 × 10⁻⁹</td><td>Baja</td><td data-valor="-0.6307214831894156">-0,63</td><td data-valor="0.999999970557004">1,00</td><td data-valor="-0.3199675536819022">-0,32</td><td>indeterminada</td><td>indeterminada</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P02787">TF</a></td><td data-valor="-1.0137298501999432">-1,01</td><td data-valor="7.622482554076175e-08">7,6 × 10⁻⁸</td><td>Baja</td><td data-valor="-0.7196628986228404">-0,72</td><td data-valor="0.999999970557004">1,00</td><td data-valor="-0.2964037209329682">-0,30</td><td>equivalente</td><td>indeterminada</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P05546">SERPIND1</a></td><td data-valor="-1.0699621242062447">-1,07</td><td data-valor="8.39446408009622e-07">8,4 × 10⁻⁷</td><td>Baja</td><td data-valor="-0.504053372470659">-0,50</td><td data-valor="0.999999970557004">1,00</td><td data-valor="0.08434764796178484">0,08</td><td>equivalente</td><td>equivalente</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P00738">HP</a></td><td data-valor="-1.128661480806135">-1,13</td><td data-valor="1.5435061726023498e-06">1,5 × 10⁻⁶</td><td>Baja</td><td data-valor="-0.8290288361910645">-0,83</td><td data-valor="0.8955934873664287">0,90</td><td data-valor="0.7020208892190745">0,70</td><td>indeterminada</td><td>indeterminada</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P02647">APOA1</a></td><td data-valor="-1.0117325874812286">-1,01</td><td data-valor="1.5644431435386127e-06">1,6 × 10⁻⁶</td><td>Baja</td><td data-valor="-0.6900239808555357">-0,69</td><td data-valor="0.999999970557004">1,00</td><td data-valor="-0.11121497039931683">-0,11</td><td>equivalente</td><td>equivalente</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P02790">HPX</a></td><td data-valor="-1.0118951631796564">-1,01</td><td data-valor="2.1600581967644123e-06">2,2 × 10⁻⁶</td><td>Baja</td><td data-valor="-0.6858248549539763">-0,69</td><td data-valor="0.999999970557004">1,00</td><td data-valor="0.08260291755754423">0,08</td><td>equivalente</td><td>equivalente</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P00450">CP</a></td><td data-valor="-1.0185657659426617">-1,02</td><td data-valor="5.255033059988778e-06">5,3 × 10⁻⁶</td><td>Baja</td><td data-valor="-0.6575899558794851">-0,66</td><td data-valor="0.999999970557004">1,00</td><td data-valor="0.059478565737091316">0,06</td><td>equivalente</td><td>equivalente</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P01011">SERPINA3</a></td><td data-valor="-0.9481769350310878">-0,95</td><td data-valor="1.0388094992564177e-05">1,0 × 10⁻⁵</td><td>Baja</td><td data-valor="-0.50053484959906">-0,50</td><td data-valor="0.999999970557004">1,00</td><td data-valor="0.5640073250325983">0,56</td><td>indeterminada</td><td>indeterminada</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P08697">SERPINF2</a></td><td data-valor="-0.9174351839788928">-0,92</td><td data-valor="1.2192579154610305e-05">1,2 × 10⁻⁵</td><td>Baja</td><td data-valor="-0.208781096322619">-0,21</td><td data-valor="0.999999970557004">1,00</td><td data-valor="0.06147441130049458">0,06</td><td>equivalente</td><td>equivalente</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P01042">KNG1</a></td><td data-valor="-0.9680615174777863">-0,97</td><td data-valor="1.5509861096076042e-05">1,6 × 10⁻⁵</td><td>Baja</td><td data-valor="-0.5763661382305056">-0,58</td><td data-valor="0.999999970557004">1,00</td><td data-valor="0.02106232800647234">0,02</td><td>equivalente</td><td>equivalente</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P19652">ORM2</a></td><td data-valor="-1.0834555107227746">-1,08</td><td data-valor="3.111535707439446e-05">3,1 × 10⁻⁵</td><td>Baja</td><td data-valor="-0.787877933027892">-0,79</td><td data-valor="0.999999970557004">1,00</td><td data-valor="0.29712766024821136">0,30</td><td>indeterminada</td><td>equivalente</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P02652">APOA2</a></td><td data-valor="-0.989955884569758">-0,99</td><td data-valor="3.4117679617682354e-05">3,4 × 10⁻⁵</td><td>Baja</td><td data-valor="-0.539842056566606">-0,54</td><td data-valor="0.999999970557004">1,00</td><td data-valor="-0.4527343317106052">-0,45</td><td>indeterminada</td><td>equivalente</td><td data-valor="0.08072276022377622">0,081</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P02765">AHSG</a></td><td data-valor="-0.8834262618066152">-0,88</td><td data-valor="3.858424036975918e-05">3,9 × 10⁻⁵</td><td>Baja</td><td data-valor="-0.7608382957604474">-0,76</td><td data-valor="0.999999970557004">1,00</td><td data-valor="-0.46315502618984183">-0,46</td><td>indeterminada</td><td>indeterminada</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P05109">S100A8</a></td><td data-valor="1.1646454416767622">1,16</td><td data-valor="0.0008404395064631">8,4 × 10⁻⁴</td><td>Sube</td><td data-valor="1.5818149815598892">1,58</td><td data-valor="0.3565718335532393">0,36</td><td data-valor="0.32452913360762636">0,32</td><td>indeterminada</td><td>indeterminada</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P25311">AZGP1</a></td><td data-valor="-1.0037587136711552">-1,00</td><td data-valor="0.0015162050448309">1,5 × 10⁻³</td><td>Baja</td><td data-valor="-0.2814335822963945">-0,28</td><td data-valor="0.999999970557004">1,00</td><td data-valor="0.117504271178138">0,12</td><td>equivalente</td><td>equivalente</td><td data-valor="">—</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P06702">S100A9</a></td><td data-valor="1.057398285805666">1,06</td><td data-valor="0.0085662264586534">8,6 × 10⁻³</td><td>Sube</td><td data-valor="1.599149687103656">1,60</td><td data-valor="0.2062245504483101">0,21</td><td data-valor="0.899678006645356">0,90</td><td>indeterminada</td><td>indeterminada</td><td data-valor="">—</td></tr>
+</tbody>
+</table>
+</div>
+<p class="fuentes">Números: <code>results/v3_7/priorizacion.tsv</code> (log2FC y q de CPTAC), <code>triangulacion.tsv</code> (Tanaka), <code>k4_genes_maxlfq_crc_frente_a_colonoscopia_negativa.tsv</code> y <code>k4_genes_maxlfq_crc_frente_a_sanos.tsv</code> (suero), <code>ml_explicacion.tsv</code> (SHAP). El acceso de UniProt sale de <code>metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv</code>. La ficha de cada proteína, en UniProtKB 2026_04, se consultó el 20 de noviembre de 2026 (<a href="referencias.html#uniprot2025">The UniProt Consortium, 2025</a>).</p>
+
+<h2 id="go">Qué términos comparten y cuáles las distinguen</h2>
+<p>La corrida no calculó un enriquecimiento de <a href="glosario.html#go">Gene Ontology</a> para estas veinte proteínas. El enriquecimiento que sí existe es el del tejido entero: en CPTAC hay 17 términos entre las proteínas que suben y 63 entre las que bajan, y el GSEA deja 64 términos con FDR de hasta 0,25 (<code>go_tejido.json</code>). Esos procesos, en la tesis, son sobre todo traducción, procesamiento de ARN y reparación del ADN. Ninguno de estos 20 genes está en el borde delantero de un término con ese FDR (<code>gsea_tejido.tsv</code>). El enriquecimiento del tejido no describe a esta lista.</p>
+<p>La matriz de abajo responde otra pregunta: qué anotaciones comparten entre ellas. Las tres primeras columnas salen de la corrida. Son las variables de lugar en la célula guardadas en <code>h7_tabla_proteinas.tsv</code>: región extracelular, membrana plasmática y exosoma extracelular. Las demás columnas salen de la tabla de anotación que el flujo ya usa, <code>metadata/gene_ontology/go_gene_long.tsv</code>. Un proceso entra si lo comparten al menos tres genes, o si lo comparten dos y, además, el término es significativo en el análisis de sobrerrepresentación de CPTAC en la misma dirección que el log2FC de esos genes. Si varios términos tienen exactamente los mismos genes, la figura se queda con el de menor valor q. Los nombres oficiales se leyeron el 20 de noviembre de 2026 en Gene Ontology, versión releases/2026-07-26 (<a href="referencias.html#goconsortium2023">The Gene Ontology Consortium, 2023</a>). Esa lectura de nombres es anotación externa. No es un resultado nuevo de la corrida.</p>
+<figure id="heatmap">
+  <img src="figuras/go_candidatas.svg" alt="Matriz de veinte proteínas por doce términos. Todas tienen región extracelular y exosoma. La membrana plasmática marca a seis. Los procesos de lípidos agrupan a APOA1, APOA2 y APOA4. El hierro agrupa a TF, HPX y CP. La inflamación agrupa a HP, SERPINA3, S100A8 y S100A9.">
+  <figcaption>Celda llena: el gen está anotado a ese término. Celda vacía: no lo está.
+    <span class="no">No dice que el término esté enriquecido por culpa de esa proteína, ni que el proceso cambie en la sangre. Las tres columnas de lugar en la célula son variables de la corrida. El resto es la anotación que el flujo tenía guardada, con nombres de Gene Ontology 2026-07-26.</span>
+  </figcaption>
+</figure>
+<p>Lo que comparten casi todas: región extracelular y exosoma extracelular. Las distingue la membrana plasmática, presente en TF, APOA1, CP, KNG1, S100A8 y S100A9.</p>
+<p>En procesos biológicos, APOA1, APOA2 y APOA4 comparten la homeostasis del colesterol. APOA1 y APOA2, sin APOA4, comparten además el transporte de colesterol. TF, HPX y CP comparten la homeostasis del hierro. HP, SERPINA3, S100A8 y S100A9 comparten la respuesta inflamatoria. S100A8 y S100A9 comparten la migración endotelial; los mismos dos genes también están anotados a quimiotaxis de neutrófilos y a defensa contra bacterias, términos que la figura no repite porque el conjunto de genes es el mismo. LUM y SERPINF2 comparten la organización de fibrillas de colágeno. AHSG, APOA1 y APOA2 comparten una anotación de fagocitosis. AFM, APOA1 y APOA2 comparten estabilización de proteínas. APOA1 y SERPINF2 comparten una anotación de fibras de estrés.</p>
+<p>La figura la escribe <code>scripts/web/candidatas_sitio.py</code> a partir de esos archivos. No modifica <code>results/</code>.</p>
+
+<h2 id="fichas">Fichas</h2>
+<p>Cada ficha separa tres cosas: qué dice UniProt de la proteína, qué se vio en esta corrida y por qué alguien podría querer mirarla otra vez. La tercera frase no es una utilidad clínica.</p>
+
+<article class="ficha" id="apoa">
+<h3>Apolipoproteínas: APOA1, APOA2 y APOA4</h3>
+<p><strong>Qué hace la proteína.</strong> Según UniProtKB 2026_04, consultada el 20 de noviembre de 2026, APOA1 (P02647) participa en el transporte de colesterol desde los tejidos hacia el hígado y es cofactor de la enzima que esterifica el colesterol. APOA2 (P02652) puede estabilizar las HDL, las lipoproteínas de alta densidad. APOA4 (P06727) es un componente de las HDL y de los quilomicrones, y la ficha le atribuye un papel posible en la secreción de partículas que transportan grasa. Es anotación externa, no una medición de este estudio (<a href="referencias.html#uniprot2025">The UniProt Consortium, 2025</a>).</p>
+<p><strong>Qué se vio.</strong> Las tres bajan en el tumor de CPTAC y el signo se repite en Tanaka, sin valor q menor de 0,05 en Tanaka. En el suero, frente a colonoscopia negativa, APOA1 y APOA4 son equivalentes y APOA2 es indeterminada. El signo del suero no copia al del tejido: APOA4 sube un poco (log2FC 0,14) y APOA2 baja (log2FC −0,45). Frente a personas sanas, APOA4 es más baja en la colonoscopia negativa (log2FC −1,32, clase diferente). APOA2 está entre las variables con más |SHAP| en M2 (0,081) y, tras el ajuste, se relaciona con la coagulación y con la piel. SHAP explica al modelo, no al tumor.</p>
+<p><strong>Por qué podría importar.</strong> Son proteínas abundantes, de las que un suero sin depleción sí alcanza a medir. La tesis lee la bajada en el tumor como el desplazamiento de tejido sano, no como una liberación del tumor a la sangre. Seguirlas en otra cohorte preguntaría si esa bajada se repite. No propone una prueba.</p>
+</article>
+
+<article class="ficha" id="hierro">
+<h3>Hierro y hemo: TF, CP, HPX y HP</h3>
+<p><strong>Qué hace la proteína.</strong> La transferrina (TF, P02787) transporta hierro. La ceruloplasmina (CP, P00450) oxida el hierro para que la transferrina pueda cargarlo. La hemopexina (HPX, P02790) une el hemo y lo lleva al hígado. La haptoglobina (HP, P00738) captura la hemoglobina libre del plasma. Textos de función de UniProtKB 2026_04, consulta del 20 de noviembre de 2026.</p>
+<p><strong>Qué se vio.</strong> Las cuatro bajan en el tumor de CPTAC, con el mismo signo en Tanaka y sin significación allí. En el suero, frente a colonoscopia negativa, TF, HPX y CP son equivalentes, con cambios pequeños. HP va al revés que en el tejido (log2FC 0,70) y queda indeterminada. Ninguna de las cuatro está entre las 20 variables de más |SHAP| en M2.</p>
+<p><strong>Por qué podría importar.</strong> Comparten, en la anotación del flujo, la homeostasis del hierro (TF, HPX y CP). HP comparte con otras la respuesta inflamatoria. Son proteínas de la sangre que el tumor, en estos datos, no separa de la colonoscopia negativa. Una cohorte más grande podría decir si el cambio de HP es real. Esta no lo dice.</p>
+</article>
+
+<article class="ficha" id="inhibidores">
+<h3>Inhibidores y coagulación: A2M, SERPINA3, SERPIND1, SERPINF2 y KNG1</h3>
+<p><strong>Qué hace la proteína.</strong> La alfa-2-macroglobulina (A2M, P01023) inhibe proteasas atrapándolas. La alfa-1-antiquimotripsina (SERPINA3, P01011) puede inhibir proteasas de neutrófilos y de mastocitos; UniProt dice que su función fisiológica no está clara. El cofactor II de la heparina (SERPIND1, P05546) inhibe la trombina cuando hay heparina o dermatán sulfato. La alfa-2-antiplasmina (SERPINF2, P08697) inhibe la plasmina. El cininógeno-1 (KNG1, P01042) ayuda a colocar proteínas de la coagulación junto al factor XII e inhibe proteasas de tiol. Anotación externa de UniProtKB 2026_04, 20 de noviembre de 2026.</p>
+<p><strong>Qué se vio.</strong> Las cinco bajan en el tumor de CPTAC y conservan el signo en Tanaka, sin q de Tanaka menor de 0,05. Frente a colonoscopia negativa, A2M, SERPIND1, SERPINF2 y KNG1 son equivalentes. SERPINA3 es indeterminada (log2FC 0,56 en el suero, signo contrario al del tejido). Ninguna entra en las 20 de más |SHAP|.</p>
+<p><strong>Por qué podría importar.</strong> La tesis las agrupa con las proteínas abundantes del plasma, más bajas en el tumor que en la mucosa. La coagulación también cambia por el tubo, el tiempo y el orden de medición (<a href="referencias.html#geyer2019">Geyer y colaboradores, 2019</a>). Por eso un cambio de estas proteínas en el suero, aquí, no se puede leer como una señal del tumor.</p>
+</article>
+
+<article class="ficha" id="plasma">
+<h3>Otras proteínas abundantes: AFM, ORM2, AHSG, AZGP1, LUM y SOD3</h3>
+<p><strong>Qué hace la proteína.</strong> La afamina (AFM, P43652) transporta moléculas poco solubles en agua, entre ellas la vitamina E; parte de esa frase está marcada como probable en UniProt. El orosomucoide 2 (ORM2, P19652) transporta ligandos hidrofóbicos y la ficha lo relaciona con la fase aguda. La alfa-2-HS-glucoproteína (AHSG, P02765) tiene afinidad por el calcio. La zinc-alfa-2-glucoproteína (AZGP1, P25311) estimula, según la ficha, la degradación de lípidos en el adipocito; este estudio no midió esa degradación. La lumicana (LUM, P51884) no tiene comentario de función en UniProtKB 2026_04. Las palabras clave de la ficha dicen matriz extracelular, proteoglicano y secretada, y la tabla GO del repositorio la anota a la organización de fibrillas de colágeno. La superóxido dismutasa extracelular (SOD3, P08294) convierte el superóxido en peróxido de hidrógeno fuera de la célula. Consulta del 20 de noviembre de 2026.</p>
+<p><strong>Qué se vio.</strong> Las seis bajan en CPTAC y el signo se repite en Tanaka. Frente a colonoscopia negativa, AZGP1 es equivalente y las otras cinco son indeterminadas, salvo LUM, que es equivalente (log2FC −0,35). AFM tiene |SHAP| 0,096 y LUM 0,090, ambas entre las 20 más altas de M2, y las dos se relacionan con la calidad de la muestra o con el orden. SOD3 es la única de las veinte cuya dirección en el colon coincide con la de al menos cuatro de otros carcinomas en <code>h5_especificidad_organo.tsv</code> (clase pan_carcinoma). Esa clase se informa y no elimina proteínas. TF, en la otra ficha, quedó sin clasificar.</p>
+<p><strong>Por qué podría importar.</strong> LUM y SERPINF2 son las que la matriz separa por la matriz extracelular. SOD3 es la que la corrida marca como compartida con otros carcinomas. En el suero, ninguna de las seis pasa el criterio. Quedan como nombres para una cohorte futura, no como marcadores.</p>
+</article>
+
+<article class="ficha" id="calprotectina">
+<h3>Calprotectina: S100A8 y S100A9</h3>
+<p><strong>Qué hace la proteína.</strong> S100A8 (P05109) y S100A9 (P06702) unen calcio y zinc y participan en la inflamación. Juntas forman la calprotectina. La ficha de S100A8 dice que puede atraer neutrófilos. Anotación de UniProtKB 2026_04, 20 de noviembre de 2026.</p>
+<p><strong>Qué se vio.</strong> Son las dos que suben en el tumor de CPTAC (log2FC 1,16 y 1,06). El signo se repite en Tanaka (1,58 y 1,60) sin q menor de 0,05. En el suero, frente a colonoscopia negativa, quedan indeterminadas (log2FC 0,32 y 0,90). No están entre las 20 de más |SHAP|.</p>
+<p><strong>Por qué podría importar.</strong> La tesis recuerda que la calprotectina también sube en la enfermedad inflamatoria intestinal, y que la colonoscopia negativa incluye a esas personas. Por eso no se espera que esta pareja separe el cáncer de ese grupo. El resultado de la corrida es compatible con esa lectura y no la demuestra. No es un marcador de tamización.</p>
+</article>
+
+<h2 id="suero-grande">Cambios del suero que no pasaron el criterio</h2>
+<p>La tesis nombra, aparte de las veinte, cuatro proteínas con un cambio apreciable entre cáncer y colonoscopia negativa que no alcanza el criterio: SAA1, CRP, LBP y LRG1. No están en la lista de veinte. En <code>priorizacion.tsv</code> SAA1, CRP y LBP ni siquiera son diferenciales certificadas en CPTAC, y LRG1 no llega a medirse con el mismo signo en Tanaka. Son ejemplos de la potencia del estudio, no una segunda lista de candidatas del tejido.</p>
+<div class="tabla">
+<table>
+<caption>Cuatro proteínas indeterminadas en el contraste principal, con el cambio que cita la tesis.</caption>
+<thead>
+<tr><th>Proteína</th><th>log2FC, CN</th><th>Veces, CN</th><th>Clase, CN</th><th>log2FC frente a sanos</th><th>Clase frente a sanos</th><th>q frente a sanos</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P0DJI8">SAA1</a></td><td>1,75</td><td>3,4</td><td>indeterminada</td><td>3,03</td><td>diferente</td><td>6,5 × 10⁻⁴</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P02741">CRP</a></td><td>1,48</td><td>2,8</td><td>indeterminada</td><td>2,35</td><td>indeterminada</td><td>0,07</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P18428">LBP</a></td><td>0,78</td><td>1,7</td><td>indeterminada</td><td>1,25</td><td>diferente</td><td>2,7 × 10⁻³</td></tr>
+<tr><td><a href="https://www.uniprot.org/uniprotkb/P02750">LRG1</a></td><td>0,65</td><td>1,6</td><td>indeterminada</td><td>1,23</td><td>diferente</td><td>0,04</td></tr>
+</tbody>
+</table>
+</div>
+<p>SAA1 es unas 3,4 veces más alta en cáncer que en colonoscopia negativa, y aun así la clase es indeterminada: con veinte personas por grupo el valor q no pasa el corte. Frente a personas sanas, SAA1, LBP y LRG1 sí quedan en la clase diferente, y suben. CRP no. La tesis las lee como proteínas de fase aguda (<a href="referencias.html#gabay1999">Gabay y Kushner, 1999</a>): una señal que puede compartirse con otras enfermedades intestinales y que, además, está confundida con el orden de medición, porque las personas sanas se midieron al final. Son candidatas para una cohorte más grande, no hallazgos.</p>
+<p class="aviso">Nada de esta página es una prueba de sangre. El camino de una proteína candidata a un uso clínico es otra fase, que este trabajo no recorre (<a href="referencias.html#pepe2001">Pepe y colaboradores, 2001</a>).</p>
+</main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
+<script>
+(function () {
+  var tabla = document.querySelector("table.ordenable");
+  if (!tabla) return;
+  var cuerpo = tabla.tBodies[0];
+  tabla.querySelectorAll("thead button").forEach(function (boton, indice) {
+    boton.addEventListener("click", function () {
+      var tipo = boton.getAttribute("data-tipo");
+      var sube = boton.getAttribute("data-orden") !== "asc";
+      tabla.querySelectorAll("thead button").forEach(function (otro) {
+        otro.removeAttribute("data-orden");
+        otro.removeAttribute("aria-pressed");
+      });
+      boton.setAttribute("data-orden", sube ? "asc" : "desc");
+      boton.setAttribute("aria-pressed", "true");
+      var filas = Array.prototype.slice.call(cuerpo.rows);
+      filas.sort(function (a, b) {
+        var ca = a.cells[indice];
+        var cb = b.cells[indice];
+        var va = ca.getAttribute("data-valor");
+        var vb = cb.getAttribute("data-valor");
+        if (tipo === "num") {
+          var na = va === "" || va === null ? null : Number(va);
+          var nb = vb === "" || vb === null ? null : Number(vb);
+          if (na === null && nb === null) return 0;
+          if (na === null) return 1;
+          if (nb === null) return -1;
+          return sube ? na - nb : nb - na;
+        }
+        var ta = (va || ca.textContent).toLocaleLowerCase();
+        var tb = (vb || cb.textContent).toLocaleLowerCase();
+        if (ta < tb) return sube ? -1 : 1;
+        if (ta > tb) return sube ? 1 : -1;
+        return 0;
+      });
+      filas.forEach(function (fila) { cuerpo.appendChild(fila); });
+    });
+  });
+})();
+</script>
+</body>
+</html>
