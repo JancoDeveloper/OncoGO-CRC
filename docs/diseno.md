@@ -83,8 +83,9 @@ certificada v1 es del 1 de octubre de 2026. La versión 4.0.0 no mueve esas
 etiquetas.
 
 Para repetir desde cero: clonar, situarse en el código, instalar, descargar
-las cuatro matrices, comprobar las huellas, ejecutar con `WORKSPACE` y
-comparar. Los cinco pasos y las excepciones admitidas (fecha, identificador
+las cuatro matrices y el depósito
+[10.5281/zenodo.24398807](https://doi.org/10.5281/zenodo.24398807), comprobar
+las huellas, ejecutar con `WORKSPACE` y comparar. Los cinco pasos y las excepciones admitidas (fecha, identificador
 de proceso, tiempos de las pruebas y el orden de `gsea_tejido.tsv`) están
 en el README y en `scripts/comparar_con_referencia.py`.
 

@@ -22,9 +22,24 @@ suero. El código no resuelve esa discrepancia.
 | `pride_crc_matrix.tsv` | Se reconstruye con `scripts/descargar_datos.py` desde el proteinGroups | `a5baca5a…`. Coincide byte a byte con pandas 3.0.2 |
 | `DIA-NN_report.tsv` | `https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD055218/DIA-NN_report.tsv` | `a8a5aadd…`. 213 313 241 bytes |
 | `report.pr_matrix.tsv` y `Sample_Metadata.txt` | `https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/01/PXD064655/` | No están en el manifiesto sellado. Las huellas calculadas el 19 de noviembre de 2026 están en `data/checksums.sha256` |
-| `cptac_crc_matrix.tsv` | Estudio PDC000116 en `https://pdc.cancer.gov/pdc/study/PDC000116` | `a1272baf…`. No hay un único URL de archivo en este repositorio |
+| `cptac_crc_matrix.tsv` | `https://zenodo.org/records/24398807/files/cptac_crc_matrix.tsv?download=1` | `a1272baf…`. DOI `10.5281/zenodo.24398807` |
 | `metadata/sample_metadata/cptac_metadata.tsv` | En el repositorio, no en el disco externo | `c0f1d5d72a3d8713e3c2bfc6d1a9391dc529158be87a74bb7dfb28980bc6454c`. 30 040 bytes, 397 filas. Es la copia de `71b310a3`, de `595118ae` y de `v3.7-final`. `data/raw/download_real_manifest.json` anota el mismo SHA-256 |
-| Tres ficheros de `results/certified` y `results/certification` | Regeneración con `make certified`, o el depósito futuro `https://zenodo.org/deposit/PENDIENTE` | En `manifest_entradas.sha256` |
+| Tres ficheros de `results/certified` y `results/certification` | El mismo registro Zenodo, o `make certified` si la matriz TMT ya está | En `data/checksums.sha256` y en `manifest_entradas.sha256` |
+
+Esos cinco ficheros (la matriz TMT, los tres certificados y
+`external/modelos/h7_esm2_embeddings.tsv`) están en el depósito
+<https://doi.org/10.5281/zenodo.24398807>
+(<https://zenodo.org/records/24398807>, licencia CC-BY-4.0). El depósito es
+plano: también trae `LEEME.txt` y `SHA256SUMS.txt`, que el script no copia
+al workspace. `make descargar` escribe cada entrada en su ruta y sale con
+código 1 si el SHA-256 no coincide. Si el fichero ya está y la huella
+coincide, no lo vuelve a bajar. `--solo` recibe la ruta relativa, como en
+el resto de fuentes.
+
+`cptac_crc_matrix.tsv` se deriva del estudio de acceso abierto PDC000116
+(Vasaikar et al. 2019, <https://doi.org/10.1016/j.cell.2019.03.030>;
+<https://pdc.cancer.gov/pdc/study/PDC000116>) y se redistribuye con
+atribución. Hay que citar el artículo original además del DOI del depósito.
 
 La copia de `cptac_metadata.tsv` en `/Volumes/JANCODATA/OncoGO-CRC` no es la de
 la corrida sellada. Tiene 84 540 bytes y SHA-256
@@ -47,11 +62,12 @@ de 2026). `make crudos-v3-7` los compara con el SHA-1 de `checksum.txt`.
 | UniProt revisado | `metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv` | `2d1619fa…`, en el repositorio |
 | Human Protein Atlas, concentración en sangre | `external/hpa/hpa_concentracion_sangre.tsv` | `9e9e3239…`. La genera `scripts/download/human_protein_atlas.py` desde `proteinatlas.tsv.zip` |
 | Biblioteca de contaminantes de Frankenfield et al. 2022 | `external/frankenfield_2022/0602_Universal_Contaminants.fasta` | Huella calculada en esta preparación, no sellada |
-| Embeddings ESM-2 | `external/modelos/h7_esm2_embeddings.tsv` | `2b1e48e3…`. No está en git. El modelo principal no lo usa |
+| Embeddings ESM-2 | `https://zenodo.org/records/24398807/files/h7_esm2_embeddings.tsv?download=1` | `2b1e48e3…`. DOI `10.5281/zenodo.24398807`. El modelo principal no lo usa |
 
 LinkedOmics no lo lee la etapa v3.7. No forma parte de las entradas
 declaradas.
 
 Las licencias de los depósitos son las de PRIDE, ProteomeXchange, PDC, GO,
-UniProt y el Human Protein Atlas (CC BY-SA 4.0 para el atlas). Las citas
-están en `docs/references.bib`.
+UniProt y el Human Protein Atlas (CC BY-SA 4.0 para el atlas). El depósito
+de entradas [10.5281/zenodo.24398807](https://doi.org/10.5281/zenodo.24398807)
+está en CC-BY-4.0. Las citas están en `docs/references.bib`.

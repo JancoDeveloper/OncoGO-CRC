@@ -4,7 +4,9 @@
 # la ejecución sellada. Un fichero ausente del repositorio se descarga o se
 # regenera; si su huella no coincide, la corrida nueva no puede igualar la referencia.
 #
-# Depósito futuro (aún no existe): https://zenodo.org/deposit/PENDIENTE
+# Depósito Zenodo de las entradas que no están en git (CC-BY-4.0):
+# https://doi.org/10.5281/zenodo.24398807
+# https://zenodo.org/records/24398807
 
 da9ec08ee656d207b29242d804f308247957126201678e2ed80cae37ce8ed8c9  data/raw/pride/Cohort1_proteinGroups.txt
 a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8  data/raw/plasma/DIA-NN_report.tsv

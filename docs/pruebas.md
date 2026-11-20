@@ -7,7 +7,7 @@ Niveles, de más pequeño a más grande.
 | Unidad | Contrastes, equivalencia, sellos, vigilante, SHAP lineal, directLFQ, multiverso | `make test` |
 | Regresión v1 | Los siete números certificados. Se omite si el workspace no tiene `results/certified` | `make regresion-v1` |
 | Extremo a extremo sintético | La etapa rechaza un informe que no es el DIA-NN sellado. El emisor del certificado devuelve 22 casillas | `make test-e2e` |
-| Corrida completa | `make all-v3-7` y `make verificar` | Pide las entradas de `data/checksums.sha256` |
+| Corrida completa | `make all-v3-7` y `make verificar` | Pide las entradas de `data/checksums.sha256`. `make descargar` trae las que no están en git desde [10.5281/zenodo.24398807](https://doi.org/10.5281/zenodo.24398807) |
 
 `make test` informa cobertura con `pytest-cov`. No hay un umbral que falle
 la corrida: el informe es para ver qué quedó sin ejercer.

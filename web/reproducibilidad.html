@@ -35,11 +35,11 @@
 </ul>
 <p>El certificado de esa corrida está en estado publicable (22 casillas en la prueba de cierre; 119 sellos en <code>certificado.json</code>). La semilla es <code>20260914</code>. Python 3.14.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1 y scikit-learn 1.8.0.</p>
 <h2>Cómo repetirla</h2>
-<p>Hace falta Python 3.14, <code>make</code> y espacio en disco. Las matrices no están en git. Se vuelven a bajar de PRIDE o se leen de una carpeta que ya las tenga. La matriz TMT de PDC000116 no tiene un único URL en este repositorio: sin ella no se regeneran los tres archivos de la corrida certificada que <code>make v3-7</code> lee. El depósito público de esa matriz todavía no tiene DOI.</p>
+<p>Hace falta Python 3.14, <code>make</code> y espacio en disco. Las matrices no están en git. <code>make descargar</code> baja las de PRIDE y cinco archivos del conjunto de datos <a href="https://doi.org/10.5281/zenodo.24398807">10.5281/zenodo.24398807</a> (<a href="https://zenodo.org/records/24398807">zenodo.org/records/24398807</a>, licencia CC-BY-4.0). La matriz de tejido TMT se deriva del estudio de acceso abierto <a href="https://pdc.cancer.gov/pdc/study/PDC000116">PDC000116</a> (<a href="https://doi.org/10.1016/j.cell.2019.03.030">Vasaikar y colaboradores, 2019</a>) y se redistribuye con atribución. Con esa matriz, y con los tres archivos certificados del mismo depósito, <code>make v3-7</code> lee lo que antes solo estaba en el equipo de la corrida.</p>
 <ol class="pasos">
   <li>Clonar el repositorio en la etiqueta que quiera repetir.</li>
   <li>Crear el entorno e instalar: <code>pip install -e ".[dev]"</code>.</li>
-  <li>Bajar los archivos públicos: <code>make descargar</code>. Comprueba la huella cuando está sellada. No baja los 60 crudos de PXD055218 (65,56 GB). Sin esos crudos, las fechas de adquisición siguen siendo las de la tabla sellada.</li>
+  <li>Bajar los archivos públicos: <code>make descargar</code>. Comprueba el SHA-256 cuando está sellado y no vuelve a bajar un archivo cuya huella ya coincide. No baja los 60 crudos de PXD055218 (65,56 GB). Sin esos crudos, las fechas de adquisición siguen siendo las de la tabla sellada.</li>
   <li>Con el árbol de git limpio, <code>make v3-7</code> escribe una corrida nueva en el espacio de trabajo. No modifica <code>results/v3_7</code> del repositorio. <code>make all-v3-7</code> añade la regresión de la entrada de tejido y la revisión de los crudos.</li>
   <li><code>make verificar</code> compara esa corrida con la referencia. Pueden cambiar el sello, la fecha, el identificador de proceso y el orden de algunas filas. Las 35 métricas de <code>config/esperado_v3_7.tsv</code> tienen tolerancia.</li>
 </ol>
