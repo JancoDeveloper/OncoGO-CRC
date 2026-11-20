@@ -45,6 +45,58 @@ def _coalesce_data_workspace(
     return None
 
 
+# Lectura. results/v3_* , reports/ y data/processed se escriben en el workspace.
+_INPUT_PREFIXES = (
+    "data/raw",
+    "metadata",
+    "external",
+    "results/certified",
+    "results/certification",
+    "results/v2",
+)
+# La etapa H8 reescribe esta carpeta. No puede caer en el disco de solo lectura.
+_OUTPUT_EXCEPTIONS = ("external/pxd064655/derivados",)
+
+
+def _coalesce_data_dir(
+    root: Path,
+    yaml_paths: dict[str, Any],
+    *,
+    cli_value: str | Path | None,
+) -> Path | None:
+    """Prioridad: CLI > ONCOGO_DATA_DIR > config paths.data_dir.
+
+    Ahí se leen data/raw, metadata, external y results/certified. No se escribe.
+    """
+    for candidate in (
+        cli_value,
+        os.environ.get("ONCOGO_DATA_DIR"),
+        yaml_paths.get("data_dir"),
+    ):
+        out = _normalize_optional_dir(root, candidate)
+        if out is not None:
+            return out
+    return None
+
+
+def _rel_norm(rel: str) -> str:
+    norm = str(rel).replace("\\", "/").lstrip()
+    while norm.startswith("./"):
+        norm = norm[2:]
+    return norm.lstrip("/")
+
+
+def _is_readonly_input(rel: str) -> bool:
+    norm = _rel_norm(rel).rstrip("/")
+    for prefix in _OUTPUT_EXCEPTIONS:
+        if norm == prefix or norm.startswith(prefix + "/"):
+            return False
+    for prefix in _INPUT_PREFIXES:
+        if norm == prefix or norm.startswith(prefix + "/"):
+            return True
+    return False
+
+
 def _copy_metadata_file_if_needed(src: Path, dst: Path, *, refresh_if_repo_newer: bool) -> str:
     """Copia un archivo de metadata al workspace. Devuelve ``new``, ``updated`` o vacío.
 
@@ -126,6 +178,56 @@ def _seed_workspace_metadata_from_repo(repo_root: Path, workspace: Path) -> None
         print(f"[settings] metadata → workspace ({dst}): {', '.join(parts)}.")
 
 
+def _abs_sin_enlace(path: Path) -> Path:
+    """Ruta absoluta sin seguir enlaces simbólicos."""
+    return Path(os.path.abspath(path))
+
+
+def _relativa_a_traves_de_enlace(base: Path, destino: Path) -> str | None:
+    """Si `destino` es el blanco de un enlace bajo `base`, devuelve la ruta lógica.
+
+    No llama a Path.resolve sobre `destino`. Solo lee el enlace con readlink.
+    """
+    destino_s = os.path.normpath(os.path.abspath(str(destino)))
+    mejor: str | None = None
+
+    def considerar(rel: str, enlace: Path) -> None:
+        nonlocal mejor
+        if not enlace.is_symlink():
+            return
+        crudo = os.readlink(enlace)
+        objetivo = crudo if os.path.isabs(crudo) else os.path.join(os.path.dirname(enlace), crudo)
+        objetivo_s = os.path.normpath(objetivo)
+        if destino_s == objetivo_s or destino_s.startswith(objetivo_s + os.sep):
+            resto = destino_s[len(objetivo_s):].strip(os.sep).replace(os.sep, "/")
+            logica = rel if not resto else f"{rel}/{resto}"
+            if mejor is None or logica.count("/") > mejor.count("/"):
+                mejor = logica
+
+    for nombre in ("external", "metadata", "data", "results"):
+        raiz = base / nombre
+        if raiz.is_symlink():
+            considerar(nombre, raiz)
+            continue
+        if not raiz.is_dir():
+            continue
+        for dirpath, dirnames, filenames in os.walk(raiz, followlinks=False):
+            rel_dir = Path(dirpath).relative_to(base).as_posix()
+            saltar = []
+            for dn in dirnames:
+                candidato = Path(dirpath) / dn
+                if candidato.is_symlink():
+                    considerar(f"{rel_dir}/{dn}", candidato)
+                    saltar.append(dn)
+            for dn in saltar:
+                dirnames.remove(dn)
+            for fn in filenames:
+                candidato = Path(dirpath) / fn
+                if candidato.is_symlink():
+                    considerar(f"{rel_dir}/{fn}", candidato)
+    return mejor
+
+
 def _is_workspace_relative(rel: str) -> bool:
     """Rutas pesadas y metadata: data/, results/, reports/, metadata/, y docs/web (MkDocs).
 
@@ -154,6 +256,7 @@ class Settings:
     comparisons: dict[str, Any]
     demo: bool
     data_workspace: Path | None = None
+    data_dir: Path | None = None
 
     @property
     def paths(self) -> dict[str, Any]:
@@ -162,25 +265,36 @@ class Settings:
     def resolve(self, rel: str) -> Path:
         p = Path(rel)
         if p.is_absolute():
-            return p.resolve()
+            return _abs_sin_enlace(p)
+        if self.data_dir is not None and not self.demo and _is_readonly_input(rel):
+            return _abs_sin_enlace(self.data_dir / _rel_norm(rel))
         base = self.root
         if self.data_workspace is not None and _is_workspace_relative(rel):
             base = self.data_workspace
-        return (base / rel).resolve()
+        return _abs_sin_enlace(base / rel)
 
     def relative_to_project(self, path: Path | str) -> str:
-        """Ruta legible respecto al workspace de datos o a la raíz del repo (logs, manifiestos)."""
-        resolved = Path(path).resolve()
-        if self.data_workspace is not None:
-            dw = self.data_workspace.resolve()
+        """Ruta lógica respecto al workspace, al directorio de datos o a la raíz.
+
+        No sigue enlaces. Un fichero colgado con symlink conserva
+        ``external/hpa/…`` o ``external/modelos/…``, no solo el nombre.
+        """
+        candidato = Path(path)
+        if not candidato.is_absolute():
+            return _rel_norm(candidato.as_posix())
+        candidato = _abs_sin_enlace(candidato)
+        for base in (self.data_workspace, self.data_dir, self.root):
+            if base is None:
+                continue
+            base_abs = _abs_sin_enlace(base)
             try:
-                return str(resolved.relative_to(dw))
+                return candidato.relative_to(base_abs).as_posix()
             except ValueError:
                 pass
-        try:
-            return str(resolved.relative_to(self.root.resolve()))
-        except ValueError:
-            return str(resolved)
+            recuperada = _relativa_a_traves_de_enlace(base_abs, candidato)
+            if recuperada:
+                return recuperada
+        return candidato.as_posix()
 
     def protein_id_map_path(self) -> Path:
         if self.demo:
@@ -218,6 +332,7 @@ def load_settings(
     *,
     demo: bool = False,
     data_workspace: str | Path | None = None,
+    data_dir: str | Path | None = None,
 ) -> Settings:
     base = (root or _repo_root()).resolve()
     cfg = yaml.safe_load((base / "config/config.yaml").read_text())
@@ -226,6 +341,7 @@ def load_settings(
     demo_flag = bool(demo or cfg.get("demo", {}).get("enabled", False))
     yaml_paths = cfg.get("paths", {}) if isinstance(cfg.get("paths"), dict) else {}
     dw = _coalesce_data_workspace(base, yaml_paths, cli_value=data_workspace)
+    dd = _coalesce_data_dir(base, yaml_paths, cli_value=data_dir)
     if dw is not None and demo_flag:
         # Salvaguarda crítica: el modo demo escribe matrices sintéticas (GENE001…) y sobrescribiría
         # resultados reales acumulados en el workspace. Forzar fallback al repo evita pisar el sitio
@@ -236,6 +352,12 @@ def load_settings(
             "con artefactos sintéticos."
         )
         dw = None
+        dd = None
+    if dw is not None and dd is not None and dw.resolve() == dd.resolve():
+        raise RuntimeError(
+            "ONCOGO_DATA_DIR y el workspace de escritura son el mismo directorio. "
+            "El primero es solo lectura; las salidas tienen que ir a otro sitio."
+        )
     if dw is not None:
         if _workspace_writable(dw):
             _seed_workspace_metadata_from_repo(base, dw)
@@ -249,4 +371,12 @@ def load_settings(
                 "Fallback: rutas relativas al repositorio. Conecta el volumen o ajusta `paths.data_workspace` para usarlo."
             )
             dw = None
-    return Settings(root=base, config=cfg, datasets=dsets, comparisons=comps, demo=demo_flag, data_workspace=dw)
+    return Settings(
+        root=base,
+        config=cfg,
+        datasets=dsets,
+        comparisons=comps,
+        demo=demo_flag,
+        data_workspace=dw,
+        data_dir=dd,
+    )

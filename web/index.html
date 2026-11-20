@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inicio · OncoGO-CRC</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<header>
+  <div class="marca">
+    <h1>OncoGO-CRC</h1>
+    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+  </div>
+  <nav><a href="index.html" aria-current="page">Inicio</a><a href="flujo.html">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html">Resultados</a><a href="robustez.html">Robustez (OE3)</a><a href="conclusiones.html">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+</header>
+<main>
+
+<h2>Pregunta</h2>
+<p>¿Cómo desarrollar y evaluar un flujo de trabajo bioinformático reproducible que caracterice alteraciones proteómicas en tejido y suero de cáncer colorrectal y que establezca la robustez y las limitaciones de sus resultados?</p>
+<h2>Objetivo general</h2>
+<p>Desarrollar y evaluar un flujo de trabajo bioinformático reproducible para el análisis de datos proteómicos, aplicado al cáncer colorrectal, que permita caracterizar alteraciones proteómicas y establecer los límites de su interpretación.</p>
+<h2>Objetivos específicos</h2>
+<ol>
+<li><strong>OE1.</strong> Diseñar e implementar el flujo para tejido y suero de plataformas distintas (TMT, LFQ y DIA), con selección, control de calidad, análisis independiente de cada cohorte y trazabilidad.</li>
+<li><strong>OE2.</strong> Aplicarlo con inferencia estadística y aprendizaje automático, y evaluar la capacidad discriminativa frente a la calidad de la muestra y al orden de medición.</li>
+<li><strong>OE3.</strong> Evaluar la robustez y la reproducibilidad mediante multiverso, repetición de la ejecución, permutaciones, remuestreo y concordancia entre cohortes.</li>
+</ol>
+<h2>Cuatro cifras de la corrida sellada</h2>
+<p>Salen de <code>config/esperado_v3_7.tsv</code> y de <code>results/v3_7</code>. No están redondeadas aquí salvo donde la tabla ya las trae así.</p>
+<table>
+<thead><tr><th>Qué</th><th>Valor</th><th>Archivo</th></tr></thead>
+<tbody>
+<tr><td>Misma dirección del cambio en tejido, proteínas comparables</td><td>147 / 147</td><td><code>k1_etiquetas.json</code></td></tr>
+<tr><td>Proteínas de suero en el contraste CP frente a CN</td><td>284: 0 diferentes, 166 equivalentes, 118 indeterminadas</td><td><code>suero_embudo.json</code></td></tr>
+<tr><td>AUC fuera de bolsa, modelo de proteínas (M2) y modelo solo con calidad (M3)</td><td>0,88025 y 0,915125</td><td><code>ml_modelos.tsv</code></td></tr>
+<tr><td>AUC de M2 después de descontar la calidad (M5), y su p de permutación</td><td>0,64675; p = 0,1188811188811188</td><td><code>ml_modelos.tsv</code></td></tr>
+</tbody>
+</table>
+<p class="aviso">Ningún resultado de esta tesis sirve para decidir sobre un paciente. El certificado de la corrida sellada está en estado publicable (22 casillas). Commit del sello: <code>71b310a3</code>. Etiqueta: <code>v3.7-final</code>.</p>
+
+</main>
+</body>
+</html>

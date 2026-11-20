@@ -185,8 +185,8 @@ def run(settings: Settings) -> None:
             "contaminantes_de_las_celdas_con_diferente": sorted(con_diferencias["contaminantes"].astype(str).unique().tolist()),
         }
         volcar_json(resumen, salida / "multiverso_resumen.json", sello)
-        h5_payload = _pieza("h5", lambda: h5.ejecutar(settings, salida, sello, prereg))
-        h6_payload = _pieza("h6", lambda: h6.ejecutar(settings, salida, sello))
+        _pieza("h5", lambda: h5.ejecutar(settings, salida, sello, prereg))
+        _pieza("h6", lambda: h6.ejecutar(settings, salida, sello))
         base = int(prereg.get("enmienda_v3_2.semillas.base"))
         h7_payload = _pieza("h7", lambda: h7.ejecutar(
             settings, salida, sello, prereg,
@@ -199,9 +199,9 @@ def run(settings: Settings) -> None:
             if valor.get("estado") != "no_disponible":
                 h7_payload["por_recurso"][clave] = valor
         volcar_json(h7_payload, salida / "h7_visibilidad_en_sangre.json", sello)
-        h8_payload = _pieza("h8", lambda: h8.ejecutar(settings, salida, sello))
-        h9_payload = _pieza("h9", lambda: h9.ejecutar(settings, salida, sello, prereg))
-        h10_payload = _pieza("h10", lambda: h10.ejecutar(settings, salida, sello, prereg))
+        _pieza("h8", lambda: h8.ejecutar(settings, salida, sello))
+        _pieza("h9", lambda: h9.ejecutar(settings, salida, sello, prereg))
+        _pieza("h10", lambda: h10.ejecutar(settings, salida, sello, prereg))
         _pieza("report_y_union", lambda: _report_y_union(settings, salida, sello))
         pre = _pieza("preanalitica", lambda: preanalitica(settings, salida, sello, prereg, cierre=True))
         volcar_json(pre, salida / "preanalitica.json", sello)

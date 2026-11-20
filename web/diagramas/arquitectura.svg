@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" role="img" aria-labelledby="t">
+  <title id="t">Arquitectura: cuatro cohortes y tres objetivos</title>
+  <rect width="880" height="360" fill="#f7f4ef"/>
+  <text x="24" y="32" font-family="Georgia, serif" font-size="18" fill="#1c1917">Arquitectura del flujo</text>
+  <g font-family="Georgia, serif" font-size="13" fill="#1c1917">
+    <rect x="24" y="56" width="180" height="48" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="36" y="84">PDC000116 · TMT</text>
+    <rect x="24" y="116" width="180" height="48" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="36" y="144">PXD034575 · LFQ</text>
+    <rect x="24" y="176" width="180" height="48" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="36" y="204">PXD055218 · DIA</text>
+    <rect x="24" y="236" width="180" height="48" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="36" y="264">PXD064655 · estadio</text>
+    <rect x="280" y="120" width="200" height="100" rx="6" fill="#e7efe9" stroke="#1f4d3a"/>
+    <text x="300" y="164">Preparación, sello</text>
+    <text x="300" y="188">y manifiesto</text>
+    <rect x="560" y="56" width="280" height="64" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="576" y="84">OE1 · diseño del flujo</text>
+    <text x="576" y="104">selección, calidad, trazabilidad</text>
+    <rect x="560" y="140" width="280" height="64" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="576" y="168">OE2 · inferencia y modelos</text>
+    <text x="576" y="188">tejido, suero, SHAP</text>
+    <rect x="560" y="224" width="280" height="64" rx="6" fill="#fff" stroke="#1f4d3a"/>
+    <text x="576" y="252">OE3 · robustez</text>
+    <text x="576" y="272">multiverso y repetición</text>
+    <path d="M204 80 H280 M204 140 H280 M204 200 H280 M204 260 H280" stroke="#1f4d3a" fill="none"/>
+    <path d="M480 170 H560" stroke="#1f4d3a" fill="none"/>
+  </g>
+  <text x="24" y="330" font-family="Georgia, serif" font-size="12" fill="#57534e">Las flechas comparan resultados. No fusionan intensidades.</text>
+</svg>

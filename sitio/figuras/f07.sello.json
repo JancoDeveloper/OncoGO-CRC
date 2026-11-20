@@ -1,9 +1,0 @@
-{
-  "svg_sha256": "ae87b65b79c404e90a006c2de77f4c60fa92bb4fe0a29d2c3ffb74a9d104c582",
-  "fuentes": [
-    "gsea_tejido.tsv",
-    "go_tejido.json"
-  ],
-  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
-  "generador": "scripts/sitio/graficos.py"
-}

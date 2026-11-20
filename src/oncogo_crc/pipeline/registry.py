@@ -1,152 +1,27 @@
+"""Etapas que usa la corrida v3.7 y la regeneración de sus entradas v1.
+
+Las etapas de v2 y de v3.2 a v3.6 siguen en la etiqueta v3.7-final.
+No se registran aquí.
+"""
+
 from __future__ import annotations
 
 from collections.abc import Callable
 
 from oncogo_crc.settings import Settings
-
-from oncogo_crc.stages import (
-    clinical_translation,
-    cohort_overlap,
-    certified_inference,
-    secondary_contrasts,
-    differential_analysis,
-    download_data,
-    certification,
-    evidence_prioritization,
-    external_evidence,
-    download_real,
-    export_bundle,
-    generate_report,
-    go_enrichment,
-    gsea_enrichment,
-    harmonize_ids,
-    harmonize_public_metadata,
-    ingest_cptac,
-    kegg_enrichment,
-    ml_prioritization,
-    network_modules,
-    publish_results,
-    qc_normalize,
-    stability_analysis,
-    translational_axes,
-    v2_axes,
-    v2_certificado,
-    v2_deteccion,
-    v2_meta,
-    v2_report,
-    v2_tcga,
-    v2_marcadores,
-    v2_pureza,
-    v2_heterogeneidad,
-    v2_deconvolucion,
-    v2_vias,
-    v2_certified,
-    tesis_cierre,
-    v3_correcciones,
-    v3_3_suero,
-    v3_3_tejido,
-    v3_3_controles,
-    v3_3_multiverso,
-    v3_3_hipotesis,
-    v3_3_ml,
-    v3_3_report,
-    v3_4,
-    v3_5,
-    v3_6,
-    v3_7,
-    validate_inputs,
-    version_inputs,
-)
+from oncogo_crc.stages import certification, certified_inference, v3_7
 
 StageFn = Callable[[Settings], None]
 
 STAGES: dict[str, StageFn] = {
-    "download_real": download_real.run,
-    "download": download_data.run,
-    "harmonize_public_metadata": harmonize_public_metadata.run,
-    "ingest_cptac": ingest_cptac.run,
-    "validate_inputs": validate_inputs.run,
-    "version_inputs": version_inputs.run,
-    "harmonize": harmonize_ids.run,
-    "qc": qc_normalize.run,
-    "differential": differential_analysis.run,
     "certified_inference": certified_inference.run,
-    "translational_axes": translational_axes.run,
-    "secondary_contrasts": secondary_contrasts.run,
-    "cohort_overlap": cohort_overlap.run,
-    "gsea": gsea_enrichment.run,
-    "go": go_enrichment.run,
-    "kegg": kegg_enrichment.run,
-    "network": network_modules.run,
-    "ml": ml_prioritization.run,
-    "clinical": clinical_translation.run,
-    "external_evidence": external_evidence.run,
-    "prioritization": evidence_prioritization.run,
     "certification": certification.run,
-    "export_bundle": export_bundle.run,
-    "report": generate_report.run,
-    "stability": stability_analysis.run,
-    "publish_results": publish_results.run,
-    # Versión 2. Escriben solo bajo results/v2/ y no tocan la corrida certificada v1.
-    "v2_certified": v2_certified.run,
-    "v2_axes": v2_axes.run,
-    "v2_vias": v2_vias.run,
-    "v2_deteccion": v2_deteccion.run,
-    "v2_meta": v2_meta.run,
-    "v2_certificado": v2_certificado.run,
-    "v2_report": v2_report.run,
-    "v2_tcga": v2_tcga.run,
-    "v2_marcadores": v2_marcadores.run,
-    "v2_pureza": v2_pureza.run,
-    "v2_heterogeneidad": v2_heterogeneidad.run,
-    "v2_deconvolucion": v2_deconvolucion.run,
-    "tesis_cierre": tesis_cierre.run,
-    "v3_correcciones": v3_correcciones.run,
-    "v3_3_suero": v3_3_suero.run,
-    "v3_3_tejido": v3_3_tejido.run,
-    "v3_3_controles": v3_3_controles.run,
-    "v3_3_multiverso": v3_3_multiverso.run,
-    "v3_3_hipotesis": v3_3_hipotesis.run,
-    "v3_3_ml": v3_3_ml.run,
-    "v3_3_report": v3_3_report.run,
-    "v3_4": v3_4.run,
-    "v3_5": v3_5.run,
-    "v3_6": v3_6.run,
     "v3_7": v3_7.run,
 }
 
-STAGE_ORDER = list(STAGES.keys())
+STAGE_ORDER = ["certified_inference", "certification", "v3_7"]
 
-# Etapas opcionales que no deben ejecutarse en `oncogo-crc run --stage all`.
-# Las de v2 se orquestan con `make all-v2`, no con `--stage all`, para que una
-# corrida del pipeline viejo no pise los resultados de v2.
-EXCLUDED_FROM_ALL: frozenset[str] = frozenset(
-    {
-        "ingest_cptac",
-        "v2_certified",
-        "v2_axes",
-        "v2_vias",
-        "v2_deteccion",
-        "v2_meta",
-        "v2_certificado",
-        "v2_report",
-        "v2_tcga",
-        "v2_marcadores",
-        "v2_pureza",
-        "v2_heterogeneidad",
-        "v2_deconvolucion",
-        "tesis_cierre",
-        "v3_correcciones",
-        "v3_3_suero",
-        "v3_3_tejido",
-        "v3_3_controles",
-        "v3_3_multiverso",
-        "v3_3_hipotesis",
-        "v3_3_ml",
-        "v3_3_report",
-        "v3_4",
-        "v3_5",
-        "v3_6",
-        "v3_7",
-    }
-)
+# `oncogo-crc run --stage all` ejecuta solo v3_7. Las dos etapas anteriores
+# regeneran results/certified y results/certification y se lanzan con su nombre
+# o con `make certified`, para no reescribir esas entradas en cada corrida.
+EXCLUDED_FROM_ALL: frozenset[str] = frozenset({"certified_inference", "certification"})

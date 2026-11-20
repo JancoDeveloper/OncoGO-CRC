@@ -67,10 +67,18 @@ def run(settings: Settings) -> None:
         raise RuntimeError(
             f"el report no coincide con la enmienda: {report.stat().st_size} bytes, sha {_sha256(report)}"
         )
-    try:
-        os.chmod(report, 0o444)
-    except OSError:
-        pass
+    # El report del disco de datos puede llegar por ONCOGO_DATA_DIR o por un
+    # enlace. No se cambia su modo: chmod seguiría el enlace y tocaría el origen.
+    real = Path(os.path.realpath(report))
+    bajo_datos = settings.data_dir is not None and (
+        report.is_relative_to(settings.data_dir) or real.is_relative_to(settings.data_dir)
+    )
+    bajo_workspace = settings.data_workspace is not None and real.is_relative_to(settings.data_workspace)
+    if not bajo_datos and (settings.data_workspace is None or bajo_workspace):
+        try:
+            os.chmod(report, 0o444)
+        except OSError:
+            pass
     tabla = leer_report(report)
     cifras = controles_del_report(tabla)
     cifras["sha256"] = SHA256_REPORT

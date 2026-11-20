@@ -22,7 +22,19 @@ from pathlib import Path
 
 import pytest
 
-WORKSPACE = Path("/Volumes/JANCODATA/OncoGO-CRC")
+def _workspace() -> Path:
+    """Espacio de datos de la corrida. La variable gana sobre el volumen del autor."""
+    for clave in ("ONCOGO_CRC_DATA_WORKSPACE", "WORKSPACE"):
+        valor = os.environ.get(clave)
+        if valor:
+            return Path(valor)
+    volumen = Path("/Volumes/JANCODATA/OncoGO-CRC")
+    if volumen.is_dir():
+        return volumen
+    return Path(__file__).resolve().parents[1] / "workspace"
+
+
+WORKSPACE = _workspace()
 
 # Números de la corrida certificada v1. No se tocan.
 V1 = {

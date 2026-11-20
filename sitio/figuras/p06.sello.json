@@ -1,8 +1,0 @@
-{
-  "svg_sha256": "95f9fcedfd9ca0f644a924f4cf516add989100a2d9673df01ad7ae3df702bb2b",
-  "fuentes": [
-    "config/correspondencia_propuesta.tsv#punto=redes.estado"
-  ],
-  "commit_de_la_etiqueta": "595118ae09ea6006c744c86b28cb0a10d42e0442",
-  "generador": "scripts/sitio/graficos.py"
-}

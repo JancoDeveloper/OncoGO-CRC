@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
 from oncogo_crc.stages.v3_5_report import _limitacion_aceptada

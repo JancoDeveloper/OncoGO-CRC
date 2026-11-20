@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://oncogo-crc-tesis.web.app/sitemap.xml
