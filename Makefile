@@ -27,6 +27,7 @@ test:
 test-e2e:
 	ONCOGO_E2E=1 $(PY) -m pytest -q -m e2e --override-ini="addopts=" tests/test_e2e_v3_7_sintetico.py
 
+# PRIDE, contaminantes y el depósito Zenodo 10.5281/zenodo.24398807.
 datos:
 	$(PY) scripts/descargar_datos.py --workspace $(WORKSPACE)
 

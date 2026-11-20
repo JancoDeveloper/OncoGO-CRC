@@ -5,7 +5,8 @@ title: >-
 message: >-
   Si usas este repositorio, cita la versión 4.0.0. La corrida numérica sellada
   que usa la tesis es la etiqueta v3.7-final (commit 71b310a3, 11 de noviembre
-  de 2026). Este repositorio no tiene DOI.
+  de 2026). El código no tiene DOI. Las entradas que no están en git están en
+  el conjunto de datos 10.5281/zenodo.24398807 (licencia CC-BY-4.0).
 type: software
 authors:
   - family-names: Polanco Franco
@@ -20,3 +21,25 @@ keywords:
   - proteomics
   - colorectal cancer
   - serum
+references:
+  - type: dataset
+    title: >-
+      OncoGO-CRC: entradas de la corrida sellada v3.7 (matriz CPTAC PDC000116
+      y archivos certificados)
+    authors:
+      - family-names: Polanco Franco
+        given-names: Juan Diego
+        affiliation: Universidad de Caldas
+    year: 2026
+    date-released: 2026-11-20
+    doi: 10.5281/zenodo.24398807
+    url: https://zenodo.org/records/24398807
+    license: CC-BY-4.0
+    identifiers:
+      - type: doi
+        value: 10.5281/zenodo.24398807
+        description: >-
+          Conjunto de datos de las entradas que no están en git. La matriz
+          CPTAC se deriva de PDC000116 (Vasaikar et al. 2019) y se redistribuye
+          con atribución.
+

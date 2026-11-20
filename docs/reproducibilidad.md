@@ -31,13 +31,21 @@ Dos ejecuciones completas en el equipo del autor se comparan en
 corrida. No se edita: forma parte de la referencia. Una corrida nueva escribe
 su propio `tests.txt` en el workspace.
 
+`make descargar` trae, desde el depósito
+[10.5281/zenodo.24398807](https://doi.org/10.5281/zenodo.24398807)
+(CC-BY-4.0), y comprueba el SHA-256:
+
+1. La matriz TMT `data/raw/cptac/cptac_crc_matrix.tsv`, derivada del estudio
+   de acceso abierto PDC000116 (Vasaikar et al. 2019) y redistribuida con
+   atribución. Huella `a1272baf…`.
+2. Los tres ficheros certificados de v1. `make certified` también puede
+   regenerarlos cuando esa matriz ya está.
+3. El TSV de embeddings ESM-2. El modelo principal no lo usa.
+
 Lo que todavía no puede repetirse solo con este árbol:
 
-1. Los tres ficheros certificados de v1, hasta tener la matriz TMT con la
-   huella `a1272baf…` o el depósito de Zenodo.
-2. Las fechas de adquisición de los 60 crudos, que piden los `.raw` y
+1. Las fechas de adquisición de los 60 crudos, que piden los `.raw` y
    ThermoRawFileParser.
-3. El TSV de embeddings ESM-2, que el modelo principal no usa.
 
 El registro `corrida.json` de la referencia no guarda CPU, RAM ni sistema
 operativo. Esta versión no altera ese archivo sellado.

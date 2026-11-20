@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Descarga las cuatro cohortes y comprueba las huellas conocidas.
+"""Descarga las cohortes públicas y el depósito de Zenodo, y comprueba las huellas.
 
-No inventa un fichero que el depósito público no entrega. Si la huella no
-coincide, el script sale con código 1 y deja el fichero para inspección.
+El registro 24398807 (DOI 10.5281/zenodo.24398807, CC-BY-4.0) entrega la
+matriz CPTAC derivada de PDC000116, tres ficheros certificados y los
+embeddings ESM-2. Si la huella no coincide, el script sale con código 1 y
+deja el fichero para inspección. No vuelve a bajar un fichero cuya huella
+ya coincide.
 """
 
 from __future__ import annotations
@@ -16,12 +19,27 @@ import sys
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
-ZENODO = "https://zenodo.org/deposit/PENDIENTE"
+ZENODO_RECORD = "24398807"
+ZENODO_DOI = "10.5281/zenodo.24398807"
+ZENODO = f"https://zenodo.org/records/{ZENODO_RECORD}"
+ZENODO_LICENCIA = "CC-BY-4.0"
 FRANKENFIELD = (
     "https://raw.githubusercontent.com/HaoGroup-ProtContLib/"
     "Protein-Contaminant-Libraries-for-DDA-and-DIA-Proteomics/main/"
     "Universal%20protein%20contaminant%20FASTA/0602_Universal%20Contaminants.fasta"
 )
+MENSAJE_ZENODO = (
+    "data/raw/cptac/cptac_crc_matrix.tsv se deriva del estudio de acceso abierto "
+    "PDC000116 (Vasaikar et al. 2019) y se redistribuye con atribución desde "
+    f"{ZENODO} (DOI {ZENODO_DOI}, licencia {ZENODO_LICENCIA}). "
+    "El mismo depósito entrega los ficheros certificados y "
+    "external/modelos/h7_esm2_embeddings.tsv."
+)
+
+
+def url_zenodo(nombre: str) -> str:
+    return f"{ZENODO}/files/{nombre}?download=1"
+
 
 DESCARGAS = (
     {
@@ -50,6 +68,41 @@ DESCARGAS = (
     },
 )
 
+ZENODO_DESCARGAS = (
+    {
+        "rel": "data/raw/cptac/cptac_crc_matrix.tsv",
+        "url": url_zenodo("cptac_crc_matrix.tsv"),
+        "sha256": "a1272baf3bb84218b60d48e971f576f3b5aee6f3fdce4c25a46ad85a352117d1",
+        "bytes": 51100270,
+    },
+    {
+        "rel": "results/certified/cptac_unshared_treat.tsv",
+        "url": url_zenodo("cptac_unshared_treat.tsv"),
+        "sha256": "e5e73c2bdf543ec5493846e71b0a92143bde59fd891550856e632d451eed7cf6",
+        "bytes": 1526194,
+    },
+    {
+        "rel": "results/certified/inference_audit.json",
+        "url": url_zenodo("inference_audit.json"),
+        "sha256": "1fd5e8cee6ef044b12d0b0b0a05f522bd788ad6f9330099fb23dc9e57053f9ce",
+        "bytes": 4109,
+    },
+    {
+        "rel": "results/certification/certificado_resumen.json",
+        "url": url_zenodo("certificado_resumen.json"),
+        "sha256": "ece8a9079cb1e7db29403ce984fc6322fac7b0387b4e7e87259b8127db4d9590",
+        "bytes": 4226,
+    },
+    {
+        "rel": "external/modelos/h7_esm2_embeddings.tsv",
+        "url": url_zenodo("h7_esm2_embeddings.tsv"),
+        "sha256": "2b1e48e3d90476bd1cd9f2c8a2091b18be9b0dd119c61c87ac912729bd64e6b7",
+        "bytes": 4021963,
+    },
+)
+
+FUENTES = (*DESCARGAS, *ZENODO_DESCARGAS)
+
 
 def sha256(path: Path) -> str:
     resumen = hashlib.sha256()
@@ -64,6 +117,34 @@ def descargar(url: str, destino: Path) -> None:
     temporal = destino.with_suffix(destino.suffix + ".parcial")
     subprocess.run(["curl", "-fL", "--retry", "5", "-o", str(temporal), url], check=True)
     temporal.replace(destino)
+
+
+def asegurar(item: dict, workspace: Path, bajar=None) -> bool:
+    """Deja el fichero en su ruta. False si la descarga o la huella fallan."""
+    if bajar is None:
+        bajar = descargar
+    destino = workspace / item["rel"]
+    if destino.is_file() and item["sha256"] and sha256(destino) == item["sha256"]:
+        print(f"[ok] {item['rel']}")
+        return True
+    if destino.is_file() and item["bytes"] and destino.stat().st_size == item["bytes"] and not item["sha256"]:
+        print(f"[ok] {item['rel']} ({destino.stat().st_size} bytes, sin huella sellada)")
+        return True
+    print(f"[descarga] {item['rel']}")
+    try:
+        bajar(item["url"], destino)
+    except subprocess.CalledProcessError as exc:
+        print(f"[falla] {item['rel']}: {exc}", file=sys.stderr)
+        return False
+    digest = sha256(destino)
+    if item["sha256"] and digest != item["sha256"]:
+        print(
+            f"[falla] {item['rel']} sha256 {digest} != {item['sha256']}; se deja el fichero para inspección",
+            file=sys.stderr,
+        )
+        return False
+    print(f"[ok] {item['rel']} sha256 {digest}")
+    return True
 
 
 def matriz_pride(protein_groups: Path, destino: Path) -> str:
@@ -102,29 +183,14 @@ def main() -> int:
     workspace = args.workspace.resolve()
     solo = set(args.solo)
     fallos = 0
-    for item in DESCARGAS:
+    for item in FUENTES:
         if solo and item["rel"] not in solo:
             continue
-        destino = workspace / item["rel"]
-        if destino.is_file() and item["sha256"] and sha256(destino) == item["sha256"]:
-            print(f"[ok] {item['rel']}")
-            continue
-        if destino.is_file() and item["bytes"] and destino.stat().st_size == item["bytes"] and not item["sha256"]:
-            print(f"[ok] {item['rel']} ({destino.stat().st_size} bytes, sin huella sellada)")
-            continue
-        print(f"[descarga] {item['rel']}")
-        try:
-            descargar(item["url"], destino)
-        except subprocess.CalledProcessError as exc:
-            print(f"[falla] {item['rel']}: {exc}", file=sys.stderr)
+        if not asegurar(item, workspace):
             fallos += 1
-            continue
-        digest = sha256(destino)
-        if item["sha256"] and digest != item["sha256"]:
-            print(f"[falla] {item['rel']} sha256 {digest} != {item['sha256']}", file=sys.stderr)
-            fallos += 1
-        else:
-            print(f"[ok] {item['rel']} sha256 {digest}")
+
+    if not solo or any(item["rel"] in solo for item in ZENODO_DESCARGAS):
+        print(MENSAJE_ZENODO)
 
     if solo and "external/frankenfield_2022/0602_Universal_Contaminants.fasta" not in solo and "contaminantes" not in solo:
         return 1 if fallos else 0
@@ -169,18 +235,6 @@ def main() -> int:
                 shutil.copy2(origen, destino)
                 print(f"[ok] copiado {rel}")
 
-    if not solo:
-        print(
-            "PDC000116 no tiene un único URL de matriz en este script. "
-            "La huella sellada de data/raw/cptac/cptac_crc_matrix.tsv está en data/checksums.sha256. "
-            "results/certified y results/certification se regeneran con make certified "
-            f"o, cuando exista, se descargan de {ZENODO}."
-        )
-        print(
-            "external/modelos/h7_esm2_embeddings.tsv no está en git. "
-            "Su huella sellada está en data/checksums.sha256. "
-            "Se regenera con scripts/v3/esm2_embeddings.py (torch, fuera de la corrida principal)."
-        )
     return 1 if fallos else 0
 
 

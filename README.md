@@ -62,12 +62,14 @@ make lint
 
 ## Repetir la corrida
 
-Las matrices no están en git. Hacen falta las cuatro cohortes y tres ficheros
-de la corrida certificada v1. Las huellas están en `data/checksums.sha256`.
+Las matrices no están en git. Hacen falta las cuatro cohortes, tres ficheros
+de la corrida certificada v1 y los embeddings ESM-2. Las huellas están en
+`data/checksums.sha256`. `make datos` baja PRIDE y el depósito
+[10.5281/zenodo.24398807](https://doi.org/10.5281/zenodo.24398807).
 
 ```bash
 export WORKSPACE="$PWD/workspace"
-make datos          # PXD034575, PXD055218, PXD064655, contaminantes y matriz LFQ
+make datos          # PRIDE, contaminantes, matriz LFQ y Zenodo 10.5281/zenodo.24398807
 make hpa            # tabla de concentración en sangre; la huella sellada puede no coincidir si el HPA cambió
 make verificar-datos
 make certified      # solo si data/raw/cptac/cptac_crc_matrix.tsv tiene la huella sellada
@@ -83,25 +85,34 @@ Los sesenta crudos `.raw` de PXD055218 suman 65,56 GB. Sin ellos, la tabla
 sellada `results/v3_7/crudos_integridad.tsv` sigue siendo la entrada de
 fechas; una corrida nueva no recupera esas fechas.
 
-### Entradas v1
+### Entradas v1 y depósito Zenodo
 
 `results/certified/cptac_unshared_treat.tsv`,
-`results/certified/inference_audit.json` y
-`results/certification/certificado_resumen.json` no están en git ni en un
-depósito. La etapa v3.7 los lee y comprueba su SHA-256. `make certified`
-los regenera con `certified_inference` y `certification` a partir de
-`data/raw/cptac/cptac_crc_matrix.tsv` (huella
-`a1272baf3bb84218b60d48e971f576f3b5aee6f3fdce4c25a46ad85a352117d1`) y de la
-matriz de PXD034575. Esa matriz de tejido LFQ sí se reconstruye byte a byte
-desde `Cohort1_proteinGroups.txt`. La matriz TMT de PDC000116 no tiene un
-único archivo público identificado en este repositorio: el lugar previsto
-para depositarla, junto con los tres ficheros certificados, es
-<https://zenodo.org/deposit/PENDIENTE>. Hasta ese depósito, `make all-v3-7`
-no puede terminar en un equipo que no tenga ya el workspace de la corrida.
+`results/certified/inference_audit.json`,
+`results/certification/certificado_resumen.json`,
+`data/raw/cptac/cptac_crc_matrix.tsv` y
+`external/modelos/h7_esm2_embeddings.tsv` no están en git. Están en el
+conjunto de datos
+[10.5281/zenodo.24398807](https://doi.org/10.5281/zenodo.24398807)
+(registro <https://zenodo.org/records/24398807>, licencia CC-BY-4.0).
+`make descargar` los baja a esas rutas y comprueba el SHA-256. Si la huella
+no coincide, el script termina con código 1 y deja el fichero para
+inspección. Si ya está y la huella coincide, no lo vuelve a bajar.
+`--solo` acepta la ruta relativa, igual que el resto de fuentes.
 
-Los embeddings ESM-2 (`external/modelos/h7_esm2_embeddings.tsv`, huella en
-el manifiesto) tampoco están en git. El modelo principal no los usa. Se
-regeneran con `scripts/v3/esm2_embeddings.py`, que pide torch.
+La matriz `cptac_crc_matrix.tsv` (huella
+`a1272baf3bb84218b60d48e971f576f3b5aee6f3fdce4c25a46ad85a352117d1`) se deriva
+del estudio de acceso abierto PDC000116 (Vasaikar et al. 2019,
+<https://doi.org/10.1016/j.cell.2019.03.030>; Proteomic Data Commons,
+<https://pdc.cancer.gov/pdc/study/PDC000116>) y se redistribuye con
+atribución. Hay que citar el artículo además del DOI del depósito.
+`make certified` regenera los tres ficheros certificados a partir de esa
+matriz y de la matriz de PXD034575. La matriz de tejido LFQ sí se
+reconstruye byte a byte desde `Cohort1_proteinGroups.txt`.
+
+Los embeddings ESM-2 no entran en el modelo principal. El TSV del depósito
+es el de la corrida sellada. `scripts/v3/esm2_embeddings.py` puede
+regenerarlo, y pide torch.
 
 ## Reproducir localmente con disco externo
 
@@ -132,13 +143,14 @@ no pueden ser el mismo. No hace falta copiar las matrices ni enlazar `data/`.
 
 Sin el disco, `make descargar` (o `scripts/descargar_datos.py --destino
 <carpeta>`) vuelve a bajar los ficheros públicos de PRIDE: PXD034575,
-PXD055218 (`DIA-NN_report.tsv`) y PXD064655, comprueba el SHA-256 cuando está
-sellado y acepta `--solo` para no repetir una descarga grande. No baja los
-crudos `.raw` (65,56 GB). PDC000116 no tiene un único URL público en este
-repositorio, y el depósito de Zenodo sigue en
-<https://zenodo.org/deposit/PENDIENTE>. La matriz TMT y los tres ficheros de
-`results/certified` hay que tenerlos ya, o regenerar los certificados con
-`make certified` cuando la matriz TMT está en el destino.
+PXD055218 (`DIA-NN_report.tsv`) y PXD064655, y los cinco ficheros del
+depósito [10.5281/zenodo.24398807](https://doi.org/10.5281/zenodo.24398807).
+Comprueba el SHA-256 cuando está sellado y acepta `--solo` para no repetir
+una descarga grande. No baja los crudos `.raw` (65,56 GB). La matriz TMT se
+deriva del estudio de acceso abierto PDC000116 (Vasaikar et al. 2019) y se
+redistribuye con atribución desde
+<https://zenodo.org/records/24398807>. `make certified` puede regenerar los
+certificados cuando esa matriz ya está en el destino.
 
 `make verificar-local` comprueba los hashes de los manifiestos, corre ruff,
 pytest y la prueba sintética, y, si el árbol de git no tiene cambios de
@@ -173,8 +185,12 @@ No hay integración continua. La verificación de la corrida es local, con
 
 ## Cita
 
-No hay DOI. Para el código de esta limpieza, `CITATION.cff` (versión 4.0.0).
-Para los números de la tesis, la etiqueta `v3.7-final`.
+El código de esta limpieza no tiene DOI. Para citarlo, `CITATION.cff`
+(versión 4.0.0). Para los números de la tesis, la etiqueta `v3.7-final`.
+Las entradas que no están en git (matriz CPTAC derivada de PDC000116,
+ficheros certificados y embeddings ESM-2) tienen DOI
+[10.5281/zenodo.24398807](https://doi.org/10.5281/zenodo.24398807),
+licencia CC-BY-4.0.
 
 Licencia MIT. Ver `LICENSE`.
 
