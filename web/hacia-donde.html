@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hacia dónde puede ir · OncoGO-CRC</title>
+<meta name="description" content="Líneas que la tesis deja abiertas: neoantígenos, péptidos de HLA, suero, estadio, proteogenómica y repetir el flujo en otra cohorte. No son resultados.">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header>
+  <div class="marca">
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
+  </div>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="candidatas.html">Candidatas</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="hacia-donde.html" aria-current="page">Hacia dónde</a>
+    <a href="autor.html">El autor</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="aprender.html">Aprender</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
+</header>
+<main id="contenido">
+<h2>Hacia dónde puede ir</h2>
+<p class="aviso">Esto no es un resultado de la corrida. Son líneas que la tesis deja escritas para más adelante, y campos en los que el mismo tipo de flujo podría usarse si hubiera otros datos. No hay aquí una promesa de prueba, de tratamiento ni de un marcador.</p>
+<p>La tesis, en las recomendaciones, pide otra medición: orden de adquisición repartido entre los grupos, controles de calidad intercalados, controles con un diagnóstico conocido, una cohorte más grande y una validación externa, a ser posible en Colombia, con un informe según TRIPOD+AI (<a href="referencias.html#tesis2026">Polanco Franco, 2026</a>; <a href="referencias.html#collins2024">Collins y colaboradores, 2024</a>). También deja piezas que el preregistro pedía y la corrida no ejecutó. El certificado las acepta como desviaciones declaradas, no como hallazgos (<code>certificado.json</code>, casilla de alcance).</p>
+
+<h2 id="peptido">Qué es un péptido y qué es un neoantígeno</h2>
+<p>Una proteína es una cadena larga. Para medirla, el laboratorio la corta en trozos más cortos, los <a href="glosario.html#peptido">péptidos</a>. El espectrómetro lee esos trozos y, a partir de ellos, propone la proteína de origen (<a href="referencias.html#cox2008">Cox y Mann, 2008</a>). Eso es lo que hacen las tablas de este repositorio: cantidades de grupos de proteínas, no la secuencia de cada trozo. El fondo está en <a href="aprender-marco.html#masas">Aprender</a>.</p>
+<p>Un <a href="glosario.html#neoantigeno">neoantígeno</a> es otro asunto. Es un péptido cuya secuencia cambió por una mutación del tumor, y que la célula puede mostrar en su superficie, enganchado a una proteína llamada <a href="glosario.html#hla">HLA</a>, para que el sistema inmunitario lo vea. La <a href="glosario.html#inmunopeptidoma">inmunopeptidómica</a> es la medición de esos péptidos presentados, no la medición de la abundancia de la proteína entera (<a href="referencias.html#chong2022">Chong, Coukos y Bassani-Sternberg, 2022</a>).</p>
+<p><strong>Esta tesis no estudió neoantígenos ni péptidos presentados por HLA, y no tiene datos para hacerlo.</strong> La búsqueda se hizo contra UniProt humano, sin las secuencias mutadas. El certificado lista «neoantigenos» entre lo que no se ejecutó. La matriz de suero guarda grupos de proteínas, no la secuencia mutada. Lo que sigue es una línea posible, no un resultado.</p>
+<p>En otros trabajos, sí se ha hecho esa lectura. <a href="referencias.html#xiang2026">Xiang y colaboradores (2026)</a> identificaron, por proteogenómica, antígenos mutados en tejido de cáncer colorrectal y estudiaron si el sistema inmunitario los reconoce. Ese artículo no es una fila de esta corrida. El estudio de origen del suero PXD055218 también habla de neoantígenos en su título (<a href="referencias.html#rai2025">Rai y colaboradores, 2025</a>). Esta reanálisis no repitió esa búsqueda ni la validación dirigida de péptidos que ese artículo describe.</p>
+
+<h2 id="mendeliana">Aleatorización mendeliana</h2>
+<p>La <a href="glosario.html#mendeliana">aleatorización mendeliana</a> usa variantes genéticas, que una persona hereda y no elige, como instrumento para preguntar si una proteína y una enfermedad van en una dirección y no solo juntas. Con varios instrumentos se puede resumir la evidencia y mirar si un instrumento se sale del resto (<a href="referencias.html#burgess2013">Burgess, Butterworth y Thompson, 2013</a>).</p>
+<p>La tesis mueve esa pregunta a trabajo futuro: varios instrumentos por proteína, y colocalización cuando haya datos. La corrida sellada no la responde. El archivo <code>h9_wald.json</code> guarda un cálculo exploratorio con un solo instrumento por proteína. El propio archivo dice que no decide la tesis, porque un resumen con varios instrumentos pide al menos tres. No es una dirección causal y no se usa en las conclusiones.</p>
+
+<h2 id="suero">Suero, biopsia líquida y estadio</h2>
+<p>Una <a href="glosario.html#biopsia-liquida">biopsia líquida</a>, en este contexto, es buscar una señal del tumor en la sangre en lugar de en un trozo de tejido. El suero no es el tumor diluido: unas pocas proteínas ocupan casi todo el rango de concentración (<a href="referencias.html#anderson2002">Anderson y Anderson, 2002</a>), y la forma de tomar la muestra puede parecer un marcador (<a href="referencias.html#geyer2019">Geyer y colaboradores, 2019</a>). En esta corrida, el contraste principal del suero no declaró ninguna proteína diferente entre cáncer y colonoscopia negativa. Eso está en <a href="resultados.html">Resultados</a>.</p>
+<p>La tesis propone, como profundidad que aquí no se usó, depleción o un enriquecimiento, por ejemplo de vesículas extracelulares, para llegar a proteínas poco abundantes (<a href="referencias.html#seo2026">Seo y colaboradores, 2026</a>). Seo y colaboradores describen el proteoma de vesículas en adenocarcinoma de colon. No es una medición de esta corrida, y un proteoma más profundo no garantiza una señal que separe el cáncer de otra enfermedad intestinal.</p>
+<p>El suero por estadio ya se intentó, con PXD064655 (<a href="referencias.html#hermoso2026">Hermoso-Durán y colaboradores, 2026</a>). En <code>h8_carga_tumoral.json</code> el estado es no evaluable: no hubo proteínas tumorales epiteliales suficientes en el universo de la prueba. Repetirlo con más profundidad sería otra medición, no una lectura que estos archivos permitan cerrar.</p>
+
+<h2 id="proteogenomica">Proteogenómica y otros tumores</h2>
+<p>La <a href="glosario.html#proteogenomica">proteogenómica</a> junta el genoma, o el ARN, con las proteínas del mismo tumor. Los estudios de tejido que esta tesis usa ya son proteogenómicos en su origen: colon y recto de CPTAC (<a href="referencias.html#vasaikar2019">Vasaikar y colaboradores, 2019</a>; <a href="referencias.html#zhang2014">Zhang y colaboradores, 2014</a>) y la progresión metastásica de <a href="referencias.html#tanaka2024">Tanaka y colaboradores (2024)</a>. Este flujo leyó las tablas de proteínas. No volvió a integrar mutaciones, copias ni transcritos, y no produjo una capa genómica nueva.</p>
+<p>La tesis deja para más adelante, con datos adecuados, la especificidad del cambio frente a otros carcinomas, el origen celular, la visibilidad en sangre y las redes de coexpresión. Esas redes están en la lista de desviaciones: sin un nulo que conserve los grados, no se interpreta ninguna red. Aplicar el mismo flujo a otro cáncer o a otra cohorte es posible porque el código y las reglas están publicados. Habría que escribir de nuevo los umbrales, comprobar el orden de medición y no fusionar intensidades de plataformas distintas. No es un resultado que ya esté en <code>results/v3_7</code>.</p>
+
+<h2 id="flujo">Para qué puede servir el flujo, y para qué no</h2>
+<p>El aporte que la tesis reclama es el procedimiento: cohortes separadas, diferencia y equivalencia con un margen escrito antes, multiverso, sello y una verificación de 35 métricas. Sirve para repetir este caso y, si alguien trae otra cohorte pública con el mismo cuidado, para no empezar de cero. La validación externa, en personas de otro centro, no se hizo. TRIPOD+AI dice cómo informar un modelo de predicción cuando se hace (<a href="referencias.html#collins2024">Collins y colaboradores, 2024</a>). Informarlo no lo convierte en un examen.</p>
+<p>Una proteína que solo separa el cáncer de una persona sana no alcanza, en la lectura de la tesis, para proponer tamización. Las <a href="candidatas.html">proteínas candidatas</a> de esta corrida quedan en esa frase: nombres para otra cohorte, no una prueba.</p>
+<p class="aviso">Ninguna línea de esta página está hecha. Nombrarla no adelanta su resultado.</p>
+</main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
+</body>
+</html>

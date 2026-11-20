@@ -147,6 +147,26 @@ figcaption .credito { display: block; margin-top: 0.35rem; color: var(--muted); 
   text-indent: -1.5rem;
 }
 .glosario td:first-child { font-weight: 700; white-space: nowrap; }
+table.ordenable th button {
+  font: inherit;
+  font-weight: 700;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+table.ordenable th button:hover { text-decoration: underline; }
+.ficha {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--green);
+  padding: 0.75rem 0.9rem;
+  margin: 0.75rem 0;
+}
+.ficha h3 { margin-top: 0; }
+.fuentes { color: var(--muted); font-size: 0.95rem; }
 @media (max-width: 640px) {
   body { font-size: 1rem; }
   header h1 { font-size: 1.2rem; }

@@ -25,7 +25,9 @@ PAGINAS = {
     "aprender.html",
     "aprender-marco.html",
     "aprender-metodos.html",
+    "candidatas.html",
     "creditos-imagenes.html",
+    "hacia-donde.html",
 }
 # «Aprender» es la sección nueva de fondo. Sigue prohibido el lenguaje de la pregunta anterior.
 PROHIBIDO = ("hipótesis", "hipotesis", "historia de la pregunta")
@@ -110,6 +112,7 @@ def test_las_figuras_se_regeneran_igual(tmp_path):
     subprocess.run([sys.executable, str(script), "--salida", str(tmp_path)], check=True)
     generadas = sorted(path.name for path in tmp_path.glob("*.svg"))
     publicadas = sorted(path.name for path in (WEB / "figuras").glob("*.svg"))
-    assert generadas == publicadas
+    assert set(generadas).isdisjoint({"go_candidatas.svg"})
+    assert publicadas == sorted(set(generadas) | {"go_candidatas.svg"})
     for nombre in generadas:
         assert (tmp_path / nombre).read_text(encoding="utf-8") == (WEB / "figuras" / nombre).read_text(encoding="utf-8")
