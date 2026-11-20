@@ -23,7 +23,17 @@ suero. El código no resuelve esa discrepancia.
 | `DIA-NN_report.tsv` | `https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD055218/DIA-NN_report.tsv` | `a8a5aadd…`. 213 313 241 bytes |
 | `report.pr_matrix.tsv` y `Sample_Metadata.txt` | `https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/01/PXD064655/` | No están en el manifiesto sellado. Las huellas calculadas el 19 de noviembre de 2026 están en `data/checksums.sha256` |
 | `cptac_crc_matrix.tsv` | Estudio PDC000116 en `https://pdc.cancer.gov/pdc/study/PDC000116` | `a1272baf…`. No hay un único URL de archivo en este repositorio |
+| `metadata/sample_metadata/cptac_metadata.tsv` | En el repositorio, no en el disco externo | `c0f1d5d72a3d8713e3c2bfc6d1a9391dc529158be87a74bb7dfb28980bc6454c`. 30 040 bytes, 397 filas. Es la copia de `71b310a3`, de `595118ae` y de `v3.7-final`. `data/raw/download_real_manifest.json` anota el mismo SHA-256 |
 | Tres ficheros de `results/certified` y `results/certification` | Regeneración con `make certified`, o el depósito futuro `https://zenodo.org/deposit/PENDIENTE` | En `manifest_entradas.sha256` |
+
+La copia de `cptac_metadata.tsv` en `/Volumes/JANCODATA/OncoGO-CRC` no es la de
+la corrida sellada. Tiene 84 540 bytes y SHA-256
+`821e84dce9efa5ea5ee16621eea934c3ede9ac75429fda62243b0b32b76cd64b`. Trae las
+mismas 397 filas y añade columnas clínicas (sexo, edad, estadio detallado,
+sitio, CMS) que el fichero del repositorio no tiene. No está en el historial
+de git. El manifiesto de descarga ya guarda `c0f1d5d7…`, que es el hash de
+v3.7; no se cambia. Una corrida que lea `metadata/` desde ese disco usaría
+la copia larga. La v3.7 usa la del repositorio.
 
 Los crudos de PXD055218 son 60 archivos `.raw`, 65,56 GB en total (entre
 687,6 MB y 1,3 GB cada uno, consulta a la API de PRIDE el 19 de noviembre
