@@ -8,6 +8,7 @@ coverage==7.17.3
 cycler==0.12.1
 dill==0.4.1
 directlfq==0.3.3
+et-xmlfile==2.0.0
 fonttools==4.68.0
 gseapy==1.2.1
 idna==3.20
@@ -19,6 +20,7 @@ matplotlib==3.11.2
 multiprocess==0.70.19
 numba==0.68.1
 numpy==2.4.4
+openpyxl==3.1.5
 -e git+https://github.com/JancoDeveloper/OncoGO-CRC@73e46b9f0d4f534d59c8d6e8559e8ca8417e7d24#egg=oncogo_crc
 packaging==26.3
 pandas==3.0.2

@@ -21,6 +21,8 @@ dependencies = [
   "directlfq==0.3.3",
   "gseapy==1.2.1",
   "shap==0.51.0",
+  "openpyxl==3.1.5",
+  "et-xmlfile==2.0.0",
 ]
 
 [project.optional-dependencies]
