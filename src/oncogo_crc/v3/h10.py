@@ -109,6 +109,8 @@ def ejecutar(settings: Settings, salida: Path, sello: dict, prereg: PreregistroV
     paneles = set()
     for nombre_panel in ("eritrocitos", "plaquetas", "coagulacion"):
         paneles.update(prereg.get(f"enmienda_v3_2.paneles_geyer_2019.{nombre_panel}"))
+    # Opcional. En v4 el archivo no está en el árbol y la corrida sellada
+    # no incluye h10_candidatas.tsv. Si alguien lo restituye, se audita.
     candidatas = settings.resolve("metadata/tesis/candidatas_literatura.tsv")
     if candidatas.is_file():
         lista = pd.read_csv(candidatas, sep="\t")

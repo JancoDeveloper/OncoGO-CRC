@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Diseño del estudio: tejido y suero de personas distintas</title>
+  <desc id="desc">A la izquierda, dos cohortes de tejido. A la derecha, dos cohortes de suero. Una nota dice que no son las mismas personas y que las intensidades no se fusionan.</desc>
+  <rect width="880" height="520" fill="#f7f6f3"/>
+  <text x="24" y="40" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1a1a1a">Tejido y sangre, por separado</text>
+  <g font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" fill="#1a1a1a">
+    <text x="24" y="84" font-size="20" font-weight="700" fill="#084c7a">Tejido</text>
+    <rect x="24" y="100" width="400" height="88" rx="8" fill="#ffffff" stroke="#0072B2" stroke-width="3"/>
+    <text x="40" y="134" font-size="18" font-weight="700">CPTAC · PDC000116</text>
+    <text x="40" y="162" font-size="16">Tumor y tejido normal. Técnica TMT.</text>
+    <rect x="24" y="204" width="400" height="100" rx="8" fill="#ffffff" stroke="#0072B2" stroke-width="3"/>
+    <text x="40" y="238" font-size="18" font-weight="700">Segunda cohorte · PXD034575</text>
+    <text x="40" y="266" font-size="16">16 pacientes: tumor, metástasis hepática</text>
+    <text x="40" y="288" font-size="16">y mucosa. Técnica sin marcaje.</text>
+    <text x="456" y="84" font-size="20" font-weight="700" fill="#8a3b12">Suero</text>
+    <rect x="456" y="100" width="400" height="100" rx="8" fill="#ffffff" stroke="#D55E00" stroke-width="3"/>
+    <text x="472" y="134" font-size="18" font-weight="700">Rai y colaboradores · PXD055218</text>
+    <text x="472" y="162" font-size="16">20 con cáncer, 20 con colonoscopia</text>
+    <text x="472" y="184" font-size="16">negativa y 20 personas sanas.</text>
+    <rect x="456" y="216" width="400" height="88" rx="8" fill="#ffffff" stroke="#D55E00" stroke-width="3"/>
+    <text x="472" y="250" font-size="18" font-weight="700">Por estadio · PXD064655</text>
+    <text x="472" y="278" font-size="16">100 muestras. El metadato dice plasma;</text>
+  </g>
+  <text x="472" y="300" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" fill="#1a1a1a">el protocolo de PRIDE dice suero.</text>
+  <rect x="24" y="340" width="832" height="140" rx="8" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="40" y="378" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">Lo que este diseño no es</text>
+  <text x="40" y="412" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#1a1a1a">No hay tejido y sangre de la misma persona. No se fusionan las cifras de técnicas distintas.</text>
+  <text x="40" y="442" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#1a1a1a">No es un examen para la consulta. Sirve para ver qué se puede afirmar y qué no.</text>
+</svg>

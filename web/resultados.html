@@ -7,44 +7,61 @@
 <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 <header>
   <div class="marca">
-    <h1>OncoGO-CRC</h1>
-    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
   </div>
-  <nav><a href="index.html">Inicio</a><a href="flujo.html">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html" aria-current="page">Resultados</a><a href="robustez.html">Robustez (OE3)</a><a href="conclusiones.html">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html" aria-current="page">Resultados</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="autor.html">El autor</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
 </header>
-<main>
-
-<h2>Resultados por objetivo</h2>
-<p>Todas las cifras de esta página están en <code>config/esperado_v3_7.tsv</code> o en el resumen de la tesis, que lee esos archivos.</p>
-<h3>OE1. El flujo corre y deja rastro</h3>
-<p>La corrida sellada terminó con certificado publicable, 119 sellos y ninguna entrada declarada ausente (<code>certificado.json</code>, casilla de entradas). Python 3.14.3. De 00:48:45 a 01:04:00 UTC del 11 de noviembre de 2026.</p>
-<h3>OE2. Tejido, suero, modelos</h3>
-<table>
-<thead><tr><th>Resultado</th><th>Valor</th><th>Archivo</th></tr></thead>
-<tbody>
-<tr><td>Concordancia de dirección, primario frente a mucosa</td><td>147 / 147</td><td><code>k1_etiquetas.json</code></td></tr>
-<tr><td>Cobertura de esa concordancia</td><td>147 / 688</td><td><code>k1_etiquetas.json</code></td></tr>
-<tr><td>Metástasis hepática frente a mucosa</td><td>116 / 143</td><td><code>k1_etiquetas.json</code></td></tr>
-<tr><td>Suero CP frente a CN</td><td>284 proteínas: 0 diferentes, 166 equivalentes, 118 indeterminadas</td><td><code>suero_embudo.json</code></td></tr>
-<tr><td>M1, proteínas filtradas humanas</td><td>AUC 0,9466249999999998; p = 0,0009990009990009</td><td><code>ml_modelos.tsv</code></td></tr>
-<tr><td>M2, proteínas de la matriz principal</td><td>AUC 0,88025; p = 0,0009990009990009</td><td><code>ml_modelos.tsv</code></td></tr>
-<tr><td>M3, solo calidad de la muestra</td><td>AUC 0,915125; p = 0,0009990009990009</td><td><code>ml_modelos.tsv</code></td></tr>
-<tr><td>M4, solo coagulación</td><td>AUC 0,818375; p = 0,0019980019980019</td><td><code>ml_modelos.tsv</code></td></tr>
-<tr><td>M5, principal residualizada por calidad</td><td>AUC 0,6467499999999999; p = 0,1188811188811188</td><td><code>ml_modelos.tsv</code></td></tr>
-<tr><td>M6, principal más 5 componentes</td><td>AUC 0,8875; p = 0,0009990009990009</td><td><code>ml_modelos.tsv</code></td></tr>
-<tr><td>Especificidad de órgano (H5)</td><td>estado sostiene; universo 29</td><td><code>h5_especificidad_organo.json</code></td></tr>
-<tr><td>Origen celular (H6)</td><td>estado no_sostiene</td><td><code>h6_origen_celular.json</code></td></tr>
-<tr><td>Visibilidad en sangre, Alvez 2023 y HPA</td><td>AUC 0,48281209614887566 y 0,46391135070380357</td><td><code>h7_visibilidad_en_sangre.json</code></td></tr>
-<tr><td>Proteínas específicas de CRC en el atlas de sangre (H10)</td><td>5</td><td><code>h10_especificidad.json</code></td></tr>
-<tr><td>Crudos con fecha de adquisición</td><td>60</td><td><code>preanalitica.json</code></td></tr>
-</tbody>
-</table>
-<p>Los grupos del suero se midieron en bloques sucesivos. La separación de M2 no se atribuye al tumor: M3, solo con calidad, separa más, y M5 deja de hacerlo (p = 0,12 en la tabla de referencia).</p>
-<h3>Síntesis</h3>
-<p>En tejido, el signo del cambio se repite en las dos cohortes para las 147 proteínas comparables. En suero, ninguna de las 284 proteínas del contraste principal es diferente entre CP y CN dentro del margen de 1,5 veces. El estudio queda en la fase exploratoria y no propone una prueba de sangre.</p>
-
+<main id="contenido">
+<h2>Lo que muestran las gráficas</h2>
+<p>Cada figura la escribe <code>scripts/web/figuras_sitio.py</code> a partir de <code>results/v3_7</code>. Las etiquetas de <span class="termino" tabindex="0">AUC<span class="pista" role="tooltip">Área bajo la curva ROC. 0,50 es el azar. Un 0,88 significa que, en el 88 % de las parejas cáncer–colonoscopia negativa, el modelo ordenó bien a las dos personas. Aquí es un cálculo interno.</span></span> usan tres decimales; el valor de la tabla queda en la descripción de la figura. La corrida sellada va del 11 de noviembre de 2026, 00:48:45 a 01:04:00 UTC, con certificado publicable.</p>
+<h3>Tejido</h3>
+<figure>
+  <img src="figuras/concordancia_tejido.svg" alt="Dos barras. Tumor primario y mucosa: 147 de 147. Metástasis hepática y mucosa: 116 de 143. Texto de cobertura: 147 de 688.">
+  <figcaption>En las proteínas que se pueden comparar, el tumor primario y la mucosa cambian en el mismo sentido en los dos estudios. La metástasis hepática coincide en 116 de 143.
+    <span class="no">No dice que todas las proteínas del tumor de CPTAC estén en el segundo estudio: solo 147 de 688. Tampoco dice que el tamaño del cambio sea el mismo, solo el sentido.</span>
+  </figcaption>
+</figure>
+<h3>Suero</h3>
+<figure>
+  <img src="figuras/clases_suero.svg" alt="Barra casi toda verde y naranja. Leyenda: Diferentes 0, Equivalentes 166, Sin clasificar 118. Total 284.">
+  <figcaption>Ninguna de las 284 proteínas del contraste principal fue diferente entre cáncer y colonoscopia negativa. 166 son compatibles con un cambio menor de 1,5 veces. 118 no alcanzan para decidir.
+    <span class="no">No demuestra que no exista una diferencia pequeña. Con veinte personas por grupo, un cambio grande es lo que el estudio podía descartar.</span>
+  </figcaption>
+</figure>
+<figure>
+  <img src="figuras/orden_adquisicion.svg" alt="Una fila de 60 cuadros: los primeros 20 de cáncer, los siguientes 20 de colonoscopia negativa y los últimos 20 de personas sanas.">
+  <figcaption>Las 60 mediciones salieron en tres bloques seguidos: primero el cáncer, después la colonoscopia negativa y al final las personas sanas.
+    <span class="no">No se puede separar el efecto de la enfermedad del efecto del momento en que se midió la muestra. El orden, por sí solo, distingue cáncer de colonoscopia negativa.</span>
+  </figcaption>
+</figure>
+<figure>
+  <img src="figuras/auc_modelos.svg" alt="Seis barras horizontales de AUC, con intervalo. M1 cerca de 0,95, M2 cerca de 0,88, M3 de calidad cerca de 0,92, M4 cerca de 0,82, M5 cerca de 0,65 y M6 cerca de 0,89. Una línea marca el azar en 0,50.">
+  <figcaption>Las proteínas separan los grupos dentro del mismo estudio, y las variables de calidad, solas, los separan tanto o más. Cuando se descuenta esa calidad, la barra queda cerca del azar y su prueba de permutación no lo supera.
+    <span class="no">No es la exactitud de un examen ni una <span class="termino" tabindex="0">validación<span class="pista" role="tooltip">Comprobar el hallazgo en otras personas, de otro centro. Eso no se hizo. La validación cruzada de los modelos solo reordena las mismas 40 muestras de cáncer y colonoscopia negativa.</span></span> en otro hospital. No atribuye la separación al tumor.</span>
+  </figcaption>
+</figure>
+<h3>Suero por estadio</h3>
+<p>La lectura de estadio IV frente a estadios I–II quedó sin evaluar: en el universo de la prueba no hubo proteínas tumorales epiteliales suficientes (el archivo <code>h8_carga_tumoral.json</code> marca el estado como no evaluable). No aporta un marcador de carga tumoral en sangre.</p>
+<p class="aviso">Fase exploratoria del desarrollo de biomarcadores. No se propone una prueba de sangre.</p>
 </main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
 </body>
 </html>

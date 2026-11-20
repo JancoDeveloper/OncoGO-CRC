@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "web",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "redirects": [
+      {"source": "/metodos", "destination": "/flujo", "type": 301},
+      {"source": "/descargas", "destination": "/reproducibilidad", "type": 301},
+      {"source": "/citar", "destination": "/referencias", "type": 301}
+    ]
+  }
+}

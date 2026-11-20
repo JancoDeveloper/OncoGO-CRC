@@ -249,8 +249,25 @@ def veredicto_especificidad(
     return "inespecifica"
 
 
+class CatalogoNoDisponible(FileNotFoundError):
+    """El catálogo de literatura no es una entrada de la corrida sellada."""
+
+
 def cargar_catalogo(ruta: Path | None = None) -> pd.DataFrame:
-    path = ruta or CATALOGO
+    """Lee un catálogo de candidatas. Si no está el archivo, lo dice.
+
+    La ruta por defecto salió del árbol en v4.0.0. La etapa v3.7 no la
+    exige: ``h10`` solo escribe ``h10_candidatas.tsv`` cuando el archivo
+    existe, y la corrida sellada no trae esa salida. Con ``ruta`` se puede
+    cruzar otro catálogo.
+    """
+    path = Path(ruta) if ruta is not None else CATALOGO
+    if not path.is_file():
+        raise CatalogoNoDisponible(
+            "No está el catálogo de candidatas de la literatura "
+            f"({path}). La corrida sellada v3.7 no lo usa como entrada. "
+            "Para cruzar un catálogo, pase una ruta que sí exista."
+        )
     tabla = pd.read_csv(path, sep="\t")
     if not (tabla["origen"] == "literatura").all():
         raise ValueError("El catálogo de candidatas solo admite origen=literatura.")

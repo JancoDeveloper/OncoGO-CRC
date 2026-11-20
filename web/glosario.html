@@ -7,33 +7,54 @@
 <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 <header>
   <div class="marca">
-    <h1>OncoGO-CRC</h1>
-    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
   </div>
-  <nav><a href="index.html">Inicio</a><a href="flujo.html">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html">Resultados</a><a href="robustez.html">Robustez (OE3)</a><a href="conclusiones.html">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html" aria-current="page">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="autor.html">El autor</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="glosario.html" aria-current="page">Glosario</a>
+  </nav>
 </header>
-<main>
-
-<h2>Abreviaturas del capítulo 3</h2>
-<p>Una página, no un curso. Las fichas de proteínas y la sección de divulgación de la web anterior no forman parte de esta versión.</p>
+<main id="contenido">
+<h2>Palabras que el sitio usa</h2>
+<p>En las otras páginas, el término subrayado con puntos muestra esta misma idea al pasar el cursor o al enfocarlo con el teclado.</p>
+<div class="tabla">
 <table>
-<thead><tr><th>Término</th><th>En este flujo</th></tr></thead>
+<thead><tr><th>Término</th><th>En este trabajo</th></tr></thead>
 <tbody>
-<tr><td>TMT</td><td>Marcado isobárico. Plataforma de PDC000116. El valor ya viene en log2.</td></tr>
-<tr><td>LFQ</td><td>Cuantificación sin marcaje. Plataforma de PXD034575.</td></tr>
-<tr><td>DIA</td><td>Adquisición independiente de datos. Plataforma de PXD055218 y PXD064655.</td></tr>
-<tr><td>CP, CN, HC</td><td>Cáncer colorrectal, colonoscopia negativa y persona sana, en el suero de Rai et al.</td></tr>
-<tr><td>TREAT</td><td>Contraste de cambio respecto a un umbral, no respecto a cero.</td></tr>
-<tr><td>TOST</td><td>Dos pruebas unilaterales para la equivalencia dentro del margen de 1,5 veces.</td></tr>
-<tr><td>BH</td><td>Benjamini–Hochberg. Control de la tasa de descubrimientos falsos. Alfa 0,05.</td></tr>
-<tr><td>AUC</td><td>Área bajo la curva ROC. Aquí es interna, de validación cruzada, no una exactitud diagnóstica.</td></tr>
-<tr><td>SHAP</td><td>Atribución de la salida del modelo a cada variable. Se calcula en M2 y M3.</td></tr>
-<tr><td>GO</td><td>Ontología genética. Anotación en <code>metadata/gene_ontology</code>.</td></tr>
+<tr><td>Proteómica</td><td>Medir muchas proteínas a la vez. Aquí se hace con espectrometría de masas sobre datos ya publicados.</td></tr>
+<tr><td>Suero</td><td>La parte líquida de la sangre después de que coagula. No es un trozo del tumor.</td></tr>
+<tr><td>Cohorte</td><td>Un grupo de muestras reunidas en un mismo estudio, con un diseño y una técnica.</td></tr>
+<tr><td>Colonoscopia negativa</td><td>Personas con síntomas intestinales cuya colonoscopia no mostró cáncer. No son personas sanas y no son un solo diagnóstico.</td></tr>
+<tr><td>TMT</td><td>Marcado isobárico. Varias muestras se miden juntas. Es la técnica del tejido de CPTAC.</td></tr>
+<tr><td>LFQ</td><td>Cuantificación sin marcaje. Cada muestra se mide por separado. Es la técnica de la segunda cohorte de tejido.</td></tr>
+<tr><td>DIA</td><td>Adquisición independiente de datos. El instrumento registra de forma amplia. Es la técnica de los dos estudios de suero.</td></tr>
+<tr><td>AUC</td><td>Área bajo la curva ROC. Ordena parejas de personas: 0,50 es el azar y 1 es la separación perfecta. Un 0,88 quiere decir que el modelo acertó el orden en el 88 % de las parejas. Aquí es un cálculo interno del mismo estudio.</td></tr>
+<tr><td>Validación</td><td>En los modelos, validación cruzada: entrenar con una parte de las muestras y probar con otra parte de las mismas. No es un examen probado en otro hospital. Validación externa, la que faltaría para un uso clínico, no se hizo.</td></tr>
+<tr><td>FDR</td><td>Tasa de descubrimientos falsos. Al mirar cientos de proteínas, controla la proporción de diferencias que pueden ser casualidad. El umbral usado es 0,05.</td></tr>
+<tr><td>Equivalencia</td><td>Decir que, si hay una diferencia, cabe dentro de un margen. Aquí el margen es de 1,5 veces. No es lo mismo que «no significativa».</td></tr>
+<tr><td>Aprendizaje automático</td><td>Modelos que combinan muchas variables para separar dos grupos. Se comparan con modelos que solo usan la calidad de la muestra.</td></tr>
+<tr><td>Semilla</td><td>El número que fija el azar de la corrida. En la corrida sellada es 20260914, para que otra ejecución pueda repetir los sorteos.</td></tr>
+<tr><td>Sello</td><td>La nota que viaja con cada archivo de salida: commit, fecha, semilla y versiones. Sirve para saber de qué ejecución salió una cifra.</td></tr>
+<tr><td>Certificado</td><td>La lista de comprobaciones de la corrida. En la referencia quedó en estado publicable. No es un certificado clínico.</td></tr>
 </tbody>
 </table>
-
+</div>
 </main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
 </body>
 </html>

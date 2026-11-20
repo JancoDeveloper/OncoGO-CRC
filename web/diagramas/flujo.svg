@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1120" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Flujo de OncoGO-CRC, de los datos públicos al certificado</title>
+  <desc id="desc">Siete pasos en orden: datos públicos, selección, control de calidad, análisis por cohorte, estadística y aprendizaje automático, comprobaciones de robustez y certificado.</desc>
+  <rect width="760" height="1120" fill="#f7f6f3"/>
+  <text x="28" y="42" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1a1a1a">De los datos públicos al certificado</text>
+  <g font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" fill="#1a1a1a">
+    <rect x="28" y="64" width="704" height="96" rx="8" fill="#ffffff" stroke="#0072B2" stroke-width="3"/>
+    <text x="48" y="100" font-size="22" font-weight="700">1. Datos públicos</text>
+    <text x="48" y="132" font-size="18">Tejido CPTAC y tres estudios de PRIDE. Nadie recluta pacientes.</text>
+    <rect x="28" y="184" width="704" height="96" rx="8" fill="#ffffff" stroke="#0072B2" stroke-width="3"/>
+    <text x="48" y="220" font-size="22" font-weight="700">2. Selección</text>
+    <text x="48" y="252" font-size="18">Se elige qué cohorte entra y con qué papel. No se mezclan plataformas.</text>
+    <rect x="28" y="304" width="704" height="96" rx="8" fill="#ffffff" stroke="#009E73" stroke-width="3"/>
+    <text x="48" y="340" font-size="22" font-weight="700">3. Control de calidad</text>
+    <text x="48" y="372" font-size="18">Contaminantes, identificaciones dudosas y señales de mala muestra.</text>
+    <rect x="28" y="424" width="704" height="110" rx="8" fill="#ffffff" stroke="#009E73" stroke-width="3"/>
+    <text x="48" y="460" font-size="22" font-weight="700">4. Análisis de cada cohorte</text>
+    <text x="48" y="492" font-size="18">Cada matriz se lee con las reglas de su técnica.</text>
+    <text x="48" y="516" font-size="18">Las intensidades no se suman entre estudios.</text>
+    <rect x="28" y="558" width="704" height="110" rx="8" fill="#ffffff" stroke="#D55E00" stroke-width="3"/>
+    <text x="48" y="594" font-size="22" font-weight="700">5. Estadística y aprendizaje automático</text>
+    <text x="48" y="626" font-size="18">Diferencia, equivalencia y modelos que intentan separar grupos.</text>
+    <text x="48" y="650" font-size="18">También se mira la calidad de la muestra y el orden de medición.</text>
+    <rect x="28" y="692" width="704" height="96" rx="8" fill="#ffffff" stroke="#E69F00" stroke-width="3"/>
+    <text x="48" y="728" font-size="22" font-weight="700">6. Comprobaciones de robustez</text>
+    <text x="48" y="760" font-size="18">Se repite la ejecución y se cambian decisiones de análisis.</text>
+    <rect x="28" y="812" width="704" height="96" rx="8" fill="#ffffff" stroke="#1a1a1a" stroke-width="3"/>
+    <text x="48" y="848" font-size="22" font-weight="700">7. Certificado</text>
+    <text x="48" y="880" font-size="18">Cada salida lleva sello. El certificado dice si la corrida es publicable.</text>
+  </g>
+  <text x="28" y="960" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" fill="#3d3a37">Los pasos 2 a 7 son el flujo. El cáncer colorrectal es el caso con el que se prueba.</text>
+  <text x="28" y="988" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" fill="#3d3a37">Ningún paso decide sobre un paciente.</text>
+</svg>

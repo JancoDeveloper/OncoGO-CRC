@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Casi ninguna decisión cambia el suero</title>
+  <desc id="desc">n_celdas_suero=288; n_con_diferente=13; sin=275; n_celdas_ml=72</desc>
+  <rect width="920" height="400" fill="#f7f6f3"/>
+  <text x="32" y="42" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1a1a1a">Casi ninguna decisión cambia el suero</text>
+  <text x="32" y="88" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#3d3a37">Combinaciones de decisiones de análisis en el suero.</text>
+  <rect x="32" y="130" width="764" height="64" fill="#009E73"/>
+  <rect x="796" y="130" width="36" height="64" fill="#D55E00"/>
+  <text x="32" y="240" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#1a1a1a">275 de 288: ninguna proteína diferente</text>
+  <text x="32" y="278" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#1a1a1a">13 de 288: alguna proteína diferente</text>
+  <text x="32" y="316" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#3d3a37">Esas 13 dejan los contaminantes sin quitar (sin_quitar).</text>
+  <text x="32" y="376" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#3d3a37">Fuente: results/v3_7/multiverso_resumen.json. El verde es total menos las 13.</text>
+</svg>

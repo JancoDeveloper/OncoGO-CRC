@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 580" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Capacidad de separar los grupos</title>
+  <desc id="desc">auc_oof_media exacto. M1_proteinas_filtrada_humana=0.9466249999999998;p=0.000999000999000999 | M2_proteinas_principal=0.88025;p=0.000999000999000999 | M3_solo_qc=0.9151250000000001;p=0.000999000999000999 | M4_solo_coagulacion=0.818375;p=0.001998001998001998 | M5_principal_residualizada_qc=0.6467499999999999;p=0.11888111888111888 | M6_principal_pca5=0.8875;p=0.000999000999000999</desc>
+  <rect width="980" height="580" fill="#f7f6f3"/>
+  <text x="32" y="42" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1a1a1a">Capacidad de separar los grupos</text>
+  <text x="32" y="80" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#3d3a37">AUC interno, fuera del pliegue. La línea marca el azar (0,50). El bigote es el intervalo de LeDell.</text>
+  <line x1="640" y1="100" x2="640" y2="520" stroke="#1a1a1a" stroke-dasharray="4 4"/>
+  <text x="640" y="98" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#3d3a37">azar</text>
+  <text x="24" y="138" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#1a1a1a">M1  Proteínas humanas filtradas</text>
+  <rect x="430" y="118" width="398" height="22" fill="#0072B2"/>
+  <line x1="803" y1="129" x2="850" y2="129" stroke="#ffffff" stroke-width="6"/>
+  <line x1="803" y1="129" x2="850" y2="129" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="803" y1="121" x2="803" y2="137" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="850" y1="121" x2="850" y2="137" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="866" y="138" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">0,947</text>
+  <text x="24" y="202" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#1a1a1a">M2  Proteínas de la matriz principal</text>
+  <rect x="430" y="182" width="370" height="22" fill="#56B4E9"/>
+  <line x1="752" y1="193" x2="847" y2="193" stroke="#ffffff" stroke-width="6"/>
+  <line x1="752" y1="193" x2="847" y2="193" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="752" y1="185" x2="752" y2="201" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="847" y1="185" x2="847" y2="201" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="866" y="202" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">0,880</text>
+  <text x="24" y="266" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#1a1a1a">M3  Solo calidad de la muestra</text>
+  <rect x="430" y="246" width="384" height="22" fill="#D55E00"/>
+  <line x1="770" y1="257" x2="850" y2="257" stroke="#ffffff" stroke-width="6"/>
+  <line x1="770" y1="257" x2="850" y2="257" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="770" y1="249" x2="770" y2="265" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="850" y1="249" x2="850" y2="265" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="866" y="266" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">0,915</text>
+  <text x="24" y="330" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#1a1a1a">M4  Solo coagulación</text>
+  <rect x="430" y="310" width="344" height="22" fill="#E69F00"/>
+  <line x1="722" y1="321" x2="829" y2="321" stroke="#ffffff" stroke-width="6"/>
+  <line x1="722" y1="321" x2="829" y2="321" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="722" y1="313" x2="722" y2="329" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="829" y1="313" x2="829" y2="329" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="866" y="330" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">0,818</text>
+  <text x="24" y="394" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#1a1a1a">M5  Proteínas menos la calidad</text>
+  <rect x="430" y="374" width="272" height="22" fill="#009E73"/>
+  <line x1="610" y1="385" x2="768" y2="385" stroke="#ffffff" stroke-width="6"/>
+  <line x1="610" y1="385" x2="768" y2="385" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="610" y1="377" x2="610" y2="393" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="768" y1="377" x2="768" y2="393" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="866" y="394" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">0,647</text>
+  <text x="24" y="458" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#1a1a1a">M6  Proteínas en 5 componentes</text>
+  <rect x="430" y="438" width="373" height="22" fill="#CC79A7"/>
+  <line x1="752" y1="449" x2="847" y2="449" stroke="#ffffff" stroke-width="6"/>
+  <line x1="752" y1="449" x2="847" y2="449" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="752" y1="441" x2="752" y2="457" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="847" y1="441" x2="847" y2="457" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="866" y="458" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">0,888</text>
+  <text x="32" y="556" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#3d3a37">Tres decimales del AUC. Fuente: results/v3_7/ml_modelos.tsv.</text>
+</svg>

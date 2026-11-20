@@ -7,24 +7,40 @@
 <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 <header>
   <div class="marca">
-    <h1>OncoGO-CRC</h1>
-    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
   </div>
-  <nav><a href="index.html">Inicio</a><a href="flujo.html">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html">Resultados</a><a href="robustez.html">Robustez (OE3)</a><a href="conclusiones.html" aria-current="page">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html" aria-current="page">Conclusiones</a>
+    <a href="autor.html">El autor</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
 </header>
-<main>
-
+<main id="contenido">
 <h2>Una conclusión por objetivo</h2>
 <ol>
-<li>El flujo queda implementado como una etapa única (<code>v3_7</code>) que declara sus entradas, sella cada salida y emite un certificado. En la corrida de referencia ese certificado es publicable.</li>
-<li>Aplicado al caso, el cambio tumoral de tejido tiene el mismo signo en las dos cohortes para las 147 proteínas comparables. En suero, el contraste principal no separa el cáncer de la colonoscopia negativa dentro del margen fijado, y la separación de los modelos se explica por la calidad de la muestra y por el orden de medición.</li>
-<li>La repetición y el multiverso acotan esa lectura: 13 de 288 celdas de suero muestran proteínas diferentes, y esas 13 no retiran los contaminantes. Una segunda ejecución reprodujo las 35 métricas de referencia dentro de la tolerancia.</li>
+  <li><strong>El flujo queda armado.</strong> Procesa por separado tejido y suero de tres técnicas, con selección, control de calidad y un sello en cada salida. En la corrida de referencia el certificado es publicable. No confirma todas las etiquetas de tumor y mucosa en la segunda cohorte: tres controles físicos no se pueden medir.</li>
+  <li><strong>El cambio en el tejido se repite. En la sangre, no se distingue del ruido técnico.</strong> 147 de 147 proteínas comparables cambian en el mismo sentido. En el suero, 0 de 284 son diferentes entre cáncer y colonoscopia negativa. Los modelos separan los grupos, pero la calidad de la muestra los separa igual o más, y el orden de medición está confundido con el grupo. Eso no es un examen diagnóstico.</li>
+  <li><strong>La lectura aguanta la repetición y casi todas las decisiones de análisis.</strong> 35 métricas se reprodujeron dentro de la tolerancia. En 275 de 288 combinaciones del suero no aparece ninguna proteína diferente. Los límites son el tamaño de la muestra y la confusión entre grupo y orden. Verificar el cálculo no es una certificación clínica.</li>
 </ol>
-<h2>Límites</h2>
-<p>Veinte sueros por grupo. Tejido y suero de personas distintas. Sin cohorte colombiana identificada como tal. Sin validación externa de una prueba. Ningún resultado sirve para decidir sobre un paciente.</p>
-
+<h2>La frase que resume el caso</h2>
+<p>Con estos datos públicos, el cambio de proteínas del cáncer colorrectal en el tejido es consistente entre dos laboratorios. En el suero, frente a personas con síntomas y una colonoscopia sin cáncer, no aparece una huella que se pueda atribuir al tumor. Eso no prueba que la huella no exista. Prueba que, con veinte personas por grupo y con las muestras medidas en bloque, no se ve.</p>
+<p>Un estudio que quisiera ir más lejos necesitaría el orden de medición repartido entre los grupos, controles de calidad escritos de antemano, personas con síntomas como comparación, y otra cohorte, más grande, de un centro distinto.</p>
+<p class="aviso">Ningún resultado sirve para decidir sobre un paciente.</p>
 </main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
 </body>
 </html>

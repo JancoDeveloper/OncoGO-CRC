@@ -3,33 +3,62 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Robustez · OncoGO-CRC</title>
+<title>Robustez y límites · OncoGO-CRC</title>
 <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 <header>
   <div class="marca">
-    <h1>OncoGO-CRC</h1>
-    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
   </div>
-  <nav><a href="index.html">Inicio</a><a href="flujo.html">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html">Resultados</a><a href="robustez.html" aria-current="page">Robustez (OE3)</a><a href="conclusiones.html">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="robustez.html" aria-current="page">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="autor.html">El autor</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
 </header>
-<main>
-
-<h2>OE3. Robustez y reproducibilidad</h2>
-<table>
-<thead><tr><th>Comprobación</th><th>Valor de la referencia</th><th>Archivo</th></tr></thead>
-<tbody>
-<tr><td>Celdas del multiverso de suero</td><td>288</td><td><code>multiverso_resumen.json</code></td></tr>
-<tr><td>Celdas del multiverso de modelos</td><td>72</td><td><code>multiverso_resumen.json</code></td></tr>
-<tr><td>Celdas con alguna proteína diferente</td><td>13, todas sin retirar contaminantes</td><td><code>multiverso_resumen.json</code></td></tr>
-<tr><td>Segunda evaluación de M2</td><td>el AUC coincide a menos de 1e-12</td><td><code>determinismo.json</code></td></tr>
-<tr><td>35 métricas frente a la tolerancia</td><td>ninguna fuera, en la comparación de la tesis</td><td><code>config/esperado_v3_7.tsv</code></td></tr>
-</tbody>
-</table>
-<p>La comparación entre dos procesos del equipo del autor está en <code>docs/reproducibilidad/determinismo_d_e.md</code>. <code>make verificar</code> repite la comparación de una corrida nueva contra <code>results/v3_7</code>. Cambian, y se admite que cambien, los sellos, la fecha, el identificador de proceso, el registro de pruebas y el orden de filas de <code>gsea_tejido.tsv</code>.</p>
-<p>Lo que esta versión todavía no repite sola: la matriz TMT de PDC000116 (hace falta para regenerar <code>results/certified</code>), los 65,56 GB de crudos si se quieren de nuevo las fechas de adquisición, y el TSV de embeddings ESM-2, que no entra en el modelo principal.</p>
-
+<main id="contenido">
+<h2>Qué se puede afirmar</h2>
+<ul>
+  <li>El flujo procesa cuatro matrices públicas sin fusionar intensidades, deja sello en las salidas y un certificado publicable.</li>
+  <li>El sentido del cambio entre tumor primario y mucosa se repite en las 147 proteínas comparables.</li>
+  <li>En el suero, el contraste principal no declara ninguna proteína diferente entre cáncer y colonoscopia negativa.</li>
+  <li>La separación que logran los modelos es compatible con la calidad de la muestra y con el orden de medición.</li>
+  <li>Una segunda ejecución reprodujo 35 métricas de referencia sin ninguna fuera de tolerancia. El modelo principal, evaluado otra vez en la misma corrida, coincide (<code>determinismo.json</code>).</li>
+</ul>
+<figure>
+  <img src="figuras/multiverso_suero.svg" alt="Barra casi toda verde: 275 de 288 combinaciones sin proteínas diferentes, y 13 en rojo en las que sí aparece alguna, todas sin quitar contaminantes.">
+  <figcaption>Cambiar las decisiones de análisis casi no crea proteínas diferentes en el suero. Las 13 combinaciones que sí lo hacen son las que no retiran contaminantes.
+    <span class="no">No convierte el resultado en una certificación clínica ni revisa el trabajo un grupo externo.</span>
+  </figcaption>
+</figure>
+<h2>Qué no se puede afirmar</h2>
+<ul>
+  <li>No hay una prueba diagnóstica, ni una estimación de utilidad clínica, ni una asignación de las muestras a un segmento del colon.</li>
+  <li>No se puede separar el grupo clínico del lote: el orden de adquisición coincide con el grupo.</li>
+  <li>Tejido y suero no son de las mismas personas. La comparación es de resultados, no de individuos.</li>
+  <li>TMT, LFQ y DIA no se fusionan. La concordancia se limita al sentido del cambio.</li>
+  <li>Veinte sueros por grupo alcanzan para ver cambios grandes, no para descartar cambios pequeños.</li>
+  <li>La colonoscopia negativa reúne varias enfermedades intestinales. No es un grupo puro.</li>
+  <li>No hay una cohorte colombiana identificada en estas matrices.</li>
+  <li>Tres de cuatro controles físicos del tejido no se pueden medir en la segunda cohorte.</li>
+  <li>El suero por estadio no fue evaluable para la pregunta de carga tumoral epitelial.</li>
+</ul>
+<p>El contraste principal del suero usa reglas fijadas de antemano. Los modelos y el análisis del orden de medición se leen como exploratorios: describen esta corrida y no confirman un marcador.</p>
+<p class="aviso">Nada de esta página sirve para decidir sobre un paciente.</p>
 </main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
 </body>
 </html>

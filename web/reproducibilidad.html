@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reproducibilidad · OncoGO-CRC</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header>
+  <div class="marca">
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
+  </div>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html" aria-current="page">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="autor.html">El autor</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
+</header>
+<main id="contenido">
+<h2>Dos etiquetas, dos cosas distintas</h2>
+<ul>
+  <li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v4.0.0">v4.0.0</a> es esta limpieza del repositorio: código, pruebas, documentación y este sitio. El commit de la etiqueta es <code>d38e005</code>.</li>
+  <li><a href="https://github.com/JancoDeveloper/OncoGO-CRC/tree/v3.7-final">v3.7-final</a> es la corrida numérica que cita la tesis. El commit de la etiqueta es <code>595118ae</code>. El sello dentro de los resultados es otro commit, <code>71b310a3</code>, del 11 de noviembre de 2026.</li>
+</ul>
+<p>El certificado de esa corrida está en estado publicable (22 casillas en la prueba de cierre; 119 sellos en <code>certificado.json</code>). La semilla es <code>20260914</code>. Python 3.14.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1 y scikit-learn 1.8.0.</p>
+<h2>Cómo repetirla</h2>
+<p>Hace falta Python 3.14, <code>make</code> y espacio en disco. Las matrices no están en git. Se vuelven a bajar de PRIDE o se leen de una carpeta que ya las tenga. La matriz TMT de PDC000116 no tiene un único URL en este repositorio: sin ella no se regeneran los tres archivos de la corrida certificada que <code>make v3-7</code> lee. El depósito público de esa matriz todavía no tiene DOI.</p>
+<ol class="pasos">
+  <li>Clonar el repositorio en la etiqueta que quiera repetir.</li>
+  <li>Crear el entorno e instalar: <code>pip install -e ".[dev]"</code>.</li>
+  <li>Bajar los archivos públicos: <code>make descargar</code>. Comprueba la huella cuando está sellada. No baja los 60 crudos de PXD055218 (65,56 GB). Sin esos crudos, las fechas de adquisición siguen siendo las de la tabla sellada.</li>
+  <li>Con el árbol de git limpio, <code>make v3-7</code> escribe una corrida nueva en el espacio de trabajo. No modifica <code>results/v3_7</code> del repositorio. <code>make all-v3-7</code> añade la regresión de la entrada de tejido y la revisión de los crudos.</li>
+  <li><code>make verificar</code> compara esa corrida con la referencia. Pueden cambiar el sello, la fecha, el identificador de proceso y el orden de algunas filas. Las 35 métricas de <code>config/esperado_v3_7.tsv</code> tienen tolerancia.</li>
+</ol>
+<p>La verificación local, la que usa este repositorio en lugar de un robot de integración, es <code>make verificar-local</code>. Pide la carpeta de datos y otra carpeta de salidas, y no firma un árbol sucio.</p>
+<h2>Este sitio</h2>
+<p>Las páginas están en <code>web/</code> y se abren sin compilar. Para verlas en un servidor local:</p>
+<pre><code>python3 -m http.server 8000 --directory web</code></pre>
+<p>Luego abra <code>http://127.0.0.1:8000/</code>. También puede abrir <code>web/index.html</code> directo en el navegador. Para rehacer las gráficas:</p>
+<pre><code>python3 scripts/web/figuras_sitio.py</code></pre>
+<p>El sitio público de la tesis está en <a href="https://oncogo-crc-tesis.web.app">oncogo-crc-tesis.web.app</a>.</p>
+</main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
+</body>
+</html>
