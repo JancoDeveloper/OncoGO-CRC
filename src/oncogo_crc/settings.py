@@ -45,6 +45,58 @@ def _coalesce_data_workspace(
     return None
 
 
+# Lectura. results/v3_* , reports/ y data/processed se escriben en el workspace.
+_INPUT_PREFIXES = (
+    "data/raw",
+    "metadata",
+    "external",
+    "results/certified",
+    "results/certification",
+    "results/v2",
+)
+# La etapa H8 reescribe esta carpeta. No puede caer en el disco de solo lectura.
+_OUTPUT_EXCEPTIONS = ("external/pxd064655/derivados",)
+
+
+def _coalesce_data_dir(
+    root: Path,
+    yaml_paths: dict[str, Any],
+    *,
+    cli_value: str | Path | None,
+) -> Path | None:
+    """Prioridad: CLI > ONCOGO_DATA_DIR > config paths.data_dir.
+
+    Ahí se leen data/raw, metadata, external y results/certified. No se escribe.
+    """
+    for candidate in (
+        cli_value,
+        os.environ.get("ONCOGO_DATA_DIR"),
+        yaml_paths.get("data_dir"),
+    ):
+        out = _normalize_optional_dir(root, candidate)
+        if out is not None:
+            return out
+    return None
+
+
+def _rel_norm(rel: str) -> str:
+    norm = str(rel).replace("\\", "/").lstrip()
+    while norm.startswith("./"):
+        norm = norm[2:]
+    return norm.lstrip("/")
+
+
+def _is_readonly_input(rel: str) -> bool:
+    norm = _rel_norm(rel).rstrip("/")
+    for prefix in _OUTPUT_EXCEPTIONS:
+        if norm == prefix or norm.startswith(prefix + "/"):
+            return False
+    for prefix in _INPUT_PREFIXES:
+        if norm == prefix or norm.startswith(prefix + "/"):
+            return True
+    return False
+
+
 def _copy_metadata_file_if_needed(src: Path, dst: Path, *, refresh_if_repo_newer: bool) -> str:
     """Copia un archivo de metadata al workspace. Devuelve ``new``, ``updated`` o vacío.
 
@@ -154,6 +206,7 @@ class Settings:
     comparisons: dict[str, Any]
     demo: bool
     data_workspace: Path | None = None
+    data_dir: Path | None = None
 
     @property
     def paths(self) -> dict[str, Any]:
@@ -163,6 +216,8 @@ class Settings:
         p = Path(rel)
         if p.is_absolute():
             return p.resolve()
+        if self.data_dir is not None and not self.demo and _is_readonly_input(rel):
+            return (self.data_dir / _rel_norm(rel)).resolve()
         base = self.root
         if self.data_workspace is not None and _is_workspace_relative(rel):
             base = self.data_workspace
@@ -218,6 +273,7 @@ def load_settings(
     *,
     demo: bool = False,
     data_workspace: str | Path | None = None,
+    data_dir: str | Path | None = None,
 ) -> Settings:
     base = (root or _repo_root()).resolve()
     cfg = yaml.safe_load((base / "config/config.yaml").read_text())
@@ -226,6 +282,7 @@ def load_settings(
     demo_flag = bool(demo or cfg.get("demo", {}).get("enabled", False))
     yaml_paths = cfg.get("paths", {}) if isinstance(cfg.get("paths"), dict) else {}
     dw = _coalesce_data_workspace(base, yaml_paths, cli_value=data_workspace)
+    dd = _coalesce_data_dir(base, yaml_paths, cli_value=data_dir)
     if dw is not None and demo_flag:
         # Salvaguarda crítica: el modo demo escribe matrices sintéticas (GENE001…) y sobrescribiría
         # resultados reales acumulados en el workspace. Forzar fallback al repo evita pisar el sitio
@@ -236,6 +293,12 @@ def load_settings(
             "con artefactos sintéticos."
         )
         dw = None
+        dd = None
+    if dw is not None and dd is not None and dw.resolve() == dd.resolve():
+        raise RuntimeError(
+            "ONCOGO_DATA_DIR y el workspace de escritura son el mismo directorio. "
+            "El primero es solo lectura; las salidas tienen que ir a otro sitio."
+        )
     if dw is not None:
         if _workspace_writable(dw):
             _seed_workspace_metadata_from_repo(base, dw)
@@ -249,4 +312,12 @@ def load_settings(
                 "Fallback: rutas relativas al repositorio. Conecta el volumen o ajusta `paths.data_workspace` para usarlo."
             )
             dw = None
-    return Settings(root=base, config=cfg, datasets=dsets, comparisons=comps, demo=demo_flag, data_workspace=dw)
+    return Settings(
+        root=base,
+        config=cfg,
+        datasets=dsets,
+        comparisons=comps,
+        demo=demo_flag,
+        data_workspace=dw,
+        data_dir=dd,
+    )

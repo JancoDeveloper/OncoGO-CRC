@@ -34,8 +34,17 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         default=None,
         help=(
-            "Directorio con más espacio: data/, results/, reports/, metadata/ y docs/web "
-            "(alternativa: ONCOGO_CRC_DATA_WORKSPACE o paths.data_workspace en config.yaml)."
+            "Directorio de escritura: results/v3_7, reports/ y data/processed. "
+            "Alternativa: ONCOGO_CRC_DATA_WORKSPACE o paths.data_workspace."
+        ),
+    )
+    runp.add_argument(
+        "--data-dir",
+        type=Path,
+        default=None,
+        help=(
+            "Directorio de solo lectura con data/raw, metadata, external y results/certified. "
+            "Alternativa: ONCOGO_DATA_DIR o paths.data_dir. No se copia ni se escribe ahí."
         ),
     )
 
@@ -44,7 +53,12 @@ def main(argv: list[str] | None = None) -> int:
         parser.print_help()
         return 2
 
-    settings = load_settings(args.root, demo=args.demo, data_workspace=args.data_workspace)
+    settings = load_settings(
+        args.root,
+        demo=args.demo,
+        data_workspace=args.data_workspace,
+        data_dir=args.data_dir,
+    )
     if args.stage == "all":
         order = [s for s in STAGE_ORDER if s not in EXCLUDED_FROM_ALL]
     else:

@@ -29,6 +29,7 @@ def test_un_report_sintetico_detiene_la_etapa(tmp_path, monkeypatch):
     monkeypatch.setattr(v3_3_suero, "exigir_arbol_limpio", _no_exige)
     monkeypatch.setattr(v3_3_tejido, "exigir_arbol_limpio", _no_exige)
     monkeypatch.setattr(v3_7, "correr_tests", lambda _root, _salida: 0)
+    monkeypatch.delenv("ONCOGO_DATA_DIR", raising=False)
 
     settings = load_settings(data_workspace=tmp_path)
     with pytest.raises(RuntimeError, match="no coincide con la enmienda"):

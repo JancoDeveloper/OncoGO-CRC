@@ -91,11 +91,20 @@ def matriz_pride(protein_groups: Path, destino: Path) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--workspace", type=Path, required=True)
+    parser.add_argument("--workspace", "--destino", type=Path, required=True, dest="workspace")
+    parser.add_argument(
+        "--solo",
+        action="append",
+        default=[],
+        help="Descarga solo esta ruta relativa, o 'contaminantes'. Se puede repetir. No baja el plasma de 74 GB.",
+    )
     args = parser.parse_args()
     workspace = args.workspace.resolve()
+    solo = set(args.solo)
     fallos = 0
     for item in DESCARGAS:
+        if solo and item["rel"] not in solo:
+            continue
         destino = workspace / item["rel"]
         if destino.is_file() and item["sha256"] and sha256(destino) == item["sha256"]:
             print(f"[ok] {item['rel']}")
@@ -117,7 +126,12 @@ def main() -> int:
         else:
             print(f"[ok] {item['rel']} sha256 {digest}")
 
+    if solo and "external/frankenfield_2022/0602_Universal_Contaminants.fasta" not in solo and "contaminantes" not in solo:
+        return 1 if fallos else 0
+
     grupos = workspace / "data/raw/pride/Cohort1_proteinGroups.txt"
+    if solo and "data/raw/pride/Cohort1_proteinGroups.txt" not in solo and "data/raw/pride/pride_crc_matrix.tsv" not in solo:
+        grupos = Path("/no-existe-oncogo")
     matriz = workspace / "data/raw/pride/pride_crc_matrix.tsv"
     esperada = "a5baca5a3d3d41884a5217df7778b930f580e8b03630875e409ce14a242fd1bc"
     if grupos.is_file() and not (matriz.is_file() and sha256(matriz) == esperada):
@@ -142,29 +156,31 @@ def main() -> int:
             print(f"[falla] biblioteca de contaminantes: {exc}", file=sys.stderr)
             fallos += 1
 
-    for rel in (
-        "metadata/gene_ontology/go_gene_long.tsv",
-        "metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv",
-        "metadata/protein_id_maps/protein_mapping_master.tsv",
-    ):
-        origen = RAIZ / rel
-        destino = workspace / rel
-        if origen.is_file() and not destino.is_file():
-            destino.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(origen, destino)
-            print(f"[ok] copiado {rel}")
+    if not solo:
+        for rel in (
+            "metadata/gene_ontology/go_gene_long.tsv",
+            "metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv",
+            "metadata/protein_id_maps/protein_mapping_master.tsv",
+        ):
+            origen = RAIZ / rel
+            destino = workspace / rel
+            if origen.is_file() and not destino.is_file():
+                destino.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(origen, destino)
+                print(f"[ok] copiado {rel}")
 
-    print(
-        "PDC000116 no tiene un único URL de matriz en este script. "
-        f"La huella sellada de data/raw/cptac/cptac_crc_matrix.tsv está en data/checksums.sha256. "
-        f"results/certified y results/certification se regeneran con make certified "
-        f"o, cuando exista, se descargan de {ZENODO}."
-    )
-    print(
-        "external/modelos/h7_esm2_embeddings.tsv no está en git. "
-        "Su huella sellada está en data/checksums.sha256. "
-        "Se regenera con scripts/v3/esm2_embeddings.py (torch, fuera de la corrida principal)."
-    )
+    if not solo:
+        print(
+            "PDC000116 no tiene un único URL de matriz en este script. "
+            "La huella sellada de data/raw/cptac/cptac_crc_matrix.tsv está en data/checksums.sha256. "
+            "results/certified y results/certification se regeneran con make certified "
+            f"o, cuando exista, se descargan de {ZENODO}."
+        )
+        print(
+            "external/modelos/h7_esm2_embeddings.tsv no está en git. "
+            "Su huella sellada está en data/checksums.sha256. "
+            "Se regenera con scripts/v3/esm2_embeddings.py (torch, fuera de la corrida principal)."
+        )
     return 1 if fallos else 0
 
 

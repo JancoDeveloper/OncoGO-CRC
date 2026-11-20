@@ -103,6 +103,63 @@ Los embeddings ESM-2 (`external/modelos/h7_esm2_embeddings.tsv`, huella en
 el manifiesto) tampoco están en git. El modelo principal no los usa. Se
 regeneran con `scripts/v3/esm2_embeddings.py`, que pide torch.
 
+## Reproducir localmente con disco externo
+
+Hace falta macOS o Linux, Python 3.14, `make` y `curl`. R no entra en esta
+corrida: el único sitio que lo nombra es `scripts/v2/session_info.py`, y se
+limita a anotar que no está. No hace falta instalarlo.
+
+El disco de datos se lee y no se modifica. Las salidas van a otro directorio.
+
+```bash
+export ONCOGO_DATA_DIR=/Volumes/JANCODATA/OncoGO-CRC
+export ONCOGO_CRC_DATA_WORKSPACE=/Volumes/JANCODATA/OncoGO-CRC-v4-salidas
+export PIP_CACHE_DIR=/Volumes/JANCODATA/pip-cache
+export TMPDIR=/tmp
+export COPYFILE_DISABLE=1
+export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.filemode GIT_CONFIG_VALUE_0=false
+python3.14 -m venv .venv
+.venv/bin/pip install -e ".[dev]"
+make verificar-local DATA_DIR="$ONCOGO_DATA_DIR" SALIDAS="$ONCOGO_CRC_DATA_WORKSPACE"
+```
+
+`ONCOGO_DATA_DIR` (o `oncogo-crc run --data-dir`) es la raíz de solo lectura.
+Ahí se resuelven `data/raw/`, `metadata/`, `external/` y `results/certified/`,
+`results/certification/` y `results/v2/`. `ONCOGO_CRC_DATA_WORKSPACE` recibe
+`results/v3_7/`, `reports/`, `data/processed/` y
+`external/pxd064655/derivados/`, que la etapa reescribe. Los dos directorios
+no pueden ser el mismo. No hace falta copiar las matrices ni enlazar `data/`.
+
+Sin el disco, `make descargar` (o `scripts/descargar_datos.py --destino
+<carpeta>`) vuelve a bajar los ficheros públicos de PRIDE: PXD034575,
+PXD055218 (`DIA-NN_report.tsv`) y PXD064655, comprueba el SHA-256 cuando está
+sellado y acepta `--solo` para no repetir una descarga grande. No baja los
+crudos `.raw` (65,56 GB). PDC000116 no tiene un único URL público en este
+repositorio, y el depósito de Zenodo sigue en
+<https://zenodo.org/deposit/PENDIENTE>. La matriz TMT y los tres ficheros de
+`results/certified` hay que tenerlos ya, o regenerar los certificados con
+`make certified` cuando la matriz TMT está en el destino.
+
+`make verificar-local` comprueba los hashes de los manifiestos, corre ruff,
+pytest y la prueba sintética, y, si el árbol de git no tiene cambios de
+contenido, repite la regresión v1, el SHA-1 de los crudos en solo lectura y
+la etapa v3.7. Escribe `reports/verificacion_local_<fecha>.md`. El árbol sucio
+no se firma: es la regla de la corrida, no un fallo del disco.
+
+`pyproject.toml` no declara `openpyxl`. H7, H9 y la triangulación leen
+libros xlsx y pandas lo pide. En este Mac hizo falta `openpyxl==3.1.5`
+(y `et-xmlfile==2.0.0`); no está en `env/requirements-lock.txt`.
+
+Espacio: el plasma ya descargado ocupa unos 74 GB y `external/` unos 8,6 GB;
+no se vuelven a copiar. La carpeta de salidas queda en el orden de
+`results/v3_7` (74 MB en la referencia) más los derivados de PXD064655. El
+tiempo largo es la etapa v3.7: en este Mac tardó 938 s (15 min 38 s).
+El SHA-1 de los 60 crudos, sin descargar, tardó 737 s. `pip install` usa
+`TMPDIR=/tmp`: en ExFAT setuptools falla al armar el wheel editable.
+`make crudos-v3-7` no se usa contra el disco
+de datos: si un SHA-1 no coincide, ese target descarga el crudo y mueve el
+viejo a `cuarentena/` dentro de la carpeta de crudos.
+
 ## Pruebas
 
 ```bash

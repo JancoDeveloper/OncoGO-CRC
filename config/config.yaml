@@ -7,10 +7,12 @@ project:
   primary_dataset: cptac_colorectal
 
 paths:
-  # Directorio base opcional (ruta absoluta recomendada): data/, results/, reports/, metadata/
-  # y la salida generada docs/web se leen y escriben aquí. En otro equipo deja "" o usa
-  # ONCOGO_CRC_DATA_WORKSPACE. Prioridad: CLI --data-workspace > env > esta clave.
-  data_workspace: "/Volumes/JANCODATA/OncoGO-CRC"
+  # Escritura (results/v3_*, reports/, data/processed). Vacío = relativo al repo.
+  # Prioridad: CLI --data-workspace > ONCOGO_CRC_DATA_WORKSPACE > esta clave.
+  data_workspace: ""
+  # Lectura de data/raw, metadata, external y results/certified. No se escribe aquí.
+  # Prioridad: CLI --data-dir > ONCOGO_DATA_DIR > esta clave.
+  data_dir: ""
   raw_dir: data/raw
   interim_dir: data/interim
   processed_dir: data/processed
