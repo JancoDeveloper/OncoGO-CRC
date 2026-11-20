@@ -1,0 +1,32 @@
+# Huellas de las entradas de la corrida v3.7.
+# Las que vienen de results/v3_7/manifest_entradas.sha256 o de
+# results/v3/manifest_inputs.sha256 (etiqueta archivo/pre-v4.0.0) son las de
+# la ejecución sellada. Un fichero ausente del repositorio se descarga o se
+# regenera; si su huella no coincide, la corrida nueva no puede igualar la referencia.
+#
+# Depósito futuro (aún no existe): https://zenodo.org/deposit/PENDIENTE
+
+da9ec08ee656d207b29242d804f308247957126201678e2ed80cae37ce8ed8c9  data/raw/pride/Cohort1_proteinGroups.txt
+a8a5aadd74391afef68cf4d6c3a7d3860023101e5c92590e2e87c152a39e59e8  data/raw/plasma/DIA-NN_report.tsv
+a5baca5a3d3d41884a5217df7778b930f580e8b03630875e409ce14a242fd1bc  data/raw/pride/pride_crc_matrix.tsv
+2468319e6cacbf8865da5287b1ccc120c74362b2ccd4efbfda2bd2759873d5c0  data/raw/pride/cohort1_unique_peptides.tsv
+a1272baf3bb84218b60d48e971f576f3b5aee6f3fdce4c25a46ad85a352117d1  data/raw/cptac/cptac_crc_matrix.tsv
+e5e73c2bdf543ec5493846e71b0a92143bde59fd891550856e632d451eed7cf6  results/certified/cptac_unshared_treat.tsv
+1fd5e8cee6ef044b12d0b0b0a05f522bd788ad6f9330099fb23dc9e57053f9ce  results/certified/inference_audit.json
+ece8a9079cb1e7db29403ce984fc6322fac7b0387b4e7e87259b8127db4d9590  results/certification/certificado_resumen.json
+9e9e3239ccfe5bec7ae50eddfe7524dc159d87c4796d2e16e5b42a615fb94526  external/hpa/hpa_concentracion_sangre.tsv
+2b1e48e3d90476bd1cd9f2c8a2091b18be9b0dd119c61c87ac912729bd64e6b7  external/modelos/h7_esm2_embeddings.tsv
+ae6f767d992df424f85f5f8c41f192d211171c4829e528ce2c30e07db31b9d8a  external/modelos/h7_esm2_omitidas.tsv
+560b33fa6d2980e138d70656eff588a5e76074102c59f7ae4a23e98fa3df5302  metadata/gene_ontology/go_gene_long.tsv
+2d1619fa567a1839a60237fe52c1119455b18349d41f3e349fed406931de4215  metadata/protein_id_maps/gene_uniprot_human_reviewed_bulk.tsv
+cb599468255336a65e358e5fa901552a3024e8256d9e4f2704d952cb0f3b1dd5  metadata/protein_id_maps/protein_mapping_master.tsv
+34603ba0e8b965b0c11fa732954051dc8d6d37eaead6248f284d672cd950a418  config/preregistro_v3.yaml
+cb615434e1955e65e6cdaf27e677b7ea2f6f51dea200fcc8303e9bbc1d8bc4aa  config/config.yaml
+cc4130fb2c06d3a773b8562f01d4567e5b315896e9e6b0d402b7cb71efd7ba75  config/entradas_v3_7.yaml
+959322002f165dadc274be71164c1a775d4254df1e071d3ed642b50ae4f91abe  config/esperado_v3_7.tsv
+
+# Huellas calculadas el 19 de noviembre de 2026 sobre los ficheros públicos
+# descargados en esta preparación. No están en manifest_entradas.sha256.
+b51a062c23a99cf93296ada8ba80061823289cdf0c5c872706e0e41bd005b025  external/pxd064655/report.pr_matrix.tsv
+c53e5d279118fff2b0a4891ed9873cafb12f4baec503ee2769522fdf36274862  external/pxd064655/Sample_Metadata.txt
+c0782146be6dad6ecf53e23e5a21a7ed4fea9b4802cb01e8d00091404ec66926  external/frankenfield_2022/0602_Universal_Contaminants.fasta

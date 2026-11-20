@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conclusiones · OncoGO-CRC</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<header>
+  <div class="marca">
+    <h1>OncoGO-CRC</h1>
+    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+  </div>
+  <nav><a href="index.html">Inicio</a><a href="flujo.html">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html">Resultados</a><a href="robustez.html">Robustez (OE3)</a><a href="conclusiones.html" aria-current="page">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+</header>
+<main>
+
+<h2>Una conclusión por objetivo</h2>
+<ol>
+<li>El flujo queda implementado como una etapa única (<code>v3_7</code>) que declara sus entradas, sella cada salida y emite un certificado. En la corrida de referencia ese certificado es publicable.</li>
+<li>Aplicado al caso, el cambio tumoral de tejido tiene el mismo signo en las dos cohortes para las 147 proteínas comparables. En suero, el contraste principal no separa el cáncer de la colonoscopia negativa dentro del margen fijado, y la separación de los modelos se explica por la calidad de la muestra y por el orden de medición.</li>
+<li>La repetición y el multiverso acotan esa lectura: 13 de 288 celdas de suero muestran proteínas diferentes, y esas 13 no retiran los contaminantes. Una segunda ejecución reprodujo las 35 métricas de referencia dentro de la tolerancia.</li>
+</ol>
+<h2>Límites</h2>
+<p>Veinte sueros por grupo. Tejido y suero de personas distintas. Sin cohorte colombiana identificada como tal. Sin validación externa de una prueba. Ningún resultado sirve para decidir sobre un paciente.</p>
+
+</main>
+</body>
+</html>

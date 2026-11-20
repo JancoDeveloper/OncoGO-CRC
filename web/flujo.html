@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flujo · OncoGO-CRC</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<header>
+  <div class="marca">
+    <h1>OncoGO-CRC</h1>
+    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+  </div>
+  <nav><a href="index.html">Inicio</a><a href="flujo.html" aria-current="page">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html">Resultados</a><a href="robustez.html">Robustez (OE3)</a><a href="conclusiones.html">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+</header>
+<main>
+
+<h2>OE1. El flujo</h2>
+<p>El flujo lee cada cohorte con las reglas de su plataforma, no fusiona intensidades y deja un sello en cada salida. Los requisitos RF1 a RF9 y RNF1 a RNF7 están en <code>docs/diseno.md</code>.</p>
+<figure>
+<img src="diagramas/casos-de-uso.svg" alt="Tres actores: investigador, reproductor y evaluador.">
+<figcaption>Casos de uso. Equivale a la figura 1 del capítulo 3.</figcaption>
+</figure>
+<figure>
+<img src="diagramas/arquitectura.svg" alt="Cuatro cohortes entran a la preparación y de ahí a los tres objetivos.">
+<figcaption>Arquitectura. Equivale a la figura 2 del capítulo 3.</figcaption>
+</figure>
+<figure>
+<img src="diagramas/componentes.svg" alt="Capas: interfaz, orquestador, biblioteca de análisis y módulos transversales.">
+<figcaption>Componentes del paquete <code>oncogo_crc</code>. Equivale a la figura 4 del capítulo 3.</figcaption>
+</figure>
+<figure>
+<img src="diagramas/ejecucion.svg" alt="Regresión v1, crudos, etapa v3.7, certificado y verificación.">
+<figcaption>Actividad de <code>make all-v3-7</code>. Equivale a la figura 7 del capítulo 3.</figcaption>
+</figure>
+<h2>Cómo repetirlo</h2>
+<ol>
+<li>Clonar el repositorio. Los números de la tesis corresponden a la etiqueta <code>v3.7-final</code> y al commit sellado <code>71b310a3</code>.</li>
+<li>Instalar con Python 3.14.3: <code>pip install -e ".[dev]"</code>.</li>
+<li>Descargar las cuatro cohortes (<code>make datos</code>) y comprobar <code>data/checksums.sha256</code>.</li>
+<li>Ejecutar <code>make all-v3-7</code> con <code>WORKSPACE</code> apuntando a un directorio con espacio. El árbol de git tiene que estar limpio.</li>
+<li>Comparar con <code>make verificar</code>. El certificado es válido si <code>certificado.json</code> queda en estado publicable.</li>
+</ol>
+
+</main>
+</body>
+</html>

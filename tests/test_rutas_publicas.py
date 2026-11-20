@@ -8,7 +8,7 @@ RAIZ = Path(__file__).resolve().parents[1]
 
 def test_una_ruta_del_repositorio_no_lleva_el_disco():
     settings = load_settings(RAIZ)
-    info = ruta_publica(RAIZ / "config/entradas_v3_6.yaml", settings)
+    info = ruta_publica(RAIZ / "config/entradas_v3_7.yaml", settings)
     assert not info["ruta"].startswith("/")
     assert not texto_con_ruta_local(info["ruta"])
     assert info["sha256"]

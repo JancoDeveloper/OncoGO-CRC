@@ -1,0 +1,19 @@
+
+:root { color-scheme: light; --ink:#1c1917; --muted:#57534e; --line:#d6d3d1; --paper:#f7f4ef; --card:#fff; --green:#1f4d3a; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: Georgia, "Iowan Old Style", Palatino, serif; color:var(--ink); background:var(--paper); line-height:1.5; }
+header { background:#fff; border-bottom:1px solid var(--line); }
+header .marca { padding:1rem 1.5rem 0; }
+header h1 { font-size:1.25rem; margin:0; font-weight:600; }
+header p { margin:0.2rem 0 0.6rem; color:var(--muted); font-size:0.95rem; }
+nav { display:flex; flex-wrap:wrap; gap:0.4rem 0.9rem; padding:0 1.5rem 0.8rem; }
+nav a { color:var(--green); text-decoration:none; font-size:0.92rem; }
+nav a[aria-current="page"] { text-decoration:underline; }
+main { max-width:46rem; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+h2 { font-size:1.35rem; margin-top:1.6rem; }
+table { border-collapse:collapse; width:100%; font-size:0.92rem; background:#fff; }
+th, td { border:1px solid var(--line); padding:0.35rem 0.5rem; text-align:left; vertical-align:top; }
+figure { margin:1rem 0; background:#fff; border:1px solid var(--line); padding:0.5rem; }
+figcaption { color:var(--muted); font-size:0.85rem; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:0.88em; }
+.aviso { background:#fff; border-left:3px solid var(--green); padding:0.6rem 0.8rem; }

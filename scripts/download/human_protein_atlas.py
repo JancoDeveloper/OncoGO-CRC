@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
 import io
 import json
 import sys
@@ -66,7 +67,12 @@ def _columna(df: pd.DataFrame, candidatos: list[str]) -> str | None:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--workspace", default="/Volumes/JANCODATA/OncoGO-CRC")
+    ap.add_argument(
+        "--workspace",
+        default=os.environ.get("ONCOGO_CRC_DATA_WORKSPACE")
+        or os.environ.get("WORKSPACE")
+        or str(Path.cwd() / "workspace"),
+    )
     ap.add_argument("--forzar", action="store_true")
     args = ap.parse_args()
 

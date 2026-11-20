@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Métodos · OncoGO-CRC</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<header>
+  <div class="marca">
+    <h1>OncoGO-CRC</h1>
+    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+  </div>
+  <nav><a href="index.html">Inicio</a><a href="flujo.html">Flujo (OE1)</a><a href="metodos.html" aria-current="page">Métodos</a><a href="resultados.html">Resultados</a><a href="robustez.html">Robustez (OE3)</a><a href="conclusiones.html">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+</header>
+<main>
+
+<h2>Métodos, en el orden del capítulo 3</h2>
+<p>Cada cohorte se procesa sola. No hay corrección de lote entre estudios.</p>
+<h3>Preprocesamiento</h3>
+<ul>
+<li><strong>PDC000116, TMT.</strong> El archivo ya está en log2. No se aplica un segundo logaritmo. El contraste pareado tumor frente a normal, con TREAT y Benjamini–Hochberg, es el de la corrida certificada v1: 688 proteínas con cambio. v3.7 lo lee, no lo recalcula.</li>
+<li><strong>PXD034575, LFQ.</strong> Se excluyen filas <code>CON__</code>, <code>REV__</code> y las marcadas como reverso, contaminante o solo por sitio. El cero de MaxQuant es ausencia. La cuantificación es <code>LFQ intensity</code>. P es el primario, M la metástasis hepática y N la mucosa.</li>
+<li><strong>PXD055218, DIA.</strong> Cada valor es la mediana de las filas del informe DIA-NN con valor q de precursor y de grupo de hasta 0,01. La cuantificación principal es <code>PG.MaxLFQ</code>. No se imputa en el contraste. El informe tiene que medir 213&nbsp;313&nbsp;241 bytes y coincidir con el SHA-256 de la enmienda.</li>
+<li><strong>PXD064655.</strong> Los precursores se agregan con directLFQ 0.3.3. Se excluyen las corridas estándar <code>ST_</code>.</li>
+</ul>
+<h3>Controles, inferencia y modelos</h3>
+<p>El margen de equivalencia es ±0,585 en log2 (1,5 veces) y alfa es 0,05. En suero hacen falta al menos ocho observaciones por grupo. La biblioteca de contaminantes de Frankenfield se cruza por acceso, no por símbolo de gen. Los modelos M1 a M6 usan validación cruzada y una prueba de permutación. M2 es el modelo de proteínas de la matriz principal. M3 usa solo variables de calidad. M5 residualiza la matriz principal por esas variables. SHAP se calcula sobre M2 y M3.</p>
+<p>La ontología genética usa la anotación versionada en <code>metadata/gene_ontology/</code> y gseapy para el pre-ranked GSEA. La semilla base es 20260914.</p>
+
+</main>
+</body>
+</html>

@@ -95,6 +95,7 @@ def test_una_proteina_sin_vector_ni_omision_no_se_lee(tmp_path):
 
 
 def test_un_error_queda_en_las_omitidas(tmp_path):
+    pytest.importorskip("torch")
     mod = script()
 
     class Tokens:
@@ -138,7 +139,7 @@ def test_la_reanudacion_no_duplica_ni_salta(tmp_path):
 
 
 def test_usa_cpu_aunque_mps_este_disponible(monkeypatch):
-    import torch
+    torch = pytest.importorskip("torch")
     monkeypatch.setattr(torch.backends.mps, "is_available", lambda: True)
     mod = script()
     assert mod.dispositivo_de_calculo().type == "cpu"
@@ -148,7 +149,7 @@ def test_usa_cpu_aunque_mps_este_disponible(monkeypatch):
 
 @pytest.fixture(scope="module")
 def modelo_real():
-    import torch
+    torch = pytest.importorskip("torch")
     from oncogo_crc.settings import load_settings
     anterior = torch.are_deterministic_algorithms_enabled()
     hilos = torch.get_num_threads()

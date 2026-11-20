@@ -133,12 +133,12 @@ def test_v3_2_no_cambia_despues_de_la_etiqueta():
 
 
 def test_los_commits_sin_prefijo_siguen_anotados():
-    """50caef8 y c2be8e4 no llevan prefijo. 35fad60 sí lleva feat:; el encargo lo contó sin él."""
-    texto = (REPO / "docs/cronologia_v3.md").read_text(encoding="utf-8")
+    """50caef8 y c2be8e4 no llevan prefijo. 35fad60 sí lleva feat:."""
+    sujetos = {
+        corto: _git("log", "-1", "--format=%s", corto).strip()
+        for corto in ("50caef8", "c2be8e4", "35fad60")
+    }
     for corto in ("50caef8", "c2be8e4"):
-        assert corto in texto
-        linea = next(fila for fila in texto.splitlines() if corto in fila)
-        assert "sin prefijo" in linea
-    linea_resultados = next(fila for fila in texto.splitlines() if "35fad60" in fila)
-    assert "feat" in linea_resultados
-    assert any(prefijo + ":" in linea_resultados or "feat" in linea_resultados for prefijo in PREFIJOS)
+        assert sujetos[corto] in {"resultados", "update doc"}
+        assert not sujetos[corto].startswith(tuple(prefijo + ":" for prefijo in PREFIJOS))
+    assert sujetos["35fad60"] == "feat: la corrida v3.2 queda en el repositorio"

@@ -16,7 +16,7 @@ def test_una_lectura_de_v3_4_esta_prohibida_y_la_corrida_propia_no():
 
 def test_la_lista_de_entradas_cubre_el_resumen_de_certificacion():
     raiz = Path(__file__).resolve().parents[1]
-    assert "results/certification/certificado_resumen.json" in excepciones_de(raiz / "config" / "entradas_v3_6.yaml")
+    assert "results/certification/certificado_resumen.json" in excepciones_de(raiz / "config" / "entradas_v3_7.yaml")
 
 
 def test_el_error_del_analizador_no_guarda_una_ruta_absoluta():

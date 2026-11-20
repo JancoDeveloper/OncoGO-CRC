@@ -1,18 +1,22 @@
 cff-version: 1.2.0
 title: >-
-  Qué parte del cambio proteico del tumor colorrectal puede verse en el suero
-  cuando el contraste es otra enfermedad intestinal y no una persona sana
-message: Si usas el código de esta corrida, cítalo así.
+  OncoGO-CRC: flujo de trabajo bioinformático reproducible para el análisis
+  de datos proteómicos de tejido y suero. Caso de estudio: cáncer colorrectal
+message: >-
+  Si usas este repositorio, cita la versión 4.0.0. La corrida numérica sellada
+  que usa la tesis es la etiqueta v3.7-final (commit 71b310a3, 11 de noviembre
+  de 2026). Este repositorio no tiene DOI.
 type: software
 authors:
   - family-names: Polanco Franco
     given-names: Juan Diego
 repository-code: https://github.com/JancoDeveloper/OncoGO-CRC
-version: v3.7-final
-date-released: 2026-11-11
+version: 4.0.0
+date-released: 2026-11-19
 license: MIT
 keywords:
-  - colorectal cancer
+  - bioinformatics workflow
+  - reproducibility
   - proteomics
+  - colorectal cancer
   - serum
-  - bioinformatics
