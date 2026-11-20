@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">El cambio en el tejido coincide</title>
+  <desc id="desc">primario 147/147; metastasis 116/143; cobertura 147/688</desc>
+  <rect width="860" height="460" fill="#f7f6f3"/>
+  <text x="32" y="42" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1a1a1a">El cambio en el tejido coincide</text>
+  <text x="32" y="84" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#3d3a37">Proteínas con el mismo sentido del cambio, entre las comparables.</text>
+  <text x="32" y="120" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" fill="#1a1a1a">Tumor primario y mucosa</text>
+  <rect x="32" y="134" width="520" height="36" fill="#fff" stroke="#d4d0cb"/>
+  <rect x="32" y="134" width="520" height="36" fill="#0072B2"/>
+  <text x="568" y="160" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#1a1a1a">147 de 147</text>
+  <text x="32" y="230" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" fill="#1a1a1a">Metástasis hepática y mucosa</text>
+  <rect x="32" y="244" width="520" height="36" fill="#fff" stroke="#d4d0cb"/>
+  <rect x="32" y="244" width="422" height="36" fill="#0072B2"/>
+  <text x="568" y="270" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#1a1a1a">116 de 143</text>
+  <text x="32" y="350" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#3d3a37">Cobertura del ancla: 147 de 688 proteínas con cambio en CPTAC.</text>
+  <text x="32" y="436" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#3d3a37">Fuente: results/v3_7/k1_etiquetas.json.</text>
+</svg>

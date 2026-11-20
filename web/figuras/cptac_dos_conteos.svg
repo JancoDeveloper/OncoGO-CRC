@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">CPTAC: dos conteos, no los sume</title>
+  <desc id="desc">matriz 95/100/3; metadato filas=396 tumor=190 normal=200 unknown=6 participantes=101</desc>
+  <rect width="920" height="460" fill="#f7f6f3"/>
+  <text x="32" y="42" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1a1a1a">CPTAC: dos conteos, no los sume</text>
+  <text x="32" y="90" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">Matriz que analiza la tesis</text>
+  <text x="32" y="126" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#1a1a1a">95 tumor · 100 normal · 3 sin tipo</text>
+  <text x="32" y="158" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" fill="#3d3a37">docs/fuentes_de_datos.md, la misma cifra que la tabla 7 de la tesis.</text>
+  <text x="32" y="214" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a">Metadato guardado en el repositorio</text>
+  <text x="32" y="250" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#1a1a1a">190 tumor · 200 normal · 6 sin tipo</text>
+  <text x="32" y="286" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#1a1a1a">396 filas · 101 participantes con identificador · 2 sin él</text>
+  <text x="32" y="318" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" fill="#3d3a37">metadata/sample_metadata/cptac_metadata.tsv. No es el tamaño de la matriz.</text>
+  <text x="32" y="368" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#1a1a1a">La tesis dice que el número de participantes no quedó confirmado con el metadato.</text>
+  <text x="32" y="436" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#3d3a37">La matriz es la de la tesis. El metadato es un conteo de este repositorio.</text>
+</svg>

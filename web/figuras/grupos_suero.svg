@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Suero: tres grupos de 20</title>
+  <desc id="desc">PXD055218. CP=20, CN=20, HC=20. Fuente: results/v3_7/preanalitica.json, corridas_por_grupo.</desc>
+  <rect width="820" height="400" fill="#f7f6f3"/>
+  <text x="32" y="42" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1a1a1a">Suero: tres grupos de 20</text>
+  <rect x="300" y="100" width="360" height="48" fill="#0072B2"/>
+  <text x="280" y="132" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" fill="#1a1a1a">Cáncer</text>
+  <text x="680" y="132" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#1a1a1a">20</text>
+  <rect x="300" y="178" width="360" height="48" fill="#D55E00"/>
+  <text x="280" y="210" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" fill="#1a1a1a">Colonoscopia negativa</text>
+  <text x="680" y="210" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#1a1a1a">20</text>
+  <rect x="300" y="256" width="360" height="48" fill="#009E73"/>
+  <text x="280" y="288" text-anchor="end" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" fill="#1a1a1a">Personas sanas</text>
+  <text x="680" y="288" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#1a1a1a">20</text>
+  <text x="32" y="376" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#3d3a37">Cada barra es un grupo. Fuente: results/v3_7/preanalitica.json.</text>
+</svg>

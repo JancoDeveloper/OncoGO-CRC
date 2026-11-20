@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El problema · OncoGO-CRC</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header>
+  <div class="marca">
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
+  </div>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html" aria-current="page">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="autor.html">El autor</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
+</header>
+<main id="contenido">
+<h2>El cáncer colorrectal y la sangre</h2>
+<p>En la mayoría de los casos el cáncer colorrectal viene de lesiones de la mucosa que tardan años en avanzar. Esa ventana es la que justifica buscarlo a tiempo. La colonoscopia sigue siendo la referencia. Una prueba de sangre sería más fácil de ofrecer, pero los marcadores que ya se usan, como el antígeno carcinoembrionario (CEA), sirven para el seguimiento y no como tamización.</p>
+<p>La biología del tumor está resumida, para un lector clínico, en la revisión de García-Foncillas y colaboradores (2026), de la que es coautor Carlos Eduardo Bonilla. La cita está en <a href="referencias.html">Referencias</a>.</p>
+<h2>Qué es medir el proteoma</h2>
+<p>La <span class="termino" tabindex="0">proteómica<span class="pista" role="tooltip">Medir muchas proteínas a la vez en una muestra. Aquí, con espectrometría de masas.</span></span> de este trabajo no mira un solo análisis de laboratorio. Lee, de un depósito público, la cantidad relativa de cientos de proteínas en cada muestra. Las técnicas no son intercambiables:</p>
+<ul>
+  <li><strong>TMT.</strong> Varias muestras se marcan y se miden juntas. El tejido de CPTAC ya viene como una razón en escala logarítmica.</li>
+  <li><strong>Sin marcaje (LFQ).</strong> Cada muestra se mide aparte. Un cero en la tabla suele querer decir que la proteína no se vio, no que su cantidad sea cero.</li>
+  <li><strong>DIA.</strong> El instrumento registra de forma amplia y un programa (DIA-NN) reconstruye las cantidades. Así están medidos los dos estudios de suero.</li>
+</ul>
+<h2>Por qué el suero no es una copia del tumor</h2>
+<p>En la sangre hay proteínas de todo el organismo, en concentraciones que van de muy altas a muy bajas. Aunque el tumor deje una señal, esa señal convive con la inflamación, la coagulación y la forma en que se tomó la muestra.</p>
+<p>Comparar cáncer solo con personas sanas enciende muchas proteínas de respuesta general. La comparación que pregunta si la señal es propia del cáncer es otra: cáncer frente a personas con síntomas intestinales y una colonoscopia sin cáncer. Ese es el grupo de colonoscopia negativa del estudio de Rai y colaboradores.</p>
+<h2>El problema que sí se puede atacar con datos públicos</h2>
+<p>Los depósitos no traen tejido y sangre de la misma persona, y cada estudio usó una técnica distinta. Sumar esas tablas mezclaría personas, lotes y aparatos. El problema, visto desde la ingeniería, es otro:</p>
+<ol>
+  <li>Procesar conjuntos distintos sin fusionarlos.</li>
+  <li>Evaluar las señales con estadística y con <span class="termino" tabindex="0">aprendizaje automático<span class="pista" role="tooltip">Modelos que buscan una combinación de variables capaz de separar dos grupos. Aquí se prueban por dentro del mismo estudio, no en pacientes nuevos.</span></span>, con reglas escritas de antemano.</li>
+  <li>Mostrar si la conclusión se mantiene al repetir la ejecución y al cambiar decisiones de análisis.</li>
+</ol>
+<p>El cáncer colorrectal pone a prueba ese flujo. Un resultado nulo en el suero también es un resultado. En Colombia, la Ley 1384 de 2010 pide acciones de atención integral, incluida la detección temprana. Este trabajo no diseña la prueba de sangre que esa conversación desearía. Aporta un estándar de evidencia: una proteína que solo separa el cáncer de una persona sana no alcanza para proponer tamización.</p>
+<p class="aviso">Los estudios públicos usados aquí no incluyen una cohorte colombiana identificada como tal. Eso limita cualquier traslado a la práctica del país.</p>
+</main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
+</body>
+</html>

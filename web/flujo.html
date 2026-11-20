@@ -3,46 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flujo · OncoGO-CRC</title>
+<title>Qué se hizo · OncoGO-CRC</title>
 <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 <header>
   <div class="marca">
-    <h1>OncoGO-CRC</h1>
-    <p>Flujo bioinformático reproducible. Caso de estudio: cáncer colorrectal.</p>
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
   </div>
-  <nav><a href="index.html">Inicio</a><a href="flujo.html" aria-current="page">Flujo (OE1)</a><a href="metodos.html">Métodos</a><a href="resultados.html">Resultados</a><a href="robustez.html">Robustez (OE3)</a><a href="conclusiones.html">Conclusiones</a><a href="datos.html">Datos</a><a href="descargas.html">Descargas</a><a href="glosario.html">Glosario</a><a href="citar.html">Cómo citar</a></nav>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html" aria-current="page">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="autor.html">El autor</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
 </header>
-<main>
-
-<h2>OE1. El flujo</h2>
-<p>El flujo lee cada cohorte con las reglas de su plataforma, no fusiona intensidades y deja un sello en cada salida. Los requisitos RF1 a RF9 y RNF1 a RNF7 están en <code>docs/diseno.md</code>.</p>
+<main id="contenido">
+<h2>Un procedimiento, no un panel</h2>
+<p>El objetivo específico 1 es diseñar ese procedimiento para tejido y suero, con selección, control de calidad, análisis de cada cohorte por su lado y trazabilidad. El objetivo 2 es aplicarlo al cáncer colorrectal. El objetivo 3 es ver si las conclusiones aguantan.</p>
 <figure>
-<img src="diagramas/casos-de-uso.svg" alt="Tres actores: investigador, reproductor y evaluador.">
-<figcaption>Casos de uso. Equivale a la figura 1 del capítulo 3.</figcaption>
+  <img src="diagramas/flujo.svg" alt="Siete pasos en columna: datos públicos, selección, control de calidad, análisis por cohorte, estadística y aprendizaje automático, robustez y certificado.">
+  <figcaption>El flujo, en el orden en que se ejecuta. Cada cohorte se analiza sola.
+    <span class="no">No es un protocolo de laboratorio ni una ruta de atención.</span>
+  </figcaption>
 </figure>
 <figure>
-<img src="diagramas/arquitectura.svg" alt="Cuatro cohortes entran a la preparación y de ahí a los tres objetivos.">
-<figcaption>Arquitectura. Equivale a la figura 2 del capítulo 3.</figcaption>
+  <img src="diagramas/diseno.svg" alt="A la izquierda dos estudios de tejido, CPTAC y PXD034575. A la derecha dos estudios de suero, PXD055218 y PXD064655. Una nota dice que no son las mismas personas.">
+  <figcaption>Diseño del caso. Tejido y suero vienen de personas distintas y de técnicas distintas.
+    <span class="no">No se pueden leer como parejas tumor–sangre de un mismo paciente.</span>
+  </figcaption>
 </figure>
-<figure>
-<img src="diagramas/componentes.svg" alt="Capas: interfaz, orquestador, biblioteca de análisis y módulos transversales.">
-<figcaption>Componentes del paquete <code>oncogo_crc</code>. Equivale a la figura 4 del capítulo 3.</figcaption>
-</figure>
-<figure>
-<img src="diagramas/ejecucion.svg" alt="Regresión v1, crudos, etapa v3.7, certificado y verificación.">
-<figcaption>Actividad de <code>make all-v3-7</code>. Equivale a la figura 7 del capítulo 3.</figcaption>
-</figure>
-<h2>Cómo repetirlo</h2>
-<ol>
-<li>Clonar el repositorio. Los números de la tesis corresponden a la etiqueta <code>v3.7-final</code> y al commit sellado <code>71b310a3</code>.</li>
-<li>Instalar con Python 3.14.3: <code>pip install -e ".[dev]"</code>.</li>
-<li>Descargar las cuatro cohortes (<code>make datos</code>) y comprobar <code>data/checksums.sha256</code>.</li>
-<li>Ejecutar <code>make all-v3-7</code> con <code>WORKSPACE</code> apuntando a un directorio con espacio. El árbol de git tiene que estar limpio.</li>
-<li>Comparar con <code>make verificar</code>. El certificado es válido si <code>certificado.json</code> queda en estado publicable.</li>
-</ol>
-
+<h2>Qué hace cada tramo, en castellano</h2>
+<ul>
+  <li><strong>Selección.</strong> Entran cuatro matrices públicas. Cada una tiene un papel: ancla del cambio en tejido, segunda cohorte de tejido, suero con colonoscopia negativa, y suero por estadio.</li>
+  <li><strong>Control de calidad.</strong> Se apartan contaminantes conocidos, identificaciones poco fiables y señales de hemólisis, plaquetas, coagulación o piel. En el tejido se intentan controles físicos; no todos se pueden medir en la segunda cohorte.</li>
+  <li><strong>Inferencia.</strong> Una proteína del suero se llama diferente, equivalente o sin clasificar. El margen de equivalencia es de 1,5 veces y el umbral de la <span class="termino" tabindex="0">FDR<span class="pista" role="tooltip">Tasa de descubrimientos falsos. Al mirar cientos de proteínas a la vez, limita cuántas de las «diferencias» pueden ser casualidad. Aquí el alfa es 0,05.</span></span> es 0,05. Hacen falta al menos ocho observaciones por grupo.</li>
+  <li><strong>Modelos.</strong> Seis modelos intentan separar cáncer y colonoscopia negativa por dentro del mismo estudio, con <span class="termino" tabindex="0">validación<span class="pista" role="tooltip">Aquí significa comprobar el modelo con porciones de las mismas muestras que no usó para entrenar. No es un estudio en otro hospital ni un examen aprobado.</span></span> cruzada y una prueba de permutación. Uno usa solo la calidad de la muestra. Otro usa las proteínas después de descontar esa calidad.</li>
+  <li><strong>Sello.</strong> Cada archivo de salida guarda el commit, la fecha, la semilla y las versiones de los programas. El certificado de la corrida sellada quedó en estado publicable, con 119 sellos.</li>
+</ul>
+<p>El detalle de arquitectura, para quien quiera leer el código, está en el repositorio: <a href="https://github.com/JancoDeveloper/OncoGO-CRC/blob/v4.0.0/docs/diseno.md">docs/diseno.md</a> de la etiqueta v4.0.0. La semilla de la corrida es 20260914.</p>
 </main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
 </body>
 </html>

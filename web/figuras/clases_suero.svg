@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Suero: ninguna proteína diferente</title>
+  <desc id="desc">celda_preregistrada {&quot;n&quot;: 284, &quot;diferente&quot;: 0, &quot;equivalente&quot;: 166, &quot;indeterminada&quot;: 118}</desc>
+  <rect width="960" height="430" fill="#f7f6f3"/>
+  <text x="32" y="42" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1a1a1a">Suero: ninguna proteína diferente</text>
+  <text x="32" y="86" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#3d3a37">Contraste principal del suero: cáncer frente a colonoscopia negativa. n = 284.</text>
+  <rect x="32" y="140" width="503" height="64" fill="#009E73"/>
+  <rect x="535" y="140" width="357" height="64" fill="#E69F00"/>
+  <rect x="32" y="250" width="22" height="22" fill="#D55E00"/>
+  <text x="64" y="268" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#1a1a1a">Diferentes: 0</text>
+  <rect x="32" y="290" width="22" height="22" fill="#009E73"/>
+  <text x="64" y="308" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#1a1a1a">Equivalentes: 166</text>
+  <rect x="32" y="330" width="22" height="22" fill="#E69F00"/>
+  <text x="64" y="348" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#1a1a1a">Sin clasificar: 118</text>
+  <text x="32" y="406" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#3d3a37">Margen de 1,5 veces. Fuente: results/v3_7/suero_embudo.json.</text>
+</svg>

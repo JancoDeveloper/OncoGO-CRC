@@ -8,6 +8,14 @@ __pycache__/
 venv/
 ENV/
 .env
+.env.*
+!.env.example
+*credentials*.json
+*serviceAccount*.json
+*service-account*.json
+google-services.json
+GoogleService-Info.plist
+.runtimeconfig.json
 *.egg-info/
 .eggs/
 dist/
@@ -38,6 +46,8 @@ data/processed/
 *.swp
 logs/
 firebase-debug.log
+firebase-debug.*.log
+ui-debug.log
 .firebase/
 
 # LaTeX

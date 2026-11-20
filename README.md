@@ -168,9 +168,8 @@ make test-e2e      # la etapa rechaza un report sintético y el certificado tien
 make lint          # ruff 0.15.12, reglas E4, E7, E9 y F
 ```
 
-La integración continua está en `.github/workflows/ci.yml` (Ubuntu 24.04,
-Python 3.14.3). En noviembre de 2026 la cuenta no asigna máquinas por un
-bloqueo de facturación, así que esa corrida hay que mirarla en local.
+No hay integración continua. La verificación de la corrida es local, con
+`make verificar-local`. Cómo reportar un secreto está en `SECURITY.md`.
 
 ## Cita
 
@@ -181,8 +180,22 @@ Licencia MIT. Ver `LICENSE`.
 
 ## Sitio
 
-`web/index.html` se abre en el navegador. Resume la pregunta, los tres
-objetivos, el flujo, los métodos, los resultados, la robustez y las
-descargas. No incluye fichas de proteínas ni la sección «Aprende»: no
-aportan al encargo de la tesis y arrastraban la pregunta anterior. El
-glosario es una página con las abreviaturas del capítulo 3.
+Las páginas están en `web/` y se leen sin compilar, en el navegador o así:
+
+```bash
+python3 -m http.server 8000 --directory web
+```
+
+Abra `http://127.0.0.1:8000/`. También puede abrir `web/index.html` directo.
+El texto está en castellano, para un lector general y para un lector clínico.
+
+Las gráficas salen de `results/v3_7` y de `docs/fuentes_de_datos.md`:
+
+```bash
+python3 scripts/web/figuras_sitio.py
+```
+
+`firebase.json` publica la carpeta `web/` en el proyecto de Hosting
+`oncogo-crc-tesis` (https://oncogo-crc-tesis.web.app). No contiene claves.
+Hasta que se despliegue esta versión, lo que haya en esa dirección puede ser
+anterior.

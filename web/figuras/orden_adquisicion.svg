@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">El orden de medición coincide con el grupo</title>
+  <desc id="desc">bloques_perfectos=true {&quot;CN&quot;: {&quot;orden_min&quot;: 21, &quot;orden_max&quot;: 40, &quot;inicio&quot;: &quot;2023-10-02T01:49:32&quot;, &quot;fin&quot;: &quot;2023-10-04T15:10:19&quot;, &quot;n&quot;: 20}, &quot;CP&quot;: {&quot;orden_min&quot;: 1, &quot;orden_max&quot;: 20, &quot;inicio&quot;: &quot;2023-09-29T14:04:26&quot;, &quot;fin&quot;: &quot;2023-10-01T16:24:35&quot;, &quot;n&quot;: 20}, &quot;HC&quot;: {&quot;orden_min&quot;: 41, &quot;orden_max&quot;: 60, &quot;inicio&quot;: &quot;2023-10-04T23:08:06&quot;, &quot;fin&quot;: &quot;2023-10-07T10:31:40&quot;, &quot;n&quot;: 20}}</desc>
+  <rect width="920" height="400" fill="#f7f6f3"/>
+  <text x="32" y="42" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1a1a1a">El orden de medición coincide con el grupo</text>
+  <text x="32" y="84" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" fill="#3d3a37">60 mediciones con fecha, en el orden en que salieron del instrumento.</text>
+  <rect x="32" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="46" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="60" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="74" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="88" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="102" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="116" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="130" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="144" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="158" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="172" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="186" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="200" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="214" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="228" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="242" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="256" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="270" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="284" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="298" y="120" width="12" height="48" fill="#0072B2"/>
+  <rect x="312" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="326" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="340" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="354" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="368" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="382" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="396" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="410" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="424" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="438" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="452" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="466" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="480" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="494" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="508" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="522" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="536" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="550" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="564" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="578" y="120" width="12" height="48" fill="#D55E00"/>
+  <rect x="592" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="606" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="620" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="634" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="648" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="662" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="676" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="690" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="704" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="718" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="732" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="746" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="760" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="774" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="788" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="802" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="816" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="830" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="844" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="858" y="120" width="12" height="48" fill="#009E73"/>
+  <rect x="32" y="210" width="22" height="22" fill="#0072B2"/>
+  <text x="64" y="228" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" fill="#1a1a1a">Cáncer: posiciones 1 a 20 (20)</text>
+  <rect x="32" y="246" width="22" height="22" fill="#D55E00"/>
+  <text x="64" y="264" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" fill="#1a1a1a">Colonoscopia negativa: posiciones 21 a 40 (20)</text>
+  <rect x="32" y="282" width="22" height="22" fill="#009E73"/>
+  <text x="64" y="300" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" fill="#1a1a1a">Personas sanas: posiciones 41 a 60 (20)</text>
+  <text x="32" y="376" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#3d3a37">Fuente: results/v3_7/preanalitica.json, posicion_por_grupo.</text>
+</svg>
