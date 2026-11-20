@@ -24,6 +24,7 @@
     <a href="conclusiones.html">Conclusiones</a>
     <a href="autor.html">El autor</a>
     <a href="referencias.html">Referencias</a>
+    <a href="aprender.html">Aprender</a>
     <a href="glosario.html">Glosario</a>
   </nav>
 </header>
@@ -36,25 +37,25 @@
 <tbody>
 <tr>
   <td><a href="https://pdc.cancer.gov/pdc/study/PDC000116">PDC000116</a></td>
-  <td>Tejido CPTAC, TMT. Vasaikar y colaboradores, 2019.</td>
+  <td>Tejido CPTAC, TMT. <a href="referencias.html#vasaikar2019">Vasaikar y colaboradores, 2019</a>.</td>
   <td>Matriz analizada: 95 tumor, 100 normal, 3 sin tipo. El número de participantes no quedó confirmado.</td>
   <td>Ancla del cambio en el tejido.</td>
 </tr>
 <tr>
   <td><a href="https://www.ebi.ac.uk/pride/archive/projects/PXD034575">PXD034575</a></td>
-  <td>Tejido, cuantificación sin marcaje. Tanaka y colaboradores, 2024.</td>
+  <td>Tejido, cuantificación sin marcaje. <a href="referencias.html#tanaka2024">Tanaka y colaboradores, 2024</a>.</td>
   <td>16 pacientes, cada uno con tumor primario, metástasis hepática y mucosa.</td>
   <td>Ver si el sentido del cambio se repite.</td>
 </tr>
 <tr>
   <td><a href="https://www.ebi.ac.uk/pride/archive/projects/PXD055218">PXD055218</a></td>
-  <td>Suero, DIA, Orbitrap Fusion. Rai y colaboradores, 2025.</td>
+  <td>Suero, DIA, Orbitrap Fusion. <a href="referencias.html#rai2025">Rai y colaboradores, 2025</a>.</td>
   <td>20 con cáncer, 20 con colonoscopia negativa y 20 personas sanas. 60 archivos.</td>
   <td>Contraste frente a otra enfermedad intestinal.</td>
 </tr>
 <tr>
   <td><a href="https://www.ebi.ac.uk/pride/archive/projects/PXD064655">PXD064655</a></td>
-  <td>Suero o plasma por estadio. Hermoso-Durán y colaboradores, 2026; depósito de McKay, 2026.</td>
+  <td>Suero o plasma por estadio. <a href="referencias.html#hermoso2026">Hermoso-Durán y colaboradores, 2026</a>; depósito de <a href="referencias.html#mckay2026">McKay, 2026</a>.</td>
   <td>100 muestras: 50 en estadio IV, 21 en III y 29 en I–II.</td>
   <td>Lectura por estadio. Quedó sin proteínas tumorales epiteliales suficientes.</td>
 </tr>
@@ -62,7 +63,7 @@
 </table>
 </div>
 <h2>De dónde sale la matriz de CPTAC</h2>
-<p>La matriz de tejido que lee el flujo no está en git. Se deriva del estudio de acceso abierto <a href="https://pdc.cancer.gov/pdc/study/PDC000116">PDC000116</a> (<a href="https://doi.org/10.1016/j.cell.2019.03.030">Vasaikar y colaboradores, 2019</a>) y se redistribuye con atribución en el conjunto de datos <a href="https://doi.org/10.5281/zenodo.24398807">10.5281/zenodo.24398807</a> (<a href="https://zenodo.org/records/24398807">zenodo.org/records/24398807</a>, licencia CC-BY-4.0). <code>make descargar</code> la deja en <code>data/raw/cptac/cptac_crc_matrix.tsv</code> y comprueba el SHA-256. El mismo depósito trae los tres archivos certificados de la corrida v1 y los embeddings ESM-2. Hay que citar el artículo original además de ese DOI.</p>
+<p>La matriz de tejido que lee el flujo no está en git. Se deriva del estudio de acceso abierto <a href="https://pdc.cancer.gov/pdc/study/PDC000116">PDC000116</a> (<a href="referencias.html#vasaikar2019">Vasaikar y colaboradores, 2019</a>) y se redistribuye con atribución en el conjunto de datos de <a href="referencias.html#oncogoentradas2026">Polanco Franco (2026)</a>, DOI <a href="https://doi.org/10.5281/zenodo.24398807">10.5281/zenodo.24398807</a> (<a href="https://zenodo.org/records/24398807">zenodo.org/records/24398807</a>, licencia CC-BY-4.0). <code>make descargar</code> la deja en <code>data/raw/cptac/cptac_crc_matrix.tsv</code> y comprueba el SHA-256. El mismo depósito trae los tres archivos certificados de la corrida v1 y los embeddings ESM-2. Hay que citar el artículo original además de ese DOI.</p>
 <figure>
   <img src="figuras/grupos_suero.svg" alt="Tres barras iguales, de 20, para cáncer, colonoscopia negativa y personas sanas.">
   <figcaption>El suero principal tiene el mismo número de personas en cada grupo.
@@ -82,7 +83,7 @@
   </figcaption>
 </figure>
 <h2>Otras fuentes, que no son cohortes</h2>
-<p>Para anotar proteínas se usan Gene Ontology, UniProt, el Human Protein Atlas y la biblioteca de contaminantes de Frankenfield y colaboradores (2022). Esas citas están en <a href="referencias.html">Referencias</a>. Las huellas de los archivos están en el repositorio, en <code>data/checksums.sha256</code>.</p>
+<p>Para anotar proteínas se usan Gene Ontology (<a href="referencias.html#ashburner2000">Ashburner y colaboradores, 2000</a>; <a href="referencias.html#goconsortium2023">The Gene Ontology Consortium, 2023</a>), UniProt (<a href="referencias.html#uniprot2025">The UniProt Consortium, 2025</a>), el Human Protein Atlas (<a href="referencias.html#uhlen2015">Uhlén y colaboradores, 2015</a>) y la biblioteca de contaminantes de <a href="referencias.html#frankenfield2022">Frankenfield y colaboradores (2022)</a>. Las huellas de los archivos están en el repositorio, en <code>data/checksums.sha256</code>.</p>
 </main>
 <footer>
   <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>

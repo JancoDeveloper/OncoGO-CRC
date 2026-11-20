@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metodología · Aprender · OncoGO-CRC</title>
+<meta name="description" content="Control de calidad, normalización, imputación, análisis diferencial, regresión logística, validación cruzada, AUC y reproducibilidad de OncoGO-CRC.">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header>
+  <div class="marca">
+    <h1><a href="index.html">OncoGO-CRC</a></h1>
+    <p>Un flujo reproducible para proteómica pública. El caso es el cáncer colorrectal.</p>
+  </div>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="problema.html">El problema</a>
+    <a href="flujo.html">Qué se hizo</a>
+    <a href="datos.html">Los datos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="robustez.html">Límites</a>
+    <a href="reproducibilidad.html">Reproducir</a>
+    <a href="conclusiones.html">Conclusiones</a>
+    <a href="autor.html">El autor</a>
+    <a href="aprender.html" aria-current="page">Aprender</a>
+    <a href="referencias.html">Referencias</a>
+    <a href="glosario.html">Glosario</a>
+  </nav>
+</header>
+<main id="contenido">
+<p><a href="aprender.html">Aprender</a> · <a href="aprender-marco.html">Marco teórico</a></p>
+<h2>Metodología explicada</h2>
+<p>Lo que sigue es cómo se leen las tablas, no un protocolo de laboratorio. Las reglas del contraste principal se escribieron antes de ver los resultados. Los modelos se añadieron después, en una enmienda fechada, y se leen como análisis exploratorio. El detalle de archivos y órdenes está en <a href="flujo.html">Qué se hizo</a> y en <a href="reproducibilidad.html">Reproducir</a>.</p>
+<nav class="indice-temas" aria-label="Temas de la metodología">
+  <ul>
+    <li><a href="#calidad">Control de calidad</a></li>
+    <li><a href="#faltantes">Normalización e imputación</a></li>
+    <li><a href="#diferencia">Análisis diferencial</a></li>
+    <li><a href="#modelos">Modelos, pliegues, AUC y fuga</a></li>
+    <li><a href="#reproducir">Multiverso y reproducibilidad</a></li>
+  </ul>
+</nav>
+
+<h3 id="calidad">Control de calidad</h3>
+<p>El control de calidad decide qué filas entran y deja una alerta cuando la muestra, y no la enfermedad, puede explicar una diferencia. En el suero se retira la biblioteca de contaminantes de <a href="referencias.html#frankenfield2022">Frankenfield y colaboradores (2022)</a>, cruzada por número de acceso y no por el símbolo del gen: varias proteínas bovinas comparten símbolo con las humanas. También se retiran paneles de eritrocitos, plaquetas y coagulación, pensados para ver hemólisis y diferencias al preparar el suero o el plasma (<a href="referencias.html#geyer2019">Geyer y colaboradores, 2019</a>), y un panel de queratinas de la piel.</p>
+<p>Cada suero queda con cinco variables de calidad: esas cuatro puntuaciones y el logaritmo del número de precursores identificados. Se comparan entre grupos con la prueba de Kruskal-Wallis (<a href="referencias.html#kruskal1952">Kruskal y Wallis, 1952</a>). Si una puntuación difiere entre grupos, se anota como confusión técnica. No se anuncia como un descubrimiento.</p>
+<p>La fecha de adquisición se lee de los crudos, después de comprobar su huella frente a PRIDE, con ThermoRawFileParser (<a href="referencias.html#hulstaert2020">Hulstaert y colaboradores, 2020</a>). En el suero principal los grupos se midieron en bloque. El orden, por sí solo, separa cáncer de colonoscopia negativa. Esa figura está en <a href="resultados.html">Resultados</a>.</p>
+<p>En el tejido, cuatro proteínas que deberían ser más bajas en el tumor que en la mucosa sirven de control físico. No todas se pueden medir en la segunda cohorte. El flujo lo dice, en vez de rellenar el hueco.</p>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#frankenfield2022">Frankenfield y colaboradores (2022)</a>, la biblioteca de contaminantes.</li>
+  <li><a href="referencias.html#geyer2019">Geyer y colaboradores (2019)</a>, paneles de calidad del plasma.</li>
+  <li><a href="referencias.html#kruskal1952">Kruskal y Wallis (1952)</a>, la comparación de las puntuaciones entre grupos.</li>
+  <li><a href="referencias.html#hulstaert2020">Hulstaert y colaboradores (2020)</a>, la fecha dentro del archivo crudo.</li>
+  <li><a href="referencias.html#leek2010">Leek y colaboradores (2010)</a>, qué pasa cuando el lote coincide con el grupo.</li>
+</ul>
+
+<h3 id="faltantes">Normalización e imputación</h3>
+<p>Normalizar es poner las muestras en una escala en la que se puedan comparar. MaxLFQ ya trae una normalización retardada, hecha con los péptidos compartidos (<a href="referencias.html#cox2014">Cox y colaboradores, 2014</a>). En la versión principal del tejido sin marcaje no se centra otra vez por la mediana. Ese centrado se corre aparte, como sensibilidad: si la concordancia entre cohortes cambiara de conclusión al centrar, el resultado se llamaría frágil a la normalización. No cambió la conclusión.</p>
+<p>Imputar es rellenar un hueco. En proteómica el hueco a veces es una proteína bajo el límite de detección y a veces es un fallo al azar. Rellenarlo puede crear una diferencia que no estaba (<a href="referencias.html#lazar2016">Lazar y colaboradores, 2016</a>). En el contraste principal los huecos se quedan como huecos. Una proteína necesita al menos ocho observaciones por grupo. Las que se ven en menos del 70 % de algún grupo se contrastan por presencia, y su abundancia solo se mira donde sí se midió. No se imputa para rescatarlas.</p>
+<p>En los modelos la regla es otra, y va dentro de cada pliegue: la mediana se calcula con el entrenamiento y se aplica después a la prueba. Una columna vista en menos del 70 % del entrenamiento queda en cero. El dibujo de la fuga, más abajo, muestra por qué el orden importa.</p>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#cox2014">Cox y colaboradores (2014)</a>, la normalización de MaxLFQ.</li>
+  <li><a href="referencias.html#lazar2016">Lazar y colaboradores (2016)</a>, estrategias de imputación y sus riesgos.</li>
+</ul>
+
+<h3 id="diferencia">Análisis diferencial</h3>
+<p>Con veinte personas por grupo, la varianza de cada proteína se estima mal si se mira esa proteína sola. limma estabiliza la varianza tomando información del resto de proteínas, con un modelo lineal y Bayes empírico (<a href="referencias.html#smyth2004">Smyth, 2004</a>; <a href="referencias.html#ritchie2015">Ritchie y colaboradores, 2015</a>). El código de este repositorio sigue ese estimador.</p>
+<p>El valor p es la probabilidad de ver un resultado al menos tan extremo como el observado si, en verdad, no hubiera diferencia. Un valor p pequeño no dice si el cambio es grande. Con cientos de proteínas, un corte de 0,05 en cada prueba deja muchos falsos. Benjamini y Hochberg propusieron controlar la tasa de descubrimientos falsos, o FDR: la fracción esperada de falsos entre las proteínas que se declaran distintas (<a href="referencias.html#benjamini1995">Benjamini y Hochberg, 1995</a>). Aquí el corte de FDR es 0,05.</p>
+<p>Tampoco basta con ser distinto de cero. TREAT pregunta si el cambio supera un margen fijado de antemano (<a href="referencias.html#mccarthy2009">McCarthy y Smyth, 2009</a>). El margen es 1,5 veces, que en logaritmo base 2 vale 0,585. Un log2 de 1 es el doble. Un log2 de −1 es la mitad. No encontrar una diferencia no demuestra que el cambio sea pequeño. Para afirmar que cabe dentro del margen se usan dos pruebas unilaterales, o TOST (<a href="referencias.html#schuirmann1987">Schuirmann, 1987</a>; <a href="referencias.html#lakens2017">Lakens, 2017</a>). Cada proteína del suero queda en una de tres clases: diferente, equivalente o sin clasificar. El gráfico de volcán de abajo solo enseña a leer los ejes. La clasificación real del suero está en <a href="resultados.html">Resultados</a>: ninguna de las 284 proteínas del contraste principal fue diferente.</p>
+<figure class="real">
+  <img src="img/aprender/volcan.jpg" alt="Gráfico de volcán de un ejemplo de metabolómica. El eje horizontal es el cambio en log2 y el vertical es menos log10 del valor p. Una línea punteada marca p igual a 0,05. Tres flechas rojas señalan puntos con cambio grande y valor p pequeño.">
+  <figcaption>Cómo se lee un gráfico de volcán. Los puntos son de un ejemplo de metabolómica ajeno a este repositorio. En el suero principal de OncoGO-CRC ninguna proteína se declaró diferente; esa clasificación está en <a href="resultados.html">Resultados</a>.
+    <span class="credito">Roadnottaken, 2010. Dominio público. Origen: <a href="https://commons.wikimedia.org/wiki/File:Volcano_eg.jpg">Wikimedia Commons</a>. Se redimensionó a 1200 px de ancho; no se cambió el gráfico. <a href="creditos-imagenes.html#volcan">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#smyth2004">Smyth (2004)</a> y <a href="referencias.html#ritchie2015">Ritchie y colaboradores (2015)</a>, limma.</li>
+  <li><a href="referencias.html#benjamini1995">Benjamini y Hochberg (1995)</a>, la FDR.</li>
+  <li><a href="referencias.html#mccarthy2009">McCarthy y Smyth (2009)</a>, TREAT.</li>
+  <li><a href="referencias.html#schuirmann1987">Schuirmann (1987)</a> y <a href="referencias.html#lakens2017">Lakens (2017)</a>, la equivalencia.</li>
+</ul>
+
+<h3 id="modelos">Modelos, pliegues, AUC y fuga</h3>
+<p>La tabla de la corrida sellada, <code>results/v3_7/ml_modelos.tsv</code>, tiene seis modelos. Los seis son regresiones logísticas con penalización L2, ajustadas con scikit-learn (<a href="referencias.html#pedregosa2011">Pedregosa y colaboradores, 2011</a>). La penalización encoge los coeficientes. Con pocas personas y muchas proteínas, eso reduce el sobreajuste. La penalización se elige, dentro de cada pliegue de entrenamiento, entre 0,1, 1 y 10.</p>
+<ul>
+  <li><strong>M1.</strong> La matriz humana antes de quitar contaminantes y paneles. Pregunta cuánto separa el suero sin limpiar.</li>
+  <li><strong>M2.</strong> La matriz principal, ya limpia. Es el modelo de referencia.</li>
+  <li><strong>M3.</strong> Solo las cinco variables de calidad.</li>
+  <li><strong>M4.</strong> Solo la puntuación de coagulación.</li>
+  <li><strong>M5.</strong> Las proteínas de M2, después de restar lo que la calidad explica. Las variables de calidad se usan para ese ajuste y no entran como predictores.</li>
+  <li><strong>M6.</strong> M2 reducido a cinco componentes, calculados dentro del pliegue.</li>
+</ul>
+<p>Hay 20 muestras con cáncer y 20 con colonoscopia negativa. La validación es cruzada y estratificada: cinco pliegues, repetidos 20 veces. Cada persona se predice con un modelo que no la usó para entrenar. Para saber si el área bajo la curva supera al azar, se mezclan las etiquetas mil veces y se repite el tubo completo. El valor p es la fracción de esas permutaciones que igualan o superan el área observada, con el ajuste de no dejarlo en cero (<a href="referencias.html#phipson2010">Phipson y Smyth, 2010</a>). El intervalo del área fuera del pliegue sigue a <a href="referencias.html#ledell2015">LeDell y colaboradores (2015)</a>.</p>
+<p>La curva ROC dibuja, para cada umbral, cuántos verdaderos positivos se acompañan de falsos positivos. El AUC es el área bajo esa curva. Vale 0,50 si el orden es el azar y 1 si la separación es perfecta. Un AUC de 0,88 significa que, en el 88 % de las parejas formadas por una persona con cáncer y una con colonoscopia negativa, el modelo ordenó bien a las dos. No es la sensibilidad ni la especificidad de un examen (<a href="referencias.html#pepe2001">Pepe y colaboradores, 2001</a>). Por proteína, el intervalo del AUC usa el método de <a href="referencias.html#delong1988">DeLong y colaboradores (1988)</a>. Las guías de informe piden contar cómo se evaluó un modelo de predicción, incluida la calibración (<a href="referencias.html#collins2024">Collins y colaboradores, 2024</a>; <a href="referencias.html#vancalster2019">Van Calster y colaboradores, 2019</a>). Las barras de este estudio están en <a href="resultados.html">Resultados</a>.</p>
+<p>SHAP reparte la predicción entre las variables. En un modelo lineal, el aporte de una variable es el coeficiente por la diferencia entre su valor y la media del entrenamiento (<a href="referencias.html#lundberg2017">Lundberg y Lee, 2017</a>). Explica el modelo. Si las variables que más pesan van con la calidad de la muestra, la separación no se atribuye al tumor.</p>
+<p>Hay fuga de información cuando un paso que aprende de los datos —imputar, escalar, residualizar o sacar componentes— se ajusta con las muestras de prueba. La prueba se cuela en el entrenamiento y el AUC sube sin que el modelo haya generalizado. Por eso esos pasos viven dentro del pliegue.</p>
+<figure class="real">
+  <img src="img/aprender/validacion-cruzada.jpg" alt="Cuatro iteraciones de validación cruzada. En cada fila, un recuadro marca los puntos de prueba y el resto son entrenamiento. El recuadro se desplaza hasta que cada porción fue prueba.">
+  <figcaption>Validación cruzada en k pliegues. El dibujo usa cuatro iteraciones. En este repositorio los modelos usan cinco pliegues, repetidos veinte veces.
+    <span class="credito">Fabian Flöck. Licencia: <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.es">CC BY-SA 3.0</a>. Origen: <a href="https://commons.wikimedia.org/wiki/File:K-fold_cross_validation_EN.jpg">Wikimedia Commons</a>. Miniatura de 500 px; no se cambió el dibujo. <a href="creditos-imagenes.html#validacion-cruzada">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<figure class="real">
+  <img src="img/aprender/curva-roc.png" alt="Gráfico de curvas ROC. El eje horizontal es la tasa de falsos positivos y el vertical la de verdaderos positivos. La diagonal punteada es el clasificador al azar. Tres curvas se acercan más o menos a la esquina superior izquierda.">
+  <figcaption>Cómo se lee una curva ROC. Ninguna de estas curvas es un modelo de la corrida. Las barras de AUC del estudio están en <a href="resultados.html">Resultados</a>.
+    <span class="credito">cmglee y MartinThoma, 2018. Licencia: <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>. Origen: <a href="https://commons.wikimedia.org/wiki/File:Roc_curve.svg">Wikimedia Commons</a>. Se exportó a PNG; no se cambió el dibujo. <a href="creditos-imagenes.html#curva-roc">Ficha</a>.</span>
+  </figcaption>
+</figure>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#pedregosa2011">Pedregosa y colaboradores (2011)</a>, scikit-learn.</li>
+  <li><a href="referencias.html#ledell2015">LeDell y colaboradores (2015)</a>, el intervalo del AUC fuera del pliegue.</li>
+  <li><a href="referencias.html#phipson2010">Phipson y Smyth (2010)</a>, el valor p de una permutación.</li>
+  <li><a href="referencias.html#delong1988">DeLong y colaboradores (1988)</a>, comparar áreas bajo curvas ROC.</li>
+  <li><a href="referencias.html#pepe2001">Pepe y colaboradores (2001)</a>, por qué un AUC interno no es un examen.</li>
+  <li><a href="referencias.html#collins2024">Collins y colaboradores (2024)</a> y <a href="referencias.html#vancalster2019">Van Calster y colaboradores (2019)</a>, informe y calibración.</li>
+  <li><a href="referencias.html#lundberg2017">Lundberg y Lee (2017)</a>, SHAP.</li>
+</ul>
+
+<h3 id="reproducir">Multiverso y reproducibilidad</h3>
+<p>Un análisis multiverso escribe las decisiones razonables que otra persona pudo tomar —cómo cuantificar, qué contaminantes quitar, qué margen y qué alfa— y muestra el resultado en todas las combinaciones (<a href="referencias.html#steegen2016">Steegen y colaboradores, 2016</a>). Si la frase solo aparece en unas pocas celdas, depende de esa decisión más que de los datos. En el suero hay 288 combinaciones. El conteo y la figura están en <a href="robustez.html">Límites</a>.</p>
+<p>El preregistro deja las reglas y los umbrales escritos antes de ver los resultados, y separa lo que se confirma de lo que se explora (<a href="referencias.html#nosek2018">Nosek y colaboradores, 2018</a>). Cuando hizo falta un cambio, quedó como enmienda fechada, con el motivo y el valor anterior. Los modelos son una de esas enmiendas: se definieron después de ver que la calidad difería entre grupos, para preguntar si esa calidad alcanzaba a explicar la separación.</p>
+<p>Reproducir, aquí, quiere decir que la misma versión del código y las mismas entradas devuelven los mismos números. Tres piezas lo sostienen.</p>
+<ul>
+  <li><strong>Semilla.</strong> El número <code>20260914</code> fija los sorteos de la corrida sellada. El enriquecimiento de Gene Ontology usa, aparte, la semilla 42. Sin una semilla fija, una repetición puede cambiar por el azar del programa y no por los datos.</li>
+  <li><strong>SHA-256.</strong> Es una huella del archivo. Si cambia un byte, cambia la huella. Antes de calcular se comparan las entradas con el manifiesto. Los crudos de un depósito se comprueban, además, con el SHA-1 que publica PRIDE.</li>
+  <li><strong>Certificado.</strong> Una lista de casillas dice si la corrida es publicable. En la referencia hay 22 casillas y 119 archivos con sello. El sello guarda el commit, la fecha, la semilla y las versiones. No es un certificado clínico.</li>
+</ul>
+<p>Las matrices no están en git. La copia de entradas de la corrida sellada —la matriz TMT derivada de PDC000116, tres archivos certificados de la etapa v1 y los embeddings ESM-2— está en Zenodo, con DOI <a href="https://doi.org/10.5281/zenodo.24398807">10.5281/zenodo.24398807</a> (<a href="referencias.html#oncogoentradas2026">Polanco Franco, 2026</a>). Hay que citar también el artículo del que sale la matriz (<a href="referencias.html#vasaikar2019">Vasaikar y colaboradores, 2019</a>). Cómo bajar y repetir está en <a href="reproducibilidad.html">Reproducir</a>.</p>
+<p>El dibujo operativo de esos pasos, el del propio repositorio, está en <a href="flujo.html">Qué se hizo</a>.</p>
+<h4>Para leer más</h4>
+<ul>
+  <li><a href="referencias.html#steegen2016">Steegen y colaboradores (2016)</a>, el análisis multiverso.</li>
+  <li><a href="referencias.html#nosek2018">Nosek y colaboradores (2018)</a>, el preregistro.</li>
+  <li><a href="referencias.html#oncogoentradas2026">Polanco Franco (2026)</a>, el depósito Zenodo de las entradas, DOI 10.5281/zenodo.24398807.</li>
+  <li><a href="referencias.html#vasaikar2019">Vasaikar y colaboradores (2019)</a>, el estudio del que se deriva la matriz de tejido.</li>
+</ul>
+</main>
+<footer>
+  <p>OncoGO-CRC · Juan Diego Polanco Franco · Universidad de Caldas. <a href="autor.html">Contacto</a>.</p>
+</footer>
+</body>
+</html>

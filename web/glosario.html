@@ -23,32 +23,65 @@
     <a href="reproducibilidad.html">Reproducir</a>
     <a href="conclusiones.html">Conclusiones</a>
     <a href="autor.html">El autor</a>
+    <a href="aprender.html">Aprender</a>
     <a href="referencias.html">Referencias</a>
     <a href="glosario.html" aria-current="page">Glosario</a>
   </nav>
 </header>
 <main id="contenido">
-<h2>Palabras que el sitio usa</h2>
-<p>En las otras páginas, el término subrayado con puntos muestra esta misma idea al pasar el cursor o al enfocarlo con el teclado.</p>
+<h2>Términos clave</h2>
+<p>Cada término tiene una definición corta. La tercera columna lleva al tema de <a href="aprender.html">Aprender</a> donde se explica con más calma. En las otras páginas, el término subrayado con puntos muestra la misma idea al pasar el cursor o al enfocarlo con el teclado.</p>
 <div class="tabla">
-<table>
-<thead><tr><th>Término</th><th>En este trabajo</th></tr></thead>
+<table class="glosario">
+<thead><tr><th>Término</th><th>En pocas palabras</th><th>Dónde se explica</th></tr></thead>
 <tbody>
-<tr><td>Proteómica</td><td>Medir muchas proteínas a la vez. Aquí se hace con espectrometría de masas sobre datos ya publicados.</td></tr>
-<tr><td>Suero</td><td>La parte líquida de la sangre después de que coagula. No es un trozo del tumor.</td></tr>
-<tr><td>Cohorte</td><td>Un grupo de muestras reunidas en un mismo estudio, con un diseño y una técnica.</td></tr>
-<tr><td>Colonoscopia negativa</td><td>Personas con síntomas intestinales cuya colonoscopia no mostró cáncer. No son personas sanas y no son un solo diagnóstico.</td></tr>
-<tr><td>TMT</td><td>Marcado isobárico. Varias muestras se miden juntas. Es la técnica del tejido de CPTAC.</td></tr>
-<tr><td>LFQ</td><td>Cuantificación sin marcaje. Cada muestra se mide por separado. Es la técnica de la segunda cohorte de tejido.</td></tr>
-<tr><td>DIA</td><td>Adquisición independiente de datos. El instrumento registra de forma amplia. Es la técnica de los dos estudios de suero.</td></tr>
-<tr><td>AUC</td><td>Área bajo la curva ROC. Ordena parejas de personas: 0,50 es el azar y 1 es la separación perfecta. Un 0,88 quiere decir que el modelo acertó el orden en el 88 % de las parejas. Aquí es un cálculo interno del mismo estudio.</td></tr>
-<tr><td>Validación</td><td>En los modelos, validación cruzada: entrenar con una parte de las muestras y probar con otra parte de las mismas. No es un examen probado en otro hospital. Validación externa, la que faltaría para un uso clínico, no se hizo.</td></tr>
-<tr><td>FDR</td><td>Tasa de descubrimientos falsos. Al mirar cientos de proteínas, controla la proporción de diferencias que pueden ser casualidad. El umbral usado es 0,05.</td></tr>
-<tr><td>Equivalencia</td><td>Decir que, si hay una diferencia, cabe dentro de un margen. Aquí el margen es de 1,5 veces. No es lo mismo que «no significativa».</td></tr>
-<tr><td>Aprendizaje automático</td><td>Modelos que combinan muchas variables para separar dos grupos. Se comparan con modelos que solo usan la calidad de la muestra.</td></tr>
-<tr><td>Semilla</td><td>El número que fija el azar de la corrida. En la corrida sellada es 20260914, para que otra ejecución pueda repetir los sorteos.</td></tr>
-<tr><td>Sello</td><td>La nota que viaja con cada archivo de salida: commit, fecha, semilla y versiones. Sirve para saber de qué ejecución salió una cifra.</td></tr>
-<tr><td>Certificado</td><td>La lista de comprobaciones de la corrida. En la referencia quedó en estado publicable. No es un certificado clínico.</td></tr>
+<tr id="aprendizaje-automatico"><td>Aprendizaje automático</td><td>Modelos que combinan muchas variables para separar dos grupos. En la corrida sellada son seis regresiones logísticas. Se comparan con modelos que solo usan la calidad de la muestra.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
+<tr id="arn"><td>ARN mensajero</td><td>Copia temporal de un gen. La célula la lee para armar la proteína. Medir el ARN no es medir la proteína.</td><td><a href="aprender-marco.html#proteina">Del gen a la proteína</a></td></tr>
+<tr id="auc"><td>AUC</td><td>Área bajo la curva ROC. Ordena parejas de personas: 0,50 es el azar y 1 es la separación perfecta. Un 0,88 quiere decir que el modelo acertó el orden en el 88 % de las parejas. Aquí es un cálculo interno del mismo estudio.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
+<tr id="benjamini"><td>Benjamini-Hochberg</td><td>Procedimiento que ajusta los valores p cuando se prueban muchas proteínas a la vez, para controlar la FDR. El corte usado es 0,05.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
+<tr id="biomarcador"><td>Biomarcador</td><td>Una medición que se propone para detectar, seguir o clasificar una enfermedad. Este trabajo está en la fase exploratoria de ese camino.</td><td><a href="aprender-marco.html#sangre">Sangre y biomarcadores</a></td></tr>
+<tr id="certificado"><td>Certificado</td><td>La lista de comprobaciones de la corrida. En la referencia quedó en estado publicable. No es un certificado clínico.</td><td><a href="aprender-metodos.html#reproducir">Reproducibilidad</a></td></tr>
+<tr id="cohorte"><td>Cohorte</td><td>Un grupo de muestras reunidas en un mismo estudio, con un diseño y una técnica. Aquí hay cuatro, y no se fusionan.</td><td><a href="datos.html">Los datos</a></td></tr>
+<tr id="colonoscopia"><td>Colonoscopia</td><td>Exploración del colon y del recto con un endoscopio. Ve la mucosa y puede quitar pólipos. Sigue siendo la prueba de referencia.</td><td><a href="aprender-marco.html#cancer">Cáncer colorrectal</a></td></tr>
+<tr id="colonoscopia-negativa"><td>Colonoscopia negativa</td><td>Personas con síntomas intestinales cuya colonoscopia no mostró cáncer. No son personas sanas y no son un solo diagnóstico.</td><td><a href="aprender-marco.html#cancer">Cáncer colorrectal</a></td></tr>
+<tr id="cptac"><td>CPTAC</td><td>Programa que midió el proteoma de tumores, entre ellos colon y recto. El tejido ancla de este trabajo es el estudio PDC000116.</td><td><a href="aprender-marco.html#anotacion">Depósitos</a></td></tr>
+<tr id="roc"><td>Curva ROC</td><td>Gráfica de verdaderos positivos frente a falsos positivos, para cada umbral de un puntaje. El área bajo esa curva es el AUC.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
+<tr id="dia"><td>DIA</td><td>Adquisición independiente de datos. El instrumento registra ventanas amplias de masa. Es la técnica de los dos estudios de suero.</td><td><a href="aprender-marco.html#cuantificacion">TMT, LFQ y DIA</a></td></tr>
+<tr id="equivalencia"><td>Equivalencia</td><td>Decir que, si hay una diferencia, cabe dentro de un margen. Aquí el margen es de 1,5 veces. No es lo mismo que «no significativa».</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
+<tr id="masas"><td>Espectrometría de masas</td><td>Mide la masa de los péptidos y cómo se rompen, para proponer qué proteína era y cuánta señal dio. La cantidad es relativa.</td><td><a href="aprender-marco.html#masas">Espectrometría de masas</a></td></tr>
+<tr id="estadio"><td>Estadio</td><td>Hasta dónde llegó el tumor: en la pared del intestino, en ganglios cercanos o en otros órganos. El suero por estadio agrupa I–II, III y IV.</td><td><a href="aprender-marco.html#cancer">Cáncer colorrectal</a></td></tr>
+<tr id="fdr"><td>FDR</td><td>Tasa de descubrimientos falsos. Al mirar cientos de proteínas, controla la proporción de diferencias que pueden ser casualidad. El umbral usado es 0,05.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
+<tr id="fuga"><td>Fuga de información</td><td>Usar, al entrenar, un cálculo que ya vio las muestras de prueba. Infla el rendimiento. Imputar y escalar se hacen dentro del pliegue.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
+<tr id="gen"><td>Gen</td><td>Tramo de ADN con la receta de una proteína. El gen no es la proteína: primero se copia a ARN y ese ARN se traduce.</td><td><a href="aprender-marco.html#proteina">Del gen a la proteína</a></td></tr>
+<tr id="go"><td>Gene Ontology</td><td>Vocabulario controlado de procesos biológicos, lugares de la célula y funciones moleculares. Sirve para leer una lista de genes.</td><td><a href="aprender-marco.html#anotacion">Anotación</a></td></tr>
+<tr id="imputacion"><td>Imputación</td><td>Rellenar un hueco de la tabla. En los modelos se usa la mediana del entrenamiento, dentro de cada pliegue. En el contraste principal no se imputa para declarar una diferencia.</td><td><a href="aprender-metodos.html#faltantes">Normalización e imputación</a></td></tr>
+<tr id="lfq"><td>LFQ</td><td>Cuantificación sin marcaje. Cada muestra se mide por separado. Un cero quiere decir que la proteína no se vio. Es la técnica de la segunda cohorte de tejido.</td><td><a href="aprender-marco.html#cuantificacion">TMT, LFQ y DIA</a></td></tr>
+<tr id="limma"><td>limma</td><td>Forma de estimar la varianza de cada proteína usando también la varianza del resto. Sirve cuando hay pocas muestras.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
+<tr id="log2"><td>log2FC</td><td>Cambio en logaritmo base 2. Un valor de 1 es el doble y uno de −1 es la mitad. El margen de 1,5 veces equivale a 0,585.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
+<tr id="multiverso"><td>Multiverso</td><td>Repetir el análisis con las decisiones razonables que un analista pudo tomar, y ver si la conclusión cambia.</td><td><a href="aprender-metodos.html#reproducir">Multiverso</a></td></tr>
+<tr id="normalizacion"><td>Normalización</td><td>Poner las muestras en una escala comparable. La versión principal del tejido sin marcaje no centra otra vez por la mediana; ese centrado es una sensibilidad.</td><td><a href="aprender-metodos.html#faltantes">Normalización e imputación</a></td></tr>
+<tr id="peptido"><td>Péptido</td><td>Trozo de una proteína. Esta proteómica mide péptidos y, a partir de ellos, infiere la proteína de origen.</td><td><a href="aprender-marco.html#masas">Espectrometría de masas</a></td></tr>
+<tr id="plasma"><td>Plasma</td><td>Líquido de la sangre cuando se evita que coagule. No es el suero. En un estudio de este repositorio el metadato dice plasma y el protocolo depositado dice suero.</td><td><a href="aprender-marco.html#sangre">Sangre y biomarcadores</a></td></tr>
+<tr id="pliegue"><td>Pliegue</td><td>Porción de las muestras que se aparta para probar un modelo entrenado con el resto. Aquí hay cinco pliegues, repetidos veinte veces.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
+<tr id="pride"><td>PRIDE</td><td>Depósito público de proteómica del EMBL-EBI. Los accesos que empiezan por PXD viven ahí.</td><td><a href="aprender-marco.html#anotacion">Depósitos</a></td></tr>
+<tr id="proteina"><td>Proteína</td><td>Cadena de aminoácidos que, ya plegada, hace un trabajo en la célula o fuera de ella. Sale de traducir un ARN mensajero.</td><td><a href="aprender-marco.html#proteina">Del gen a la proteína</a></td></tr>
+<tr id="proteomica"><td>Proteómica</td><td>Medir muchas proteínas a la vez. Aquí se hace con espectrometría de masas sobre datos ya publicados.</td><td><a href="aprender-marco.html#proteina">Del gen a la proteína</a></td></tr>
+<tr id="proteomexchange"><td>ProteomeXchange</td><td>Consorcio que reúne depósitos de proteómica, entre ellos PRIDE, para que un estudio tenga un acceso estable.</td><td><a href="aprender-marco.html#anotacion">Depósitos</a></td></tr>
+<tr id="preregistro"><td>Preregistro</td><td>Escribir las reglas y los umbrales antes de ver los resultados, para separar lo confirmatorio de lo exploratorio. Un cambio posterior queda como enmienda fechada.</td><td><a href="aprender-metodos.html#reproducir">Reproducibilidad</a></td></tr>
+<tr id="rango"><td>Rango dinámico</td><td>Distancia entre la proteína más abundante y la más escasa. En la sangre es enorme: unas pocas proteínas tapan al resto.</td><td><a href="aprender-marco.html#sangre">Sangre y biomarcadores</a></td></tr>
+<tr id="logistica"><td>Regresión logística</td><td>Modelo que combina variables y devuelve una probabilidad de pertenecer a un grupo. Aquí lleva penalización L2, que encoge los coeficientes.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
+<tr id="semilla"><td>Semilla</td><td>El número que fija el azar de la corrida. En la corrida sellada es 20260914, para que otra ejecución pueda repetir los sorteos.</td><td><a href="aprender-metodos.html#reproducir">Reproducibilidad</a></td></tr>
+<tr id="sha"><td>SHA-256</td><td>Huella de un archivo. Si cambia un byte, cambia la huella. Sirve para comprobar que la entrada es la misma que la de la corrida de referencia.</td><td><a href="aprender-metodos.html#reproducir">Reproducibilidad</a></td></tr>
+<tr id="sello"><td>Sello</td><td>La nota que viaja con cada archivo de salida: commit, fecha, semilla y versiones. Sirve para saber de qué ejecución salió una cifra.</td><td><a href="aprender-metodos.html#reproducir">Reproducibilidad</a></td></tr>
+<tr id="suero"><td>Suero</td><td>La parte líquida de la sangre después de que coagula. No es un trozo del tumor.</td><td><a href="aprender-marco.html#sangre">Sangre y biomarcadores</a></td></tr>
+<tr id="tamizacion"><td>Tamización</td><td>Buscar la enfermedad en personas que todavía no tienen un diagnóstico. No es el seguimiento de quien ya fue tratado. También se dice tamizaje.</td><td><a href="aprender-marco.html#cancer">Cáncer colorrectal</a></td></tr>
+<tr id="tmt"><td>TMT</td><td>Marcado isobárico. Varias muestras se miden juntas. Es la técnica del tejido de CPTAC, que ya viene como razón en log2.</td><td><a href="aprender-marco.html#cuantificacion">TMT, LFQ y DIA</a></td></tr>
+<tr id="tost"><td>TOST</td><td>Dos pruebas unilaterales para afirmar que un cambio cabe dentro de un margen fijado. Aquí el margen es de ±1,5 veces.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
+<tr id="treat"><td>TREAT</td><td>Prueba de si el cambio supera un margen fijado de antemano, no solo de si es distinto de cero. El margen es 1,5 veces.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
+<tr id="validacion"><td>Validación</td><td>En los modelos, validación cruzada: entrenar con una parte de las muestras y probar con otra parte de las mismas. No es un examen probado en otro hospital. La validación externa, la que faltaría para un uso clínico, no se hizo.</td><td><a href="aprender-metodos.html#modelos">Modelos</a></td></tr>
+<tr id="valor-p"><td>Valor p</td><td>Probabilidad de ver un resultado al menos tan extremo como el observado si no hubiera diferencia. No dice el tamaño del cambio.</td><td><a href="aprender-metodos.html#diferencia">Análisis diferencial</a></td></tr>
+<tr id="valor-q"><td>Valor q</td><td>En DIA-NN, un valor que controla la tasa de identificaciones falsas. El flujo conserva filas con valor q de hasta 0,01.</td><td><a href="aprender-marco.html#masas">Espectrometría de masas</a></td></tr>
+<tr id="zenodo"><td>Zenodo</td><td>Depósito donde está la copia de entradas de la corrida sellada, con el DOI 10.5281/zenodo.24398807. No reemplaza la cita del artículo original.</td><td><a href="aprender-metodos.html#reproducir">Reproducibilidad</a></td></tr>
 </tbody>
 </table>
 </div>
